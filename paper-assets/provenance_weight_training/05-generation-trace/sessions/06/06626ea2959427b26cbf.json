@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06626ea2959427b26cbf",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train restart nmin5 and permuted",
+  "task_key": "worker_train_restart_nmin5_and_permuted_20260524T164714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_restart_nmin5_and_permuted_20260524T164714_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "19b0af61e1b9c0248c8de91a70eaebbddcbe06ad4ac3c3703b6bced19df2c91d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已重启并注册：\n\n| exp_id | GPU | PID | 当前 step | 总 steps | retry_count |\n|--------|-----|-----|-----------|----------|-------------|\n| `p0_nmin_5` | cuda:1 | 966103 | ~6/6103 | 6103 | 2 |\n| `permuted_score_control_seed42` | cuda:3 | 966241 | ~4/6103 | 6103 | 2 |\n\n两个实验均已从 step 0 重新开始训练，日志正常输出，τ=0.7 确认正确。预计训练时间约 3.8h（按 ~2.2s/it 估算）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-restart-nmin5-and-permuted.md"
+}

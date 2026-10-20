@@ -1,0 +1,14 @@
+{
+  "exp_id": "contamination_60_ess_only_seed456",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:18:41.546Z",
+    "updated_at": "2026-05-18T06:18:41.546Z"
+  },
+  "timestamp": "2026-05-18T06:18:41.763003+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2330af788b01f87aefe2",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit 30476 original script probe",
+  "task_key": "worker_submit_30476_original_script_probe_20260517T125817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_30476_original_script_probe_20260517T125817_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "df8032c5771c274ea495fdf580dd2ad720940bf0188cc025852bc81ffff58005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中。第一次检查结果：\n\n| 指标 | 值 |\n|---|---|\n| PID | 20073 |\n| 运行时间 | 51s |\n| Step | 17/6103 |\n| RSS | 3.6 GB |\n| GPU0 显存 | 46.5 / 97.9 GB |\n| GPU0 利用率 | 99% |\n| 系统内存 | 72 / 1024 GB |\n\n速度 ~2.16s/step，预计 step 600 在 ~21 分钟后到达。5 分钟后自动做第 2 次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-30476-original-script-probe.md"
+}

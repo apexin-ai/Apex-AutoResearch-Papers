@@ -1,0 +1,18 @@
+{
+  "exp_id": "adaptive_v2_seed123",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:27:19.157Z",
+    "updated_at": "2026-05-16T02:50:31.386Z",
+    "hypothesis": "Adaptive v2 (n_min fix: 3→2, no EMA) maintains or improves seed123 performance (baseline adaptive PPL=17.63)",
+    "conclusion": "killed",
+    "notes": "D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）",
+    "completed_at": "2026-05-16T02:50:30.507Z"
+  },
+  "timestamp": "2026-05-16T02:50:31.636453+00:00",
+  "trigger": "update_registry"
+}

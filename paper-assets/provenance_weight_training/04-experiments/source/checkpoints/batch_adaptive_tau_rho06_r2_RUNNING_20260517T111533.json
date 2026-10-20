@@ -1,0 +1,35 @@
+{
+  "exp_id": "batch_adaptive_tau_rho06_r2",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:25:31.543Z",
+    "updated_at": "2026-05-17T11:15:32.893Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_batch_adaptive_tau_rho06_seed42.sh\"",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "7746",
+      "log_path": "~/runs/provenance_weight_training/batch_adaptive_tau_rho06_r2.log",
+      "submitted_at": "2026-05-17T11:15:32.058Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-30476",
+    "gpu": "cuda:2",
+    "account": "root",
+    "pid": "7746",
+    "log_path": "~/runs/provenance_weight_training/batch_adaptive_tau_rho06_r2.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_batch_adaptive_tau_rho06_seed42.sh\""
+    }
+  },
+  "timestamp": "2026-05-17T11:15:33.764121+00:00",
+  "trigger": "update_registry"
+}

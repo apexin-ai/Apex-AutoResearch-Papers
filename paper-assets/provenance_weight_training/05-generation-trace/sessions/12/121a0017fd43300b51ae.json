@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "121a0017fd43300b51ae",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "prep eval commands",
+  "task_key": "worker_prep_eval_commands_20260516T010304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_eval_commands_20260516T010304_result.json",
+    "occurrence": 1,
+    "bytes": 5220,
+    "sha256": "dc6fb4b53f35c72b95a8b4f1ba8b809c56af9c306da69f19868a999d14866101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。以下是完整报告。\n\n---\n\n## 训练进度\n\n| 实验 | 进度 | ETA |\n|---|---|---|\n| `contamination_60_uniform_seed42` | **已完成** (6103/6103) | — |\n| `contamination_60_grid_b0_5_seed42` | 89% (5415/6103) | ~24 min |\n| `contamination_60_seed42_r2` | 81% (4939/6103) | ~43 min |\n| `contamination_60_ess_only_seed42` | 42% (2558/6103) | ~2h05m |\n\n注意：uniform_seed42 的 EXIT_CODE=129 (SIGHUP)，但 model 已成功保存到 `final/`。\n\n## Eval 脚本确认\n\n- **位置**: `/root/provenance_weight_training/eval_perplexity.py`（在项目根目录，非 `eval/` 子目录）\n- **参数**: `--checkpoints` (nargs=\"+\"), `--data_path`, `--max_docs` (default 5000), `--max_length` (default 2048), `--output_path`\n- **注意**: 脚本**没有** `--stride` 和 `--fp16` 参数。stride 由 `max_length // 2` 自动计算，fp16 通过 `torch.float16` 硬编码\n- 支持多 checkpoint 批量 eval（数据只加载一次）\n\n## Eval holdout 数据\n\n- `data/human/eval_holdout.jsonl`: 227MB, 67,823 行 ✓\n\n## Checkpoint 目录\n\n4 个 output dir 均已存在。uniform_seed42 已有 `final/` 子目录；其余 3 个训练完成后也会生成 `final/`。\n\n## 4 条 Eval 命令\n\n**1. contamination_60_uniform_seed42**（可立即执行）\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python eval_perplexity.py --checkpoints output/models/contamination_60_uniform_seed42/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --output_path eval_results_contamination_60_uniform_seed42.json\n```\n\n**2. contamination_60_grid_b0_5_seed42**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python eval_perplexity.py --checkpoints output/models/contamination_60_grid_b0_5_seed42/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --output_path eval_results_contamination_60_grid_b0_5_seed42.json\n```\n\n**3. contamination_60_seed42_r2**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python eval_perplexity.py --checkpoints output/models/contamination_60_seed42_r2/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --output_path eval_results_contamination_60_seed42_r2.json\n```\n\n**4. contamination_60_ess_only_seed42**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python eval_perplexity.py --checkpoints output/models/contamination_60_ess_only_seed42/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --output_path eval_results_contamination_60_ess_only_seed42.json\n```\n\n**批量一次性 eval（训练全部完成后推荐）：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python eval_perplexity.py \\\n  --checkpoints \\\n    output/models/contamination_60_uniform_seed42/final \\\n    output/models/contamination_60_grid_b0_5_seed42/final \\\n    output/models/contamination_60_seed42_r2/final \\\n    output/models/contamination_60_ess_only_seed42/final \\\n  --data_path data/human/eval_holdout.jsonl \\\n  --max_docs 5000 \\\n  --output_path eval_results_contamination_60_all.json\n```\n\n## 4 条 Train Loss 提取命令\n\n```bash\n# 1. uniform_seed42\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/extract_train_metrics.py --output_dir output/models/contamination_60_uniform_seed42 --log_file ~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\n\n# 2. grid_b0_5_seed42\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/extract_train_metrics.py --output_dir output/models/contamination_60_grid_b0_5_seed42 --log_file ~/runs/provenance_weight_training/contamination_60_grid_b0_5_seed42.log\n\n# 3. seed42_r2\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/extract_train_metrics.py --output_dir output/models/contamination_60_seed42_r2 --log_file ~/runs/provenance_weight_training/contamination_60_seed42_r2.log\n\n# 4. ess_only_seed42\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/extract_train_metrics.py --output_dir output/models/contamination_60_ess_only_seed42 --log_file ~/runs/provenance_weight_training/contamination_60_ess_only_seed42.log\n```\n\n## 磁盘/内存风险\n\n| 分区 | 总量 | 已用 | 可用 | 风险 |\n|---|---|---|---|---|\n| / (root) | 30G | 16G (53%) | 15G | **低风险** — eval 只写小 JSON 结果文件 |\n| /root/autodl-tmp | 250G | 153G (62%) | 98G | **无风险** |\n\nEval 过程中 GPU 内存需加载一个 model（fp16），eval 完后 `del model + cuda.empty_cache()`。只要训练进程先结束释放 GPU 显存即可，不会冲突。**注意不要在训练还在跑时启动 eval——会 OOM。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-eval-commands.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b573fbbc962a5d29020",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis bs16 uniform seed123",
+  "task_key": "worker_analysis_bs16_uniform_seed123_20260521T223940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bs16_uniform_seed123_20260521T223940_result.json",
+    "occurrence": 1,
+    "bytes": 84,
+    "sha256": "90df7d4294879ea6d122a1532acf41376ad358425d4f022ba10c8f44e18d64aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "忽略。所有后台计时器已全部到期，任务早已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bs16-uniform-seed123.md"
+}

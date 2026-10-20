@@ -1,0 +1,736 @@
+{
+  "schema_version": "1.0",
+  "id": "3b816eff5d7c5430b79f",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "fix method section v2 wording",
+  "task_key": "worker_fix_method_section_v2_wording_20260514T171132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_method_section_v2_wording_20260514T171132.log",
+    "occurrence": 1,
+    "bytes": 54537,
+    "sha256": "ed68aa87466631a1253da887e93411103af0258b44bde865d4494edd7dee1b1a"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "3fd76865-fc14-4f7f-9db1-ce249608d4db",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778779200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a61953c1-275d-4b3d-9397-07f251ce206c",
+                "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the file first to find the two sections that need to be updated.",
+              "signature": "EocCClkIDRgCKkAea8XNBtogm6kBQonFTnjLCx8xl0vLi0Z6KM6y3rsDJpT2s0KVgiq5fpOp73UOvR/Sv74YbxpYaGLEGAuHVbzjMg9jbGF1ZGUtb3B1cy00LTY4ABIMVljhp4Wk/zMfJ0sYGgwPV0zQ4ZcA/rXoux4iMMuXRqz9HgN5vj2f63HR+1aVll8S4pp5+w7Vk6i/NvW9Dsr8r1+2M7Z4sKlaRUu5+ypcgEh4bTjp1KbYfcPTE720qOpUMyy/pNSRM+XLzyy+yxjUQmn3t9fS7XtqxA9eqdFY9DKxy3hGMn4gaQr/0WD+qgoadcfrAV1TsTHao0Ef+B3eGggxqoy15tqtp1YYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "14302de2-09c6-4290-8ca8-fe2039430402",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011VdcuFTEnkRe3ixGf8CDMV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11335,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11335
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UkjPagTTGeZSDxbk23zPdU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "cbeaf01e-04f6-4486-a454-c57133df67c6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011VdcuFTEnkRe3ixGf8CDMV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11335,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11335
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T17:11:43.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UkjPagTTGeZSDxbk23zPdU",
+              "type": "tool_result",
+              "content": "1\t# Section 3: Method\n2\t\n3\t## 3.1 Problem Setup\n4\t\n5\tConsider a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ drawn from a mixture of human-authored and machine-generated text. An unknown fraction $\\pi$ of the documents are synthetic, injected through one or more language model generators whose outputs have entered the data pipeline. We assume access to a pre-trained sample-level detector $f: \\mathcal{X} \\to [0,1]$ that produces calibrated scores $q(x_i) = \\hat{P}(\\text{synthetic} \\mid x_i)$ for each document. Crucially, we do **not** assume knowledge of the true contamination ratio $\\pi$, nor do we require ground-truth provenance labels at training time.\n6\t\n7\tOur goal is to learn a language model on $\\mathcal{D}$ that performs as well as possible on the underlying clean (human-authored) distribution, measured by perplexity on a held-out evaluation set containing no synthetic text. The key challenge is determining how aggressively to downweight documents that the detector flags as potentially synthetic, without discarding useful training signal.\n8\t\n9\t## 3.2 Detect-and-Reweight Framework\n10\t\n11\tWe adopt the importance weighting scheme introduced by \\citet{drayson2025}:\n12\t$$w_i = (1 - q(x_i))^b, \\quad b \\geq 0$$\n13\twhere $q(x_i)$ is the detector's estimated synthetic probability for document $x_i$ and $b$ is a non-negative exponent controlling the penalty strength. This formulation defines a continuous spectrum from uniform weighting ($b = 0$, all samples treated equally) to hard filtering ($b \\to \\infty$, only samples with $q \\approx 0$ retained).\n14\t\n15\tEach sample's contribution to the training loss is scaled by its normalized weight $\\bar{w}_i = w_i / (\\frac{1}{N}\\sum_j w_j)$, so the weighted cross-entropy objective becomes:\n16\t$$\\mathcal{L}_{\\text{weighted}} = \\frac{1}{N} \\sum_{i=1}^{N} \\bar{w}_i \\cdot \\ell(x_i; \\theta)$$\n17\twhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss.\n18\t\n19\tThe central question is how to choose $b$. \\citet{drayson2025} select $b$ from a discrete grid via validation-based empirical tuning, requiring a held-out set and per-model search. We propose an alternative: deriving $b$ adaptively from the batch statistics themselves, eliminating the need for external validation or prior knowledge of $\\pi$.\n20\t\n21\t## 3.3 Adaptive $b^*$ via Effective Authenticity Estimation\n22\t\n23\t**Effective authenticity rate.** We define the effective authenticity rate under weighting parameter $b$ as:\n24\t$$\\alpha_{\\text{eff}}(b) = \\frac{\\sum_{i=1}^{N} (1 - q_i)^{b+1}}{\\sum_{i=1}^{N} (1 - q_i)^{b}}$$\n25\t\n26\tIntuitively, $\\alpha_{\\text{eff}}(b)$ measures the weighted average \"cleanness\" of the corpus under the weighting scheme parameterized by $b$. It has three key properties: (i) $\\alpha_{\\text{eff}}(0) = \\frac{1}{N}\\sum_i (1 - q_i) = 1 - \\hat{\\rho}$, the unweighted empirical authenticity rate; (ii) $\\alpha_{\\text{eff}}(b)$ is monotonically non-decreasing in $b$, since increasing $b$ concentrates weight on samples with higher $(1 - q_i)$; and (iii) $\\alpha_{\\text{eff}}(b) \\to 1$ as $b \\to \\infty$, reflecting that extreme downweighting retains only the cleanest samples.\n27\t\n28\t**Optimal exponent.** We seek the smallest $b$ that raises the effective authenticity above a target threshold $\\tau$:\n29\t$$b^* = \\inf\\{b \\geq 0 : \\alpha_{\\text{eff}}(b) \\geq \\tau\\}$$\n30\tsubject to a sample efficiency constraint described below. The threshold $\\tau$ encodes the desired purity level; we set $\\tau = 1 - \\pi/2$ when an estimate of the contamination ratio $\\pi$ is available, and $\\tau = 0.8$ as a robust default. This default balances between the unweighted regime ($\\alpha_{\\text{eff}}(0) = 1-\\pi$) and full real-data equivalence ($\\alpha_{\\text{eff}} = 1$), serving as a practical midpoint. When $\\pi$ is unknown, we use $\\tau = 0.8$ as a robust default. Taking the infimum ensures minimal intervention: we apply only as much downweighting as needed to meet the purity target, preserving training signal from borderline samples.\n31\t\n32\t**Effective sample size constraint.** Aggressive downweighting reduces the effective number of training samples. We quantify this via the effective sample size:\n33\t$$\\text{ESS}(b) = \\frac{\\left(\\sum_{i=1}^{N} w_i\\right)^2}{\\sum_{i=1}^{N} w_i^2}$$\n34\twhich equals $N$ when $b = 0$ (uniform weights) and decreases as $b$ increases. We impose a minimum $\\text{ESS}(b^*) \\geq n_{\\min}$ to ensure stable gradient estimates. When the $\\alpha_{\\text{eff}}$ threshold and ESS constraint conflict---i.e., reaching $\\tau$ would require $b$ so large that $\\text{ESS}$ drops below $n_{\\min}$---the algorithm returns the $b$ that maximizes $\\alpha_{\\text{eff}}$ among all ESS-feasible values:\n35\t$$b^* = \\arg\\max_{b \\geq 0} \\alpha_{\\text{eff}}(b) \\quad \\text{s.t.} \\quad \\text{ESS}(b) \\geq n_{\\min}$$\n36\t\n37\t**Algorithm.** We summarize the complete procedure in Algorithm 1.\n38\t\n39\t> **Algorithm 1:** Adaptive $b^*$ Selection\n40\t>\n41\t> **Input:** Batch scores $\\{q_1, \\ldots, q_B\\}$, threshold $\\tau$, minimum ESS $n_{\\min}$, upper bound $b_{\\max}$\n42\t>\n43\t> 1. Compute $\\alpha_{\\text{eff}}(0)$. If $\\alpha_{\\text{eff}}(0) \\geq \\tau$, return $b^* = 0$ (batch is sufficiently clean).\n44\t> 2. **Grid search:** Evaluate $\\alpha_{\\text{eff}}(b)$ and $\\text{ESS}(b)$ over a fine grid $b \\in [0, b_{\\max}]$. Track the smallest $b_\\tau$ where $\\alpha_{\\text{eff}}(b_\\tau) \\geq \\tau$, and the best ESS-feasible $b_f = \\arg\\max_b \\alpha_{\\text{eff}}(b)$ s.t. $\\text{ESS}(b) \\geq n_{\\min}$. Terminate early if $\\text{ESS}(b) < n_{\\min}$.\n45\t> 3. **Bisection refinement:** If $b_\\tau$ was found, refine via bisection (50 iterations) to locate $b^*$ precisely.\n46\t> 4. If $\\text{ESS}(b^*) \\geq n_{\\min}$, return $b^*$. Otherwise, return $b_f$.\n47\t> 5. Compute weights $w_i = (1 - q_i)^{b^*}$, normalized to sum to $B$.\n48\t>\n49\t> **Output:** Normalized weights $\\{\\bar{w}_1, \\ldots, \\bar{w}_B\\}$\n50\t\n51\t**Numerical stability.** All power computations $(1 - q_i)^b$ are performed in log-space as $\\exp(b \\cdot \\log(1 - q_i))$ with log-sum-exp shifting to prevent underflow, and intermediate quantities use double precision.\n52\t\n53\t## 3.4 Practical Considerations\n54\t\n55\t**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n56\t\n57\t**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling of $b_{\\max}=20$.\n58\t\n59\t**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n60\t\n61\t**Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.\n62\t\n63\t**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.\n64\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "1c4e4893-e012-4e15-9306-219d72705f31",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+                "content": "# Section 3: Method\n\n## 3.1 Problem Setup\n\nConsider a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ drawn from a mixture of human-authored and machine-generated text. An unknown fraction $\\pi$ of the documents are synthetic, injected through one or more language model generators whose outputs have entered the data pipeline. We assume access to a pre-trained sample-level detector $f: \\mathcal{X} \\to [0,1]$ that produces calibrated scores $q(x_i) = \\hat{P}(\\text{synthetic} \\mid x_i)$ for each document. Crucially, we do **not** assume knowledge of the true contamination ratio $\\pi$, nor do we require ground-truth provenance labels at training time.\n\nOur goal is to learn a language model on $\\mathcal{D}$ that performs as well as possible on the underlying clean (human-authored) distribution, measured by perplexity on a held-out evaluation set containing no synthetic text. The key challenge is determining how aggressively to downweight documents that the detector flags as potentially synthetic, without discarding useful training signal.\n\n## 3.2 Detect-and-Reweight Framework\n\nWe adopt the importance weighting scheme introduced by \\citet{drayson2025}:\n$$w_i = (1 - q(x_i))^b, \\quad b \\geq 0$$\nwhere $q(x_i)$ is the detector's estimated synthetic probability for document $x_i$ and $b$ is a non-negative exponent controlling the penalty strength. This formulation defines a continuous spectrum from uniform weighting ($b = 0$, all samples treated equally) to hard filtering ($b \\to \\infty$, only samples with $q \\approx 0$ retained).\n\nEach sample's contribution to the training loss is scaled by its normalized weight $\\bar{w}_i = w_i / (\\frac{1}{N}\\sum_j w_j)$, so the weighted cross-entropy objective becomes:\n$$\\mathcal{L}_{\\text{weighted}} = \\frac{1}{N} \\sum_{i=1}^{N} \\bar{w}_i \\cdot \\ell(x_i; \\theta)$$\nwhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss.\n\nThe central question is how to choose $b$. \\citet{drayson2025} select $b$ from a discrete grid via validation-based empirical tuning, requiring a held-out set and per-model search. We propose an alternative: deriving $b$ adaptively from the batch statistics themselves, eliminating the need for external validation or prior knowledge of $\\pi$.\n\n## 3.3 Adaptive $b^*$ via Effective Authenticity Estimation\n\n**Effective authenticity rate.** We define the effective authenticity rate under weighting parameter $b$ as:\n$$\\alpha_{\\text{eff}}(b) = \\frac{\\sum_{i=1}^{N} (1 - q_i)^{b+1}}{\\sum_{i=1}^{N} (1 - q_i)^{b}}$$\n\nIntuitively, $\\alpha_{\\text{eff}}(b)$ measures the weighted average \"cleanness\" of the corpus under the weighting scheme parameterized by $b$. It has three key properties: (i) $\\alpha_{\\text{eff}}(0) = \\frac{1}{N}\\sum_i (1 - q_i) = 1 - \\hat{\\rho}$, the unweighted empirical authenticity rate; (ii) $\\alpha_{\\text{eff}}(b)$ is monotonically non-decreasing in $b$, since increasing $b$ concentrates weight on samples with higher $(1 - q_i)$; and (iii) $\\alpha_{\\text{eff}}(b) \\to 1$ as $b \\to \\infty$, reflecting that extreme downweighting retains only the cleanest samples.\n\n**Optimal exponent.** We seek the smallest $b$ that raises the effective authenticity above a target threshold $\\tau$:\n$$b^* = \\inf\\{b \\geq 0 : \\alpha_{\\text{eff}}(b) \\geq \\tau\\}$$\nsubject to a sample efficiency constraint described below. The threshold $\\tau$ encodes the desired purity level; we set $\\tau = 1 - \\pi/2$ when an estimate of the contamination ratio $\\pi$ is available, and $\\tau = 0.8$ as a robust default. This default balances between the unweighted regime ($\\alpha_{\\text{eff}}(0) = 1-\\pi$) and full real-data equivalence ($\\alpha_{\\text{eff}} = 1$), serving as a practical midpoint. When $\\pi$ is unknown, we use $\\tau = 0.8$ as a robust default. Taking the infimum ensures minimal intervention: we apply only as much downweighting as needed to meet the purity target, preserving training signal from borderline samples.\n\n**Effective sample size constraint.** Aggressive downweighting reduces the effective number of training samples. We quantify this via the effective sample size:\n$$\\text{ESS}(b) = \\frac{\\left(\\sum_{i=1}^{N} w_i\\right)^2}{\\sum_{i=1}^{N} w_i^2}$$\nwhich equals $N$ when $b = 0$ (uniform weights) and decreases as $b$ increases. We impose a minimum $\\text{ESS}(b^*) \\geq n_{\\min}$ to ensure stable gradient estimates. When the $\\alpha_{\\text{eff}}$ threshold and ESS constraint conflict---i.e., reaching $\\tau$ would require $b$ so large that $\\text{ESS}$ drops below $n_{\\min}$---the algorithm returns the $b$ that maximizes $\\alpha_{\\text{eff}}$ among all ESS-feasible values:\n$$b^* = \\arg\\max_{b \\geq 0} \\alpha_{\\text{eff}}(b) \\quad \\text{s.t.} \\quad \\text{ESS}(b) \\geq n_{\\min}$$\n\n**Algorithm.** We summarize the complete procedure in Algorithm 1.\n\n> **Algorithm 1:** Adaptive $b^*$ Selection\n>\n> **Input:** Batch scores $\\{q_1, \\ldots, q_B\\}$, threshold $\\tau$, minimum ESS $n_{\\min}$, upper bound $b_{\\max}$\n>\n> 1. Compute $\\alpha_{\\text{eff}}(0)$. If $\\alpha_{\\text{eff}}(0) \\geq \\tau$, return $b^* = 0$ (batch is sufficiently clean).\n> 2. **Grid search:** Evaluate $\\alpha_{\\text{eff}}(b)$ and $\\text{ESS}(b)$ over a fine grid $b \\in [0, b_{\\max}]$. Track the smallest $b_\\tau$ where $\\alpha_{\\text{eff}}(b_\\tau) \\geq \\tau$, and the best ESS-feasible $b_f = \\arg\\max_b \\alpha_{\\text{eff}}(b)$ s.t. $\\text{ESS}(b) \\geq n_{\\min}$. Terminate early if $\\text{ESS}(b) < n_{\\min}$.\n> 3. **Bisection refinement:** If $b_\\tau$ was found, refine via bisection (50 iterations) to locate $b^*$ precisely.\n> 4. If $\\text{ESS}(b^*) \\geq n_{\\min}$, return $b^*$. Otherwise, return $b_f$.\n> 5. Compute weights $w_i = (1 - q_i)^{b^*}$, normalized to sum to $B$.\n>\n> **Output:** Normalized weights $\\{\\bar{w}_1, \\ldots, \\bar{w}_B\\}$\n\n**Numerical stability.** All power computations $(1 - q_i)^b$ are performed in log-space as $\\exp(b \\cdot \\log(1 - q_i))$ with log-sum-exp shifting to prevent underflow, and intermediate quantities use double precision.\n\n## 3.4 Practical Considerations\n\n**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n\n**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling of $b_{\\max}=20$.\n\n**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n\n**Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.\n\n**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.\n",
+                "numLines": 64,
+                "startLine": 1,
+                "totalLines": 64
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll make both edits."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "385f5e1b-0668-438d-8be4-c02541add86e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLuxb35P7qRfw55mPES3zB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2820,
+                "cache_read_input_tokens": 23176,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2820
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ECv4CcrR6RJupWhxmfMSUU",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+                "old_string": "**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling of $b_{\\max}=20$.",
+                "new_string": "**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling. For these batches, the algorithm returns the largest ESS-feasible $b$, degenerating to fixed aggressive downweighting rather than a principled $b^*$."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "cc2db22a-42f8-4124-837d-f9e4b1518107",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLuxb35P7qRfw55mPES3zB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2820,
+                "cache_read_input_tokens": 23176,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2820
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T17:11:48.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ECv4CcrR6RJupWhxmfMSUU",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "fde40abc-59b1-478e-ad9e-2fe3de06852d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+              "oldString": "**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling of $b_{\\max}=20$.",
+              "newString": "**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling. For these batches, the algorithm returns the largest ESS-feasible $b$, degenerating to fixed aggressive downweighting rather than a principled $b^*$.",
+              "originalFile": "# Section 3: Method\n\n## 3.1 Problem Setup\n\nConsider a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ drawn from a mixture of human-authored and machine-generated text. An unknown fraction $\\pi$ of the documents are synthetic, injected through one or more language model generators whose outputs have entered the data pipeline. We assume access to a pre-trained sample-level detector $f: \\mathcal{X} \\to [0,1]$ that produces calibrated scores $q(x_i) = \\hat{P}(\\text{synthetic} \\mid x_i)$ for each document. Crucially, we do **not** assume knowledge of the true contamination ratio $\\pi$, nor do we require ground-truth provenance labels at training time.\n\nOur goal is to learn a language model on $\\mathcal{D}$ that performs as well as possible on the underlying clean (human-authored) distribution, measured by perplexity on a held-out evaluation set containing no synthetic text. The key challenge is determining how aggressively to downweight documents that the detector flags as potentially synthetic, without discarding useful training signal.\n\n## 3.2 Detect-and-Reweight Framework\n\nWe adopt the importance weighting scheme introduced by \\citet{drayson2025}:\n$$w_i = (1 - q(x_i))^b, \\quad b \\geq 0$$\nwhere $q(x_i)$ is the detector's estimated synthetic probability for document $x_i$ and $b$ is a non-negative exponent controlling the penalty strength. This formulation defines a continuous spectrum from uniform weighting ($b = 0$, all samples treated equally) to hard filtering ($b \\to \\infty$, only samples with $q \\approx 0$ retained).\n\nEach sample's contribution to the training loss is scaled by its normalized weight $\\bar{w}_i = w_i / (\\frac{1}{N}\\sum_j w_j)$, so the weighted cross-entropy objective becomes:\n$$\\mathcal{L}_{\\text{weighted}} = \\frac{1}{N} \\sum_{i=1}^{N} \\bar{w}_i \\cdot \\ell(x_i; \\theta)$$\nwhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss.\n\nThe central question is how to choose $b$. \\citet{drayson2025} select $b$ from a discrete grid via validation-based empirical tuning, requiring a held-out set and per-model search. We propose an alternative: deriving $b$ adaptively from the batch statistics themselves, eliminating the need for external validation or prior knowledge of $\\pi$.\n\n## 3.3 Adaptive $b^*$ via Effective Authenticity Estimation\n\n**Effective authenticity rate.** We define the effective authenticity rate under weighting parameter $b$ as:\n$$\\alpha_{\\text{eff}}(b) = \\frac{\\sum_{i=1}^{N} (1 - q_i)^{b+1}}{\\sum_{i=1}^{N} (1 - q_i)^{b}}$$\n\nIntuitively, $\\alpha_{\\text{eff}}(b)$ measures the weighted average \"cleanness\" of the corpus under the weighting scheme parameterized by $b$. It has three key properties: (i) $\\alpha_{\\text{eff}}(0) = \\frac{1}{N}\\sum_i (1 - q_i) = 1 - \\hat{\\rho}$, the unweighted empirical authenticity rate; (ii) $\\alpha_{\\text{eff}}(b)$ is monotonically non-decreasing in $b$, since increasing $b$ concentrates weight on samples with higher $(1 - q_i)$; and (iii) $\\alpha_{\\text{eff}}(b) \\to 1$ as $b \\to \\infty$, reflecting that extreme downweighting retains only the cleanest samples.\n\n**Optimal exponent.** We seek the smallest $b$ that raises the effective authenticity above a target threshold $\\tau$:\n$$b^* = \\inf\\{b \\geq 0 : \\alpha_{\\text{eff}}(b) \\geq \\tau\\}$$\nsubject to a sample efficiency constraint described below. The threshold $\\tau$ encodes the desired purity level; we set $\\tau = 1 - \\pi/2$ when an estimate of the contamination ratio $\\pi$ is available, and $\\tau = 0.8$ as a robust default. This default balances between the unweighted regime ($\\alpha_{\\text{eff}}(0) = 1-\\pi$) and full real-data equivalence ($\\alpha_{\\text{eff}} = 1$), serving as a practical midpoint. When $\\pi$ is unknown, we use $\\tau = 0.8$ as a robust default. Taking the infimum ensures minimal intervention: we apply only as much downweighting as needed to meet the purity target, preserving training signal from borderline samples.\n\n**Effective sample size constraint.** Aggressive downweighting reduces the effective number of training samples. We quantify this via the effective sample size:\n$$\\text{ESS}(b) = \\frac{\\left(\\sum_{i=1}^{N} w_i\\right)^2}{\\sum_{i=1}^{N} w_i^2}$$\nwhich equals $N$ when $b = 0$ (uniform weights) and decreases as $b$ increases. We impose a minimum $\\text{ESS}(b^*) \\geq n_{\\min}$ to ensure stable gradient estimates. When the $\\alpha_{\\text{eff}}$ threshold and ESS constraint conflict---i.e., reaching $\\tau$ would require $b$ so large that $\\text{ESS}$ drops below $n_{\\min}$---the algorithm returns the $b$ that maximizes $\\alpha_{\\text{eff}}$ among all ESS-feasible values:\n$$b^* = \\arg\\max_{b \\geq 0} \\alpha_{\\text{eff}}(b) \\quad \\text{s.t.} \\quad \\text{ESS}(b) \\geq n_{\\min}$$\n\n**Algorithm.** We summarize the complete procedure in Algorithm 1.\n\n> **Algorithm 1:** Adaptive $b^*$ Selection\n>\n> **Input:** Batch scores $\\{q_1, \\ldots, q_B\\}$, threshold $\\tau$, minimum ESS $n_{\\min}$, upper bound $b_{\\max}$\n>\n> 1. Compute $\\alpha_{\\text{eff}}(0)$. If $\\alpha_{\\text{eff}}(0) \\geq \\tau$, return $b^* = 0$ (batch is sufficiently clean).\n> 2. **Grid search:** Evaluate $\\alpha_{\\text{eff}}(b)$ and $\\text{ESS}(b)$ over a fine grid $b \\in [0, b_{\\max}]$. Track the smallest $b_\\tau$ where $\\alpha_{\\text{eff}}(b_\\tau) \\geq \\tau$, and the best ESS-feasible $b_f = \\arg\\max_b \\alpha_{\\text{eff}}(b)$ s.t. $\\text{ESS}(b) \\geq n_{\\min}$. Terminate early if $\\text{ESS}(b) < n_{\\min}$.\n> 3. **Bisection refinement:** If $b_\\tau$ was found, refine via bisection (50 iterations) to locate $b^*$ precisely.\n> 4. If $\\text{ESS}(b^*) \\geq n_{\\min}$, return $b^*$. Otherwise, return $b_f$.\n> 5. Compute weights $w_i = (1 - q_i)^{b^*}$, normalized to sum to $B$.\n>\n> **Output:** Normalized weights $\\{\\bar{w}_1, \\ldots, \\bar{w}_B\\}$\n\n**Numerical stability.** All power computations $(1 - q_i)^b$ are performed in log-space as $\\exp(b \\cdot \\log(1 - q_i))$ with log-sum-exp shifting to prevent underflow, and intermediate quantities use double precision.\n\n## 3.4 Practical Considerations\n\n**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n\n**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling of $b_{\\max}=20$.\n\n**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n\n**Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.\n\n**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 54,
+                  "oldLines": 7,
+                  "newStart": 54,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " **Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]",
+                    " ",
+                    "-**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling of $b_{\\max}=20$.",
+                    "+**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling. For these batches, the algorithm returns the largest ESS-feasible $b$, degenerating to fixed aggressive downweighting rather than a principled $b^*$.",
+                    " ",
+                    " **Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017mjzNu9JtwU2yMy3jXguJi",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+                "old_string": "**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.",
+                "new_string": "**Threshold setting.** When $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$, the midpoint between $\\alpha_{\\text{eff}}(0) = 1 - \\pi$ (no intervention) and $1.0$ (perfect decontamination), as a practical default that balances decontamination strength against information loss. When $\\pi$ is unknown, $\\tau = 0.8$ serves as a robust default across contamination levels tested."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "f3143dab-3717-48e9-bb4c-6543380ca201",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLuxb35P7qRfw55mPES3zB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2820,
+                "cache_read_input_tokens": 23176,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2820
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T17:11:51.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017mjzNu9JtwU2yMy3jXguJi",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "90682336-03cd-402b-b6e0-44de20f06c75",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+              "oldString": "**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.",
+              "newString": "**Threshold setting.** When $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$, the midpoint between $\\alpha_{\\text{eff}}(0) = 1 - \\pi$ (no intervention) and $1.0$ (perfect decontamination), as a practical default that balances decontamination strength against information loss. When $\\pi$ is unknown, $\\tau = 0.8$ serves as a robust default across contamination levels tested.",
+              "originalFile": "# Section 3: Method\n\n## 3.1 Problem Setup\n\nConsider a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ drawn from a mixture of human-authored and machine-generated text. An unknown fraction $\\pi$ of the documents are synthetic, injected through one or more language model generators whose outputs have entered the data pipeline. We assume access to a pre-trained sample-level detector $f: \\mathcal{X} \\to [0,1]$ that produces calibrated scores $q(x_i) = \\hat{P}(\\text{synthetic} \\mid x_i)$ for each document. Crucially, we do **not** assume knowledge of the true contamination ratio $\\pi$, nor do we require ground-truth provenance labels at training time.\n\nOur goal is to learn a language model on $\\mathcal{D}$ that performs as well as possible on the underlying clean (human-authored) distribution, measured by perplexity on a held-out evaluation set containing no synthetic text. The key challenge is determining how aggressively to downweight documents that the detector flags as potentially synthetic, without discarding useful training signal.\n\n## 3.2 Detect-and-Reweight Framework\n\nWe adopt the importance weighting scheme introduced by \\citet{drayson2025}:\n$$w_i = (1 - q(x_i))^b, \\quad b \\geq 0$$\nwhere $q(x_i)$ is the detector's estimated synthetic probability for document $x_i$ and $b$ is a non-negative exponent controlling the penalty strength. This formulation defines a continuous spectrum from uniform weighting ($b = 0$, all samples treated equally) to hard filtering ($b \\to \\infty$, only samples with $q \\approx 0$ retained).\n\nEach sample's contribution to the training loss is scaled by its normalized weight $\\bar{w}_i = w_i / (\\frac{1}{N}\\sum_j w_j)$, so the weighted cross-entropy objective becomes:\n$$\\mathcal{L}_{\\text{weighted}} = \\frac{1}{N} \\sum_{i=1}^{N} \\bar{w}_i \\cdot \\ell(x_i; \\theta)$$\nwhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss.\n\nThe central question is how to choose $b$. \\citet{drayson2025} select $b$ from a discrete grid via validation-based empirical tuning, requiring a held-out set and per-model search. We propose an alternative: deriving $b$ adaptively from the batch statistics themselves, eliminating the need for external validation or prior knowledge of $\\pi$.\n\n## 3.3 Adaptive $b^*$ via Effective Authenticity Estimation\n\n**Effective authenticity rate.** We define the effective authenticity rate under weighting parameter $b$ as:\n$$\\alpha_{\\text{eff}}(b) = \\frac{\\sum_{i=1}^{N} (1 - q_i)^{b+1}}{\\sum_{i=1}^{N} (1 - q_i)^{b}}$$\n\nIntuitively, $\\alpha_{\\text{eff}}(b)$ measures the weighted average \"cleanness\" of the corpus under the weighting scheme parameterized by $b$. It has three key properties: (i) $\\alpha_{\\text{eff}}(0) = \\frac{1}{N}\\sum_i (1 - q_i) = 1 - \\hat{\\rho}$, the unweighted empirical authenticity rate; (ii) $\\alpha_{\\text{eff}}(b)$ is monotonically non-decreasing in $b$, since increasing $b$ concentrates weight on samples with higher $(1 - q_i)$; and (iii) $\\alpha_{\\text{eff}}(b) \\to 1$ as $b \\to \\infty$, reflecting that extreme downweighting retains only the cleanest samples.\n\n**Optimal exponent.** We seek the smallest $b$ that raises the effective authenticity above a target threshold $\\tau$:\n$$b^* = \\inf\\{b \\geq 0 : \\alpha_{\\text{eff}}(b) \\geq \\tau\\}$$\nsubject to a sample efficiency constraint described below. The threshold $\\tau$ encodes the desired purity level; we set $\\tau = 1 - \\pi/2$ when an estimate of the contamination ratio $\\pi$ is available, and $\\tau = 0.8$ as a robust default. This default balances between the unweighted regime ($\\alpha_{\\text{eff}}(0) = 1-\\pi$) and full real-data equivalence ($\\alpha_{\\text{eff}} = 1$), serving as a practical midpoint. When $\\pi$ is unknown, we use $\\tau = 0.8$ as a robust default. Taking the infimum ensures minimal intervention: we apply only as much downweighting as needed to meet the purity target, preserving training signal from borderline samples.\n\n**Effective sample size constraint.** Aggressive downweighting reduces the effective number of training samples. We quantify this via the effective sample size:\n$$\\text{ESS}(b) = \\frac{\\left(\\sum_{i=1}^{N} w_i\\right)^2}{\\sum_{i=1}^{N} w_i^2}$$\nwhich equals $N$ when $b = 0$ (uniform weights) and decreases as $b$ increases. We impose a minimum $\\text{ESS}(b^*) \\geq n_{\\min}$ to ensure stable gradient estimates. When the $\\alpha_{\\text{eff}}$ threshold and ESS constraint conflict---i.e., reaching $\\tau$ would require $b$ so large that $\\text{ESS}$ drops below $n_{\\min}$---the algorithm returns the $b$ that maximizes $\\alpha_{\\text{eff}}$ among all ESS-feasible values:\n$$b^* = \\arg\\max_{b \\geq 0} \\alpha_{\\text{eff}}(b) \\quad \\text{s.t.} \\quad \\text{ESS}(b) \\geq n_{\\min}$$\n\n**Algorithm.** We summarize the complete procedure in Algorithm 1.\n\n> **Algorithm 1:** Adaptive $b^*$ Selection\n>\n> **Input:** Batch scores $\\{q_1, \\ldots, q_B\\}$, threshold $\\tau$, minimum ESS $n_{\\min}$, upper bound $b_{\\max}$\n>\n> 1. Compute $\\alpha_{\\text{eff}}(0)$. If $\\alpha_{\\text{eff}}(0) \\geq \\tau$, return $b^* = 0$ (batch is sufficiently clean).\n> 2. **Grid search:** Evaluate $\\alpha_{\\text{eff}}(b)$ and $\\text{ESS}(b)$ over a fine grid $b \\in [0, b_{\\max}]$. Track the smallest $b_\\tau$ where $\\alpha_{\\text{eff}}(b_\\tau) \\geq \\tau$, and the best ESS-feasible $b_f = \\arg\\max_b \\alpha_{\\text{eff}}(b)$ s.t. $\\text{ESS}(b) \\geq n_{\\min}$. Terminate early if $\\text{ESS}(b) < n_{\\min}$.\n> 3. **Bisection refinement:** If $b_\\tau$ was found, refine via bisection (50 iterations) to locate $b^*$ precisely.\n> 4. If $\\text{ESS}(b^*) \\geq n_{\\min}$, return $b^*$. Otherwise, return $b_f$.\n> 5. Compute weights $w_i = (1 - q_i)^{b^*}$, normalized to sum to $B$.\n>\n> **Output:** Normalized weights $\\{\\bar{w}_1, \\ldots, \\bar{w}_B\\}$\n\n**Numerical stability.** All power computations $(1 - q_i)^b$ are performed in log-space as $\\exp(b \\cdot \\log(1 - q_i))$ with log-sum-exp shifting to prevent underflow, and intermediate quantities use double precision.\n\n## 3.4 Practical Considerations\n\n**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n\n**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling. For these batches, the algorithm returns the largest ESS-feasible $b$, degenerating to fixed aggressive downweighting rather than a principled $b^*$.\n\n**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n\n**Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.\n\n**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 60,
+                  "oldLines": 4,
+                  "newStart": 60,
+                  "newLines": 4,
+                  "lines": [
+                    " ",
+                    " **Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.",
+                    " ",
+                    "-**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). We leave sensitivity analysis of $\\tau$ to future work.",
+                    "+**Threshold setting.** When $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$, the midpoint between $\\alpha_{\\text{eff}}(0) = 1 - \\pi$ (no intervention) and $1.0$ (perfect decontamination), as a practical default that balances decontamination strength against information loss. When $\\pi$ is unknown, $\\tau = 0.8$ serves as a robust default across contamination levels tested."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VL9gStG56752fABmoPGf6u",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+                "offset": 55,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "59e9941c-f50a-48db-9e91-17f8ad9c6228",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LC65HsARtCXbkwjTLNmehX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 870,
+                "cache_read_input_tokens": 25996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 870
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T17:11:54.039Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VL9gStG56752fABmoPGf6u",
+              "type": "tool_result",
+              "content": "55\t**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n56\t\n57\t**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling. For these batches, the algorithm returns the largest ESS-feasible $b$, degenerating to fixed aggressive downweighting rather than a principled $b^*$.\n58\t\n59\t**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n60\t\n61\t**Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.\n62\t\n63\t**Threshold setting.** When $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$, the midpoint between $\\alpha_{\\text{eff}}(0) = 1 - \\pi$ (no intervention) and $1.0$ (perfect decontamination), as a practical default that balances decontamination strength against information loss. When $\\pi$ is unknown, $\\tau = 0.8$ serves as a robust default across contamination levels tested.\n64\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "dcbb7b05-b9b5-4fc9-82c1-bae66165e774",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/method_section_draft.md",
+                "content": "**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n\n**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In most batches the ESS constraint binds before $b_{\\max}$, though in rare cases ($<0.3\\%$) extreme batch compositions cause $b^*$ to reach the ceiling. For these batches, the algorithm returns the largest ESS-feasible $b$, degenerating to fixed aggressive downweighting rather than a principled $b^*$.\n\n**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n\n**Unknown contamination fraction.** The contamination fraction $\\pi$ is an optional input. When unavailable---the common case in web-scale training---we set $\\tau = 0.8$ as a robust default that performs well across $\\pi \\in [0.2, 0.6]$.\n\n**Threshold setting.** When $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$, the midpoint between $\\alpha_{\\text{eff}}(0) = 1 - \\pi$ (no intervention) and $1.0$ (perfect decontamination), as a practical default that balances decontamination strength against information loss. When $\\pi$ is unknown, $\\tau = 0.8$ serves as a robust default across contamination levels tested.\n",
+                "numLines": 10,
+                "startLine": 55,
+                "totalLines": 64
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处替换完成：\n\n1. **L57** — ESS/b_max 描述已更新，包含 \"degenerating to fixed aggressive downweighting rather than a principled $b^*$\"。\n2. **L63** — τ justification 已替换为 Director 审定版，包含 midpoint 解释和 information loss 表述。\n\n其余内容未改动。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "uuid": "9ad85dcb-3001-47c2-925f-8696b3e2950f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PxG2FGfkogG1B2rSmDP4gi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 676,
+                "cache_read_input_tokens": 26866,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 676
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处替换完成：\n\n1. **L57** — ESS/b_max 描述已更新，包含 \"degenerating to fixed aggressive downweighting rather than a principled $b^*$\"。\n2. **L63** — τ justification 已替换为 Director 审定版，包含 midpoint 解释和 information loss 表述。\n\n其余内容未改动。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 17670,
+            "duration_api_ms": 18557,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "fb48c404-53f4-412e-87af-c5c7259639c2",
+            "total_cost_usd": 0.16931474999999999,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 15701,
+              "cache_read_input_tokens": 87879,
+              "output_tokens": 1037,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 15701,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 105,
+                  "cache_read_input_tokens": 26866,
+                  "cache_creation_input_tokens": 676,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 676
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1204,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001289,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 1037,
+                "cacheReadInputTokens": 87879,
+                "cacheCreationInputTokens": 15701,
+                "webSearchRequests": 0,
+                "costUSD": 0.16802575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9599caaf-c931-4851-a7f0-bbda4ba0e54b"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-method-section-v2-wording.md"
+}

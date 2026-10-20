@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21a9f26e225cd25529fa",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_6_1778806485.md",
+  "task_key": "loop_6_1778806485",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778806485.md",
+    "occurrence": 1,
+    "bytes": 4679,
+    "sha256": "6f452646e27925ed789cd1d505f6cc8e2ad0c2220b0a29139d7533446b9e0113"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T00:54:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 @ westd-47453，不可用其他设备\n- grid_b3_0_seed456 分配在 cuda:3，grid_b5_0_seed456 分配在 cuda:2（registry 里 spec.gpu 和顶层 gpu 有交叉记录，以 spec.gpu 为准）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv\n- 提交命令必须包含 `--eval_data_path data/human/eval_holdout.jsonl --eval_steps 500`（之前 seed123 round 有 3 个漏掉 eval 参数的事故）\n- WANDB_MODE=disabled（当前阶段不用 W&B）\n- contamination_ratio 必须显式传 0.4（默认值是 0.2，不是 0）\n- 诊断/eval 短任务不要和关键路径训练共享 GPU（曾导致训练速度减半）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`（conda base env，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`data/scored_data.jsonl`（371499 条，contamination_ratio=0.4）；eval holdout：`data/human/eval_holdout.jsonl`（~4.08M tokens）\n- Eval 脚本：`eval_perplexity.py`；训练脚本：`training/pretrain_weighted.py`\n- 活跃进程：grid_b0_5_seed456 PID 145057 (tmux, cuda:1)；grid_b2_0_seed456 PID 152483 (tmux, cuda:0)\n- Cron 监控：grid_b0_5_seed456 + grid_b2_0_seed456 两条活跃 cron\n- Running Workers：`worker_analysis_grid_b1_0_b1_5_seed456`（分析刚完成的 b=1.0/1.5）；`worker_eval_grid_b_seed456_posthoc`（补跑 eval）\n\n### 3. 📊 当前状态\n上一轮完成了 adaptive_fix 三 seed（全 success）+ grid_b seed42 batch（全 6 值 DONE）+ grid_b seed123（全 6 值 DONE）。正在推进 grid_b seed456（最后一批 3-seed 验证数据）。\n\n**Registry 快照**：\n- **RUNNING**：grid_b0_5_seed456 (cuda:1, ~21:20 启动, ETA ~01:00)、grid_b2_0_seed456 (cuda:0, ~22:22 启动, ETA ~02:00)\n- **ANALYZING**：grid_b1_0_seed456、grid_b1_5_seed456（刚完成，两个 Worker 在处理 eval + 分析）\n- **ALLOCATED**：grid_b3_0_seed456 (cuda:3)、grid_b5_0_seed456 (cuda:2)——等 cuda:2/3 空出后提交\n- **DONE**：18 个实验（uniform×3, adaptive×3, adaptive_fix×3, grid_b_seed42_batch, grid_b_seed123×6, detector_tfidf_lr, datagen）\n- **KILLED**：adaptive_v2×3（被 D012 取消）、diagnostic_contamination100\n\n**等待中**：\n- 两个 running Worker 完成 → 更新 grid_b1_0/1_5_seed456 metrics 到 registry\n- grid_b0_5/2_0_seed456 cron 回调 → 触发分析\n- cuda:2/3 释放 → 提交 grid_b3_0/5_0_seed456\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_analysis_grid_b1_0_b1_5_seed456` 完成 → 更新 registry metrics，确认 eval PPL\n- Worker `worker_eval_grid_b_seed456_posthoc` 完成 → 合并 eval 结果到 registry\n- grid_b1_0/1_5_seed456 分析完 + cuda:2/3 空闲 → 立即 `submit_on_allocated` 提交 grid_b3_0_seed456 (cuda:3) 和 grid_b5_0_seed456 (cuda:2)\n- grid_b0_5_seed456 cron 回调 → spawn worker 分析 + 更新 registry\n- grid_b2_0_seed456 cron 回调 → spawn worker 分析 + 更新 registry\n- 全部 6 个 seed456 grid-b DONE → 汇总三 seed 数据，做最终 MVP 判定（adaptive_fix 均值 ≥ 90% grid-best 改善量）\n- MVP 3-seed PASS → 向 Director 汇报，启动 post-mvp-kickoff（paper_framing → experiment_plan）\n- MVP 3-seed FAIL → 产出 Framing 调整提案，等 Director 决策\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D005-D008: ModernBERT 废弃 → TF-IDF detector (AUC=0.939)\n- D011: adaptive seed42 零改善 → D012: n_min=3 钳制 ESS 是根因 → fix: n_min=2\n- D013: Drayson et al. 差异化确认（他们 fixed b via grid search，我们 adaptive b* 有理论支撑）\n- D017-D018: adaptive_fix 唯一变量是 n_min(3→2)，无混淆\n\n**MVP 2-seed 初步 PASS（95.6%）**，seed456 是最后确认。已知趋势：PPL 随 b 单调递增，best-b=0.5 在搜索边界。\n\n**易错点**：\n- grid_b3_0_seed456 和 grid_b5_0_seed456 的 registry 里 spec.gpu 和顶层 gpu 字段不一致（spec 说 cuda:2/cuda:3，顶层说 cuda:3/cuda:2）——以 ALLOCATED 时的分配为准，提交前用 `load_project_config` 确认\n- 不要把 train_loss 跨方法对比（adaptive/grid 是 weighted CE，uniform 是 unweighted CE）——只能用 eval_ppl_holdout\n- Eval 每次耗时 ~44 min，不要在关键路径训练 GPU 上跑 eval\n- 投稿 deadline EMNLP ARR May 25，今天是 Day 2/12，seed456 grid-b 是 MVP 最后一块拼图\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778806485.md"
+}

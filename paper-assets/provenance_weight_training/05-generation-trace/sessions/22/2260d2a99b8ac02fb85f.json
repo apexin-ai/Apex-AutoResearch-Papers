@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2260d2a99b8ac02fb85f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix experiment setup draft",
+  "task_key": "worker_fix_experiment_setup_draft_20260514T162150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_experiment_setup_draft_20260514T162150_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "cb741f6527d2f776212e756a5af41935e851d64f9fc7c4d46dfc5d2797b40f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 处修正全部生效：\n\n1. **L72**: EMA 声明已删除，替换为 \"b* is computed independently for each mini-batch…no cross-batch smoothing or state is maintained.\"\n2. **L94**: GPU 预算从 \"18 GPU-hours\" 改为 \"70–85 GPU-hours across all experiments (baselines, grid search, and adaptive runs with three seeds)\"\n3. **L88**: GPU 型号改为 \"NVIDIA RTX PRO 6000 Blackwell Server Edition\"\n4. **L91**: 训练时间改为 \"3.3–4.2 hours per run depending on the weighting method\"\n5. **L98**: 表格标题加注 \"(n_min=3, legacy version)\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-experiment-setup-draft.md"
+}

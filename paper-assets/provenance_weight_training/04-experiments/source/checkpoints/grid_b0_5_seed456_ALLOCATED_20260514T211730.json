@@ -1,0 +1,42 @@
+{
+  "exp_id": "grid_b0_5_seed456",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-14T06:58:17.956Z",
+    "updated_at": "2026-05-14T21:17:30.397Z",
+    "hypothesis": "Grid-b weighting with b=0.5, seed=456, for multi-seed validation of best-b baseline",
+    "server": "westd-47453",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T21:10:43.728Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\"",
+      "finished_at": "2026-05-14T21:13:25.498Z",
+      "training_hours": 0.04
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 64.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 63.44 MiB is free. Process 138525 has 68.61 GiB memory in use. Process 139132 has 19.21 GiB memory in use. Including non-PyTorch memory, this process ha",
+    "completed_at": "2026-05-14T21:13:26.329Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T21:13:27.262433+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: CUDA OOM at step 0 — GPU 0 被 3 个进程挤爆（PID 138525: 68.61GiB + PID 139132: 19.21GiB + 本进程 7.08GiB > 94.97GiB）。实验分配 cuda:1 但进程实际跑在 GPU 0 上，疑 CUDA_VISIBLE_DEVICES 未正确注入或有残留进程干扰。已有成果: 无（0% 进度）。建议: 清理 GPU 0 残留进程后在 cuda:1 上重新提交，补充 --eval_data_path 和 --eval_steps 参数。"
+      }
+    },
+    "notes": "失败原因: CUDA OOM at step 0 — GPU 0 被 3 个进程挤爆（PID 138525: 68.61GiB + PID 139132: 19.21GiB + 本进程 7.08GiB > 94.97GiB）。实验分配 cuda:1 但进程实际跑在 GPU 0 上，疑 CUDA_VISIBLE_DEVICES 未正确注入或有残留进程干扰。已有成果: 无（0% 进度）。建议: 清理 GPU 0 残留进程后在 cuda:1 上重新提交，补充 --eval_data_path 和 --eval_steps 参数。"
+  },
+  "timestamp": "2026-05-14T21:17:30.595489+00:00",
+  "trigger": "update_registry"
+}

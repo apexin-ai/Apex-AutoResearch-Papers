@@ -1,0 +1,93 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024strong}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{shumailov2024strong}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Synthetic Contamination.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detect-and-Reweight.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Golden Ratio Weighting.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain-Level Reweighting.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Convergence Theory.}{2}{section*.5}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Adaptive $b^*$ with ESS Constraint}}{3}{algorithm.1}\protected@file@percent }
+\newlabel{alg:adaptive}{{1}{3}{ESS-Constrained $b^*$ Derivation}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Effective Contamination Fraction $\hat  {\alpha }_{\mathrm  {eff}}(b)$}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}ESS-Constrained $b^*$ Derivation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Loss Reweighting vs.\ SIR}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detectors.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Full Grid Curve Reveals Low-$b$ Optimum}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:grid_curve}{{5.1}{4}{Full Grid Curve Reveals Low-$b$ Optimum}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Eval PPL across weighting exponents ($\rho = 0.4$, Qwen3-0.6B, 200M tokens). Lower is better. Bold: best per seed.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:full_grid}{{1}{5}{Eval PPL across weighting exponents ($\rho = 0.4$, Qwen3-0.6B, 200M tokens). Lower is better. Bold: best per seed}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Adaptive $b^*$ recovery ratio relative to grid-best ($b = 0.2$). The gap between adaptive and grid-best (0.013--0.024) exceeds cross-seed variance ($\sim $0.007).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:ratio}{{2}{5}{Adaptive $b^*$ recovery ratio relative to grid-best ($b = 0.2$). The gap between adaptive and grid-best (0.013--0.024) exceeds cross-seed variance ($\sim $0.007)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Lightweight Detector Sufficiency}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:detector}{{5.2}{5}{Lightweight Detector Sufficiency}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Higher Contamination ($\rho = 0.6$)}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:rho06}{{5.3}{5}{Higher Contamination ($\rho = 0.6$)}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Detector quality vs.\ training PPL ($\rho = 0.4$, Qwen3-0.6B, adaptive $b^*$, seed 42). AUC improves by 5\% relative, but PPL gain is negligible.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:detector}{{3}{6}{Detector quality vs.\ training PPL ($\rho = 0.4$, Qwen3-0.6B, adaptive $b^*$, seed 42). AUC improves by 5\% relative, but PPL gain is negligible}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Contamination level vs.\ adaptive effectiveness (Qwen3-0.6B, seed 42). Higher contamination does not amplify the benefit of adaptive reweighting.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:rho06}{{4}{6}{Contamination level vs.\ adaptive effectiveness (Qwen3-0.6B, seed 42). Higher contamination does not amplify the benefit of adaptive reweighting}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Model Scale (Llama-3.2-3B)}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:3b}{{5.4}{6}{Model Scale (Llama-3.2-3B)}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}ESS Constraint Sensitivity ($n_{\min }$)}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:nmin}{{5.5}{6}{ESS Constraint Sensitivity ($n_{\min }$)}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Generator Robustness}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:cross_gen}{{5.6}{6}{Cross-Generator Robustness}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $b^*$ distribution comparison across model scales ($\rho = 0.4$, seed 42). The $b^*$ distribution is nearly identical because it depends only on $q$-score statistics, not model architecture. KS test $p = 0.87$.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:3b}{{5}{7}{$b^*$ distribution comparison across model scales ($\rho = 0.4$, seed 42). The $b^*$ distribution is nearly identical because it depends only on $q$-score statistics, not model architecture. KS test $p = 0.87$}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $n_{\min }$ sensitivity ($\rho = 0.4$, Qwen3-0.6B, seed 42, batch size 4). Only $n_{\min } = 2$ improves over uniform; $n_{\min } = 1$ is too aggressive, $n_{\min } \geq 3$ collapses to uniform.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:nmin}{{6}{7}{$n_{\min }$ sensitivity ($\rho = 0.4$, Qwen3-0.6B, seed 42, batch size 4). Only $n_{\min } = 2$ improves over uniform; $n_{\min } = 1$ is too aggressive, $n_{\min } \geq 3$ collapses to uniform}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Domain-Skewed Injection}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:domain_skew}{{5.7}{7}{Domain-Skewed Injection}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Baseline Comparisons}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:baselines}{{5.8}{7}{Baseline Comparisons}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Downstream Evaluation}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:downstream}{{5.9}{7}{Downstream Evaluation}{subsection.5.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-generator evaluation ($\rho = 0.4$, Qwen3-0.6B, seed 42). When detector quality degrades on out-of-distribution synthetic text, adaptive reweighting becomes harmful.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:cross_gen}{{7}{8}{Cross-generator evaluation ($\rho = 0.4$, Qwen3-0.6B, seed 42). When detector quality degrades on out-of-distribution synthetic text, adaptive reweighting becomes harmful}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Domain-skewed contamination ($\rho = 0.4$, Qwen3-0.6B). Per-batch adaptation amplifies domain skew rather than correcting it.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:domain_skew}{{8}{8}{Domain-skewed contamination ($\rho = 0.4$, Qwen3-0.6B). Per-batch adaptation amplifies domain skew rather than correcting it}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why adaptive $b^*$ overshoots.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic value of $b^*$ trajectories.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When adaptive hurts.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The $n_{\min }$ sensitivity question.}{8}{section*.14}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Method comparison ($\rho = 0.4$, Qwen3-0.6B, seed 42). Grid-best $b = 0.2$ dominates; adaptive provides partial improvement; random reweighting confirms detector signal is necessary.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:baselines}{{9}{9}{Method comparison ($\rho = 0.4$, Qwen3-0.6B, seed 42). Grid-best $b = 0.2$ dominates; adaptive provides partial improvement; random reweighting confirms detector signal is necessary}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Downstream evaluation (Llama-3.2-3B, $\rho = 0.4$, seed 42, 200M tokens). No significant differences are observed, consistent with the minimal PPL gap (0.06\% relative) and severe undertraining (63 tokens/parameter vs.\ Chinchilla-optimal $\sim $20$\times $).}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:downstream}{{10}{9}{Downstream evaluation (Llama-3.2-3B, $\rho = 0.4$, seed 42, 200M tokens). No significant differences are observed, consistent with the minimal PPL gap (0.06\% relative) and severe undertraining (63 tokens/parameter vs.\ Chinchilla-optimal $\sim $20$\times $)}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Loss reweighting vs.\ SIR.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{9}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{9}{Conclusion}{section.8}{}}
+\bibcite{drayson2025contamination}{{1}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{shumailov2024strong}{{2}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{dohmatob2025strong}{{3}{2025}{{Dohmatob et~al.}}{{}}}
+\bibcite{xie2023dsir}{{4}{2023}{{Xie et~al.}}{{}}}
+\bibcite{xie2023doremi}{{5}{2023b}{{Xie et~al.}}{{}}}
+\bibcite{abbas2024softdedup}{{6}{2024}{{Abbas et~al.}}{{}}}
+\bibcite{li2025goldenratio}{{7}{2025}{{Li et~al.}}{{}}}
+\bibcite{convergence2025}{{8}{2025}{{Anonymous}}{{}}}
+\bibcite{okanovic2025dynamic}{{9}{2025}{{Okanovic et~al.}}{{}}}
+\bibcite{hoffmann2022chinchilla}{{10}{2022}{{Hoffmann et~al.}}{{}}}
+\gdef \@abspage@last{10}

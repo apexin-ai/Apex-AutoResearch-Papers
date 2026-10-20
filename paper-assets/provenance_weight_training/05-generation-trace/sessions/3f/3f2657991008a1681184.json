@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f2657991008a1681184",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix cuda visible devices scripts",
+  "task_key": "worker_fix_cuda_visible_devices_scripts_20260516T110327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda_visible_devices_scripts_20260516T110327_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "80450a32ee819e96ac20cc0497ed032bb7574b06d423244cb168f45476544cfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**已添加 `export CUDA_VISIBLE_DEVICES=N`：**\n| 脚本 | GPU |\n|------|-----|\n| `run_threshold_q03_seed42.sh` | 3 |\n| `run_threshold_q07_seed42.sh` | 0 |\n| `run_threshold_q07_resume.sh` | 0 |\n\n**已有 CUDA_VISIBLE_DEVICES（无需修改）：**\n| 脚本 | GPU |\n|------|-----|\n| `run_batch_adaptive_tau_rho04_seed42.sh` | 2 |\n| `run_eval_seed42.sh` | (已有) |\n| `run_random_reweight_seed42.sh` | (已有) |\n| `run_rho02_uniform_seed42.sh` | (已有) |\n\n**已添加 TODO 注释（GPU 未固定）：**\n- `run_batch_adaptive_tau_rho06_seed42.sh`\n- `run_hybrid_rho04_seed42.sh`\n- `run_bs8_auto_nmin_seed42.sh`\n- `run_rho02_adaptive_tau09_seed42.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda-visible-devices-scripts.md"
+}

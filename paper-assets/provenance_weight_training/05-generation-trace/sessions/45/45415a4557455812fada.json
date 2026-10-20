@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45415a4557455812fada",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify 41312 gpu post cleanup",
+  "task_key": "worker_verify_41312_gpu_post_cleanup_20260518T150119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_41312_gpu_post_cleanup_20260518T150119_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "dacee0a06616f82ba038cb7cb6a201fa5fea292a42454c1766f45e5307de4539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41312 训练状态\n\n### GPU 显存占用\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | **0 MiB** / 97887 MiB | 0% | **空闲** |\n| 1 | 63511 MiB / 97887 MiB | 84% | 运行中 |\n| 2 | 45643 MiB / 97887 MiB | 94% | 运行中 |\n| 3 | 45643 MiB / 97887 MiB | 100% | 运行中 |\n\n### 任务状态\n\n| 任务 | 状态 | 进度 |\n|------|------|------|\n| **uniform_1_7b_seed42** | ❌ **失败** | EXIT_CODE=1 |\n| adaptive_1_7b_seed42 | ✅ 运行中 | 41% (2509/6103), ~2.26s/it |\n| ngram_adaptive_seed42 | ✅ 运行中 | 0.4% (24/6103), ~2.31s/it |\n| ngram_uniform_seed42 | ✅ 运行中 | 0.4% (25/6103), ~2.08s/it |\n\n### uniform_1_7b_seed42 失败原因\n\n```\nFileNotFoundError: [Errno 2] No such file or directory:\n'/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42/checkpoint-3000/trainer_state.json'\n```\n\n该任务试图从 checkpoint-3000 恢复训练，但该 checkpoint 不存在。tmux 中也无对应 session（已退出）。GPU 0 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-41312-gpu-post-cleanup.md"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "bs8_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:04:41.935Z",
+    "updated_at": "2026-05-15T18:43:36.187Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 4 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "236697",
+      "log_path": "~/runs/provenance_weight_training/bs8_seed42.log",
+      "submitted_at": "2026-05-15T18:31:59.603Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 695.9,
+      "gpu_hours": 0.19
+    },
+    "server": "westd-47453",
+    "gpu": "cuda:2",
+    "account": "root",
+    "pid": "236697",
+    "log_path": "~/runs/provenance_weight_training/bs8_seed42.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 4 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\"",
+      "finished_at": "2026-05-15T18:43:32.689Z"
+    },
+    "conclusion": "failed",
+    "notes": "Killed at 1% (71/6103 steps). Wrong config: n_min=4 matches same ESS/bs ratio as n_min=2/bs=4. Director instructed restart with n_min=2 + bs=8 for wider ESS dynamic range [2,8]. Replaced by bs8_nmin2_seed42.",
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-15T18:43:35.489Z"
+  },
+  "timestamp": "2026-05-15T18:43:36.573571+00:00",
+  "trigger": "update_registry"
+}

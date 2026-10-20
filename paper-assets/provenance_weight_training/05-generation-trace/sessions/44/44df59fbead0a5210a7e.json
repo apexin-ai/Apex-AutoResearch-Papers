@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44df59fbead0a5210a7e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix 30476 cleanup and check rho02",
+  "task_key": "worker_fix_30476_cleanup_and_check_rho02_20260517T125029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_30476_cleanup_and_check_rho02_20260517T125029_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "f3c64c9cb3dfad78beeef31a892c7a96ce59813def7ff1276fbc0f7b3c90dde2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 子任务 A：GPU 清理\n- PID 15207/15687 已不存在（已自行退出），kill 命令无害执行\n- **无 tmux session 残留**（`tmux ls` 返回空）\n- **GPU 状态**：4x NVIDIA RTX PRO 6000 (98GB)，全部 0 MiB 内存占用，无运行进程。GPU 0/2 显示 100% utilization 是驱动 P0 状态假象（0 内存 + 无进程 = 空闲）\n- 所有 GPU 可用\n\n### 子任务 B：rho02_adaptive_tau09_r3 状态判定\n\n**判定：失败，registry \"failed\" 标记正确，不修改。**\n\n证据：\n| 指标 | 值 |\n|------|-----|\n| 进度 | 488/6103 步（8%） |\n| 输出目录 | 空（无 model、checkpoint、metrics） |\n| final/ 目录 | 不存在 |\n| step_metrics.jsonl | 不存在 |\n| eval_results | 不存在 |\n\n\"DONE\" 消息来自 shell 脚本末尾的 `echo`，在 `python | tee` pipeline 中 python 进程异常退出后被误执行。训练在 step 488 中断，且 step 200/400 的 checkpoint 也不存在（可能被后续 r4 启动覆盖或从未持久化）。\n\n### 附带清理\n- **rho02_adaptive_tau09_r4**：从 PREPARING → DONE(failed)。失败原因：脚本新增的 `--dataloader_num_workers 0` 参数不被 `pretrain_weighted.py` 识别，arg parsing 立即报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-30476-cleanup-and-check-rho02.md"
+}

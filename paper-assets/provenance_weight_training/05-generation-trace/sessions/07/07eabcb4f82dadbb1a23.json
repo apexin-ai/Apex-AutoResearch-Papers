@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07eabcb4f82dadbb1a23",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit contamination 60 ess only seed123",
+  "task_key": "worker_submit_contamination_60_ess_only_seed123_20260518T061922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_contamination_60_ess_only_seed123_20260518T061922_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "12ec3dc5aec325ae04e4109d5000ac30b0d4eb31c9aae9fc1dc2a81107abd1b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **训练已启动**: westd-41312 cuda:0, PID 181818\n- **进度**: 14/6103 steps, ~2.11s/step, 预计 ~3.5h\n- **Registry**: RUNNING, spec 已更新 (data_path, data_count=371499, model_name=Qwen3-0.6B, seed=123)\n- **无 --save_only_model**，checkpoint 包含完整 optimizer/scheduler 状态\n- **日志**: `/root/provenance_weight_training/logs/contamination_60_ess_only_seed123.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-contamination-60-ess-only-seed123.md"
+}

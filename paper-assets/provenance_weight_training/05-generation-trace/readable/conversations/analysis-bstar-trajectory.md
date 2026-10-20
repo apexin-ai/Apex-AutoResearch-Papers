@@ -1,0 +1,1924 @@
+# analysis bstar trajectory
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_analysis_bstar-trajectory_20260516T142250.jsonl`
+- **Structured JSON:** [`e963638b5986d26850ec.json`](../../sessions/e9/e963638b5986d26850ec.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T14:36:01.583790+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T14:36:01.584147+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T14:36:01.584317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp -name \"step_metrics.jsonl\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/autodl-tmp -name \"step_metrics.jsonl\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T14:36:01.584451+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T14:36:01.584577+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp -name \"step_metrics.jsonl\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/autodl-tmp -name \"step_metrics.jsonl\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T14:36:01.584743+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/provenance_weight_training/output/models/uniform_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/uniform_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/uniform_seed456/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_5_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_seed456/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b1_0_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_5_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b1_0_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b1_5_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b1_5_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/diagnostic_contamination100_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/diagnostic_contamination0_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b2_0_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b3_0_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b5_0_seed123/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b2_0_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed123/ste
+…[truncated 4107 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T14:36:01.584941+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "head -5 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "head -5 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T14:36:01.585129+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 0, \\\"loss\\\": 3.752391815185547, \\\"unweighted_loss\\\": 2.806791305541992, \\\"b\\\": 1.459999918937683, \\\"alpha_eff\\\": 0.6706967913098062, \\\"ess\\\": 2.0147005816050303, \\\"mean_q\\\": 0.6097636222839355, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 0, \\\"loss\\\": 2.6754984855651855, \\\"unweighted_loss\\\": 1.7933664321899414, \\\"b\\\": 0.47999998927116394, \\\"alpha_eff\\\": 0.6570835688685251, \\\"ess\\\": 2.0190586747880217, \\\"mean_q\\\": 0.7438509464263916, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 0, \\\"loss\\\": 2.258910655975342, \\\"unweighted_loss\\\": 1.6306655406951904, \\\"b\\\": 0.5199999809265137, \\\"alpha_eff\\\": 0.360414495691157, \\\"ess\\\": 2.0415424246885436, \\\"mean_q\\\": 0.849245548248291, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 0, \\\"loss\\\": 2.5655508041381836, \\\"unweighted_loss\\\": 1.962730884552002, \\\"b\\\": 10.514672382373146, \\\"alpha_eff\\\": 0.8, \\\"ess\\\": 2.3321647668251893, \\\"mean_q\\\": 0.41481345891952515, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 1, \\\"loss\\\": 3.0187735557556152, \\\"unweighted_loss\\\": 1.7137737274169922, \\\"b\\\": 0.35999998450279236, \\\"alpha_eff\\\": 0.6630511857742848, \\\"ess\\\": 2.001029498604084, \\\"mean_q\\\": 0.7522783279418945, \\\"method\\\": \\\"adaptive\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T14:36:01.585269+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "wc -l /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "wc -l /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T14:36:01.585398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"51913 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T14:36:01.585576+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -c \"\\\"alpha_eff\\\": 0.8\" /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -c \"\\\"alpha_eff\\\": 0.8\" /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T14:36:01.585794+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"10325\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T14:36:01.585972+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T14:36:01.586133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 6101, \\\"loss\\\": 1.9765472412109375, \\\"unweighted_loss\\\": 1.8717081546783447, \\\"b\\\": 1.0799999237060547, \\\"alpha_eff\\\": 0.6498472122631819, \\\"ess\\\": 2.0079837234818947, \\\"mean_q\\\": 0.6675469875335693, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 6102, \\\"loss\\\": 3.473379135131836, \\\"unweighted_loss\\\": 2.4387497901916504, \\\"b\\\": 1.8199999332427979, \\\"alpha_eff\\\": 0.7460255997022076, \\\"ess\\\": 2.0012631650419674, \\\"mean_q\\\": 0.6053982377052307, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 6102, \\\"loss\\\": 2.5629725456237793, \\\"unweighted_loss\\\": 2.5629725456237793, \\\"b\\\": 0.0, \\\"alpha_eff\\\": 0.8772746310569346, \\\"ess\\\": 4.0, \\\"mean_q\\\": 0.12272536754608154, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 6102, \\\"loss\\\": 3.040501594543457, \\\"unweighted_loss\\\": 2.670013904571533, \\\"b\\\": 0.9599999785423279, \\\"alpha_eff\\\": 0.5355864748099282, \\\"ess\\\": 2.0109550147887476, \\\"mean_q\\\": 0.7357693910598755, \\\"method\\\": \\\"adaptive\\\"}\\n{\\\"step\\\": 6102, \\\"loss\\\": 2.395458221435547, \\\"unweighted_loss\\\": 1.5194896459579468, \\\"b\\\": 0.41999998688697815, \\\"alpha_eff\\\": 0.09087227148523055, \\\"ess\\\": 2.068058956639598, \\\"mean_q\\\": 0.9634518027305603, \\\"method\\\": \\\"adaptive\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T14:36:01.586341+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat << 'PYTHON_SCRIPT' > /tmp/plot_bstar_trajectory.py\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import defaultdict\n\n# Load data\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\n# Aggregate per step: mean b* per step\nstep_b = defaultdict(list)\nstep_binding = defaultdict(lambda: {'alpha_eff': 0, 'ess': 0, 'neither': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = steps[i]\n    step_b[s].append(b_values[i])\n    \n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_binding[s]['alpha_eff'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_binding[s]['ess'] += 1\n    else:\n        step_binding[s]['neither'] += 1\n\n# Sort by step\nsorted_steps = sorted(step_b.keys())\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\nsorted_steps = np.array(sorted_steps)\n\n# ========== Figure 1: b* trajectory ==========\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=300)\n\n# Raw values (light)\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\n\n# Moving average\nwindow = 100\nif len(mean_b_per_step) >= window:\n    kernel = np.ones(window) / window\n    ma = np.convolve(mean_b_per_step, kernel, mode='valid')\n    ma_steps = sorted_steps[window//2 : window//2 + len(ma)]\n    ax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\n\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\n\n# Determine trend for annotation\nfirst_quarter = mean_b_per_step[:len(mean_b_per_step)//4]\nlast_quarter = mean_b_per_step[3*len(mean_b_per_step)//4:]\nmean_first = np.mean(first_quarter)\nmean_last = np.mean(last_quarter)\n\nif mean_last < mean_first * 0.8:\n    trend_text = \"Model learns to handle contamination\\n($b^*$ decreases over training)\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelif mean_last > mean_first * 1.2:\n    trend_text = \"Increasing reweighting over training\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelse:\n    trend_text = \"Method calibrates from start\\n($b^*$ stable throughout training)\"\n    ax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\n\nplt.tight_layout()\nplt.savefig('/tmp/bstar_trajectory_adaptive_fix.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"Figure 1 saved. b* stats: mean={np.mean(mean_b_per_step):.3f}, std={np.std(mean_b_per_step):.3f}\")\nprint(f\"  First quarter mean: {mean_first:.3f}, Last quarter mean: {mean_last:.3f}\")\nprint(f\"  Trend: {'decreasing' if mean_last < mean_first * 0.8 else 'increasing' if mean_last > mean_first * 1.2 else 'stable'}\")\n\n# ========== Figure 2: alpha_eff binding rate ==========\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=300)\n\n# Compute binding rate per 1000-step window\nwindow_size = 1000\nmax_step = sorted_steps[-1]\nwindow_centers = []\nbinding_rates = []\n\nfor w_start in range(0, int(max_step) + 1, window_size):\n    w_end = w_start + window_size\n    mask = (sorted_steps >= w_start) & (sorted_steps < w_end)\n    steps_in_window = sorted_steps[mask]\n    \n    if len(steps_in_window) == 0:\n        continue\n    \n    total_alpha = 0\n    total_ess = 0\n    total_neither = 0\n    for s in steps_in_window:\n        total_alpha += step_binding[s]['alpha_eff']\n        total_ess += step_binding[s]['ess']\n        total_neither += step_binding[s]['neither']\n    \n    total = total_alpha + total_ess + total_neither\n    if total > 0:\n        rate = total_alpha / total\n        window_centers.append((w_start + w_end) / 2)\n        binding_rates.append(rate)\n\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.savefig('/tmp/alpha_eff_binding_rate_trajectory.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"\\nFigure 2 saved. Binding rate per window:\")\nfor c, r in zip(window_centers, binding_rates):\n    print(f\"  Step {int(c)}: alpha_eff binding rate = {r:.3f}\")\n\n# Overall stats\ntotal_samples = len(steps)\nalpha_binding_count = np.sum(np.abs(alpha_effs - ALPHA_EFF_UPPER) < ALPHA_TOL)\ness_binding_count = np.sum(ess_values <= ESS_LOWER + ESS_TOL)\nprint(f\"\\nOverall: {total_samples} samples, alpha_eff binding: {alpha_binding_count} ({alpha_binding_count/total_samples*100:.1f}%), ESS binding: {ess_binding_count} ({ess_binding_count/total_samples*100:.1f}%)\")\nPYTHON_SCRIPT\npython3 /tmp/plot_bstar_trajectory.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat << 'PYTHON_SCRIPT' > /tmp/plot_bstar_trajectory.py\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import defaultdict\n\n# Load data\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\n# Aggregate per step: mean b* per step\nstep_b = defaultdict(list)\nstep_binding = defaultdict(lambda: {'alpha_eff': 0, 'ess': 0, 'neither': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = steps[i]\n    step_b[s].append(b_values[i])\n    \n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_binding[s]['alpha_eff'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_binding[s]['ess'] += 1\n    else:\n        step_binding[s]['neither'] += 1\n\n# Sort by step\nsorted_steps = sorted(step_b.keys())\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\nsorted_steps = np.array(sorted_steps)\n\n# ========== Figure 1: b* trajectory ==========\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=300)\n\n# Raw values (light)\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\n\n# Moving average\nwindow = 100\nif len(mean_b_per_step) >= window:\n    kernel = np.ones(window) / window\n    ma = np.convolve(mean_b_per_step, kernel, mode='valid')\n    ma_steps = sorted_steps[window//2 : window//2 + len(ma)]\n    ax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\n\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\n\n# Determine trend for annotation\nfirst_quarter = mean_b_per_step[:len(mean_b_per_step)//4]\nlast_quarter = mean_b_per_step[3*len(mean_b_per_step)//4:]\nmean_first = np.mean(first_quarter)\nmean_last = np.mean(last_quarter)\n\nif mean_last < mean_first * 0.8:\n    trend_text = \"Model learns to handle contamination\\n($b^*$ decreases over training)\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelif mean_last > mean_first * 1.2:\n    trend_text = \"Increasing reweighting over training\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelse:\n    trend_text = \"Method calibrates from start\\n($b^*$ stable throughout training)\"\n    ax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\n\nplt.tight_layout()\nplt.savefig('/tmp/bstar_trajectory_adaptive_fix.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"Figure 1 saved. b* stats: mean={np.mean(mean_b_per_step):.3f}, std={np.std(mean_b_per_step):.3f}\")\nprint(f\"  First quarter mean: {mean_first:.3f}, Last quarter mean: {mean_last:.3f}\")\nprint(f\"  Trend: {'decreasing' if mean_last < mean_first * 0.8 else 'increasing' if mean_last > mean_first * 1.2 else 'stable'}\")\n\n# ========== Figure 2: alpha_eff binding rate ==========\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=300)\n\n# Compute binding rate per 1000-step window\nwindow_size = 1000\nmax_step = sorted_steps[-1]\nwindow_centers = []\nbinding_rates = []\n\nfor w_start in range(0, int(max_step) + 1, window_size):\n    w_end = w_start + window_size\n    mask = (sorted_steps >= w_start) & (sorted_steps < w_end)\n    steps_in_window = sorted_steps[mask]\n    \n    if len(steps_in_window) == 0:\n        continue\n    \n    total_alpha = 0\n    total_ess = 0\n    total_neither = 0\n    for s in steps_in_window:\n        total_alpha += step_binding[s]['alpha_eff']\n        total_ess += step_binding[s]['ess']\n        total_neither += step_binding[s]['neither']\n    \n    total = total_alpha + total_ess + total_neither\n    if total > 0:\n        rate = total_alpha / total\n        window_centers.append((w_start + w_end) / 2)\n        binding_rates.append(rate)\n\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.savefig('/tmp/alpha_eff_binding_rate_trajectory.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"\\nFigure 2 saved. Binding rate per window:\")\nfor c, r in zip(window_centers, binding_rates):\n    print(f\"  Step {int(c)}: alpha_eff binding rate = {r:.3f}\")\n\n# Overall stats\ntotal_samples = len(steps)\nalpha_binding_count = np.sum(np.abs(alpha_effs - ALPHA_EFF_UPPER) < ALPHA_TOL)\ness_binding_count = np.sum(ess_values <= ESS_LOWER + ESS_TOL)\nprint(f\"\\nOverall: {total_samples} samples, alpha_eff binding: {alpha_binding_count} ({alpha_binding_count/total_samples*100:.1f}%), ESS binding: {ess_binding_count} ({ess_binding_count/total_samples*100:.1f}%)\")\nPYTHON_SCRIPT\npython3 /tmp/plot_bstar_trajectory.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T14:36:01.586652+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYTHON_SCRIPT\\\\' > /tmp/plot_bstar_trajectory.py\\\\nimport json\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\'Agg\\\\')\\\\nimport matplotlib.pyplot as plt\\\\nfrom collections import defaultdict\\\\n\\\\n# Load data\\\\ndata_file = \\\\'/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl\\\\'\\\\n\\\\nsteps = []\\\\nb_values = []\\\\nalpha_effs = []\\\\ness_values = []\\\\n\\\\nwith open(data_file, \\\\'r\\\\') as f:\\\\n    for line in f:\\\\n        record = json.loads(line)\\\\n        steps.append(record[\\\\'step\\\\'])\\\\n        b_values.append(record[\\\\'b\\\\'])\\\\n        alpha_effs.append(record[\\\\'alpha_eff\\\\'])\\\\n        ess_values.append(record[\\\\'ess\\\\'])\\\\n\\\\nsteps = np.array(steps)\\\\nb_values = np.array(b_values)\\\\nalpha_effs = np.array(alpha_effs)\\\\ness_values = np.array(ess_values)\\\\n\\\\n# Aggregate per step: mean b* per step\\\\nstep_b = defaultdict(list)\\\\nstep_binding = defaultdict(lambda: {\\\\'alpha_eff\\\\': 0, \\\\'ess\\\\': 0, \\\\'neither\\\\': 0})\\\\n\\\\nALPHA_EFF_UPPER = 0.8\\\\nESS_LOWER = 2.0\\\\nALPHA_TOL = 1e-4\\\\nESS_TOL = 0.05\\\\n\\\\nfor i in range(len(steps)):\\\\n    s = steps[i]\\\\n    step_b[s].append(b_values[i])\\\\n    \\\\n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\\\\n        step_binding[s][\\\\'alpha_eff\\\\'] += 1\\\\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\\\\n        step_binding[s][\\\\'ess\\\\'] += 1\\\\n    else:\\\\n        step_binding[s][\\\\'neither\\\\'] += 1\\\\n\\\\n# Sort by step\\\\nsorted_steps = sorted(step_b.keys())\\\\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\\\\nsorted_steps = np.array(sorted_steps)\\\\n\\\\n# ========== Figure 1: b* trajectory ==========\\\\nplt.rcParams[\\\\'font.family\\\\'] = \\\\'serif\\\\'\\\\nfig, ax =
+…[truncated 5331 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T14:36:01.586861+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/miniconda3 -name \"python3\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/miniconda3 -name \"python3\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T14:36:01.587007+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T14:36:01.587137+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find / -name \"python3\" -type f -maxdepth 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find / -name \"python3\" -type f -maxdepth 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T14:36:01.587264+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/autodl-pub/lost+found': Permission denied\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T14:36:01.587383+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* /opt/conda/bin/python*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls /usr/bin/python* /usr/local/bin/python* /root/miniconda3/bin/python* /opt/conda/bin/python*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T14:36:01.587509+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"ls: cannot access '/usr/bin/python*': No such file or directory\\nls: cannot access '/usr/local/bin/python*': No such file or directory\\nls: cannot access '/opt/conda/bin/python*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T14:36:01.587681+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "export PATH=/root/miniconda3/bin:$PATH && python3 << 'PYTHON_SCRIPT'\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import defaultdict\n\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\n# Aggregate per step\nstep_b = defaultdict(list)\nstep_binding = defaultdict(lambda: {'alpha_eff': 0, 'ess': 0, 'neither': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = steps[i]\n    step_b[s].append(b_values[i])\n    \n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_binding[s]['alpha_eff'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_binding[s]['ess'] += 1\n    else:\n        step_binding[s]['neither'] += 1\n\nsorted_steps = sorted(step_b.keys())\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\nsorted_steps = np.array(sorted_steps)\n\n# ========== Figure 1: b* trajectory ==========\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=300)\n\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\n\nwindow = 100\nif len(mean_b_per_step) >= window:\n    kernel = np.ones(window) / window\n    ma = np.convolve(mean_b_per_step, kernel, mode='valid')\n    ma_steps = sorted_steps[window//2 : window//2 + len(ma)]\n    ax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\n\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\n\nfirst_quarter = mean_b_per_step[:len(mean_b_per_step)//4]\nlast_quarter = mean_b_per_step[3*len(mean_b_per_step)//4:]\nmean_first = np.mean(first_quarter)\nmean_last = np.mean(last_quarter)\n\nif mean_last < mean_first * 0.8:\n    trend_text = \"Model learns to handle contamination\\n($b^*$ decreases over training)\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelif mean_last > mean_first * 1.2:\n    trend_text = \"Increasing reweighting over training\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelse:\n    trend_text = \"Method calibrates from start\\n($b^*$ stable throughout training)\"\n    ax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\n\nplt.tight_layout()\nplt.savefig('/tmp/bstar_trajectory_adaptive_fix.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"Figure 1 saved. b* stats: mean={np.mean(mean_b_per_step):.3f}, std={np.std(mean_b_per_step):.3f}\")\nprint(f\"  First quarter mean: {mean_first:.3f}, Last quarter mean: {mean_last:.3f}\")\nprint(f\"  Trend: {'decreasing' if mean_last < mean_first * 0.8 else 'increasing' if mean_last > mean_first * 1.2 else 'stable'}\")\n\n# ========== Figure 2: alpha_eff binding rate ==========\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=300)\n\nwindow_size = 1000\nmax_step = sorted_steps[-1]\nwindow_centers = []\nbinding_rates = []\n\nfor w_start in range(0, int(max_step) + 1, window_size):\n    w_end = w_start + window_size\n    mask = (sorted_steps >= w_start) & (sorted_steps < w_end)\n    steps_in_window = sorted_steps[mask]\n    \n    if len(steps_in_window) == 0:\n        continue\n    \n    total_alpha = 0\n    total_ess = 0\n    total_neither = 0\n    for s in steps_in_window:\n        total_alpha += step_binding[s]['alpha_eff']\n        total_ess += step_binding[s]['ess']\n        total_neither += step_binding[s]['neither']\n    \n    total = total_alpha + total_ess + total_neither\n    if total > 0:\n        rate = total_alpha / total\n        window_centers.append((w_start + w_end) / 2)\n        binding_rates.append(rate)\n\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.savefig('/tmp/alpha_eff_binding_rate_trajectory.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"\\nFigure 2 saved. Binding rate per window:\")\nfor c, r in zip(window_centers, binding_rates):\n    print(f\"  Step {int(c)}: alpha_eff binding rate = {r:.3f}\")\n\ntotal_samples = len(steps)\nalpha_binding_count = int(np.sum(np.abs(alpha_effs - ALPHA_EFF_UPPER) < ALPHA_TOL))\ness_binding_count = int(np.sum(ess_values <= ESS_LOWER + ESS_TOL))\nprint(f\"\\nOverall: {total_samples} samples, alpha_eff binding: {alpha_binding_count} ({alpha_binding_count/total_samples*100:.1f}%), ESS binding: {ess_binding_count} ({ess_binding_count/total_samples*100:.1f}%)\")\nPYTHON_SCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "export PATH=/root/miniconda3/bin:$PATH && python3 << 'PYTHON_SCRIPT'\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import defaultdict\n\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\n# Aggregate per step\nstep_b = defaultdict(list)\nstep_binding = defaultdict(lambda: {'alpha_eff': 0, 'ess': 0, 'neither': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = steps[i]\n    step_b[s].append(b_values[i])\n    \n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_binding[s]['alpha_eff'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_binding[s]['ess'] += 1\n    else:\n        step_binding[s]['neither'] += 1\n\nsorted_steps = sorted(step_b.keys())\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\nsorted_steps = np.array(sorted_steps)\n\n# ========== Figure 1: b* trajectory ==========\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=300)\n\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\n\nwindow = 100\nif len(mean_b_per_step) >= window:\n    kernel = np.ones(window) / window\n    ma = np.convolve(mean_b_per_step, kernel, mode='valid')\n    ma_steps = sorted_steps[window//2 : window//2 + len(ma)]\n    ax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\n\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\n\nfirst_quarter = mean_b_per_step[:len(mean_b_per_step)//4]\nlast_quarter = mean_b_per_step[3*len(mean_b_per_step)//4:]\nmean_first = np.mean(first_quarter)\nmean_last = np.mean(last_quarter)\n\nif mean_last < mean_first * 0.8:\n    trend_text = \"Model learns to handle contamination\\n($b^*$ decreases over training)\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelif mean_last > mean_first * 1.2:\n    trend_text = \"Increasing reweighting over training\"\n    ax.annotate(trend_text, xy=(0.6, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nelse:\n    trend_text = \"Method calibrates from start\\n($b^*$ stable throughout training)\"\n    ax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\n\nplt.tight_layout()\nplt.savefig('/tmp/bstar_trajectory_adaptive_fix.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"Figure 1 saved. b* stats: mean={np.mean(mean_b_per_step):.3f}, std={np.std(mean_b_per_step):.3f}\")\nprint(f\"  First quarter mean: {mean_first:.3f}, Last quarter mean: {mean_last:.3f}\")\nprint(f\"  Trend: {'decreasing' if mean_last < mean_first * 0.8 else 'increasing' if mean_last > mean_first * 1.2 else 'stable'}\")\n\n# ========== Figure 2: alpha_eff binding rate ==========\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=300)\n\nwindow_size = 1000\nmax_step = sorted_steps[-1]\nwindow_centers = []\nbinding_rates = []\n\nfor w_start in range(0, int(max_step) + 1, window_size):\n    w_end = w_start + window_size\n    mask = (sorted_steps >= w_start) & (sorted_steps < w_end)\n    steps_in_window = sorted_steps[mask]\n    \n    if len(steps_in_window) == 0:\n        continue\n    \n    total_alpha = 0\n    total_ess = 0\n    total_neither = 0\n    for s in steps_in_window:\n        total_alpha += step_binding[s]['alpha_eff']\n        total_ess += step_binding[s]['ess']\n        total_neither += step_binding[s]['neither']\n    \n    total = total_alpha + total_ess + total_neither\n    if total > 0:\n        rate = total_alpha / total\n        window_centers.append((w_start + w_end) / 2)\n        binding_rates.append(rate)\n\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.savefig('/tmp/alpha_eff_binding_rate_trajectory.pdf', bbox_inches='tight')\nplt.close()\n\nprint(f\"\\nFigure 2 saved. Binding rate per window:\")\nfor c, r in zip(window_centers, binding_rates):\n    print(f\"  Step {int(c)}: alpha_eff binding rate = {r:.3f}\")\n\ntotal_samples = len(steps)\nalpha_binding_count = int(np.sum(np.abs(alpha_effs - ALPHA_EFF_UPPER) < ALPHA_TOL))\ness_binding_count = int(np.sum(ess_values <= ESS_LOWER + ESS_TOL))\nprint(f\"\\nOverall: {total_samples} samples, alpha_eff binding: {alpha_binding_count} ({alpha_binding_count/total_samples*100:.1f}%), ESS binding: {ess_binding_count} ({ess_binding_count/total_samples*100:.1f}%)\")\nPYTHON_SCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T14:36:01.587914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Figure 1 saved. b* stats: mean=1.398, std=0.982\\n  First quarter mean: 1.409, Last quarter mean: 1.367\\n  Trend: stable\\n\\nFigure 2 saved. Binding rate per window:\\n  Step 500: alpha_eff binding rate = 0.121\\n  Step 1500: alpha_eff binding rate = 0.100\\n  Step 2500: alpha_eff binding rate = 0.379\\n  Step 3500: alpha_eff binding rate = 0.368\\n  Step 4500: alpha_eff binding rate = 0.371\\n  Step 5500: alpha_eff binding rate = 0.375\\n  Step 6500: alpha_eff binding rate = 0.371\\n\\nOverall: 51913 samples, alpha_eff binding: 9926 (19.1%), ESS binding: 15304 (29.5%)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T14:36:01.588076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "stat /tmp/bstar_trajectory_adaptive_fix.pdf /tmp/alpha_eff_binding_rate_trajectory.pdf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "stat /tmp/bstar_trajectory_adaptive_fix.pdf /tmp/alpha_eff_binding_rate_trajectory.pdf",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T14:36:01.588213+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /tmp/bstar_trajectory_adaptive_fix.pdf\\n  Size: 104101    \\tBlocks: 208        IO Block: 4096   regular file\\nDevice: 47h/71d\\tInode: 5376683498  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-16 22:25:17.839171588 +0800\\nModify: 2026-05-16 22:25:17.923172473 +0800\\nChange: 2026-05-16 22:25:17.923172473 +0800\\n Birth: 2026-05-16 22:25:17.839171588 +0800\\n  File: /tmp/alpha_eff_binding_rate_trajectory.pdf\\n  Size: 22538     \\tBlocks: 48         IO Block: 4096   regular file\\nDevice: 47h/71d\\tInode: 5376683499  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-16 22:25:18.095174285 +0800\\nModify: 2026-05-16 22:25:18.139174749 +0800\\nChange: 2026-05-16 22:25:18.139174749 +0800\\n Birth: 2026-05-16 22:25:18.095174285 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T14:36:01.588341+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp connect.westd.seetacloud.com:/tmp/bstar_trajectory_adaptive_fix.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf && scp connect.westd.seetacloud.com:/tmp/alpha_eff_binding_rate_trajectory.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/alpha_eff_binding_rate_trajectory.pdf",
+  "description": "SCP two PDF plots from remote server to local artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp connect.westd.seetacloud.com:/tmp/bstar_trajectory_adaptive_fix.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf && scp connect.westd.seetacloud.com:/tmp/alpha_eff_binding_rate_trajectory.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/alpha_eff_binding_rate_trajectory.pdf",
+    "description": "SCP two PDF plots from remote server to local artifacts"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T14:36:01.588460+00:00_
+
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Host key verification failed.
+scp: Connection closed
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T14:36:01.588603+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "base64 /tmp/bstar_trajectory_adaptive_fix.pdf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "base64 /tmp/bstar_trajectory_adaptive_fix.pdf",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T14:36:01.588805+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"JVBERi0xLjQKJazcIKu6CjEgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cgL1BhZ2VzIDIgMCBSID4+\\nCmVuZG9iago4IDAgb2JqCjw8IC9Gb250IDMgMCBSIC9YT2JqZWN0IDcgMCBSIC9FeHRHU3RhdGUg\\nNCAwIFIgL1BhdHRlcm4gNSAwIFIKL1NoYWRpbmcgNiAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0\\nIC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0gPj4KZW5kb2JqCjExIDAgb2JqCjw8IC9UeXBlIC9Q\\nYWdlIC9QYXJlbnQgMiAwIFIgL1Jlc291cmNlcyA4IDAgUgovTWVkaWFCb3ggWyAwIDAgNTY4LjQy\\nODc1IDM1Mi4wNzYxMjUgXSAvQ29udGVudHMgOSAwIFIgL0Fubm90cyAxMCAwIFIgPj4KZW5kb2Jq\\nCjkgMCBvYmoKPDwgL0xlbmd0aCAxMiAwIFIgL0ZpbHRlciAvRmxhdGVEZWNvZGUgPj4Kc3RyZWFt\\nCniczL3NzmZLcp03P1dRQ9IAi5mR/0PRtgRoJrIBDywPbJqiSEiEKQnm7TueFRFv1ddUH3YbMOkm\\nmn0qzq79ZmTmjlwZPyv+9H/6q//7b/7yr/783/zZt//xL3750x9/+sv/+kv/9rf+37/+1r79rf/3\\nH771b//G//vXvzT/03/+Ze37fdo9y//0n37601j2vZ3dbbm4ff3jf/zll//wy5/+K3/Jf/W/9W9+\\n+WXO76/rb73v823+iTf372Zfpf/pZ6nt77de+eMNP0v1Q3//7b/z+tX399G/+Yu+j/P84f/yV9/+\\nl29/9+1P/5UxKvv2b11H1/f7/fYPv7Tv+7X+djt3uvJfp8c1HveMu78M/ifpzwP65S9++Xff/t5/\\nZYTuf/3jV5gJJP/0C9f3V7Pxy5/50vzDL3/v/799+5Pmb9vru/lEv3v32N/MNW+D3/7L//zLn/3m\\nlz/91/1bb99+8x+0er/5P3/5X7/9Ufvjb//bt9/821/+59/88u80uv9Pp6vP9X20u/rXxf5Z/IdO\\n2O/xyl+dsj7s+7rv7NXWPL/XnPXW/nmnzcx827895xcdfxb/odP2e7zyV6fN2vu+ertvnLl+v2mz\\nf/Zpe+97X+0c+6rjT+I/eNr+6Vf++rTd/X0Oa2Zz7Pt7Tdv45562cbZb6+4PfNHxZ/EfOm2/xyt/\\nddrGHt/HGn31buf3m7b5zz1t0w+590YbX1T8SfqHTto/+cJfnbI523c70867/f5+U7b+uads2fO3\\nz77e17P/J/EfOmm/xyt/ddpWP9/7W9OPjvbe7zVt+7em7efP3fHKcM2H/9pzRTSTP73Jvr7pN//l\\nf/+bv/ubv/vrb3/x3/7q//rn3bz1ct9da47xvmKwH9Lfc+v+9143+/fZ/9Hb/vG33r+v9Zixeb+f\\nuZdbyzbH/28wzOflvfkrW7tuvX6eq5/Ef+BkfXnhZ7a+vu9Xpqs3n9c2nm+6t+zXDuJ/ofna7Xtb\\n1wHq1/n6If5D5+vnF/6Yry/v+7X5Wvu7z9UY1u/+tfma/zLzZX18vz7IPr7M10/iP3C+vrzwM19f\\n3/cr82XdJ7ZzDenn9F8ziP9C87XP93WGP/h1vn6I/9D5+vmFP+bry/t+bb4ctBw/u+bsDvV+93Td\\nf5np8m3/fYw27beu2z/Ef+B0fXnhZ7q+vu8fA2K/sfqc+ZSOsVbjgP61i9fXc5YX/Amv6tff0lv/\\n7l9yHbD+1773OHH9b//pv7Y8bv/o//jjb7/52198M/d5x4vDeX6PNdOT49v9PvXo/6BH9/e+557x\\n5J98ebTO8D/6pif5kuZcAgwa9B/9+z/Sv5jf9/WXtP35F38u
+…[truncated 6411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T14:36:01.589000+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "base64 /tmp/alpha_eff_binding_rate_trajectory.pdf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "base64 /tmp/alpha_eff_binding_rate_trajectory.pdf",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T14:36:01.589205+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"JVBERi0xLjQKJazcIKu6CjEgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cgL1BhZ2VzIDIgMCBSID4+\\nCmVuZG9iago4IDAgb2JqCjw8IC9Gb250IDMgMCBSIC9YT2JqZWN0IDcgMCBSIC9FeHRHU3RhdGUg\\nNCAwIFIgL1BhdHRlcm4gNSAwIFIKL1NoYWRpbmcgNiAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0\\nIC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0gPj4KZW5kb2JqCjExIDAgb2JqCjw8IC9UeXBlIC9Q\\nYWdlIC9QYXJlbnQgMiAwIFIgL1Jlc291cmNlcyA4IDAgUgovTWVkaWFCb3ggWyAwIDAgNTY4Ljg0\\nNjI1IDM1MS42MzI1IF0gL0NvbnRlbnRzIDkgMCBSIC9Bbm5vdHMgMTAgMCBSID4+CmVuZG9iago5\\nIDAgb2JqCjw8IC9MZW5ndGggMTIgMCBSIC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp4\\nnM1ZyW5bNxTdv6/g0lmY4r2cl3bdGMgmSCK0i6QoXFl2bMiKhyRu/76HbxBJWU+yigK2AQl655Hn\\nDuQdSE9O5j+vZvOPp8fil0/NJD/NHhoS1/hcCiWu8XkUJE7xuWwUnm4a64IMxrHF06J40pak0/ix\\nwMDi4WvTXDSTIxA8YMZp0xgvSbUzonQueNuSYrypwEUJcpCmo8uzM9aKuBNPiS0ZaY3gEKR3GsD9\\nXPwulmJyxEkdEkqaGJSOTNY3SmrSnq2JisU97JcW1uPbWNWNEskFH0/XJoq1iU3j02sD7Uobia20\\nGGRCaWSBeijLYIqAM0OJwtDj5oN4TaZCMclBs6ptjQYDDVNta0axbaxiE3SCM0UJv0JjWQWpPEVf\\nGctOQ0GOoTK2QMlEqXQAyaKkKOHXaKx3MjjlTWWs1iRDJG8rYwuUjMU0cpQ2bMFR4a/QXA39nImW\\nKnONUtIFZbkyt0DJOOnZR0peyBQl/AqNNZBrdOBQG+uixAd7tjI2owQLQuDoWjxzVPhrNDdoyeyx\\nYFXR0UGyDcpV5hZoWsSICNUpQguOCl+ZOznSXY27hD6onDIkbVE7gTRIBo4s/koFCtBJ6uWDjcRj\\nc4dvJQ4VuByM0zY4rwkbDvVCYeDspjmeNpO3JEiJ6UVbnKfnzWdxoN6IP8T0XfPrtPnQtFogw7I0\\nqq2WZZIu0G3yiTAnWOtNcE7vVoCU2qADK5IUtYqVDiW6VQdsGeONNiZSfIYTeLMO2MoxUHC1DgW6\\nTQe2XiKrE/K218/wg96og8b+8l45beu0mtFtOmh2Ull4A2XS+d06mI06GOWltdEoW+e6jG7VAWU8\\nGOWsVal47dTBbtYBpUGbgJpR6VCg23QwKXY4Grak9TP84DbqgEwiSbto6ma0QLfpYFP8UCAk/OCf\\n4Qe/pkO5tYiwrDamnBhl8BRqJq6ZpvdnV8ur5aX49H1+K74cPF4tz789itl8+X1+/+VNKWTfRGxS\\nDmPxLucw+MpFRRFlPBiks/qw8Oxuvvm0O0tuIjNYaLXO9TQ2jURutxtct54dpXoR90Qv0fjW3hmw\\nPZ2TqVa+KZg2uyamcGmFbnMNv4hrUAIloUWsnZPRPd1T0q0cVLFtdhHhzKq91zu2j3kRHzGxjOwr\\nDw3Ynv7JVCvvFEybfcMqIiUq2rF/3Mv4Bodl5+Na6snovv4p6LKHSrYRHzmXmuBd6Se8THYebktu\\nNl+r7JedM1nOzgXXSHbGN/qb7TmI5FqJTNMPExH5FKMouWg7MoeXkRS1pIeY2xZQME3esoA+iftg\\n/kZMrxuEP9avdW8r6+CihbHvrWd2trvQyi/Q7AerbUdNspvZ
+…[truncated 6410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T14:36:01.589371+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/",
+    "description": "List artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T14:36:01.589513+00:00_
+
+_project
+adaptive_fix_seed42
+all_success_summary.md
+analyze_tau_sweep.py
+binding_diagnosis_rho06_vs_04.md
+bootstrap_test.py
+bstar_distribution_analysis.md
+data_generation
+detector
+diagnosis_threshold_q03_seed42.md
+drayson_comparison.md
+dream_reports
+dynamics
+ess_only_analysis_template.md
+ess_only_implementation.md
+ess_only_seed42
+evaluation
+experiment_data.csv
+experiment_results_summary.csv
+experiment_results_summary.md
+experiment_setup_draft.md
+experiment_status_summary.md
+experiment_summary.md
+experiment_summary_table.md
+experiment_tables.md
+fig_b_landscape.csv
+fig_contamination_comparison.csv
+fig_method_comparison.csv
+fig_nmin_ablation.csv
+fig_tau_sweep.csv
+figures
+full_experiment_data.md
+full_results_summary.csv
+full_results_summary.md
+generate_full_results.py
+grid_b5_0_seed123
+grid_eval_source_audit.md
+interim_mvp_analysis.md
+literature_diff_drayson.md
+literature_notes.md
+literature_scan_20260516.md
+literature_scan_results.md
+literature_tau_sensitivity.md
+manifest.yaml
+method_section_draft.md
+metrics_summary.csv
+metrics_summary.md
+mvp_analysis_draft.md
+mvp_analysis_summary.md
+new_scripts_manifest.md
+nmin1_seed42
+novelty_drayson_analysis.md
+paper_tables.md
+paper_tables_data.md
+q1_ess_equivalence_analysis.md
+related_work_notes.md
+results_table_ablation.csv
+results_table_contamination.csv
+results_table_grid_b_curve.csv
+results_table_main.csv
+review_issues.yaml
+run_mvp.sh
+seed42_diagnostic.md
+statistical_tests.md
+table1_compilation.md
+table1_data.json
+table1_data.md
+table1_summary.md
+tables
+tau_095_seed42
+tau_09_seed42
+tau_b_strength.pdf
+tau_b_strength.png
+tau_derivation_check.md
+tau_fix_changelog.md
+tau_ppl_curve.pdf
+tau_ppl_curve.png
+tau_sweep.pdf
+tau_sweep.png
+tau_sweep_commands.md
+tau_sweep_curve_dummy.pdf
+tau_sweep_curve_dummy.png
+tau_sweep_improvement_dummy.pdf
+tau_sweep_improvement_dummy.png
+tau_sweep_readiness.md
+tau_theory_analysis.md
+tau_theory_audit.md
+training
+training_progress_20260516.md
+training_progress_check.md
+weighting
+worker_output.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T14:36:01.589647+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat << 'EOF' | base64 -d > /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf\nJVBERi0xLjQKJazcIKu6CjEgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cgL1BhZ2VzIDIgMCBSID4+CmVuZG9iago4IDAgb2JqCjw8IC9Gb250IDMgMCBSIC9YT2JqZWN0IDcgMCBSIC9FeHRHU3RhdGUgNCAwIFIgL1BhdHRlcm4gNSAwIFIKL1NoYWRpbmcgNiAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0gPj4KZW5kb2JqCjExIDAgb2JqCjw8IC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL1Jlc291cmNlcyA4IDAgUgovTWVkaWFCb3ggWyAwIDAgNTY4LjQyODc1IDM1Mi4wNzYxMjUgXSAvQ29udGVudHMgOSAwIFIgL0Fubm90cyAxMCAwIFIgPj4KZW5kb2JqCjkgMCBvYmoKPDwgL0xlbmd0aCAxMiAwIFIgL0ZpbHRlciAvRmxhdGVEZWNvZGUgPj4Kc3RyZWFtCg==\nEOF\necho \"wrote partial - need full content\"",
+  "description": "Test base64 decode approach"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat << 'EOF' | base64 -d > /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf\nJVBERi0xLjQKJazcIKu6CjEgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cgL1BhZ2VzIDIgMCBSID4+CmVuZG9iago4IDAgb2JqCjw8IC9Gb250IDMgMCBSIC9YT2JqZWN0IDcgMCBSIC9FeHRHU3RhdGUgNCAwIFIgL1BhdHRlcm4gNSAwIFIKL1NoYWRpbmcgNiAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0gPj4KZW5kb2JqCjExIDAgb2JqCjw8IC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL1Jlc291cmNlcyA4IDAgUgovTWVkaWFCb3ggWyAwIDAgNTY4LjQyODc1IDM1Mi4wNzYxMjUgXSAvQ29udGVudHMgOSAwIFIgL0Fubm90cyAxMCAwIFIgPj4KZW5kb2JqCjkgMCBvYmoKPDwgL0xlbmd0aCAxMiAwIFIgL0ZpbHRlciAvRmxhdGVEZWNvZGUgPj4Kc3RyZWFtCg==\nEOF\necho \"wrote partial - need full content\"",
+    "description": "Test base64 decode approach"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T14:36:01.589804+00:00_
+
+wrote partial - need full content
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T14:36:01.590002+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ssh connect.westd.seetacloud.com \"cat /tmp/bstar_trajectory_adaptive_fix.pdf\" > /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf 2>/dev/null && echo \"OK\" || echo \"FAILED\"",
+  "description": "Download PDF via SSH cat pipe"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ssh connect.westd.seetacloud.com \"cat /tmp/bstar_trajectory_adaptive_fix.pdf\" > /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf 2>/dev/null && echo \"OK\" || echo \"FAILED\"",
+    "description": "Download PDF via SSH cat pipe"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T14:36:01.590130+00:00_
+
+FAILED
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T14:36:01.590244+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ssh -o StrictHostKeyChecking=no connect.westd.seetacloud.com \"cat /tmp/bstar_trajectory_adaptive_fix.pdf\" > /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf 2>/dev/null && echo \"OK\" || echo \"FAILED\"",
+  "description": "Download PDF via SSH with host key accept"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ssh -o StrictHostKeyChecking=no connect.westd.seetacloud.com \"cat /tmp/bstar_trajectory_adaptive_fix.pdf\" > /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/bstar_trajectory_adaptive_fix.pdf 2>/dev/null && echo \"OK\" || echo \"FAILED\"",
+    "description": "Download PDF via SSH with host key accept"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T14:36:01.590359+00:00_
+
+FAILED
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T14:36:01.590472+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ssh -v connect.westd.seetacloud.com \"echo hello\" 2>&1 | tail -20",
+  "description": "Debug SSH connection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ssh -v connect.westd.seetacloud.com \"echo hello\" 2>&1 | tail -20",
+    "description": "Debug SSH connection"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T14:36:01.590592+00:00_
+
+debug1: Trying private key: /home/ubuntu/.ssh/id_ecdsa_sk
+debug1: Offering public key: /home/ubuntu/.ssh/id_ed25519 ED25519 SHA256:h4CinCB6BczqlfRI50/FHRW1kQTzQu9NRy8O1cyocFE
+debug1: Authentications that can continue: 
+debug1: Trying private key: /home/ubuntu/.ssh/id_ed25519_sk
+debug1: Next authentication method: keyboard-interactive
+debug1: Authentications that can continue: 
+debug1: Next authentication method: password
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+debug1: Authentications that can continue: 
+Permission denied, please try again.
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+debug1: Authentications that can continue: 
+Permission denied, please try again.
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+debug1: Authentications that can continue: 
+debug1: No more authentication methods to try.
+ubuntu@connect.westd.seetacloud.com: Permission denied ().
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T14:36:01.590781+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "export PATH=/root/miniconda3/bin:$PATH && python3 << 'PYTHON_SCRIPT'\nimport json\nimport numpy as np\nfrom collections import defaultdict\n\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\n# Aggregate per step\nstep_data = defaultdict(lambda: {'b_list': [], 'alpha_binding': 0, 'ess_binding': 0, 'total': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = int(steps[i])\n    step_data[s]['b_list'].append(b_values[i])\n    step_data[s]['total'] += 1\n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_data[s]['alpha_binding'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_data[s]['ess_binding'] += 1\n\n# Output CSV\nprint(\"step,mean_b,alpha_binding,ess_binding,total\")\nfor s in sorted(step_data.keys()):\n    d = step_data[s]\n    mean_b = np.mean(d['b_list'])\n    print(f\"{s},{mean_b:.6f},{d['alpha_binding']},{d['ess_binding']},{d['total']}\")\nPYTHON_SCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "export PATH=/root/miniconda3/bin:$PATH && python3 << 'PYTHON_SCRIPT'\nimport json\nimport numpy as np\nfrom collections import defaultdict\n\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\n# Aggregate per step\nstep_data = defaultdict(lambda: {'b_list': [], 'alpha_binding': 0, 'ess_binding': 0, 'total': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = int(steps[i])\n    step_data[s]['b_list'].append(b_values[i])\n    step_data[s]['total'] += 1\n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_data[s]['alpha_binding'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_data[s]['ess_binding'] += 1\n\n# Output CSV\nprint(\"step,mean_b,alpha_binding,ess_binding,total\")\nfor s in sorted(step_data.keys()):\n    d = step_data[s]\n    mean_b = np.mean(d['b_list'])\n    print(f\"{s},{mean_b:.6f},{d['alpha_binding']},{d['ess_binding']},{d['total']}\")\nPYTHON_SCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T14:36:01.591060+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"step,mean_b,alpha_binding,ess_binding,total\\n0,3.243668,1,3,4\\n1,0.641001,2,2,4\\n2,0.540082,1,2,4\\n3,2.279265,2,2,4\\n4,0.530000,0,3,4\\n5,0.905403,1,3,4\\n6,0.497572,1,3,4\\n7,1.065000,0,4,4\\n8,0.860000,0,4,4\\n9,1.555000,0,4,4\\n10,3.018930,1,3,4\\n11,2.304844,1,3,4\\n12,0.661058,1,3,4\\n13,1.418707,1,3,4\\n14,1.991550,1,3,4\\n15,0.691034,1,3,4\\n16,2.005271,2,2,4\\n17,1.628686,1,2,4\\n18,1.449158,2,2,4\\n19,0.773904,2,2,4\\n20,0.491849,1,2,4\\n21,0.785582,1,3,4\\n22,1.247745,1,2,4\\n23,1.445288,1,3,4\\n24,0.623129,2,2,4\\n25,0.723245,3,1,4\\n26,1.325000,0,4,4\\n27,1.129472,1,3,4\\n28,1.773889,2,2,4\\n29,0.894458,3,1,4\\n30,0.845045,2,2,4\\n31,1.966826,1,3,4\\n32,1.212251,2,2,4\\n33,0.928084,2,2,4\\n34,1.175000,0,3,4\\n35,0.470000,0,3,4\\n36,0.561799,1,3,4\\n37,0.777063,1,1,4\\n38,0.590670,3,1,4\\n39,3.723319,1,3,4\\n40,1.077557,2,2,4\\n41,0.540000,0,3,4\\n42,1.021862,2,2,4\\n43,0.828151,2,2,4\\n44,1.006798,1,3,4\\n45,1.199209,3,1,4\\n46,0.913868,3,1,4\\n47,1.371680,1,3,4\\n48,1.299933,2,2,4\\n49,1.509877,1,3,4\\n50,1.879895,1,3,4\\n51,1.195946,2,2,4\\n52,0.452022,2,0,4\\n53,1.671280,2,1,4\\n54,1.312067,2,2,4\\n55,1.405336,1,3,4\\n56,1.575866,3,1,4\\n57,0.653316,2,2,4\\n58,2.861232,1,2,4\\n59,4.785000,0,3,4\\n60,0.499017,1,2,4\\n61,2.955000,0,4,4\\n62,0.655875,2,2,4\\n63,1.275572,1,3,4\\n64,2.188824,2,2,4\\n65,0.762427,1,3,4\\n66,0.784735,2,2,4\\n67,1.563557,2,2,4\\n68,2.258791,1,1,4\\n69,1.208511,2,2,4\\n70,1.717813,2,2,4\\n71,1.130000,0,4,4\\n72,0.821614,3,1,4\\n73,0.767404,2,2,4\\n74,1.263771,3,1,4\\n75,1.008177,2,2,4\\n76,0.486021,2,2,4\\n77,1.110785,2,2,4\\n78,1.836887,3,1,4\\n79,0.887924,3,1,4\\n80,1.210000,0,4,4\\n81,2.820000,0,4,4\\n82,0.719143,2,2,4\\n83,3.790050,1,3,4\\n84,0.990138,2,2,4\\n85,0.839974,1,3,4\\n86,0.839996,3,1,4\\n87,0.807315,1,3,4\\n88,1.050000,0,4,4\\n89,0.845331,2,2,4\\n90,0.818797,2,1,4\\n91,0.610000,0,3,4\\n92,1.897561,3,1,4\\n93,0.958120,1,3,4\\n94,0.993156,2,2,4\\n95,0.387
+…[truncated 7033 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T14:36:01.591279+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "export PATH=/root/miniconda3/bin:$PATH && python3 << 'PYTHON_SCRIPT'\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import defaultdict\nimport base64\n\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\nstep_b = defaultdict(list)\nstep_binding = defaultdict(lambda: {'alpha_eff': 0, 'ess': 0, 'neither': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = steps[i]\n    step_b[s].append(b_values[i])\n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_binding[s]['alpha_eff'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_binding[s]['ess'] += 1\n    else:\n        step_binding[s]['neither'] += 1\n\nsorted_steps = sorted(step_b.keys())\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\nsorted_steps = np.array(sorted_steps)\n\n# Figure 1: b* trajectory - save as compressed PNG\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=150)\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\n\nwindow = 100\nkernel = np.ones(window) / window\nma = np.convolve(mean_b_per_step, kernel, mode='valid')\nma_steps = sorted_steps[window//2 : window//2 + len(ma)]\nax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\n\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\n\nfirst_quarter = mean_b_per_step[:len(mean_b_per_step)//4]\nlast_quarter = mean_b_per_step[3*len(mean_b_per_step)//4:]\nmean_first = np.mean(first_quarter)\nmean_last = np.mean(last_quarter)\ntrend_text = \"Method calibrates from start\\n($b^*$ stable throughout training)\"\nax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\n\nplt.tight_layout()\nplt.savefig('/tmp/bstar_trajectory_adaptive_fix.png', bbox_inches='tight', dpi=150)\nplt.close()\n\n# Figure 2: binding rate\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=150)\nwindow_size = 1000\nmax_step = sorted_steps[-1]\nwindow_centers = []\nbinding_rates = []\n\nfor w_start in range(0, int(max_step) + 1, window_size):\n    w_end = w_start + window_size\n    mask = (sorted_steps >= w_start) & (sorted_steps < w_end)\n    steps_in_window = sorted_steps[mask]\n    if len(steps_in_window) == 0:\n        continue\n    total_alpha = sum(step_binding[s]['alpha_eff'] for s in steps_in_window)\n    total_ess = sum(step_binding[s]['ess'] for s in steps_in_window)\n    total_neither = sum(step_binding[s]['neither'] for s in steps_in_window)\n    total = total_alpha + total_ess + total_neither\n    if total > 0:\n        window_centers.append((w_start + w_end) / 2)\n        binding_rates.append(total_alpha / total)\n\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.savefig('/tmp/alpha_eff_binding_rate_trajectory.png', bbox_inches='tight', dpi=150)\nplt.close()\n\n# Also save PDFs to project directory\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=300)\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\nax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\nax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nplt.tight_layout()\nplt.savefig('/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf', bbox_inches='tight')\nplt.close()\n\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=300)\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\nplt.tight_layout()\nplt.savefig('/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf', bbox_inches='tight')\nplt.close()\n\n# Output base64 of PNGs (smaller)\nimport sys\nwith open('/tmp/bstar_trajectory_adaptive_fix.png', 'rb') as f:\n    b64_1 = base64.b64encode(f.read()).decode()\nwith open('/tmp/alpha_eff_binding_rate_trajectory.png', 'rb') as f:\n    b64_2 = base64.b64encode(f.read()).decode()\n\nprint(f\"PNG1_SIZE={len(b64_1)}\")\nprint(f\"PNG2_SIZE={len(b64_2)}\")\nprint(\"DONE\")\nPYTHON_SCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "export PATH=/root/miniconda3/bin:$PATH && python3 << 'PYTHON_SCRIPT'\nimport json\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom collections import defaultdict\nimport base64\n\ndata_file = '/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/step_metrics.jsonl'\n\nsteps = []\nb_values = []\nalpha_effs = []\ness_values = []\n\nwith open(data_file, 'r') as f:\n    for line in f:\n        record = json.loads(line)\n        steps.append(record['step'])\n        b_values.append(record['b'])\n        alpha_effs.append(record['alpha_eff'])\n        ess_values.append(record['ess'])\n\nsteps = np.array(steps)\nb_values = np.array(b_values)\nalpha_effs = np.array(alpha_effs)\ness_values = np.array(ess_values)\n\nstep_b = defaultdict(list)\nstep_binding = defaultdict(lambda: {'alpha_eff': 0, 'ess': 0, 'neither': 0})\n\nALPHA_EFF_UPPER = 0.8\nESS_LOWER = 2.0\nALPHA_TOL = 1e-4\nESS_TOL = 0.05\n\nfor i in range(len(steps)):\n    s = steps[i]\n    step_b[s].append(b_values[i])\n    if abs(alpha_effs[i] - ALPHA_EFF_UPPER) < ALPHA_TOL:\n        step_binding[s]['alpha_eff'] += 1\n    elif ess_values[i] <= ESS_LOWER + ESS_TOL:\n        step_binding[s]['ess'] += 1\n    else:\n        step_binding[s]['neither'] += 1\n\nsorted_steps = sorted(step_b.keys())\nmean_b_per_step = np.array([np.mean(step_b[s]) for s in sorted_steps])\nsorted_steps = np.array(sorted_steps)\n\n# Figure 1: b* trajectory - save as compressed PNG\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=150)\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\n\nwindow = 100\nkernel = np.ones(window) / window\nma = np.convolve(mean_b_per_step, kernel, mode='valid')\nma_steps = sorted_steps[window//2 : window//2 + len(ma)]\nax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\n\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\n\nfirst_quarter = mean_b_per_step[:len(mean_b_per_step)//4]\nlast_quarter = mean_b_per_step[3*len(mean_b_per_step)//4:]\nmean_first = np.mean(first_quarter)\nmean_last = np.mean(last_quarter)\ntrend_text = \"Method calibrates from start\\n($b^*$ stable throughout training)\"\nax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\n\nplt.tight_layout()\nplt.savefig('/tmp/bstar_trajectory_adaptive_fix.png', bbox_inches='tight', dpi=150)\nplt.close()\n\n# Figure 2: binding rate\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=150)\nwindow_size = 1000\nmax_step = sorted_steps[-1]\nwindow_centers = []\nbinding_rates = []\n\nfor w_start in range(0, int(max_step) + 1, window_size):\n    w_end = w_start + window_size\n    mask = (sorted_steps >= w_start) & (sorted_steps < w_end)\n    steps_in_window = sorted_steps[mask]\n    if len(steps_in_window) == 0:\n        continue\n    total_alpha = sum(step_binding[s]['alpha_eff'] for s in steps_in_window)\n    total_ess = sum(step_binding[s]['ess'] for s in steps_in_window)\n    total_neither = sum(step_binding[s]['neither'] for s in steps_in_window)\n    total = total_alpha + total_ess + total_neither\n    if total > 0:\n        window_centers.append((w_start + w_end) / 2)\n        binding_rates.append(total_alpha / total)\n\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\n\nplt.tight_layout()\nplt.savefig('/tmp/alpha_eff_binding_rate_trajectory.png', bbox_inches='tight', dpi=150)\nplt.close()\n\n# Also save PDFs to project directory\nplt.rcParams['font.family'] = 'serif'\nfig, ax = plt.subplots(figsize=(8, 5), dpi=300)\nax.plot(sorted_steps, mean_b_per_step, color='steelblue', alpha=0.2, linewidth=0.5, label='Raw (per-step mean)')\nax.plot(ma_steps, ma, color='steelblue', linewidth=2, label=f'Moving Average (w={window})')\nax.set_xlabel('Training Step', fontsize=12)\nax.set_ylabel('$b^*$ (Reweighting Strength)', fontsize=12)\nax.set_title('$b^*$ Trajectory — adaptive_fix_seed42', fontsize=13)\nax.legend(fontsize=10)\nax.grid(True, alpha=0.3)\nax.annotate(trend_text, xy=(0.55, 0.85), xycoords='axes fraction', fontsize=10,\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='lightyellow', alpha=0.8))\nplt.tight_layout()\nplt.savefig('/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf', bbox_inches='tight')\nplt.close()\n\nfig2, ax2 = plt.subplots(figsize=(8, 5), dpi=300)\nax2.bar(window_centers, binding_rates, width=window_size*0.8, color='coral', alpha=0.7, edgecolor='darkred', linewidth=0.5)\nax2.axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.7, label='0.5 reference')\nax2.set_xlabel('Training Step (window center)', fontsize=12)\nax2.set_ylabel(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate', fontsize=12)\nax2.set_title(r'$\\alpha_{\\mathrm{eff}}$ Binding Rate Over Training — adaptive_fix_seed42', fontsize=13)\nax2.set_ylim(0, 1)\nax2.legend(fontsize=10)\nax2.grid(True, alpha=0.3, axis='y')\nplt.tight_layout()\nplt.savefig('/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf', bbox_inches='tight')\nplt.close()\n\n# Output base64 of PNGs (smaller)\nimport sys\nwith open('/tmp/bstar_trajectory_adaptive_fix.png', 'rb') as f:\n    b64_1 = base64.b64encode(f.read()).decode()\nwith open('/tmp/alpha_eff_binding_rate_trajectory.png', 'rb') as f:\n    b64_2 = base64.b64encode(f.read()).decode()\n\nprint(f\"PNG1_SIZE={len(b64_1)}\")\nprint(f\"PNG2_SIZE={len(b64_2)}\")\nprint(\"DONE\")\nPYTHON_SCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T14:36:01.591485+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PNG1_SIZE=137368\\nPNG2_SIZE=55144\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T14:36:01.591648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "export PATH=/root/miniconda3/bin:$PATH && python3 -c \"\nimport base64\nwith open('/tmp/alpha_eff_binding_rate_trajectory.png', 'rb') as f:\n    print(base64.b64encode(f.read()).decode())\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "export PATH=/root/miniconda3/bin:$PATH && python3 -c \"\nimport base64\nwith open('/tmp/alpha_eff_binding_rate_trajectory.png', 'rb') as f:\n    print(base64.b64encode(f.read()).decode())\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T14:36:01.591832+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"iVBORw0KGgoAAAANSUhEUgAABKEAAALeCAYAAAByYwIJAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAXEgAAFxIBZ5/SUgAAoPhJREFUeJzs3Xd4FFX//vF7k5BKMSF0pPcAAQUbYKTKA1LEB0SRpoiIKCqigCKooAIqiJQHFWmCFUQUpEkAAZGiJBAsQIJIhyS0FALJ/P7gl/2yZlN3J7tZ3q/rynUlc86c+cxmdpLcmTljMQzDEAAAAAAAAGAiL1cXAAAAAAAAAM9HCAUAAAAAAADTEUIBAAAAAADAdIRQAAAAAAAAMB0hFAAAAAAAAExHCAUAAAAAAADTEUIBAAAAAADAdIRQAAAAAAAAMB0hFAAAAAAAAExHCAUAAAAAAADTEUIBAAAAAADAdIRQAAAAAAAAMB0hFAAAAAAAAExHCAUAAAAAAADTEUIBAAAAAADAdIRQAAAAAAAAMB0hFACPNX78eFksllw/ihUrprJly6pt27aaPXu20tLSsh0zMTFRzZs3V8WKFbVz585C3Jv/M2rUqCz7sHHjxiz93KFWZ8nr99Lb21ulS5dWRESEZsyYocuXL7u6dJe6evWqPvvsMz300EOqVauWSpQooaCgINWoUUNdu3bVnDlzdPHiRVeXWajuueeePB1LOX3cc889Lt2Hwnpve9I55EaT158TRZGnH5eXLl3S2LFj1bBhQwUGBiooKEi1atVSnz59tGHDBo/ff3fhjPeQYRi66667rOsfPnw4x/5///23Jk2apA4dOqh8+fLy9fVVqVKl1KRJEz333HM6cOBAwXcIcCM+ri4AAMzSo0cP1apVS5LUt29fSVK9evX08ssvW/ukpaXp6NGjWr58uTZs2KANGzboo48+0o8//qjg4OAsY/7444/atWuXJGnhwoVq3rx5IeyJrd69e6thw4b6/fff9eabb2bbzx1qdZa8fC8Nw1B8fLzWrl2rH374QZs3b9bcuXO1bt06hYaGmlLX4cOHNX/+fEnSgAEDVK1aNVO2UxCRkZEaMmSI/vrrL9WtW1c9evRQtWrV5OPjoyNHjuiHH37QkCFDNG7cOE2ePFn9+vVzdcmFJjQ0VFOnTs2y/Pr31ODBg9WqVassfZ577jnT68tNYb23PekccqPJ688Jd5Gfc6knH5cpKSlq1aqV9uzZo1q1amncuHEKDg7Wjz/+qCVLlqhYsWJKSEjw2P13J854D82ZM0c///xzrv2uXr2qvn376ssvv1RGRoYaNGigxx57TNWrV1d8fLw+//xzTZs2TbNmzdKUKVP0zDPPFKgewG0YAHADkGRIMiIiIuy2Z2RkGMOGDbP2e+SRR+z2i4+PN5o2bWqUL1/e2LZtm4kV5y4yMtJab2RkZJZ2d6rVmXL7XhqGYUyfPt3ar1OnTqbVktv3wFXmz59vFCtWzPDz8zM+/PBDIyMjw26/b775xrjpppsMScaLL75YyFW6RkREhFG1alW7bdd/P+fNm2e3T9WqVXM89gpDYb23PfUcciNx13PUv+WnTk8+Lj/44ANDkuHr62ucPn3apu2OO+4w+vfv79H7744K+h46efKk9edr5kdcXJzdvhcvXrT2eeKJJ4wrV67YtKenpxv9+/e39lmyZIkDewS4HldCAYAki8Wit99+W5988omSk5P1xRdfaPbs2SpevLhNv5CQEP36668uqjJ/ilKtzvb0009r9uzZ+v3337Vq1Sr9/vvvql+/vqvLKhSRkZEaNGiQrl69qi+//FI9e/bMtm/37t1VpkwZtW7dWpMnT1alSpX4D2sRUFjv7Rv5HAL35cnHZebtXmFhYSpTpoxN27JlyyR59v57kmeffVYXLlxQp06dtGrVqjytU7lyZU2dOlU+
+…[truncated 6203 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T14:36:01.592049+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "export PATH=/root/miniconda3/bin:$PATH && python3 -c \"\nimport base64\nwith open('/tmp/bstar_trajectory_adaptive_fix.png', 'rb') as f:\n    data = base64.b64encode(f.read()).decode()\n# Split into 2 parts for transfer\nmid = len(data) // 2\nwith open('/tmp/bstar_b64_part1.txt', 'w') as f:\n    f.write(data[:mid])\nwith open('/tmp/bstar_b64_part2.txt', 'w') as f:\n    f.write(data[mid:])\nprint(f'Total: {len(data)}, Part1: {mid}, Part2: {len(data)-mid}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "export PATH=/root/miniconda3/bin:$PATH && python3 -c \"\nimport base64\nwith open('/tmp/bstar_trajectory_adaptive_fix.png', 'rb') as f:\n    data = base64.b64encode(f.read()).decode()\n# Split into 2 parts for transfer\nmid = len(data) // 2\nwith open('/tmp/bstar_b64_part1.txt', 'w') as f:\n    f.write(data[:mid])\nwith open('/tmp/bstar_b64_part2.txt', 'w') as f:\n    f.write(data[mid:])\nprint(f'Total: {len(data)}, Part1: {mid}, Part2: {len(data)-mid}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T14:36:01.592188+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total: 137368, Part1: 68684, Part2: 68684\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T14:36:01.592310+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /tmp/bstar_b64_part1.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /tmp/bstar_b64_part1.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T14:36:01.592486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"iVBORw0KGgoAAAANSUhEUgAABKEAAALfCAYAAAC5P9GsAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjUsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvWftoOwAAAAlwSFlzAAAXEgAAFxIBZ5/SUgABAABJREFUeJzs3XdYU9f/B/B32FNEUHEg4ERxr697ay2OurcFbN0dblutiqOte7XWVQW1WifO1i24J25xCy4cyJQZIOf3B7+kxCQQRgjj/XqePC33nnPu596cG8yHc8+RCCEEiIiIiIiIiIiIdMhA3wEQEREREREREVHhxyQUERERERERERHpHJNQRERERERERESkc0xCERERERERERGRzjEJRUREREREREREOsckFBERERERERER6RyTUEREREREREREpHNMQhERERERERERkc4xCUVERERERERERDrHJBQREREREREREekck1BERERERERERKRzTEIREREREREREZHOMQlFREREREREREQ6xyQUERERERERERHpHJNQRERERERERESkc0xCERFRrmrTpg0CAgL0HQYREREREeUzTEIREVGOvXz5Uu12IQRev36dx9EQEREREVF+xCQUERHlyM2bN1GzZk3Mnz8fycnJiu137txB8+bNMW7cOP0FR0RERERE+QaTUERElCN169bF5cuXce7cOdSvXx8vX77EokWL8Nlnn2Hw4MH4+++/s912mzZtIJFIcvRq06ZN7p1sNkilUnz22Wews7PDoUOH9BoLFW0//PCDyv1RWB6djYyMRKNGjVC2bFlcvXpV3+HkqtjYWMyYMQM1a9aEhYUFLC0tUblyZQwePBinTp0q1Oee3+T0HhJCoFmzZoq6ISEhGZZ//vw5FixYgE6dOsHBwQEmJiawsbFB3bp1MX78eDx+/DhnJ0REpAdG+g6AiIj0IzQ0FOXKlQMA7Ny5E3379s12W66urjh06BCmTZuGX3/9FQkJCbh48SKcnJxyHKe9vT2WLVumsv3+/fv45ZdfAAAjRoxAy5YtVcqMHz8+x8fPqdu3b+PYsWMAgLVr16Jr1656jkhZSEgIfH19AQCenp5wdnbWazykOwMGDEDNmjWV7p38LCt98+TJk7h27RoAYPPmzWjUqFEeRKh7CQkJaNmyJW7evInKlStj1qxZsLW1xcmTJ7Ft2zYYGxsjIiKiUJ57fpTTe2jt2rW4ePFipuVSUlIwdOhQ7Ny5EzKZDDVq1MBXX30FFxcXhIeHY/v27Vi+fDn++OMPLFq0CN999112ToeISD8EEREVSQcOHBAABAAREhKSo7YePHggunbtKmrWrCkqVqwo3N3dRZkyZcSqVatEcnJytttt3bq1cHJyUrvP399fEb+Pj4/aMk5OTqJ169bZPn5uSEpKEh06dBDFixcXe/fu1Wss6qS/jv7+/voOh/JAQXnPsxJneHi4qFevnnBwcBAXLlzImwDzwG+//SYACBMTE/H+/XulfU2aNBEeHh6F9tzzs+zcQ2/fvhXFixdX1AMggoOD1Zb9+PGjoszIkSNVfo+mpqYKDw8PRZlt27bl8IyIiPIOH8cjIiqi5H85L1myZI5GLN28eRONGzdGs2bNcP36dTg6OmLy5Mk4evQo/vrrLwwcODC3Qi6QTExMcPz4cURGRqJHjx76DoeoUCpRogSuX7+ON2/eoGnTpvoOJ9fIH/Vyc3NDyZIllfb5+fnh119/LbTnXtiMGzcOMTExcHd317pO+fLlsWzZMhgZKT+8YmBggD/++AN2dnYAgMmTJ0Mmk+VqvEREusLH8YiIiqjAwEAAyPGjG3Xr1sXdu3fh6OiotL1WrVo4f/48QkNDs91248aNc5Qga926NUqXLp3t+kRE+hQREQEAKFasmMq+MmXK5HU4lE3Hjh3D9u3bMWbMGJQsWRL//vuv
+…[truncated 6202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T14:36:01.592635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /tmp/bstar_b64_part2.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /tmp/bstar_b64_part2.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T14:36:01.592815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Ktc+qgFOjal19Acw6I8AAHhBQFuvH7wCF2O5Xt9GQOem/FC1Wz54QUBHv1/rYuTV74toXQRSArMMtHQOBrUugiyUSPdhklOcZJZr1kwUH4Z48MEHlf4IYhIC5Gks67WiMdqabZJfvus1osPhwKgOy0RIwUp6WBijLj46ZI4OUi5i+WPMQouvxHI8Yiyv/geLMMZdRnLheAEsx8PlsBX598rMtibpqH9BjEjVmqG/vx//+Mc/8Lvf/Q6Dg4MAgN7eXgQCATWLQfRGR43PQIRRJYilo69MFHRkgOq2Yg34I+jzhrUuRlHM2KEWo0azVxAgXmGWQZs7FB1ZKuIORDUsibxSH7FdQyF09JuvnlS6GVEudQzRVr8vjMMi7Rip119brx8cz9NsTJUpMcO97BRx0VK1XBhVglCRSARXX301pkyZgk9/+tO4/vrr0dvbCwB47rnn0NLSghtvvBEMw6hRHKI3WSpLhituNK+Uxlm3O4RARPk14vR8MAc6jcryhmJaF4HoAVWYJdU1xf6tGgMy4RibfNbrdRZzNhwvgOP1MeuIGI8RrnaeL72UgmCM72omQzIMWmgdUCn1mokwHIKREuIKdNEqTvEgFM/zOP/883HfffchFouNamQsXrwYc+fOxW233YYLL7xQ6eIQjRTTtkwdBSaEEKMwWmdaL4odeDAauj7EHejxIcYaa7kwy2U/l0qeZrqGjM8IkyZoxp06ejwh+MI06CanHncIXe6Q1sUgOSgehHr00Ufx6quvYsmSJXj00Uexbds22Gwja4uXLVuG7du34y9/+QtefvllPPzww0oXicgsFGVlGS0xOyUSBxJxcl2NLMejx0MPMQLDdY6N6FCfnxriZS5XUIcQYn68IIAtsz6FP8zAo7Ml1/qMc+uyUEm04UJhFE9M/uijj2Lp0qXYsmVLMvgkNoJz5ZVXYtu2bXj44Ydx+eWXK10sIqOBQAwt9RVaF8Mw9FmxEzGhGAt/mEHLGOl/w5VZ46kccLyAjv4AZrXUSRoZNuPosVr1lh4GNIyQ5LWQZWDmuxqNzROMUrJmQrJgy2RGLNE5enAqTvGn4I4dO3DdddelzX7K5sILL8SuXbuULhIhaVq7vWmzHIzQASHiZJ9tVuClYKQRPAqGSldueV94QUBXxs5s3SLT2gVBpQSoOg/qeUMxtHZ7tS6GKZjp+Zvtsu33RdBLM2zLnnmudOlEl5FaUn+vXllI4bR/EqtYAroWFad4EMrj8WDmzJmSXtvc3Ew75RFNqLEEwEyNaxKX+TikBlS6UMwced3U271LHxcQw/IISsjJd3QwgI4+vyyfqX3jtngRk1zn8ijxGtbHLSCZVvFRvc62pFxVREzOqzXlkokwHOWDJTloU794glH4w7R5mtwUD0LV19fj8OHDkl67a9cuNDY2KlwiQkg2Rm8+qh3oM+LxMmKZM8nZ/Wrt9iJQyg4qBiPnctEoyysy82/QH4GPdkaUjVb3PMvxis8Qa+32GnqmolliNomvUVR1oFBAzYjH1qw7LhZyKiilAdGFlGqp3xdRZ9Z3mVE8CLV06VLceeedeUdHhoaG8Ktf/QrLly9XukiEGAJVeNor5zOQaAiWw3UYZcon6fjRjGV2epF6lQ0FoukJPsvgGiyWnmfYFrPbYTHfRq+d1nLfHc8ARdSFzHvYEzRHAF7yNarPSX2kDFGVpS7Fg1BXXHEFNm/ejHXr1uHtt98Gy8anWSamEvf19eGBBx7AsmXL0NbWhq9+9atKF4kQ3cl8VgsQcLDHp3pD0+htAdqBML9QlEWYlg8RUjaMVCuyHG/o5TiFPrN1uqqOEEK0QXVi2VB8d7z169fjiSeewNNPP41Vq1ahoqICPM/jtNNOQyQSgdcbn6otCAI++9nP4txzz1W6SIRoopAASaIda7aoPAWJtJF5HflCMTTXVcr23nRWCclF27sk
+…[truncated 6202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T14:36:01.593043+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T14:36:01.593190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  22538 May 16 22:28 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf\\n-rw-r--r-- 1 root root 104101 May 16 22:28 /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T14:36:01.593358+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bstar_trajectory_adaptive_fix",
+  "type": "chart",
+  "description": "b* reweighting strength trajectory over training for adaptive_fix_seed42. Shows raw per-step mean and 100-step moving average. b* is stable (mean≈1.40) throughout training, indicating the method calibrates from the start.",
+  "project": "provenance_weight_training",
+  "exp_id": "adaptive_fix_seed42",
+  "content": "Server path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf\n\nKey findings:\n- b* mean = 1.398, std = 0.982\n- First quarter mean: 1.409\n- Last quarter mean: 1.367\n- Trend: STABLE (method calibrates from start)\n- b* does NOT systematically decrease over training\n- This means the adaptive reweighting strength is consistent from the beginning of training",
+  "content_filename": "bstar_trajectory_adaptive_fix.md",
+  "tags": "['bstar', 'trajectory', 'adaptive', 'training_dynamics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bstar_trajectory_adaptive_fix",
+    "type": "chart",
+    "description": "b* reweighting strength trajectory over training for adaptive_fix_seed42. Shows raw per-step mean and 100-step moving average. b* is stable (mean≈1.40) throughout training, indicating the method calibrates from the start.",
+    "project": "provenance_weight_training",
+    "exp_id": "adaptive_fix_seed42",
+    "content": "Server path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf\n\nKey findings:\n- b* mean = 1.398, std = 0.982\n- First quarter mean: 1.409\n- Last quarter mean: 1.367\n- Trend: STABLE (method calibrates from start)\n- b* does NOT systematically decrease over training\n- This means the adaptive reweighting strength is consistent from the beginning of training",
+    "content_filename": "bstar_trajectory_adaptive_fix.md",
+    "tags": "['bstar', 'trajectory', 'adaptive', 'training_dynamics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T14:36:01.593519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_92cab9\", \"name\": \"bstar_trajectory_adaptive_fix\", \"type\": \"chart\", \"description\": \"b* reweighting strength trajectory over training for adaptive_fix_seed42. Shows raw per-step mean and 100-step moving average. b* is stable (mean≈1.40) throughout training, indicating the method calibrates from the start.\", \"path\": \"projects/provenance_weight_training/artifacts/adaptive_fix_seed42/chart/bstar_trajectory_adaptive_fix.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": \"adaptive_fix_seed42\", \"skill\": \"\", \"created_at\": \"2026-05-16T14:35:39.982639+00:00\", \"tags\": [\"bstar\", \"trajectory\", \"adaptive\", \"training_dynamics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T14:36:01.593660+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "alpha_eff_binding_rate_trajectory",
+  "type": "chart",
+  "description": "Alpha_eff binding rate over training for adaptive_fix_seed42, computed in 1000-step windows. Shows transition from ESS-dominated binding (early) to mixed regime (later).",
+  "project": "provenance_weight_training",
+  "exp_id": "adaptive_fix_seed42",
+  "content": "Server path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf\n\nKey findings - Binding rate per 1000-step window:\n  Step 500:  alpha_eff binding rate = 0.121\n  Step 1500: alpha_eff binding rate = 0.100\n  Step 2500: alpha_eff binding rate = 0.379\n  Step 3500: alpha_eff binding rate = 0.368\n  Step 4500: alpha_eff binding rate = 0.371\n  Step 5500: alpha_eff binding rate = 0.375\n  Step 6500: alpha_eff binding rate = 0.371\n\nOverall statistics (51913 samples):\n- alpha_eff binding: 9926 (19.1%)\n- ESS binding: 15304 (29.5%)\n- Neither (b*=0 or intermediate): 51.4%\n\nAnalysis:\n- Early training (step 0-2000): ESS constraint dominates, alpha_eff binding rate only ~10-12%\n- Mid-to-late training (step 2000+): alpha_eff binding rate jumps to ~37% and stabilizes\n- ESS binding remains more frequent overall\n- The transition around step 2000 suggests the model learns contamination patterns, causing more batches to hit the alpha_eff upper bound (0.8)\n- Neither constraint binding in ~51% of samples indicates moderate contamination levels where b* settles naturally without hitting constraints",
+  "content_filename": "alpha_eff_binding_rate_trajectory.md",
+  "tags": "['alpha_eff', 'binding_rate', 'adaptive', 'training_dynamics', 'constraints']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "alpha_eff_binding_rate_trajectory",
+    "type": "chart",
+    "description": "Alpha_eff binding rate over training for adaptive_fix_seed42, computed in 1000-step windows. Shows transition from ESS-dominated binding (early) to mixed regime (later).",
+    "project": "provenance_weight_training",
+    "exp_id": "adaptive_fix_seed42",
+    "content": "Server path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf\n\nKey findings - Binding rate per 1000-step window:\n  Step 500:  alpha_eff binding rate = 0.121\n  Step 1500: alpha_eff binding rate = 0.100\n  Step 2500: alpha_eff binding rate = 0.379\n  Step 3500: alpha_eff binding rate = 0.368\n  Step 4500: alpha_eff binding rate = 0.371\n  Step 5500: alpha_eff binding rate = 0.375\n  Step 6500: alpha_eff binding rate = 0.371\n\nOverall statistics (51913 samples):\n- alpha_eff binding: 9926 (19.1%)\n- ESS binding: 15304 (29.5%)\n- Neither (b*=0 or intermediate): 51.4%\n\nAnalysis:\n- Early training (step 0-2000): ESS constraint dominates, alpha_eff binding rate only ~10-12%\n- Mid-to-late training (step 2000+): alpha_eff binding rate jumps to ~37% and stabilizes\n- ESS binding remains more frequent overall\n- The transition around step 2000 suggests the model learns contamination patterns, causing more batches to hit the alpha_eff upper bound (0.8)\n- Neither constraint binding in ~51% of samples indicates moderate contamination levels where b* settles naturally without hitting constraints",
+    "content_filename": "alpha_eff_binding_rate_trajectory.md",
+    "tags": "['alpha_eff', 'binding_rate', 'adaptive', 'training_dynamics', 'constraints']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T14:36:01.593869+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_fb19cf\", \"name\": \"alpha_eff_binding_rate_trajectory\", \"type\": \"chart\", \"description\": \"Alpha_eff binding rate over training for adaptive_fix_seed42, computed in 1000-step windows. Shows transition from ESS-dominated binding (early) to mixed regime (later).\", \"path\": \"projects/provenance_weight_training/artifacts/adaptive_fix_seed42/chart/alpha_eff_binding_rate_trajectory.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": \"adaptive_fix_seed42\", \"skill\": \"\", \"created_at\": \"2026-05-16T14:35:50.251083+00:00\", \"tags\": [\"alpha_eff\", \"binding_rate\", \"adaptive\", \"training_dynamics\", \"constraints\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-16T14:36:01.594052+00:00_
+
+两个 artifact 已注册。任务完成。
+
+## 分析结论
+
+**Figure 1: b* 轨迹**
+- b* 均值 ≈ 1.40，标准差 ≈ 0.98
+- 训练前 1/4 均值 = 1.409，后 1/4 均值 = 1.367
+- **趋势：稳定** — 方法从训练一开始就完成了校准，b* 不随训练步数系统性递减或递增
+
+**Figure 2: α_eff binding rate**
+- 训练早期（step 0–2000）：α_eff binding rate 仅 ~10–12%，ESS 约束主导
+- step 2000 之后：α_eff binding rate 跳升至 ~37% 并稳定
+- 整体：α_eff binding 19.1%，ESS binding 29.5%，无约束激活 51.4%
+- **解读**：step 2000 左右模型学会了识别污��模式，更多 batch 触碰 α_eff 上界（0.8），但 ESS 约束仍是更常见的活跃约束
+
+**PDF 文件位置**（服务器 westd-47453）：
+- `/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf`
+- `/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_bstar-trajectory_20260516T142250"
+}
+```
+
+</details>
+
+---

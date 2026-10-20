@@ -1,0 +1,3895 @@
+dream_id: dream_20260515T102146
+project: provenance_weight_training
+venue: ''
+focus: 'D023 dual-constraint reframe: α_eff quality floor + ESS stability ceiling
+  → minimum intervention principle. Key risk: ESS-only baseline may match dual-constraint
+  performance, undermining α_eff''s value. τ sweep evidence for Claim 3 still in progress.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Dual-constraint 明确优于 ESS-only，τ 宽泛鲁棒，α_eff 的独立贡献被实证确认——原始 framing 完全成立
+      key_assumptions:
+      - min-intervention (dual) 在 eval_ppl 上 statistically 优于 max-intervention (ESS-only)，差值
+        ≥ seed variance
+      - τ sweep 在 [0.5, 0.9] 全范围内 PPL 方差 < 0.03，证明 τ 是不敏感的 empirical default
+      - Golden Ratio oracle 不优于 adaptive（已知比例优势未转化为 PPL 优势）
+      - n_min=1 过度 downweight 导致性能退化，支持 ESS 上界的必要性
+      - ρ=0.6 时 Δ_adaptive 放大至 ρ=0.4 的 1.5× 以上
+      number_ranges:
+        eval_ppl_dual_seed42:
+        - 17.64
+        - 17.66
+        eval_ppl_ess_only_seed42:
+        - 17.67
+        - 17.72
+        delta_dual_vs_ess_only:
+        - 0.01
+        - 0.06
+        tau_sweep_ppl_range:
+        - 17.64
+        - 17.67
+        tau_sweep_ppl_std:
+        - 0.005
+        - 0.015
+        eval_ppl_golden_ratio_seed42:
+        - 17.65
+        - 17.7
+        eval_ppl_nmin1_seed42:
+        - 17.67
+        - 17.73
+        rho06_delta_adaptive_vs_uniform:
+        - 0.06
+        - 0.15
+        rho06_adaptive_ppl:
+        - 18.0
+        - 18.5
+        mvp_ratio_aggregate:
+        - 85
+        - 100
+      narrative_direction: '原始 framing 完全成立。Claim 1: dual-constraint 提供 principled
+        minimum-intervention， ESS-only baseline head-to-head 证明 α_eff 质量下界是 load-bearing
+        组件（去掉它性能变差）。 Claim 2: adaptive 免调参匹配 grid-best within seed variance（已有数据）。
+        Claim 3: τ sweep 证明方法对 τ 不敏感，任意合理 τ 均可工作。 论文叙事：min-intervention principle
+        不仅理论优美（最小满足质量阈值的 b）， 而且实证优于 max-intervention（ESS-only）——过度 downweight 浪费有效样本。
+        α_eff 是方法的核心贡献而非装饰。
+
+        '
+    median:
+      tier: median
+      meaning: Dual ≈ ESS-only（统计不可分），τ 有工作范围但非全域鲁棒——需降低 α_eff 独立贡献的 claim 强度，reframe
+        为 principled default
+      key_assumptions:
+      - dual 和 ESS-only 的 eval_ppl 差值 < seed variance（~0.01），统计上不可区分
+      - τ sweep 在 [0.6, 0.8] 内鲁棒，但 τ=0.5 或 τ=0.9 边界退化（PPL 上升 0.03-0.05）
+      - Golden Ratio oracle 与 adaptive 持平或略优（已知比例带来微弱优势）
+      - n_min=1 行为与 n_min=2 差异不大（ESS 约束在此设定下非 binding 的 batch 比例高）
+      - ρ=0.6 时 Δ_adaptive 与 ρ=0.4 相当，未明显放大
+      number_ranges:
+        eval_ppl_dual_seed42:
+        - 17.64
+        - 17.66
+        eval_ppl_ess_only_seed42:
+        - 17.64
+        - 17.67
+        delta_dual_vs_ess_only:
+        - -0.01
+        - 0.01
+        tau_sweep_ppl_range:
+        - 17.64
+        - 17.72
+        tau_sweep_ppl_std:
+        - 0.02
+        - 0.04
+        eval_ppl_golden_ratio_seed42:
+        - 17.63
+        - 17.66
+        eval_ppl_nmin1_seed42:
+        - 17.64
+        - 17.67
+        rho06_delta_adaptive_vs_uniform:
+        - 0.03
+        - 0.06
+        rho06_adaptive_ppl:
+        - 18.2
+        - 18.7
+        mvp_ratio_aggregate:
+        - 75
+        - 90
+      narrative_direction: '需要调整 Claim 1 的强度。α_eff 不能声称有独立的 empirical 性能贡献—— dual
+        和 ESS-only 不可区分。Reframe：dual-constraint 提供与 ESS-only 相当的性能， 但有理论 motivation（收敛理论指导
+        τ 选择）和 principled default 优势。 论文叙事从 "min-intervention 更好" 转为 "两种 adaptive
+        策略都消除 grid search， dual-constraint 提供有收敛理论支撑的 principled 推导框架，推荐为默认方案"。 Claim
+        2 不受影响（adaptive 仍匹配 grid-best）。 Claim 3 需补充说明 τ 的有效范围（0.6-0.8），而非声称全域不敏感。
+        论文贡献重心从 α_eff 转向 adaptive b* 框架本身（含 ESS-only 变体）的实用价值。 补充实验：τ 与 n_min 的联合
+        sensitivity surface，证明有宽泛的可工作区域。
+
+        '
+    worst:
+      tier: worst
+      meaning: Dual 劣于 ESS-only 或 τ 高度敏感——α_eff 约束反而有害，需 pivot 到 ESS-only adaptive
+        b* 作为主方法
+      key_assumptions:
+      - ESS-only 的 eval_ppl 明确优于 dual（差值 > seed variance），α_eff 的保守干预保留了过多 noisy samples
+      - τ sweep 高度敏感：PPL 随 τ 单调变化或波动大，无 plateau region
+      - Golden Ratio oracle 明确优于 adaptive（已知比例确实 matters，Claim 3 受挑战）
+      - n_min=1 反而更优（说明 ESS 约束应更宽松，与 dual-constraint 的保守逻辑矛盾）
+      - ρ=0.6 时 adaptive 改善 < ρ=0.4，效应未 scale
+      number_ranges:
+        eval_ppl_dual_seed42:
+        - 17.64
+        - 17.66
+        eval_ppl_ess_only_seed42:
+        - 17.62
+        - 17.64
+        delta_dual_vs_ess_only:
+        - -0.04
+        - -0.01
+        tau_sweep_ppl_range:
+        - 17.64
+        - 17.8
+        tau_sweep_ppl_std:
+        - 0.04
+        - 0.08
+        eval_ppl_golden_ratio_seed42:
+        - 17.6
+        - 17.64
+        eval_ppl_nmin1_seed42:
+        - 17.62
+        - 17.65
+        rho06_delta_adaptive_vs_uniform:
+        - 0.01
+        - 0.03
+        rho06_adaptive_ppl:
+        - 18.4
+        - 19.0
+        mvp_ratio_aggregate:
+        - 50
+        - 75
+      narrative_direction: 核心 pivot：α_eff 约束有害（保留过多低质量样本），ESS-only adaptive b* 成为主方法。
+        论文 reframe 为 empirical study of adaptive importance weighting for contaminated
+        pretraining： (1) ESS-only adaptive b* 是简单有效的 per-batch 自适应方案，消除 grid search；
+        (2) α_eff 质量下界约束的 negative finding——min-intervention 不优于 max-intervention，
+        说明在 detector calibration 不完美时（AUC=0.939），保守干预不如激进干预， 因为 q-score 的噪声使得 α_eff
+        阈值化保留的 "borderline" 样本实际质量可疑； (3) τ sensitivity 作为 negative evidence 保留，说明
+        α_eff 框架对超参敏感。 仍冲 EMNLP：contribution 变为 adaptive ESS-based b* + negative finding
+        on quality floor， 加上 lightweight detector sufficiency 和 loss reweighting vs
+        SIR 的实证对比。 Claim 2 仍可保留（ESS-only adaptive 也免调参），Claim 3 保留但弱化。 需要补做 ESS-only
+        × 3 seeds + ρ=0.6 ESS-only 来支撑新的主方法。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T102146/best/paper.pdf
+  imagined_experiments:
+  - name: Grid-b low (b=0.1/0.2/0.3), seed42 (ρ=0.4, Qwen3-0.6B)
+    plan_id: p0_grid_b_low_seed42
+    description: 在 b=0.5 以下扩展 grid 搜索，确认 grid-best 不在搜索边界外。
+    expected_results:
+      b0_1_eval_ppl: 17.681
+      b0_2_eval_ppl: 17.668
+      b0_3_eval_ppl: 17.654
+      b0_1_train_loss: 8.42
+      b0_2_train_loss: 8.95
+      b0_3_train_loss: 9.28
+      total_steps: 6103
+      gpu_hours: 10.8
+    result_rationale: 'b=0.1 的 w=(1-q)^0.1 对高 q 样本 (q≈0.85) 权重降至 (0.15)^0.1≈0.83——几乎无过滤效果，
+      PPL 仅比 uniform (17.690) 好 0.009。b=0.3 达到 17.654，与 b=0.5 (17.651) 仅差 0.003， 因为在
+      TF-IDF detector 的 bimodal q-score 分布下，b=0.3-0.5 区间的 ESS 和 α_eff 都在最优平台内。 train_loss
+      逐步上升因为更高 b 对 contaminated samples 的 loss contribution 压缩更多。
+
+      '
+    tables:
+    - 'Table 2: Extended grid-b PPL curve (b=0.1...5.0) × 3 seeds — seed42 列'
+    figures_description:
+    - 'Figure 2 (b-PPL curve): b=0.1/0.2/0.3 扩展 seed42 曲线左侧，确认 broad minimum 在 b∈[0.3,0.5]'
+    analysis: 'seed42 的 b=0.3 与 b=0.5 差距仅 0.003 PPL，远小于 seed variance (~0.01)。 证实
+      b=0.5 不是边界伪影，最优区间是宽阔的 [0.3, 0.5] 平台。
+
+      '
+  - name: Grid-b low (b=0.1/0.2/0.3), seed123 (ρ=0.4, Qwen3-0.6B)
+    plan_id: p0_grid_b_low_seed123
+    description: Finer grid 扩展 seed123，验证跨 seed 一致性。
+    expected_results:
+      b0_1_eval_ppl: 17.674
+      b0_2_eval_ppl: 17.656
+      b0_3_eval_ppl: 17.641
+      b0_1_train_loss: 8.43
+      b0_2_train_loss: 8.96
+      b0_3_train_loss: 9.29
+      total_steps: 6103
+      gpu_hours: 10.8
+    result_rationale: 'seed123 在 MVP 中一贯表现最优（grid-best b=0.5 PPL=17.638 最低）， b=0.3
+      的 17.641 与 b=0.5 的 17.638 仅差 0.003，同样在 seed variance 内。
+
+      '
+    tables:
+    - 'Table 2: Extended grid-b PPL curve — seed123 列'
+    figures_description:
+    - 'Figure 2: seed123 曲线叠加，三条曲线在 b∈[0.3,0.5] 重合验证平台稳定性'
+    analysis: 跨 seed 一致性确认，seed123 的 b=0.3 同样在平台内。
+  - name: Grid-b low (b=0.1/0.2/0.3), seed456 (ρ=0.4, Qwen3-0.6B)
+    plan_id: p0_grid_b_low_seed456
+    description: Finer grid 扩展 seed456，完成 3-seed b<0.5 曲线。
+    expected_results:
+      b0_1_eval_ppl: 17.684
+      b0_2_eval_ppl: 17.67
+      b0_3_eval_ppl: 17.653
+      b0_1_train_loss: 8.4
+      b0_2_train_loss: 8.93
+      b0_3_train_loss: 9.26
+      total_steps: 6103
+      gpu_hours: 10.8
+    result_rationale: 'seed456 的 uniform PPL 略高 (17.700)，对应更大的改善空间。 b=0.3 (17.653)
+      与 b=0.5 (17.650) 仅差 0.003，第三次独立确认 [0.3, 0.5] 平台。
+
+      '
+    tables:
+    - 'Table 2: Extended grid-b PPL curve — seed456 列'
+    figures_description:
+    - 'Figure 2: seed456 曲线完成三 seed 覆盖'
+    analysis: 3/3 seeds 确认 b=0.3 和 b=0.5 在噪声范围内无显著差异，消除 boundary concern。
+  - name: Post-hoc eval for all 9 b<0.5 checkpoints
+    plan_id: p0_grid_b_low_eval
+    description: 对 9 个 b<0.5 训练 checkpoint 统一进行 holdout 评估。
+    expected_results:
+      all_9_eval_ppl_collected: true
+      cross_seed_mean_b0_1: 17.68
+      cross_seed_mean_b0_2: 17.665
+      cross_seed_mean_b0_3: 17.649
+      cross_seed_mean_b0_5: 17.646
+      cross_seed_std_b0_3: 0.007
+      cross_seed_std_b0_5: 0.007
+      b0_3_vs_b0_5_paired_t_pvalue: 0.42
+      updated_finer_grid_best_b: 0.5
+      eval_holdout_tokens: 4077068
+    result_rationale: '跨 seed 平均后 b=0.3 (17.649) 与 b=0.5 (17.646) 差异仅 0.003， paired
+      t-test p=0.42 远不显著。曲线形态为不对称的 slow-entry / fast-exit： b=0→0.3 单调下降，b=0.3→0.5
+      平台，b=0.5→1.0 急剧上升。 这种不对称性解释了 adaptive b* median=0.87 为何仍然有效——b 偏高的 PPL 代价远小于偏低。
+
+      '
+    tables:
+    - 'Table 2: 完整 extended grid-b PPL curve (b=0.1...5.0) × 3 seeds'
+    - 'Table 2 注脚: paired t-test b=0.3 vs b=0.5, p=0.42 (n.s.)'
+    figures_description:
+    - 'Figure 2: 完整 b-PPL 曲线（27 数据点），标注 [0.3,0.5] 平台 + adaptive b* 直方图叠加'
+    - 'Figure 2 inset: 放大 b∈[0,1] 区域的不对称 penalty structure'
+    analysis: 'b=0.5 boundary concern 完全消除。最优区间是 [0.3, 0.5] 宽平台。 adaptive b* 的 p25=0.54
+      恰好落在平台右沿，结合不对称 penalty structure，median=0.87 是合理的保守选择。
+
+      '
+  - name: 'ESS-only adaptive baseline: max{b : ESS≥n_min} (ρ=0.4, Qwen3-0.6B, seed42)'
+    plan_id: p0_ess_only_baseline
+    description: 'Head-to-head 对比 min-intervention (dual-constraint) vs max-intervention
+      (ESS-only)。 ESS-only 选择满足 ESS≥n_min 的最大 b——最大干预。如果 dual > ESS-only， α_eff 质量下界的独立贡献被实证确认。
+
+      '
+    expected_results:
+      eval_ppl_holdout: 17.685
+      eval_loss: 2.8729
+      train_loss: 8.94
+      total_steps: 6103
+      train_runtime_s: 10500
+      delta_vs_dual_constraint: 0.035
+      delta_vs_uniform: 0.005
+      b_star_mean: 2.1
+      b_star_median: 1.85
+      b_star_std: 2.78
+      b_star_p25: 0.0
+      b_star_p75: 3.95
+      b_star_pct_zero: 49.9
+      b_star_pct_above_3: 28.5
+      b_star_pct_above_5: 14.2
+      b_star_mean_reweighted: 4.18
+      b_star_median_reweighted: 3.82
+      ess_mean_reweighted: 2.08
+      ess_std_reweighted: 0.12
+      alpha_eff_binding_pct: 0.0
+      ess_binding_pct: 50.1
+      eval_holdout_tokens: 4077068
+    result_rationale: 'ESS-only 使用 max{b : ESS≥n_min} 选择每个 batch 的 b*。在所有需 reweighting
+      的 batch 中（50.1%）， b* 始终被推到 ESS 上界 b_ESS。Q1 数据显示 α_eff binding batches 中 b_ESS≈4.15，而
+      dual-constraint 仅选 b*=1.67。ESS-only 强制所有 reweighted batch 用 b=b_ESS，导致： (1)
+      过度 downweight——contaminated samples 权重趋近 0，有效梯度信号大幅减少； (2) ESS 均值仅 2.08（几乎触及
+      n_min=2.0），每个 batch 的有效样本量极低； (3) gradient variance 极高——每步仅~2个有效样本贡献梯度，optimization
+      噪声增大。 PPL 17.685 仅比 uniform (17.690) 好 0.005——ESS-only 的 over-downweighting
+      几乎完全抵消了 contamination removal 的收益。对比 dual-constraint 的 17.650 (delta=0.035)，
+      min-intervention 明确优于 max-intervention，差距 0.035 ≥ seed variance (σ≈0.009)。 核心因果链：ESS-only
+      在 40% 的 reweighted batches（原 α_eff binding）中选择了 b=4.18 而非 1.67， 这些 batches 的
+      ESS 从 2.60 (dual, 30% 余量) 降至 2.08 (ESS-only, 无余量)—— 过度清洁浪费了有效样本，gradient variance
+      增大导致训练收敛变差。
+
+      '
+    tables:
+    - 'Table 1: Dual-constraint vs ESS-only head-to-head (seed42)'
+    - 'Table 1 子表: b* distribution comparison (dual vs ESS-only)'
+    figures_description:
+    - 'Figure 1: b* 分布对比直方图——dual (median=0.87) vs ESS-only (median=1.85)，标注 2.5×
+      差距'
+    - 'Figure 1b: 双轴图——α_eff(b) 和 ESS(b) 曲线 + b_τ 和 b_ESS 标注 + dual 和 ESS-only 的 b*
+      选择点'
+    - 'Figure 1c: ESS 分布对比——dual (mean=2.60 in α_eff binding) vs ESS-only (mean=2.08)'
+    analysis: "这是全文最重要的实验结果。三层证据： (1) PPL gap: dual 17.650 vs ESS-only 17.685, delta=0.035\
+      \ > seed variance (0.009)——统计显著。 (2) 机制清晰: ESS-only 在 α_eff binding batches\
+      \ 中 b* 从 1.67 飙至 4.18 (2.5×)，\n    ESS 从 2.60 骤降至 2.08——过度 downweight 的直接证据。\n\
+      (3) 论文叙事: \"α_eff 不是装饰——它提供了必要的质量下界，防止方法过度清洁。\n    去掉 α_eff 约束后，方法退化为 max-intervention，PPL\
+      \ 退化至接近 uniform 水平。\"\n"
+  - name: τ sweep (τ=0.5/0.6/0.7/0.8/0.9, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_tau_sweep
+    description: '验证方法对 τ 的不敏感性。τ 是 empirical hyperparameter with theoretical motivation，
+      sweep 证明任意合理 τ 均可工作，无需 dataset-specific tuning。
+
+      '
+    expected_results:
+      tau_05_eval_ppl: 17.668
+      tau_06_eval_ppl: 17.655
+      tau_07_eval_ppl: 17.645
+      tau_08_eval_ppl: 17.65
+      tau_09_eval_ppl: 17.66
+      tau_095_eval_ppl: 17.666
+      ppl_range: 0.023
+      ppl_std: 0.008
+      ppl_mean: 17.654
+      all_better_than_uniform: true
+      all_better_than_ess_only: true
+      tau_05_b_star_mean: 0.62
+      tau_05_b_star_median: 0.38
+      tau_05_alpha_eff_binding_pct: 8.5
+      tau_06_b_star_mean: 0.85
+      tau_06_b_star_median: 0.52
+      tau_06_alpha_eff_binding_pct: 13.8
+      tau_07_b_star_mean: 1.12
+      tau_07_b_star_median: 0.68
+      tau_07_alpha_eff_binding_pct: 17.4
+      tau_08_b_star_mean: 1.4
+      tau_08_b_star_median: 0.87
+      tau_08_alpha_eff_binding_pct: 20.2
+      tau_09_b_star_mean: 1.95
+      tau_09_b_star_median: 1.28
+      tau_09_alpha_eff_binding_pct: 31.5
+      tau_095_b_star_mean: 2.35
+      tau_095_b_star_median: 1.62
+      tau_095_alpha_eff_binding_pct: 38.8
+      eval_holdout_tokens: 4077068
+    result_rationale: "τ 控制质量阈值的高低：低 τ → b_τ 小 → 轻度清洁；高 τ → b_τ 大 → 深度清洁。 PPL 对 τ\
+      \ 不敏感的根本原因是 b-PPL 曲线的平台效应： (1) τ=0.5 (b_star_mean=0.62): 质量阈值极低，α_eff 约束在极小\
+      \ b 就满足，\n    多数 batch 的 b* 由 ESS ceiling 主导 (91.5%)。轻度 reweighting 仍优于 uniform\
+      \ (17.668 vs 17.690)\n    但未充分利用 detector signal。\n(2) τ=0.7 (b_star_mean=1.12):\
+      \ 与 τ=0.8 (1.40) 差距不大，PPL 达到 sweep 最优 17.645——\n    这是因为 b*≈1.12 恰好落在 b-PPL\
+      \ 曲线的最优平台附近，且 α_eff binding 比例 (17.4%)\n    在此区间提供了恰好足够的质量约束。\n(3) τ=0.9 (b_star_mean=1.95):\
+      \ 高质量阈值推高 b*，31.5% 的 batch 受 α_eff 约束。\n    PPL 微升至 17.660——接近但未触及 ESS-only\
+      \ 的过度清洁区间。\n(4) τ=0.95 (b_star_mean=2.35): 进一步推高，开始接近 ESS-only 行为，PPL 17.666。\
+      \ 关键发现：PPL range 仅 0.023 (17.645-17.668)，std=0.008，所有 τ 值都优于 uniform (17.690)\
+      \ 和 ESS-only (17.685)。这证明 τ 是 genuinely insensitive 的—— \"any τ∈[0.5,0.9] works\
+      \ without dataset-specific tuning\"。\n"
+    tables:
+    - 'Table 3: τ sensitivity sweep (τ=0.5...0.95) — PPL + b* stats'
+    - 'Table 3 子表: α_eff binding percentage vs τ'
+    figures_description:
+    - 'Figure 3: τ vs eval_ppl curve — flat band (17.645-17.668) 标注 ±0.012 around
+      mean'
+    - 'Figure 3b: τ vs b_star_mean — monotonic increase showing τ''s control of intervention
+      intensity'
+    - 'Figure 3c: τ vs α_eff_binding_pct — monotonic from 8.5% to 38.8%'
+    analysis: 'τ sweep 是 Claim 3 的核心证据。PPL std=0.008 < 0.015（best 档上界）， range 0.023
+      < 0.03（best 档通过标准）。所有 6 个 τ 值都优于 uniform 和 ESS-only。 同时 τ sweep 揭示了有趣的结构：b_star_mean
+      随 τ 单调递增 (0.62→2.35)， α_eff binding % 同步增加 (8.5%→38.8%)——τ 精确控制了 α_eff 约束的 "tightness"。
+      但 PPL 对这些大幅变化近乎不变——方法的鲁棒性来自 b-PPL 曲线的宽平台， 而非 τ 恰好命中某个特定最优值。论文表述："τ is a dial
+      that controls how much quality assurance to apply; the method works across the
+      entire reasonable range because the PPL landscape has a broad optimum."
+
+      '
+  - name: Golden Ratio oracle baseline (w=1/φ, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_golden_ratio_baseline
+    description: 'Fixed weight w*=1/φ≈0.618 for synthetic, 1.0 for real。已知比例 oracle——
+      如果 adaptive 不劣于 GR oracle，则证明 per-batch adaptation > oracle fixed weight。
+
+      '
+    expected_results:
+      eval_ppl_holdout: 17.665
+      eval_loss: 2.8717
+      train_loss: 8.52
+      total_steps: 6103
+      train_runtime_s: 10350
+      delta_vs_uniform: 0.025
+      delta_vs_adaptive: -0.015
+      effective_b_equivalent: 0.25
+      weight_synthetic_mean: 0.618
+      weight_real_mean: 1.0
+      ess_mean: 3.28
+      eval_holdout_tokens: 4077068
+    result_rationale: "Golden Ratio 使用 oracle 信息（已知 contamination ratio k=0.4）推导理论最优权重\
+      \ w*=1/φ≈0.618 for synthetic samples (q>0.5), 1.0 for real (q≤0.5)。 PPL 17.665：优于\
+      \ uniform (17.690, Δ=0.025) 但逊于 adaptive (17.650, Δ=0.015)。 逊于 adaptive 的原因：\
+      \ (1) Fixed weight 忽略 per-sample contamination severity——q=0.6 (borderline)\
+      \ 和 q=0.99\n    (near-certain synthetic) 获得相同权重 0.618，而 adaptive 通过 (1-q)^b*\
+      \ 给予\n    不同强度的 downweight。\n(2) Binary classification (q>0.5 vs ≤0.5) 丢失了 detector\
+      \ 的连续 calibration 信息。\n    TF-IDF detector 的 mid_range (q∈[0.2,0.8]) 占 46.3%——这些\
+      \ borderline 样本在 GR 中\n    被粗暴地二分，而 adaptive 的连续权重更精确。\n(3) Global fixed weight\
+      \ 不适应 per-batch contamination 密度——某些 batch 80% synthetic，\n    某些仅 20%，但 GR\
+      \ 给所有 synthetic 同一权重 0.618。\nEffective b-equivalent: w=0.618 对 q_median_synthetic≈0.85\
+      \ 等价于 (0.15)^b=0.618 → b≈0.25。 这远低于 adaptive mean b*=1.40，说明 GR 的 downweight\
+      \ 力度整体偏弱。 但 GR 的 ESS=3.28 远高于 adaptive (ESS≈2.3 when reweighting)——GR 保留了更多有效样本，\
+      \ 只是没有精准地 target high-contamination samples。\n"
+    tables:
+    - 'Table 4: Method comparison — Golden Ratio oracle 行'
+    figures_description:
+    - 'Figure 4: weight distribution comparison——GR (binary 0.618/1.0) vs adaptive
+      (continuous)'
+    - 'Figure 4b: Per-sample weight vs q-score scatter——adaptive 展示 smooth nonlinear
+      mapping, GR 展示 step function'
+    analysis: 'Golden Ratio oracle 持有方法所不需要的信息（已知 contamination ratio），但仍不优于 adaptive。
+      这强化了两个 claim：(1) Claim 3——不需要已知比例，因为即使有也没用（GR 弱于 adaptive）； (2) Claim 1——per-batch
+      adaptive b* 的连续权重映射优于任何 fixed-weight scheme。 论文表述："Even an oracle with known
+      contamination proportion cannot match per-batch adaptive b*, because fixed weights
+      ignore within-batch heterogeneity."
+
+      '
+  - name: n_min=1 ablation (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_nmin_1
+    description: 极松 ESS 约束 (n_min=1)——允许 b* 过高，可能 over-downweight。
+    expected_results:
+      eval_ppl_holdout: 17.7
+      eval_loss: 2.8735
+      train_loss: 7.85
+      total_steps: 6103
+      train_runtime_s: 10400
+      b_star_mean: 2.95
+      b_star_median: 1.73
+      b_star_std: 3.82
+      b_star_p25: 0.71
+      b_star_p75: 3.45
+      b_star_pct_above_5: 12.8
+      ess_mean_reweighted: 1.35
+      delta_vs_nmin2: -0.05
+      delta_vs_uniform: -0.01
+      eval_holdout_tokens: 4077068
+    result_rationale: 'n_min=1 释放 ESS 上界约束——b* 不再受 ESS≥2 限制，α_eff 优化可以把 b* 推到极高值。
+      b* 分布大幅右移：median 1.73 (vs n_min=2 的 0.87)，12.8% 的 batches b*>5。 在高 b* batches
+      中，contaminated samples 权重趋近 0，有效只有 ~1.35 个样本贡献梯度—— gradient variance 极高。PPL
+      17.700 比 n_min=2 的 17.650 差 0.050，甚至微劣于 uniform 17.690。 这验证了 ESS 上界约束的必要性：α_eff
+      alone 不够，需要 ESS ceiling 防止 over-downweighting。 没有 ESS 约束，α_eff 的单调递增性驱使 b* 越大越好（α_eff
+      越高），但代价是 gradient 不稳定。 dual-constraint 的 min-intervention 语义在此得到对称验证： (a) ESS-only
+      (17.685)——没有 α_eff 下界 → max-intervention → 性能差； (b) n_min=1 (17.700)——ESS 约束过松
+      → 也接近 max-intervention → 性能差。 两者从不同方向证明了 dual-constraint (17.650) 的平衡是最优的。
+
+      '
+    tables:
+    - 'Table 5: n_min sensitivity ablation (n_min=1,2,3,4,5)'
+    figures_description:
+    - 'Figure 5: n_min vs eval_ppl U-shape curve — n_min=2 是 sweet spot'
+    - 'Figure 5 inset: b* distribution comparison across n_min values'
+    analysis: 'n_min=1 和 ESS-only 从不同方向验证了 dual-constraint 的必要性。 ESS ceiling 防止极端
+      over-downweighting (n_min=1 case)； α_eff floor 防止无差别 max-downweighting (ESS-only
+      case)。 论文用 n_min sensitivity curve 展示清晰的 U-shape： n_min=1 (over-aggressive,
+      17.700) → n_min=2 (optimal, 17.650) → n_min=3 (fragile, 17.690) → n_min≥4 (uniform,
+      17.690)。
+
+      '
+  - name: n_min=4 ablation (=batch_size, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_nmin_4
+    description: n_min=batch_size → ESS 约束要求所有样本有效 → b*=0 → uniform 退化。
+    expected_results:
+      eval_ppl_holdout: 17.69
+      eval_loss: 2.873
+      train_loss: 7.31
+      total_steps: 6103
+      train_runtime_s: 10300
+      b_star_mean: 0.0
+      b_star_median: 0.0
+      b_star_std: 0.0
+      b_star_pct_zero: 100.0
+      equivalent_to_uniform: true
+      eval_holdout_tokens: 4077068
+    result_rationale: 'n_min=4=batch_size 时，ESS 约束要求每 batch 有效样本量≥4（全部有效）。 任何 b>0
+      都会降低 contaminated samples 权重使 ESS<4，因此 b* 被钳制为 0。 PPL=17.690 与 uniform 完全一致——验证当
+      ESS 约束完全绑定时算法正确退化。 这是 sanity check：改善确实来自非零 b*（即 reweighting），而非实现副作用。
+
+      '
+    tables:
+    - 'Table 5: n_min sensitivity — n_min=4 行，标注 ''=uniform'''
+    figures_description:
+    - 'Figure 5: n_min=4 点与 uniform baseline 重合'
+    analysis: 完美的退化验证。n_min=4 → b*=0 → uniform，PPL 精确匹配。排除 confounding factor。
+  - name: n_min=5 ablation (>batch_size, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_nmin_5
+    description: n_min > batch_size 的退化情况——不可满足约束。
+    expected_results:
+      eval_ppl_holdout: 17.69
+      eval_loss: 2.873
+      train_loss: 7.31
+      total_steps: 6103
+      train_runtime_s: 10300
+      b_star_mean: 0.0
+      b_star_median: 0.0
+      b_star_pct_zero: 100.0
+      equivalent_to_uniform: true
+      eval_holdout_tokens: 4077068
+    result_rationale: 'n_min=5>batch_size=4，ESS 上限为 batch_size=4 < n_min=5，约束不可能满足。
+      b* 始终为 0，与 n_min=4 完全相同——uniform training。 作为 boundary case 完成 sensitivity curve
+      右端。
+
+      '
+    tables:
+    - 'Table 5: n_min sensitivity — n_min=5 行，标注 ''degenerate'''
+    figures_description:
+    - 'Figure 5: n_min=5 与 n_min=4 重合在 uniform baseline'
+    analysis: '完整 n_min ablation 展示 phase transition： n_min=1 (over-aggressive, 17.700)
+      → n_min=2 (optimal, 17.650) → n_min=3 (fragile, 17.690) → n_min≥4 (degenerate/uniform,
+      17.690)。 n_min=2 是唯一稳定工作的值，但这不是 "another hyperparameter to tune"—— 它有明确物理含义（"每
+      batch 至少 2 个有效样本"），且 batch_size 消融将证明 knife-edge 是 batch_size=4 的 artifact。
+
+      '
+  - name: batch_size=8 + grad_accum=2 (ρ=0.4, Qwen3-0.6B, seed42, adaptive)
+    plan_id: p0_batchsize_8
+    description: '扩大 micro-batch 至 8，n_min=2 的 ESS 约束从 50% 放宽到 25%—— 验证 n_min knife-edge
+      是 batch_size=4 的 artifact。
+
+      '
+    expected_results:
+      eval_ppl_holdout: 17.643
+      eval_loss: 2.8705
+      train_loss: 7.48
+      total_steps: 6103
+      train_runtime_s: 10800
+      b_star_mean: 1.58
+      b_star_median: 1.05
+      b_star_std: 2.15
+      b_star_p25: 0.62
+      b_star_p75: 1.85
+      b_star_pct_above_2: 19.8
+      ess_mean_reweighted: 4.35
+      ess_std_reweighted: 1.42
+      alpha_eff_binding_pct: 28.5
+      ess_binding_pct: 21.6
+      nmin2_effective: true
+      nmin3_also_works: true
+      eval_holdout_tokens: 4077068
+    result_rationale: 'batch_size=8 时 n_min/batch_size=2/8=25%，ESS 约束大幅放松。 关键变化：(1)
+      b* 分布向右展开——更多 batches 的 b* 可以超越原 ESS ceiling， mean 从 1.40 (bs=4) 升至 1.58 (bs=8)，因为
+      ESS 余量更大允许更精确的 α_eff targeting。 (2) ESS_mean=4.35（远高于 n_min=2），每 batch 有 ~4.35
+      个有效样本——gradient 更稳定。 (3) α_eff binding 比例从 20.2% (bs=4) 升至 28.5% (bs=8)——α_eff
+      约束有更多空间发挥。 PPL 17.643 比 bs=4 (17.650) 好 0.007——改善来自 8 样本/batch 提供了更精确的 per-batch
+      q-score 统计量，b* 估计的 batch-level variance 降低。 关键验证：n_min=3 在 bs=8 下也能稳定工作（n_min/bs=3/8=37.5%
+      vs 3/4=75%）， 证明 n_min=3 在 bs=4 的不稳定是 ratio 过高的 artifact。
+
+      '
+    tables:
+    - 'Table 6: Batch size ablation (bs=4,8,16) — PPL + b* + ESS stats'
+    figures_description:
+    - 'Figure 6: batch_size vs eval_ppl — monotonic improvement'
+    - 'Figure 6b: b* and ESS distributions across batch sizes — ESS headroom visually
+      increases'
+    analysis: 'batch_size=8 验证两点：(1) n_min=2 在更大 batch 下更加稳健，knife-edge 消失； (2) α_eff
+      binding 比例增加至 28.5%，α_eff 约束的独立贡献在大 batch 下更突出。 论文表述："At batch_size=8, the ESS
+      constraint relaxes and α_eff becomes the binding constraint in 28.5% of reweighted
+      batches (vs 20.2% at batch_size=4), confirming that dual-constraint becomes
+      more valuable at practical batch sizes."
+
+      '
+  - name: batch_size=16 + grad_accum=1 (ρ=0.4, Qwen3-0.6B, seed42, adaptive)
+    plan_id: p0_batchsize_16
+    description: 'micro-batch=16，n_min=2 仅占 12.5%——ESS 几乎不约束， α_eff 成为主导约束。
+
+      '
+    expected_results:
+      eval_ppl_holdout: 17.638
+      eval_loss: 2.87
+      train_loss: 7.45
+      total_steps: 6103
+      train_runtime_s: 11200
+      b_star_mean: 1.65
+      b_star_median: 1.12
+      b_star_std: 2.22
+      b_star_p25: 0.65
+      b_star_p75: 1.98
+      b_star_pct_above_2: 21.5
+      ess_mean_reweighted: 8.82
+      ess_std_reweighted: 2.65
+      alpha_eff_binding_pct: 35.2
+      ess_binding_pct: 14.9
+      nmin2_effective: true
+      nmin3_effective: true
+      eval_holdout_tokens: 4077068
+    result_rationale: 'batch_size=16 时 n_min/batch_size=12.5%，ESS 约束几乎不限制 b*。 α_eff
+      binding 比例升至 35.2%——超过 ESS binding 的 14.9%，α_eff 成为主导约束。 这意味着 b* = inf{b : α_eff≥τ}
+      在大多数需 reweighting 的 batch 中就是最终选择， ESS 仅在极端 batch 中起保护作用。 PPL 17.638——全 batch-size
+      系列最优。改善来自： (1) 16 个样本/batch 提供更精确的 α_eff 和 ESS 估计——batch-level noise 大幅降低； (2)
+      ESS=8.82 保证了每步 ~9 个有效样本——gradient variance 极低； (3) b* 分布更集中在理论最优区间——median 1.12
+      对应的 PPL 贡献最优。 关键发现：bs=16 证明在实际使用的 batch size 下（16-64）， dual-constraint 方法中 α_eff
+      是主导约束，ESS 仅为 safety net。 这进一步强化了 α_eff 作为方法核心组件的地位。
+
+      '
+    tables:
+    - 'Table 6: Batch size ablation — bs=16 行'
+    figures_description:
+    - 'Figure 6: bs=16 点标注 ''α_eff dominant regime'''
+    - 'Figure 6c: α_eff vs ESS binding ratio across batch sizes — cross-over at bs≈12'
+    analysis: "batch_size=16 是论文最重要的 scaling argument 之一： (1) PPL 持续改善 (17.650→17.643→17.638)——方法在大\
+      \ batch 下更优； (2) α_eff 成为主导约束 (35.2% vs 14.9%)——在实际 batch size 下，\n    dual-constraint\
+      \ ≈ α_eff constraint + ESS safety net；\n(3) n_min knife-edge 在 bs=16 完全消失——n_min=2,3\
+      \ 都稳定工作。 论文表述：\"At practical batch sizes (≥16), α_eff is the primary constraint\
+      \ governing b* selection in the majority of reweighted batches, while ESS serves\
+      \ as a safety net that activates only in extreme cases.\"\n"
+  - name: Data generation for ρ=0.6 (Qwen3-0.6B, 200M tokens)
+    plan_id: p0_contamination_60_datagen
+    description: 生成 60% 污染率训练数据集并用 TF-IDF+LR 评分。
+    expected_results:
+      scored_data_ready: true
+      contamination_ratio_actual: 0.6
+      total_tokens: 200000000
+      q_score_mean: 0.68
+      q_score_std: 0.35
+      q_score_median: 0.78
+      mid_range_ratio: 0.41
+      detector_auc_on_60pct: 0.936
+      datagen_gpu_hours: 3.8
+    result_rationale: '60% 污染 → 更多高 q-score 样本。q_score_mean 从 0.60 (40%) 升至 0.68，
+      median 从 0.707 升至 0.78，因为 synthetic 占比增大推高分布上半部。 AUC 微降至 0.936 (vs 0.939) 因为
+      class imbalance 从 40:60 变为 60:40。 mid_range_ratio 降至 0.41——更多样本被推向高 q 区域。
+
+      '
+    tables: []
+    figures_description:
+    - 'Appendix: q-score 分布对比图 (ρ=0.4 vs ρ=0.6)'
+    analysis: 数据准备就绪。q-score 分布如预期偏移。
+  - name: Uniform baseline (ρ=0.6, Qwen3-0.6B, seed42)
+    plan_id: p0_contamination_60_uniform
+    description: 60% 污染率下的 uniform 基线。
+    expected_results:
+      eval_ppl_holdout: 18.15
+      eval_loss: 2.899
+      train_loss: 7.48
+      total_steps: 6103
+      train_runtime_s: 12000
+      eval_holdout_tokens: 4077068
+    result_rationale: '从 ρ=0.4 (17.690) 到 ρ=0.6，uniform PPL 上升至 18.15 (+0.46, +2.6%)。
+      更多合成数据意味着 60% 的梯度来自 generator 扭曲的文本， 累积的分布偏移导致 holdout PPL 显著退化。上升幅度超线性： 40%
+      时 PPL 比 clean (~17.45) 高 0.24，60% 高 0.70—— 符合 strong model collapse 文献的超线性污染效应预测。
+
+      '
+    tables:
+    - 'Table 7: Contamination scaling (ρ=0.4 vs ρ=0.6)'
+    figures_description:
+    - 'Figure 7: Contamination rate vs PPL — uniform series'
+    analysis: 60% uniform PPL 18.15 确立 baseline gap，为 effect amplification 提供基础。
+  - name: Adaptive b* (ρ=0.6, Qwen3-0.6B, seed42)
+    plan_id: p0_contamination_60_adaptive
+    description: 60% 污染下的 adaptive b*，验证效应放大 + b* 轨迹追踪。
+    expected_results:
+      eval_ppl_holdout: 18.05
+      eval_loss: 2.894
+      train_loss: 7.92
+      total_steps: 6103
+      train_runtime_s: 11500
+      ppl_improvement_over_uniform: 0.1
+      relative_ppl_improvement_pct: 0.55
+      effect_amplification_vs_40pct: 2.5
+      b_star_mean: 2.12
+      b_star_median: 1.45
+      b_star_std: 2.55
+      b_star_p25: 0.85
+      b_star_p75: 2.62
+      b_star_pct_below_0_5: 11.8
+      b_star_pct_0_5_to_1: 23.5
+      b_star_pct_1_to_2: 31.8
+      b_star_pct_above_2: 32.9
+      alpha_eff_binding_pct: 25.5
+      eval_holdout_tokens: 4077068
+    result_rationale: 'PPL 从 18.15 (uniform) 降至 18.05，改善 0.10 PPL (0.55% relative)。
+      对比 ρ=0.4 的 0.04 PPL (0.23%)，效应放大 2.5×——在 best 档 [1.5×, ∞) 范围内。 效应放大的因果链： (1)
+      60% 污染 → 每 batch ~60% 样本需 downweight（vs 40%）→ reweighting 覆盖面更广； (2) 更多 contaminated
+      samples → α_eff(b) 曲线右移 → b_τ 更高 → b* 自然上调； (3) 更高 b* → synthetic gradient 压缩更彻底
+      → clean signal 占比更高 → PPL 改善更大。 b* 分布右移：median 0.87→1.45, mean 1.40→2.12。这是
+      b*-tracks-optimum 的直接证据—— 当 contamination 增加时，adaptive 框架自动推高 b* 匹配新最优区间。
+
+      '
+    tables:
+    - 'Table 7: Contamination scaling — Adaptive 行'
+    - 'Table 8: b* distribution summary (ρ=0.4 vs ρ=0.6)'
+    figures_description:
+    - 'Figure 7: Effect amplification bar chart — 标注 2.5× amplification'
+    - 'Figure 7b: b* distribution histograms side-by-side (ρ=0.4 vs ρ=0.6)'
+    analysis: '2.5× 效应放大直接回应 "small effect size" reviewer concern—— 0.04 PPL at 40%
+      → 0.10 PPL at 60%，趋势表明更高污染下价值更大。 b* median shift 0.87→1.45 是 α_eff 框架 captured
+      correct statistics 的硬证据。
+
+      '
+  - name: Grid-b=0.5 (ρ=0.6, Qwen3-0.6B, seed42)
+    plan_id: p0_contamination_60_grid_b0_5
+    description: 用 40% 最优的 b=0.5 在 60% 下运行，展示 fixed-b 迁移失败。
+    expected_results:
+      eval_ppl_holdout: 18.1
+      eval_loss: 2.897
+      train_loss: 9.72
+      total_steps: 6103
+      train_runtime_s: 12500
+      ppl_improvement_over_uniform: 0.05
+      improvement_fraction_of_adaptive: 0.5
+      eval_holdout_tokens: 4077068
+    result_rationale: 'b=0.5 在 60% 下仍优于 uniform (18.10 vs 18.15, Δ=0.05)，但仅为 adaptive
+      (Δ=0.10) 的 50%。 b=0.5 在 60% 下太温和：对 synthetic samples (q≈0.85)，w=(0.15)^0.5≈0.39，
+      在 40% 时足够但在 60% 不够——60% 的梯度仍有相当权重，过滤力度不足。 Grid-optimal at 60% 约为 b=1.2-1.5，而
+      adaptive median=1.45 自动追踪到此区间。 直接展示 fixed-b 跨条件迁移的失败：40% 的 grid-best 不是 60%
+      的 grid-best。
+
+      '
+    tables:
+    - 'Table 7: Contamination scaling — Grid b=0.5 行'
+    figures_description:
+    - 'Figure 7: grid b=0.5 bar 显著低于 adaptive'
+    analysis: 'fixed-b 在 contamination shift 下退化，adaptive 自动适应。 论文表述："A fixed b tuned
+      for one contamination level does not transfer; adaptive b* adapts automatically."
+
+      '
+  - name: ModernBERT detector training (AUC≈0.99)
+    plan_id: p1_detector_modernbert
+    description: 训练高 AUC detector 并生成 q-scores，量化 detector quality 影响。
+    expected_results:
+      detector_auc: 0.986
+      detector_accuracy: 0.961
+      detector_ece_calibrated: 0.022
+      temperature_T: 0.85
+      q_score_mean: 0.58
+      q_score_std: 0.4
+      q_score_median: 0.72
+      mid_range_ratio: 0.28
+      training_gpu_hours: 1.8
+    result_rationale: 'ModernBERT 150M 的 transformer 可捕捉 n-gram 之外的语义一致性和 generation
+      artifacts， AUC 达 0.986 (vs TF-IDF 0.939)。calibrated ECE 0.022 (vs 0.048)。 关键差异在
+      q-score 分布：mid_range_ratio 仅 0.28 (vs 0.463)—— ModernBERT 将更多样本推向极端，权重更接近 binary。
+
+      '
+    tables:
+    - 'Table 9: Detector comparison (TF-IDF vs ModernBERT)'
+    figures_description:
+    - 'Appendix: q-score 分布对比 (TF-IDF vs ModernBERT)'
+    analysis: ModernBERT 的更 bimodal q-score 将显著改变 b* 行为——adaptive 自动适应。
+  - name: Training with ModernBERT scores (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p1_detector_ablation_training
+    description: 用 ModernBERT q-scores 训练，量化 AUC→PPL 关系。
+    expected_results:
+      modernbert_adaptive_eval_ppl: 17.638
+      modernbert_uniform_eval_ppl: 17.69
+      modernbert_adaptive_improvement: 0.052
+      tfidf_adaptive_improvement: 0.04
+      improvement_ratio: 1.3
+      modernbert_b_star_mean: 0.82
+      modernbert_b_star_median: 0.45
+      modernbert_b_star_std: 1.15
+      gpu_hours: 7.0
+    result_rationale: '更高 AUC → 更精确 q-scores → 更准确 reweighting → 更低 PPL。 ModernBERT
+      adaptive PPL 17.638 vs TF-IDF 17.650，改善 0.012。 但关键 finding：30% 提升对应 AUC 从 0.939→0.986
+      的 0.047 差距——边际递减。 TF-IDF 已捕获 77% 的 reweighting value。b* 分布因 q-score 更 bimodal
+      而更窄更低 (median 0.45 vs 0.87)——adaptive 自动适应 detector 质量差异。
+
+      '
+    tables:
+    - 'Table 9: Detector quality ablation — 训练结果'
+    figures_description:
+    - 'Figure 9: Detector AUC vs PPL improvement'
+    analysis: 'Lightweight detector sufficiency：TF-IDF (AUC=0.939) 已实现 77% 的 reweighting
+      value， 成本仅为 ModernBERT 的 1/100。adaptive b* 在两种 detector 下都有效——detector-agnostic。
+
+      '
+  - name: Cross-generator data (Llama-3.2-1B generates, Qwen3-0.6B trains)
+    plan_id: p1_cross_generator_datagen
+    description: 用不同模型家族生成合成数据，测试跨生成器鲁棒性。
+    expected_results:
+      detector_auc_cross_gen: 0.952
+      q_score_mean: 0.62
+      q_score_std: 0.38
+      q_score_median: 0.73
+      mid_range_ratio: 0.44
+      datagen_gpu_hours: 7.5
+    result_rationale: '跨模型族的 generation artifacts 更容易被 n-gram 特征区分 （Llama 和 Qwen 有不同
+      tokenizer/训练数据/生成模式），AUC 提升至 0.952。 q-score 分布稍偏高：Llama 生成文本被更 confidently 识别为
+      synthetic。
+
+      '
+    tables: []
+    figures_description:
+    - 'Appendix: q-score distribution (same-gen vs cross-gen)'
+    analysis: Cross-generator 场景下 detector 自然表现更好，反映 real-world web corpus 特征。
+  - name: Cross-generator training (adaptive + uniform, ρ=0.4)
+    plan_id: p1_cross_generator_training
+    description: Llama 生成数据 + Qwen 训练，测试 adaptive 跨生成器稳定性。
+    expected_results:
+      cross_gen_uniform_ppl: 17.72
+      cross_gen_adaptive_ppl: 17.67
+      cross_gen_improvement: 0.05
+      cross_gen_b_star_mean: 1.32
+      cross_gen_b_star_median: 0.83
+      gpu_hours: 7.0
+    result_rationale: 'Cross-generator uniform PPL (17.720) 比 same-generator (17.690)
+      略高—— Llama-generated text 的 distributional mismatch 更大。 Adaptive 改善 0.050 PPL，与
+      same-generator 0.040 相当甚至略好—— 因为 cross-gen contamination 更易检测 (AUC=0.952 vs
+      0.939)。 b* 分布与 same-gen 高度一致 (median 0.83 vs 0.87)。
+
+      '
+    tables:
+    - 'Table 10: Cross-generator results'
+    figures_description:
+    - 'Figure 4: b* distribution (same-gen vs cross-gen)'
+    analysis: '方法 generator-agnostic：不需要知道 contamination 来源模型，只需 detector scores。
+
+      '
+  - name: Llama-3.2-3B environment setup + data prep
+    plan_id: p1_llama3b_setup
+    description: 下载 3B 模型，准备训练数据。
+    expected_results:
+      model_downloaded: true
+      model_params_B: 3.21
+      gradient_checkpointing_needed: true
+      effective_batch_size: 16
+      detector_scores_reused: true
+      setup_gpu_hours: 0.5
+    result_rationale: 'TF-IDF detector scores 可复用——基于文本特征，与训练模型无关。 3B 训练需 gradient
+      checkpointing，增加约 20% 训练时间但不影响收敛。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 环境就绪。保持 effective batch_size=16 确保 b* 分布可直接对比。
+  - name: Uniform baseline (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)
+    plan_id: p1_llama3b_uniform
+    description: 3B 模型 uniform 基线。
+    expected_results:
+      eval_ppl_holdout: 12.85
+      eval_loss: 2.554
+      train_loss: 5.89
+      total_steps: 6103
+      train_runtime_s: 38000
+      gpu_hours: 11.5
+      eval_holdout_tokens: 4077068
+    result_rationale: '3B 模型 holdout PPL ~12.85——显著低于 0.6B 的 17.69。 contamination
+      degradation ~2.7% (clean 3B ~12.50, contaminated 12.85)—— 比 0.6B 的 ~1.4% 更大，因为
+      3B 有更多参数记忆合成数据的 distributional artifacts。
+
+      '
+    tables:
+    - 'Table 11: Cross-model results (0.6B vs 3B)'
+    figures_description:
+    - 'Figure 8: Cross-model comparison bar chart'
+    analysis: 3B contamination degradation 2.7% > 0.6B 1.4%，预示 reweighting 效益更大。
+  - name: Adaptive b* (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)
+    plan_id: p1_llama3b_adaptive
+    description: 3B 上的 adaptive b*——验证跨模型规模泛化 + 效应放大。
+    expected_results:
+      eval_ppl_holdout: 12.69
+      eval_loss: 2.541
+      train_loss: 6.12
+      total_steps: 6103
+      train_runtime_s: 39500
+      gpu_hours: 12.0
+      ppl_improvement_over_uniform: 0.16
+      relative_ppl_improvement_pct: 1.24
+      effect_amplification_vs_06B: 4.0
+      b_star_mean: 1.41
+      b_star_median: 0.88
+      b_star_std: 1.97
+      b_star_pct_below_0_5: 20.8
+      b_star_pct_above_2: 16.2
+      eval_holdout_tokens: 4077068
+    result_rationale: 'PPL 改善 0.16 (12.85→12.69, 1.24% relative)——0.6B 的 4.0× 放大。
+      效应放大机制：3B 对 data quality 更敏感（更多参数 = 更精细适配训练分布）， reweighting 的 clean signal 在
+      3B 上被更充分利用。 b* 分布与 0.6B 几乎完全一致 (median 0.88 vs 0.87)—— 因为 b* 仅从 per-batch q-score
+      推导，与模型架构无关。 同一 b* 在 3B 上产生更大 PPL 改善——universal applicability 的最强证据。
+
+      '
+    tables:
+    - 'Table 11: Cross-model — Adaptive 行'
+    figures_description:
+    - 'Figure 8: adaptive bars 标注 4.0× amplification'
+    - 'Figure 8b: b* distribution overlay (0.6B vs 3B)——几乎完全重合'
+    analysis: '三层强证据：(1) 4.0× 效应放大彻底回应 effect size concern； (2) b* 分布跨模型完全一致——method
+      is model-agnostic； (3) 无需 per-model validation——b* 是数据属性而非模型属性。
+
+      '
+  - name: Detect-and-remove baseline (threshold=0.5, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p1_baseline_detect_remove
+    description: 硬阈值过滤 baseline——q>0.5 直接丢弃。
+    expected_results:
+      eval_ppl_holdout: 17.668
+      eval_loss: 2.8725
+      train_loss: 6.85
+      total_steps: 3540
+      retained_data_fraction: 0.537
+      ppl_improvement_over_uniform: 0.022
+      improvement_fraction_of_adaptive: 0.55
+      gpu_hours: 2.1
+    result_rationale: 'q>0.5 移除 46.3% 数据——仅保留 ~107M tokens。 PPL 17.668 优于 uniform
+      (17.690) 但逊于 adaptive (17.650)，改善量仅为 adaptive 的 55%。 原因：(1) 数据损失——detector 不完美
+      (AUC=0.939)，mid_range 有大量 clean-but-borderline 被错误移除； (2) 丧失细粒度——binary 决策 vs
+      adaptive 的连续权重控制。
+
+      '
+    tables:
+    - 'Table 12: Baseline comparison'
+    figures_description:
+    - 'Figure 10: Baseline bar chart'
+    analysis: Soft reweighting 优于 hard filtering——连续权重更能容忍检测误差。
+  - name: Random reweighting baseline (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p1_baseline_random_reweight
+    description: 随机权重 baseline——验证 detector signal 是 load-bearing。
+    expected_results:
+      eval_ppl_holdout: 17.695
+      eval_loss: 2.874
+      train_loss: 7.28
+      total_steps: 6103
+      ppl_vs_uniform: -0.005
+      ppl_vs_adaptive: -0.045
+      gpu_hours: 3.4
+    result_rationale: '随机权重 (i.i.d. uniform [0,1]) 不含 contamination signal。 PPL 17.695
+      与 uniform 17.690 几乎无差异 (Δ=0.005)—— 随机噪声在 expectation 上等价于 uniform，仅增加少量 gradient
+      variance。 与 adaptive 的 0.045 PPL 差距证明改善 100% 来自 detector-informed weighting。
+
+      '
+    tables:
+    - 'Table 12: Baseline comparison — Random 行'
+    figures_description:
+    - 'Figure 10: Random 与 uniform 重合，凸显 adaptive 的 detector-driven gap'
+    analysis: '最清晰的 ablation：random ≈ uniform → detector signal 是必要条件。 adaptive 的改善来自精准识别和
+      downweight contamination，不是 weight diversity 或 regularization。
+
+      '
+  - name: Domain-skewed injection (code-heavy contamination, ρ=0.4, Qwen3-0.6B)
+    plan_id: p2_domain_skewed
+    description: 合成数据集中注入 code/technical 域，测试非均匀域分布鲁棒性。
+    expected_results:
+      uniform_eval_ppl: 17.73
+      adaptive_eval_ppl: 17.68
+      adaptive_improvement: 0.05
+      b_star_mean: 1.52
+      b_star_median: 0.95
+      b_star_per_domain_code_median: 1.35
+      b_star_per_domain_general_median: 0.42
+      gpu_hours: 6.5
+    result_rationale: 'Code-heavy contamination (70% code) 使 uniform PPL 略高 (17.730)。
+      Adaptive 改善 0.050 PPL。关键：b* 的 per-batch 自适应—— code-heavy batch b* median=1.35，general
+      batch=0.42。 per-batch b* 根据每个 batch 的 contamination 程度动态调整。
+
+      '
+    tables:
+    - 'Table 13: Domain-skewed results'
+    figures_description:
+    - 'Figure 11: Per-domain b* distribution (code vs general)'
+    analysis: 'Domain-skewed 强化 per-batch b* 叙事："real web corpora have domain-skewed
+      contamination; adaptive b* handles both uniform and skewed injection."
+
+      '
+  - name: Downstream eval (MMLU/HellaSwag on Llama-3.2-3B checkpoints)
+    plan_id: p2_downstream_eval
+    description: 验证 PPL 改善是否转移至下游任务。
+    expected_results:
+      uniform_mmlu_acc: 31.8
+      adaptive_mmlu_acc: 32.5
+      mmlu_delta_abs: 0.7
+      uniform_hellaswag_acc: 52.1
+      adaptive_hellaswag_acc: 53.2
+      hellaswag_delta_abs: 1.1
+      uniform_selfbleu_4gram: 0.42
+      adaptive_selfbleu_4gram: 0.38
+      gpu_hours: 1.8
+    result_rationale: 'PPL 改善 (12.85→12.69, 1.24%) 部分转移至下游。 MMLU +0.7%：更干净预训练 → factual
+      knowledge 更准确编码。 HellaSwag +1.1%：更依赖 language model quality (sentence completion)，PPL
+      的直接度量。 Self-BLEU 0.42→0.38：adaptive 减少 synthetic patterns 导致的 repetitive outputs。
+
+      '
+    tables:
+    - 'Table 14: Downstream eval (uniform vs adaptive, 3B)'
+    figures_description:
+    - 'Figure 12: Downstream task improvement bar chart'
+    analysis: PPL→downstream 转移验证方法实际价值。MMLU +0.7%、HellaSwag +1.1% 在 200M tokens 下可观。
+      回应 "does PPL matter?" → 是的，且效应在下游可测量。
+  review_report: "---\ndream_id: dream_20260515T102146\ntier: best\noverall_score:\
+    \ 4 - Weak Accept (borderline)\ntimestamp: 2026-05-15T11:07:09.904829+00:00\n\
+    ---\n\n\n# Dream Review Report: Dual-Constrained Adaptive Reweighting for Contamination-Robust\
+    \ Language Model Pretraining\n\n**dream_id:** 20260515T102146 | **review_mode:**\
+    \ full | **reviewers:** R1 (Methods+Experiments), R2 (Novelty+Related Work)\n\n\
+    ---\n\n## 1. Paper Summary\n\nThe paper proposes *dual-constrained adaptive b**,\
+    \ a method for selecting the reweighting exponent b in the contamination-aware\
+    \ pretraining formula w=(1−q)^b. Instead of Drayson et al.'s per-model grid search\
+    \ over b, the method derives b per micro-batch from two constraints: (1) an effective\
+    \ real-data fraction lower bound (α_eff(b) ≥ τ) ensuring sufficient decontamination,\
+    \ and (2) a Kish effective sample size ceiling (ESS(b) ≥ n_min) preventing over-downweighting.\
+    \ The solution b* = inf{b ≥ 0 : α_eff(b) ≥ τ} s.t. ESS(b) ≥ n_min embodies a \"\
+    minimum intervention principle.\" Experiments on Qwen3-0.6B and Llama-3.2-3B (200M\
+    \ tokens, 40–60% contamination) show adaptive b* matches grid-best within seed\
+    \ variance, with effect amplification at higher contamination (2.5×) and larger\
+    \ model scale (4×).\n\n---\n\n## 2. Experiment Coverage Assessment\n\nRelative\
+    \ to the full experiment design (24 imagined experiments), the paper covers approximately\
+    \ 20–21:\n\n| Experiment Category | Covered? | Notes |\n|---|---|---|\n| Grid-b\
+    \ extended (b<0.5, 3 seeds + eval) | ✓ | Table 2, 4 data points |\n| ESS-only\
+    \ ablation | ✓ | Table 3, seed42 only |\n| τ sweep (6 values) | ✓ | Table 4 |\n\
+    | Golden Ratio oracle | ✓ | §5.5 |\n| n_min sensitivity | Partial | Table 5 —\
+    \ **n_min=3 omitted** |\n| Batch size ablation (8, 16) | ✓ | Table 6 |\n| ρ=0.6\
+    \ scaling (datagen + uniform + adaptive + grid) | ✓ | Table 7 |\n| Llama-3.2-3B\
+    \ (setup + uniform + adaptive) | ✓ | Table 8 |\n| Baselines (detect-remove, random)\
+    \ | ✓ | Table 9 |\n| Detector quality (ModernBERT) | ✓ | Table 10 |\n| Cross-generator\
+    \ | ✓ | §5.11 (text only, no table) |\n| Domain-skewed | ✓ | §5.12 (text only,\
+    \ no table) |\n| Downstream eval (MMLU, HellaSwag, Self-BLEU) | ✓ | Table 11 |\n\
+    \n**Key gaps:** n_min=3 omitted from Table 5; cross-generator and domain-skewed\
+    \ lack dedicated tables; amplification claims (3B, ρ=0.6) are single-seed.\n\n\
+    ---\n\n## 3. Reviewer R1 — Methods and Experiments\n\n### Score: 3 (Weak Reject)\
+    \ | Confidence: 4/5\n\n### Strengths\n- **S1:** The minimum intervention formulation\
+    \ is mathematically clean. α_eff(b) monotonicity (via Chebyshev's order inequality)\
+    \ guarantees well-defined bisection.\n- **S2:** The constraint binding analysis\
+    \ is informative: 40% of reweighted batches are α_eff-bound (b*=1.67 vs ESS-only\
+    \ b*=4.15, a 2.5× reduction in intervention).\n- **S3:** Cross-seed stability\
+    \ of b* distribution is high (CV < 2.5%), confirming b* is a data property.\n\
+    - **S4:** Experimental controls are careful: identical hyperparameters, consistent\
+    \ holdout evaluation, 3 seeds for primary experiments.\n\n### Weaknesses\n- **W1\
+    \ (Major): Small effect sizes.** Absolute improvement is 0.040 PPL (0.23% relative)\
+    \ at 0.6B. The adaptive-vs-grid-best gap is ~0.005 PPL — within measurement precision.\
+    \ The 4× amplification at 3B (Δ=0.160) and 2.5× at ρ=0.6 (Δ=0.100) are single-seed\
+    \ claims without multi-seed confirmation.\n- **W2 (Major): n_min knife-edge at\
+    \ batch_size=4.** Table 5 shows only n_min=2 works (n_min=1→17.700, n_min=4→17.690=uniform).\
+    \ n_min=3 is omitted — this is suspicious given it would show the transition region.\
+    \ The method operates at its constraint boundary in 75%+ of batches.\n- **W3 (Major):\
+    \ τ insensitivity paradox.** The τ sweep (Table 4, PPL range=0.023) is presented\
+    \ as a strength, but it undermines the α_eff constraint's importance: if PPL barely\
+    \ changes across τ∈[0.5,0.95], why not just use b=0.5 with no adaptive machinery?\n\
+    - **W4 (Moderate): \"Zero tuning cost\" is overstated.** The method replaces one\
+    \ hyperparameter (b) with two (τ, n_min). If b has a broad plateau at [0.3,0.5]\
+    \ (Table 2), a practitioner could set b=0.5 universally with comparable results.\n\
+    - **W5 (Moderate): ESS-only ablation is single-seed.** Table 3's critical result\
+    \ (17.685 vs 17.650) needs multi-seed validation. The Δ=0.035 exceeds estimated\
+    \ seed variance (σ≈0.009), but 3-seed confirmation would be much stronger.\n-\
+    \ **W6 (Minor): Algorithm 1 underspecification.** Grid resolution (1000 points),\
+    \ b_max=20.0, and fallback behavior when constraints conflict are not fully described.\n\
+    \n### Questions\n1. In only 20.2% of all micro-batches is α_eff binding. How confident\
+    \ are you that this minority of batches drives the improvement rather than ESS-constrained\
+    \ batches?\n2. How should n_min scale with batch size? Is n_min=2 always appropriate?\n\
+    3. The adaptive b* median (0.88) is ~2× the grid-best (b=0.5). Why does the method\
+    \ still recover 91% of grid-best improvement despite systematically overshooting?\n\
+    4. If τ is this insensitive, could you remove α_eff and use ESS-only with tuned\
+    \ n_min?\n\n---\n\n## 4. Reviewer R2 — Novelty and Related Work\n\n### Score:\
+    \ 4 (Weak Accept) | Confidence: 4/5\n\n### Strengths\n- **S1:** The minimum intervention\
+    \ principle (inf vs max) is a genuine conceptual contribution. The distinction\
+    \ between \"minimum necessary cleaning\" and \"maximum tolerable cleaning\" is\
+    \ non-obvious and empirically validated by the ESS-only comparison.\n- **S2:**\
+    \ Transparent experimental methodology with honest limitations disclosure.\n-\
+    \ **S3:** TF-IDF detector sufficiency (77% of ModernBERT value at ~100× lower\
+    \ cost) is a practically valuable finding.\n- **S4:** Clean delineation from Drayson\
+    \ et al. — the paper does not overclaim the weighting formula as novel.\n- **S5:**\
+    \ The α_eff monotonicity proof is correct and ensures bisection well-definedness.\n\
+    \n### Weaknesses\n- **W1 (Major): Narrow novelty.** Both α_eff (weighted mean)\
+    \ and ESS (Kish's) are well-established. Combining them to select a single scalar\
+    \ in an existing formula is sensible engineering but not a methodological advance.\
+    \ The paper overstates generality by calling this a \"dual-constrained framework.\"\
+    \n- **W2 (Major): \"Dataset-agnostic defaults\" unsupported.** Evidence comes\
+    \ from one contamination ratio, one model, one batch size, one data composition.\
+    \ n_min has a documented failure mode (n_min=3 at bs=4).\n- **W3 (Major): Conflation\
+    \ of \"adaptive\" with \"automatic.\"** The method still requires choosing τ and\
+    \ n_min; these needed non-trivial tuning during development.\n- **W4 (Moderate):\
+    \ Hard threshold q≤0.5 in α_eff is poorly motivated.** The indicator at 0.5 is\
+    \ arbitrary for imperfect detectors and introduces a discontinuity. The paper\
+    \ should justify this choice.\n- **W5 (Moderate): Important related work missing.**\n\
+    \  - Vehtari et al. (JMLR 2024) on PSIS and ESS diagnostics — directly relevant,\
+    \ uncited\n  - Propensity score methods / inverse probability weighting (Rosenbaum\
+    \ & Rubin, 1983) — structural parallel to α_eff\n  - Off-policy RL importance\
+    \ weighting — ESS-constrained IS is standard practice\n  - Self-paced / curriculum\
+    \ learning — adaptive per-sample weighting during training\n  - AIOLI (Chen et\
+    \ al., ICLR 2025) — adaptive online data mixing, closest \"no grid search\" comparator\n\
+    - **W6 (Minor): Abstract claim \"matches grid-search-optimal within seed variance\"\
+    \ is imprecise.** Aggregate recovery is 88.6–91%. Seeds 123 (90.4%) and 456 (80.0%)\
+    \ do not literally match \"within seed variance\" in the statistical sense.\n\n\
+    ### Questions\n1. Which α_eff definition is actually implemented — the hard indicator\
+    \ version or the continuous x^{b+1}/x^b version?\n2. If ESS-only matches dual-constraint\
+    \ performance, what remains of the contribution?\n3. Has the method been tested\
+    \ at batch_size ≥ 32 where ESS dynamic range is much larger?\n4. Why does b* median\
+    \ (0.88) work well despite being ~2× grid-best (0.5)?\n5. The convergence theory\
+    \ motivation for τ (Wang et al.) requires known contamination proportion. How\
+    \ does this provide guidance when ρ is unknown?\n\n---\n\n## 5. Roundtable Synthesis\n\
+    \n### Areas of Agreement\n1. **Effect sizes are marginal at 0.6B** — both reviewers\
+    \ flag 0.04 PPL (0.23%) as borderline for practical significance.\n2. **n_min\
+    \ knife-edge at bs=4 is a real concern** — only one integer value works; n_min=3\
+    \ omission is suspicious.\n3. **τ insensitivity is a double-edged sword** — supports\
+    \ robustness but undermines α_eff's claimed importance.\n4. **\"Dataset-agnostic\
+    \ defaults\" is overclaimed** — single-setup evidence is insufficient.\n5. **Minimum\
+    \ intervention principle is the genuine contribution** — both reviewers agree\
+    \ this conceptual framing is non-trivial and empirically validated.\n6. **Experiment\
+    \ coverage is high** — ~20/24 imagined experiments are present, methodology is\
+    \ careful and honest.\n\n### Areas of Disagreement\n- **R1 (3) vs R2 (4):** R1\
+    \ weighs narrow operating regime and marginal effect sizes more heavily; R2 gives\
+    \ more credit to the conceptual contribution and practical utility.\n- **R2 identifies\
+    \ substantial related work gaps** (PSIS, causal inference, off-policy RL) not\
+    \ raised by R1.\n- **R2 flags the α_eff definition inconsistency** (hard indicator\
+    \ vs continuous) as a clarity issue.\n\n### Converged Assessment\n\nThe paper\
+    \ addresses a timely and important problem (synthetic contamination of pretraining\
+    \ data). The dual-constraint formulation is mathematically clean, the minimum\
+    \ intervention principle is a legitimate conceptual contribution, and the experimental\
+    \ coverage is comprehensive with honest reporting of limitations. The TF-IDF sufficiency\
+    \ finding adds practical value.\n\nHowever, the paper has compounding weaknesses\
+    \ that place it at the borderline:\n- Effect sizes are small enough to question\
+    \ practical significance at the tested scale\n- The key amplification claims (3B,\
+    \ ρ=0.6) lack multi-seed confirmation\n- The method introduces two hyperparameters\
+    \ to replace one, with n_min having a narrow working range at small batch sizes\n\
+    - τ insensitivity paradoxically weakens the case for α_eff\n- Important related\
+    \ work in importance sampling diagnostics is missing\n- The \"dataset-agnostic\"\
+    \ framing overreaches the evidence\n\n---\n\n## 6. Overall Score\n\n### Consensus:\
+    \ 4 — Weak Accept (borderline)\n\n| Criterion | Score | Notes |\n|---|---|---|\n\
+    | Novelty | 3.5 | Modest — applying known IS diagnostics to a specific b-selection\
+    \ problem |\n| Soundness | 4.5 | Formulation is correct; experiments are careful\
+    \ |\n| Significance | 3.0 | Small effect sizes at tested scale; amplification\
+    \ claims under-supported |\n| Clarity | 4.0 | Well-written with clean notation;\
+    \ some claim inflation in abstract |\n| Experiment coverage | 4.5 | Comprehensive\
+    \ ablations; most imagined experiments covered |\n| Reproducibility | 4.0 | Algorithm\
+    \ 1 mostly sufficient; some implementation details missing |\n\n**Overall: 4 (Weak\
+    \ Accept) — borderline, conditional on revisions**\n\n### Required Revisions for\
+    \ Acceptance\n1. **Add n_min=3 to Table 5** — the omission undermines credibility\n\
+    2. **Multi-seed confirmation for 3B and ρ=0.6 experiments** — single-seed amplification\
+    \ claims are insufficient\n3. **Cite PSIS (Vehtari et al.) and connect to off-policy\
+    \ IS literature** — the ESS diagnostic is not novel and should be properly attributed\n\
+    4. **Tone down \"dataset-agnostic defaults\"** to \"insensitive within the tested\
+    \ configuration\"\n5. **Clarify the α_eff definition** — hard indicator vs continuous\
+    \ formulation discrepancy\n6. **Add paired significance test for adaptive vs grid-best**\
+    \ across 3 seeds\n7. **Add confidence intervals for downstream metrics** (Table\
+    \ 11)\n8. **Tabulate cross-generator and domain-skewed results** instead of text-only\
+    \ mention\n\n### Recommended Revisions\n- Add batch_size=32/64 experiments to\
+    \ demonstrate n_min=2 stability at practical scales\n- Provide wall-clock timing\
+    \ measurements for the bisection overhead\n- Discuss the gradient variance implications\
+    \ of minimum vs maximum intervention formally\n- Correct abstract claim from \"\
+    within seed variance\" to \"approaching grid-search-optimal\"\n"
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T102146/median/paper.pdf
+  imagined_experiments:
+  - name: Grid-b low (b=0.1/0.2/0.3), seed42
+    plan_id: p0_grid_b_low_seed42
+    description: 扩展 grid search 到 b<0.5，确认 grid-best 不在搜索边界外（seed42）
+    expected_results:
+      b0_1_eval_ppl: 17.662
+      b0_2_eval_ppl: 17.65
+      b0_3_eval_ppl: 17.648
+      best_b_extended: 0.3
+      best_ppl_extended: 17.648
+      improvement_over_b0_5: 0.003
+      train_runtime_s_per_b: 13000
+      gpu_hours_total: 10.8
+    result_rationale: 'PPL landscape 在 b=0.1-0.5 极平坦（全范围仅 0.014 PPL）。b=0.3 比 b=0.5
+      微改善 0.003， 因为更温和的 downweighting 避免对中等 q-score 样本（q~0.5-0.7，占 46.3%）过度惩罚。 b=0.1
+      反弹至 17.662 因 downweighting 力度不足——w=(1-q)^0.1 对高 q 样本（q=0.85） 权重仍为 (0.15)^0.1≈0.81，过于宽容。b=0.2-0.4
+      形成宽阔最优平台。 关键结论：b=0.5 不在搜索边界外，真实最优在 b=0.2-0.4，但差异在 seed variance 以内。
+
+      '
+    tables:
+    - title: Extended Grid-b PPL (seed42, ρ=0.4)
+      columns:
+      - b
+      - eval_ppl_holdout
+      - Δ_vs_uniform
+      - relative_improvement_pct
+      rows:
+      - - 0.1
+        - 17.662
+        - -0.028
+        - 0.158
+      - - 0.2
+        - 17.65
+        - -0.04
+        - 0.226
+      - - 0.3
+        - 17.648
+        - -0.042
+        - 0.237
+      - - 0.5
+        - 17.651
+        - -0.039
+        - 0.22
+      - - 1.0
+        - 17.692
+        - 0.002
+        - -0.011
+    figures_description:
+    - Extended grid-b PPL curve (b=0.1-5.0)，宽阔 U-shape 底部在 b=0.2-0.5
+    analysis: 'b=0.3 是 seed42 extended grid-best，但与 b=0.5 仅差 0.003（远小于 seed variance
+      ~0.01）。 PPL landscape 平坦性是 dual ≈ ESS-only 结果的微观基础——b* 的精确值在此区间内不重要。
+
+      '
+  - name: Grid-b low (b=0.1/0.2/0.3), seed123
+    plan_id: p0_grid_b_low_seed123
+    description: Seed123 b<0.5 扩展，验证跨 seed 一致性
+    expected_results:
+      b0_1_eval_ppl: 17.654
+      b0_2_eval_ppl: 17.639
+      b0_3_eval_ppl: 17.636
+      best_b_extended: 0.3
+      best_ppl_extended: 17.636
+      improvement_over_b0_5: 0.002
+    result_rationale: '与 seed42 一致趋势：b=0.3 略优于 b=0.5。Seed123 是三个 seed 中 PPL 最低的 （baseline
+      和 grid-best 都最好），绝对差异被压缩至 0.002。 平坦 landscape 的跨 seed 一致性支持 "b=0.3-0.5 区间内 b
+      选择不关键" 论点。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 与 seed42 趋势一致。b=0.3 marginal 最优但差异在 noise 范围内。
+  - name: Grid-b low (b=0.1/0.2/0.3), seed456
+    plan_id: p0_grid_b_low_seed456
+    description: Seed456 b<0.5 扩展
+    expected_results:
+      b0_1_eval_ppl: 17.666
+      b0_2_eval_ppl: 17.653
+      b0_3_eval_ppl: 17.649
+      best_b_extended: 0.3
+      best_ppl_extended: 17.649
+      improvement_over_b0_5: 0.001
+    result_rationale: 'Seed456 在 MVP 中 adaptive (17.66) 已是最弱 seed。b=0.3 仅比 b=0.5 好
+      0.001， 几乎不可区分。此 seed PPL 方差较大（seed456 的 grid-b2.0 为 17.989 远高于其他 seed）， b<0.5
+      的微小改善完全被噪声淹没。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: b=0.3 与 b=0.5 差异最小的 seed，进一步确认 landscape 平坦性。
+  - name: Post-hoc eval for all 9 b<0.5 checkpoints
+    plan_id: p0_grid_b_low_eval
+    description: 汇总三 seed × 三 b 值，更新 grid-best 并重算 aggregate ratio
+    expected_results:
+      new_grid_best_b_consensus: 0.3
+      avg_improvement_over_b0_5: 0.002
+      cross_seed_consistency: 3/3 seeds show b=0.3 >= b=0.5
+      updated_aggregate_ratio_pct: 85.8
+      ppl_range_b0_1_to_b0_5: 0.014
+    result_rationale: "汇总后 b=0.3 在所有三 seed 上均 >= b=0.5，但平均改善仅 0.002。 更新 grid-best\
+      \ 为 b=0.3 后 aggregate ratio 从 88.6% 微降至 ~85.8%， 因 adaptive b* median ~0.88 离\
+      \ b=0.3 更远。但差异仍在 seed variance 内。 Per-seed 重算：\n  seed42: (17.690-17.650)/(17.690-17.648)\
+      \ = 95.2%\n  seed123: (17.690-17.643)/(17.690-17.636) = 87.0%\n  seed456: (17.700-17.660)/(17.700-17.649)\
+      \ = 78.4%\n  aggregate: (95.2+87.0+78.4)/3 = 86.9%\n"
+    tables:
+    - title: Extended Grid-b Summary (3 seeds × full range)
+      columns:
+      - b
+      - seed42_ppl
+      - seed123_ppl
+      - seed456_ppl
+      - mean_ppl
+      - rank
+      rows:
+      - - 0.1
+        - 17.662
+        - 17.654
+        - 17.666
+        - 17.661
+        - 4
+      - - 0.2
+        - 17.65
+        - 17.639
+        - 17.653
+        - 17.647
+        - 2
+      - - 0.3
+        - 17.648
+        - 17.636
+        - 17.649
+        - 17.644
+        - 1
+      - - 0.5
+        - 17.651
+        - 17.638
+        - 17.65
+        - 17.646
+        - 3
+      - - 1.0
+        - 17.692
+        - 17.674
+        - 17.68
+        - 17.682
+        - 5
+      - - 1.5
+        - 17.718
+        - 17.701
+        - 17.71
+        - 17.71
+        - 6
+      - - 2.0
+        - 17.741
+        - 17.725
+        - 17.989
+        - 17.818
+        - 7
+      - - 3.0
+        - 17.774
+        - 17.76
+        - 17.921
+        - 17.818
+        - 8
+      - - 5.0
+        - 17.818
+        - 17.804
+        - 17.993
+        - 17.872
+        - 9
+    figures_description:
+    - 完整 9-point grid-b PPL curve (3 seeds + error bars)，标注 flat bottom b=0.2-0.5
+    analysis: 'Grid-best 从 b=0.5 更新为 b=0.3，差异 <0.003 不改变核心叙事。 视觉化 "adaptive b* median
+      ~0.88 仍在平坦区域右沿" 支持 dual ≈ ESS-only 的合理性—— 在此平坦区间内，b* 选择策略（min-intervention vs
+      max-intervention）不产生可检测差异。
+
+      '
+  - name: Data generation for ρ=0.6
+    plan_id: p0_contamination_60_datagen
+    description: 60% 污染比例数据生成与检测器评分
+    expected_results:
+      total_tokens: 200000000
+      synthetic_fraction: 0.6
+      real_fraction: 0.4
+      detector_auc_on_60pct: 0.932
+      q_score_mean: 0.72
+      q_score_median: 0.82
+      q_score_std: 0.34
+    result_rationale: '更高合成比例使 q-score 分布向高端偏移（mean 0.60→0.72），batch 内合成样本更多。 TF-IDF+LR
+      AUC 微降（0.939→0.932），因更多合成样本意味着合成风格多样化， 少量非典型合成样本（风格接近真实文本）拉低 AUC。q-score 中位数上升至
+      0.82， 反映多数样本被识别为高概率合成。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 基础设施步骤。检测器在 60% 条件下仍可用（AUC 0.932）。
+  - name: Uniform baseline (ρ=0.6, Qwen3-0.6B, seed42)
+    plan_id: p0_contamination_60_uniform
+    description: 60% 污染下 uniform baseline
+    expected_results:
+      eval_ppl_holdout: 18.5
+      train_loss: 7.55
+      total_steps: 6103
+      ppl_degradation_vs_40pct: 0.81
+    result_rationale: '60% 合成数据导致 PPL 超线性退化（17.69→18.50，+0.81）。退化非线性机制： (1) 超过 50%
+      临界点后合成分布开始主导梯度方向，模型学习合成 pattern 而非真实语言； (2) 自蒸馏（Qwen3-0.6B 生成→Qwen3-0.6B 训练）在高比例时放大
+      mode collapse—— 合成数据的低熵特征（重复句式、有限词汇选择）被强化。 这与 Strong Model Collapse (ICLR 2025)
+      的理论预测一致： 微量合成即开始退化，高比例时退化加速。 0%→40% 退化约 +0.3，40%→60% 退化约 +0.81，呈超线性增长（~ρ^1.8
+      关系）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'ρ=0.6 uniform 退化远超线性预期，说明高污染比例下预训练质量急剧下降。 为 adaptive 提供更大改善空间，但也意味着
+      reweighting 面对更困难的任务。
+
+      '
+  - name: Adaptive b* (ρ=0.6, Qwen3-0.6B, seed42)
+    plan_id: p0_contamination_60_adaptive
+    description: 验证效应量随污染增大而放大（或不放大）
+    expected_results:
+      eval_ppl_holdout: 18.45
+      improvement_over_uniform: 0.05
+      relative_improvement_pct: 0.27
+      amplification_factor_vs_40pct: 1.25
+      b_star_mean: 0.95
+      b_star_median: 0.62
+      b_star_std: 1.35
+      b_star_pct_below_0_5: 32.5
+      ess_binding_pct: 72.0
+    result_rationale: '效应放大仅 ~1.25x（Δ 0.04→0.05），远低于 best tier 预期的 3-5x， 落在 median
+      tier "未明显放大" 假设范围内。放大有限的核心原因： (1) 60% 高 q 样本使 ESS 下降更快——每个 batch 4 样本中平均 2.4
+      个是高 q， ESS 约束在 72% reweighted batch 中是 binding constraint（vs ρ=0.4 的 60%）， 迫使
+      b* 更保守（median 0.88→0.62），压缩了 downweighting 空间； (2) Δ_adaptive 几乎等于 Δ_at_40%（0.05
+      vs 0.04），说明方法在两个污染比例下 捕获的改善绝对量相当——更差的 baseline 确实提供更大 room，但 ESS 约束 同步收紧抵消了大部分额外空间。
+      b* 分布左移是 ESS 约束在高污染下正确工作的信号——防止过度 downweight 导致有效 batch size 崩溃。
+
+      '
+    tables:
+    - title: 'Effect Amplification: ρ=0.4 vs ρ=0.6'
+      columns:
+      - metric
+      - rho_0.4
+      - rho_0.6
+      - amplification
+      rows:
+      - - uniform_ppl
+        - 17.69
+        - 18.5
+        - '-'
+      - - adaptive_ppl
+        - 17.65
+        - 18.45
+        - '-'
+      - - absolute_Δ
+        - 0.04
+        - 0.05
+        - 1.25x
+      - - relative_improvement_pct
+        - 0.226
+        - 0.27
+        - 1.20x
+      - - b_star_median
+        - 0.88
+        - 0.62
+        - '-'
+      - - ess_binding_pct
+        - 59.9
+        - 72.0
+        - '-'
+    figures_description:
+    - Contamination ratio vs relative PPL improvement 折线图（2 points），标注效应几乎未放大
+    - 'b* distribution: ρ=0.4 vs ρ=0.6 histogram overlay，展示左移及 ESS binding 增加'
+    analysis: '效应放大有限（1.25x）不足以作为独立 selling point。但方向正确（正值、自适应响应）， 支持方法在不同污染下仍可工作。更重要的发现是
+      b* 自适应响应 contamination 变化 的能力本身——b* median 从 0.88 降至 0.62 是方法 "principled" 的佐证。
+
+      '
+  - name: Grid-b=0.5 (ρ=0.6, Qwen3-0.6B, seed42)
+    plan_id: p0_contamination_60_grid_b0_5
+    description: 60% 污染下 grid-b=0.5 参考值
+    expected_results:
+      eval_ppl_holdout: 18.44
+      improvement_over_uniform: 0.06
+      relative_improvement_pct: 0.324
+      ratio_adaptive_vs_grid_at_60pct: 83.3
+    result_rationale: 'Grid-b=0.5 在 ρ=0.6 下效应也增大（Δ 0.039→0.060，~1.5x），且放大略多于 adaptive，
+      因 b=0.5 固定值不受 ESS 约束收紧影响。在高污染时 b=0.5 的固定 downweighting 恰好位于更有效区域——高 q 样本更多意味着
+      b=0.5 的总体 downweight 效果更强。 Adaptive vs grid ratio 83.3%（vs ρ=0.4 的 88.6%）略降，因
+      adaptive b* median (0.62) 在 ρ=0.6 时被 ESS 约束拉到比 b=0.5 更低的值。 这暗示在高污染场景下，ESS 约束可能过于保守——dual-constraint
+      的 min-intervention 原则在此有潜在代价。但代价很小（PPL 差 0.01），不影响核心叙事。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'ρ=0.6 下 ratio 略降，但 adaptive 仍在 grid-b=0.5 的 seed variance 范围内。 支持 "不同污染比例下
+      adaptive 始终 comparable to fixed b" 的 robustness 叙事。
+
+      '
+  - name: n_min=1 ablation (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_nmin_1
+    description: ESS 约束最宽松——仅需 1 个有效样本
+    expected_results:
+      eval_ppl_holdout: 17.655
+      b_star_mean: 1.85
+      b_star_median: 1.15
+      b_star_std: 2.6
+      b_star_pct_above_5: 6.8
+      b_star_max: 20
+      train_loss: 7.58
+    result_rationale: 'n_min=1 与 n_min=2 差异不大（PPL 17.655 vs 17.650，仅差 0.005）。 关键原因：在
+      batch_size=4、ρ=0.4 设定下，ESS 约束在 n_min=2 时对大多数 batch 已非 binding（~50% batch 为 clean
+      即 b*=0，另有 ~20% batch α_eff 是 binding）。 n_min 从 2 降到 1 仅松弛了那些 ESS 恰好在 1-2 之间被
+      clamp 的 batch（约 10-15%）， 这些 batch 的 b* 从被截断值升至更高值，但 PPL landscape 平坦性确保影响可忽略。
+      b* 分布右移（mean 1.40→1.85, median 0.88→1.15）反映少量 batch b* 释放， 但尾部极端值（b*>5 占 6.8%）增加的梯度噪声被其他
+      batch 平均化稀释。
+
+      '
+    tables: []
+    figures_description:
+    - 'b* histogram: n_min=1 vs n_min=2 overlay，展示右尾膨胀但主体变化不大'
+    analysis: 'n_min=1 可用且与 n_min=2 几乎等价。确认在当前设定下 ESS 约束对多数 batch 非 binding， 降低 n_min
+      的边际效应很小。支持 "n_min 是一个不敏感的 empirical default" 叙事。
+
+      '
+  - name: n_min=4 ablation (=batch_size, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_nmin_4
+    description: ESS = batch_size，预期退化为 uniform
+    expected_results:
+      eval_ppl_holdout: 17.69
+      b_star_mean: 0.0
+      b_star_median: 0.0
+      b_star_std: 0.0
+      b_star_pct_at_zero: 100.0
+      train_loss: 7.31
+      effective_behavior: uniform
+    result_rationale: 'n_min = batch_size = 4 要求 ESS >= 4，即 Kish''s ESS = (Σw_i)²/Σw_i²
+      达到样本总数。 数学上这仅当所有权重完全相等时满足（w_i = c for all i），即 b*=0（所有权重为 1）。 对任何 b>0，至少一个 w_i
+      = (1-q_i)^b < 1（因为 q_i > 0），使 ESS < 4。 因此所有 batch 被迫 b*=0，方法完全退化为 uniform training，PPL
+      = 17.69。 价值：建立 sensitivity curve 的理论上界，证明 ESS 约束过紧时方法优雅退化。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: n_min=4 确认理论预期：ESS 约束过紧 → 优雅退化为 uniform，不崩溃不发散。
+  - name: n_min=5 ablation (>batch_size, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_nmin_5
+    description: n_min > batch_size 的退化验证
+    expected_results:
+      eval_ppl_holdout: 17.69
+      b_star_mean: 0.0
+      b_star_median: 0.0
+      effective_behavior: uniform
+    result_rationale: 'n_min=5 > batch_size=4 是物理不可能满足的约束（4 个样本的 ESS 最大为 4）。 与 n_min=4
+      结果完全一致：b*=0, uniform 行为, PPL=17.69。 Sanity check 确认代码在超范围边界条件下正确 fallback 到
+      b*=0，无异常行为。
+
+      '
+    tables:
+    - title: n_min Sensitivity Summary (seed42, ρ=0.4, batch_size=4)
+      columns:
+      - n_min
+      - eval_ppl
+      - b_star_median
+      - effective_mode
+      - notes
+      rows:
+      - - 1
+        - 17.655
+        - 1.15
+        - adaptive
+        - ESS 约束几乎无约束力，与 n_min=2 差异 <0.005
+      - - 2
+        - 17.65
+        - 0.88
+        - adaptive
+        - Sweet spot (adaptive_fix default)
+      - - 3
+        - 17.69
+        - 0.45
+        - partially clamped
+        - seed42 退化（known D012），ESS 过紧
+      - - 4
+        - 17.69
+        - 0.0
+        - uniform
+        - n_min=batch_size → 仅 b*=0 可行
+      - - 5
+        - 17.69
+        - 0.0
+        - uniform
+        - 不可满足约束 → fallback b*=0
+    figures_description:
+    - n_min sensitivity curve (5 points)：n_min=1-2 平台，n_min>=3 cliff（at batch_size=4）
+    analysis: '完整 5-point curve：n_min=1 和 n_min=2 都可工作且几乎等价，选择不敏感。 n_min>=3 在 batch_size=4
+      下退化是 batch size 的 artifact 而非方法固有缺陷。 论文呈现此 curve + batch_size=8/16 消融共同证明 "n_min=2
+      是安全的跨设定默认值"。
+
+      '
+  - name: ESS-only adaptive baseline (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_ess_only_baseline
+    description: 'max{b : ESS≥n_min} vs inf{b : α_eff≥τ} s.t. ESS≥n_min — head-to-head
+      对比'
+    expected_results:
+      eval_ppl_holdout: 17.66
+      delta_vs_dual: 0.01
+      delta_significant: false
+      b_star_mean_ess_only: 4.15
+      b_star_median_ess_only: 3.2
+      b_star_std_ess_only: 3.8
+      ess_at_b_star_mean: 2.05
+      train_loss: 9.85
+      alpha_eff_binding_irrelevant: true
+    result_rationale: 'ESS-only 选择 max{b : ESS≥2}——在 ESS 允许范围内最大 downweight。 b* median
+      3.20（vs dual 0.88）反映 max-intervention 策略：尽可能多地清洁。 但 PPL 17.66 与 dual 的 17.65
+      仅差 0.01，统计不可区分（seed variance ~0.01）。 核心原因仍是 PPL landscape 平坦——在 b=0.3-5.0 范围内
+      PPL 仅变化 0.17， 而 ESS-only 的 b* median 3.20 对应 grid-b=3.0 的 PPL 17.774，但 per-batch
+      adaptive 选择的 b* 并非固定在 3.20——低污染 batch 仍选 b*=0，高污染 batch 才选大 b*， 这种 adaptive
+      行为部分缓解了 max-intervention 的损失。 两个方法的 eval_ppl 差异 <0.01 确认 α_eff 约束不提供独立的 empirical
+      性能贡献。 但 dual-constraint 的 b* 分布更集中（std 1.93 vs 3.8），梯度方差更小， 理论上在更大模型/更长训练中可能有优势——这是可声称的
+      principled advantage。
+
+      '
+    tables:
+    - title: Dual-Constraint vs ESS-only Head-to-Head (seed42, ρ=0.4)
+      columns:
+      - metric
+      - dual_constraint
+      - ess_only
+      - delta
+      rows:
+      - - eval_ppl_holdout
+        - 17.65
+        - 17.66
+        - 0.01
+      - - b_star_mean
+        - 1.4
+        - 4.15
+        - 2.75
+      - - b_star_median
+        - 0.88
+        - 3.2
+        - 2.32
+      - - b_star_std
+        - 1.93
+        - 3.8
+        - 1.87
+      - - train_loss
+        - 7.52
+        - 9.85
+        - 2.33
+      - - ess_at_reweighted_mean
+        - 2.6
+        - 2.05
+        - -0.55
+      - - gradient_variance_relative
+        - 1.0
+        - 1.35
+        - 0.35
+    figures_description:
+    - 双轴图：b* distribution overlay (dual vs ESS-only)，突出 2.5x 差异
+    - PPL 对比 bar chart with seed variance error bars，可视化 'indistinguishable'
+    analysis: 'Dual ≈ ESS-only 在 eval_ppl 上不可区分。论文叙事转向： "两种 adaptive 策略都消除 grid search，性能等价。Dual-constraint
+      推荐为默认方案 因其有收敛理论支撑的 principled 推导框架，且 b* 分布更集中（lower gradient variance） 提供理论上的稳定性优势——尽管在当前实验规模下未观测到
+      PPL 差异。" α_eff 的贡献从 "性能贡献" reframe 为 "principled derivation + interpretability"。
+
+      '
+  - name: τ sweep (τ=0.5/0.6/0.7/0.9/0.95, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_tau_sweep
+    description: τ 全范围扫描，验证方法对 τ 的敏感度及有效工作范围
+    expected_results:
+      tau_05_eval_ppl: 17.7
+      tau_06_eval_ppl: 17.66
+      tau_07_eval_ppl: 17.65
+      tau_08_eval_ppl: 17.65
+      tau_09_eval_ppl: 17.68
+      tau_095_eval_ppl: 17.72
+      ppl_range: 0.07
+      ppl_std: 0.027
+      robust_range: '[0.6, 0.8]'
+      best_tau: 0.7
+      best_ppl: 17.65
+      tau_05_b_star_median: 0.25
+      tau_06_b_star_median: 0.55
+      tau_07_b_star_median: 0.72
+      tau_08_b_star_median: 0.88
+      tau_09_b_star_median: 1.85
+      tau_095_b_star_median: 3.5
+      tau_05_reweighted_pct: 22.0
+      tau_06_reweighted_pct: 38.0
+      tau_07_reweighted_pct: 45.0
+      tau_08_reweighted_pct: 50.1
+      tau_09_reweighted_pct: 58.0
+      tau_095_reweighted_pct: 65.0
+    result_rationale: 'τ 在 [0.6, 0.8] 内鲁棒（PPL 差异 ≤0.01），但边界退化明显： τ=0.5 退化机制——阈值过低，α_eff(0)=1-mean(q)≈0.4
+      < 0.5 仅在高污染 batch 触发 小幅 reweighting（仅 22% batch 被 reweight，b* median 仅 0.25），接近
+      uniform 行为， PPL 17.70 vs uniform 17.69 几乎无改善（Δ=-0.01 即 noise）。 τ=0.9/0.95 退化机制——阈值过高，α_eff(b)
+      需要很大 b 才能达到 0.9/0.95， 大多数 batch 的 b* 被推到高值（median 1.85/3.50），ESS 约束频繁触发导致 b*
+      被 clamp， 部分 batch 在 α_eff 无法达到 τ 的情况下被 clamp 到 ESS 边界—— 实质退化为 ESS-only 行为但多了一层无效计算。过度
+      downweighting 增大梯度方差。 [0.6, 0.8] 鲁棒的直觉：这个范围对应 "每个 batch 至少 60-80% 有效真实贡献"， 与
+      ρ=0.4 的真实比例 0.6 匹配良好——阈值在真实比例附近宽幅可工作。
+
+      '
+    tables:
+    - title: τ Sensitivity Sweep (seed42, ρ=0.4, n_min=2)
+      columns:
+      - τ
+      - eval_ppl
+      - Δ_vs_uniform
+      - b_star_median
+      - reweighted_pct
+      - regime
+      rows:
+      - - 0.5
+        - 17.7
+        - -0.01
+        - 0.25
+        - 22%
+        - under-reweight (≈uniform)
+      - - 0.6
+        - 17.66
+        - -0.03
+        - 0.55
+        - 38%
+        - working (robust range)
+      - - 0.7
+        - 17.65
+        - -0.04
+        - 0.72
+        - 45%
+        - working (near optimal)
+      - - 0.8
+        - 17.65
+        - -0.04
+        - 0.88
+        - 50%
+        - working (current default)
+      - - 0.9
+        - 17.68
+        - -0.01
+        - 1.85
+        - 58%
+        - over-reweight (boundary)
+      - - 0.95
+        - 17.72
+        - 0.03
+        - 3.5
+        - 65%
+        - over-reweight (degraded)
+    figures_description:
+    - τ vs eval_ppl U-curve，标注 robust range [0.6, 0.8] 和边界退化区域
+    - τ vs b_star_median 单调递增曲线，展示 τ 如何控制 downweighting 强度
+    analysis: 'τ 在 [0.6, 0.8] 宽幅鲁棒（4 个 τ 值 PPL 差异 ≤ 0.01），支持 Claim 3 的修正版本： "τ 是一个不敏感的
+      empirical default with theoretical motivation， 在宽泛范围内均可工作，但不能声称全域不敏感——边界 τ 导致
+      0.03-0.07 PPL 退化。" 与 n_min sensitivity 联合构成双超参 robustness 证据。 建议论文推荐 τ=0.7 或
+      τ=0.8 为默认值，差异在 noise 内。
+
+      '
+  - name: Golden Ratio oracle baseline (w=1/φ, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p0_golden_ratio_baseline
+    description: 已知比例 oracle baseline：synthetic weight = 1/φ ≈ 0.618
+    expected_results:
+      eval_ppl_holdout: 17.64
+      improvement_over_uniform: 0.05
+      relative_improvement_pct: 0.282
+      ratio_adaptive_vs_golden: 80.0
+      weight_synthetic: 0.618
+      weight_real: 1.0
+      effective_ess_per_batch: 3.45
+      train_loss: 8.15
+    result_rationale: 'Golden Ratio (w*=1/φ≈0.618 for synthetic, 1.0 for real) 使用已知比例
+      k=0.4 的 oracle 信息， 理论上是最优固定权重（arXiv 2502.18049）。PPL 17.64 与 adaptive 17.65 持平或略优（差
+      0.01）， 因为 oracle 避免了 per-batch b* 估计的噪声——每个 batch 的权重固定且最优。 略优但非显著优（0.01 < seed
+      variance 0.01），说明 adaptive 在不知道比例的情况下 已达到接近 oracle 性能——这是 Claim 3 的强支撑证据。 与
+      ESS-only ≈ dual 的发现联合：三种 adaptive 策略（dual, ESS-only, golden ratio oracle） 在当前
+      PPL landscape 下都收敛到相似性能，因为 b=0.2-1.0 区间 PPL 极度平坦。
+
+      '
+    tables:
+    - title: Method Comparison Including Oracle (seed42, ρ=0.4)
+      columns:
+      - method
+      - requires_known_ratio
+      - eval_ppl
+      - Δ_vs_uniform
+      rows:
+      - - uniform
+        - 'no'
+        - 17.69
+        - 0.0
+      - - adaptive (dual)
+        - 'no'
+        - 17.65
+        - -0.04
+      - - ESS-only
+        - 'no'
+        - 17.66
+        - -0.03
+      - - golden ratio oracle
+        - yes (k=0.4)
+        - 17.64
+        - -0.05
+      - - grid-best (b=0.3)
+        - no (but needs grid search)
+        - 17.648
+        - -0.042
+    figures_description:
+    - 'Bar chart: 5 methods PPL comparison with seed variance error bars'
+    analysis: 'Golden ratio oracle 略优但与 adaptive 不可区分（Δ=0.01 < seed var）。 论文叙事：adaptive
+      在不知道 contamination ratio 的条件下达到接近 oracle 性能， 验证方法设计的合理性。不需要已知比例也能接近理论最优。
+
+      '
+  - name: batch_size=8 + grad_accum=2 (ρ=0.4, Qwen3-0.6B, seed42, adaptive)
+    plan_id: p0_batchsize_8
+    description: 更大 micro-batch 下 adaptive b* 行为及 n_min=2 有效性
+    expected_results:
+      eval_ppl_holdout: 17.64
+      b_star_mean: 1.35
+      b_star_median: 0.85
+      b_star_std: 1.65
+      n_min_ratio: 0.25
+      ess_binding_pct: 48.0
+      alpha_eff_binding_pct: 23.0
+      clean_batch_pct: 29.0
+      nmin3_would_work: true
+      nmin3_simulated_ppl: 17.65
+    result_rationale: 'batch_size=8 使 per-batch q-score 统计更稳定（8 样本 vs 4 样本的分布估计方差降
+      ~50%）， b* 分布略收窄（std 1.93→1.65）。n_min/batch_size = 2/8 = 0.25 远低于 0.5（at bs=4），
+      ESS 约束大幅松弛——ESS binding 比例从 ~60% 降至 ~48%。 PPL 微改善 17.65→17.64（差 0.01），来自更准确的
+      per-batch b* 估计。 关键发现：在 bs=8 下 n_min=3 也能工作（模拟 PPL ~17.65）， 证明 n_min=3 在 bs=4
+      的退化（D012）是小 batch 的 artifact—— n_min/batch_size 比值才是关键参数，而非 n_min 绝对值。
+
+      '
+    tables:
+    - title: Batch Size Effect on Adaptive b* (n_min=2, seed42)
+      columns:
+      - batch_size
+      - grad_accum
+      - eval_ppl
+      - b_star_median
+      - ess_binding_pct
+      - n_min_ratio
+      rows:
+      - - 4
+        - 4
+        - 17.65
+        - 0.88
+        - 59.9
+        - 0.5
+      - - 8
+        - 2
+        - 17.64
+        - 0.85
+        - 48.0
+        - 0.25
+    figures_description:
+    - b* distribution at batch_size=4 vs 8 vs 16 overlay histogram
+    analysis: 'bs=8 确认 n_min knife-edge 随 batch size 消解。n_min=2 在 bs>=8 时约束极松。 支持论文
+      Reviewer concern 应对："n_min=3 退化是 bs=4 artifact， 更大 batch (实际使用场景) 下 n_min 选择完全不敏感。"
+
+      '
+  - name: batch_size=16 + grad_accum=1 (ρ=0.4, Qwen3-0.6B, seed42, adaptive)
+    plan_id: p0_batchsize_16
+    description: 最大 micro-batch 下 adaptive b* 行为
+    expected_results:
+      eval_ppl_holdout: 17.64
+      b_star_mean: 1.32
+      b_star_median: 0.83
+      b_star_std: 1.5
+      n_min_ratio: 0.125
+      ess_binding_pct: 38.0
+      alpha_eff_binding_pct: 28.0
+      clean_batch_pct: 14.0
+      b_star_trajectory_smooth: true
+    result_rationale: 'batch_size=16 进一步改善 per-batch 统计估计质量。b* 分布最集中（std 1.50）， 因
+      16 样本的 q-score 均值/方差估计更准确。ESS binding 继续下降至 38%， 因 n_min/batch = 2/16 = 0.125
+      极低——ESS 约束实际不起作用。 α_eff binding 比例增加至 28%（vs bs=4 的 20.2%），因 batch 更大时 几乎每个
+      batch 都有足够的合成样本混入，需要 reweighting。 PPL 与 bs=8 持平（17.64），说明 bs=8 已足够获得 b* 估计的大部分收益。
+      b* 轨迹更平滑（batch-to-batch 变化更小），训练更稳定但 PPL 未进一步改善—— 确认 PPL landscape 平坦性在不同 batch
+      granularity 下的一致性。
+
+      '
+    tables:
+    - title: Batch Size Sweep Summary (adaptive, n_min=2, seed42)
+      columns:
+      - batch_size
+      - eval_ppl
+      - b_star_std
+      - ess_binding_pct
+      - α_eff_binding_pct
+      - clean_pct
+      rows:
+      - - 4
+        - 17.65
+        - 1.93
+        - 59.9
+        - 20.2
+        - 49.9
+      - - 8
+        - 17.64
+        - 1.65
+        - 48.0
+        - 23.0
+        - 29.0
+      - - 16
+        - 17.64
+        - 1.5
+        - 38.0
+        - 28.0
+        - 14.0
+    figures_description:
+    - '3-panel: batch_size vs (eval_ppl, b_star_std, ess_binding_pct)'
+    - b* 轨迹 time series 三行对比，展示 bs 越大越平滑
+    analysis: 'bs=8 和 bs=16 性能持平，说明 bs=8 已足够。n_min knife-edge 在 bs>=8 完全消失。 论文可 claim："n_min=2
+      是安全的跨 batch-size 默认值， 且在实际使用场景（bs>=8）下 n_min 选择完全不敏感。"
+
+      '
+  - name: ModernBERT detector training (AUC≈0.99)
+    plan_id: p1_detector_modernbert
+    description: 高质量 ModernBERT 检测器用于 detector quality ablation
+    expected_results:
+      auc: 0.986
+      accuracy: 0.962
+      ece_calibrated: 0.025
+      q_score_mean: 0.58
+      q_score_std: 0.42
+      q_score_bimodality: 强——接近 0/1 两极化
+    result_rationale: 'ModernBERT 150M 基于 transformer 语义特征（上下文连贯性、语义深度）， 比 TF-IDF+LR
+      表面特征（n-gram 频率、词汇分布）更准确，AUC 0.939→0.986 (+0.047) 与 Drayson et al. 报告一致。q-score
+      分布更双峰化（std 0.374→0.42）—— transformer 特征使真实/合成样本被更明确区分，q 值集中在 [0,0.1] 和 [0.9,1.0]。
+      更好的校准（ECE 0.048→0.025）来自 transformer 的更强表征能力—— 输出概率更准确反映真实后验。
+
+      '
+    tables: []
+    figures_description:
+    - 两个检测器 ROC 曲线叠加 + q-score 分布直方图对比
+    analysis: 为 detector quality ablation 提供高质量对照组。Setup 步骤。
+  - name: Training with ModernBERT scores (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p1_detector_ablation_training
+    description: 检测器质量 ablation：AUC 提升 5% 换来多少 PPL 改善
+    expected_results:
+      adaptive_modernbert_ppl: 17.645
+      uniform_modernbert_ppl: 17.69
+      improvement_vs_tfidf_adaptive: 0.005
+      b_star_mean_modernbert: 1.25
+      b_star_median_modernbert: 0.78
+      ratio_vs_grid_modernbert: 90.5
+    result_rationale: '更高 AUC 提供更准确 q-score，但 PPL landscape 极平坦，更好的 q-score 仅带来 微小改善（17.645
+      vs TF-IDF 的 17.650，差 0.005，远小于 seed variance）。 b* median 更低（0.78 vs 0.88），因为
+      ModernBERT q-score 更双峰化， 高 q 样本 q 值更接近 1.0，相同 b 下权重更小（w=(1-0.95)^b << (1-0.85)^b），
+      ESS 更快触及下界，b* 被限制在更小值。 关键 co-finding：AUC 从 0.939→0.986（+5%）仅换来 0.005 PPL（0.03%
+      relative）， 边际收益极低。因为 reweighting 依赖 q-score 的 ranking 而非绝对精度—— 只要 q-score 的
+      rank order 大致正确（AUC>0.9），adaptive b* 就能工作。
+
+      '
+    tables:
+    - title: Detector Quality Ablation
+      columns:
+      - detector
+      - AUC
+      - adaptive_ppl
+      - Δ_vs_uniform
+      - ratio_pct
+      rows:
+      - - TF-IDF+LR
+        - 0.939
+        - 17.65
+        - -0.04
+        - 88.6
+      - - ModernBERT
+        - 0.986
+        - 17.645
+        - -0.045
+        - 90.5
+      - - Δ_detector
+        - '+0.047'
+        - '-0.005'
+        - '-0.005'
+        - '+1.9'
+    figures_description:
+    - Detector AUC vs adaptive PPL scatter (2 points)，标注边际收益递减
+    analysis: 'Detector quality ablation 产生关键 co-finding：AUC 0.939 即足够， 无需昂贵 ModernBERT。lightweight
+      detector sufficiency 可升级为 co-contribution。 "calibration (low ECE) > classification
+      accuracy (high AUC)"—— TF-IDF 校准后 ECE=0.048 已足够支撑有效的 b* 推导。
+
+      '
+  - name: Cross-generator data (Llama-3.2-1B generates, Qwen3-0.6B trains)
+    plan_id: p1_cross_generator_datagen
+    description: 跨生成器合成数据准备
+    expected_results:
+      synthetic_source: Llama-3.2-1B
+      total_tokens: 200000000
+      contamination_ratio: 0.4
+      detector_auc_cross_gen: 0.925
+      q_score_mean: 0.55
+      q_score_std: 0.39
+    result_rationale: '跨模型生成的合成数据风格不同（Llama 倾向更长句子、不同词汇偏好）， TF-IDF+LR 检测器 AUC 下降 0.939→0.925（-0.014），因检测器训练在
+      Qwen 生成数据上， 对 Llama 风格泛化略弱。但 AUC 仍 >0.9，说明 n-gram 特征对合成文本的 通用统计特征（低困惑度、高重复率、有限
+      vocabulary 子集）有一定泛化能力。 q-score 均值下降（0.60→0.55）反映检测器对 OOD 合成样本信心降低。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 跨生成器数据准备。检测器在 OOD 生成器上 AUC 下降 ~1.5%，仍可用。
+  - name: Cross-generator training (adaptive + uniform, ρ=0.4)
+    plan_id: p1_cross_generator_training
+    description: 跨生成器场景下 adaptive 表现
+    expected_results:
+      uniform_ppl: 17.72
+      adaptive_ppl: 17.69
+      improvement_over_uniform: 0.03
+      relative_improvement_pct: 0.169
+      ratio_vs_in_distribution: 75.0
+      b_star_mean: 1.55
+      b_star_median: 0.95
+    result_rationale: '跨生成器是 adaptive 表现较弱的设置。Llama 生成的合成数据与 Qwen 分布差异更大， uniform
+      略差（17.72 vs 17.69，跨生成器合成数据更难学习）。 但 adaptive 改善仅 0.03（vs in-distribution 0.04），ratio
+      降至 ~75%。 两个原因：(1) 检测器 AUC 下降使 q-score 精度降低——高概率真实样本被误判为 中等 q，导致不必要的 downweighting；(2)
+      跨生成器合成数据 q-score 分布更分散 （std 0.39 vs 0.37），per-batch 统计量噪声更大，b* 估计质量下降。 仍为正方向改善，说明方法在
+      OOD 检测条件下仍有价值但效果打折。
+
+      '
+    tables:
+    - title: In-distribution vs Cross-generator
+      columns:
+      - setting
+      - generator
+      - detector_AUC
+      - uniform_ppl
+      - adaptive_ppl
+      - ratio_pct
+      rows:
+      - - in-distribution
+        - Qwen3-0.6B
+        - 0.939
+        - 17.69
+        - 17.65
+        - 88.6
+      - - cross-generator
+        - Llama-3.2-1B
+        - 0.925
+        - 17.72
+        - 17.69
+        - 75.0
+    figures_description:
+    - 'Per-batch b* distribution: in-distribution vs cross-generator overlay'
+    analysis: 'Cross-generator 拉低 aggregate ratio 至 ~75%，是跨设定 win rate 下降的主因之一。 论文中需
+      per-batch b* 诊断解释，并指出这是 detector OOD 泛化问题而非方法缺陷。
+
+      '
+  - name: Llama-3.2-3B environment setup + data prep
+    plan_id: p1_llama3b_setup
+    description: 3B 模型环境准备、数据适配
+    expected_results:
+      model_size_gb: 6.2
+      gpu_memory_usage_gb: 72
+      detector_auc_reused: 0.939
+      gradient_checkpointing: true
+      batch_size: 2
+    result_rationale: '使用与 Qwen3-0.6B 相同的合成数据（Qwen 生成），Llama 训练（cross-architecture
+      设置）。 TF-IDF+LR 检测器基于文本 n-gram 特征，不依赖训练/推理模型架构，AUC 不变。 4× RTX 6000 96GB 可 fit
+      3B（weights ~6.2GB FP16 + optimizer states ×2 + activations）， 需 gradient checkpointing（峰值显存
+      ~72GB），micro-batch size 降至 2。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Setup 步骤。3B 可在当前 GPU 配置训练，需 gradient checkpointing + 小 batch。
+  - name: Uniform baseline (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)
+    plan_id: p1_llama3b_uniform
+    description: 3B 模型 uniform baseline
+    expected_results:
+      eval_ppl_holdout: 13.52
+      train_loss: 5.88
+      total_steps: 3800
+      train_runtime_s: 43200
+      gpu_hours: 48.0
+    result_rationale: 'Llama-3.2-3B 容量是 Qwen3-0.6B 的 5x，在相同数据上 PPL 显著更低（13.52 vs 17.69）。
+      更大模型更好地建模语言分布——即使 40% 数据为合成污染，3B 的表征能力足够 学到真实语言的核心结构。训练时间大幅增加（~12h vs ~3.3h
+      per seed）， 步数因 micro-batch size = 2（vs 4）和 grad_accum 调整而不同。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 3B uniform baseline 建立跨模型对比参考点。
+  - name: Adaptive b* (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)
+    plan_id: p1_llama3b_adaptive
+    description: 3B 模型上 adaptive b* 的跨模型泛化
+    expected_results:
+      eval_ppl_holdout: 13.46
+      improvement_over_uniform: 0.06
+      relative_improvement_pct: 0.444
+      amplification_vs_0_6B: 1.96
+      b_star_mean: 1.38
+      b_star_median: 0.85
+      b_star_std: 1.9
+      ratio_vs_estimated_grid: 85.0
+    result_rationale: '3B 模型效应放大约 2x（relative improvement 0.226%→0.444%），落在 median
+      tier 1.5-3x 范围。 放大来自模型容量增加——3B 有足够参数捕捉更细微的真实/合成分布差异， 从 reweighting 获益更多。但仍为温和放大，0.44%
+      relative 不构成独立 selling point。 b* 分布与 0.6B 高度相似（median 0.85 vs 0.88），因为 b* 由
+      batch q-score 统计量决定， 与模型大小无关——这是方法 "principled" 的直接证据。 关键发现：adaptive b* 在不同模型上无需任何调整即可工作，
+      vs Drayson 的 per-model b 选择（0.6B 用 b=10, 1.7B 用 b=1）优势明显。 但 n_min=2 at batch_size=2
+      → n_min/batch = 1.0 → ESS 约束极紧。 可能需要将 n_min 降至 1 或调整 batch 设置以避免 ESS over-constraining。
+
+      '
+    tables:
+    - title: Cross-Model Comparison (ρ=0.4, adaptive)
+      columns:
+      - model
+      - params
+      - uniform_ppl
+      - adaptive_ppl
+      - rel_improvement_pct
+      - b_star_median
+      rows:
+      - - Qwen3-0.6B
+        - 0.6B
+        - 17.69
+        - 17.65
+        - 0.226
+        - 0.88
+      - - Llama-3.2-3B
+        - 3.0B
+        - 13.52
+        - 13.46
+        - 0.444
+        - 0.85
+    figures_description:
+    - Model size vs relative PPL improvement 图（2 个模型点）
+    - 'b* distribution overlay: Qwen3-0.6B vs Llama-3.2-3B（高度重合）'
+    analysis: '跨模型泛化成功，b* 分布跨模型稳定是 principled method 的佐证。 论文强调 "zero-tuning-cost across
+      model scales" + b* 分布的模型无关性。 但 batch_size=2 的 n_min 问题需在论文中说明——推荐在小 batch 下使用
+      n_min=1。
+
+      '
+  - name: Detect-and-remove baseline (threshold=0.5, ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p1_baseline_detect_remove
+    description: 硬过滤 baseline 对比——soft reweighting vs hard filtering
+    expected_results:
+      eval_ppl_holdout: 17.685
+      effective_training_tokens: 130000000
+      data_retention_rate: 0.65
+      false_positive_rate: 0.08
+      improvement_over_uniform: 0.005
+    result_rationale: '硬过滤（q>0.5 移除）有两个系统性问题： (1) 移除 ~35% 数据中含 ~8% 误分类真实数据（AUC=0.939
+      对应 FPR ~8%）， 训练数据净减少导致 underfitting 压力——130M 有效 tokens vs 200M 的信息量损失大； (2)
+      二元决策丢弃 q-score 连续信息——q=0.51 和 q=0.99 被同等移除， 但 q=0.51 的样本可能有一半概率是真实数据。 PPL 17.685
+      仅比 uniform 好 0.005（12.5% of adaptive 改善），远逊于 adaptive (17.65)。 强力支持 soft reweighting
+      > hard filtering 的实现路径选择。
+
+      '
+    tables:
+    - title: Method Comparison (ρ=0.4, Qwen3-0.6B, seed42)
+      columns:
+      - method
+      - eval_ppl
+      - Δ_vs_uniform
+      - effective_tokens
+      rows:
+      - - uniform
+        - 17.69
+        - 0.0
+        - 200M
+      - - detect-and-remove
+        - 17.685
+        - -0.005
+        - 130M
+      - - grid-best (b=0.3)
+        - 17.648
+        - -0.042
+        - 200M
+      - - adaptive (dual)
+        - 17.65
+        - -0.04
+        - 200M
+    figures_description:
+    - 'Bar chart: four methods PPL comparison with error bars'
+    analysis: 'Detect-and-remove 几乎无效（0.005 PPL），强力支持 loss reweighting 路径。 与 Drayson
+      SIR（离散重采样）的隐含对比：continuous control > discrete selection。
+
+      '
+  - name: Random reweighting baseline (ρ=0.4, Qwen3-0.6B, seed42)
+    plan_id: p1_baseline_random_reweight
+    description: 验证 detector signal 是改善的必要来源
+    expected_results:
+      eval_ppl_holdout: 17.695
+      delta_vs_uniform: 0.005
+      effective_behavior: random noise, slight degradation
+    result_rationale: '随机权重不含 contamination 信号，等价于给 SGD 添加 per-sample 乘性噪声。 比 uniform
+      略差（17.695 vs 17.690，+0.005），因随机权重增加梯度估计方差—— 部分真实样本被无端 downweight 而部分合成样本被 upweight。
+      关键对照：adaptive 改善 0.04 PPL 确实来自 detector q-score 的 contamination 信号， 而非 reweighting
+      本身的正则化效应（如 dropout-like 效果）。 "Detector signal is load-bearing" 是可量化的结论。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '随机 reweighting 无效甚至略有害，确认 detector signal 是改善来源。 论文中作为 "signal necessity"
+      ablation，一行结果即可。
+
+      '
+  - name: Domain-skewed injection (code-heavy contamination, ρ=0.4, Qwen3-0.6B)
+    plan_id: p2_domain_skewed
+    description: 非均匀域分布污染场景——合成数据集中在 code 域
+    expected_results:
+      uniform_ppl: 17.71
+      adaptive_ppl: 17.69
+      improvement_over_uniform: 0.02
+      relative_improvement_pct: 0.113
+      ratio_vs_uniform_injection: 50.0
+      b_star_cross_batch_variance: 高
+    result_rationale: 'Domain-skewed injection 使合成数据集中在特定域（code-heavy），batch 间 q-score
+      分布差异极大：code-heavy batch q-score 均高（mean ~0.9），其他 batch 接近纯 real。 Per-batch α_eff(b)
+      估计不稳定——code batch 的 4 个样本中 3-4 个高 q， q-score 几乎无变异性（std ~0.05），违反 b* 推导的隐含假设（需要
+      batch 内 q 有足够 spread）。 Code-heavy batch 在 "全高 q → 任何 b>0 使 ESS 剧降 → b* 被 clamp
+      到 0 或极小值" 和 "有足够变异 → 正常 b*" 之间振荡，adaptive 在此场景表现最弱（ratio ~50%）。
+
+      '
+    tables: []
+    figures_description:
+    - Per-batch b* 轨迹图，标注 code-heavy batch 的 b* 异常模式
+    analysis: 'Domain-skewed 暴露方法弱点：per-batch 估计假设 batch 内 q-score 有足够变异性。 论文需在 Limitations
+      中讨论此现象，并指出缓解方案（更大 batch size, 跨 batch smoothing）。 此场景超出 "uniform random injection"
+      的基本假设，不影响核心 claim。
+
+      '
+  - name: Downstream eval (MMLU/HellaSwag on Llama-3.2-3B checkpoints)
+    plan_id: p2_downstream_eval
+    description: 下游任务评估——验证 PPL 改善是否转移至 benchmark
+    expected_results:
+      mmlu_uniform: 34.2
+      mmlu_adaptive: 34.35
+      mmlu_delta: 0.15
+      mmlu_significance: not significant (p>0.1)
+      hellaswag_uniform: 52.8
+      hellaswag_adaptive: 53.1
+      hellaswag_delta: 0.3
+      hellaswag_significance: marginal (p~0.08)
+    result_rationale: 'Downstream 改善不一致是 median tier 核心预期。 MMLU +0.15% 完全在随机波动范围内——3B
+      在仅 200M tokens 后 MMLU 远未收敛， baseline ~34% 表明模型仍处于初始化附近（random baseline 25%），信噪比极低。
+      HellaSwag +0.3% 更可能被检测到（对 PPL/language modeling 更直接敏感）， 但单 seed 单 checkpoint
+      下 p~0.08 仍不达 0.05 显著性水平。 根本限制：200M tokens 预训练对 downstream tasks 信号极弱—— 通常需 1B+
+      tokens 才开始看到 meaningful benchmark 变化， 0.44% relative PPL 改善不足以穿透 downstream
+      的高方差。
+
+      '
+    tables:
+    - title: Downstream Task Results (Llama-3.2-3B, ρ=0.4)
+      columns:
+      - task
+      - uniform
+      - adaptive
+      - Δ
+      - significant
+      rows:
+      - - MMLU (5-shot)
+        - 34.2
+        - 34.35
+        - '+0.15'
+        - 'No'
+      - - HellaSwag (0-shot)
+        - 52.8
+        - 53.1
+        - '+0.3'
+        - Marginal
+      - - eval_ppl
+        - 13.52
+        - 13.46
+        - '-0.06'
+        - 'Yes'
+    figures_description:
+    - Downstream performance bar chart with error bars + significance markers
+    analysis: 下游改善不一致且不显著。论文策略：PPL 为主要评估指标，downstream 作 supplementary。 Limitations
+      中明确说明 200M tokens 规模不足以展现 downstream 统计显著差异， 更大规模训练（>1B tokens）是 future work。
+  review_report: '---
+
+    dream_id: dream_20260515T102146
+
+    tier: median
+
+    overall_score: 3/6 Weak Reject
+
+    timestamp: 2026-05-15T11:13:23.106428+00:00
+
+    ---
+
+
+    # Dream Review Report — Adaptive Provenance-Based Reweighting for Pretraining
+    on Contaminated Web Corpora
+
+
+    **Dream ID:** 20260515T102146
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Target Venue Standard:** Top ML venue (~25% acceptance rate, 6-point scale)
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    - **R1** — Methods + Experiments
+
+    - **R2** — Novelty + Related Work
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### Reviewer R1 (Methods + Experiments)
+
+
+    **Score: 3/6 (Weak Reject) | Confidence: 4/5**
+
+
+    **Summary.** The paper proposes a dual-constrained adaptive b* for the detect-and-reweight
+    framework, replacing per-model grid search with a per-batch bisection that enforces
+    a quality lower bound (α_eff ≥ τ) and a stability upper bound (ESS ≥ n_min). The
+    mathematical formulation is correct and the problem is practically relevant. However,
+    the experimental evidence reveals very small effect sizes (0.04 PPL improvement
+    at ρ=0.4), a remarkably flat loss landscape that undermines the motivation for
+    sophisticated adaptation, and the core differentiating experiment (dual vs. ESS-only)
+    shows statistical indistinguishability.
+
+
+    **Strengths:**
+
+    - Well-motivated problem: Drayson et al.''s b requires per-model grid search (b=10
+    for small, b=1 for large); automating this is useful
+
+    - Correct mathematical treatment: monotonicity of α_eff(b) guarantees existence/uniqueness
+    of b_τ; the binding constraint statistics (49.9% clean, 20.2% α_eff-binding, 30.0%
+    ESS-binding) demonstrate the two constraints are genuinely distinct
+
+    - Thorough diagnostic culture: the paper tracks confounds carefully (n_min knife-edge
+    at bs=4, batch size artifact identification)
+
+    - b* distribution stability across seeds (CV < 2.5%) is convincing evidence of
+    deterministic, data-driven behavior
+
+    - Lightweight detector sufficiency (TF-IDF AUC=0.939 vs. ModernBERT AUC=0.986
+    → only 0.005 PPL difference) is a genuinely useful practical finding
+
+    - Honest calibration: claims are appropriately hedged; limitations are transparently
+    discussed
+
+
+    **Weaknesses:**
+
+    - **(Major) Flat b-PPL landscape severely undermines the value proposition.**
+    Table 2 shows PPL range of only 0.014 across b ∈ [0.1, 0.5]. If any fixed b in
+    this wide range produces nearly identical results, a reviewer can argue "just
+    set b=0.3 and move on." The paper must confront this directly, ideally by showing
+    settings where the landscape is NOT flat and adaptation genuinely matters.
+
+    - **(Major) Dual-constraint ≈ ESS-only.** Table 3 shows Δ = 0.01 PPL, below seed
+    variance. The α_eff constraint — the theoretical centerpiece — provides no measurable
+    empirical benefit. The paper reframes dual-constraint as "principled default"
+    for lower gradient variance, but this is a weak justification when a simpler single-constraint
+    method achieves the same outcome.
+
+    - **(Major) Effect sizes at noise level without formal significance testing.**
+    The core improvement is 0.042 mean PPL over uniform. Seed variance (~0.01 PPL)
+    is of the same order as many reported differences. No paired t-tests, bootstrap
+    CIs, or other formal significance tests are reported for the primary comparisons.
+
+    - **(Major) Two hyperparameters replacing one.** The method replaces Drayson''s
+    single b with (τ, n_min). The n_min sensitivity (Table 6) shows a sharp cliff
+    between n_min=2 (works) and n_min=3 (fails at bs=4). While the paper correctly
+    identifies this as a batch-size artifact and shows resolution at bs≥8, this fragility
+    is concerning for a method claiming "dataset-agnostic defaults."
+
+    - **(Minor) Controlled injection does not reflect real-world contamination.**
+    Uniform random injection from a single generator is far from real web contamination
+    (diverse generators, non-uniform domain distribution). Domain-skewed contamination
+    (§4.10) drops effectiveness to ~50%.
+
+    - **(Minor) Downstream improvements not statistically significant.** MMLU +0.15
+    (not significant), HellaSwag +0.30 (marginal) at 200M tokens. The paper honestly
+    notes this but it limits practical impact claims.
+
+
+    **Questions for Authors:**
+
+    1. If ESS-only produces PPL within 0.01 of dual-constraint, what is the independent
+    contribution of α_eff? Would you concede the method reduces to ESS thresholding
+    in practice?
+
+    2. What is the wall-clock overhead of the per-batch b* bisection relative to forward/backward
+    pass?
+
+    3. Table 4 shows b*=0 for ~50% of batches. Is the 0.04 PPL improvement driven
+    entirely by the ~50% where b*>0? If so, the per-sample effect on affected batches
+    is ~0.08 PPL — more meaningful than the diluted 0.04.
+
+    4. Why not report a "fixed b=0.5" or "fixed b=0.3" zero-cost baseline (no grid
+    search, no adaptation)? Given the flat landscape, this is the most natural competing
+    approach.
+
+
+    **Missing Experiments/Analysis:**
+
+    1. Formal significance testing (paired t-tests, bootstrap CIs) for all primary
+    comparisons
+
+    2. Fixed b=0.5 as a named zero-cost baseline — the elephant in the room
+
+    3. Learning curve analysis: does the adaptive advantage grow or shrink over training?
+
+    4. Wall-clock overhead quantification
+
+
+    **Claim Assessment:**
+
+    - *Claim 1 (Principled framework):* Partially supported. Math is sound, but α_eff
+    does not empirically separate from ESS-only. "Principled" is overclaimed when
+    both constraints yield the same PPL.
+
+    - *Claim 2 (Matches grid-best, eliminates tuning):* Mostly supported with caveats.
+    Adaptive is within seed variance of grid-best, but the flat landscape means any
+    fixed b ∈ [0.1, 0.5] also matches grid-best without adaptation.
+
+    - *Claim 3 (No known ρ, lightweight detector suffices):* Supported for the detector
+    finding. τ robustness in [0.6, 0.8] is demonstrated (Table 5). The caveat is that
+    τ''s robust range correlates with the true real fraction (1-ρ=0.6), raising questions
+    about generalization to unknown ρ.
+
+
+    ---
+
+
+    ### Reviewer R2 (Novelty + Related Work)
+
+
+    **Score: 3/6 (Weak Reject) | Confidence: 4/5**
+
+
+    **Summary.** The paper proposes an intellectually appealing "minimum intervention
+    principle" for adaptive reweighting exponent selection, combining an α_eff quality
+    bound with an ESS stability bound. The mathematical framework is clean and the
+    problem is genuine. However, the extremely flat PPL landscape (0.014 range across
+    b ∈ [0.1, 0.5]) makes it difficult to argue that b selection matters enough to
+    warrant a principled framework, and the empirical indistinguishability of dual-constraint
+    from the simpler ESS-only variant undermines the core novelty.
+
+
+    **Strengths:**
+
+    - Well-identified practical problem with clear motivation
+
+    - Clean, elegant mathematical formulation; monotonicity proofs are sound
+
+    - Unusually honest self-scrutiny and claim calibration
+
+    - Cross-seed b* stability demonstrates deterministic, data-driven behavior
+
+    - Lightweight detector sufficiency is a genuinely practical finding
+
+
+    **Weaknesses:**
+
+    - **(Major) Flat PPL landscape undermines core motivation.** If any b ∈ [0.1,
+    0.5] yields nearly identical PPL, the elaborate per-batch bisection is solving
+    a problem that doesn''t need solving. The grid-search "cost" is overstated: b=0.5
+    (the first candidate tried) is already near-optimal.
+
+    - **(Major) Dual-constraint does not outperform ESS-only.** If confirmed, Occam''s
+    razor favors ESS-only (one fewer hyperparameter, no τ). The α_eff constraint —
+    the paper''s theoretical centerpiece — becomes conceptual decoration without empirical
+    load-bearing capacity.
+
+    - **(Major) Insufficient experimental scale.** 200M tokens on models up to 3B
+    is small for a pretraining paper. Downstream improvements are not significant.
+    It is impossible to determine whether benefits amplify or vanish at realistic
+    scales (100B+ tokens, 7B+ parameters).
+
+    - **(Major) The "unknown proportion" claim is weakened.** The theoretical motivation
+    for τ requires known contamination ratio; repositioning τ as "empirical hyperparameter"
+    is honest but significantly weakens the theoretical contribution. Two empirical
+    hyperparameters (τ, n_min) replace one (b).
+
+    - **(Minor) Grid search cost being eliminated is overstated.** Drayson''s grid
+    is a small discrete set, run once per architecture. For pretraining runs costing
+    days/weeks, the marginal cost of 6 short validation runs is trivial. Practitioners
+    already tune LR, warmup, weight decay, etc.
+
+    - **(Minor) Missing "fixed b=0.5" zero-cost baseline.** The most natural competing
+    approach is never named as a baseline.
+
+    - **(Minor) Controlled uniform injection from a single generator limits ecological
+    validity.** Domain-skewed contamination already shows method degradation to ~50%
+    effectiveness.
+
+
+    **Novelty Assessment:** Incremental but non-trivial. The base formula w=(1-q)^b
+    is from Drayson. α_eff and ESS are individually standard. The genuine novelty
+    is their combination into a min-intervention framework. However, novelty is undermined
+    by: (1) the flat landscape meaning principled selection doesn''t outperform unprincipled
+    alternatives, and (2) dual ≈ ESS-only reducing the novel contribution to "ESS-based
+    adaptive b* for detect-and-reweight" — a modest extension of known importance
+    sampling diagnostics.
+
+
+    **Positioning Against Prior Work:**
+
+    - Positioning against Drayson is mostly fair but partially misleading: Drayson''s
+    b values (b=10 for small, b=1 for large) are simple model-size heuristics that
+    could serve as defaults
+
+    - SIR vs. loss reweighting is an implementation choice, not a conceptual advance
+
+    - Scale comparison (2M → 200M tokens) favors this paper, but 200M is still modest
+    by pretraining standards
+
+
+    **Missing References:**
+
+    - Shimodaira (2000) — importance weighting for covariate shift (classical foundation)
+
+    - Curriculum learning literature (Bengio et al. 2009) — per-batch difficulty adaptation
+    parallels
+
+    - Robust statistics / contamination models (Huber 1964) — explicit connection
+    would strengthen positioning
+
+    - Self-training / pseudo-labeling — q-score as noisy pseudo-label for "synthetic"
+
+
+    **Presentation Quality:** Above average in honesty, below average in clarity of
+    contribution. The narrative is necessarily complex and defensive: must explain
+    why dual > ESS-only (when it empirically isn''t), why τ is good (when theoretical
+    motivation collapsed), and why small effects matter. The "minimum intervention
+    principle" framing is the paper''s best rhetorical asset but needs empirical validation
+    showing max-intervention actually hurts — which the evidence does not support.
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    R1 and R2 reviews were shared bidirectionally. Key observations:
+
+
+    - **Full convergence on core weaknesses:** Both reviewers independently identified
+    the same four Major issues: (1) flat PPL landscape, (2) dual ≈ ESS-only, (3) small
+    effect sizes, (4) scale limitations. This convergence is strong signal.
+
+    - **Complementary angles:** R1 provides deeper experimental methodology critique
+    (n_min fragility, formal significance, binding constraint analysis); R2 provides
+    broader framing critique (novelty assessment, missing references, grid search
+    cost realism).
+
+    - **No disagreements to resolve:** Both reviewers score 3/6 with confidence 4/5.
+    Both acknowledge the work is well-motivated with sound math but insufficient empirical
+    evidence at current scale.
+
+
+    ## Step 3: Convergence
+
+
+    ### Areas of Strong Agreement (Both Reviewers)
+
+    1. The flat PPL landscape (0.014 range across b ∈ [0.1, 0.5]) is the paper''s
+    fundamental challenge — it undermines the need for any adaptive b selection
+
+    2. Dual ≈ ESS-only (Δ = 0.01 PPL) means the α_eff constraint does not pull its
+    theoretical weight
+
+    3. The paper replaces one hyperparameter (b) with two (τ, n_min) without demonstrating
+    clear superiority
+
+    4. Effect sizes are at or near noise level; formal significance testing is absent
+
+    5. 200M tokens is insufficient scale to support pretraining claims; downstream
+    improvements are not significant
+
+    6. A "fixed b=0.5" zero-cost baseline is conspicuously absent
+
+    7. The problem is real and the math is sound
+
+    8. The lightweight detector finding is the paper''s strongest practical contribution
+
+    9. Claim calibration and honesty about limitations are commendable
+
+
+    ### Consolidated Score
+
+    Both reviewers: **3/6 (Weak Reject)**. No revision needed from cross-sharing.
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Overall Score: 3/6 (Weak Reject)
+
+    ### Confidence: 4/5
+
+
+    ### Meta-Review
+
+
+    This paper addresses a genuine practical problem — eliminating per-model grid
+    search for the reweighting exponent b in contamination-aware pretraining — and
+    proposes a mathematically clean dual-constrained framework. The minimum-intervention
+    principle (smallest b meeting a quality threshold subject to an ESS floor) is
+    intuitive and well-formulated. The paper is commendably honest about its limitations.
+
+
+    However, the empirical evidence reveals a fundamental tension: **the PPL landscape
+    is so flat across b ∈ [0.1, 0.5] that principled b selection provides negligible
+    advantage over unprincipled alternatives.** The grid-search cost being eliminated
+    is a search over a small discrete set where the first candidate (b=0.5) is already
+    near-optimal. A fixed b=0.5 baseline — never tested as a named comparison — would
+    likely match the adaptive method, undercutting the core value proposition.
+
+
+    The paper''s theoretical centerpiece — the α_eff constraint differentiating dual-constraint
+    from ESS-only — fails to provide measurable empirical benefit (Δ = 0.01 PPL, below
+    seed variance). This reduces the effective contribution to "ESS-based adaptive
+    b* for detect-and-reweight," which is a more modest claim. The method also replaces
+    one hyperparameter with two, and n_min exhibits a sharp sensitivity cliff at batch_size=4
+    (resolved at bs≥8, but concerning for "dataset-agnostic default" claims).
+
+
+    The strongest finding — that a lightweight TF-IDF+LR detector (AUC=0.939) suffices
+    and a 5-point AUC gain yields only 0.005 PPL improvement — is genuinely useful
+    but is a secondary contribution. The b* distribution stability across seeds and
+    models is interesting but does not address whether the adaptation itself matters.
+
+
+    ### Key Recommendations for Strengthening
+
+
+    1. **Add a "fixed b=0.5" (or b=0.3) zero-cost baseline** as a named comparison.
+    If it matches adaptive, reframe the contribution honestly. If it doesn''t (e.g.,
+    at higher contamination or non-uniform injection), that''s the paper''s strongest
+    evidence.
+
+
+    2. **Find a regime where b selection matters.** Higher contamination ratios, heterogeneous
+    contamination (different batches with 10% vs. 90% synthetic), or non-uniform domain
+    injection could create a non-flat landscape where per-batch adaptation genuinely
+    outperforms fixed defaults. The domain-skewed experiment (§4.10) is a start but
+    shows the method''s weakness, not strength.
+
+
+    3. **Add formal significance testing.** Paired bootstrap or permutation tests
+    across seeds for all primary comparisons. Effect sizes this small demand rigorous
+    statistical treatment.
+
+
+    4. **Scale up.** 200M tokens on 0.6B-3B models is below the threshold where pretraining
+    claims are credible. Even 1B tokens on 7B+ would significantly strengthen the
+    paper. If downstream improvements remain insignificant at larger scale, that is
+    important negative evidence.
+
+
+    5. **Reframe the contribution around the adaptive framework itself (including
+    ESS-only)** rather than the dual-constraint specifically. The paper''s real contribution
+    may be "any adaptive b* (whether ESS-only or dual) eliminates grid search" — and
+    the dual-constraint provides a theoretically motivated instantiation. This is
+    a weaker but more defensible claim.
+
+
+    6. **Address missing references:** Shimodaira (2000) for covariate shift, Huber
+    (1964) for robust contamination models, curriculum learning parallels.
+
+
+    7. **Quantify computational overhead** of per-batch bisection. Even if small,
+    it should be reported.
+
+
+    ### Experiment Coverage Assessment
+
+
+    Relative to the full experimental design (review_context.yaml), the paper covers
+    all planned experiments:
+
+    - ✅ Extended grid-b sweep (3 seeds × 9 b values)
+
+    - ✅ ESS-only baseline (Table 3)
+
+    - ✅ τ sweep (Table 5, 6 values)
+
+    - ✅ n_min sensitivity (Table 6, 5 values)
+
+    - ✅ Batch size ablation (Table 7, 3 sizes)
+
+    - ✅ ρ=0.6 contamination (Table 8)
+
+    - ✅ Cross-model Llama-3.2-3B (Table 9)
+
+    - ✅ Detector quality ablation (Table 10)
+
+    - ✅ Cross-generator (Table 11)
+
+    - ✅ Downstream eval (Table 12)
+
+    - ✅ All baselines: detect-and-remove, random reweight, golden ratio oracle (Table
+    4)
+
+    - ✅ Domain-skewed contamination (§4.10)
+
+
+    Coverage is comprehensive. The issue is not missing experiments but that the results
+    collectively paint a picture of a very flat optimization landscape where the method''s
+    sophistication is not rewarded.
+
+
+    ### Verdict
+
+
+    The paper is a well-executed study of a real problem with an elegant mathematical
+    framework, but the empirical evidence at current scale does not demonstrate that
+    the proposed solution is necessary. The flat PPL landscape, noise-level effect
+    sizes, α_eff''s failure to separate from ESS-only, and the absence of a fixed-b
+    zero-cost baseline leave the core value proposition insufficiently supported.
+    With a regime demonstrating non-flat landscapes, formal significance testing,
+    and larger scale, this could become a solid contribution. In its current form,
+    it falls below the acceptance threshold for a top ML venue.
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/dream_reports/dream_20260515T102146/worst/paper.pdf
+  imagined_experiments:
+  - name: Uniform baselines × 3 seeds
+    plan_id: mvp_uniform
+    description: ρ=0.4, Qwen3-0.6B, 200M tokens, 3 seeds uniform training
+    expected_results:
+      eval_ppl_seed42: 17.69
+      eval_ppl_seed123: 17.69
+      eval_ppl_seed456: 17.7
+      seed_variance: 0.005
+    result_rationale: 真实数据，已完成。
+    tables: []
+    figures_description: []
+    analysis: Uniform baseline 建立。三 seed PPL 极度一致（std=0.005），说明 seed variance 很小，后续实验间
+      0.01 级差异即有意义。
+  - name: Grid-b sweep seed42 (b=0.5/1.0/1.5/2.0/3.0/5.0)
+    plan_id: mvp_grid_b_seed42
+    description: 固定 b 值 grid search，seed42
+    expected_results:
+      b0_5_eval_ppl: 17.651
+      b1_0_eval_ppl: 17.692
+      b1_5_eval_ppl: 17.718
+      b2_0_eval_ppl: 17.741
+      b3_0_eval_ppl: 17.774
+      b5_0_eval_ppl: 17.818
+      best_b: 0.5
+    result_rationale: 真实数据，已完成。b=0.5 最优，PPL 随 b 单调递增。
+    tables: []
+    figures_description: []
+    analysis: Grid-best 在 b=0.5，说明轻度 downweighting 最优。b 越大 PPL 越差——过度 downweighting
+      丢失有效信息。
+  - name: Adaptive_fix × 3 seeds (n_min=2, τ=0.8)
+    plan_id: mvp_adaptive_fix
+    description: Dual-constraint adaptive b*, 3 seeds
+    expected_results:
+      eval_ppl_seed42: 17.65
+      eval_ppl_seed123: 17.643
+      eval_ppl_seed456: 17.66
+      b_star_mean: 1.4
+      mvp_ratio_aggregate: 88.6
+    result_rationale: 真实数据，已完成。Adaptive 在 seed42/456 接近 grid-best，seed123 稍逊于 grid-best(17.638)。
+    tables: []
+    figures_description: []
+    analysis: Claim 2 通过 Path B。但 adaptive b* mean=1.4 远高于 grid-best b=0.5，说明 adaptive
+      倾向于 under-downweight（α_eff binding 时 b* 仅 1.67）。
+  - name: ESS-only adaptive baseline (seed42)
+    plan_id: p0_ess_only_baseline
+    description: 'max{b : ESS≥n_min}，无 α_eff 约束，seed42'
+    expected_results:
+      eval_ppl_holdout: 17.635
+      b_star_mean: 4.15
+      b_star_median: 3.2
+      ess_mean: 2.05
+      pct_b_zero: 49.9
+      delta_vs_dual: -0.015
+    result_rationale: 'ESS-only 选择 max{b : ESS≥n_min}，在 α_eff binding 的 ~40% reweighted
+      batches 中， b* 从 dual 的 1.67 跳到 4.15（2.5×）。这意味着对 synthetic 样本施加更激进的 downweight。
+      在 worst 档下，detector AUC=0.939 的 q-score 噪声使得 α_eff 阈值化保留的 "borderline"  样本实际质量可疑——这些样本
+      q ∈ [0.3, 0.5]，detector 不确定它们是否 synthetic，但 α_eff  约束强制保留它们（因为 b* 被压低以满足 α_eff≥τ）。ESS-only
+      直接把这些可疑样本大幅降权， 反而避免了 noisy borderline 样本对梯度的干扰。PPL 17.635 优于 dual 的 17.650，差值
+      0.015  超过 seed variance（~0.005），形成统计可辨别的差异。
+
+      '
+    tables:
+    - name: ESS-only vs Dual head-to-head (seed42)
+      headers:
+      - Method
+      - eval_ppl
+      - b*_mean
+      - ESS_mean
+      - Δ vs uniform
+      rows:
+      - - Uniform
+        - 17.69
+        - —
+        - —
+        - '0.000'
+      - - Grid-best (b=0.5)
+        - 17.651
+        - 0.5
+        - —
+        - '-0.039'
+      - - Dual (α_eff+ESS)
+        - 17.65
+        - 1.4
+        - 2.6
+        - '-0.040'
+      - - ESS-only
+        - 17.635
+        - 4.15
+        - 2.05
+        - '-0.055'
+    figures_description:
+    - b* 分布对比直方图：dual 集中在 [0.5, 2.0]，ESS-only 呈双峰分布（b*=0 和 b*∈[3,6]），说明 ESS-only 对
+      contaminated batch 施加更激进干预
+    analysis: 'ESS-only 明确优于 dual，差值 0.015 约为 seed variance 的 3 倍。核心原因：AUC=0.939 的
+      detector  在 borderline 区域（q ∈ [0.3, 0.5]）有大量误判，α_eff 约束迫使 b* 降低以保留这些样本的有效权重，
+      但这些样本中相当一部分实际是 synthetic。ESS-only 的 max-intervention 策略绕过了这个问题—— 直接最大化 downweight
+      力度到 ESS 允许的极限。min-intervention principle 在 detector  calibration 不完美时适得其反。
+
+      '
+  - name: τ sweep (τ=0.5/0.6/0.7/0.8/0.9)
+    plan_id: p0_tau_sweep
+    description: τ sensitivity 分析，seed42，ρ=0.4
+    expected_results:
+      tau_05_eval_ppl: 17.64
+      tau_06_eval_ppl: 17.644
+      tau_07_eval_ppl: 17.648
+      tau_08_eval_ppl: 17.65
+      tau_09_eval_ppl: 17.68
+      ppl_range: 0.04
+      ppl_std: 0.015
+      tau_095_eval_ppl: 17.8
+    result_rationale: '在 worst 档下，τ sweep 暴露高度敏感性。τ 越低，α_eff 约束越宽松，b* 越大（趋近 ESS-only），
+      PPL 越好——这直接说明 α_eff 约束是有害的，放松它反而改善性能。τ=0.5 接近 ESS-only 效果 （α_eff 约束几乎不 binding），PPL
+      17.640 接近 ESS-only 的 17.635。τ=0.9 时约束过紧， 大量 batch 的 b* 被压到很低值，大量 noisy 样本被保留，PPL
+      恶化到 17.680。 τ=0.95 极端情况下几乎所有 batch 都被 α_eff 约束主导，b* 接近 0，PPL 退化到 17.800。 PPL
+      随 τ 单调递增（无 plateau），range=0.040 >> seed variance（0.005），std=0.015 >>  pass criteria
+      的 0.05 threshold。无 robust region——τ 选择直接决定性能，违背 Claim 3 的 "any reasonable τ
+      works" 论断。
+
+      '
+    tables:
+    - name: τ sweep results (seed42, ρ=0.4)
+      headers:
+      - τ
+      - eval_ppl
+      - Δ vs τ=0.8
+      - pct α_eff binding
+      - b*_mean
+      rows:
+      - - 0.5
+        - 17.64
+        - -0.01
+        - 5%
+        - 3.8
+      - - 0.6
+        - 17.644
+        - -0.006
+        - 12%
+        - 3.2
+      - - 0.7
+        - 17.648
+        - -0.002
+        - 25%
+        - 2.3
+      - - 0.8
+        - 17.65
+        - 0.000 (ref)
+        - 40%
+        - 1.4
+      - - 0.9
+        - 17.68
+        - 0.03
+        - 68%
+        - 0.65
+      - - 0.95
+        - 17.8
+        - 0.15
+        - 89%
+        - 0.15
+    figures_description:
+    - τ vs eval_ppl 折线图：单调递增，无 plateau，低 τ 趋近 ESS-only 性能
+    - τ vs pct_alpha_binding 柱状图：从 5%(τ=0.5) 到 89%(τ=0.95)，α_eff 约束从几乎无到完全主导
+    analysis: 'τ sweep 是 worst 档的核心证据。PPL 随 τ 单调递增、无 plateau，说明 α_eff 约束越紧性能越差。 最优
+      τ 是尽量低（约束不 binding），等价于放弃 α_eff 约束。这从根本上削弱了 dual-constraint  框架——如果最优策略是让 α_eff
+      不 binding，那 α_eff 就不应该存在于方法中。 Claim 3 受到严重挑战：τ 不是 "insensitive hyperparameter"，而是决定方法质量的关键参数，
+      且最优方向是消除 α_eff 约束本身。
+
+      '
+  - name: Golden Ratio oracle baseline (seed42)
+    plan_id: p0_golden_ratio_baseline
+    description: w=1/φ≈0.618 for synthetic, 1.0 for real，已知比例 oracle
+    expected_results:
+      eval_ppl_holdout: 17.625
+      delta_vs_adaptive: -0.025
+      delta_vs_ess_only: -0.01
+      delta_vs_uniform: -0.065
+    result_rationale: 'Golden Ratio 使用已知比例 k 推导理论最优权重 w*=1/φ，且直接使用 ground truth label  区分
+      real/synthetic（不依赖 noisy detector）。在 worst 档下，它明确优于 adaptive（差值 0.025） 和 ESS-only（差值
+      0.010）。这说明：(1) 已知比例确实 matters——Claim 3 "unknown proportion"  的 setting 虽然实际重要，但确实牺牲了性能；(2)
+      detector noise 是 adaptive 方法的瓶颈—— 即使 ESS-only 绕过了 α_eff 的 borderline 保留问题，detector
+      的 q-score 误差仍然限制了 reweighting 质量；(3) adaptive（dual 或 ESS-only）与 oracle 的差距 0.01-0.025
+      虽不大， 但在 seed variance=0.005 的背景下是可辨别的。
+
+      '
+    tables:
+    - name: All methods comparison (seed42, ρ=0.4)
+      headers:
+      - Method
+      - eval_ppl
+      - Δ vs uniform
+      - 需要已知比例?
+      - 需要 validation?
+      rows:
+      - - Uniform
+        - 17.69
+        - —
+        - 'No'
+        - 'No'
+      - - Grid-best (b=0.5)
+        - 17.651
+        - -0.039
+        - 'No'
+        - Yes (grid search)
+      - - Dual adaptive (τ=0.8)
+        - 17.65
+        - -0.04
+        - 'No'
+        - 'No'
+      - - ESS-only adaptive
+        - 17.635
+        - -0.055
+        - 'No'
+        - 'No'
+      - - Golden Ratio oracle
+        - 17.625
+        - -0.065
+        - 'Yes'
+        - 'No'
+    figures_description:
+    - Methods ranking bar chart：Golden Ratio > ESS-only > Grid-best ≈ Dual > Uniform
+    analysis: 'Golden Ratio oracle 明确优于所有 adaptive 方法，gap 可辨别。Claim 3 核心未被否定 （方法确实不需要已知比例即可运行），但
+      negative finding 是 proportion knowledge  确实提供性能优势。论文需诚实讨论这个 trade-off。
+
+      '
+  - name: n_min=1 ablation (seed42)
+    plan_id: p0_nmin_1
+    description: ESS 约束极度宽松（n_min=1），几乎无 ESS 约束
+    expected_results:
+      eval_ppl_holdout: 17.632
+      b_star_mean: 6.8
+      b_star_median: 5.2
+      ess_mean: 1.3
+      pct_ess_binding: 15
+      pct_alpha_binding: 60
+    result_rationale: 'n_min=1 使 ESS 约束极度宽松（batch_size=4 时 ESS≥1 几乎总能满足），b* 主要由 α_eff  约束决定。在
+      worst 档下，n_min=1 反而更优（17.632 vs dual n_min=2 的 17.650）， 因为更宽松的 ESS 约束允许更激进的
+      downweighting。这与 ESS-only 的 finding 一致—— 更多 downweighting = 更好。n_min=1 甚至接近
+      ESS-only（17.635），因为虽然 α_eff 仍 binding， 但 ESS 约束几乎不起作用，b* 能达到更高值。这个结果直接矛盾 dual-constraint
+      的 "保守干预"  逻辑——ESS 约束应该提供"稳定上界"防止 over-downweight，但放松它反而更好。
+
+      '
+    tables:
+    - name: n_min sensitivity (seed42, ρ=0.4)
+      headers:
+      - n_min
+      - eval_ppl
+      - b*_mean
+      - ESS_mean
+      - 行为
+      rows:
+      - - 1
+        - 17.632
+        - 6.8
+        - 1.3
+        - 几乎无 ESS 约束，接近 max-b
+      - - 2
+        - 17.65
+        - 1.4
+        - 2.6
+        - Dual default，α_eff binding 40%
+      - - 3
+        - 17.69
+        - 0.3
+        - 3.5
+        - ESS 过紧，b* 被钳制，≈uniform
+      - - ESS-only(n_min=2)
+        - 17.635
+        - 4.15
+        - 2.05
+        - 无 α_eff，max intervention
+    figures_description:
+    - n_min vs eval_ppl 折线图：单调递增——n_min 越小（约束越松、b*越大）PPL 越好
+    analysis: 'n_min=1 优于 n_min=2，说明 ESS 约束也是有害的（在当前 batch_size=4 的设置下）。 更宽松约束 → 更大
+      b* → 更多 downweight → 更好 PPL。这与 dual-constraint 的 min-intervention  原则根本矛盾。论文需
+      pivot：ESS 约束的 n_min 不应追求 "适度保守"，而应尽量宽松。
+
+      '
+  - name: Grid-b low (b=0.1/0.2/0.3) × 3 seeds
+    plan_id: p0_grid_b_low_seed42
+    description: 探索 b<0.5 区域是否有更优 grid-best
+    expected_results:
+      b0_1_eval_ppl_seed42: 17.68
+      b0_2_eval_ppl_seed42: 17.668
+      b0_3_eval_ppl_seed42: 17.658
+      b0_1_eval_ppl_seed123: 17.675
+      b0_2_eval_ppl_seed123: 17.66
+      b0_3_eval_ppl_seed123: 17.648
+      b0_1_eval_ppl_seed456: 17.685
+      b0_2_eval_ppl_seed456: 17.672
+      b0_3_eval_ppl_seed456: 17.66
+    result_rationale: 'b<0.5 区域应延续 grid sweep 的单调趋势：b 越小 PPL 越接近 uniform。b=0.3 约在
+      b=0.5(17.651)  和 uniform(17.690) 之间。b=0.5 仍是 grid-best，但 b=0.3 差距不大。 在 worst
+      档下这个实验的意义是：grid-best b=0.5 得到确认，adaptive b*_mean=1.40 远高于  grid-best 0.5，但 ESS-only
+      b*_mean=4.15 也远高于 grid-best 却表现更好——说明 batch-adaptive  的动态 b* 与 fixed b 的效果不能简单通过
+      mean b* 比较，per-batch 自适应本身有价值。
+
+      '
+    tables:
+    - name: Extended grid-b curve (seed42)
+      headers:
+      - b
+      - eval_ppl
+      - Δ vs uniform
+      rows:
+      - - 0.0
+        - 17.69
+        - 0.000 (uniform)
+      - - 0.1
+        - 17.68
+        - -0.01
+      - - 0.2
+        - 17.668
+        - -0.022
+      - - 0.3
+        - 17.658
+        - -0.032
+      - - 0.5
+        - 17.651
+        - -0.039
+      - - 1.0
+        - 17.692
+        - 0.002
+      - - 1.5
+        - 17.718
+        - 0.028
+      - - 2.0
+        - 17.741
+        - 0.051
+      - - 3.0
+        - 17.774
+        - 0.084
+      - - 5.0
+        - 17.818
+        - 0.128
+    figures_description:
+    - 完整 grid-b 曲线（b=0.1 到 5.0）：U 型但不对称，最优在 b=0.5，右侧陡峭上升
+    analysis: 'b=0.5 确认为 grid-best。b=0.3 也不差（-0.032 vs uniform），说明 b 在 [0.3, 0.5]
+      区间  都有效。关键对比：fixed b=0.5 (PPL=17.651) vs ESS-only adaptive (PPL=17.635)—— per-batch
+      自适应带来额外 0.016 改善，证明 adaptive b* 的价值（不论 dual 还是 ESS-only）。
+
+      '
+  - name: ρ=0.6 数据生成
+    plan_id: p0_contamination_60_datagen
+    description: 60% 污染率数据集
+    expected_results:
+      total_tokens: 200000000
+      contamination_ratio: 0.6
+      scored_data_ready: true
+    result_rationale: 数据生成是确定性步骤，无需预测。
+    tables: []
+    figures_description: []
+    analysis: 数据准备就绪。
+  - name: ρ=0.6 Uniform baseline (seed42)
+    plan_id: p0_contamination_60_uniform
+    description: 60% 污染下的 uniform baseline
+    expected_results:
+      eval_ppl_holdout: 18.8
+    result_rationale: '60% 污染比 40% 多 50% 的 synthetic 数据。Uniform baseline PPL 从 17.69(ρ=0.4)  上升到约
+      18.80，因为更多低质量 synthetic 样本拉低了整体训练质量。 PPL 跳跃约 1.1 points，符合污染比例增加的预期。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 60% 污染的 uniform PPL 显著高于 40%，为 reweighting 方法提供更大改善空间。
+  - name: ρ=0.6 Adaptive b* (seed42)
+    plan_id: p0_contamination_60_adaptive
+    description: 60% 污染下的 dual-constraint adaptive
+    expected_results:
+      eval_ppl_holdout: 18.55
+      delta_vs_uniform: -0.25
+      b_star_mean: 0.85
+    result_rationale: 'ρ=0.6 时 detector 面对更多 synthetic 样本，q-score 分布右移，α_eff 约束更频繁
+      binding。 在 worst 档下，adaptive 在 ρ=0.6 的改善（-0.25）虽然绝对值看似比 ρ=0.4（-0.04）大， 但 relative
+      improvement 仅 0.25/18.80=1.3%。更关键的是，rho06_delta_adaptive_vs_uniform  在 [0.01,
+      0.03] 的 normalized 范围内（占 uniform PPL 的比例）——效应未随污染率 scale up。 ρ=0.6 时 α_eff binding
+      比例更高（~55%），b* 被压得更低（mean 0.85 vs ρ=0.4 的 1.40）， 更多 noisy borderline 样本被保留。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'ρ=0.6 的 adaptive PPL 在 worst 档预测范围 [18.4, 19.0] 内。 改善相对于 uniform 有限，α_eff
+      约束在高污染下更紧，性能受限。
+
+      '
+  - name: ρ=0.6 Grid-b=0.5 (seed42)
+    plan_id: p0_contamination_60_grid_b0_5
+    description: 60% 污染下的 fixed b=0.5
+    expected_results:
+      eval_ppl_holdout: 18.5
+      delta_vs_uniform: -0.3
+    result_rationale: 'Fixed b=0.5 在 ρ=0.6 下仍然有效（甚至可能比 adaptive 更好），因为 b=0.5 的固定轻度  downweighting
+      不受 α_eff 约束的干扰。在 ρ=0.6 下 grid-best 可能不再是 b=0.5  而是略高的 b（如 b=1.0），但即使 b=0.5 也已优于
+      adaptive，因为 adaptive 的 b*_mean  被 α_eff 压到 0.85——低于 grid 的 optimal range。
+
+      '
+    tables:
+    - name: ρ=0.6 comparison (seed42)
+      headers:
+      - Method
+      - eval_ppl
+      - Δ vs uniform
+      rows:
+      - - Uniform
+        - 18.8
+        - —
+      - - Grid b=0.5
+        - 18.5
+        - -0.3
+      - - Dual adaptive
+        - 18.55
+        - -0.25
+    figures_description:
+    - ρ=0.4 vs ρ=0.6 效应量对比柱状图：adaptive 改善未随污染率 scale
+    analysis: 'ρ=0.6 时 adaptive 的改善不仅未放大，反而 underperform grid-b=0.5。α_eff 约束在高污染下  更频繁
+      binding，将 b* 压到 suboptimal 低值。效应未 scale 是 worst 档的关键标志—— 如果方法在更需要干预时反而干预不足，说明
+      α_eff 框架的方向性错误。
+
+      '
+  - name: n_min=4 ablation (seed42)
+    plan_id: p0_nmin_4
+    description: n_min=batch_size=4，ESS 约束强制 b*=0
+    expected_results:
+      eval_ppl_holdout: 17.69
+      b_star_mean: 0.0
+      pct_b_zero: 100
+    result_rationale: 'n_min=4=batch_size 时，ESS(b)≥4 要求所有样本权重完全相等（即 b=0）。任何 b>0 都会  降低至少一个样本的权重，使
+      ESS<4。因此 b*=0 for all batches，等价于 uniform。 PPL=17.690 完全匹配 uniform baseline。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 符合理论预期的退化情况，验证 ESS 约束的边界行为。
+  - name: n_min=5 ablation (seed42)
+    plan_id: p0_nmin_5
+    description: n_min>batch_size，不可能满足 ESS 约束
+    expected_results:
+      eval_ppl_holdout: 17.69
+      b_star_mean: 0.0
+      pct_b_zero: 100
+    result_rationale: 'n_min=5 > batch_size=4，ESS 上界为 batch_size=4，永远无法满足 ESS≥5。 fallback
+      行为取决于实现（应该默认 b*=0），等价于 uniform。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 退化情况，与 n_min=4 相同。验证实现的 graceful degradation。
+  - name: batch_size=8 + grad_accum=2 (seed42)
+    plan_id: p0_batchsize_8
+    description: 增大 micro-batch 到 8，保持 effective batch 不变
+    expected_results:
+      eval_ppl_holdout: 17.648
+      b_star_mean: 1.85
+      ess_mean: 3.8
+      pct_alpha_binding: 35
+      pct_ess_binding: 28
+      pct_b_zero: 37
+    result_rationale: 'batch_size=8 时 ESS 范围扩大到 [0,8]，n_min=2 的约束相对更宽松（25% vs 50%
+      of batch_size）。 b* 分布有更多空间，α_eff binding 比例略降。在 worst 档下，larger batch 略有改善  是因为
+      per-batch q-score 分布更稳定（更多样本 → 更准确的 α_eff 和 ESS 估计）， 但改善有限（17.648 vs 17.650），因为根本问题（α_eff
+      约束方向性错误）未解决。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'batch_size 增大使 n_min=2 的 knife-edge 问题缓解，但 dual-constraint 的 α_eff
+      问题持续。 改善微弱，不足以 save the method。
+
+      '
+  - name: batch_size=16 + grad_accum=1 (seed42)
+    plan_id: p0_batchsize_16
+    description: micro-batch=16，保持 effective batch 不变
+    expected_results:
+      eval_ppl_holdout: 17.646
+      b_star_mean: 2.1
+      ess_mean: 6.5
+      pct_alpha_binding: 30
+    result_rationale: 'batch_size=16 进一步扩大 ESS 空间，b* 有更多调节余地。α_eff binding 比例降到 30%
+      （因为 larger batch 的 q-score 分布更集中，α_eff 更容易达到 τ）。PPL 17.646 稍优于  batch_size=4
+      的 17.650，但仍不如 ESS-only（17.635）。即使 batch_size 增大让 dual  表现略好，ESS-only 在所有 batch_size
+      下都应该更优（因为问题在 α_eff 约束本身， 不在 batch_size）。
+
+      '
+    tables:
+    - name: batch_size sensitivity (dual adaptive, seed42)
+      headers:
+      - batch_size
+      - eval_ppl
+      - b*_mean
+      - pct_α_binding
+      rows:
+      - - 4
+        - 17.65
+        - 1.4
+        - 40%
+      - - 8
+        - 17.648
+        - 1.85
+        - 35%
+      - - 16
+        - 17.646
+        - 2.1
+        - 30%
+    figures_description:
+    - batch_size vs eval_ppl：微弱改善趋势，远不如切换到 ESS-only 的收益
+    analysis: 增大 batch_size 缓解但不解决 α_eff 的根本问题。
+  - name: ModernBERT detector (AUC≈0.99)
+    plan_id: p1_detector_modernbert
+    description: 训练 ModernBERT 强检测器
+    expected_results:
+      auc: 0.986
+      ece_calibrated: 0.025
+    result_rationale: 'ModernBERT 150M 参数远超 TF-IDF+LR，AUC 应达到 ~0.986（对齐 Drayson 的报告）。
+      更好的 calibration（ECE=0.025）意味着 q-score 更准确。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 强检测器就绪，用于后续 detector ablation。
+  - name: Training with ModernBERT scores (seed42)
+    plan_id: p1_detector_ablation_training
+    description: 使用强检测器分数的 adaptive 训练
+    expected_results:
+      eval_ppl_adaptive_modernbert: 17.64
+      eval_ppl_ess_only_modernbert: 17.638
+      delta_dual_vs_ess_with_strong_detector: -0.002
+    result_rationale: '更好的 detector（AUC=0.986 vs 0.939）减少 borderline 区域的 noise，α_eff
+      保留的  borderline 样本质量更高。在 worst 档下，dual 和 ESS-only 的差距从 0.015 缩小到 0.002 （几乎消失），说明
+      α_eff 的 "有害性" 主要源于 detector noise——当 detector 足够好时， α_eff 约束变得无害但也无益（因为 borderline
+      样本确实是 real 的）。这强化了 worst 档的  narrative：α_eff 的价值完全取决于 detector quality，在 lightweight
+      detector 下有害， 在强 detector 下无效——都不是 "有益"。
+
+      '
+    tables:
+    - name: Detector quality × method interaction
+      headers:
+      - Detector
+      - AUC
+      - Dual PPL
+      - ESS-only PPL
+      - Δ(dual-ESS)
+      rows:
+      - - TF-IDF+LR
+        - 0.939
+        - 17.65
+        - 17.635
+        - 0.015
+      - - ModernBERT
+        - 0.986
+        - 17.64
+        - 17.638
+        - 0.002
+    figures_description:
+    - Detector AUC vs dual/ESS-only gap：gap 随 AUC 缩小，说明 α_eff 的有害性源于 detector noise
+    analysis: '关键 insight：α_eff 约束在 noisy detector 下有害（保留 noisy borderline），在强 detector  下无效（borderline
+      确实是 real，保留与否差异极小）。α_eff 从未 "有益"——这是 worst 档的  最强 negative finding。
+
+      '
+  - name: Cross-generator data + training
+    plan_id: p1_cross_generator_training
+    description: Llama-3.2-1B 生成 synthetic，Qwen3-0.6B 训练
+    expected_results:
+      eval_ppl_adaptive: 17.68
+      eval_ppl_uniform: 17.72
+      delta: -0.04
+    result_rationale: 'Cross-generator 场景下 detector 面对不同分布的 synthetic 数据，AUC 可能下降。
+      在 worst 档下，adaptive 仍有微弱改善（-0.04），但不强于 self-generated 设置， 说明方法至少不崩溃但也不 scale
+      to harder settings。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 方法在 cross-generator 下不崩溃，但改善有限。
+  - name: Llama-3.2-3B adaptive + uniform (seed42)
+    plan_id: p1_llama3b_adaptive
+    description: 3B 模型上的 adaptive 验证
+    expected_results:
+      eval_ppl_uniform: 12.5
+      eval_ppl_adaptive: 12.48
+      delta: -0.02
+    result_rationale: '3B 模型更强，对 contamination 的 robustness 更高，reweighting 效应被自然压缩。
+      在 worst 档下，adaptive 改善仅 0.02 PPL（relative <0.2%），在更大模型上效应更弱。 这支持 "效应量小" 的 reviewer
+      concern。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 3B 模型上效应进一步缩小，worst 档预期。
+  - name: Detect-and-remove baseline (seed42)
+    plan_id: p1_baseline_detect_remove
+    description: Hard threshold q>0.5 直接移除，不做 soft reweighting
+    expected_results:
+      eval_ppl_holdout: 17.67
+      effective_tokens: 128000000
+      pct_removed: 36
+    result_rationale: 'Hard removal 移除约 36% 的数据（ρ=0.4 中 q>0.5 的样本），token 数减少。 PPL=17.670
+      在 uniform(17.690) 和 grid-best(17.651) 之间。在 worst 档下， detect-and-remove 不比 ESS-only
+      adaptive 好（17.670 vs 17.635），但展示了  hard filtering 作为 simple baseline 的合理性。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Soft reweighting 优于 hard removal，但差距不大。
+  - name: Random reweighting baseline (seed42)
+    plan_id: p1_baseline_random_reweight
+    description: 随机权重（与 q-score 无关），验证 detector signal 的 load-bearing 性
+    expected_results:
+      eval_ppl_holdout: 17.71
+      delta_vs_uniform: 0.02
+    result_rationale: '随机权重引入不相关的梯度噪声，应该比 uniform 更差。PPL 17.710 略高于 uniform 17.690，
+      确认 detector signal 是有用的（非随机权重的效果不是来自噪声注入）。但差距只有 0.02， 说明即使随机加权也不会造成灾难性恶化——整体方法的效应量确实不大。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 随机权重比 uniform 差，确认 detector signal load-bearing。
+  - name: Domain-skewed injection (seed42)
+    plan_id: p2_domain_skewed
+    description: Code-heavy 合成数据污染，非均匀域分布
+    expected_results:
+      eval_ppl_adaptive: 17.68
+      eval_ppl_uniform: 17.75
+      delta: -0.07
+    result_rationale: 'Domain-skewed 污染更 realistic，detector 在 code domain 可能 AUC 不同。
+      Adaptive 改善略大于 uniform injection（-0.07 vs -0.04），因为 domain-skewed  batch 内 q-score
+      分布更极端（有些 batch 几乎全是 code synthetic）， per-batch adaptive 能更好适应。但在 worst 档下，ESS-only
+      仍应优于 dual。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Domain-skewed 下 adaptive 的相对优势略增，但不改变 worst 档结论。
+  - name: Downstream eval (MMLU/HellaSwag)
+    plan_id: p2_downstream_eval
+    description: Llama-3.2-3B checkpoints 的下游任务评估
+    expected_results:
+      mmlu_uniform: 25.2
+      mmlu_adaptive: 25.3
+      hellaswag_uniform: 38.5
+      hellaswag_adaptive: 38.6
+    result_rationale: 'PPL 差异 0.02 在下游任务上几乎不可分辨。MMLU 和 HellaSwag 的改善在噪声范围内 （±0.5 point），无法声称
+      downstream 改善。在 worst 档下，PPL 的微弱差异  不传导到 downstream metrics。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 下游任务改善不显著，与 worst 档 PPL 效应量一致。
+  - name: Aggregate analysis — worst tier
+    plan_id: aggregate
+    description: 全实验综合分析与 narrative pivot
+    expected_results:
+      eval_ppl_dual_seed42: 17.65
+      eval_ppl_ess_only_seed42: 17.635
+      delta_dual_vs_ess_only: -0.015
+      tau_sweep_ppl_range: 0.04
+      tau_sweep_ppl_std: 0.015
+      eval_ppl_golden_ratio_seed42: 17.625
+      eval_ppl_nmin1_seed42: 17.632
+      rho06_delta_adaptive_vs_uniform: 0.013
+      rho06_adaptive_ppl: 18.55
+      mvp_ratio_aggregate: 68
+    result_rationale: '所有指标落在 worst 档定义的关键指标范围内： - dual PPL 17.650 ∈ [17.64, 17.66]
+      ✓ - ESS-only PPL 17.635 ∈ [17.62, 17.64] ✓   - delta -0.015 ∈ [-0.04, -0.01]
+      ✓ (ESS-only 更优) - τ sweep range 0.040 → std ≈ 0.015，无 plateau ✓ - Golden Ratio
+      17.625 ∈ [17.60, 17.64] ✓ - n_min=1 17.632 ∈ [17.62, 17.65] ✓ - ρ=0.6 Δ adaptive
+      0.013 ∈ [0.01, 0.03] ✓ - ρ=0.6 adaptive PPL 18.55 ∈ [18.4, 19.0] ✓ - MVP ratio
+      (recalculated with ESS-only as reference) ~68 ∈ [50, 75] ✓
+
+      '
+    tables:
+    - name: Complete methods ranking (seed42, ρ=0.4)
+      headers:
+      - Rank
+      - Method
+      - eval_ppl
+      - Δ vs uniform
+      - 需额外成本
+      rows:
+      - - 1
+        - Golden Ratio oracle
+        - 17.625
+        - -0.065
+        - 已知比例
+      - - 2
+        - n_min=1 (quasi-unconstrained)
+        - 17.632
+        - -0.058
+        - 无
+      - - 3
+        - ESS-only adaptive
+        - 17.635
+        - -0.055
+        - 无
+      - - 4
+        - Dual adaptive (τ=0.5)
+        - 17.64
+        - -0.05
+        - 无
+      - - 5
+        - batch_size=16 dual
+        - 17.646
+        - -0.044
+        - 无
+      - - 6
+        - batch_size=8 dual
+        - 17.648
+        - -0.042
+        - 无
+      - - 7
+        - Dual adaptive (τ=0.8, default)
+        - 17.65
+        - -0.04
+        - 无
+      - - 8
+        - Grid-best (b=0.5)
+        - 17.651
+        - -0.039
+        - Grid search
+      - - 9
+        - Dual adaptive (τ=0.9)
+        - 17.68
+        - -0.01
+        - 无
+      - - 10
+        - Detect-and-remove
+        - 17.67
+        - -0.02
+        - 无
+      - - 11
+        - Uniform
+        - 17.69
+        - —
+        - —
+      - - 12
+        - Random reweight
+        - 17.71
+        - 0.02
+        - 无
+    - name: Claim status under worst tier
+      headers:
+      - Claim
+      - Original status
+      - Worst-tier status
+      - Action
+      rows:
+      - - Claim 1 (dual-constraint)
+        - Core
+        - FAILED — α_eff harmful
+        - 'Pivot: ESS-only as main method, dual as negative finding'
+      - - Claim 2 (免调参)
+        - PASS (88.6%)
+        - WEAKENED (~68%)
+        - 'Reframe: ESS-only 也免调参且更优'
+      - - Claim 3 (unknown proportion)
+        - Pending τ sweep
+        - CHALLENGED — τ sensitive
+        - τ sweep 作为 negative evidence
+    figures_description:
+    - 'Figure 1: α_eff(b) 和 ESS(b) 双轴图 → 保留，但 reframe 为 ''why min-intervention fails'''
+    - 'Figure 2: Methods ranking waterfall chart — Golden Ratio > ESS-only > Dual
+      > Grid > Uniform'
+    - 'Figure 3: τ sensitivity — PPL 单调递增，无 plateau，annotation: ''α_eff constraint
+      is uniformly harmful'''
+    - 'Figure 4: Detector quality × method interaction — α_eff 在 weak detector 下有害，strong
+      detector 下无效'
+    - 'Figure 5: ρ=0.4 vs ρ=0.6 效应量对比 — effect does not scale with contamination'
+    analysis: "Worst 档的核心叙事：\n1. **ESS-only adaptive b* 是简单有效的主方法**——per-batch 自适应消除\
+      \ grid search，\n   PPL 17.635 优于 grid-best 17.651，且无需任何超参（n_min 只需设一个宽松值如 2）。\n\
+      \n2. **α_eff 质量下界约束是 negative finding**——min-intervention 不优于 max-intervention。\n\
+      \   根本原因：在 detector calibration 不完美时（AUC=0.939），q-score 的噪声使得 \n   α_eff 阈值化保留的\
+      \ \"borderline\" 样本实际质量可疑。α_eff 的保守干预保留了过多 \n   noisy samples，反而有害。\n\n3. **τ\
+      \ 高度敏感**——PPL 随 τ 单调递增，无 plateau region，最优方向是消除 α_eff 约束。\n   这使得 τ 不是 \"insensitive\
+      \ default\"，而是需要仔细调节的超参——而最优调节结果 \n   等价于不用 α_eff。\n\n4. **论文 reframe 为 empirical\
+      \ study of adaptive importance weighting**：\n   - Contribution 1: ESS-only adaptive\
+      \ b* 消除 grid search\n   - Contribution 2: α_eff negative finding + detector\
+      \ quality interaction analysis\n   - Contribution 3: Lightweight detector sufficiency\
+      \ (TF-IDF+LR 即可)\n   - Contribution 4: Loss reweighting vs SIR 的实证对比\n\n5. **仍可冲\
+      \ EMNLP**：negative finding 本身有价值（explains when/why quality floor \n   constraints\
+      \ fail），ESS-only adaptive 是实用贡献。需补做 ESS-only × 3 seeds \n   + ρ=0.6 ESS-only\
+      \ 来支撑新主方法。"
+  review_report: '---
+
+    dream_id: dream_20260515T102146
+
+    tier: worst
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-15T11:19:20.649443+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper**: "When Less Cleaning Hurts: An Empirical Study of Adaptive Importance
+    Weighting for Contaminated Pretraining"
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Venue Standard**: Top ML venue, ~25% acceptance rate, 6-point scale
+
+
+    ---
+
+
+    ## Reviewer Assignments
+
+
+    - **R1**: Methods & Experiments
+
+    - **R2**: Novelty, Related Work & Significance
+
+
+    ---
+
+
+    ## R1 Assessment: Methods & Experiments
+
+
+    **Summary.** The paper proposes dual-constrained and ESS-only adaptive b* selection
+    for detect-and-reweight pretraining, then presents extensive ablations showing
+    ESS-only (max-intervention) uniformly outperforms the dual-constrained variant
+    (min-intervention). The experimental coverage is broad but the most critical comparison
+    (ESS-only vs dual) lacks multi-seed validation, and effect sizes are at the noise
+    floor throughout.
+
+
+    **Strengths**
+
+
+    - S1: **Comprehensive ablation suite.** The paper covers τ sweep, n_min sensitivity,
+    batch size, contamination ratio (ρ=0.4/0.6), detector quality, cross-generator
+    transfer, domain-skewed injection, model scale, and multiple baselines (detect-and-remove,
+    random reweight, Golden Ratio oracle). This is thorough for an empirical study.
+
+    - S2: **Honest framing as negative finding.** The paper does not hide that the
+    dual-constrained formulation — its original contribution — fails. Pivoting to
+    "ESS-only is the practical recommendation, α_eff is a cautionary finding" is intellectually
+    honest.
+
+    - S3: **Seed variance calibration.** Establishing the 0.005 PPL seed variance
+    from 3-seed uniform baseline and using it as a yardstick throughout is good practice.
+
+    - S4: **The τ sweep (Table 6) is well-executed.** Monotonic PPL increase from
+    τ=0.5 to τ=0.95 with α_eff binding percentage rising from 5% to 89% cleanly demonstrates
+    that α_eff is uniformly harmful at AUC=0.939.
+
+
+    **Weaknesses**
+
+
+    - W1 (Critical): **ESS-only vs dual is single-seed.** The paper''s central claim
+    — ESS-only outperforms dual by 0.015 PPL — rests entirely on seed 42. Table 2
+    provides multi-seed for uniform/grid-best/dual but not ESS-only. With seed variance
+    of 0.005–0.007, the 0.015 gap is 2–3× seed std, which is suggestive but not conclusive
+    without multi-seed confirmation. This is the most important comparison in the
+    paper and it lacks the statistical rigor applied to secondary comparisons.
+
+    - W2 (Major): **Effect sizes at noise floor.** The best non-oracle improvement
+    over uniform is 0.055 PPL (0.31% relative) at 0.6B scale. At 3B scale, it shrinks
+    to 0.020 PPL (<0.2% relative). Downstream metrics (MMLU, HellaSwag) show no distinguishable
+    improvement. The paper acknowledges this in Limitations but the entire experimental
+    edifice rests on differences that may not matter in practice.
+
+    - W3 (Major): **Missing ESS-only at ρ=0.6.** Table 9 compares only uniform, dual
+    adaptive, and grid b=0.5 at ρ=0.6. ESS-only — the paper''s recommended method
+    — is absent from the higher-contamination evaluation. The review context confirms
+    ESS-only at ρ=0.6 was planned but not executed. This is a significant gap given
+    that dual underperforms grid-best at ρ=0.6.
+
+    - W4 (Major): **α_eff definition ambiguity.** Equation (2) defines α_eff using
+    a hard indicator 1[q_i < 0.5]. However, the continuous formulation α_eff(b) =
+    Σw_i·(1-q_i)/Σw_i (no hard threshold) is equally natural and avoids an arbitrary
+    cutoff at 0.5 for an imperfect detector. The paper does not discuss this choice
+    or compare alternatives, yet it is load-bearing: the hard threshold determines
+    which samples are "borderline" and thus drives the entire negative finding about
+    α_eff preserving noisy samples.
+
+    - W5 (Moderate): **n_min operating range is knife-edge at batch_size=4.** Table
+    7 shows only n_min ∈ {1, 2} produce meaningful results; n_min ≥ 3 degenerates
+    to uniform. This means the "only hyperparameter" has exactly one working value
+    at the default batch size. The paper''s rule of thumb (n_min/|B| ≤ 0.5) is post-hoc
+    and untested at larger batch sizes.
+
+    - W6 (Moderate): **Grid-b low multi-seed missing.** The extended grid (b=0.1–0.3)
+    is seed-42 only. The fixed-b curve shape (and thus the claim that ESS-only''s
+    mean b*=4.15 outperforms globally-optimal fixed b=0.5) could look different under
+    other seeds.
+
+    - W7 (Minor): **No learning curves or training dynamics.** All results are final
+    PPL. How does the adaptive b* behave over training? Does it stabilize? Drift?
+    The per-batch adaptation is the method''s core mechanism, yet its temporal behavior
+    is never shown.
+
+
+    **Questions for Authors**
+
+
+    - Q1: Can you provide 3-seed results for ESS-only? This is the minimum needed
+    to support the central claim.
+
+    - Q2: What is the ESS-only PPL at ρ=0.6? If ESS-only also underperforms grid-best
+    at ρ=0.6, the practical recommendation collapses.
+
+    - Q3: What happens with n_min=2 at batch_size=32 or 64? Is the method robust at
+    realistic training configurations?
+
+    - Q4: Have you considered a continuous α_eff formulation without the hard 0.5
+    threshold? If α_eff were defined continuously, would the negative finding still
+    hold?
+
+
+    **R1 Preliminary Score**: 3/6 (Weak Reject)
+
+    **Confidence**: 4/5
+
+
+    ---
+
+
+    ## R2 Assessment: Novelty, Related Work & Significance
+
+
+    **Summary.** The paper replaces Drayson et al.''s validation-based grid search
+    over b with per-batch adaptive b* using two textbook quantities (Kish''s ESS and
+    a weighted real-fraction metric). The core conceptual contribution — contrasting
+    minimum vs maximum intervention — is genuine, and the negative finding (α_eff
+    hurts under noisy detection) is useful. However, the novelty is narrow (automating
+    a single scalar in an existing formula), important related work in importance
+    sampling is missing, and the small effect sizes limit practical impact.
+
+
+    **Strengths**
+
+
+    - S1: **Min-intervention vs max-intervention is a genuine conceptual contribution.**
+    The distinction between b* = inf{b : α_eff ≥ τ} and b* = max{b : ESS ≥ n_min}
+    formalizes an important design choice. The empirical finding that max-intervention
+    wins is non-obvious and practically useful.
+
+    - S2: **The negative finding has community value.** Demonstrating that "clean
+    enough" constraints backfire under imperfect detection challenges conventional
+    wisdom about conservative data curation. The detector-quality interaction (Table
+    5: harmful at AUC=0.939, inert at AUC=0.986) provides a clear mechanistic explanation.
+
+    - S3: **Lightweight detector sufficiency.** TF-IDF+LR (trainable in 2 minutes)
+    providing most of the benefit is a practical finding that lowers the barrier to
+    adoption.
+
+    - S4: **Paper is well-structured and clearly written.** The progression from main
+    results → negative finding → sensitivity analyses → discussion is logical. Tables
+    are informative and well-labeled.
+
+
+    **Weaknesses**
+
+
+    - W1 (Major): **Narrow novelty over Drayson et al.** The weighting formula w=(1-q)^b,
+    the detect-and-reweight paradigm, and the overall framework are all from Drayson
+    et al. The paper''s contribution reduces to: (a) replace grid search with a 1D
+    bisection combining Kish''s ESS (1965) and a weighted fraction, and (b) use loss
+    reweighting instead of SIR. Contribution (b) is a standard implementation choice.
+    Contribution (a) is useful engineering but not a methodological advance. The adaptive
+    b* algorithm is ~7 lines of pseudocode.
+
+    - W2 (Major): **τ insensitivity paradox.** The τ sweep shows PPL range of only
+    0.040 across τ ∈ [0.5, 0.9]. While presented as evidence that α_eff is harmful,
+    it equally suggests that α_eff is inconsequential — the constraint barely matters
+    regardless of τ. If removing α_eff only buys 0.010–0.015 PPL, the entire negative
+    finding is about a negligible effect. This undermines both the dual-constrained
+    formulation (it barely matters) and the negative finding about it (the thing that
+    doesn''t matter also doesn''t hurt much).
+
+    - W3 (Major): **Significance limited by effect sizes.** The best improvement is
+    0.055 PPL at 0.6B scale with 40% controlled contamination — an aggressive setting.
+    At realistic scales (3B) and natural contamination, the effect would likely vanish.
+    No downstream task improvement is demonstrated. A practitioner reading this paper
+    would reasonably conclude: "the effect is too small to bother implementing."
+
+    - W4 (Major): **Missing importance sampling literature.** The ESS constraint is
+    Kish''s effective sample size (1965), not cited. The connection to self-normalized
+    importance sampling, Pareto Smoothed Importance Sampling (Vehtari et al., JMLR
+    2024), and ESS-constrained importance weighting in off-policy RL (Precup et al.,
+    2000; Munos et al., 2016) is absent. AIOLI (Chen et al., ICLR 2025) — online adaptive
+    data mixing without grid search — is the closest "no grid search" comparator and
+    is not discussed. Self-paced learning (Kumar et al., 2010) and curriculum learning
+    (Bengio et al., 2009) are methodological antecedents for adaptive per-sample weighting.
+    These omissions make the contribution appear more novel than it is.
+
+    - W5 (Moderate): **"Zero tuning cost" is overstated.** The method replaces one
+    hyperparameter (b) with two (τ, n_min) in the dual case, or one (n_min) in ESS-only.
+    At batch_size=4, n_min=2 is the only working value. Calling this "zero-tuning"
+    stretches the definition. A fixed b=0.5 (no adaptive machinery, no bisection overhead,
+    no n_min sensitivity) achieves PPL 17.651 vs ESS-only''s 17.635 — a 0.016 difference
+    that may not justify the added complexity.
+
+    - W6 (Moderate): **Claims about "unknown proportion" advantage are untested.**
+    The paper claims the method works without knowing ρ, which is true but trivial
+    — uniform training also doesn''t need ρ. The interesting question is whether the
+    method''s advantage scales with ρ, and the ρ=0.6 results (dual underperforms grid-best)
+    suggest it does not.
+
+
+    **Questions for Authors**
+
+
+    - Q1: How does ESS-only compare to simply setting b=0.5 universally? The 0.016
+    PPL gap seems small relative to the added algorithmic complexity.
+
+    - Q2: Have you considered the connection to off-policy RL importance sampling,
+    where ESS-constrained weighting is standard? How does this work position against
+    that literature?
+
+    - Q3: The AIOLI framework (Chen et al., ICLR 2025) eliminates grid search for
+    data mixing via online optimization. How does your approach compare conceptually
+    and empirically?
+
+    - Q4: At what contamination rate and model scale would you expect the effect to
+    become practically meaningful (e.g., >0.5% relative PPL improvement)?
+
+
+    **Missing Related Work**
+
+
+    - Kish, L. (1965). Survey Sampling — foundational source for ESS.
+
+    - Vehtari, A. et al. (JMLR 2024). PSIS — ESS diagnostics in importance sampling.
+
+    - Chen, M. et al. (ICLR 2025). AIOLI — online adaptive mixing without grid search.
+
+    - Off-policy RL importance weighting (Precup et al., 2000; Munos et al., 2016).
+
+    - Self-paced learning (Kumar et al., 2010) / Curriculum learning (Bengio et al.,
+    2009).
+
+    - MATES (Yu et al., NeurIPS 2024) — online adaptive instance-level selection.
+
+
+    **R2 Preliminary Score**: 3/6 (Weak Reject)
+
+    **Confidence**: 4/5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing
+
+
+    R1 shared with R2: The ESS-only single-seed problem, the missing ρ=0.6 ESS-only
+    experiment, and the n_min knife-edge at batch_size=4. R2 agreed these are critical
+    experimental gaps that compound the novelty concern.
+
+
+    R2 shared with R1: The τ-insensitivity paradox (if α_eff barely matters regardless
+    of τ, the negative finding is about a negligible effect), the missing importance
+    sampling literature, and the narrow novelty over Drayson et al. R1 agreed that
+    the significance concern is fundamental — even if all experimental gaps were filled,
+    the effect sizes may be too small to matter.
+
+
+    ### Step 3: Convergence
+
+
+    **Points of agreement (both reviewers):**
+
+    1. The paper is well-written and honest about limitations — this is a strength.
+
+    2. The ESS-only vs dual comparison lacks multi-seed validation — this is the most
+    critical experimental gap.
+
+    3. Effect sizes are at or near the noise floor, especially at 3B scale and on
+    downstream tasks.
+
+    4. The α_eff definition (hard threshold at 0.5) is questionable and underdiscussed.
+
+    5. The contribution is incremental over Drayson et al. — automating one hyperparameter
+    using standard importance sampling diagnostics.
+
+    6. The paper would be better suited as a short/findings paper than a full paper
+    at a top venue.
+
+
+    **Points of partial disagreement:**
+
+    - R1 sees the τ sweep as a clean demonstration of α_eff''s harm; R2 sees the same
+    data as showing α_eff is inconsequential (the paradox). **Resolution**: Both interpretations
+    are valid and reflect the same underlying issue — the absolute magnitudes are
+    too small for either interpretation to be strongly compelling.
+
+    - R2 is more critical of novelty; R1 is more critical of experimental rigor. **Resolution**:
+    These are complementary weaknesses that both need addressing.
+
+
+    ### Step 4: Final Consensus
+
+
+    **Overall Score: 3/6 (Weak Reject)**
+
+    **Confidence: 4/5**
+
+
+    ---
+
+
+    ## Consolidated Assessment
+
+
+    ### Summary
+
+
+    The paper studies adaptive per-batch exponent selection for detect-and-reweight
+    pretraining under synthetic contamination. It compares a dual-constrained formulation
+    (quality floor + stability ceiling) against a simpler ESS-only formulation (stability
+    ceiling only), finding that the quality floor constraint (α_eff) is harmful under
+    imperfect detection and inert under strong detection. The recommended ESS-only
+    adaptive b* eliminates grid search and outperforms fixed-b baselines. The paper
+    is well-written and honest, but the contribution is incremental, effect sizes
+    are marginal, and the central comparison lacks multi-seed validation.
+
+
+    ### Key Strengths
+
+
+    1. **Honest negative finding with mechanistic explanation.** The α_eff → detector
+    noise → borderline sample preservation chain is clearly articulated and empirically
+    supported by the detector quality interaction (Table 5).
+
+    2. **Comprehensive ablation coverage.** τ, n_min, batch size, ρ, detector quality,
+    model scale, cross-generator, domain-skewed, and multiple baselines are all examined.
+
+    3. **Clear practical recommendation.** ESS-only with n_min=2 is simple and actionable.
+
+    4. **Good experimental practice.** Seed variance calibration, oracle upper bound,
+    random reweight sanity check.
+
+
+    ### Key Weaknesses
+
+
+    1. **Central claim is single-seed (Critical).** The ESS-only vs dual gap (0.015
+    PPL) — the paper''s primary finding — is reported only for seed 42. Multi-seed
+    results exist for secondary comparisons (Table 2) but not for the most important
+    one.
+
+    2. **Effect sizes are marginal (Major).** Best improvement: 0.055 PPL (0.31%)
+    at 0.6B/ρ=0.4. At 3B: 0.020 PPL (<0.2%). No downstream metric improvement. These
+    magnitudes are unlikely to matter in practice.
+
+    3. **Narrow novelty over Drayson et al. (Major).** The contribution is automating
+    one hyperparameter (b) using Kish''s ESS (1965) — a textbook quantity. The formula,
+    paradigm, and weighting scheme are all from prior work. Important connections
+    to importance sampling literature (PSIS, off-policy RL, propensity scores) are
+    missing.
+
+    4. **ESS-only missing at ρ=0.6 (Major).** The recommended method is not evaluated
+    at higher contamination, where dual already underperforms grid-best. This is a
+    critical gap.
+
+    5. **n_min knife-edge (Moderate).** At batch_size=4, only n_min=2 works. The "zero-tuning"
+    claim is undermined when the hyperparameter has one viable value.
+
+    6. **α_eff definition uses arbitrary hard threshold (Moderate).** The 1[q<0.5]
+    indicator in Eq. (2) is unmotivated for an imperfect detector and undiscussed.
+
+
+    ### Experiment Coverage Assessment
+
+
+    The paper covers most planned experiments from the design document. Key gaps:
+
+    - **ESS-only multi-seed**: Not reported (critical)
+
+    - **ESS-only at ρ=0.6**: Not reported (major)
+
+    - **Low-b grid multi-seed**: Not reported (minor)
+
+    - **Training dynamics / b* evolution over training**: Not reported (minor)
+
+
+    ### Recommendation
+
+
+    **Weak Reject.** The paper addresses a relevant problem and is executed with care,
+    but it falls below the bar for a top ML venue full paper on three grounds: (1)
+    the novelty is incremental — one scalar automated with a textbook diagnostic;
+    (2) the effect sizes are too small to demonstrate practical impact; and (3) the
+    central finding lacks multi-seed statistical support. The work would be well-suited
+    as a **short paper or findings paper** focusing on the ESS-only practical heuristic
+    and the negative finding about minimum-intervention principles under noisy signals.
+    To strengthen for a full paper: provide multi-seed ESS-only results, evaluate
+    ESS-only at ρ=0.6, test at batch_size ≥ 32, connect to importance sampling literature,
+    and demonstrate meaningful downstream task improvement at scale.
+
+
+    ### Actionable Suggestions for Revision
+
+
+    1. Run ESS-only with seeds {42, 123, 456} and report in Table 2.
+
+    2. Add ESS-only to the ρ=0.6 comparison (Table 9).
+
+    3. Test n_min sensitivity at batch_size ≥ 32 to show the method works beyond the
+    knife-edge regime.
+
+    4. Add a training dynamics figure showing b* distribution evolution over training
+    steps.
+
+    5. Cite and connect to Kish (1965), PSIS, AIOLI, and off-policy RL importance
+    weighting literature.
+
+    6. Discuss the α_eff hard threshold choice (Eq. 2) and compare against a continuous
+    formulation.
+
+    7. Consider reframing as a short/findings paper with tighter claims matched to
+    the evidence.
+
+    '
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T11:19:29+00:00'

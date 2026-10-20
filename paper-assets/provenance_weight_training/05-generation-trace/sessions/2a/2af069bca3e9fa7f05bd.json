@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2af069bca3e9fa7f05bd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix ece persist and ngram eval",
+  "task_key": "worker_fix_ece_persist_and_ngram_eval_20260521T103127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_ece_persist_and_ngram_eval_20260521T103127_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "d440aa9ac3a5405f84bc6562ed0fa29298908d054d7a8e7097877571b92c3758"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nECE 持久化: OK — 文件路径: /root/autodl-tmp/provenance_weight_training/output/ece_results.txt\n  TF-IDF ECE = 0.0478\n  GPT-2 ECE = 0.1314\n  N-gram ECE = 0.0685\n\nngram_seed42 eval (FP32):\n  holdout_ppl: 17.820214 (source: /root/autodl-tmp/provenance_weight_training/output/eval_results/ngram_adaptive_seed42_eval_fp32.json)\n  holdout_loss: 2.880333\n  num_tokens: 4,077,068\n  eval_time: 561.8s (GPU contention with concurrent eval on same GPU)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-ece-persist-and-ngram-eval.md"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "adaptive_fix_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-14T13:32:30.463Z",
+    "updated_at": "2026-05-14T14:20:12.431Z",
+    "hypothesis": "D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint achieves meaningful improvement over uniform baseline (PPL=17.69) for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)",
+    "parent": "adaptive_seed42",
+    "notes": "D012 代码验证通过（n_min=max(2,batch_size//2), 无EMA, import OK）。等 GPU 释放后提交。",
+    "failure_reason": "wandb.errors.errors.UsageError: No API key configured. PID 108208 crashed shortly after start.",
+    "completed_at": "2026-05-14T14:19:16.469Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "D012 代码验证通过（n_min=max(2,batch_size//2), 无EMA, import OK）。等 GPU 释放后提交。"
+      }
+    }
+  },
+  "timestamp": "2026-05-14T14:20:12.469638+00:00",
+  "trigger": "update_registry"
+}

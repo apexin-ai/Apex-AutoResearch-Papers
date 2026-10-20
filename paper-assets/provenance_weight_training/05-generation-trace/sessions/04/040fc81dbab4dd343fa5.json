@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "040fc81dbab4dd343fa5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "writing experiment setup draft",
+  "task_key": "worker_writing_experiment_setup_draft_20260514T161158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_experiment_setup_draft_20260514T161158_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "4825ba8fe955cc5a32fa6ef62f3d2b1da99207f0cb8eff71242ce3b156af5659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/experiment_setup_draft.md` 并注册（`art_20260514_c31941`）。\n\n文档包含 6 个小节：Datasets、Contamination Detector、Language Model Configuration、Weighting Methods（含 $\\alpha_{\\text{eff}}$ 和 $b^*$ 的数学定义）、Evaluation Protocol、Hardware and Compute，附 seed123 完整 preliminary results 表格。\n\n待补充项已用 `[*Pending: ...*]` 标注：\n- adaptive\\_v2 ($n_{\\min}=2$) 三组 seed 结果\n- seed 456 grid-$b$ 完整数据\n- 3-seed 统计汇总（均值 ± 标准差）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-experiment-setup-draft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f2857c3d4c0d142f7ee",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_5_1778803166.md",
+  "task_key": "loop_5_1778803166",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778803166.md",
+    "occurrence": 1,
+    "bytes": 3893,
+    "sha256": "d11819db086743babe0e9118c636c27f10525598027b67e51bb7b4ef69e263ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-14T23:40:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（westd-47453）。不可用其他设备\n- `pretrain_weighted.py` 是自定义 argparse，**不支持 `--overwrite_output_dir`**（D012 三组实验因此全部 EXIT_CODE=2 崩溃）。需要覆盖输出时删目录或用 `--resume_from_checkpoint`\n- WANDB_MODE=disabled 跑的实验没有 W&B metrics，cron 回调时必须从日志提取\n- 训练无 inline eval 时（没传 `--eval_data_path` + `--eval_steps`），训练完必须补跑 eval 才能拿到 eval_ppl_holdout\n- 输出目录必须在数据盘，根分区只有 30GB（D008 教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 训练数据：`data/scored_data.jsonl`（371499 条），eval：`data/human/eval_holdout.jsonl`\n- W&B：大部分实验 WANDB_MODE=disabled\n- 活跃进程：\n  - grid_b_seed42_batch: PID 50134, tmux, cuda:0（b=5.0 跑到 ~56%，ETA ~95min）\n  - adaptive_fix_seed123: PID 126939, tmux, cuda:2（从 ckpt-1500 恢复）\n  - adaptive_fix_seed456: PID 127280, tmux, cuda:3（从 ckpt-1000 恢复）\n\n### 3. 📊 当前状态\n收到 adaptive_fix_seed42 完成回调（ANALYZING），已派 Worker `worker_analyze_adaptive_fix_seed42_20260514T204056` 去提取 metrics + 补跑 eval + 更新 registry。**该 Worker 尚未回调**，下一个 session 需要处理其结果。\n\nRegistry 关键状态：\n- `adaptive_fix_seed42`: ANALYZING — 等 Worker 回调写入 metrics/conclusion\n- `adaptive_fix_seed123`: RUNNING — cuda:2，从 ckpt-1500 恢复，预计 ~2.5h 完成\n- `adaptive_fix_seed456`: RUNNING — cuda:3，从 ckpt-1000 恢复，预计 ~3h 完成\n- `grid_b_seed42_batch`: RUNNING — cuda:0，b=5.0 最后一个值，~95min 完成\n- 6 个 grid_b_seed456 实验 QUEUED，等 GPU 释放\n- 3 个 adaptive_v2 实验已 killed（D012 改用 adaptive_fix）\n\n### 4. 📋 待办\n- Worker `analyze:adaptive_fix_seed42` 回调到达 → 检查 eval_ppl 结果，按 on-experiment-done 流程处理（success/negative 分叉）\n- adaptive_fix_seed123 cron 回调 → 同样派 Worker 提取 metrics + 补跑 eval\n- adaptive_fix_seed456 cron 回调 → 同上\n- grid_b_seed42_batch 完成 → 提取 6 个 b 值的 eval_ppl，汇总与 seed123 对比\n- **三组 adaptive_fix + grid_b seed42 全部 DONE → MVP PASS/FAIL 判定**：adaptive_fix 均值 ≥ 90% grid-best 改善量则 PASS\n- seed42/seed123 best-b 均在边界(0.5) → 考虑扩展 grid 到 b=0.1/0.2/0.3\n- MVP PASS → post-mvp-kickoff（paper_framing → experiment_plan → dream_simulate）\n- GPU 释放后 → 提交 grid_b_seed456 系列（6 个 QUEUED）\n\n### 5. 🎯 战略上下文\n- 核心方向：用检测器置信度推导理论最优权重 b*，替代网格搜索（EMNLP 2026 ARR May 25）\n- Day 2/12，MVP 验证阶段。关键问题：adaptive b* 能否匹配 grid-searched best-b？\n- seed123 grid-b 结果已出：b 与 PPL 单调递增，b=0.5 最优（17.638，vs uniform 17.69 改善 0.29%）。最优在搜索边界，可能需扩展 b<0.5\n- 旧 adaptive (n_min=3) seed42 零改善（D011），诊断为 n_min=3 钳制 ESS。D012 修复 n_min→2\n- D017 勘误：adaptive_fix 实际只改了 n_min=2，无 EMA（EMA 未编码）。D018 确认 v1→v2 无混淆变量\n- 易错点：adaptive_fix 的 eval 是补跑的（训练时没开 eval），Worker 需要先找到 final checkpoint 再跑 eval 脚本。不要假设训练日志里有 eval_ppl\n- Drayson et al. (EMNLP 2025) 使用同一公式 w=(1-q)^b（D013 新颖性自查），我们的差异化在于理论推导 b* 而非手动选 b\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778803166.md"
+}

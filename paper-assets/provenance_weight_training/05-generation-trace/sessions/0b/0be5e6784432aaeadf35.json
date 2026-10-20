@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0be5e6784432aaeadf35",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b05 seed42",
+  "task_key": "worker_eval_grid-b05-seed42_20260514T072916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid-b05-seed42_20260514T072916_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "2db9d4996417fc7cfc831a131e66e2d211999c2584181f55d30c25405a801fa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**grid_b b=0.5 seed42 eval perplexity = 17.65**\n\n| 方法 | Eval PPL |\n|------|---------|\n| uniform 均值 | 17.694 |\n| **grid_b b=0.5 seed42** | **17.651** |\n| adaptive 均值 | 17.639 |\n\nb=0.5 的 PPL (17.651) 位于 uniform (17.694) 和 adaptive (17.639) 之间，比 uniform 好 0.043，比 adaptive 差 0.012。结果已保存到 `output/eval_grid_b0_5_seed42.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b05-seed42.md"
+}

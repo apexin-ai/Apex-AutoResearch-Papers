@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e46c92011e54a4d5b58",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check 30476 4exp alive",
+  "task_key": "worker_check_30476_4exp_alive_20260517T134545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_30476_4exp_alive_20260517T134545_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "51c8409b35e36d3eb6de762d4b421fc0263115d96778a0f813b380d04591204a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四实验状态汇总：\n\n**进程存活：4/4 全部存活**\n\n| 实验 | PID | 当前 Step | 总 Steps | 进度 | 已运行 |\n|------|-----|-----------|----------|------|--------|\n| random_reweight_seed123 | 20073 | 1282 | 6103 | 21% | 46 min |\n| bs8_auto_nmin_seed42 | 22466 | 99 | 6103 | 2% | 3 min 36 sec |\n| batch_adaptive_tau_rho06_seed42 | 22904 | 99 | 6103 | 2% | 3 min 26 sec |\n| rho02_adaptive_tau09_seed42 | 22095 | 99 | 6103 | 2% | 3 min 44 sec |\n\n**GPU 占用：** 4 卡全满载（94-99% utilization），GPU0/2/3 用 46.5 GiB，GPU1 用 81.7 GiB（bs8 的 batch size 更大）\n\n**系统内存：** 83 GiB / 1.0 TiB 已用，剩余 908 GiB 可用，水位很低，无压力\n\nrandom_reweight 比其他三个早提交约 42 分钟，进度领先较多。其余三个几乎同时启动，当前都在 step 99 左右。按 ~2.2s/step 估算，每个实验总耗时约 3.7 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-30476-4exp-alive.md"
+}

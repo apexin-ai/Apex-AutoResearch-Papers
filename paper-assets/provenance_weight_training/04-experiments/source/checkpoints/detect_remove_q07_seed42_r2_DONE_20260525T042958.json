@@ -1,0 +1,36 @@
+{
+  "exp_id": "detect_remove_q07_seed42_r2",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T12:12:00.041Z",
+    "updated_at": "2026-05-25T04:29:58.211Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q07.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q07_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --bf16 --save_total_limit 2 --save_only_model --logging_steps 10 --eval_steps 500 --save_steps 500",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "987903",
+      "log_path": "/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q07_seed42/train.log",
+      "submitted_at": "2026-05-18T12:11:59.674Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data_filtered_q07.jsonl",
+      "data_count": 184908,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "wall_clock_seconds": 577078.5,
+      "gpu_hours": 160.3
+    },
+    "conclusion": "killed",
+    "hypothesis": "Hard filtering at q_score > 0.7 threshold retains ~50% of data (184,908/370k samples), the most conservative D&R strategy keeping only high-confidence clean samples. Expected to outperform more aggressive thresholds (q>0.3, q>0.5) due to higher data quality per sample, completing the D&R threshold sweep.",
+    "completed_at": "2026-05-25T04:29:58.212Z"
+  },
+  "timestamp": "2026-05-25T04:29:58.731251+00:00",
+  "trigger": "update_registry"
+}

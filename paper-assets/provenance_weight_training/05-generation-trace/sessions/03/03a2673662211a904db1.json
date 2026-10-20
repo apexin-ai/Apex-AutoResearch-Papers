@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03a2673662211a904db1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose westd 41312 status",
+  "task_key": "worker_diagnose_westd-41312-status_20260518T165033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-41312-status_20260518T165033_result.json",
+    "occurrence": 1,
+    "bytes": 1379,
+    "sha256": "4a452b2d19ba4b8990562568b59b305a0ff6d269a12273164ff711d2143f2f79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 eval 完成。汇总报告：\n\n---\n\n## 诊断结果\n\n**4 个实验全部已完成训练（6102 步），原始 PID 已死。GPU 上正在运行新实验。**\n\n| 实验 | PID 存活 | Final checkpoint | 完成时间 | Train loss (unweighted, last 100 steps avg) | Eval Loss | Eval PPL |\n|---|---|---|---|---|---|---|\n| `qwen06b_uniform_seed42` (实际目录 `_v2`) | 否 (PID 125995 死) | 有 (`qwen06b_uniform_seed42_v2/final/`) | May 18 05:51 | 1.9882 | 2.8733 | 17.69 |\n| `ess_only_seed456` | 否 (PID 115525 死) | 有 (`ess_only_seed456/final/`) | May 18 07:07 | 1.9364 | 2.8770 | 17.76 |\n| `ess_only_seed123` | 否 (PID 115021 死) | 有 (`ess_only_seed123/final/`) | May 18 07:25 | 2.0421 | 2.8747 | 17.72 |\n| `random_reweight_seed456` | 否 (PID 125367 死) | 有 (`random_reweight_seed456/final/`) | May 18 08:29 | 1.9176 | 2.8779 | 17.78 |\n\n**关键观察：**\n- 4 个方法的 eval PPL 非常接近（17.69 ~ 17.78），差异很小\n- uniform 略优（17.69），ess_only_seed123 次之（17.72），其余在 17.76-17.78\n- ess_only 的 weighted_loss（2.39/2.55）远高于 unweighted_loss（1.94/2.04），反映了重要性加权的效果\n- GPU 当前运行 4 个新实验：`uniform_1_7b_seed42_resumed`（GPU 0）、`adaptive_1_7b_seed42`（GPU 1）、`ngram_adaptive_seed42`（GPU 2）、`ngram_uniform_seed42`（GPU 3）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-41312-status.md"
+}

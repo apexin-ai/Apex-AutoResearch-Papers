@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4374f5db0ab3f3f96425",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis paper figures prep",
+  "task_key": "worker_analysis_paper-figures-prep_20260516T050959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-figures-prep_20260516T050959_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "e551eb2e293157b9908602ed09a80efef423fb54a8892926aebfefc5868008f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 PDF 全部生成成功：\n\n| 文件 | 大小 |\n|------|------|\n| `fig2_b_ppl_curve.pdf` | 20K |\n| `fig3_tau_sweep.pdf` | 19K |\n| `fig4_rho_sensitivity.pdf` | 23K |\n\n脚本位于 `/root/provenance_weight_training/scripts/figures/`，输出 PDF 在 `/root/provenance_weight_training/output/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-figures-prep.md"
+}

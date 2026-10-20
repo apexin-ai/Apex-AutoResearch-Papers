@@ -1,0 +1,65 @@
+{
+  "exp_id": "adaptive_seed234",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T04:42:41.978Z",
+    "updated_at": "2026-05-24T08:34:51.341Z",
+    "hypothesis": "N=5 seed replication (seed=234): adaptive provenance weighting with τ=0.7, n_min=2, B=4 on ρ=0.4 data. Fifth seed to complete N=5 paired t-test for B=4 Δ significance.",
+    "spec": {
+      "command": "python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_seed234 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --tau 0.7 --n_min 2 --num_train_tokens 200000000 --contamination_ratio 0.4 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --seed 234 --bf16 --save_total_limit 2 --logging_steps 10",
+      "server": "westd-41312",
+      "gpu": "cuda:2",
+      "pid": 922738,
+      "log_path": "~/runs/provenance_weight_training/adaptive_seed234.log",
+      "submitted_at": "2026-05-24T04:43:00.381Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 234,
+      "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/adaptive_seed234",
+      "hyperparams": {
+        "weighting_method": "adaptive",
+        "contamination_ratio": 0.4,
+        "tau": 0.7,
+        "n_min": 2,
+        "num_train_tokens": 200000000,
+        "max_steps": 6103,
+        "batch_size": 4,
+        "gradient_accumulation_steps": 4,
+        "effective_batch_size": 16,
+        "lr": "5e-5",
+        "save_total_limit": 2
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-24T08:31:23.754Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T08:31:32.096109+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "holdout_ppl": 17.6782,
+      "holdout_loss": 2.8723,
+      "train_loss": 9.695,
+      "train_duration_s": 13540,
+      "train_samples_per_second": 7.21,
+      "eval_num_tokens": 4077068
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T08:34:51.863785+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18b7498606040f5900a6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval detect remove q07 epoch matched seed42",
+  "task_key": "worker_eval_detect_remove_q07_epoch_matched_seed42_20260519T030324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detect_remove_q07_epoch_matched_seed42_20260519T030324_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "3ff20e98b33a6c8649c8048c00263219687e298f217e742e9856b5fecf927e7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**Eval 结果汇总：**\n\n| Threshold | Samples | Steps | PPL |\n|-----------|---------|-------|-----|\n| q01 | 55,799 | 919 | 18.04 |\n| q03 | 116,935 | 1,927 | 17.74 |\n| q05 | 152,246 | 2,533 | 17.65 |\n| **q07** | **184,908** | **3,047** | **17.62** |\n| q09 | - | - | 训练中 |\n\nq07 epoch-matched PPL = 17.62，与 q05 (17.65) 基本持平，继续缓慢下降。epoch-matched 曲线呈单调递减趋势（更多数据 = 更低 PPL），进一步支持 U-shape 是多 epoch 过拟合的假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-detect-remove-q07-epoch-matched-seed42.md"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "detect_remove_q07_seed42_r3",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:32:32.606Z",
+    "updated_at": "2026-05-25T09:01:23.531Z",
+    "hypothesis": "D&R q>0.7 threshold fresh rerun (r3). Retains ~50% data (184,908/370k). Prior r2 corrupted by optimizer state loss during resume. Fresh training from step 0 with full optimizer state preservation.",
+    "parent": "detect_remove_q07_seed42_r2",
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q07.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q07_seed42_r3 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --bf16 --save_total_limit 2 --logging_steps 10 --save_steps 500",
+      "server": "westd-41312",
+      "data_path": "data/scored_data_filtered_q07.jsonl",
+      "data_count": 184908,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "pid": 12122,
+      "gpu": "cuda:1",
+      "log_path": "/root/provenance_weight_training/logs/detect_remove_q07_seed42_r3_train.log",
+      "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q07_seed42_r3",
+      "checkpoint_source": "N/A (fresh training, parent is lineage only)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q07_seed42_r3/final",
+    "log_path": "/tmp/eval_q07_seed42_r3.log",
+    "metrics": {
+      "holdout_ppl": 17.32,
+      "owt_ppl": 18.04,
+      "wiki_ppl": 15.11
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-25T09:01:23.531Z"
+  },
+  "timestamp": "2026-05-25T09:01:24.020418+00:00",
+  "trigger": "update_registry"
+}

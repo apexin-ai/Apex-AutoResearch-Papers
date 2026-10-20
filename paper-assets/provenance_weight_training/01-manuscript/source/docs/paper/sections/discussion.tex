@@ -1,0 +1,36 @@
+\paragraph{D\&R as the strongest strategy.}
+D\&R outperforms all reweighting methods by $0.35$--$0.42$ PPL (Table~\ref{tab:epoch_match}), but epoch-matched controls attribute ${>}$95\% of this advantage to multi-epoch exposure on filtered data rather than superior per-token learning.
+This benefit was invisible in \citet{drayson2025detection}, where from-scratch pretraining rarely completes one epoch; in continued pretraining, it becomes the dominant factor.
+
+\paragraph{When uniform beats reweighting.}
+Table~\ref{tab:decision} summarizes three prerequisites for effective soft reweighting: (i)~sufficient detector discrimination \emph{and} calibration (AUC\,$\geq$\,0.9, ECE\,$\leq$\,0.05; \S\ref{sec:robustness}); (ii)~contamination $\rho \geq 0.4$, below which the method degrades ($+$0.046 at $\rho{=}0.2$; Appendix~\ref{app:rho02}) with a sharp transition in $[0.3, 0.4]$ (Figure~\ref{fig:delta_vs_rho}, Appendix~\ref{app:rho03}); (iii)~generator--trainee mismatch (at 1.7B the benefit diminishes to $\Delta{=}{-}0.013$ with OOD mixed).
+When any condition is violated, uniform is the safer default.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcll@{}}
+\toprule
+\textbf{Condition} & \textbf{Observed?} & \textbf{Evidence} & \textbf{$\Delta$ PPL} \\
+\midrule
+Detector AUC $\geq 0.9$ & Yes & N-gram (0.73) degrades & $+$0.129 \\
+Detector ECE $\leq 0.05$ & Yes & GPT-2 (0.131) degrades & $+$0.098 \\
+Contamination $\rho \geq 0.4$ & Yes & $\rho{=}0.2$ degrades & $+$0.046 \\
+Generator $\neq$ trainee & Tentative & 1.7B: $\Delta{=}{-}0.013$, OOD mixed & -- \\
+\bottomrule
+\end{tabular}}
+\caption{Decision summary for practitioners.
+$\Delta$ values are relative to uniform (positive = worse).
+When any observed condition is violated, uniform is the safer default.}
+\label{tab:decision}
+\end{table}
+
+\paragraph{Effect size and downstream impact.}
+The in-distribution improvement ($\Delta{=}{-}0.023$ at $\rho{=}0.4$) does not transfer to downstream accuracy (0.5414 vs.\ 0.5415, 3 seeds; Appendix~\ref{app:downstream}), consistent with nonlinear PPL-to-accuracy transfer~\citep{tay2022scale,ye2025mixing}; the paradigm's impact at current scales is modest (Appendix~\ref{app:power}; Table~\ref{tab:appendix_summary}).
+
+\paragraph{Limitations of $\aeff$ as a proxy.}
+The $\aeff$ diagnostic correlates with the true batch-level real fraction at Pearson $r \approx 0.79$ (${\sim}$63\% of variance; Appendix~\ref{app:alpha_validation}), stable across seeds (Spearman $\rho_s \geq 0.86$; Table~\ref{tab:alpha_corr_perseed}).
+The ceiling is set by detector calibration, not batch size.
+Because \citet{wang2026survive}'s convergence guarantee requires the \emph{true} real fraction, the ${\sim}$37\% unexplained variance means some batches satisfying $\aeff \geq \tau$ may have true fractions below $\tau$; the $\nmin$ constraint mitigates this by capping $b$ at the ESS floor~\citep{owen2013mc}.

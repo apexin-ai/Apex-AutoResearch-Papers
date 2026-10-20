@@ -1,0 +1,19 @@
+paper_key: "he_2025_golden_ratio"
+title: "Golden Ratio Weighting Prevents Model Collapse"
+venue: "Under review at JRSSB, 2025"
+full_text_available: false
+
+research:
+  baselines: ["uniform weighting", "various real/synthetic data ratios"]
+  metrics:
+    - {name: "estimation error", direction: "lower_better"}
+  datasets:
+    - {name: "simulated datasets (Gaussian)", size: "varied"}
+    - {name: "real tabular dataset", size: "not specified"}
+  ablation_dimensions: ["weight on real data", "synthetic data proportion", "estimation task (mean/covariance)"]
+  training_recipe: {method: "weighted iterative training on real+synthetic mixture"}
+  method_family: "optimal weighting theory for recursive training"
+
+narrative: N/A
+figures: N/A
+tables: N/A

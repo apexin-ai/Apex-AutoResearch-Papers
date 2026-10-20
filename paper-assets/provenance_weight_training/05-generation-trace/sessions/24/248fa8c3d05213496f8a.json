@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "248fa8c3d05213496f8a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify 41312 post cleanup launch",
+  "task_key": "worker_verify_41312_post_cleanup_launch_20260518T152102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_41312_post_cleanup_launch_20260518T152102_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "f8a8054c35bd5fafeb53f4a1ff453a3cd9a80a13a3f7bb572cbb62bc3aeedd75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### GPU 显存\n\n| GPU | 显存占用 | 总显存 | 利用率 |\n|-----|---------|--------|--------|\n| 0 | **0 MiB** | 97887 MiB | **0%** |\n| 1 | 63511 MiB | 97887 MiB | 100% |\n| 2 | 45643 MiB | 97887 MiB | 52% |\n| 3 | 45643 MiB | 97887 MiB | 54% |\n\n### 任务状态\n\n| 任务 | GPU | 状态 | 进度 |\n|------|-----|------|------|\n| **uniform_1_7b_seed42** | 0 | **🔴 失败** | EXIT_CODE=1 |\n| adaptive_1_7b_seed42 | 1 | 运行中 | 48% (2917/6103) |\n| ngram_adaptive_seed42 | 2 | 运行中 | 9% (548/6103) |\n| ngram_uniform_seed42 | 3 | 运行中 | 10% (604/6103) |\n\n### 🔴 uniform_1_7b_seed42 失败详情\n\n```\nFileNotFoundError: [Errno 2] No such file or directory:\n'/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42/checkpoint-3000/trainer_state.json'\nEXIT_CODE=1\n```\n\ncheckpoint-3000 目录缺少 `trainer_state.json`，可能是之前磁盘满时保存不完整。需要改用 checkpoint-2500 恢复，或检查 checkpoint-3000 内容后决定处理方式。\n\n### 磁盘\n250G 总量，62G 已用，189G 可用（25%），空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-41312-post-cleanup-launch.md"
+}

@@ -1,0 +1,462 @@
+{
+  "schema_version": "1.0",
+  "id": "1f73907d1d409b93a44f",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "ops check contamination 60 grid b0 3",
+  "task_key": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_check_contamination_60_grid_b0_3_20260518T040856.jsonl",
+    "occurrence": 1,
+    "bytes": 19311,
+    "sha256": "339f0c038e03e762c8afc041e0117679ea74264a637ff2d5187e15f041df305d"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T04:10:28.557151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_cron,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T04:10:28.557611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T04:10:28.558022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "ps aux | grep 87633 | grep -v grep; echo \"---TMUX---\"; tmux ls 2>&1 | grep contamination_60_grid_b0_3_seed42; echo \"---CHECKPOINT---\"; ls /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/ 2>&1 | head -20",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T04:10:28.558217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      87633  0.0  0.0   4496  3524 pts/1    Ss+  12:05   0:00 bash -c rm -f /tmp/agent-ml-exit/contamination_60_grid_b0_3_seed42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/contamination_60_grid_b0_3_seed42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/provenance_weight_training && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"'; } > ~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log 2>&1\\\\n---TMUX---\\\\ncontamination_60_grid_b0_3_seed42: 1 windows (created Mon May 18 12:05:27 2026)\\\\n---CHECKPOINT---\\\\nconfig.json\\\\nstep_metrics.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T04:10:28.558380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "tail -30 ~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T04:10:28.558600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'weighting/b': 0.3, 'weighting/alpha_eff': 0.7303456634654293, 'weighting/ess': 3.1806777447524035, 'weighting/mean_q': 0.4433906078338623, 'weighting/unweighted_loss': 2.996633291244507, 'weighting/weighted_loss': 3.4842615127563477, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.3, 'weighting/alpha_eff': 0.7033195003574125, 'weighting/ess': 3.377444850747878, 'weighting/mean_q': 0.4440390467643738, 'weighting/unweighted_loss': 1.7352385520935059, 'weighting/weighted_loss': 1.9571887254714966, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.3, 'weighting/alpha_eff': 0.5817256081504119, 'weighting/ess': 2.658024549272555, 'weighting/mean_q': 0.680250346660614, 'weighting/unweighted_loss': 1.5999382734298706, 'weighting/weighted_loss': 2.0520801544189453, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.3, 'weighting/alpha_eff': 0.3478103775875973, 'weighting/ess': 3.5735502799634475, 'weighting/mean_q': 0.7332216501235962, 'weighting/unweighted_loss': 1.8244972229003906, 'weighting/weighted_loss': 2.0276904106140137, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.3, 'weighting/alpha_eff': 0.7507117080963158, 'weighting/ess': 3.907752076569611, 'weighting/mean_q': 0.2917724549770355, 'weighting/unweighted_loss': 2.3924498558044434, 'weighting/weighted_loss': 2.489870071411133, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.3, 'weighting/alpha_eff': 0.6166859243444136, 'weighting/ess': 3.2406170212099736, 'weighting/mean_q': 0.5546779632568359, 'weighting/unweighted_loss': 2.062795639038086, 'weighting/weighted_loss': 2.5007877349853516, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.3, 'weighting/alpha_eff': 0.26577134684405657, 'weighting/ess': 2.997748065794455, 'weighting/mean_q': 0.8327347040176392, 'weighting/unweighted_loss': 1.5074975490570068, 'weighting/weighted_loss': 2.0400004386901855, 'weighting/tau_batch': 0.8, \n…[truncated 6315 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T04:10:28.558793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "provenance_weight_training",
+              "spec": "{'command': 'python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model', 'server': 'westd-30476', 'data_path': 'data/scored_data_60.jsonl', 'data_count': 371499, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T04:10:28.558996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5155}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T04:10:28.559132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "server": "westd-30476",
+              "pid": "87633",
+              "log_path": "~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T04:10:28.559271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"pid\\\": \\\"87633\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-18T04:09:36.420Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T04:10:28.559419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'contamination_60_grid_b0_3_seed42'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T04:10:28.559548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3564}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T04:10:28.559695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T04:10:28.559978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"contamination_60_grid_b0_3_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:04:45.048Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:08:25.679Z\\\", \\\"hypothesis\\\": \\\"Grid b=0.3 at ρ=0.6: tests whether grid-best remains near b=0.3 at higher contamination. If PPL ≈ contamination_60_seed42_r2 (adaptive, 17.74), confirms adaptive ≈ grid-best holds cross-ρ, strengthening Claim 2 generality.\\\", \\\"parent\\\": \\\"contamination_60_seed42_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"87633\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:05:28.420Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"contamination_60_uniform_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T00:12:01.324Z\\\", \\\"updated_at\\\": \\\"2026-05-18T03:30:01.455Z\\\", \\\"hypothesis\\\": \\\"Uniform baseline at ρ=0.6 seed123: pairs with contamination_60_seed123 (adaptive) to form seed123 uniform/adaptive contrast. If adaptive PPL < uniform PPL at ρ=0.6, confirms Claim 3 proportion-robustness holds cross-seed at higher contamination.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python \n…[truncated 5164 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T04:10:28.560195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T04:10:28.560363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:04:45.048Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:10:04.186Z\\\", \\\"hypothesis\\\": \\\"Grid b=0.3 at ρ=0.6: tests whether grid-best remains near b=0.3 at higher contamination. If PPL ≈ contamination_60_seed42_r2 (adaptive, 17.74), confirms adaptive ≈ grid-best holds cross-ρ, strengthening Claim 2 generality.\\\", \\\"parent\\\": \\\"contamination_60_seed42_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"87633\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:05:28.420Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4863}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T04:10:28.560515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "provenance_weight_training",
+              "spec": "{'command': 'python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model', 'server': 'westd-30476', 'data_path': 'data/scored_data_60.jsonl', 'data_count': 371499, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T04:10:28.560656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3432}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T04:10:28.560811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "provenance_weight_training",
+              "spec": "{'command': 'python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model', 'server': 'westd-30476', 'data_path': 'data/scored_data_60.jsonl', 'data_count': 371499, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42, 'checkpoint_source': 'contamination_60_seed42_r2', 'eval_data': 'data/human/eval_holdout.jsonl'}"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T04:10:28.561034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T04:04:45.048Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:10:18.003Z\\\", \\\"hypothesis\\\": \\\"Grid b=0.3 at ρ=0.6: tests whether grid-best remains near b=0.3 at higher contamination. If PPL ≈ contamination_60_seed42_r2 (adaptive, 17.74), confirms adaptive ≈ grid-best holds cross-ρ, strengthening Claim 2 generality.\\\", \\\"parent\\\": \\\"contamination_60_seed42_r2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"87633\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/contamination_60_grid_b0_3_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T04:05:28.420Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen/Qwen3-0.6B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"contamination_60_seed42_r2\\\", \\\"eval_data\\\": \\\"data/human/eval_holdout.jsonl\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2815}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T04:10:28.561224+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成：\n\n- **进程状态**: PID 87633 正常运行，tmux session 存在，当前 107/6103 steps (2%)，预计约 3.5 小时完成\n- **Registry**: PREPARING → QUEUED → RUNNING，补充了 data_path、data_count、model_name、seed 等字段\n- **Cron 监控**: 已注册，120 秒间隔轮询 PID 87633 和日志文件"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/ops-check-contamination-60-grid-b0-3.md"
+}

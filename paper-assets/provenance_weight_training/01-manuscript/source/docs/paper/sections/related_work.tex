@@ -1,0 +1,24 @@
+\paragraph{Synthetic Contamination and Model Collapse.}
+Training on recursively generated data leads to irreversible quality degradation (\emph{model collapse})~\citep{shumailov2024model}.
+\citet{alemohammad2024mad} formalize this as Model Autophagy Disorder, showing that quality inevitably degrades without fresh real data.
+More critically, \citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger collapse, ruling out data scaling as a remedy.
+\citet{cheng2025contamination} confirm that synthetic content now constitutes an estimated 20--60\% of web corpora, though accumulating real data avoids divergence~\citep{kazdan2025collapse} and even minimal curation suffices~\citep{amin2025escaping}.
+Not all synthetic data is harmful: the Phi series~\citep{gunasekar2023textbooks,li2023textbooks2} demonstrates that curated synthetic data can improve training efficiency, but this assumes intentional generation with quality control, unlike the uncontrolled web contamination we address.
+
+\paragraph{Detection, Filtering, and Data Reweighting.}
+Continuous-score detectors---probability curvature~\citep{mitchell2023detectgpt}, cross-perplexity ratios~\citep{hans2024binoculars}, low-probability token statistics~\citep{shi2024minkprob}---enable document-level weighting~\citep{wu2025survey}.
+Data composition is optimized via perplexity filtering~\citep{wenzek2020ccnet}, domain-level importance sampling~\citep{xie2023doremi,xie2023dsir,grangier2025crisp,ye2025mixing}, instance-level strategies~\citep{bengio2009curriculum,mindermann2022prioritized,sow2025dynamic,engstrom2024dsdm}, and deduplication~\citep{abbas2023semdedup}; see \citet{albalak2024survey}.
+None targets synthetic provenance; moreover, classifier-based quality scores may capture stylistic similarity rather than intrinsic quality~\citep{naitsaada2025illusion}.
+Most directly related, \citet{drayson2025detection} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight in from-scratch pretraining, where $q_j$ is the detector's synthetic probability. We adopt the same formula but differ fundamentally:
+\textbf{(i)}~Drayson et al.\ select $b$ via validation-set grid search, with different model scales requiring different values ($b{=}10$ for ${\leq}360$M, $b{=}1$ for 1.7B); our $\bstar$ is derived per-batch from dual constraints ($\aeff \geq \tau$, $\mathrm{ESS} \geq \nmin$) at zero validation cost.
+\textbf{(ii)}~Their sampling importance resampling (SIR) discretizes the weight distribution; we apply direct loss reweighting with continuous gradients.
+\textbf{(iii)}~They employ a ModernBERT-150M detector (AUC\,=\,0.986) on WikiText-2 (${\sim}$2M tokens); we show that a lightweight TF-IDF + logistic regression detector (AUC\,=\,0.94) suffices on FineWeb-scale data (132M+ tokens), and both calibration and sufficient discrimination appear required for effective reweighting.
+
+\paragraph{Theoretical Foundations.}
+Importance weighting theory underpins our constraints. \citet{cortes2010learning} establish generalization bounds governed by the weight second moment, directly motivating our ESS floor since $\mathrm{ESS} = n/\mathbb{E}[w^2]$.
+\citet{fang2020rethinking} show that na\"ive importance weighting degrades in deep networks under distribution shift, motivating adaptive, bounded schemes such as ours.
+For LLM pretraining, \citet{sow2025dynamic} prove convergence guarantees for instance-level reweighting under bounded weight variance---a condition our ESS constraint explicitly enforces---while \citet{ye2025mixing} derive functional laws governing how mixture proportions affect loss, complementing our instance-level approach.
+\citet{he2025golden} derive the optimal real-data weight under known mixture proportions (the golden-ratio reciprocal ${\approx}0.62$); their result requires the contamination ratio $k$, unavailable in web-scale settings, so we use it as an oracle baseline.
+\citet{wang2026survive} prove that contaminated recursive training converges at a rate governed by the effective real-data fraction $\alpha$; this motivates our quality threshold $\aeff(b) \geq \tau$.
+We operationalize this without the known-proportion assumption, estimating $\aeff$ from batch-level statistics online.
+Score calibration~\citep{guo2017calibration} is relevant because miscalibration systematically biases $\aeff$; for the stability constraint, we build on Kish's effective sample size~\citep{kish1965survey}.

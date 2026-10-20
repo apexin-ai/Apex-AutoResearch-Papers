@@ -1,0 +1,25 @@
+{
+  "exp_id": "datagen_synthetic_4gpu",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:12:11.474Z",
+    "updated_at": "2026-05-13T21:50:43.035Z",
+    "spec": {
+      "command": "4x parallel generate_synthetic.py --depth 1 --num_tokens 33000000 --batch_size 128",
+      "server": "westd-47453",
+      "data_path": "/root/provenance_weight_training/data/synthetic/shard_{0,1,2,3}/",
+      "data_count": "target 132M tokens across 4 shards",
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": "42/1042/2042/3042",
+      "hypothesis": "4-GPU parallel generation produces 132M synthetic tokens in ~2.5h",
+      "gpu": "cuda:0,1,2,3"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T21:50:43.064883+00:00",
+  "trigger": "update_registry"
+}

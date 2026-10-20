@@ -1,0 +1,50 @@
+{
+  "exp_id": "contamination_60_grid_b0_3_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-18T04:04:45.048Z",
+    "updated_at": "2026-05-18T09:24:10.985Z",
+    "hypothesis": "Grid b=0.3 at ρ=0.6: tests whether grid-best remains near b=0.3 at higher contamination. If PPL ≈ contamination_60_seed42_r2 (adaptive, 17.74), confirms adaptive ≈ grid-best holds cross-ρ, strengthening Claim 2 generality.",
+    "parent": "contamination_60_seed42_r2",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 30476 on 36.103.198.204",
+    "completed_at": "2026-05-18T05:20:42.781Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T05:20:47.849092+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python training/pretrain_weighted.py --weighting_method grid --grid_b_value 0.3 --contamination_ratio 0.6 --resume_from_checkpoint checkpoint-1500",
+      "server": "westd-30476",
+      "data_path": "data/scored_data_60.jsonl",
+      "data_count": 200000000,
+      "model_name": "models/Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "checkpoint_source": "contamination_60_grid_b0_3_seed42/checkpoint-1500",
+      "eval_data": "data/scored_data_60.jsonl"
+    },
+    "checkpoint_path": "/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/final",
+    "log_path": "/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/train_resume.log",
+    "metrics": {
+      "eval_ppl_holdout": 17.634,
+      "eval_method": "eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16",
+      "checkpoint_1500_ppl": 18.583,
+      "total_steps": 6103,
+      "note": "resume from checkpoint-1500 with ~30% LR offset; final PPL improved over checkpoint-1500, no degradation"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T09:24:11.215428+00:00",
+  "trigger": "update_registry"
+}

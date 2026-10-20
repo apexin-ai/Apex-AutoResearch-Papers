@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49f921f8352e85d6c114",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "reviewer / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_14.md",
+    "occurrence": 1,
+    "bytes": 5492,
+    "sha256": "41f755251e050effe77a644a88c82c3dc24e85ac17636e4eb7b3ff0f2b03f321"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-16T18:57:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-47453 根分区仅 30GB（7GB free），**禁止在根分区存大文件**。wandb offline 数据刚导致 threshold_q07 磁盘满卡死——所有新实验必须 WANDB_MODE=disabled + output_dir 指向 /root/autodl-tmp/\n- westd-41312 的 `/root/provenance_weight_training/output` 和 `/root/provenance_weight_training/data` 是 **symlink** → `/root/autodl-tmp/provenance_weight_training/`。eval 脚本用相对路径 `output/models/...` 是正确的，不要改成绝对路径\n- `--use_wandb` 标志硬禁。已有多个 RUNNING 实验（hybrid_rho04/rho06、llama3b_uniform/adaptive）仍带此标志，无法追溯修复，但所有 PREPARING 脚本已清理\n- CUDA_VISIBLE_DEVICES 三级规则：code_prep 设 -1，submit worker 改实际 GPU，pre-submit 检查确认。不要跳过\n- seed456 grid-b b≥2.0 数据是 **checkpoint artifact**（D026），PPL 异常高。**禁止用作 \"high b instability\" 论据**——科学不诚实\n\n### 2. 🖥️ 基础设施快照\n**westd-47453** (4× RTX PRO 6000 96GB)\n- 工作目录: `/root/provenance_weight_training`，数据盘: `/root/autodl-tmp/provenance_weight_training/`\n- Python: `/root/miniconda3/bin/python`，conda base\n- HF_HOME: `/root/autodl-tmp/.hf_cache`\n- 磁盘: root 7GB free / autodl-tmp 813GB free\n- GPU 0: threshold_q07 **被 kill**，恢复脚本 `run_threshold_q07_resume_r2.sh` 已就绪（从 checkpoint-5500 恢复，剩余 604 steps）\n- GPU 1: rho02_uniform (PID 316988, step ~4999/6104)\n- GPU 2: batch_adaptive_tau_rho04 (PID 326280, step ~3999/6104)\n- GPU 3: threshold_q03 (PID 325202, step ~3999/6104)\n\n**westd-41312** (4× RTX PRO 6000 96GB)\n- 工作目录: `/root/provenance_weight_training`（output/data 为 symlink）\n- 磁盘: root 22GB free / autodl-tmp 45GB free\n- GPU 0: llama3b_uniform (PID 3112, step ~1500/8477 tqdm，实际 training step ~1500)\n- GPU 1: llama3b_adaptive (PID 4005, similar progress)\n- GPU 2: hybrid_rho04 (PID 3661, eval loop 95%，training ~step 3000/6104)\n- GPU 3: hybrid_rho06 (PID 3732, training step ~3576/6104, 59%)\n\n### 3. 📊 当前状态\n**刚完成**：\n- D056 数据修正全链审查：eval checkpoint 污染清除，paper_framing.md 5 处数字更新验证通过\n- ESS 上界重算审查：ratio 从旧 2.5× 升至 4.9×（means）/ 3.6×（medians），Claim 1 加强\n- Claim 3 proportion-agnostic 叙事评估：★★☆☆☆ 合理，ESS 主导提供结构性解释，待 ρ=0.2 可升 ★★★☆☆\n- Coverage 补强方案审查：方案 1（variance explosion）标 WARNING（D026 artifact 数据），方案 3（机制分解）推荐为 P0\n- threshold_q07 磁盘满卡死诊断→恢复脚本已就绪，等待 submit\n- westd-41312 worker 误连服务器纠错\n\n**RUNNING (8)**：threshold_q07(killed, 待恢复), rho02_uniform, batch_adaptive_tau_rho04, threshold_q03, llama3b_uniform, llama3b_adaptive, hybrid_rho04, hybrid_rho06\n\n**PREPARING (6)**：random_reweight_v2(P0 最高优先), bs8_auto_nmin, batch_adaptive_tau_rho06, rho02_adaptive_tau09, batchsize16_nmin8, grid_b0_2\n\n### 4. 📋 待办（条件触发式）\n- threshold_q07 恢复完成 → 审查 PPL（注意：**两次 LR 中断**，step 2235 + step 5500，需标注 caveat）→ GPU 0 释放 → **random_reweight_v2 必须第一个上**（detector signal load-bearing 致命缺口）\n- hybrid_rho04/rho06 完成 → 验证 eval 脚本执行（`scripts/eval_hybrid_rho0{4,6}_seed42.sh`）→ PPL 审查 → GPU 2/3 释放后看 Director 安排\n- rho02_uniform 完成 → GPU 1 给 rho02_adaptive_tau09 → 完成后评估 ρ=0.2 binding rate，若与 ρ=0.4/0.6 一致 → Claim 3 升至 ★★★☆☆\n- llama3b_uniform/adaptive 完成 → **重点审查**：lr=5e-5 对 3B 模型偏高，若 loss spike 则结论不可信\n- batch_adaptive_tau_rho04 完成 → GPU 2 给 batch_adaptive_tau_rho06（Plan B 最高期望值）\n- threshold_q03 完成 → 联合 q03/q05/q07 做阈值敏感性分析 → 论证 adaptive 免 threshold calibration\n\n### 5. 🎯 战略上下文\n**核心叙事**：Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则），替代 Drayson 的 per-model grid search。投稿 EMNLP 2026 ARR May 25（9 天）。\n\n**Claim 强度**：Claim 1 ★★★★★（dual > ESS-only, ratio 5×），Claim 2 ★★★☆☆（adaptive ≈ grid-best, 但 ρ=0.6 capture ratio 58%），Claim 3 ★★☆☆☆（proportion-agnostic, 仅 2 ρ 点）\n\n**关键决策链**：D056（数据修正净正面）← D055（random_reweight 升最高优先）← D054（accept focused empirical study）← D051（detect_remove 大幅优于 adaptive，reframe 为 threshold sensitivity）\n\n**易错点**：\n1. Worker 可能连错服务器（本轮已发生一次 41312 audit 报了 47453 数据）——拿到 worker 结果先核对 PID/实验名是否匹配预期服务器\n2. tqdm 中的 /8477 是 eval loop 迭代数（67816/8），**不是** training max_steps（6103-6104）。不要误判训练进度\n3. 旧 step_metrics.jsonl 含 eval checkpoint 记录（b*=0），做任何 b* 分析必须先过滤 b=0 记录\n4. paper_framing.md 的 Q1 数据已全部更新为修正后数字，但**论文 LaTeX 可能尚未同步**——审查论文时需对照 paper_framing\n5. hybrid 训练脚本用 `WANDB_MODE=offline` + `--use_wandb`，wandb 数据 100MB 在 westd-41312 根分区（22GB free），不紧急但完成后应清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4afc5f032a7d9e4e6a59",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "viz tau sweep chart",
+  "task_key": "worker_viz_tau_sweep_chart_20260515T200933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_tau_sweep_chart_20260515T200933_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "0a13258c388b596fafa57b85fb19f47d26577c9c3e251d80471f10993271dc40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件生成成功：\n\n- `tau_sweep_analysis.pdf` — 29 KB\n- `tau_sweep_analysis.png` — 160 KB (300 DPI)\n\n路径：`/root/provenance_weight_training/output/figures/`\n\n图表包含：左轴 PPL 蓝色实线圆点，右轴 b* mean 红色虚线三角，Uniform baseline 灰色虚线，τ=0.8 箭头标注 + 竖线，[0.5, 0.8] 浅绿安全区 / (0.8, 1.0] 浅红退化区，serif 字体，5×3.5 inch 单栏尺寸。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-tau-sweep-chart.md"
+}

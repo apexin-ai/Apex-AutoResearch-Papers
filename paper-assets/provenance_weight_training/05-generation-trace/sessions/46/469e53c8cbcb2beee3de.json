@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "469e53c8cbcb2beee3de",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis rho03 uniform seed456",
+  "task_key": "worker_analysis_rho03_uniform_seed456_20260523T031226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rho03_uniform_seed456_20260523T031226_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "d5a298d730f465085eb47203fb3f89389132e6018a802353b80e244657fbd84a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练未完成 — step 1500/6103 时磁盘满崩溃。**\n\n详情：\n- `/root/autodl-tmp` 250GB 100% 占满\n- 崩溃错误：`safetensors_rust.SafetensorError: No space left on device (os error 28)`\n- checkpoint-1000 有效（3.4GB），可用于恢复训练\n- checkpoint-500（3.4GB）和 checkpoint-1500（44KB 损坏）可删\n\n**可清理空间（~92GB）：** 9 个已完成实验（有 `final/`）的中间 checkpoint 可安全删除：\n- `rho03_uniform_seed42`, `rho03_uniform_seed123`, `rho03_adaptive_seed42`, `rho03_adaptive_seed123`\n- `bs8_nmin4_uniform_seed42`, `bs8_nmin4_adaptive_seed42`\n- `detect_remove_q05_v2_seed123_r2`, `uniform_epoch_matched_seed456`, `dr_epoch_matched_seed456`\n\n每个实验 3 个 checkpoint × 3.4GB ≈ 10.2GB。\n\n**建议方案：**\n1. 删除上述已完成实验的中间 checkpoint（~92GB）\n2. 删除本实验的 checkpoint-500 和损坏的 checkpoint-1500\n3. 从 checkpoint-1000 恢复训练到 6103 步\n4. 训练完成后再跑 eval\n\n是否继续？还是你想先确认哪些可以删？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rho03-uniform-seed456-copy-2.md"
+}

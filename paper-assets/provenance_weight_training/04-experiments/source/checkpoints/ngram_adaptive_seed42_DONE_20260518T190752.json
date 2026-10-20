@@ -1,0 +1,36 @@
+{
+  "exp_id": "ngram_adaptive_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:14:23.226Z",
+    "updated_at": "2026-05-18T19:07:52.563Z",
+    "hypothesis": "Multi-detector validation: adaptive weighting with n-gram PPL detector (statistical, AUC=0.73) produces lower PPL than uniform, demonstrating method works with fundamentally different detector type (not just neural classifier). Complementary to q_score (Spearman r=-0.36). Part of D079 Line A.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_ngram_qscore.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed42 --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --bf16 --save_only_model --save_total_limit 3\"",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "226953",
+      "log_path": "~/runs/provenance_weight_training/ngram_adaptive_seed42.log",
+      "submitted_at": "2026-05-18T15:01:02.239Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed42/final",
+      "train_loss": 9.298,
+      "train_runtime_s": 14170,
+      "total_steps": 6103,
+      "wall_clock_seconds": 14810.3,
+      "gpu_hours": 4.11
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T19:07:52.563Z"
+  },
+  "timestamp": "2026-05-18T19:07:52.826800+00:00",
+  "trigger": "update_registry"
+}

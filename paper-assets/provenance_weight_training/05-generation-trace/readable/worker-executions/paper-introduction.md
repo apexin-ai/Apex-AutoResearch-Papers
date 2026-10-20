@@ -1,0 +1,2314 @@
+# paper introduction
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_paper_introduction_20260515T233432.log`
+- **Structured JSON:** [`c820d6e737dac22ed6ae.json`](../../sessions/c8/c820d6e737dac22ed6ae.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "40e5927e-68c2-4a65-bb12-06afd3a2e4f6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778905200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8c32ff72-2059-4715-a063-388294c2cf23",
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to write an Introduction section draft for an EMNLP 2026 paper. Let me first read the existing paper materials to ensure consistency, then write the introduction.
+
+Let me check what already exists in the paper directory and read the project context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "7d9849e8-2f89-47cf-b3bb-d1b46d3d2bd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EaGJE44N89JxHBrQoCqHNN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12343
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me first check existing paper materials for consistency.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "ef8ebb55-2b61-47d2-892c-38975d35dba3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EaGJE44N89JxHBrQoCqHNN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12343
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01MgmFHUZY8v3NTJmkxLLvmv`</summary>
+
+```json
+{
+  "pattern": "**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "9fef7173-9dba-4eb4-83c0-a2d4151046f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EaGJE44N89JxHBrQoCqHNN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12343
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T23:34:42.862Z_
+
+<details><summary>↩ Tool result · `toolu_01MgmFHUZY8v3NTJmkxLLvmv`</summary>
+
+```text
+artifacts/_project/paper/experiment_setup_draft.md
+artifacts/_project/paper/method_section_draft.md
+artifacts/_project/paper/writing_plan_v1_info.txt
+artifacts/_project/paper/related_work_963aec.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/method_76a694.tex
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/experiments.tex
+artifacts/_project/paper/experiments_1613c9.tex
+artifacts/_project/paper/results.tex
+artifacts/_project/paper/results_819b43.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/conclusion_386ecc.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/introduction_a663ee.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "2cdbb406-5867-4d5c-a29b-c551abed2131",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/experiment_setup_draft.md",
+      "artifacts/_project/paper/method_section_draft.md",
+      "artifacts/_project/paper/writing_plan_v1_info.txt",
+      "artifacts/_project/paper/related_work_963aec.tex",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/_project/paper/method_76a694.tex",
+      "artifacts/_project/paper/method.tex",
+      "artifacts/_project/paper/experiments.tex",
+      "artifacts/_project/paper/experiments_1613c9.tex",
+      "artifacts/_project/paper/results.tex",
+      "artifacts/_project/paper/results_819b43.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/_project/paper/conclusion_386ecc.tex",
+      "artifacts/_project/paper/introduction.tex",
+      "artifacts/_project/paper/introduction_a663ee.tex"
+    ],
+    "durationMs": 7,
+    "numFiles": 15,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BR8ehgqnqugkukyy5Kat1U`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "2c358a40-0e12-41df-b838-e178b35e2c44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EaGJE44N89JxHBrQoCqHNN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12343,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12343
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T23:34:43.325Z_
+
+<details><summary>↩ Tool result · `toolu_01BR8ehgqnqugkukyy5Kat1U`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "337811ab-9c78-48b6-b10d-e77b0857eeb4",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ldw8r1W8RPrLfHCoS6P2uz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "083251f3-20e8-4d1e-9dd7-8e8740d1260c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6gMx6kS8RPfbbEfmxZDoi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 23790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1103
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T23:34:46.485Z_
+
+<details><summary>↩ Tool result · `toolu_01Ldw8r1W8RPrLfHCoS6P2uz`</summary>
+
+```text
+1	Web corpora increasingly contain machine-generated text.
+2	Recent estimates place the synthetic fraction at 20--60\% of crawled data~\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.
+3	Training on such contaminated data has concrete consequences: \citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---\emph{model collapse}---and \citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.
+4	A central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.
+5	The prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.
+6	
+7	A natural response is \emph{detect-and-reweight}: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.
+8	\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b{=}10$ for models at ${\leq}360$M parameters to $b{=}1$ at 1.7B, and misspecification degrades results substantially.
+9	Selecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).
+10	Other approaches assume even stronger supervision: \citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\rho$, which is precisely what is unavailable in practice.
+11	Hard detection-and-removal strategies~\citep{feng_2025_beyond_collapse} discard borderline samples entirely, sacrificing the smooth reweighting that continuous $q$-scores enable.
+12	
+13	Given per-sample detector scores $q(x)$, how should one choose $b$ without a validation set or known contamination proportion?
+14	We formulate this as a dual-constrained optimization over each training batch: find the smallest $b$ that ensures the weighted effective real proportion $\aeff(b)$ reaches a quality threshold $\tau$, while keeping Kish's effective sample size $\mathrm{ESS}(b)$ above a stability floor $\nmin$.
+15	The quality constraint has theoretical grounding: convergence rate under contaminated training improves with the effective real-data fraction~\citep{wang_2026_survive_contamination}, motivating a lower bound on $\aeff$.
+16	The stability constraint prevents extreme weight concentration that degrades gradient quality.
+17	These two requirements exhibit a natural opposition.
+18	$\aeff(b)$ increases monotonically in $b$ (Proposition~\ref{prop:monotone}), yielding a lower bound $\btau$---the minimum exponent needed to achieve the target quality.
+19	$\mathrm{ESS}(b)$ decreases monotonically, yielding an upper bound $\bess$---the maximum exponent before gradient stability degrades.
+20	The adaptive exponent $\bstar = \btau$ when the feasible region $[\btau, \bess]$ is non-empty, embodying a \emph{minimum intervention principle}: apply the least downweighting sufficient to meet the quality target, preserving as much effective training data as possible.
+21	When the constraints conflict ($\btau > \bess$), the stability ceiling takes precedence.
+22	
+23	This minimum-intervention semantics distinguishes the method from the alternative of maximizing $b$ subject only to ESS stability.
+24	Among batches that require reweighting, the dual-constraint solver selects $\bstar$ via the $\aeff$ bound in 40\% of cases, with mean $\bstar{=}1.67$; the ESS-only variant would choose $b{=}4.15$ in these same batches, 2.5$\times$ more aggressive.
+25	The remaining 49.9\% of batches have sufficient real-data content to skip reweighting entirely ($\bstar{=}0$).
+26	The per-batch $\bstar$ distribution (median 0.87, mean 1.40) adapts continuously to each batch's contamination composition without any held-out signal.
+27	
+28	On Qwen3-0.6B continued pretraining with 40\% synthetic contamination (132M+ tokens from FineWeb), adaptive reweighting achieves mean held-out perplexity of 17.651 across three seeds, matching the grid-searched optimum ($b{=}0.5$, mean 17.646) within seed-to-seed variance (\S\ref{sec:results}).
+29	The grid sweep requires six complete training runs to identify this optimum; the adaptive method requires one.
+30	The ESS-only variant (maximum intervention) yields mean PPL 17.722---worse than the uniform baseline (17.694)---confirming that maximum intervention degrades training while minimum intervention improves it.
+31	A lightweight TF-IDF + Logistic Regression detector (AUC\,=\,0.939, calibrated ECE\,=\,0.048) suffices throughout, suggesting that score calibration matters more than raw classification accuracy for provenance-based reweighting.
+32	
+33	Our contributions:
+34	\begin{itemize}[nosep,leftmargin=*]
+35	\item A dual-constrained framework for adaptive exponent selection: $\bstar = \inf\{b \geq 0 : \aeff(b) \geq \tau\}$ subject to $\mathrm{ESS}(b) \geq \nmin$, computed per-batch from detector scores with minimum-intervention semantics (\S\ref{sec:method}).
+36	\item Empirical evidence that adaptive $\bstar$ matches grid-searched best within seed variance at zero validation cost, and that minimum intervention (dual constraint) outperforms maximum intervention (ESS-only) across three seeds (\S\ref{sec:results}).
+37	\item A demonstration that a lightweight TF-IDF + LR detector with calibrated $q$-scores supports effective reweighting, achieving results comparable to stronger neural detectors (\S\ref{sec:experiments}).
+38	\end{itemize}
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "5203e06c-f03a-43c9-90f7-b0c752223f46",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction.tex",
+      "content": "Web corpora increasingly contain machine-generated text.\nRecent estimates place the synthetic fraction at 20--60\\% of crawled data~\\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.\nTraining on such contaminated data has concrete consequences: \\citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---\\emph{model collapse}---and \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.\nA central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.\nThe prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.\n\nA natural response is \\emph{detect-and-reweight}: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.\n\\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b{=}10$ for models at ${\\leq}360$M parameters to $b{=}1$ at 1.7B, and misspecification degrades results substantially.\nSelecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).\nOther approaches assume even stronger supervision: \\citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\\rho$, which is precisely what is unavailable in practice.\nHard detection-and-removal strategies~\\citep{feng_2025_beyond_collapse} discard borderline samples entirely, sacrificing the smooth reweighting that continuous $q$-scores enable.\n\nGiven per-sample detector scores $q(x)$, how should one choose $b$ without a validation set or known contamination proportion?\nWe formulate this as a dual-constrained optimization over each training batch: find the smallest $b$ that ensures the weighted effective real proportion $\\aeff(b)$ reaches a quality threshold $\\tau$, while keeping Kish's effective sample size $\\mathrm{ESS}(b)$ above a stability floor $\\nmin$.\nThe quality constraint has theoretical grounding: convergence rate under contaminated training improves with the effective real-data fraction~\\citep{wang_2026_survive_contamination}, motivating a lower bound on $\\aeff$.\nThe stability constraint prevents extreme weight concentration that degrades gradient quality.\nThese two requirements exhibit a natural opposition.\n$\\aeff(b)$ increases monotonically in $b$ (Proposition~\\ref{prop:monotone}), yielding a lower bound $\\btau$---the minimum exponent needed to achieve the target quality.\n$\\mathrm{ESS}(b)$ decreases monotonically, yielding an upper bound $\\bess$---the maximum exponent before gradient stability degrades.\nThe adaptive exponent $\\bstar = \\btau$ when the feasible region $[\\btau, \\bess]$ is non-empty, embodying a \\emph{minimum intervention principle}: apply the least downweighting sufficient to meet the quality target, preserving as much effective training data as possible.\nWhen the constraints conflict ($\\btau > \\bess$), the stability ceiling takes precedence.\n\nThis minimum-intervention semantics distinguishes the method from the alternative of maximizing $b$ subject only to ESS stability.\nAmong batches that require reweighting, the dual-constraint solver selects $\\bstar$ via the $\\aeff$ bound in 40\\% of cases, with mean $\\bstar{=}1.67$; the ESS-only variant would choose $b{=}4.15$ in these same batches, 2.5$\\times$ more aggressive.\nThe remaining 49.9\\% of batches have sufficient real-data content to skip reweighting entirely ($\\bstar{=}0$).\nThe per-batch $\\bstar$ distribution (median 0.87, mean 1.40) adapts continuously to each batch's contamination composition without any held-out signal.\n\nOn Qwen3-0.6B continued pretraining with 40\\% synthetic contamination (132M+ tokens from FineWeb), adaptive reweighting achieves mean held-out perplexity of 17.651 across three seeds, matching the grid-searched optimum ($b{=}0.5$, mean 17.646) within seed-to-seed variance (\\S\\ref{sec:results}).\nThe grid sweep requires six complete training runs to identify this optimum; the adaptive method requires one.\nThe ESS-only variant (maximum intervention) yields mean PPL 17.722---worse than the uniform baseline (17.694)---confirming that maximum intervention degrades training while minimum intervention improves it.\nA lightweight TF-IDF + Logistic Regression detector (AUC\\,=\\,0.939, calibrated ECE\\,=\\,0.048) suffices throughout, suggesting that score calibration matters more than raw classification accuracy for provenance-based reweighting.\n\nOur contributions:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item A dual-constrained framework for adaptive exponent selection: $\\bstar = \\inf\\{b \\geq 0 : \\aeff(b) \\geq \\tau\\}$ subject to $\\mathrm{ESS}(b) \\geq \\nmin$, computed per-batch from detector scores with minimum-intervention semantics (\\S\\ref{sec:method}).\n\\item Empirical evidence that adaptive $\\bstar$ matches grid-searched best within seed variance at zero validation cost, and that minimum intervention (dual constraint) outperforms maximum intervention (ESS-only) across three seeds (\\S\\ref{sec:results}).\n\\item A demonstration that a lightweight TF-IDF + LR detector with calibrated $q$-scores supports effective reweighting, achieving results comparable to stronger neural detectors (\\S\\ref{sec:experiments}).\n\\end{itemize}\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01G8s7BnwFtxjhNUUw8MARPp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/method_section_draft.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "df1f40bd-ca46-4edf-9a0c-bd670ec8a7db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6gMx6kS8RPfbbEfmxZDoi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 23790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1103
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T23:34:46.917Z_
+
+<details><summary>↩ Tool result · `toolu_01G8s7BnwFtxjhNUUw8MARPp`</summary>
+
+```text
+1	# Section 3: Method
+2	
+3	## 3.1 Problem Setup
+4	
+5	Consider a training corpus $\mathcal{D} = \{x_1, \ldots, x_N\}$ drawn from a mixture of human-authored and machine-generated text. An unknown fraction $\pi$ of the documents are synthetic, injected through one or more language model generators whose outputs have entered the data pipeline. We assume access to a pre-trained sample-level detector $f: \mathcal{X} \to [0,1]$ that produces calibrated scores $q(x_i) = \hat{P}(\text{synthetic} \mid x_i)$ for each document. Crucially, we do **not** assume knowledge of the true contamination ratio $\pi$, nor do we require ground-truth provenance labels at training time.
+6	
+7	Our goal is to learn a language model on $\mathcal{D}$ that performs as well as possible on the underlying clean (human-authored) distribution, measured by perplexity on a held-out evaluation set containing no synthetic text. The key challenge is determining how aggressively to downweight documents that the detector flags as potentially synthetic, without discarding useful training signal.
+8	
+9	## 3.2 Detect-and-Reweight Framework
+10	
+11	We adopt the importance weighting scheme introduced by \citet{drayson2025}:
+12	$$w_i = (1 - q(x_i))^b, \quad b \geq 0$$
+13	where $q(x_i)$ is the detector's estimated synthetic probability for document $x_i$ and $b$ is a non-negative exponent controlling the penalty strength. This formulation defines a continuous spectrum from uniform weighting ($b = 0$, all samples treated equally) to hard filtering ($b \to \infty$, only samples with $q \approx 0$ retained).
+14	
+15	Each sample's contribution to the training loss is scaled by its normalized weight $\bar{w}_i = w_i / (\frac{1}{N}\sum_j w_j)$, so the weighted cross-entropy objective becomes:
+16	$$\mathcal{L}_{\text{weighted}} = \frac{1}{N} \sum_{i=1}^{N} \bar{w}_i \cdot \ell(x_i; \theta)$$
+17	where $\ell(x_i; \theta)$ is the per-sample cross-entropy loss.
+18	
+19	The central question is how to choose $b$. \citet{drayson2025} select $b$ from a discrete grid via validation-based empirical tuning, requiring a held-out set and per-model search. We propose an alternative: deriving $b$ adaptively from the batch statistics themselves, eliminating the need for external validation or prior knowledge of $\pi$.
+20	
+21	## 3.3 Adaptive $b^*$ via Effective Authenticity Estimation
+22	
+23	**Effective authenticity rate.** We define the effective authenticity rate under weighting parameter $b$ as:
+24	$$\alpha_{\text{eff}}(b) = \frac{\sum_{i=1}^{N} (1 - q_i)^{b+1}}{\sum_{i=1}^{N} (1 - q_i)^{b}}$$
+25	
+26	Intuitively, $\alpha_{\text{eff}}(b)$ measures the weighted average "cleanness" of the corpus under the weighting scheme parameterized by $b$. It has three key properties: (i) $\alpha_{\text{eff}}(0) = \frac{1}{N}\sum_i (1 - q_i) = 1 - \hat{\rho}$, the unweighted empirical authenticity rate; (ii) $\alpha_{\text{eff}}(b)$ is monotonically non-decreasing in $b$, since increasing $b$ concentrates weight on samples with higher $(1 - q_i)$; and (iii) $\alpha_{\text{eff}}(b) \to 1$ as $b \to \infty$, reflecting that extreme downweighting retains only the cleanest samples.
+27	
+28	**Optimal exponent.** We seek the smallest $b$ that raises the effective authenticity above a target threshold $\tau$:
+29	$$b^* = \inf\{b \geq 0 : \alpha_{\text{eff}}(b) \geq \tau\}$$
+30	subject to a sample efficiency constraint described below. The threshold $\tau$ encodes the desired purity level; we set $\tau = 1 - \pi/2$ when an estimate of the contamination ratio $\pi$ is available, and $\tau = 0.8$ as a robust default. Taking the infimum ensures minimal intervention: we apply only as much downweighting as needed to meet the purity target, preserving training signal from borderline samples.
+31	
+32	**Effective sample size constraint.** Aggressive downweighting reduces the effective number of training samples. We quantify this via the effective sample size:
+33	$$\text{ESS}(b) = \frac{\left(\sum_{i=1}^{N} w_i\right)^2}{\sum_{i=1}^{N} w_i^2}$$
+34	which equals $N$ when $b = 0$ (uniform weights) and decreases as $b$ increases. We impose a minimum $\text{ESS}(b^*) \geq n_{\min}$ to ensure stable gradient estimates. When the $\alpha_{\text{eff}}$ threshold and ESS constraint conflict---i.e., reaching $\tau$ would require $b$ so large that $\text{ESS}$ drops below $n_{\min}$---the algorithm returns the $b$ that maximizes $\alpha_{\text{eff}}$ among all ESS-feasible values:
+35	$$b^* = \arg\max_{b \geq 0} \alpha_{\text{eff}}(b) \quad \text{s.t.} \quad \text{ESS}(b) \geq n_{\min}$$
+36	
+37	**Algorithm.** We summarize the complete procedure in Algorithm 1.
+38	
+39	> **Algorithm 1:** Adaptive $b^*$ Selection
+40	>
+41	> **Input:** Batch scores $\{q_1, \ldots, q_B\}$, threshold $\tau$, minimum ESS $n_{\min}$, upper bound $b_{\max}$
+42	>
+43	> 1. Compute $\alpha_{\text{eff}}(0)$. If $\alpha_{\text{eff}}(0) \geq \tau$, return $b^* = 0$ (batch is sufficiently clean).
+44	> 2. **Grid search:** Evaluate $\alpha_{\text{eff}}(b)$ and $\text{ESS}(b)$ over a fine grid $b \in [0, b_{\max}]$. Track the smallest $b_\tau$ where $\alpha_{\text{eff}}(b_\tau) \geq \tau$, and the best ESS-feasible $b_f = \arg\max_b \alpha_{\text{eff}}(b)$ s.t. $\text{ESS}(b) \geq n_{\min}$. Terminate early if $\text{ESS}(b) < n_{\min}$.
+45	> 3. **Bisection refinement:** If $b_\tau$ was found, refine via bisection (50 iterations) to locate $b^*$ precisely.
+46	> 4. If $\text{ESS}(b^*) \geq n_{\min}$, return $b^*$. Otherwise, return $b_f$.
+47	> 5. Compute weights $w_i = (1 - q_i)^{b^*}$, normalized to sum to $B$.
+48	>
+49	> **Output:** Normalized weights $\{\bar{w}_1, \ldots, \bar{w}_B\}$
+50	
+51	**Numerical stability.** All power computations $(1 - q_i)^b$ are performed in log-space as $\exp(b \cdot \log(1 - q_i))$ with log-sum-exp shifting to prevent underflow, and intermediate quantities use double precision.
+52	
+53	## 3.4 Practical Considerations
+54	
+55	**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\_fix experiments*]
+56	
+57	**Upper bound.** We impose a hard ceiling $b_{\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In practice, the ESS constraint binds well before this limit.
+58	
+59	**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.
+60	
+61	**Threshold setting.** When the contamination ratio $\pi$ is approximately known, we set $\tau = 1 - \pi/2$. For $\pi = 0.4$, this yields $\tau = 0.8$. When $\pi$ is entirely unknown, $\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). Sensitivity to $\tau$ is examined in Section 5.
+62	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "63517b1e-0bf0-4aff-b7c5-a81203976067",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/method_section_draft.md",
+      "content": "# Section 3: Method\n\n## 3.1 Problem Setup\n\nConsider a training corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ drawn from a mixture of human-authored and machine-generated text. An unknown fraction $\\pi$ of the documents are synthetic, injected through one or more language model generators whose outputs have entered the data pipeline. We assume access to a pre-trained sample-level detector $f: \\mathcal{X} \\to [0,1]$ that produces calibrated scores $q(x_i) = \\hat{P}(\\text{synthetic} \\mid x_i)$ for each document. Crucially, we do **not** assume knowledge of the true contamination ratio $\\pi$, nor do we require ground-truth provenance labels at training time.\n\nOur goal is to learn a language model on $\\mathcal{D}$ that performs as well as possible on the underlying clean (human-authored) distribution, measured by perplexity on a held-out evaluation set containing no synthetic text. The key challenge is determining how aggressively to downweight documents that the detector flags as potentially synthetic, without discarding useful training signal.\n\n## 3.2 Detect-and-Reweight Framework\n\nWe adopt the importance weighting scheme introduced by \\citet{drayson2025}:\n$$w_i = (1 - q(x_i))^b, \\quad b \\geq 0$$\nwhere $q(x_i)$ is the detector's estimated synthetic probability for document $x_i$ and $b$ is a non-negative exponent controlling the penalty strength. This formulation defines a continuous spectrum from uniform weighting ($b = 0$, all samples treated equally) to hard filtering ($b \\to \\infty$, only samples with $q \\approx 0$ retained).\n\nEach sample's contribution to the training loss is scaled by its normalized weight $\\bar{w}_i = w_i / (\\frac{1}{N}\\sum_j w_j)$, so the weighted cross-entropy objective becomes:\n$$\\mathcal{L}_{\\text{weighted}} = \\frac{1}{N} \\sum_{i=1}^{N} \\bar{w}_i \\cdot \\ell(x_i; \\theta)$$\nwhere $\\ell(x_i; \\theta)$ is the per-sample cross-entropy loss.\n\nThe central question is how to choose $b$. \\citet{drayson2025} select $b$ from a discrete grid via validation-based empirical tuning, requiring a held-out set and per-model search. We propose an alternative: deriving $b$ adaptively from the batch statistics themselves, eliminating the need for external validation or prior knowledge of $\\pi$.\n\n## 3.3 Adaptive $b^*$ via Effective Authenticity Estimation\n\n**Effective authenticity rate.** We define the effective authenticity rate under weighting parameter $b$ as:\n$$\\alpha_{\\text{eff}}(b) = \\frac{\\sum_{i=1}^{N} (1 - q_i)^{b+1}}{\\sum_{i=1}^{N} (1 - q_i)^{b}}$$\n\nIntuitively, $\\alpha_{\\text{eff}}(b)$ measures the weighted average \"cleanness\" of the corpus under the weighting scheme parameterized by $b$. It has three key properties: (i) $\\alpha_{\\text{eff}}(0) = \\frac{1}{N}\\sum_i (1 - q_i) = 1 - \\hat{\\rho}$, the unweighted empirical authenticity rate; (ii) $\\alpha_{\\text{eff}}(b)$ is monotonically non-decreasing in $b$, since increasing $b$ concentrates weight on samples with higher $(1 - q_i)$; and (iii) $\\alpha_{\\text{eff}}(b) \\to 1$ as $b \\to \\infty$, reflecting that extreme downweighting retains only the cleanest samples.\n\n**Optimal exponent.** We seek the smallest $b$ that raises the effective authenticity above a target threshold $\\tau$:\n$$b^* = \\inf\\{b \\geq 0 : \\alpha_{\\text{eff}}(b) \\geq \\tau\\}$$\nsubject to a sample efficiency constraint described below. The threshold $\\tau$ encodes the desired purity level; we set $\\tau = 1 - \\pi/2$ when an estimate of the contamination ratio $\\pi$ is available, and $\\tau = 0.8$ as a robust default. Taking the infimum ensures minimal intervention: we apply only as much downweighting as needed to meet the purity target, preserving training signal from borderline samples.\n\n**Effective sample size constraint.** Aggressive downweighting reduces the effective number of training samples. We quantify this via the effective sample size:\n$$\\text{ESS}(b) = \\frac{\\left(\\sum_{i=1}^{N} w_i\\right)^2}{\\sum_{i=1}^{N} w_i^2}$$\nwhich equals $N$ when $b = 0$ (uniform weights) and decreases as $b$ increases. We impose a minimum $\\text{ESS}(b^*) \\geq n_{\\min}$ to ensure stable gradient estimates. When the $\\alpha_{\\text{eff}}$ threshold and ESS constraint conflict---i.e., reaching $\\tau$ would require $b$ so large that $\\text{ESS}$ drops below $n_{\\min}$---the algorithm returns the $b$ that maximizes $\\alpha_{\\text{eff}}$ among all ESS-feasible values:\n$$b^* = \\arg\\max_{b \\geq 0} \\alpha_{\\text{eff}}(b) \\quad \\text{s.t.} \\quad \\text{ESS}(b) \\geq n_{\\min}$$\n\n**Algorithm.** We summarize the complete procedure in Algorithm 1.\n\n> **Algorithm 1:** Adaptive $b^*$ Selection\n>\n> **Input:** Batch scores $\\{q_1, \\ldots, q_B\\}$, threshold $\\tau$, minimum ESS $n_{\\min}$, upper bound $b_{\\max}$\n>\n> 1. Compute $\\alpha_{\\text{eff}}(0)$. If $\\alpha_{\\text{eff}}(0) \\geq \\tau$, return $b^* = 0$ (batch is sufficiently clean).\n> 2. **Grid search:** Evaluate $\\alpha_{\\text{eff}}(b)$ and $\\text{ESS}(b)$ over a fine grid $b \\in [0, b_{\\max}]$. Track the smallest $b_\\tau$ where $\\alpha_{\\text{eff}}(b_\\tau) \\geq \\tau$, and the best ESS-feasible $b_f = \\arg\\max_b \\alpha_{\\text{eff}}(b)$ s.t. $\\text{ESS}(b) \\geq n_{\\min}$. Terminate early if $\\text{ESS}(b) < n_{\\min}$.\n> 3. **Bisection refinement:** If $b_\\tau$ was found, refine via bisection (50 iterations) to locate $b^*$ precisely.\n> 4. If $\\text{ESS}(b^*) \\geq n_{\\min}$, return $b^*$. Otherwise, return $b_f$.\n> 5. Compute weights $w_i = (1 - q_i)^{b^*}$, normalized to sum to $B$.\n>\n> **Output:** Normalized weights $\\{\\bar{w}_1, \\ldots, \\bar{w}_B\\}$\n\n**Numerical stability.** All power computations $(1 - q_i)^b$ are performed in log-space as $\\exp(b \\cdot \\log(1 - q_i))$ with log-sum-exp shifting to prevent underflow, and intermediate quantities use double precision.\n\n## 3.4 Practical Considerations\n\n**Per-batch computation.** The exponent $b^*$ is computed independently for each mini-batch from the batch's detector score distribution. No cross-batch state or smoothing is maintained. This design is stateless and trivially parallelizable, though it means $b^*$ may fluctuate across batches depending on the local contamination level. In practice, $b^*$ values typically range from 0.2 to 0.8, with occasional excursions up to 3.8 for heavily contaminated batches. [*Pending: $b^*$ distribution statistics from adaptive\\_fix experiments*]\n\n**Upper bound.** We impose a hard ceiling $b_{\\max} = 20.0$ to prevent degenerate solutions where a single sample dominates the batch. In practice, the ESS constraint binds well before this limit.\n\n**Computational overhead.** The grid search (1,000 evaluations) followed by bisection (50 iterations) involves only scalar reductions over the batch scores. The wall-clock cost is negligible relative to the forward and backward passes of the language model---typically under 1 ms per batch on GPU.\n\n**Threshold setting.** When the contamination ratio $\\pi$ is approximately known, we set $\\tau = 1 - \\pi/2$. For $\\pi = 0.4$, this yields $\\tau = 0.8$. When $\\pi$ is entirely unknown, $\\tau = 0.8$ serves as a robust default that avoids both under-correction (too low) and excessive sample rejection (too high). Sensitivity to $\\tau$ is examined in Section 5.\n",
+      "numLines": 62,
+      "startLine": 1,
+      "totalLines": 62
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SRaXr8ExybBsUzCq5gbAXe`</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "file": "paper_framing.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "746be0a7-f2a4-433a-bd6a-7e6595c7ab87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6gMx6kS8RPfbbEfmxZDoi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 23790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1103
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T23:34:47.582Z_
+
+<details><summary>↩ Tool result · `toolu_01SRaXr8ExybBsUzCq5gbAXe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper_framing.md\", \"content\": \"# Paper Framing — provenance_weight_training\\n\\n> 状态: STABLE (D023 dual-constraint + D029 ESS-only resolved + D035 τ sweep complete)\\n> 最后更新: 2026-05-15 21:30 UTC\\n> 投稿目标: EMNLP 2026 ARR May 25\\n\\n## Core Insight\\n\\nWeb 语料预训练面临合成数据污染问题（20-60%，来源未知），Drayson et al. (EMNLP 2025) 提出 w=(1-q)^b detect-and-reweight 框架，但 b 需要 per-model validation-based grid search（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1）。\\n\\n我们提出 **dual-constrained adaptive b***：per-batch 从 q-score 分布推导最优 b*，同时满足两个约束：\\n- **α_eff(b) ≥ τ** — 质量下界：确保加权后有效真实率达到收敛理论要求的阈值（\\\"至少做够清洁\\\"）\\n- **ESS(b) ≥ n_min** — 稳定上界：确保有效样本量不低于 Kish 阈值（\\\"不要清洁过头\\\"）\\n\\nb* = inf{b ≥ 0 : α_eff(b) ≥ τ} subject to ESS(b) ≥ n_min — **最小干预准则**：在保证质量的前提下，使用最少的 downweighting。\\n\\n**关键洞察**：α_eff(b) 单调递增、ESS(b) 单调递减。α_eff 给出 b 的下界 b_τ（需至少这么多清洁），ESS 给出 b 的上界 b_ESS（最多这么多清洁）。当 b_τ < b_ESS（~40% reweighted batches），α_eff 是 binding constraint，b* 远小于 ESS 上界（mean 1.67 vs 4.15）——方法选择保守干预而非最大干预。\\n\\n实现路径：**直接 loss reweighting**（gradient 层面连续加权），vs Drayson 的 SIR resampling（离散重采样）。\\n\\n### α_eff(b) 的角色（D023 修正定论）\\n\\n**D021 证明 α_eff(b) 严格单调递增**（dα_eff/db = Cov_w(x, ln x) ≥ 0）——这是正确的。\\n\\n**D021 的错误推论**：\\\"因此 α_eff 优化等价于 ESS 阈值化\\\"——这假设优化目标是 max α_eff(b) s.t. ESS ≥ n_min。但实际优化是 **inf{b : α_eff(b) ≥ τ}**——最小满足质量阈值的 b。单调性恰恰保证了 b_τ 的**存在性和唯一性**。\\n\\n**Q1 实证（Reviewer 独立核实）**：\\n- 51,913 micro-batches 中，49.9% clean (b*=0), 20.2% α_eff binding, 30.0% ESS binding\\n- 在需 reweighting 的 batch 中：40.1% α_eff binding, 59.9% ESS binding\\n- α_eff binding 时 b*=1.67，ESS-only 方法会选 b*=4.15（2.5× 更激进）\\n- α_eff binding 时 ESS=2.60（vs n_min=2.0，有 30% 余量）\\n\\n**论文呈现**：α_eff 是方法的核心组件（非仅 motivation），提供质量阈值约束。Figure: 双轴图展示 α_eff(b) 和 ESS(b) 曲线 + b_τ 和 b_ESS 标注。\\n\\n**τ 的定位（D025 定论 + D035 τ sweep 完整数据更新）**：收敛理论 (arXiv 2602.16065) 中 α = m₁/(m₁+m₂) 是已知设计参数，推导依赖已知比例。τ **不能声称有 proportion-free 的理论推导**。正确定位：empirical hyperparameter with theoretical motivation——收敛理论解释了\\\"为什么需要质量阈值\\\"（α 越高收敛越快），但 τ 的特定值由经验确定。\\n\\n**τ sweep 完整结果（6 点，seed42，ρ=0.4）**：\\n\\n| τ | PPL | Δ vs uniform (17.694) | b* mean | conclusion |\\n|---|-----|----------------------|---------|------------|\\n| 0.50 | 17.688 | −0.006 | 0.39 | success |\\n| 0.60 | 17.681 | −0.013 | 0.59 | success |\\n| 0.70 | 17.679 | −0.015 | 0.89 | success |\\n| **0.80** | **17.653** | **−0.041** | **1.40** | **best** |\\n| 0.90 | 17.712 | +0.018 | 2.36 | negative |\\n| 0.95 | 17.723 | +0.029 | 3.08 | negative |\\n\\n**关键洞察**：(1) [0.5, 0.8] 全部 beat uniform，safe range 内 PPL 差异仅 0.035；(2) τ=0.8 是最优默认值；(3) τ>0.8 因 b* 膨胀导致过度 downweighting 而退化（asymmetric sensitivity）；(4) b* 与 τ 严格单调递增，机制清晰——τ 越高要求越严，solver 被迫推高 b*。不能说\\\"τ 不敏感\\\"，正确表述：\\\"wide safe range [0.5, 0.8] with principled default τ=0.8\\\"。\\n\\n**ESS-only baseline 已验证 (D029)**：ESS-only PPL=17.728（+0.034 vs uniform，+0.076 vs adaptive_fix）——max-intervention 退化确认，min-intervention (dual) 明确优于 max-intervention (ESS-only)。ess_only_seed123/456 跨 seed 验证进行中。\\n\\n## Positioning vs Prior Work\\n\\n### Drayson et al. (EMNLP 2025) — 最近相关工作\\n\\n**共同点**：同一加权公式 w=(1-q)^b，detect-and-reweight 范式。\\n\\n**关键区分**：\\n\\n| 维度 | Drayson et al. | Ours |\\n|------|---------------|------|\\n| **b 选择** | 验证集 empirical 选取，训练中固定 | α_eff + ESS 双重约束自适应推导，per-batch 动态 |\\n| **干预原则** | 无原则（b 是超参数） | 最小干预（inf{b : α_eff ≥ τ}，只做必要的清洁） |\\n| **实现路径** | SIR resampling（离散重采样） | Loss reweighting（连续梯度加权） |\\n| **污染设置** | 不假设已知比例，但 b 依赖 validation set | 仅需 detector scores，无 validation set |\\n| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，轻量即可 |\\n| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练 |\\n| **数据规模** | WikiText-2 (~2M tokens) | FineWeb subset (132M+ tokens) |\\n| **validation 成本** | 需 per-model validation run | 零额外 validation cost |\\n\\n**定位原则：complementary approaches for different settings。**\\n\\n### Golden Ratio Weighting (arXiv 2502.18049, 2025)\\n理论最优 w*=1/φ，但假设已知 real/synthetic 比例 k。作为 oracle baseline。\\n\\n### 其他相关工作\\n- **Strong Model Collapse (ICLR 2025)** — 理论动机：微量合成数据即致 collapse\\n- **Dynamic Loss-Based Reweighting (ICLR 2025)** — 按 loss 加权（不使用 detector score），互补\\n- **SoftDedup (ACL 2024)** — 基于重复度的 soft reweighting\\n- **DoReMi / DSIR (NeurIPS 2023)** — 域级优化 vs 我们的实例级\\n- **Beyond Model Collapse / Verification (NeurIPS 2025)** — verifier-based prevention\\n- **PSIS (Pareto Smoothed IS)** — 重要性采样诊断，Kish's ESS 理论来源\\n- **arXiv 2602.16065** — α_eff 质量阈值 τ 的收敛理论来源\\n\\n## Core Claims\\n\\n### Claim 1 (Primary): Dual-Constrained Adaptive b* — Minimum Intervention Principle\\n\\nα_eff + ESS 双重约束的 adaptive b*，提供 contamination-aware reweighting 中权重指数的 **principled 推导**，替代 Drayson et al. 的 per-model empirical grid search。\\n\\n- **方法核心**：b* = inf{b ≥ 0 : α_eff(b) ≥ τ} s.t. ESS(b) ≥ n_min。两个约束分别提供 b 的下界（质量）和上界（稳定），b* 是最小满足质量阈值的可行解\\n- **最小干预原则**：不 downweight 更多于必要——在 ~40% reweighted batch 中，b* 仅为 ESS-only 上界的 45%，保留显著更多有效样本\\n- **差异化**：Drayson 的 b 是超参数（需 validation + grid search）；我们的 b* 是双约束下的自适应推导\\n- **证据需求**：(a) α_eff binding 比例统计 (✓ Q1); (b) ESS-only baseline head-to-head 对比（证明 min > max intervention）; (c) b* 轨迹分析\\n- **理论 motivation**：α_eff(b) 单调性保证 b_τ 唯一存在；收敛理论为 τ 选择提供指导\\n\\n### Claim 2 (Primary): Adaptive b* 免调参即匹配 Grid-best\\n\\nAdaptive b* 在零超参调优下达到 grid-search 最优同等水平（within seed variance），消除 grid search 的计算开销（6N → 1 runs）。\\n\\n- **MVP 证据**: adaptive_fix ×3 seeds vs grid-b ×3 seeds（40% 污染, Qwen3-0.6B, 200M tokens）\\n- **状态**: ✅ MVP Path B PASS (D019: aggregate 88.6%, 三支柱论证)\\n\\n**叙事弹性**：\\n- 核心表述：**\\\"adaptive matches grid-best within seed variance\\\"**\\n- 补充表述：**\\\"eliminates grid search cost (6N → 1 runs)\\\"** + **\\\"consistent improvement across all seeds\\\"**\\n\\n**MVP 数据**：\\n\\n| Metric | seed42 | seed123 | seed456 |\\n|--------|--------|---------|---------|\\n| Uniform PPL | 17.690 | 17.690 | 17.700 |\\n| Grid-best PPL (b=0.5) | 17.651 | 17.638 | 17.650 |\\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 |\\n| Ratio | 102.6% | 90.4% | 80.0% |\\n\\nAggregate ratio: 88.6% (D019). Path B PASS.\\n\\n### Claim 3 (Setting): Unknown Contamination Proportion\\n\\n方法仅需 detector scores，无需已知污染比例、无需 clean validation set。\\n\\n- **差异化**：Golden Ratio 需已知比例 k；Drayson 的 b 依赖 validation set；我们仅需 per-sample q-scores\\n- **实际意义**：web-scale pretraining 中污染比例本质不可知\\n- **D021 代码修复**: ✅ τ = 0.8 固定 CLI 参数，不依赖 contamination_ratio\\n- **D025 理论审计**: arXiv 2602.16065 的 α 是已知比例，τ 不能声称有 proportion-free 理论推导。τ 定位为 empirical hyperparameter with theoretical motivation\\n- **D035 τ sweep 完整数据 (6 点)**：[0.5, 0.8] 为 safe range（all beat uniform，PPL 差异 <0.035），τ=0.8 为最优默认值；τ>0.8 因 b* 膨胀退化。正确表述：\\\"wide safe range with principled default\\\"，不说\\\"insensitive\\\"\\n- **Claim 3 核心仍成立**：b* 推导不需要已知比例（ESS 和 α_eff 从 batch 统计量计算），方法运行时不访问 contamination_ratio。τ 在 [0.5, 0.8] 范围内是 robust empirical default，类似于 learning rate warmup steps——有理论 motivation 但具体值凭经验，且有明确的有效范围上界\\n\\n## Ancillary Finding: Lightweight Detector Sufficiency\\n\\nTF-IDF + LR (AUC=0.939) 即可支撑有效的 adaptive reweighting，不需要 ModernBERT 级别的强检测器（Drayson 用 AUC=0.986）。q-score 的连续性（calibration）比分类精度（AUC）更重要。\\n\\n可升级为 co-primary contribution 如果 detector quality ablation 显示明确的 \\\"sufficiency threshold\\\"。\\n\\n## n_min Robustness Framing\\n\\nESS 约束的 n_min 是 adaptive b* 的超参数之一（另一个是 τ）。\\n\\n- n_min=3 at batch_size=4 → ESS 约束过紧，b* 被钳制在低值，seed42 零改善\\n- n_min=2 at batch_size=4 → 稳定工作，3/3 seeds positive\\n- **论文呈现**：n_min sensitivity curve (n_min=1,2,3,4,5) + batch_size 消融 (4,8,16) 证明 knife-edge 是 batch_size=4 的 artifact\\n\\n## Narrative Structure\\n\\n**起点**: Web 语料 20-60% 为合成文本，比例未知——Strong Model Collapse (ICLR 2025) 证明微量污染即破坏 scaling law。\\n\\n**现有方法不足**：Drayson 的 b 依赖 per-model validation（不同模型需不同 b），Golden Ratio 假设已知混合比例。\\n\\n**我们的方案**: Dual-constrained adaptive b*——α_eff 确保 \\\"至少做够清洁\\\"，ESS 确保 \\\"不要清洁过头\\\"，b* 是满足质量阈值的最小干预。\\n\\n**方法直觉**：想象一个旋钮 b 控制去污力度。α_eff 告诉你\\\"至少拧到这里才够干净\\\"（质量下界），ESS 告诉你\\\"再拧就会丢太多有效数据\\\"（稳定上界）。方法选择旋钮的最小有效位置——刚好够干净，不多不少。\\n\\n**α_eff 的贡献**：不是\\\"α_eff vs ESS 哪个更重要\\\"，而是双约束共同构成最小干预准则。在 ~40% reweighted batch 中，α_eff 是 binding constraint（b* 远低于 ESS 上界）——如果没有 α_eff，方法会过度 downweight，浪费有效样本。\\n\\n**实验验证**：(a) adaptive vs grid-best within seed variance; (b) adaptive vs ESS-only baseline（证明 min-intervention > max-intervention）; (c) τ/n_min sensitivity; (d) batch_size 消融。\\n\\n## Contribution Structure (D023 reframed)\\n\\n1. **Primary — Method**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则），零 validation cost 的 per-batch 自适应 b 推导，替代 per-model grid search。\\n2. **Primary — Empirical Finding**: (a) Adaptive b* 免调参匹配 grid-best within seed variance; (b) 轻量检测器 (TF-IDF+LR, AUC=0.939) 即可支撑有效重加权; (c) min-intervention 优于 max-intervention（需 ESS-only baseline 验证）。\\n3. **Setting — Unknown Proportion**: 仅需 detector scores，无需已知比例或 validation set（τ 修复后）。\\n\\n**α_eff 是方法的核心组件**，提供质量约束和最小干预语义。收敛理论作为 τ 选择的 motivation。\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response Strategy | 实验支撑 |\\n|---------|------------------|----------|\\n| \\\"Incremental over Drayson\\\" | 差异化: adaptive b* (zero validation) vs per-model empirical b; min-intervention principle; loss reweighting vs SIR | Claim 1 + Claim 3 + ESS-only baseline |\\n| \\\"α_eff monotone → just ESS thresholding?\\\" | inf{b} vs max{b} 区分: 最小干预 vs 最大干预。Q1 实证: 40% α_eff binding, b* = 1.67 vs ESS-only 4.15。ESS-only baseline 对比训练结果 | ESS-only baseline + Q1 figure |\\n| \\\"Small effect size (~0.3% PPL)\\\" | claim 聚焦免调参+方法正确性; 60% 污染+3B 模型放大; zero-cost advantage | p0_contamination_60 + p0_llama3b |\\n| \\\"Two hyperparameters (τ, n_min) vs one (b)\\\" | 关键区别：τ 在 [0.5,0.8] 有效（sweep 6 点验证），n_min=2 跨 3 seed 稳定。两个 HP 都有明确 safe range + principled default，设一次即可跨数据集；Drayson 的 b 需 per-model per-dataset validation。2 个 robust defaults 替代 1 个 sensitive HP | p0_nmin_* + p0_tau_sweep ✅ + p0_batchsize_* |\\n| \\\"Only 0.6B model\\\" | Limitations 诚实说明；batch_size 消融间接展示方法在不同 ESS 范围下的稳健性（bs=4→16 相当于模拟不同 scale 的 batch 统计行为）；Llama-3B 列为 P1 如有 GPU 余量补做 | p0_batchsize_* + p1_llama3b_adaptive |\\n| \\\"Detector quality sensitivity\\\" | TF-IDF+LR 即可; calibration > AUC | p1_detector_ablation |\\n| \\\"Controlled injection ≠ real web\\\" | domain-skewed + semi-realistic | p2_domain_skewed |\\n| \\\"τ comes from contamination_ratio?\\\" | τ 代码已独立 (D021 fix); 收敛理论 α 确实依赖已知比例 (D025)，诚实说明 τ 是 empirical default with theoretical motivation; τ sweep 6 点完整数据证明 [0.5,0.8] safe range + principled default τ=0.8 | p0_tau_fix ✅ + p0_tau_sweep ✅ |\\n\\n## Key Risks\\n\\n1. **~~ESS-only baseline 可能同样好~~** ✅ **RESOLVED (D029)**: ESS-only PPL=17.728（比 uniform 差 +0.034，比 adaptive 差 +0.076）——max-intervention 明确退化。结果落在\\\"dual > ESS-only\\\"理想区间：min-intervention principle 有可量化的性能优势。跨 seed 验证 (ess_only_seed123/456) 进行中\\n2. **Novelty risk (D013)**: 基础公式来自 Drayson，双约束框架新颖性需充分论证。**应对**: 差异化锚定在 min-intervention principle + zero validation cost\\n3. **~~τ 修复后性能变化~~** ✅ **RESOLVED (D035)**: τ sweep 6 点完成。[0.5, 0.8] safe range 全部 beat uniform；τ=0.8 最优；τ>0.8 退化但机制清晰（b* 膨胀）。方法 robust in practical range\\n4. **~~τ 理论来源依赖已知比例~~** ✅ **RESOLVED (D025+D035)**: τ 定位为 empirical HP with theoretical motivation。τ sweep 提供完整 empirical justification，Claim 3 核心不受影响\\n5. **效应量小**: **应对**: 60% 污染 + 3B 模型放大; zero-cost advantage framing\\n6. **Venue fit**: 核心偏 ML，EMNLP reviewer 可能低估。**应对**: NLP-specific analysis\\n\\n## MVP → Full Paper 扩展路径\\n\\n| 维度 | MVP | Full Paper |\\n|------|-----|-----------|\\n| 污染比例 | 40% | 20%, 40%, 60% |\\n| 模型 | Qwen3-0.6B | + Llama-3.2-3B |\\n| 生成器 | Qwen3-0.6B (self) | + Llama-3.2-1B, Mistral, Gemma |\\n| 检测器 | TF-IDF + LR | + ModernBERT variants (quality ablation) |\\n| Baseline | uniform, grid-b, adaptive | + ESS-only adaptive, Golden Ratio, detect-and-remove, random reweight |\\n| 评估 | eval_ppl | + MMLU, HellaSwag, Self-BLEU, distinct-n |\\n| 注入方式 | uniform random | + domain-skewed, semi-realistic |\\n| n_min 分析 | n_min=2 vs n_min=3 | + n_min=1,4,5 + batch_size=4,8,16 |\\n| τ 分析 | 无 | ✅ τ sweep (6 点) + ESS-only vs dual-constraint 对比 |\\n\", \"total_chars\": 11323, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "357c4cde-8f4b-4121-ab3e-c3bbba167392",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — provenance_weight_training\\\\n\\\\n> 状态: STABLE (D023 dual-constraint + D029 ESS-only resolved + D035 τ sweep complete)\\\\n> 最后更新: 2026-05-15 21:30 UTC\\\\n> 投稿目标: EMNLP 2026 ARR May 25\\\\n\\\\n## Core Insight\\\\n\\\\nWeb 语料预训练面临合成数据污染问题（20-60%，来源未知），Drayson et al. (EMNLP 2025) 提出 w=(1-q)^b detect-and-reweight 框架，但 b 需要 per-model validation-based grid search（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1）。\\\\n\\\\n我们提出 **dual-constrained adaptive b***：per-batch 从 q-score 分布推导最优 b*，同时满足两个约束：\\\\n- **α_eff(b) ≥ τ** — 质量下界：确保加权后有效真实率达到收敛理论要求的阈值（\\\\\\\"至少做够清洁\\\\\\\"）\\\\n- **ESS(b) ≥ n_min** — 稳定上界：确保有效样本量不低于 Kish 阈值（\\\\\\\"不要清洁过头\\\\\\\"）\\\\n\\\\nb* = inf{b ≥ 0 : α_eff(b) ≥ τ} subject to ESS(b) ≥ n_min — **最小干预准则**：在保证质量的前提下，使用最少的 downweighting。\\\\n\\\\n**关键洞察**：α_eff(b) 单调递增、ESS(b) 单调递减。α_eff 给出 b 的下界 b_τ（需至少这么多清洁），ESS 给出 b 的上界 b_ESS（最多这么多清洁）。当 b_τ < b_ESS（~40% reweighted batches），α_eff 是 binding constraint，b* 远小于 ESS 上界（mean 1.67 vs 4.15）——方法选择保守干预而非最大干预。\\\\n\\\\n实现路径：**直接 loss reweighting**（gradient 层面连续加权），vs Drayson 的 SIR resampling（离散重采样）。\\\\n\\\\n### α_eff(b) 的角色（D023 修正定论）\\\\n\\\\n**D021 证明 α_eff(b) 严格单调递增**（dα_eff/db = Cov_w(x, ln x) ≥ 0）——这是正确的。\\\\n\\\\n**D021 的错误推论**：\\\\\\\"因此 α_eff 优化等价于 ESS 阈值化\\\\\\\"——这假设优化目标是 max α_eff(b) s.t. ESS ≥ n_min。但实际优化是 **inf{b : α_eff(b) ≥ τ}**——最小满足质量阈值的 b。单调性恰恰保证了 b_τ 的**存在性和唯一性**。\\\\n\\\\n**Q1 实证（Reviewer 独立核实）**：\\\\n- 51,913 micro-batches 中，49.9% clean (b*=0), 20.2% α_eff binding, 30.0% ESS binding\\\\n- 在需 reweighting 的 batch 中：40.1% α_eff binding, 59.9% ESS binding\\\\n- α_eff binding 时 b*=1.67，ESS-only 方法会选 b*=4.15（2.5× 更激进）\\\\n- α_eff binding 时 ESS=2.60（vs n_min=2.0，有 30% 余量）\\\\n\\\\n**论文呈现**：α_eff 是方法的核心组件（非仅 motivation），提供质量阈值约束。Figure: 双轴图展示 α_eff(b) 和 ESS(b) 曲线 + b_τ 和 b_ESS 标注。\\\\n\\\\n**τ 的定位（D025 定论 + D035 τ sweep 完整数据更新）**：收敛理论 (arXiv 2602.16065) 中 α = m₁/(m₁+m₂) 是已知设计参数，推导依赖已知比例。τ **不能声称有 proportion-free 的理论推导**。正确定位：empirical hyperparameter with theoretical motivation——收敛理论解释了\\\\\\\"为什么需要质量阈值\\\\\\\"（α 越高收敛越快），但 τ 的特定值由经验确定。\\\\n\\\\n**τ sweep 完整结果（6 点，seed42，ρ=0.4）**：\\\\n\\\\n| τ | PPL | Δ vs uniform (17.694) | b* mean | conclusion |\\\\n|---|-----|----------------------|---------|------------|\\\\n| 0.50 | 17.688 | −0.006 | 0.39 | success |\\\\n| 0.60 | 17.681 | −0.013 | 0.59 | success |\\\\n| 0.70 | 17.679 | −0.015 | 0.89 | success |\\\\n| **0.80** | **17.653** | **−0.041** | **1.40** | **best** |\\\\n| 0.90 | 17.712 | +0.018 | 2.36 | negative |\\\\n| 0.95 | 17.723 | +0.029 | 3.08 | negative |\\\\n\\\\n**关键洞察**：(1) [0.5, 0.8] 全部 beat uniform，safe range 内 PPL 差异仅 0.035；(2) τ=0.8 是最优默认值；(3) τ>0.8 因 b* 膨胀导致过度 downweighting 而退化（asymmetric sensitivity）；(4) b* 与 τ 严格单调递增，机制清晰——τ 越高要求越严，solver 被迫推高 b*。不能说\\\\\\\"τ 不敏感\\\\\\\"，正确表述：\\\\\\\"wide safe range [0.5, 0.8] with principled default τ=0.8\\\\\\\"。\\\\n\\\\n**ESS-only baseline 已验证 (D029)**：ESS-only PPL=17.728（+0.034 vs uniform，+0.076 vs adaptive_fix）——max-intervention 退化确认，min-intervention (dual) 明确优于 max-intervention (ESS-only)。ess_only_seed123/456 跨 seed 验证进行中。\\\\n\\\\n## Positioning vs Prior Work\\\\n\\\\n### Drayson et al. (EMNLP 2025) — 最近相关工作\\\\n\\\\n**共同点**：同一加权公式 w=(1-q)^b，detect-and-reweight 范式。\\\\n\\\\n**关键区分**：\\\\n\\\\n| 维度 | Drayson et al. | Ours |\\\\n|------|---------------|------|\\\\n| **b 选择** | 验证集 empirical 选取，训练中固定 | α_eff + ESS 双重约束自适应推导，per-batch 动态 |\\\\n| **干预原则** | 无原则（b 是超参数） | 最小干预（inf{b : α_eff ≥ τ}，只做必要的清洁） |\\\\n| **实现路径** | SIR resampling（离散重采样） | Loss reweighting（连续梯度加权） |\\\\n| **污染设置** | 不假设已知比例，但 b 依赖 validation set | 仅需 detector scores，无 validation set |\\\\n| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，轻量即可 |\\\\n| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练 |\\\\n| **数据规模** | WikiText-2 (~2M tokens) | FineWeb subset (132M+ tokens) |\\\\n| **validation 成本** | 需 per-model validation run | 零额外 validation cost |\\\\n\\\\n**定位原则：complementary approaches for different settings。**\\\\n\\\\n### Golden Ratio Weighting (arXiv 2502.18049, 2025)\\\\n理论最优 w*=1/φ，但假设已知 real/synthetic 比例 k。作为 oracle baseline。\\\\n\\\\n### 其他相关工作\\\\n- **Strong Model Collapse (ICLR 2025)** — 理论动机：微量合成数据即致 collapse\\\\n- **Dynamic Loss-Based Reweighting (ICLR 2025)** — 按 loss 加权（不使用 detector score），互补\\\\n- **SoftDedup (ACL 2024)** — 基于重复度的 soft reweighting\\\\n- **DoReMi / DSIR (NeurIPS 2023)** — 域级优化 vs 我们的实例级\\\\n- **Beyond Model Collapse / Verification (NeurIPS 2025)** — verifier-based prevention\\\\n- **PSIS (Pareto Smoothed IS)** — 重要性采样诊断，Kish's ESS 理论来源\\\\n- **arXiv 2602.16065** — α_eff 质量阈值 τ 的收敛理论来源\\\\n\\\\n## Core Claims\\\\n\\\\n### Claim 1 (Primary): Dual-Constrained Adaptive b* — Minimum Intervention Principle\\\\n\\\\nα_eff + ESS 双重约束的 adaptive b*，提供 contamination-aware reweighting 中权重指数的 **principled 推导**，替代 Drayson et al. 的 per-model empirical grid search。\\\\n\\\\n- **方法核心**：b* = inf{b ≥ 0 : α_eff(b) ≥ τ} s.t. ESS(b) ≥ n_min。两个约束分别提供 b 的下界（质量）和上界（稳定），b* 是最小满足质量阈值的可行解\\\\n- **最小干预原则**：不 downweight 更多于必要——在 ~40% reweighted batch 中，b* 仅为 ESS-only 上界的 45%，保留显著更多有效样本\\\\n- **差异化**：Drayson 的 b 是超参数（需 validation + grid search）；我们的 b* 是双约束下的自适应推导\\\\n- **证据需求**：(a) α_eff binding 比例统计 (✓ Q1); (b) ESS-only baseline head-to-head 对比（证明 min > max intervention）; (c) b* 轨迹分析\\\\n- **理论 motivation**：α_eff(b) 单调性保证 b_τ 唯一存在；收敛理论为 τ 选择提供指导\\\\n\\\\n### Claim 2 (Primary): Adaptive b* 免调参即匹配 Grid-best\\\\n\\\\nAdaptive b* 在零超参调优下达到 grid-search 最优同等水平（within seed variance），消除 grid search 的计算开销（6N → 1 runs）。\\\\n\\\\n- **MVP 证据**: adaptive_fix ×3 seeds vs grid-b ×3 seeds（40% 污染, Qwen3-0.6B, 200M tokens）\\\\n- **状态**: ✅ MVP Path B PASS (D019: aggregate 88.6%, 三支柱论证)\\\\n\\\\n**叙事弹性**：\\\\n- 核心表述：**\\\\\\\"adaptive matches grid-best within seed variance\\\\\\\"**\\\\n- 补充表述：**\\\\\\\"eliminates grid search cost (6N → 1 runs)\\\\\\\"** + **\\\\\\\"consistent improvement across all seeds\\\\\\\"**\\\\n\\\\n**MVP 数据**：\\\\n\\\\n| Metric | seed42 | seed123 | seed456 |\\\\n|--------|--------|---------|---------|\\\\n| Uniform PPL | 17.690 | 17.690 | 17.700 |\\\\n| Grid-best PPL (b=0.5) | 17.651 | 17.638 | 17.650 |\\\\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 |\\\\n| Ratio | 102.6% | 90.4% | 80.0% |\\\\n\\\\nAggregate ratio: 88.6% (D019). Path B PASS.\\\\n\\\\n### Claim 3 (Setting): Unknown Contamination Proportion\\\\n\\\\n方法仅需 detector scores，无需已知污染比例、无需 clean validation set。\\\\n\\\\n- **差异化**：Golden Ratio 需已知比例 k；Drayson 的 b 依赖 validation set；我们仅需 per-sample q-scores\\\\n- **实际意义**：web-scale pretraining 中污染比例本质不可知\\\\n- **D021 代码修复**: ✅ τ = 0.8 固定 CLI 参数，不依赖 contamination_ratio\\\\n- **D025 理论审计**: arXiv 2602.16065 的 α 是已知比例，τ 不能声称有 proportion-free 理论推导。τ 定位为 empirical hyperparameter with theoretical motivation\\\\n- **D035 τ sweep 完整数据 (6 点)**：[0.5, 0.8] 为 safe range（all beat uniform，PPL 差异 <0.035），τ=0.8 为最优默认值；τ>0.8 因 b* 膨胀退化。正确表述：\\\\\\\"wide safe range with principled default\\\\\\\"，不说\\\\\\\"insensitive\\\\\\\"\\\\n- **Claim 3 核心仍成立**：b* 推导不需要已知比例（ESS 和 α_eff 从 batch 统计量计算），方法运行时不访问 contamination_ratio。τ 在 [0.5, 0.8] 范围内是 robust empirical default，类似于 learning rate warmup steps——有理论 motivation 但具体值凭经验，且有明确的有效范围上界\\\\n\\\\n## Ancillary Finding: Lightweight Detector Sufficiency\\\\n\\\\nTF-IDF + LR (AUC=0.939) 即可支撑有效的 adaptive reweighting，不需要 ModernBERT 级别的强检测器（Drayson 用 AUC=0.986）。q-score 的连续性（calibration）比分类精度（AUC）更重要。\\\\n\\\\n可升级为 co-primary contribution 如果 detector quality ablation 显示明确的 \\\\\\\"sufficiency threshold\\\\\\\"。\\\\n\\\\n## n_min Robustness Framing\\\\n\\\\nESS 约束的 n_min 是 adaptive b* 的超参数之一（另一个是 τ）。\\\\n\\\\n- n_min=3 at batch_size=4 → ESS 约束过紧，b* 被钳制在低值，seed42 零改善\\\\n- n_min=2 at batch_size=4 → 稳定工作，3/3 seeds positive\\\\n- **论文呈现**：n_min sensitivity curve (n_min=1,2,3,4,5) + batch_size 消融 (4,8,16) 证明 knife-edge 是 batch_size=4 的 artifact\\\\n\\\\n## Narrative Structure\\\\n\\\\n**起点**: Web 语料 20-60% 为合成文本，比例未知——Strong Model Collapse (ICLR 2025) 证明微量污染即破坏 scaling law。\\\\n\\\\n**现有方法不足**：Drayson 的 b 依赖 per-model validation（不同模型需不同 b），Golden Ratio 假设已知混合比例。\\\\n\\\\n**我们的方案**: Dual-constrained adaptive b*——α_eff 确保 \\\\\\\"至少做够清洁\\\\\\\"，ESS 确保 \\\\\\\"不要清洁过头\\\\\\\"，b* 是满足质量阈值的最小干预。\\\\n\\\\n**方法直觉**：想象一个旋钮 b 控制去污力度。α_eff 告诉你\\\\\\\"至少拧到这里才够干净\\\\\\\"（质量下界），ESS 告诉你\\\\\\\"再拧就会丢太多有效数据\\\\\\\"（稳定上界）。方法选择旋钮的最小有效位置——刚好够干净，不多不少。\\\\n\\\\n**α_eff 的贡献**：不是\\\\\\\"α_eff vs ESS 哪个更重要\\\\\\\"，而是双约束共同构成最小干预准则。在 ~40% reweighted batch 中，α_eff 是 binding constraint（b* 远低于 ESS 上界）——如果没有 α_eff，方法会过度 downweight，浪费有效样本。\\\\n\\\\n**实验验证**：(a) adaptive vs grid-best within seed variance; (b) adaptive vs ESS-only baseline（证明 min-intervention > max-intervention）; (c) τ/n_min sensitivity; (d) batch_size 消融。\\\\n\\\\n## Contribution Structure (D023 reframed)\\\\n\\\\n1. **Primary — Method**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则），零 validation cost 的 per-batch 自适应 b 推导，替代 per-model grid search。\\\\n2. **Primary — Empirical Finding**: (a) Adaptive b* 免调参匹配 grid-best within seed variance; (b) 轻量检测器 (TF-IDF+LR, AUC=0.939) 即可支撑有效重加权; (c) min-intervention 优于 max-intervention（需 ESS-only baseline 验证）。\\\\n3. **Setting — Unknown Proportion**: 仅需 detector scores，无需已知比例或 validation set（τ 修复后）。\\\\n\\\\n**α_eff 是方法的核心组件**，提供质量约束和最小干预语义。收敛理论作为 τ 选择的 motivation。\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response Strategy | 实验支撑 |\\\\n|---------|------------------|----------|\\\\n| \\\\\\\"Incremental over Drayson\\\\\\\" | 差异化: adaptive b* (zero validation) vs per-model empirical b; min-intervention principle; loss reweighting vs SIR | Claim 1 + Claim 3 + ESS-only baseline |\\\\n| \\\\\\\"α_eff monotone → just ESS thresholding?\\\\\\\" | inf{b} vs max{b} 区分: 最小干预 vs 最大干预。Q1 实证: 40% α_eff binding, b* = 1.67 vs ESS-only 4.15。ESS-only baseline 对比训练结果 | ESS-only baseline + Q1 figure |\\\\n| \\\\\\\"Small effect size (~0.3% PPL)\\\\\\\" | claim 聚焦免调参+方法正确性; 60% 污染+3B 模型放大; zero-cost advantage | p0_contamination_60 + p0_llama3b |\\\\n| \\\\\\\"Two hyperparameters (τ, n_min) vs one (b)\\\\\\\" | 关键区别：τ 在 [0.5,0.8] 有效（sweep 6 点验证），n_min=2 跨 3 seed 稳定。两个 HP 都有明确 safe range + principled default，设一次即可跨数据集；Drayson 的 b 需 per-model per-dataset validation。2 个 robust defaults 替代 1 个 sensitive HP | p0_nmin_* + p0_tau_sweep ✅ + p0_batchsize_* |\\\\n| \\\\\\\"Only 0.6B model\\\\\\\" | Limitations 诚实说明；batch_size 消融间接展示方法在不同 ESS 范围下的稳健性（bs=4→16 相当于模拟不同 scale 的 batch 统计行为）；Llama-3B 列为 P1 如有 GPU 余量补做 | p0_batchsize_* + p1_llama3b_adaptive |\\\\n| \\\\\\\"Detector quality sensitivity\\\\\\\" | TF-IDF+LR 即可; calibration > AUC | p1_detector_ablation |\\\\n| \\\\\\\"Controlled injection ≠ real web\\\\\\\" | domain-skewed + semi-realistic | p2_domain_skewed |\\\\n| \\\\\\\"τ comes from contamination_ratio?\\\\\\\" | τ 代码已独立 (D021 fix); 收敛理论 α 确实依赖已知比例 (D025)，诚实说明 τ 是 empirical default with theoretical motivation; τ sweep 6 点完整数据证明 [0.5,0.8] safe range + principled default τ=0.8 | p0_tau_fix ✅ + p0_tau_sweep ✅ |\\\\n\\\\n## Key Risks\\\\n\\\\n1. **~~ESS-only baseline 可能同样好~~** ✅ **RESOLVED (D029)**: ESS-only PPL=17.728（比 uniform 差 +0.034，比 adaptive 差 +0.076）——max-intervention 明确退化。结果落在\\\\\\\"dual > ESS-only\\\\\\\"理想区间：min-intervention principle 有可量化的性能优势。跨 seed 验证 (ess_only_seed123/456) 进行中\\\\n2. **Novelty risk (D013)**: 基础公式来自 Drayson，双约束框架新颖性需充分论证。**应对**: 差异化锚定在 min-intervention principle + zero validation cost\\\\n3. **~~τ 修复后性能变化~~** ✅ **RESOLVED (D035)**: τ sweep 6 点完成。[0.5, 0.8] safe range 全部 beat uniform；τ=0.8 最优；τ>0.8 退化但机制清晰（b* 膨胀）。方法 robust in practical range\\\\n4. **~~τ 理论来源依赖已知比例~~** ✅ **RESOLVED (D025+D035)**: τ 定位为 empirical HP with theoretical motivation。τ sweep 提供完整 empirical justification，Claim 3 核心不受影响\\\\n5. **效应量小**: **应对**: 60% 污染 + 3B 模型放大; zero-cost advantage framing\\\\n6. **Venue fit**: 核心偏 ML，EMNLP reviewer 可能低估。**应对**: NLP-specific analysis\\\\n\\\\n## MVP → Full Paper 扩展路径\\\\n\\\\n| 维度 | MVP | Full Paper |\\\\n|------|-----|-----------|\\\\n| 污染比例 | 40% | 20%, 40%, 60% |\\\\n| 模型 | Qwen3-0.6B | + Llama-3.2-3B |\\\\n| 生成器 | Qwen3-0.6B (self) | + Llama-3.2-1B, Mistral, Gemma |\\\\n| 检测器 | TF-IDF + LR | + ModernBERT variants (quality ablation) |\\\\n| Baseline | uniform, grid-b, adaptive | + ESS-only adaptive, Golden Ratio, detect-and-remove, random reweight |\\\\n| 评估 | eval_ppl | + MMLU, HellaSwag, Self-BLEU, distinct-n |\\\\n| 注入方式 | uniform random | + domain-skewed, semi-realistic |\\\\n| n_min 分析 | n_min=2 vs n_min=3 | + n_min=1,4,5 + batch_size=4,8,16 |\\\\n| τ 分析 | 无 | ✅ τ sweep (6 点) + ESS-only vs dual-constraint 对比 |\\\\n\\\", \\\"total_chars\\\": 11323, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper_framing.md\", \"content\": \"# Paper Framing — provenance_weight_training\\n\\n> 状态: STABLE (D023 dual-constraint + D029 ESS-only resolved + D035 τ sweep complete)\\n> 最后更新: 2026-05-15 21:30 UTC\\n> 投稿目标: EMNLP 2026 ARR May 25\\n\\n## Core Insight\\n\\nWeb 语料预训练面临合成数据污染问题（20-60%，来源未知），Drayson et al. (EMNLP 2025) 提出 w=(1-q)^b detect-and-reweight 框架，但 b 需要 per-model validation-based grid search（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1）。\\n\\n我们提出 **dual-constrained adaptive b***：per-batch 从 q-score 分布推导最优 b*，同时满足两个约束：\\n- **α_eff(b) ≥ τ** — 质量下界：确保加权后有效真实率达到收敛理论要求的阈值（\\\"至少做够清洁\\\"）\\n- **ESS(b) ≥ n_min** — 稳定上界：确保有效样本量不低于 Kish 阈值（\\\"不要清洁过头\\\"）\\n\\nb* = inf{b ≥ 0 : α_eff(b) ≥ τ} subject to ESS(b) ≥ n_min — **最小干预准则**：在保证质量的前提下，使用最少的 downweighting。\\n\\n**关键洞察**：α_eff(b) 单调递增、ESS(b) 单调递减。α_eff 给出 b 的下界 b_τ（需至少这么多清洁），ESS 给出 b 的上界 b_ESS（最多这么多清洁）。当 b_τ < b_ESS（~40% reweighted batches），α_eff 是 binding constraint，b* 远小于 ESS 上界（mean 1.67 vs 4.15）——方法选择保守干预而非最大干预。\\n\\n实现路径：**直接 loss reweighting**（gradient 层面连续加权），vs Drayson 的 SIR resampling（离散重采样）。\\n\\n### α_eff(b) 的角色（D023 修正定论）\\n\\n**D021 证明 α_eff(b) 严格单调递增**（dα_eff/db = Cov_w(x, ln x) ≥ 0）——这是正确的。\\n\\n**D021 的错误推论**：\\\"因此 α_eff 优化等价于 ESS 阈值化\\\"——这假设优化目标是 max α_eff(b) s.t. ESS ≥ n_min。但实际优化是 **inf{b : α_eff(b) ≥ τ}**——最小满足质量阈值的 b。单调性恰恰保证了 b_τ 的**存在性和唯一性**。\\n\\n**Q1 实证（Reviewer 独立核实）**：\\n- 51,913 micro-batches 中，49.9% clean (b*=0), 20.2% α_eff binding, 30.0% ESS binding\\n- 在需 reweighting 的 batch 中：40.1% α_eff binding, 59.9% ESS binding\\n- α_eff binding 时 b*=1.67，ESS-only 方法会选 b*=4.15（2.5× 更激进）\\n- α_eff binding 时 ESS=2.60（vs n_min=2.0，有 30% 余量）\\n\\n**论文呈现**：α_eff 是方法的核心组件（非仅 motivation），提供质量阈值约束。Figure: 双轴图展示 α_eff(b) 和 ESS(b) 曲线 + b_τ 和 b_ESS 标注。\\n\\n**τ 的定位（D025 定论 + D035 τ sweep 完整数据更新）**：收敛理论 (arXiv 2602.16065) 中 α = m₁/(m₁+m₂) 是已知设计参数，推导依赖已知比例。τ **不能声称有 proportion-free 的理论推导**。正确定位：empirical hyperparameter with theoretical motivation——收敛理论解释了\\\"为什么需要质量阈值\\\"（α 越高收敛越快），但 τ 的特定值由经验确定。\\n\\n**τ sweep 完整结果（6 点，seed42，ρ=0.4）**：\\n\\n| τ | PPL | Δ vs uniform (17.694) | b* mean | conclusion |\\n|---|-----|----------------------|---------|------------|\\n| 0.50 | 17.688 | −0.006 | 0.39 | success |\\n| 0.60 | 17.681 | −0.013 | 0.59 | success |\\n| 0.70 | 17.679 | −0.015 | 0.89 | success |\\n| **0.80** | **17.653** | **−0.041** | **1.40** | **best** |\\n| 0.90 | 17.712 | +0.018 | 2.36 | negative |\\n| 0.95 | 17.723 | +0.029 | 3.08 | negative |\\n\\n**关键洞察**：(1) [0.5, 0.8] 全部 beat uniform，safe range 内 PPL 差异仅 0.035；(2) τ=0.8 是最优默认值；(3) τ>0.8 因 b* 膨胀导致过度 downweighting 而退化（asymmetric sensitivity）；(4) b* 与 τ 严格单调递增，机制清晰——τ 越高要求越严，solver 被迫推高 b*。不能说\\\"τ 不敏感\\\"，正确表述：\\\"wide safe range [0.5, 0.8] with principled default τ=0.8\\\"。\\n\\n**ESS-only baseline 已验证 (D029)**：ESS-only PPL=17.728（+0.034 vs uniform，+0.076 vs adaptive_fix）——max-intervention 退化确认，min-intervention (dual) 明确优于 max-intervention (ESS-only)。ess_only_seed123/456 跨 seed 验证进行中。\\n\\n## Positioning vs Prior Work\\n\\n### Drayson et al. (EMNLP 2025) — 最近相关工作\\n\\n**共同点**：同一加权公式 w=(1-q)^b，detect-and-reweight 范式。\\n\\n**关键区分**：\\n\\n| 维度 | Drayson et al. | Ours |\\n|------|---------------|------|\\n| **b 选择** | 验证集 empirical 选取，训练中固定 | α_eff + ESS 双重约束自适应推导，per-batch 动态 |\\n| **干预原则** | 无原则（b 是超参数） | 最小干预（inf{b : α_eff ≥ τ}，只做必要的清洁） |\\n| **实现路径** | SIR resampling（离散重采样） | Loss reweighting（连续梯度加权） |\\n| **污染设置** | 不假设已知比例，但 b 依赖 validation set | 仅需 detector scores，无 validation set |\\n| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，轻量即可 |\\n| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练 |\\n| **数据规模** | WikiText-2 (~2M tokens) | FineWeb subset (132M+ tokens) |\\n| **validation 成本** | 需 per-model validation run | 零额外 validation cost |\\n\\n**定位原则：complementary approaches for different settings。**\\n\\n### Golden Ratio Weighting (arXiv 2502.18049, 2025)\\n理论最优 w*=1/φ，但假设已知 real/synthetic 比例 k。作为 oracle baseline。\\n\\n### 其他相关工作\\n- **Strong Model Collapse (ICLR 2025)** — 理论动机：微量合成数据即致 collapse\\n- **Dynamic Loss-Based Reweighting (ICLR 2025)** — 按 loss 加权（不使用 detector score），互补\\n- **SoftDedup (ACL 2024)** — 基于重复度的 soft reweighting\\n- **DoReMi / DSIR (NeurIPS 2023)** — 域级优化 vs 我们的实例级\\n- **Beyond Model Collapse / Verification (NeurIPS 2025)** — verifier-based prevention\\n- **PSIS (Pareto Smoothed IS)** — 重要性采样诊断，Kish's ESS 理论来源\\n- **arXiv 2602.16065** — α_eff 质量阈值 τ 的收敛理论来源\\n\\n## Core Claims\\n\\n### Claim 1 (Primary): Dual-Constrained Adaptive b* — Minimum Intervention Principle\\n\\nα_eff + ESS 双重约束的 adaptive b*，提供 contamination-aware reweighting 中权重指数的 **principled 推导**，替代 Drayson et al. 的 per-model empirical grid search。\\n\\n- **方法核心**：b* = inf{b ≥ 0 : α_eff(b) ≥ τ} s.t. ESS(b) ≥ n_min。两个约束分别提供 b 的下界（质量）和上界（稳定），b* 是最小满足质量阈值的可行解\\n- **最小干预原则**：不 downweight 更多于必要——在 ~40% reweighted batch 中，b* 仅为 ESS-only 上界的 45%，保留显著更多有效样本\\n- **差异化**：Drayson 的 b 是超参数（需 validation + grid search）；我们的 b* 是双约束下的自适应推导\\n- **证据需求**：(a) α_eff binding 比例统计 (✓ Q1); (b) ESS-only baseline head-to-head 对比（证明 min > max intervention）; (c) b* 轨迹分析\\n- **理论 motivation**：α_eff(b) 单调性保证 b_τ 唯一存在；收敛理论为 τ 选择提供指导\\n\\n### Claim 2 (Primary): Adaptive b* 免调参即匹配 Grid-best\\n\\nAdaptive b* 在零超参调优下达到 grid-search 最优同等水平（within seed variance），消除 grid search 的计算开销（6N → 1 runs）。\\n\\n- **MVP 证据**: adaptive_fix ×3 seeds vs grid-b ×3 seeds（40% 污染, Qwen3-0.6B, 200M tokens）\\n- **状态**: ✅ MVP Path B PASS (D019: aggregate 88.6%, 三支柱论证)\\n\\n**叙事弹性**：\\n- 核心表述：**\\\"adaptive matches grid-best within seed variance\\\"**\\n- 补充表述：**\\\"eliminates grid search cost (6N → 1 runs)\\\"** + **\\\"consistent improvement across all seeds\\\"**\\n\\n**MVP 数据**：\\n\\n| Metric | seed42 | seed123 | seed456 |\\n|--------|--------|---------|---------|\\n| Uniform PPL | 17.690 | 17.690 | 17.700 |\\n| Grid-best PPL (b=0.5) | 17.651 | 17.638 | 17.650 |\\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 |\\n| Ratio | 102.6% | 90.4% | 80.0% |\\n\\nAggregate ratio: 88.6% (D019). Path B PASS.\\n\\n### Claim 3 (Setting): Unknown Contamination Proportion\\n\\n方法仅需 detector scores，无需已知污染比例、无需 clean validation set。\\n\\n- **差异化**：Golden Ratio 需已知比例 k；Drayson 的 b 依赖 validation set；我们仅需 per-sample q-scores\\n- **实际意义**：web-scale pretraining 中污染比例本质不可知\\n- **D021 代码修复**: ✅ τ = 0.8 固定 CLI 参数，不依赖 contamination_ratio\\n- **D025 理论审计**: arXiv 2602.16065 的 α 是已知比例，τ 不能声称有 proportion-free 理论推导。τ 定位为 empirical hyperparameter with theoretical motivation\\n- **D035 τ sweep 完整数据 (6 点)**：[0.5, 0.8] 为 safe range（all beat uniform，PPL 差异 <0.035），τ=0.8 为最优默认值；τ>0.8 因 b* 膨胀退化。正确表述：\\\"wide safe range with principled default\\\"，不说\\\"insensitive\\\"\\n- **Claim 3 核心仍成立**：b* 推导不需要已知比例（ESS 和 α_eff 从 batch 统计量计算），方法运行时不访问 contamination_ratio。τ 在 [0.5, 0.8] 范围内是 robust empirical default，类似于 learning rate warmup steps——有理论 motivation 但具体值凭经验，且有明确的有效范围上界\\n\\n## Ancillary Finding: Lightweight Detector Sufficiency\\n\\nTF-IDF + LR (AUC=0.939) 即可支撑有效的 adaptive reweighting，不需要 ModernBERT 级别的强检测器（Drayson 用 AUC=0.986）。q-score 的连续性（calibration）比分类精度（AUC）更重要。\\n\\n可升级为 co-primary contribution 如果 detector quality ablation 显示明确的 \\\"sufficiency threshold\\\"。\\n\\n## n_min Robustness Framing\\n\\nESS 约束的 n_min 是 adaptive b* 的超参数之一（另一个是 τ）。\\n\\n- n_min=3 at batch_size=4 → ESS 约束过紧，b* 被钳制在低值，seed42 零改善\\n- n_min=2 at batch_size=4 → 稳定工作，3/3 seeds positive\\n- **论文呈现**：n_min sensitivity curve (n_min=1,2,3,4,5) + batch_size 消融 (4,8,16) 证明 knife-edge 是 batch_size=4 的 artifact\\n\\n## Narrative Structure\\n\\n**起点**: Web 语料 20-60% 为合成文本，比例未知——Strong Model Collapse (ICLR 2025) 证明微量污染即破坏 scaling law。\\n\\n**现有方法不足**：Drayson 的 b 依赖 per-model validation（不同模型需不同 b），Golden Ratio 假设已知混合比例。\\n\\n**我们的方案**: Dual-constrained adaptive b*——α_eff 确保 \\\"至少做够清洁\\\"，ESS 确保 \\\"不要清洁过头\\\"，b* 是满足质量阈值的最小干预。\\n\\n**方法直觉**：想象一个旋钮 b 控制去污力度。α_eff 告诉你\\\"至少拧到这里才够干净\\\"（质量下界），ESS 告诉你\\\"再拧就会丢太多有效数据\\\"（稳定上界）。方法选择旋钮的最小有效位置——刚好够干净，不多不少。\\n\\n**α_eff 的贡献**：不是\\\"α_eff vs ESS 哪个更重要\\\"，而是双约束共同构成最小干预准则。在 ~40% reweighted batch 中，α_eff 是 binding constraint（b* 远低于 ESS 上界）——如果没有 α_eff，方法会过度 downweight，浪费有效样本。\\n\\n**实验验证**：(a) adaptive vs grid-best within seed variance; (b) adaptive vs ESS-only baseline（证明 min-intervention > max-intervention）; (c) τ/n_min sensitivity; (d) batch_size 消融。\\n\\n## Contribution Structure (D023 reframed)\\n\\n1. **Primary — Method**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则），零 validation cost 的 per-batch 自适应 b 推导，替代 per-model grid search。\\n2. **Primary — Empirical Finding**: (a) Adaptive b* 免调参匹配 grid-best within seed variance; (b) 轻量检测器 (TF-IDF+LR, AUC=0.939) 即可支撑有效重加权; (c) min-intervention 优于 max-intervention（需 ESS-only baseline 验证）。\\n3. **Setting — Unknown Proportion**: 仅需 detector scores，无需已知比例或 validation set（τ 修复后）。\\n\\n**α_eff 是方法的核心组件**，提供质量约束和最小干预语义。收敛理论作为 τ 选择的 motivation。\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response Strategy | 实验支撑 |\\n|---------|------------------|----------|\\n| \\\"Incremental over Drayson\\\" | 差异化: adaptive b* (zero validation) vs per-model empirical b; min-intervention principle; loss reweighting vs SIR | Claim 1 + Claim 3 + ESS-only baseline |\\n| \\\"α_eff monotone → just ESS thresholding?\\\" | inf{b} vs max{b} 区分: 最小干预 vs 最大干预。Q1 实证: 40% α_eff binding, b* = 1.67 vs ESS-only 4.15。ESS-only baseline 对比训练结果 | ESS-only baseline + Q1 figure |\\n| \\\"Small effect size (~0.3% PPL)\\\" | claim 聚焦免调参+方法正确性; 60% 污染+3B 模型放大; zero-cost advantage | p0_contamination_60 + p0_llama3b |\\n| \\\"Two hyperparameters (τ, n_min) vs one (b)\\\" | 关键区别：τ 在 [0.5,0.8] 有效（sweep 6 点验证），n_min=2 跨 3 seed 稳定。两个 HP 都有明确 safe range + principled default，设一次即可跨数据集；Drayson 的 b 需 per-model per-dataset validation。2 个 robust defaults 替代 1 个 sensitive HP | p0_nmin_* + p0_tau_sweep ✅ + p0_batchsize_* |\\n| \\\"Only 0.6B model\\\" | Limitations 诚实说明；batch_size 消融间接展示方法在不同 ESS 范围下的稳健性（bs=4→16 相当于模拟不同 scale 的 batch 统计行为）；Llama-3B 列为 P1 如有 GPU 余量补做 | p0_batchsize_* + p1_llama3b_adaptive |\\n| \\\"Detector quality sensitivity\\\" | TF-IDF+LR 即可; calibration > AUC | p1_detector_ablation |\\n| \\\"Controlled injection ≠ real web\\\" | domain-skewed + semi-realistic | p2_domain_skewed |\\n| \\\"τ comes from contamination_ratio?\\\" | τ 代码已独立 (D021 fix); 收敛理论 α 确实依赖已知比例 (D025)，诚实说明 τ 是 empirical default with theoretical motivation; τ sweep 6 点完整数据证明 [0.5,0.8] safe range + principled default τ=0.8 | p0_tau_fix ✅ + p0_tau_sweep ✅ |\\n\\n## Key Risks\\n\\n1. **~~ESS-only baseline 可能同样好~~** ✅ **RESOLVED (D029)**: ESS-only PPL=17.728（比 uniform 差 +0.034，比 adaptive 差 +0.076）——max-intervention 明确退化。结果落在\\\"dual > ESS-only\\\"理想区间：min-intervention principle 有可量化的性能优势。跨 seed 验证 (ess_only_seed123/456) 进行中\\n2. **Novelty risk (D013)**: 基础公式来自 Drayson，双约束框架新颖性需充分论证。**应对**: 差异化锚定在 min-intervention principle + zero validation cost\\n3. **~~τ 修复后性能变化~~** ✅ **RESOLVED (D035)**: τ sweep 6 点完成。[0.5, 0.8] safe range 全部 beat uniform；τ=0.8 最优；τ>0.8 退化但机制清晰（b* 膨胀）。方法 robust in practical range\\n4. **~~τ 理论来源依赖已知比例~~** ✅ **RESOLVED (D025+D035)**: τ 定位为 empirical HP with theoretical motivation。τ sweep 提供完整 empirical justification，Claim 3 核心不受影响\\n5. **效应量小**: **应对**: 60% 污染 + 3B 模型放大; zero-cost advantage framing\\n6. **Venue fit**: 核心偏 ML，EMNLP reviewer 可能低估。**应对**: NLP-specific analysis\\n\\n## MVP → Full Paper 扩展路径\\n\\n| 维度 | MVP | Full Paper |\\n|------|-----|-----------|\\n| 污染比例 | 40% | 20%, 40%, 60% |\\n| 模型 | Qwen3-0.6B | + Llama-3.2-3B |\\n| 生成器 | Qwen3-0.6B (self) | + Llama-3.2-1B, Mistral, Gemma |\\n| 检测器 | TF-IDF + LR | + ModernBERT variants (quality ablation) |\\n| Baseline | uniform, grid-b, adaptive | + ESS-only adaptive, Golden Ratio, detect-and-remove, random reweight |\\n| 评估 | eval_ppl | + MMLU, HellaSwag, Self-BLEU, distinct-n |\\n| 注入方式 | uniform random | + domain-skewed, semi-realistic |\\n| n_min 分析 | n_min=2 vs n_min=3 | + n_min=1,4,5 + batch_size=4,8,16 |\\n| τ 分析 | 无 | ✅ τ sweep (6 点) + ESS-only vs dual-constraint 对比 |\\n\", \"total_chars\": 11323, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I already have an existing `introduction.tex` that looks quite polished. The task asks me to write an introduction draft to `introduction_draft.md`. Let me also check the writing plan and related work for citation keys.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "6ec56ee2-d358-4478-ab71-be89d84daeac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7PBoWfa4cQnB6pFwLesFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11260,
+      "cache_read_input_tokens": 24893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+The existing `introduction.tex` is already well-written and aligns with the task requirements. Let me check the related work for citation keys and the writing plan for any additional constraints.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "d93d2d83-91ad-4243-8d35-492d1a73f456",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7PBoWfa4cQnB6pFwLesFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11260,
+      "cache_read_input_tokens": 24893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012pS5XJs5rBTX3rsHMgWEuU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/related_work.tex",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "ef270723-5b57-4840-8220-a43456bc8bf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7PBoWfa4cQnB6pFwLesFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11260,
+      "cache_read_input_tokens": 24893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T23:34:55.745Z_
+
+<details><summary>↩ Tool result · `toolu_012pS5XJs5rBTX3rsHMgWEuU`</summary>
+
+```text
+1	\section{Related Work}
+2	
+3	\paragraph{Synthetic Contamination and Model Collapse.}
+4	Training on recursively generated data leads to irreversible quality degradation---\emph{model collapse}~\citep{shumailov_2024_model_collapse}.
+5	\citet{alemohammad_2024_mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.
+6	More critically, \citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.
+7	\citet{cheng_2025_contamination_survey} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\% of web corpora.
+8	These results motivate \emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.
+9	
+10	\paragraph{Detection and Filtering of Machine-Generated Text.}
+11	Given the severity of contamination, a natural response is to detect and remove synthetic content.
+12	DetectGPT~\citep{mitchell_2023_detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\% Prob~\citep{shi_2024_minkprob} uses the average log-probability of the lowest-$k$\% tokens as a reference-free signal.
+13	Both produce continuous confidence scores suitable as input to downstream weighting---including ours.
+14	On the mitigation side, \citet{feng_2025_beyond_collapse} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.
+15	\citet{guo_2025_escaping_collapse} similarly rely on verification-based selection.
+16	Hard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.
+17	
+18	Most directly related to our work, \citet{drayson_2025_detection_collapse} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight, where $q_j$ is the detector's synthetic probability.
+19	We adopt the same weighting formula but differ in several fundamental ways.
+20	\textbf{(i)}~Drayson et al.\ select $b$ via validation-set grid search and fix it throughout training; different model scales require different values ($b{=}10$ for ${\leq}360$M, $b{=}1$ for 1.7B), making the choice \emph{per-model} and expensive.
+21	Our $b^*$ is derived per-batch from dual constraints ($\alpha_{\mathrm{eff}} \geq \tau$, $\mathrm{ESS} \geq n_{\min}$) at zero validation cost.
+22	\textbf{(ii)}~Their SIR resampling discretizes the weight distribution; we apply direct loss reweighting with continuous gradients.
+23	\textbf{(iii)}~They employ a ModernBERT-150M detector (AUC\,=\,0.986) on WikiText-2 (${\sim}$2M tokens); we show that a lightweight TF-IDF+LR detector (AUC\,=\,0.939) suffices on FineWeb-scale data (132M+ tokens), suggesting that score calibration matters more than raw detection accuracy.
+24	
+25	\paragraph{Data Mixing and Instance-Level Reweighting.}
+26	A parallel line of work optimizes data composition without targeting synthetic contamination.
+27	At the \emph{domain} level, DoReMi~\citep{xie_2023_doremi} learns mixture weights via Group DRO with a proxy model, DSIR~\citep{xie_2023_dsir} performs importance resampling with $n$-gram features, and \citet{ye_2025_data_mixing_laws} discover predictable functional forms relating mixing ratios to performance.
+28	AIOLI~\citep{chen_2025_aioli} unifies these into an online adaptive framework, while \citet{yang_2026_data_mixing_agent} train an RL agent for domain-weight selection.
+29	These methods do not address instance-level contamination within a domain.
+30	At the \emph{instance} level, SoftDedup~\citep{he_2024_softdedup} downweights high-frequency samples via $n$-gram commonness, \citet{sow_2025_dynamic_reweighting} derive sample weights from per-sample loss with convergence guarantees, and \citet{kuo_2024_data_weighting} show that differentiated weighting of LLM-generated data improves downstream classification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "7fe7ed3b-1870-41f6-98bb-6786cc8c879a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/related_work.tex",
+      "content": "\\section{Related Work}\n\n\\paragraph{Synthetic Contamination and Model Collapse.}\nTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov_2024_model_collapse}.\n\\citet{alemohammad_2024_mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\nMore critically, \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n\\citet{cheng_2025_contamination_survey} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\\% of web corpora.\nThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.\n\n\\paragraph{Detection and Filtering of Machine-Generated Text.}\nGiven the severity of contamination, a natural response is to detect and remove synthetic content.\nDetectGPT~\\citep{mitchell_2023_detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob~\\citep{shi_2024_minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal.\nBoth produce continuous confidence scores suitable as input to downstream weighting---including ours.\nOn the mitigation side, \\citet{feng_2025_beyond_collapse} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.\n\\citet{guo_2025_escaping_collapse} similarly rely on verification-based selection.\nHard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.\n\nMost directly related to our work, \\citet{drayson_2025_detection_collapse} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight, where $q_j$ is the detector's synthetic probability.\nWe adopt the same weighting formula but differ in several fundamental ways.\n\\textbf{(i)}~Drayson et al.\\ select $b$ via validation-set grid search and fix it throughout training; different model scales require different values ($b{=}10$ for ${\\leq}360$M, $b{=}1$ for 1.7B), making the choice \\emph{per-model} and expensive.\nOur $b^*$ is derived per-batch from dual constraints ($\\alpha_{\\mathrm{eff}} \\geq \\tau$, $\\mathrm{ESS} \\geq n_{\\min}$) at zero validation cost.\n\\textbf{(ii)}~Their SIR resampling discretizes the weight distribution; we apply direct loss reweighting with continuous gradients.\n\\textbf{(iii)}~They employ a ModernBERT-150M detector (AUC\\,=\\,0.986) on WikiText-2 (${\\sim}$2M tokens); we show that a lightweight TF-IDF+LR detector (AUC\\,=\\,0.939) suffices on FineWeb-scale data (132M+ tokens), suggesting that score calibration matters more than raw detection accuracy.\n\n\\paragraph{Data Mixing and Instance-Level Reweighting.}\nA parallel line of work optimizes data composition without targeting synthetic contamination.\nAt the \\emph{domain} level, DoReMi~\\citep{xie_2023_doremi} learns mixture weights via Group DRO with a proxy model, DSIR~\\citep{xie_2023_dsir} performs importance resampling with $n$-gram features, and \\citet{ye_2025_data_mixing_laws} discover predictable functional forms relating mixing ratios to performance.\nAIOLI~\\citep{chen_2025_aioli} unifies these into an online adaptive framework, while \\citet{yang_2026_data_mixing_agent} train an RL agent for domain-weight selection.\nThese methods do not address instance-level contamination within a domain.\nAt the \\emph{instance} level, SoftDedup~\\citep{he_2024_softdedup} downweights high-frequency samples via $n$-gram commonness, \\citet{sow_2025_dynamic_reweighting} derive sample weights from per-sample loss with convergence guarantees, and \\citet{kuo_2024_data_weighting} show that differentiated weighting of LLM-generated data improves downstream classification.",
+      "numLines": 30,
+      "startLine": 1,
+      "totalLines": 40
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RJ6n9NFMnnW3JATZLjKFD4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/writing_plan_v1_info.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "026f6e22-2bbb-4d15-a1de-72f6f6ffc697",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X7PBoWfa4cQnB6pFwLesFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11260,
+      "cache_read_input_tokens": 24893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11260
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T23:34:56.214Z_
+
+<details><summary>↩ Tool result · `toolu_01RJ6n9NFMnnW3JATZLjKFD4`</summary>
+
+```text
+1	Writing Plan v1 - saved as writing_plan.yaml
+2	
+3	Title: "Minimum Intervention Reweighting: Adaptive Exponent Selection for Contamination-Aware Pretraining"
+4	Sections: 7 (method → experiments → results → intro → related work → discussion → conclusion → abstract)
+5	Figures: 7 (4 P0 + 3 P1)
+6	Tables: 6 (3 P0 + 3 P1)
+7	Key citations: 7 must-cite + 7 should-cite + 9 optional
+8	Pending results: 4 RUNNING experiments
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "d81c180f-7dba-488e-92b7-3f72f33c1a5a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/writing_plan_v1_info.txt",
+      "content": "Writing Plan v1 - saved as writing_plan.yaml\n\nTitle: \"Minimum Intervention Reweighting: Adaptive Exponent Selection for Contamination-Aware Pretraining\"\nSections: 7 (method → experiments → results → intro → related work → discussion → conclusion → abstract)\nFigures: 7 (4 P0 + 3 P1)\nTables: 6 (3 P0 + 3 P1)\nKey citations: 7 must-cite + 7 should-cite + 9 optional\nPending results: 4 RUNNING experiments",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. The existing `introduction.tex` is already very polished and matches all the requirements. The task asks me to write `introduction_draft.md` — which should be the markdown version of the introduction. Let me compare what's requested vs what exists:
+
+The existing `introduction.tex` already:
+- Has the right story structure
+- Includes all required citations
+- Has the correct experimental numbers
+- Lists 3 contributions
+- Is about the right length
+
+However, looking more carefully at the task, it says to write `introduction_draft.md`. The existing `.tex` version might have been generated separately. 
+
+I should write a polished introduction draft in markdown that follows the task specifications exactly, drawing from the existing tex and framing documents for consistency but making sure to match all the specific requirements. The existing tex is about 650-700 words, which is right on target. Let me verify the required citations are all present: Drayson et al. (2025), Shumailov et al. (2024) / Dohmatob et al. (2025), Wang et al. (2026, arXiv 2602.16065), and He et al. (2025) on Golden Ratio weighting — all are accounted for in the existing version.
+
+Now I'm checking the exact performance metrics against the task requirements to make sure the numbers match precisely: Uniform PPL at 17.694, Grid-best at 17.646, Adaptive at 17.651, ESS-only at ~17.72, and the pretrained baseline at 22.97 PPL.
+
+Writing introduction_draft.md...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "2a5795ba-8c5e-4905-96ea-9561bfbe24f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVYWNH6SwiU12p1T3t72tA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1713,
+      "cache_read_input_tokens": 36153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now I have full context. Let me write the introduction draft.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "87126aa8-f527-45ff-a550-934001b4d444",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVYWNH6SwiU12p1T3t72tA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1713,
+      "cache_read_input_tokens": 36153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0197rYZwrs4w3jHdKFVPxCfx`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__append_idea",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "56ddc0ef-2d0c-439a-ba28-8b3f5ccf04cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVYWNH6SwiU12p1T3t72tA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1713,
+      "cache_read_input_tokens": 36153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T23:35:11.834Z_
+
+<details><summary>↩ Tool result · `toolu_0197rYZwrs4w3jHdKFVPxCfx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "4d7a9750-b09c-4bd9-8c87-ed43ed559308",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for the register_artifact tool.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "87e6df5f-d9ea-40b8-a570-cd95febdded7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dg1UXiyahUZvpkS2QfDZsi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 37866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1049
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VAikgTisPgBo7n9XkfoR9U`</summary>
+
+```json
+{
+  "query": "register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "7e513adc-7b81-4e68-8558-ba27277979c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dg1UXiyahUZvpkS2QfDZsi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 37866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1049
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T23:35:15.648Z_
+
+<details><summary>↩ Tool result · `toolu_01VAikgTisPgBo7n9XkfoR9U`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "dd9eb9fe-f9eb-4465-8bed-eb597b96e636",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register_artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RrZdhuDzFpBjysSaWLzMDY`</summary>
+
+```json
+{
+  "query": "artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "69cd488f-65c1-46fd-96b3-60b2b5c822dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9tBZ2vba9EvrPAKb7m5y3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 119,
+      "cache_read_input_tokens": 38915,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 119
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T23:35:17.975Z_
+
+<details><summary>↩ Tool result · `toolu_01RrZdhuDzFpBjysSaWLzMDY`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "cfa6e583-fd6b-4c7e-ab70-09a2a03eda54",
+  "tool_use_result": {
+    "matches": [],
+    "query": "artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KhM4i8CqbL2p5AceykzRdo`</summary>
+
+```json
+{
+  "query": "register",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "866b3111-e16a-4065-8ffe-260e20b51da9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfFzDbQFkKCSUZKkcjRWxd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 90,
+      "cache_read_input_tokens": 39034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 90
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T23:35:20.951Z_
+
+<details><summary>↩ Tool result · `toolu_01KhM4i8CqbL2p5AceykzRdo`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "7fcaf091-1ccd-4c63-ae98-1c38cb0f3116",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Xtt7MPoMLrWKNPrMEDH4LL`</summary>
+
+```json
+{
+  "query": "mcp agent-ml-research",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "6fc4b89e-0df0-41c0-9191-bc211fe27c4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NaiNXjX6eQVZV2WC4ibfg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 90,
+      "cache_read_input_tokens": 39124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 90
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T23:35:23.425Z_
+
+<details><summary>↩ Tool result · `toolu_01Xtt7MPoMLrWKNPrMEDH4LL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "ListMcpResourcesTool"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "ReadMcpResourceTool"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "819749d9-cafc-4852-bfcf-85d02108a8dc",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "ListMcpResourcesTool",
+      "ReadMcpResourceTool",
+      "WebFetch"
+    ],
+    "query": "mcp agent-ml-research",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `register_artifact` tool available in the MCP tools. Let me check if there's a different way to register artifacts. Let me look at the ListMcpResourcesTool to see all available resources and tools.
+
+Actually, let me just write the introduction draft first, then figure out the registration. The `register_artifact` might be a bash command or script on the system.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "f0c7f456-6c86-4d8d-bfdf-d1bd5a4dde67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FHx9rakL3XMjdmq39r4N4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1688,
+      "cache_read_input_tokens": 39214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1688
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WvQkUaqbzwbsCKGe8LTTaA`</summary>
+
+```json
+{
+  "command": "which register_artifact 2>/dev/null; type register_artifact 2>/dev/null; ls /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/ | head -20",
+  "description": "Check if register_artifact is a command"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "810cb8a2-74b9-4b87-9bb6-d471fd7f66c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FHx9rakL3XMjdmq39r4N4m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1688,
+      "cache_read_input_tokens": 39214,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1688
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T23:35:30.427Z_
+
+<details><summary>↩ Tool result · `toolu_01WvQkUaqbzwbsCKGe8LTTaA`</summary>
+
+```text
+conclusion.tex
+conclusion_386ecc.tex
+experiment_setup_draft.md
+experiments.tex
+experiments_1613c9.tex
+introduction.tex
+introduction_a663ee.tex
+method.tex
+method_76a694.tex
+method_section_draft.md
+related_work.tex
+related_work_963aec.tex
+results.tex
+results_819b43.tex
+writing_plan_v1_info.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "2b66e948-29b2-4211-bf00-681968d5751b",
+  "tool_use_result": {
+    "stdout": "conclusion.tex\nconclusion_386ecc.tex\nexperiment_setup_draft.md\nexperiments.tex\nexperiments_1613c9.tex\nintroduction.tex\nintroduction_a663ee.tex\nmethod.tex\nmethod_76a694.tex\nmethod_section_draft.md\nrelated_work.tex\nrelated_work_963aec.tex\nresults.tex\nresults_819b43.tex\nwriting_plan_v1_info.txt",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Now writing the introduction draft. The existing `introduction.tex` is solid — I'll produce a markdown version that matches the task spec precisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "99db04c3-1c9e-4a73-b9af-9533b40ea5bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ErKLib4xsReAN6JfR3RPUc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Mh1RRAd8wEYE3a5X9RNe6G`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md",
+  "content": "# Introduction\n\nWeb corpora increasingly contain machine-generated text.\nRecent estimates place the synthetic fraction at 20--60% of crawled data \\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.\nTraining on such contaminated data has concrete consequences: \\citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---*model collapse*---and \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.\nA central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.\nThe prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.\n\nA natural response is *detect-and-reweight*: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.\n\\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b=10$ for models at $\\leq$360M parameters to $b=1$ at 1.7B, and misspecification degrades results substantially.\nSelecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).\nOther approaches assume even stronger supervision: \\citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\\rho$, which is precisely what is unavailable in practice.\nHard detection-and-removal strategies \\citep{feng_2025_beyond_collapse} discard borderline samples entirely, sacrificing the smooth reweighting that continuous $q$-scores enable.\n\nGiven per-sample detector scores $q(x)$, how should one choose $b$ without a validation set or known contamination proportion?\nWe formulate this as a dual-constrained optimization over each training batch: find the smallest $b$ that ensures the weighted effective real proportion $\\alpha_{\\mathrm{eff}}(b)$ reaches a quality threshold $\\tau$, while keeping Kish's effective sample size $\\mathrm{ESS}(b)$ above a stability floor $n_{\\min}$.\nThe quality constraint has theoretical grounding: convergence rate under contaminated training improves with the effective real-data fraction \\citep{wang_2026_survive_contamination}, motivating a lower bound on $\\alpha_{\\mathrm{eff}}$.\nThe stability constraint prevents extreme weight concentration that degrades gradient quality.\nThese two requirements exhibit a natural opposition.\n$\\alpha_{\\mathrm{eff}}(b)$ increases monotonically in $b$ (Proposition 1), yielding a lower bound $b_\\tau$---the minimum exponent needed to achieve the target quality.\n$\\mathrm{ESS}(b)$ decreases monotonically, yielding an upper bound $b_{\\mathrm{ESS}}$---the maximum exponent before gradient stability degrades.\nThe adaptive exponent $b^* = b_\\tau$ when the feasible region $[b_\\tau, b_{\\mathrm{ESS}}]$ is non-empty, embodying a *minimum intervention principle*: apply the least downweighting sufficient to meet the quality target, preserving as much effective training data as possible.\nWhen the constraints conflict ($b_\\tau > b_{\\mathrm{ESS}}$), the stability ceiling takes precedence.\n\nThis minimum-intervention semantics distinguishes the method from the alternative of maximizing $b$ subject only to ESS stability.\nAmong batches that require reweighting, the dual-constraint solver selects $b^*$ via the $\\alpha_{\\mathrm{eff}}$ bound in 40% of cases, with mean $b^*=1.67$; the ESS-only variant would choose $b=4.15$ in these same batches, 2.5$\\times$ more aggressive.\nThe remaining 49.9% of batches have sufficient real-data content to skip reweighting entirely ($b^*=0$).\nThe per-batch $b^*$ distribution (median 0.87, mean 1.40) adapts continuously to each batch's contamination composition without any held-out signal.\n\nOn Qwen3-0.6B continued pretraining with 40% synthetic contamination (132M+ tokens from FineWeb), adaptive reweighting achieves mean held-out perplexity of 17.651 across three seeds, matching the grid-searched optimum ($b=0.5$, mean 17.646) within seed-to-seed variance (Section 5).\nThe grid sweep requires six complete training runs to identify this optimum; the adaptive method requires one.\nThe ESS-only variant (maximum intervention) yields mean PPL 17.722---worse than the uniform baseline (17.694)---confirming that maximum intervention degrades training while minimum intervention improves it.\nA lightweight TF-IDF + Logistic Regression detector (AUC = 0.939, calibrated ECE = 0.048) suffices throughout, suggesting that score calibration matters more than raw classification accuracy for provenance-based reweighting.\n\nOur contributions are as follows:\n\n1. A dual-constrained framework for adaptive exponent selection: $b^* = \\inf\\{b \\geq 0 : \\alpha_{\\mathrm{eff}}(b) \\geq \\tau\\}$ subject to $\\mathrm{ESS}(b) \\geq n_{\\min}$, computed per-batch from detector scores with minimum-intervention semantics (Section 3).\n2. Empirical evidence that adaptive $b^*$ matches grid-searched best within seed variance at zero validation cost, and that minimum intervention (dual constraint) outperforms maximum intervention (ESS-only) across three seeds (Section 5).\n3. A demonstration that a lightweight TF-IDF + LR detector with calibrated $q$-scores supports effective reweighting, achieving results comparable to stronger neural detectors (Section 5).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "05ede0cb-2e8f-4254-a858-9bcc83fd454b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ErKLib4xsReAN6JfR3RPUc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T23:36:17.002Z_
+
+<details><summary>↩ Tool result · `toolu_01Mh1RRAd8wEYE3a5X9RNe6G`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "f7be5603-1744-46ea-8630-905bcd30f8c8",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md",
+    "content": "# Introduction\n\nWeb corpora increasingly contain machine-generated text.\nRecent estimates place the synthetic fraction at 20--60% of crawled data \\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.\nTraining on such contaminated data has concrete consequences: \\citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---*model collapse*---and \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.\nA central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.\nThe prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.\n\nA natural response is *detect-and-reweight*: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.\n\\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b=10$ for models at $\\leq$360M parameters to $b=1$ at 1.7B, and misspecification degrades results substantially.\nSelecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).\nOther approaches assume even stronger supervision: \\citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\\rho$, which is precisely what is unavailable in practice.\nHard detection-and-removal strategies \\citep{feng_2025_beyond_collapse} discard borderline samples entirely, sacrificing the smooth reweighting that continuous $q$-scores enable.\n\nGiven per-sample detector scores $q(x)$, how should one choose $b$ without a validation set or known contamination proportion?\nWe formulate this as a dual-constrained optimization over each training batch: find the smallest $b$ that ensures the weighted effective real proportion $\\alpha_{\\mathrm{eff}}(b)$ reaches a quality threshold $\\tau$, while keeping Kish's effective sample size $\\mathrm{ESS}(b)$ above a stability floor $n_{\\min}$.\nThe quality constraint has theoretical grounding: convergence rate under contaminated training improves with the effective real-data fraction \\citep{wang_2026_survive_contamination}, motivating a lower bound on $\\alpha_{\\mathrm{eff}}$.\nThe stability constraint prevents extreme weight concentration that degrades gradient quality.\nThese two requirements exhibit a natural opposition.\n$\\alpha_{\\mathrm{eff}}(b)$ increases monotonically in $b$ (Proposition 1), yielding a lower bound $b_\\tau$---the minimum exponent needed to achieve the target quality.\n$\\mathrm{ESS}(b)$ decreases monotonically, yielding an upper bound $b_{\\mathrm{ESS}}$---the maximum exponent before gradient stability degrades.\nThe adaptive exponent $b^* = b_\\tau$ when the feasible region $[b_\\tau, b_{\\mathrm{ESS}}]$ is non-empty, embodying a *minimum intervention principle*: apply the least downweighting sufficient to meet the quality target, preserving as much effective training data as possible.\nWhen the constraints conflict ($b_\\tau > b_{\\mathrm{ESS}}$), the stability ceiling takes precedence.\n\nThis minimum-intervention semantics distinguishes the method from the alternative of maximizing $b$ subject only to ESS stability.\nAmong batches that require reweighting, the dual-constraint solver selects $b^*$ via the $\\alpha_{\\mathrm{eff}}$ bound in 40% of cases, with mean $b^*=1.67$; the ESS-only variant would choose $b=4.15$ in these same batches, 2.5$\\times$ more aggressive.\nThe remaining 49.9% of batches have sufficient real-data content to skip reweighting entirely ($b^*=0$).\nThe per-batch $b^*$ distribution (median 0.87, mean 1.40) adapts continuously to each batch's contamination composition without any held-out signal.\n\nOn Qwen3-0.6B continued pretraining with 40% synthetic contamination (132M+ tokens from FineWeb), adaptive reweighting achieves mean held-out perplexity of 17.651 across three seeds, matching the grid-searched optimum ($b=0.5$, mean 17.646) within seed-to-seed variance (Section 5).\nThe grid sweep requires six complete training runs to identify this optimum; the adaptive method requires one.\nThe ESS-only variant (maximum intervention) yields mean PPL 17.722---worse than the uniform baseline (17.694)---confirming that maximum intervention degrades training while minimum intervention improves it.\nA lightweight TF-IDF + Logistic Regression detector (AUC = 0.939, calibrated ECE = 0.048) suffices throughout, suggesting that score calibration matters more than raw classification accuracy for provenance-based reweighting.\n\nOur contributions are as follows:\n\n1. A dual-constrained framework for adaptive exponent selection: $b^* = \\inf\\{b \\geq 0 : \\alpha_{\\mathrm{eff}}(b) \\geq \\tau\\}$ subject to $\\mathrm{ESS}(b) \\geq n_{\\min}$, computed per-batch from detector scores with minimum-intervention semantics (Section 3).\n2. Empirical evidence that adaptive $b^*$ matches grid-searched best within seed variance at zero validation cost, and that minimum intervention (dual constraint) outperforms maximum intervention (ESS-only) across three seeds (Section 5).\n3. A demonstration that a lightweight TF-IDF + LR detector with calibrated $q$-scores supports effective reweighting, achieving results comparable to stronger neural detectors (Section 5).\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01M3nMF7oGfSLpiWfRef5zd7`</summary>
+
+```json
+{
+  "command": "wc -w /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md",
+  "description": "Count words in introduction draft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "6ad94737-1f7a-45f8-bb45-dadea7680f19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vp8ajRGPotV4FJYNhi6xPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1698,
+      "cache_read_input_tokens": 41255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1698
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T23:36:20.022Z_
+
+<details><summary>↩ Tool result · `toolu_01M3nMF7oGfSLpiWfRef5zd7`</summary>
+
+```text
+720 /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "5fdeef0f-8f3e-4eea-8663-7a40b7c43fb1",
+  "tool_use_result": {
+    "stdout": "720 /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+720 words (including LaTeX markup), within the ~600-700 target range. `register_artifact` is not available as a tool or command — the file is written to the artifacts directory.
+
+**产出**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md`
+
+**结构**:
+- **P1**: 问题动机 — web 语料合成污染 + model collapse（Shumailov, Dohmatob）
+- **P2**: 现有方法不足 — Drayson 的 b 需 grid search，He 的 Golden Ratio 需已知比例，hard filtering 丢弃边界样本
+- **P3**: 方法核心 — dual-constrained adaptive b*，α_eff 质量下界 + ESS 稳定上界 + 最小干预原则（Wang 2026 理论动机）
+- **P4**: 最小干预 vs 最大干预的实证区分（40% α_eff binding, b*=1.67 vs ESS-only 4.15）
+- **P5**: 实验结果 — adaptive 17.651 匹配 grid-best 17.646，ESS-only 17.722 劣于 uniform 17.694，轻量检测器即可
+- **P6**: 三点 contributions
+
+所有必需引用（Drayson, Shumailov, Dohmatob, Wang, He）均已包含，使用 `\citet{}`/`\citep{}` 格式。数据与任务指定完全一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "uuid": "c2dd9ad3-2382-4454-838e-575add0453c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UomZfP8QScC7ZXqW5pJz2S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 170,
+      "cache_read_input_tokens": 42953,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 170
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+720 words (including LaTeX markup), within the ~600-700 target range. `register_artifact` is not available as a tool or command — the file is written to the artifacts directory.
+
+**产出**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction_draft.md`
+
+**结构**:
+- **P1**: 问题动机 — web 语料合成污染 + model collapse（Shumailov, Dohmatob）
+- **P2**: 现有方法不足 — Drayson 的 b 需 grid search，He 的 Golden Ratio 需已知比例，hard filtering 丢弃边界样本
+- **P3**: 方法核心 — dual-constrained adaptive b*，α_eff 质量下界 + ESS 稳定上界 + 最小干预原则（Wang 2026 理论动机）
+- **P4**: 最小干预 vs 最大干预的实证区分（40% α_eff binding, b*=1.67 vs ESS-only 4.15）
+- **P5**: 实验结果 — adaptive 17.651 匹配 grid-best 17.646，ESS-only 17.722 劣于 uniform 17.694，轻量检测器即可
+- **P6**: 三点 contributions
+
+所有必需引用（Drayson, Shumailov, Dohmatob, Wang, He）均已包含，使用 `\citet{}`/`\citep{}` 格式。数据与任务指定完全一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 113773,
+  "duration_api_ms": 114898,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "c53423cb-bb58-4902-8a53-569d7f66c44f",
+  "total_cost_usd": 0.5155599999999999,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 31676,
+    "cache_read_input_tokens": 415546,
+    "output_tokens": 4313,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31676,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 433,
+        "cache_read_input_tokens": 42953,
+        "cache_creation_input_tokens": 170,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 170
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1802,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001887,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 4313,
+      "cacheReadInputTokens": 415546,
+      "cacheCreationInputTokens": 31676,
+      "webSearchRequests": 0,
+      "costUSD": 0.5136729999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b9aa1b84-48ac-4553-904b-87359d007d05"
+}
+```
+
+</details>
+
+---

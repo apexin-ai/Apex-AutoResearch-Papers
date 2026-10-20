@@ -1,0 +1,9 @@
+_next_id: 2
+decisions:
+- id: D001
+  date: 2026-05-13 04:26 UTC
+  summary: 放弃 EMNLP 2026 ARR May 25，重定向至 AAAI 2027（abstract Jul 25, paper Aug 1）
+  rationale: EMNLP 2026 ARR deadline 5月25日距今仅12天，而项目需8-12周完成。即使只做最小实验也无法在12天内产出完整论文。AAAI
+    2027 给出约11周缓冲，足够完成 MVP + 主实验 + 写作。
+  related_experiments: []
+  depends_on: []

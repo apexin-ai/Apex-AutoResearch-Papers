@@ -1,0 +1,21 @@
+paper_key: "xie_2023_doremi"
+title: "DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["default domain weights (Pile)", "default domain weights (GLaM)"]
+  metrics:
+    - {name: "perplexity (all domains)", direction: "lower_better"}
+    - {name: "few-shot downstream accuracy", direction: "higher_better"}
+    - {name: "training steps to match baseline", direction: "lower_better"}
+  datasets:
+    - {name: "The Pile", size: "multiple domains"}
+    - {name: "GLaM dataset", size: "multiple domains"}
+  ablation_dimensions: ["proxy model size (280M)", "target model size (8B)", "domain weight transfer"]
+  training_recipe: {method: "group DRO on proxy model → transfer weights to large model"}
+  method_family: "distributionally robust optimization for domain reweighting"
+
+narrative: N/A
+figures: N/A
+tables: N/A

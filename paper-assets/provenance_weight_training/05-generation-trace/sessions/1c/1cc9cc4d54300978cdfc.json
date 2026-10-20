@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cc9cc4d54300978cdfc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra disk cleanup",
+  "task_key": "worker_infra_disk_cleanup_20260514T140250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk_cleanup_20260514T140250_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "9870156c52cb6cddb6397b92cda43a0036873bac7a2b148d670718e446054e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果：**\n\n| 分区 | 清理前 | 清理后 |\n|------|--------|--------|\n| 根分区 `/` | 75% (23G/30G) | **45% (14G/30G)** |\n| 数据盘 `/root/autodl-tmp` | 20% (49G/250G) | 20% (49G/250G) |\n\n**清理内容：**\n1. 9 个已完成实验的中间 checkpoint（checkpoint-6000, checkpoint-6103）— 实际在数据盘 symlink 上，释放了数据盘约 19.8G\n2. `/tmp/adaptive_dryrun` — dry-run 残留，释放根分区 **9G**（根分区占满的真正原因）\n3. conda 包缓存 — 释放根分区 ~107MB\n\n所有实验的 `final/`、`config.json`、`step_metrics.jsonl` 均保留完好。RUNNING 实验未触碰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup.md"
+}

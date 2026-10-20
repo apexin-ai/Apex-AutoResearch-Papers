@@ -1,0 +1,41 @@
+{
+  "exp_id": "adaptive_fix_seed456",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:32:31.779Z",
+    "updated_at": "2026-05-14T17:38:45.036Z",
+    "hypothesis": "D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64, uniform PPL=17.70)",
+    "parent": "adaptive_seed456",
+    "notes": "Killed for resubmit without inline eval. 中间数据: step 1304/6103 (21%), eval_ppl@step1000=22.31, eval_loss=3.1047. Inline eval 每次~44min×12次=~8.8h 效率问题。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model --overwrite_output_dir\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "123238",
+      "log_path": "~/runs/provenance_weight_training/adaptive_fix_seed456.log",
+      "submitted_at": "2026-05-14T17:37:56.615Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "westd-47453",
+    "gpu": "cuda:3",
+    "account": "root",
+    "pid": "115066",
+    "log_path": "~/runs/provenance_weight_training/adaptive_fix_seed456.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"",
+      "finished_at": "2026-05-14T17:38:40.940Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T17:38:45.252258+00:00",
+  "trigger": "update_registry"
+}

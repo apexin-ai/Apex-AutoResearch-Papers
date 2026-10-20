@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "15fca95898e456426c0e",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "code ngram scoring",
+  "task_key": "worker_code_ngram_scoring_20260518T114901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ngram_scoring_20260518T114901.log",
+    "occurrence": 1,
+    "bytes": 490368,
+    "sha256": "3e22cf743ab4c349c0f8a7050ff76117b20c936154989d95c95e0d5e9864180e"
+  },
+  "statistics": {
+    "messages": 470,
+    "user_turns": 0,
+    "tool_calls": 212,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 212,
+      "tool_result": 212,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 470,
+      "chunks": [
+        {
+          "path": "15fca95898e456426c0e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "15fca95898e456426c0e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "15fca95898e456426c0e-part-0003.json",
+          "message_count": 110
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ngram-scoring.md"
+}

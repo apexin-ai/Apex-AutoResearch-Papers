@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0939be359f2d21d496c3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train grid b0 1 seed42 30476",
+  "task_key": "worker_train_grid_b0_1_seed42_30476_20260517T171837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_grid_b0_1_seed42_30476_20260517T171837_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "430c7f6a57e63c444b644ee1dd1c6edcfc3026f7e4f859a725ca87b465bae2a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。\n\n**训练状态：**\n- **PID**: 34704\n- **tmux session**: `grid_b0_1_seed42`\n- **GPU**: westd-30476 cuda:0\n- **速度**: ~2.18 s/it，预计总时长 ~3h41m\n- **参数**: `--weighting_method grid --grid_b_value 0.1`，save_steps=500（与 b0.2/b0.3 一致）\n- **输出**: `/root/autodl-tmp/output/models/grid_b0_1_seed42`\n- **日志**: `~/runs/provenance_weight_training/grid_b0_1_seed42.log`\n\nb=0.1 的 weighting 指标看起来正常，`alpha_eff` 分布合理（0.03~0.77），ESS 在 3.5~4.0 范围，符合低 b 值的预期行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-grid-b0-1-seed42-30476.md"
+}

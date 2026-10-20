@@ -1,0 +1,34 @@
+{
+  "sample_level": {
+    "confusion_matrix": {"TP": 132895, "FP": 20830, "FN": 31994, "TN": 185780},
+    "accuracy": 0.858,
+    "precision": 0.864,
+    "recall": 0.806,
+    "f1": 0.834,
+    "per_bin_accuracy": {
+      "[0,0.2)": {"accuracy": 0.916, "n_samples": 91654, "note": "91.6% real"},
+      "[0.2,0.5)": {"accuracy": 0.788, "n_samples": 62071, "note": "78.8% real"},
+      "[0.5,0.8)": {"accuracy": 0.505, "n_samples": 48730, "note": "near-random"},
+      "[0.8,1.0]": {"accuracy": 0.953, "n_samples": 169044, "note": "95.3% synthetic"}
+    },
+    "uncertain_region_accuracy": 0.664
+  },
+  "batch_level": {
+    "n_batches": 1000,
+    "batch_size": 16,
+    "pearson_r": 0.724,
+    "spearman_r": 0.713,
+    "mae": 0.073,
+    "alpha_eff_mean": 0.409,
+    "alpha_eff_std": 0.125,
+    "true_alpha_mean": 0.439,
+    "true_alpha_std": 0.124
+  },
+  "data_summary": {
+    "total_samples": 371499,
+    "n_real": 164889,
+    "n_synthetic": 206610,
+    "true_contamination_ratio": 0.556,
+    "label_method": "depth==0 is real, depth==1 is synthetic"
+  }
+}

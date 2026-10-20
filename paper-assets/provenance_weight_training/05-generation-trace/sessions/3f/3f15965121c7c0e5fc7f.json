@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f15965121c7c0e5fc7f",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778908049.md",
+  "task_key": "loop_11_1778908049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778908049.md",
+    "occurrence": 1,
+    "bytes": 4322,
+    "sha256": "ea03705361684ec14ec685390a349b75a9ff94a9229c805e86bfe608f34ce710"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T05:07:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_status` 的 `execution.gpu_ids` 获取，当前是 westd-47453 的 4 卡（cuda:0-3），但实际分配可能更少——提交前必查\n- GPU 预算极度紧张：截至 05-16 03:30 UTC 仅剩 ~10-12h，只够 2-3 个实验。**不得启动计划外实验**\n- EMNLP 2026 ARR deadline = 2026-05-25，仅剩 9 天\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`\n- 禁止 WANDB_MODE=disabled（会导致 cron 误判训练失败，见失败模式记录）\n- Claim 3 (\"proportion-free\") 尚未验证完毕——contamination_60_tau06/tau07 结果出来前，论文 experiment section 不能定稿\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453（4× RTX 6000 Pro 96G）\n- 工作目录：/root/provenance_weight_training\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 镜像：aml-train\n- 模型数据路径：均在 /root/provenance_weight_training/ 下（非 AutoDL，无需 autodl-tmp）\n- W&B：已配置（wandb project 名需从 registry 确认）\n- 活跃实验（截至 handoff 时刻）：\n  - `grid_b0_1_seed42` — RUNNING\n  - `contamination_60_tau06_seed42` — RUNNING\n  - `detect_remove_baseline_seed42` — RUNNING\n- Cron 监控：各 RUNNING 实验有对应 cron，`reconcile_crons` 同步\n\n### 3. 📊 当前状态\n**刚做完**：处理 grid_b0_3_seed42 (success, PPL=17.64) 和 contamination_60_ess_only_seed42 (success, PPL=17.77) 的回调分析，更新了 registry + report.md + memory.md。killed tau_095_nmin2_seed42（与原实验重复）。\n\n**正在跑的 3 个实验**：\n- `grid_b0_1_seed42`：b=0.1 低 b 区域特征化，预期接近 uniform\n- `contamination_60_tau06_seed42`：ρ=0.6 下 τ=0.6 诊断，Claim 3 关键数据点\n- `detect_remove_baseline_seed42`：hard-filter q>0.5 baseline，回答 \"why reweight vs filter?\"\n\n**等待中**：\n- 3 个 RUNNING 实验的 cron 完成回调\n- contamination_60_tau07_seed42 可能也在跑（需 reconcile 确认）\n- Director 对 cuda:2 分配指示（grid_b0_2 vs 保留预算）\n\n**准备中**：batchsize16_nmin8_seed42、grid_b0_2_seed42\n\n### 4. 📋 待办（条件触发式）\n- contamination_60_tau06 完成 → 与 tau07/tau08 对比，判断 τ-ρ scaling rule；如果 τ=0.6 或 0.7 恢复 grid-best → Claim 3 reframe 为 \"τ=1-0.5ρ rule\"；否则 → Claim 3 降级为 limitation\n- detect_remove_baseline 完成 → 与 adaptive PPL=17.65 对比；如果 baseline 明显更差 → 强化 \"reweight > filter\" narrative；如果接近 → 需讨论 effective epoch 差异的公平性\n- grid_b0_1 完成 → 补全 b-PPL 曲线低端，确认 U-shape 形状\n- 全部 RUNNING 实验完成 → 论文 experiments section 可以定稿 → spawn Writer Worker\n- GPU 预算耗尽前 → 确保最高优先级实验已跑完（contamination_60 诊断 > detect_remove > grid_b_low）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D023: Dual-constraint (α_eff + ESS) framework 是论文核心\n- Claim 1 ✅: dual > ESS-only，3 seeds verified（17.64-17.66 vs 17.72-17.73）\n- Claim 2 ✅: adaptive ≈ grid-best（17.653 vs 17.651），zero validation cost\n- Claim 3 ⚠️ 风险: \"proportion-free\" 在 ρ=0.6 下 τ=0.8 失效（gap=0.036 vs grid-best），正在用 τ=0.6/0.7 诊断是否存在简单 τ-ρ scaling rule\n\n**容易判断错的事**：\n1. **不要假设 Claim 3 已验证**——τ-ρ 耦合是实时风险，结果出来前不能写 \"our method is proportion-free\"\n2. **detect_remove baseline 的 effective epoch 差异**：它用 ~153K 样本跑了 ~2.4 遍，而 adaptive 用 ~371K 跑 1 遍。对比时必须说明这一点，否则 reviewer 会攻击公平性\n3. **GPU 预算已是硬瓶颈**——每个新实验消耗 ~4-5h，只够再跑 2-3 个。不要开 P1 优先级实验\n4. **EXIT_CODE=129 是 SIGHUP**，不是训练失败——看到这个退出码先检查训练是否实际完成（检查 checkpoint 和最终 step）\n5. **bs=8 NEGATIVE 是已知 limitation**，不需要修复——paper 中写 limitation section 即可\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778908049.md"
+}

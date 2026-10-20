@@ -1,0 +1,16 @@
+{
+  "exp_id": "contamination_20_tau07_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:52:04.527Z",
+    "updated_at": "2026-05-24T16:52:21.049Z",
+    "hypothesis": "ρ=0.2 + τ=0.7: previous ρ=0.2 + τ=0.8 was negative (+0.046). Testing whether lower τ=0.7 is more appropriate at low contamination where natural α_eff is high. If still negative, confirms ρ=0.2 is below the method's effective range regardless of τ.",
+    "parent": "rho02_adaptive_tau08_seed42"
+  },
+  "timestamp": "2026-05-24T16:52:21.559261+00:00",
+  "trigger": "update_registry"
+}

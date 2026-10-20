@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0c0e5aa241c5ed23d886",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data human prep",
+  "task_key": "worker_data_human-prep_20260513T182510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_human-prep_20260513T182510_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "8a74c11d957e9819c90a9008bc1980c76961b21c00f11a5f434a89fc5f4833a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FineWeb 人类数据准备完成。结果汇总：\n\n| Split | 文档数 | 大小 | ~Tokens |\n|-------|--------|------|---------|\n| train.jsonl | 164,889 | 545M | ~120M |\n| detector.jsonl | 67,960 | 227M | ~50M |\n| eval_holdout.jsonl | 67,823 | 227M | ~50M |\n| **总计** | **300,672** | **999M** | **~220M** |\n\n每条记录格式为 `{\"text\": \"...\", \"depth\": 0, \"source\": \"fineweb\"}`，符合 MVP pipeline 要求。数据来源为 FineWeb sample-10BT 的 CC-MAIN-2024-10 子集。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "text": "...",
+              "depth": 0,
+              "source": "fineweb"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-human-prep.md"
+}

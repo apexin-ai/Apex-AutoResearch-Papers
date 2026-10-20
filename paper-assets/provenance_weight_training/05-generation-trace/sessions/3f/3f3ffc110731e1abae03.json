@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f3ffc110731e1abae03",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_5_1778791015.md",
+  "task_key": "loop_5_1778791015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778791015.md",
+    "occurrence": 1,
+    "bytes": 5148,
+    "sha256": "11611c94ae934e50b7b5491d928d39361087e075755d97b5e732bdf085d2d0fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T20:24:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on westd-47453，不可使用其他服务器或 GPU\n- adaptive_fix 实验命令必须带 `--resume_from_checkpoint`（seed42 从 checkpoint-1500，seed123 从 checkpoint-1500，seed456 从 checkpoint-1000），不可从头训练（会浪费已有进度）\n- WANDB_MODE=disabled（当前所有实验均关闭 wandb），指标从日志/eval 脚本获取\n- 输出目录必须在 `/root/provenance_weight_training/output/`（根分区仅 30GB，D008 教训）\n- adaptive_v2 系列已 killed（D012 决策取消 EMA，只改 n_min），不要重启它们\n- eval 每次耗时 ~44min 会拖慢训练 tqdm 估计，adaptive_fix 提交时已去掉 inline eval（无 --eval_data_path/--eval_steps），训练完成后需单独补跑 `eval_perplexity.py`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96GB\n- **工作目录**: `/root/provenance_weight_training`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `models/Qwen/Qwen3-0.6B`（本地已下载）\n- **训练数据**: `data/scored_data.jsonl`（371,499 docs，含 q-score）；`data/mixed_data.jsonl`（uniform 用，无 q-score）\n- **Eval 数据**: `data/human/eval_holdout.jsonl`（纯 FineWeb 人类文本，~4.08M tokens）\n- **Eval 脚本**: `eval_perplexity.py`（单独补跑 eval 用）\n- **Auto-eval watcher**: PID 74145（auto_eval_watcher.py，每 60s 扫描新 checkpoint）\n- **活跃进程**:\n  - `grid_b_seed42_batch` — PID 50134, tmux=grid_b_seed42_batch, cuda:0, cron 监控中\n  - `adaptive_fix_seed42` — PID 126796, tmux=adaptive_fix_seed42, cuda:1, cron 监控中\n  - `adaptive_fix_seed123` — PID 126939, tmux=adaptive_fix_seed123, cuda:2, cron 监控中\n  - `adaptive_fix_seed456` — PID 127280, tmux=adaptive_fix_seed456, cuda:3, cron 监控中\n\n### 3. 📊 当前状态\n**刚做完**: 上一个 session 修复了 adaptive_fix 三组的 EXIT_CODE=2 失败（shell 语法问题），从各自 checkpoint 恢复重提交，当前 4 张 GPU 全部满载运行。\n\n**RUNNING (4)**:\n| exp_id | GPU | 说明 |\n|--------|-----|------|\n| grid_b_seed42_batch | cuda:0 | 串行跑 6 个 b 值，b=0.5/1.0/1.5 DONE，b=2.0 DONE，b=3.0 ~70%，b=5.0 待跑 |\n| adaptive_fix_seed42 | cuda:1 | D012 修复版（n_min=2），从 checkpoint-1500 恢复，总 6103 步 |\n| adaptive_fix_seed123 | cuda:2 | 同上，从 checkpoint-1500 恢复 |\n| adaptive_fix_seed456 | cuda:3 | 同上，从 checkpoint-1000 恢复 |\n\n**QUEUED (7)**: grid_b seed456 全 6 值 + detector_modernbert（低优先级）\n\n**等待中**: 4 个 cron 监控活跃，完成时自动回调。无等待 Director 决策的事项。\n\n### 4. 📋 待办（条件触发式）\n- **adaptive_fix_seed42/123/456 任一完成** → spawn Worker 补跑 `eval_perplexity.py`（因提交时无 inline eval），将 eval_ppl_holdout 写入 registry metrics\n- **adaptive_fix 三组全部完成 + eval 补跑完** → 汇总三 seed eval_ppl，与 uniform baseline（17.69/17.69/17.70）和 grid-best（seed123 b=0.5: 17.638）对比，判定 MVP PASS/FAIL（标准：adaptive_fix 均值 ≥ grid-best 改善量的 90%）\n- **grid_b_seed42_batch 完成** → 提取 6 个 b 值的 eval_ppl，确认 seed42 最优 b 值是否也在 b=0.5（与 seed123 趋势一致）\n- **MVP PASS** → 启动 post-mvp-kickoff（paper_framing → experiment_plan → dream_simulate），同时开始跑 grid_b seed456 系列\n- **MVP FAIL**（adaptive_fix 仍无改善）→ 产出 Framing 调整提案（red-section），考虑扩展 grid 到 b<0.5（b=0.1/0.2/0.3），或诊断 batch_size=4 的 ESS 动态范围过窄问题\n- **seed42/seed123 best-b 均在边界 b=0.5** → 向 Director 建议扩展 grid 到 b=0.1/0.2/0.3\n\n### 5. 🎯 战略上下文\n- **核心 idea**: 用检测器置信度 q-score 推导理论最优权重指数 b*，替代启发式网格搜索。公式 w=(1-q)^b\n- **关键发现**: Grid-b PPL 随 b 单调递增，最优在搜索空间边界 b=0.5。Adaptive（即使有 n_min=3 bug）在 seed123/456 上已优于 grid-best。仅 seed42 因 ESS 钳制零改善，adaptive_fix 修复此问题\n- **投稿目标**: EMNLP 2026 ARR May 25（Day 2/12）\n- **竞争对手风险**: Drayson et al. (EMNLP 2025) 使用同一公式 w=(1-q)^b，但他们没有理论推导 b*——我们的新颖性在 α_eff 理论推导 adaptive b*（D013 确认）\n- **易错点**:\n  - train_loss 跨方法**不可比**（adaptive/grid 是 weighted CE，uniform 是 unweighted CE），必须用 eval_ppl_holdout\n  - adaptive_fix 提交时**没有 inline eval**，训练完成后必须单独补跑 eval_perplexity.py，否则 registry 里没有 eval_ppl\n  - grid_b3_0_seed123 和 grid_b2_0_seed123 之前也漏了 eval 参数，已由 Worker 补跑完成\n  - concentration_bound 理论资产在代码中但未入论文，标记为 full paper 方向，MVP 阶段不碰\n  - 不要在有训练任务的 GPU 上跑诊断/eval（D008 减速事故，93/98GB 显存导致速度减半）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778791015.md"
+}

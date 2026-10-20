@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1df8ffb9db9cd203b5fb",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis detect remove q01 epoch matched seed42",
+  "task_key": "worker_analysis_detect_remove_q01_epoch_matched_seed42_20260519T002540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_q01_epoch_matched_seed42_20260519T002540_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "8f1afd6ba993217ed4ce4218f219f9dcc991374be4cb21bdb0c4c84fb0f3d727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n```\neval_loss_holdout: N/A (未执行 eval)\neval_ppl_holdout: N/A\neval_loss: N/A\neval_perplexity: N/A\ntrain_loss: 11.8483\ncheckpoint_path: /root/autodl-tmp/output/models/detect_remove_q01_epoch_matched_seed42/final\nlog_path: ~/runs/provenance_weight_training/detect_remove_q01_epoch_matched_seed42.log\ntraining_completed: yes\ntotal_steps: 919 (max_steps=919, epoch=0.26)\n```\n\n**关键发现：该实验没有运行任何 evaluation。** trainer_state.json 中 `best_metric: null`，log_history 里只有 weighting metrics，没有任何 `eval_*` 条目。`eval_steps=500` 已设置但 `should_evaluate=false`，说明训练脚本没有传入 eval dataset。\n\n另外注意：`train_loss=11.8483` 异常偏高（Qwen3-0.6B 正常 loss 应在 2-3 左右）。这个值可能是 HuggingFace Trainer 对所有 step loss 的累积平均（包含初始高 loss steps），而从 step_metrics 看单步 loss 在 2-3 范围内是正常的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detect-remove-q01-epoch-matched-seed42.md"
+}

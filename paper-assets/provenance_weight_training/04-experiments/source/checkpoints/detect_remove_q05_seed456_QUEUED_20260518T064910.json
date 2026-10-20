@@ -1,0 +1,16 @@
+{
+  "exp_id": "detect_remove_q05_seed456",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:46:10.870Z",
+    "updated_at": "2026-05-18T06:49:10.085Z",
+    "hypothesis": "Detect-and-remove baseline with q>0.5 threshold and seed=456 will produce similar PPL to seed42 (17.29), confirming reproducibility of the filtering approach across seeds.",
+    "parent": "detect_remove_baseline_seed42"
+  },
+  "timestamp": "2026-05-18T06:49:10.350798+00:00",
+  "trigger": "update_registry"
+}

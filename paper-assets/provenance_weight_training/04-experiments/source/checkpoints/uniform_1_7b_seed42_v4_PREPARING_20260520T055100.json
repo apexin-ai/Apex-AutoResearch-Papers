@@ -1,0 +1,14 @@
+{
+  "exp_id": "uniform_1_7b_seed42_v4",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:50:59.956Z",
+    "updated_at": "2026-05-20T05:50:59.956Z"
+  },
+  "timestamp": "2026-05-20T05:51:00.367438+00:00",
+  "trigger": "update_registry"
+}

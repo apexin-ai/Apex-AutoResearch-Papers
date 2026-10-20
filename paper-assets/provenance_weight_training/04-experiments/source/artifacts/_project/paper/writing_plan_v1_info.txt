@@ -1,0 +1,8 @@
+Writing Plan v1 - saved as writing_plan.yaml
+
+Title: "Minimum Intervention Reweighting: Adaptive Exponent Selection for Contamination-Aware Pretraining"
+Sections: 7 (method → experiments → results → intro → related work → discussion → conclusion → abstract)
+Figures: 7 (4 P0 + 3 P1)
+Tables: 6 (3 P0 + 3 P1)
+Key citations: 7 must-cite + 7 should-cite + 9 optional
+Pending results: 4 RUNNING experiments

@@ -1,0 +1,19 @@
+{
+  "exp_id": "batch_adaptive_tau_rho06_r3",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:24:40.398Z",
+    "updated_at": "2026-05-17T11:24:50.011Z",
+    "spec": {
+      "server": "westd-30476",
+      "gpu": "cuda:2",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T11:24:50.316611+00:00",
+  "trigger": "update_registry"
+}

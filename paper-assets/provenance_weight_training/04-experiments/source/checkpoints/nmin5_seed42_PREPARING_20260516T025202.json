@@ -1,0 +1,18 @@
+{
+  "exp_id": "nmin5_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:52:01.911Z",
+    "updated_at": "2026-05-16T02:52:01.911Z",
+    "spec": {
+      "hypothesis": "n_min=5 > batch_size=4, code clamps to n_min=4, ESS(b=0)=4 is only feasible point → b*=0 always → degenerate uniform case. Validates theoretical prediction.",
+      "parent": "adaptive_fix_seed42"
+    }
+  },
+  "timestamp": "2026-05-16T02:52:02.059265+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "200668a306c1bbaaa679",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh eval batch adaptive tau rho06",
+  "task_key": "worker_ssh_eval_batch_adaptive_tau_rho06_20260517T093352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_batch_adaptive_tau_rho06_20260517T093352_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "1cbd9cee6704945be578538cba464aaaa7026923d8da00506709b08ebf2040d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在执行最终 eval（4569/6103），大约 15 分钟后完成。我会在 ~4.5 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-batch-adaptive-tau-rho06.md"
+}

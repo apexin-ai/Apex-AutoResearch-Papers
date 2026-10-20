@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37e982f7287b58c30a2c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops eval random seed42 and collect grid b0 3",
+  "task_key": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "739d60ec7ea1cccced963b0272b666edfb78fb8a667e6fd41f80907f825c61e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。两个实验的 eval 之前已经跑完（结果文件已存在）。\n\n```\ncontamination_60_random_seed42:     final PPL=17.832, checkpoint-1000 不存在（已清理）\ncontamination_60_grid_b0_3_seed42:  final PPL=17.634 (checkpoint-1500 PPL=18.583)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-random-seed42-and-collect-grid-b0-3.md"
+}

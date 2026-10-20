@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ad9abd9ff2d0b8fb9a4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code prepare next batch scripts",
+  "task_key": "worker_code_prepare-next-batch-scripts_20260514T011050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-next-batch-scripts_20260514T011050_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "ac34d496e932d5e2e8d7cd9364257f6dcd1f16504d857a1036a7c685eb769423"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个脚本已创建并通过语法检查，未启动任何训练：\n\n| 脚本 | 方法 | seed | 输出目录 |\n|------|------|------|----------|\n| `run_grid_b_seed123.sh` | grid (6 个 b 值串行) | 123 | `output/models/grid_b{X}_seed123` |\n| `run_grid_b_seed456.sh` | grid (6 个 b 值串行) | 456 | `output/models/grid_b{X}_seed456` |\n| `run_adaptive_seed42.sh` | adaptive | 42 | `output/models/adaptive_seed42` |\n| `run_adaptive_seed123.sh` | adaptive | 123 | `output/models/adaptive_seed123` |\n| `run_adaptive_seed456.sh` | adaptive | 456 | `output/models/adaptive_seed456` |\n\n所有脚本参数与 seed42 grid-b 保持一致（200M tokens, batch 4, grad_accum 4, max_length 2048, lr 5e-5, contamination_ratio 0.4）。adaptive 脚本用 `--weighting_method adaptive` 替换了 grid 相关参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-next-batch-scripts.md"
+}

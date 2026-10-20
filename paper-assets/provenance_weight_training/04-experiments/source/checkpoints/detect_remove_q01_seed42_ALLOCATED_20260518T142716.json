@@ -1,0 +1,15 @@
+{
+  "exp_id": "detect_remove_q01_seed42",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:48:51.429Z",
+    "updated_at": "2026-05-18T14:27:16.530Z",
+    "hypothesis": "D&R extreme threshold q>0.1: removes all samples with q_score>0.1, keeping only the most confidently clean data. Tests D&R sensitivity to threshold — if PPL degrades severely, filtering is too aggressive and most data is discarded. Paired with q>0.3/0.5/0.7/0.9 to map the full threshold-PPL curve, showing adaptive avoids this calibration problem entirely."
+  },
+  "timestamp": "2026-05-18T14:27:16.776249+00:00",
+  "trigger": "update_registry"
+}

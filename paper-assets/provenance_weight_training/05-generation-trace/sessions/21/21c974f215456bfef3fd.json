@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21c974f215456bfef3fd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "preflight detect remove q05 v2 seed123 r2",
+  "task_key": "worker_preflight_detect_remove_q05_v2_seed123_r2_20260521T235803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_preflight_detect_remove_q05_v2_seed123_r2_20260521T235803_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "67925a7eb1c86254f4b423f40db564646f492a7832ee2be29af291b5f714305d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n**预检与提交结果：**\n\n| 检查项 | 结果 |\n|--------|------|\n| 磁盘 > 50GB | 51GB 可用 |\n| 数据 = 153725 行 | 153725 |\n| 进程启动 | PID 682848，step 63/6103，~4.97s/it |\n| Registry | RUNNING，spec 已写入 |\n\n预计训练时长约 8 小时（6103 steps × ~5s/step）。日志路径：`~/runs/provenance_weight_training/detect_remove_q05_v2_seed123_r2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/preflight-detect-remove-q05-v2-seed123-r2.md"
+}

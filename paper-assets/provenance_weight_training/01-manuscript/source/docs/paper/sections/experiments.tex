@@ -1,0 +1,49 @@
+\paragraph{Training Data.}
+We sample a 132M-token subset of FineWeb~\citep{penedo2024fineweb} as the real-data source, comparable to typical domain-adaptive continued pretraining budgets~\citep{gururangan2020dont}.
+To simulate web-scale synthetic contamination, we generate continuations with Qwen3-0.6B~\citep{yang2025qwen3}, the same architecture used for continued pretraining, and inject them at token-level ratio $\rho = 0.4$ via uniform random mixing.\footnote{$\rho$ denotes the token-level contamination ratio. Because synthetic documents are shorter on average (304 vs.\ 560 words), the document-level synthetic fraction is 55.6\% at $\rho{=}0.4$.}
+This self-contamination design means generator and trainee share the same distribution, providing a controlled testbed with known ground-truth labels but limiting ecological validity; cross-model transfer results (Appendix~\ref{app:cross_model}) are mixed, and we discuss implications for detection difficulty in \S\ref{sec:limitations}.
+
+\paragraph{Detector.}
+We train a TF-IDF + Logistic Regression classifier on a held-out labeled split (AUC\,=\,0.94, calibrated ECE\,=\,0.048 after temperature scaling with $T{=}0.204$).
+The resulting $q$-scores have mean 0.60, standard deviation 0.37, and median 0.71, with 46.3\% of samples in the uncertain range $[0.2, 0.8]$.
+We use this lightweight detector rather than neural alternatives (e.g., ModernBERT at AUC\,${\geq}$\,0.98 in \citealt{drayson2025detection}) to test whether score \emph{calibration} may matter as much as raw discrimination for reweighting.
+To evaluate detector sensitivity, we additionally test two generative baselines: a GPT-2-based perplexity scorer (AUC\,=\,0.91) and an N-gram language model perplexity scorer (AUC\,=\,0.73); results are reported in \S\ref{sec:robustness} (implementation details in Appendix~\ref{app:detector_details}).
+
+\paragraph{Training.}
+Table~\ref{tab:config} summarizes the training configuration.
+We use $B{=}4$ as the default micro-batch size, reflecting memory constraints typical of continued pretraining setups; \S\ref{sec:sensitivity} demonstrates that larger batches amplify the adaptive advantage.
+All main comparisons use three random seeds (42, 123, 456) trained from scratch (Appendix~\ref{app:resume_artifact}); the primary comparison is extended to five seeds (adding 789, 234).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}ll@{\hspace{8pt}}ll@{}}
+\toprule
+Model & Qwen3-0.6B & Optimizer & AdamW \\
+Steps & 6{,}103 & Peak LR & $5{\times}10^{-5}$ \\
+Micro-batch & $B{=}4$ & Schedule & linear + warmup \\
+Grad.\ accum. & 4 ($B_{\mathrm{eff}}{=}16$) & Seq.\ len. & 2048 \\
+Precision & bf16 & GPU & 1$\times$ RTX PRO 6000 \\
+\bottomrule
+\end{tabular}
+\caption{Training configuration for continued pretraining.}
+\label{tab:config}
+\end{table}
+
+\paragraph{Evaluation.}
+We report held-out perplexity (PPL) on 5{,}000 documents from a FineWeb holdout set ($\sim$4M tokens) containing only human-authored text, via sliding-window evaluation (stride 1024).
+All evaluations are post-hoc with a unified pipeline; training involves no inline evaluation.
+
+\paragraph{Methods.}
+We compare six approaches:
+\begin{itemize}[nosep,leftmargin=*]
+  \item \textbf{Uniform}: $w_j = 1$ for all $j$ (no contamination handling).
+  \item \textbf{Grid-$b$}: fixed $b \in \{0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0, 3.0, 5.0\}$ (nine candidates), best selected post-hoc by held-out PPL.
+        Represents validation-based selection~\citep{drayson2025detection}.
+  \item \textbf{ESS-only}: $\bstar = \max\{b : \mathrm{ESS}(b) \geq \nmin\}$, the maximum-intervention variant retaining only the stability constraint, ablating $\aeff$.
+  \item \textbf{Golden Ratio}: $w = 1/\varphi \approx 0.618$ for synthetic ($q_j > 0.5$), $w = 1$ otherwise~\citep{he2025golden}.
+        Requires known provenance labels (oracle).
+  \item \textbf{Adaptive} (ours): per-batch $\bstar$ from the dual-constraint formulation (\S\ref{sec:method}), with $\tau = 0.7$ (default; $\tau{=}0.8$ comparable, \S\ref{sec:sensitivity}) and $\nmin = 2$ (half the micro-batch size).
+  \item \textbf{Detect \& Remove}: hard filtering that discards samples with $q_j > 0.5$ and trains uniformly on the remainder.
+        Requires a calibrated detection threshold; threshold sensitivity is analyzed in \S\ref{sec:main-results}.
+\end{itemize}

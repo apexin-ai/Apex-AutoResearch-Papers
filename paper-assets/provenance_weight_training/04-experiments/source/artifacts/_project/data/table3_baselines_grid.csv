@@ -1,0 +1,33 @@
+# Table 3: Baselines & Grid Sweep
+
+# Golden Ratio Baseline (oracle weighting)
+method,seed,ppl,delta_vs_uniform
+Golden Ratio (w=1/phi for synthetic),42,17.6540,-0.040
+
+# Grid b Sweep — seed42
+b,ppl_seed42,delta_vs_uniform
+0.3,17.6400,-0.054
+0.5,17.6510,-0.043
+1.0,17.6920,-0.002
+1.5,17.7180,+0.024
+2.0,17.7410,+0.047
+3.0,17.7740,+0.080
+5.0,17.8180,+0.124
+
+# Grid b Sweep — seed123
+b,ppl_seed123,delta_vs_uniform
+0.5,17.6380,-0.048
+1.0,17.6740,-0.012
+1.5,17.7010,+0.015
+2.0,17.7250,+0.039
+3.0,17.7600,+0.074
+5.0,17.8039,+0.118
+
+# Grid b Sweep — seed456
+b,ppl_seed456,delta_vs_uniform
+0.5,17.6500,-0.052
+1.0,17.6800,-0.021
+1.5,17.7100,+0.009
+2.0,17.9890,+0.288
+3.0,17.9210,+0.220
+5.0,17.9930,+0.291

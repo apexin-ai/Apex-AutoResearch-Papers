@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "198ea0b7ec052fef15c8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit contamination 60 tau07 seed42 r2",
+  "task_key": "worker_submit_contamination_60_tau07_seed42_r2_20260516T020831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_contamination_60_tau07_seed42_r2_20260516T020831_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "9fe1be7552bbc9bee6e00d71e6cd029b30dac5ed4916e787b77a2c7122aae5ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动确认：\n\n- **PID**: 282223（实际 python 进程），cuda:0 占用 **46514 MiB**\n- **参数**: `alpha_eff=0.7`（即 tau=0.7 ✓），`n_min` 体现为 ESS 下界约 2.0-4.0 ✓\n- **进度**: step 18/6103，速度 ~2.23s/it，预计 ~3h46m 完成\n- **加权正常**: b 值在 0~0.9 范围波动，weighted_loss > unweighted_loss（高 contamination 样本被上权）\n\n训练已稳定运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-contamination-60-tau07-seed42-r2.md"
+}

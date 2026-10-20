@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d3a8467d43875dcb3b0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra disk fix and restart",
+  "task_key": "worker_infra_disk-fix-and-restart_20260513T231133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-fix-and-restart_20260513T231133_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "b9c23bcc2ab0fdba51211afd5add465888de28e84fa2829039ef877a05a898cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 磁盘状态\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 14G | **17G** | 45% |\n| 数据盘 `/root/autodl-tmp` | 250G | 26G | **225G** | 11% |\n\n根分区释放了 **13GB**（从 27G → 14G）。\n\n### 符号链接\n`/root/provenance_weight_training/output` → `/root/autodl-tmp/provenance_weight_training/output` ✓\n\n### 根分区大文件\n- `/root/miniconda3` — 12G（conda 环境，必需）\n- `/root/provenance_weight_training` — 6.7G（代码+数据，合理）\n- 无异常大文件\n\n### Checkpoint 状态\n\n| Seed | checkpoint-500 | checkpoint-1000 | Resume 建议 |\n|------|---------------|----------------|-------------|\n| 42 | ✓ 完整（1.13GB + trainer_state） | ✗ 已删除（缺 optimizer/scheduler/rng） | **从 checkpoint-500 resume** |\n| 123 | ✓ 完整（1.13GB + trainer_state） | ✗ 已删除（36KB 损坏） | **从 checkpoint-500 resume** |\n| 456 | ✓ 完整（1.13GB + trainer_state） | ✗ 已删除（36KB 损坏） | **从 checkpoint-500 resume** |\n\n### GPU 状态\n4× NVIDIA RTX PRO 6000 Blackwell (98GB each)，全部空闲（0% utilization, 0 MiB used）。\n\n**结论**：磁盘问题已修复，3 个 uniform baseline 均可从 checkpoint-500 (step 500/6103) resume。4 GPU 空闲待命，可通过 submit_training_job 提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-fix-and-restart.md"
+}

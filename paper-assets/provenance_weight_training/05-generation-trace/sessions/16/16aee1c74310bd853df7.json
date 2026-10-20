@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16aee1c74310bd853df7",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_12_1778908073.md",
+  "task_key": "loop_12_1778908073",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778908073.md",
+    "occurrence": 1,
+    "bytes": 4062,
+    "sha256": "7af8b9bb514e3d251e3700273250456bb740ea2af6d43424eafff2083731b36a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:07:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-47453 仅有 cuda:0/1/2/3（4x RTX 6000 Pro 96G），`get_project_status` 的 gpu_ids 白名单决定可用卡号\n- GPU 预算极度紧张（~10-26h 剩余），EMNLP 2026 ARR May 25 截止，距今仅 9 天——每次实验提交前评估 GPU-hour 消耗\n- WANDB_MODE 必须启用（之前 disabled 导致 cron 误判实验失败，见 memory.md）\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/bin/activate && python ...`，不假设 .venv\n- contamination_60 系列实验用 batch_size=16（bs=8 已确认 OOM 失败 3 次，不要重试）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 /root/autodl-tmp/provenance_weight_training（需 SSH 确认具体路径）\n- Python：/root/miniconda3/bin/python，conda base 环境\n- 模型：Qwen 系列（baseline_qwen3 已完成），具体路径见 registry spec 字段\n- HF cache：/root/autodl-tmp/.hf_cache（AutoDL 规范）\n- W&B：已配置，项目名见 registry 中 wandb_run 字段\n- 活跃进程（4 个 RUNNING）：\n  - `grid_b0_1_seed42` — cuda:1，Grid-b sweep b=0.1\n  - `contamination_60_tau07_seed42` — cuda:0，rho=0.6 tau=0.7\n  - `contamination_60_tau06_seed42` — cuda:2，rho=0.6 tau=0.6\n  - `detect_remove_baseline_seed42` — cuda:3，Detect-and-remove baseline\n- Cron 监控上述 4 个实验，完成时自动回调\n\n### 3. 📊 当前状态\n**刚完成**：contamination_60 第一批实验（uniform/grid_b0.5/adaptive_tau0.8/ess_only 均已 DONE），结果确认 grid_b0.5 最优 PPL=17.704，adaptive 居中 17.74，验证了 Claim 3 方向。\n\n**正在跑**：4 个实验全部在跑（见上），覆盖 Claim 3 的 tau 敏感性（tau=0.6/0.7）+ grid-b 细粒度（b=0.1）+ detect-remove baseline 对比。\n\n**PREPARING**：grid_b0_2_seed42（已 killed/deferred），batchsize16_nmin8_seed42（待提交）。\n\n**62 个实验总计**：40 success / 3 negative / 6 failed / 7 killed / 2 preparing / 4 running。\n\n**等待中**：4 个 RUNNING 实验的 cron 完成回调。无未处理的 Director 决策请求。\n\n### 4. 📋 待办（条件触发式）\n- 4 个 RUNNING 实验任一 cron 回调 → on-experiment-done 流程（更新 registry → 刷新 report.md → 汇报 Director）\n- contamination_60_tau06/tau07 完成 → 与 tau=0.5/0.8 结果汇总，确认 rho=0.6 下 tau safe range 是否仍为 [0.5, 0.8]；如果 tau=0.6/0.7 也 work → Claim 3 \"proportion-free\" 证据更强\n- detect_remove_baseline 完成 → 与 adaptive 方法对比 PPL，若 adaptive 优于 detect-remove → 强化 \"无需显式检测\" 的卖点\n- grid_b0_1 完成 → 补全 b∈{0.1, 0.2, 0.3, 0.5, 0.7, 1.0} 的完整 sweep 曲线\n- 所有 RUNNING 完成后 → 进入论文写作阶段，Claim 1-3 所有证据齐备，向 Director 汇报\"实验完结，请求启动写作\"\n- batchsize16_nmin8 待 GPU 空出 → 提交（优先级低于上述 4 个）\n\n### 5. 🎯 战略上下文\n- **核心结论**：双约束（ESS + b*-boundary）自适应加权优于纯 ESS 加权（Claim 1 ✓），自适应 b* 在 tau∈[0.5,0.8] 范围内匹配 grid-search 最优（Claim 2 ✓），rho=0.6 高污染场景正在验证（Claim 3 进行中）\n- **决策链**：D023 确立 dual-constraint framing → D039-D048 细化 tau/nmin/contamination 实验矩阵\n- **易错点**：\n  1. tau=0.8 对 rho=0.4 最优但对 rho=0.6 未必——不要把 rho=0.4 的结论直接外推\n  2. ESS-only 在 contamination 场景下表现更差（17.77 vs uniform 17.766），说明 ESS 单独不足以处理高污染——这是 dual-constraint 的核心卖点\n  3. b* 分布特征：大部分样本 b*≈0（干净数据不需要降权），少数合成样本 b* 被拉高——这个分布形态是论文 method section 需要可视化的\n  4. 论文 framing 已 STABLE，不要随意改动 paper_framing.md，改动需走 Framing 调整提案流程\n  5. GPU 预算见底，不要提交非计划内的探索性实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778908073.md"
+}

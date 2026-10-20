@@ -1,0 +1,82 @@
+# agent / loop_20.md
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_20.md`
+- **Structured JSON:** [`5c531ff5cebb2107d53e.json`](../../sessions/5c/5c531ff5cebb2107d53e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 20
+reason: idle_timeout
+updated: '2026-05-23T22:52:12+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-41312 的 cuda:0/1/2/3（gpu_ids 白名单），其他服务器/卡号必须 push back Director
+- W&B 已禁用（WANDB_MODE=disabled），所有 metrics 从训练日志提取，不要调 fetch_wandb_metrics
+- ρ=0.3 实验是防御性补跑（D120），结果写入 appendix 或作为 rebuttal 储备，**不改变核心叙事**
+- DDL: EMNLP 2026 ARR May 25（~2天），Round 11 审稿已提交 pending approval
+- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && ...`
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-41312，工作目录 `/root/provenance_weight_training`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`
+- 数据：`/root/provenance_weight_training/data/scored_data_rho03.jsonl`（235555 条，ρ=0.3）
+- checkpoint 输出：`/root/autodl-tmp/provenance_weight_training/output/models/&lt;exp_id>/`
+- 日志：`~/runs/provenance_weight_training/&lt;exp_id>.log`
+- 磁盘：`/autodl-tmp` 充足（400G/439G 可用，4% 使用率）
+
+### 3. 📊 当前状态
+**刚发生**：rho03_uniform_seed456 训练完成（ANALYZING），已派 Worker `worker_analysis_rho03_uniform_seed456_20260523T064947` 分析日志提取 metrics，**尚未回调**。
+
+**RUNNING（3个）**：
+| exp_id | GPU | 说明 |
+|--------|-----|------|
+| rho03_adaptive_seed456_r2 | cuda:0 | ρ=0.3 adaptive 第三 seed（从头重跑，前次 checkpoint resume 失败） |
+| bs8_nmin4_adaptive_seed123_r2 | cuda:1 | B=8 adaptive seed123 重跑（disk-full crash 后从 ckpt-500 恢复） |
+| bs8_nmin4_uniform_seed123_r2 | cuda:3 | B=8 uniform seed123 重跑（同上） |
+
+**空闲 GPU**：cuda:2（分配了没跑 = 失职，需要立即铺任务或向 Director 说明）
+
+**等待**：
+- Worker 回调：rho03_uniform_seed456 分析结果
+- 3 个 RUNNING 实验的 cron 完成回调
+- Round 11 审稿结果
+
+### 4. 📋 待办
+- Worker `worker_analysis_rho03_uniform_seed456_*` 回调 → 读 metrics → update_registry(conclusion/metrics/checkpoint_path) → 与 seed42/seed123 汇总
+- rho03_adaptive_seed456_r2 完成 → 分析 metrics → 3-seed paired t-test（adaptive vs uniform at ρ=0.3）→ 汇报 Director
+  - 预期 Δ ≈ 0（seed42 Δ=0.000, seed123 Δ=+0.002），应确认 ρ=0.3 为中性过渡区
+- bs8_nmin4_adaptive/uniform_seed123_r2 完成 → 与 seed42 配对，补强 B=8 batch-size amplification claim（D122）
+- cuda:2 空闲 → 检查是否有 eval 任务可铺（rho03 eval 需要等 adaptive_seed456_r2 完成后配对跑）
+- 所有 ρ=0.3 结果就绪 → 写入 appendix / rebuttal 储备材料
+
+### 5. 🎯 战略上下文
+- **核心方向**（D115）：Analysis paper "When, why, and how does detect-and-reweight work?"。贡献排序：(1) Epoch confound >95% (2) Detector requirements (3) Mechanism decomposition 4-tier (4) Adaptive b* tool
+- **关键数据**：B=4 ρ=0.4 Δ=−0.020 (p=0.019)；B=16 Δ=−0.068 (3.4×, p<0.01)；ρ=0.6 Δ=−0.032 (p=0.010)；1.7B Δ=−0.013
+- **ρ=0.3 是 boundary check**：预期 Δ≈0（非显著），验证"低污染比下 adaptive 无优势"这一边界条件。这是 rebuttal 储备，不是核心 claim
+- **审稿轨迹**：R8=2.5 → R9=3.0 → R10=3.0 → R11 pending。目标 3.5+
+- **易错点**：
+  - rho03_adaptive_seed456 首次跑 failed（checkpoint resume 失败），r2 是从头重跑，不要混淆
+  - bs8 系列也是 disk-full crash 后的重跑（_r2），从 checkpoint-500 恢复
+  - 不要把 ρ=0.3 结果当核心证据写进 main text——它是防御性的 appendix/rebuttal 材料
+  - cuda:2 空闲需要解释或填满——最可能的用途是 ρ=0.3 eval，但要等 adaptive seed456 训练完
+
+
+---

@@ -1,0 +1,21 @@
+{
+  "exp_id": "tau_09_nmin2_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:22:52.989Z",
+    "updated_at": "2026-05-16T02:06:57.257Z",
+    "spec": {
+      "hypothesis": "τ=0.9 rerun with correct n_min=2 (original tau_09_seed42 used n_min=3 confound). Tests if τ>0.8 still degrades with corrected n_min.",
+      "parent": "tau_09_seed42"
+    },
+    "hypothesis": "τ=0.9 rerun with correct n_min=2 (original tau_09_seed42 used n_min=3 confound). Tests if τ>0.8 still degrades with corrected n_min.",
+    "parent": "tau_09_seed42",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T02:06:57.387420+00:00",
+  "trigger": "update_registry"
+}

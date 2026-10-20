@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b3413aafc8a85444fb5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data quality check shard123",
+  "task_key": "worker_data_quality-check-shard123_20260513T221536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_quality-check-shard123_20260513T221536_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "652d94ff8b2008e7943ad1fb65406fe4953b632985b369d0a20ed386634ea0fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 shard 质量检查全部通过，结果高度一致：\n\n```\nShard          Docs  Corp D3  Mean D3   Degen%   AvgLen   EffLen\n--------------------------------------------------------------\nshard_0       85248   0.3286   0.7001    0.87%    304.2    173.9\nshard_1       85248   0.3291   0.7005    0.92%    304.0    174.1\nshard_2       85248   0.3286   0.6992    0.90%    303.8    173.7\nshard_3       85248   0.3287   0.7000    0.94%    304.1    174.2\n```\n\n- 退化率范围 0.87%–0.94%，远低于 30% 阈值\n- corpus distinct-3 ≈ 0.329，mean doc distinct-3 ≈ 0.700，四个 shard 间差异 < 0.002\n- 平均文档长度 ~304 tokens，有效长度 ~174 tokens，各 shard 一致\n- 不同 seed 未引入质量差异，全部合格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-quality-check-shard123.md"
+}

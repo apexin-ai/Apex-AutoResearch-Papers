@@ -1,0 +1,18 @@
+{
+  "exp_id": "tau_07_nmin2_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:22:51.146Z",
+    "updated_at": "2026-05-16T01:22:51.146Z",
+    "spec": {
+      "hypothesis": "τ=0.7 rerun with correct n_min=2 (original tau_07_seed42 used n_min=3 confound). Slightly below optimal τ=0.8.",
+      "parent": "tau_07_seed42"
+    }
+  },
+  "timestamp": "2026-05-16T01:22:51.284486+00:00",
+  "trigger": "update_registry"
+}

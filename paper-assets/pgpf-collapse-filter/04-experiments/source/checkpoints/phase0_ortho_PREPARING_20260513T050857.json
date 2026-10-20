@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase0_ortho",
+  "project": "solver-trace-ablation",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T05:08:57.705Z",
+    "updated_at": "2026-05-13T05:08:57.705Z"
+  },
+  "timestamp": "2026-05-13T05:08:57.719425+00:00",
+  "trigger": "update_registry"
+}

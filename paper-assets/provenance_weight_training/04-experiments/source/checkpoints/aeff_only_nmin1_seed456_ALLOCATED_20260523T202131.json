@@ -1,0 +1,38 @@
+{
+  "exp_id": "aeff_only_nmin1_seed456",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T13:41:16.042Z",
+    "updated_at": "2026-05-23T20:21:31.284Z",
+    "hypothesis": "α_eff-only ablation seed456: cross-seed replicate. n_min=1 removes ESS constraint. Third seed for paired t-test vs dual-constrained baseline.",
+    "spec": {
+      "gpu": "cuda:1",
+      "server": "westd-41312",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/aeff_only_nmin1_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --tau 0.7 --n_min 1 --num_train_tokens 200000000 --contamination_ratio 0.4 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --seed 456 --bf16 --save_total_limit 2\"",
+      "pid": 893568,
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 456,
+      "log_path": "~/runs/provenance_weight_training/aeff_only_nmin1_seed456.log",
+      "hyperparams": {
+        "weighting_method": "adaptive",
+        "contamination_ratio": 0.4,
+        "tau": 0.7,
+        "n_min": 1,
+        "num_train_tokens": 200000000,
+        "batch_size": 4,
+        "gradient_accumulation_steps": 4,
+        "effective_batch_size": 16,
+        "lr": "5e-5",
+        "save_total_limit": 2
+      }
+    }
+  },
+  "timestamp": "2026-05-23T20:21:31.740572+00:00",
+  "trigger": "update_registry"
+}

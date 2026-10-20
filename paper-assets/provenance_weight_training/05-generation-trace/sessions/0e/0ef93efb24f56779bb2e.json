@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef93efb24f56779bb2e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitor full gpu status",
+  "task_key": "worker_monitor_full-gpu-status_20260514T022119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_full-gpu-status_20260514T022119_result.json",
+    "occurrence": 1,
+    "bytes": 1908,
+    "sha256": "0ac91f01d805ffec2c348b1da906ea25fb93cd7ce39ea50570b574521bcb05b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态总览\n\n### GPU 占用\n\n| GPU | 利用率 | 显存占用 | 温度 |\n|-----|--------|----------|------|\n| 0 | 99% | 46.5/97.9 GB | 57°C |\n| 1 | 99% | 44.1/97.9 GB | 57°C |\n| 2 | 64% | 44.1/97.9 GB | 58°C |\n| 3 | 99% | 44.1/97.9 GB | 59°C |\n\n### 实验状态\n\n| 实验 | GPU | PID | 状态 | 进度 | 当前 Loss | 总 Steps | 最新 Checkpoint | 预计剩余 |\n|------|-----|-----|------|------|-----------|----------|-----------------|----------|\n| uniform_seed42 | cuda:1 | 47603 | **运行中** (2h57m) | 5497/6103 (90%) | 7.8111 | 6103 | ckpt-5000 (1.2G) | ~21 min |\n| uniform_seed123 | cuda:2 | 47749 | **运行中** (2h57m) | 5475/6103 (90%) | 8.0342 | 6103 | ckpt-5000 (1.2G) | ~22 min |\n| uniform_seed456 | cuda:3 | 47890 | **运行中** (2h57m) | 5482/6103 (90%) | 7.3564 | 6103 | ckpt-5000 (1.2G) | ~22 min |\n| grid_b_seed42 | cuda:0 | 50134 | **运行中** (2h31m) | 4245/6103 (70%) | 9.671 | 6103/b值 | ckpt-4000 (1.2G) | 见下方 |\n\n### grid_b 详情\n\n- **当前 b 值**: b=0.5（6 个值中的第 1 个）\n- b 值队列: **0.5** (进行中) → 1.0 → 1.5 → 2.0 → 3.0 → 5.0\n- 当前 b=0.5 剩余: ~1858 steps ≈ **66 min**\n- 后续 5 个 b 值各约 3.6h，**总剩余约 19 小时**\n\n### Checkpoint 磁盘\n\n| 目录 | 大小 | 保留的 Checkpoint |\n|------|------|--------------------|\n| uniform_seed42 | 2.3G | ckpt-4500, ckpt-5000 |\n| uniform_seed123 | 2.3G | ckpt-4500, ckpt-5000 |\n| uniform_seed456 | 2.3G | ckpt-4500, ckpt-5000 |\n| grid_b0_5_seed42 | 2.3G | ckpt-3500, ckpt-4000 |\n\n### 要点\n\n1. **3 个 uniform 实验均未完成**，都在 90% 左右，约 20 分钟后全部完成\n2. **grid_b 刚完成第 1 个 b 值的 70%**，整个 grid 搜索预计还需 ~19 小时\n3. 所有日志中**未出现 \"Training completed\" 标记**\n4. save_total_limit=2 生效，每个实验保留 2 个 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-full-gpu-status.md"
+}

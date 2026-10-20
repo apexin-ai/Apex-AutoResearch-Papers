@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0632e5ee5954cb6f2f2d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh prepare random reweight seed123",
+  "task_key": "worker_ssh_prepare_random_reweight_seed123_20260517T081401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare_random_reweight_seed123_20260517T081401_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "04684ad76d687647851c9e871f3cef5bfe6304433904ffdc1e6aa92e26637aa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过全部验证：\n\n| 检查项 | 结果 |\n|--------|------|\n| eval_steps / eval_data_path | **CLEAN** |\n| CUDA_VISIBLE_DEVICES 硬编码 | **CLEAN** |\n| seed | **123 confirmed**（第24行 `--seed 123`） |\n\n**完整脚本** `/root/provenance_weight_training/scripts/run_random_reweight_seed123.sh`：\n\n```bash\n#!/bin/bash\n# Random reweighting baseline (seed=123)\n# Purpose: Ablation proving detector signal is load-bearing.\n# Weights drawn from U(0,2), normalized to mean=1 per batch.\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport WANDB_MODE=disabled\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --output_dir /root/autodl-tmp/output/models/random_reweight_seed123 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method random \\\n    --contamination_ratio 0.4 \\\n    --tau 0.8 \\\n    --n_min 2 \\\n    --num_train_tokens 200000000 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 123 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n\necho \"DONE: random_reweight seed123\"\n```\n\n与模板的差异：移除 `--eval_steps 500`、`--eval_data_path`、`CUDA_VISIBLE_DEVICES=0`；seed 42→123；output_dir 改为 `random_reweight_seed123`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-random-reweight-seed123.md"
+}

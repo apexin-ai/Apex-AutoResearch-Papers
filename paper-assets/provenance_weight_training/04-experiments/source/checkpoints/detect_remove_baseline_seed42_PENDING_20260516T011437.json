@@ -1,0 +1,17 @@
+{
+  "exp_id": "detect_remove_baseline_seed42",
+  "project": "provenance_weight_training",
+  "state": "PENDING",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:26:48.402Z",
+    "updated_at": "2026-05-16T01:14:37.744Z",
+    "hypothesis": "Detect-and-remove baseline: hard-filter q&gt;0.5 samples then train uniformly on remaining data. Answers reviewer question \"why not just filter instead of reweight?\" Expected to underperform adaptive weighting due to information loss from discarded samples.",
+    "parent": "uniform_seed42",
+    "notes": "数据过滤完成: threshold=0.5, kept=153725, removed=217774 (58.6%), 文件=data/scored_data_filtered_q05.jsonl (477MB)。训练命令已验证，预估 1.5-3h。等第4张 GPU 释放后提交。"
+  },
+  "timestamp": "2026-05-16T01:14:37.867589+00:00",
+  "trigger": "update_registry"
+}

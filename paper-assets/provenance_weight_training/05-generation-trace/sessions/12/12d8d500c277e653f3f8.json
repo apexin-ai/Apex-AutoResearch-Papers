@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12d8d500c277e653f3f8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis bootstrap significance",
+  "task_key": "worker_analysis_bootstrap-significance_20260516T081641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-significance_20260516T081641_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "77c9c343e5ad3bca08dfd184a01bd0722af8b3851f62bea28ff3cf85ce53ab0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n**ρ=0.4 (3-seed bootstrap, p<0.001)**:\n- Adaptive (n_min=3) vs Uniform: **-0.055 PPL, 显著**\n- Adaptive_fix (n_min=2) vs Uniform: **-0.043 PPL, 显著**\n- Grid-best vs Uniform: **-0.051 PPL, 显著**\n- Adaptive vs Grid-best: -0.004 PPL, **不显著** (p=0.30)\n- ESS-only vs Uniform: **+0.029 PPL, 显著更差**\n\nCohen's d 极大（>10）是 N=3 的数学必然——3个观测值方向完全一致时 SD 极小，d 被放大。报告中已注明 N=3 限制。\n\n**ρ=0.6**: 单 seed，仅有 point estimates，方向与 ρ=0.4 一致。\n\n报告已注册为 `art_20260516_d1d9e7`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-significance.md"
+}

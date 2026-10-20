@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "255b3b8c287add42353b",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_7_1778859827.md",
+  "task_key": "loop_7_1778859827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778859827.md",
+    "occurrence": 1,
+    "bytes": 5122,
+    "sha256": "6dca15d6ee5d1f9921e163c4ec91aacb927a1755bf7521e646e2637ebd619739"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T12:40:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on westd-47453，均已分配给本项目。不可用其他卡。\n- exp_id 禁止含点号（`tau_0.6_seed42` 被 reject，用 `tau_06_seed42`）\n- 禁止 inline eval（`--eval_data_path`/`--eval_steps`），只用 post-hoc `eval_perplexity.py`\n- checkpoint resume 实验必须交叉验证 PPL，偏差 >0.05 标注 artifact 并排除（D026 教训）\n- `submit_training_job` 提交命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && ...`\n- GPU 编号脚本内始终用 `--gpu 0`（框架自动注入 CUDA_VISIBLE_DEVICES）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，4× RTX 6000 Pro 96GB\n- 工作目录：`/root/provenance_weight_training/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 训练数据：`/root/provenance_weight_training/data/scored_data.jsonl`（371K samples, 40% synthetic）\n- Eval 数据：`/root/provenance_weight_training/data/human/eval_holdout.jsonl`（4.08M tokens）\n- WANDB_MODE=disabled（所有实验）\n- 训练脚本目录：`/root/provenance_weight_training/training/`\n- 输出目录：`/root/provenance_weight_training/output/models/<exp_id>/`\n- Eval 结果：`/root/provenance_weight_training/output/eval_results/<exp_id>_eval.json`\n- auto_eval_watcher.py：远程已更新（glob `*` + 动态 GPU 选择），运行中进程用旧代码（重启后生效）\n\n### 3. 📊 当前状态\n**刚做完**：\n- ratio-of-means 修正 89.4% → 90.1%（per-seed Δ 口径）\n- auto_eval_watcher.py 合并修复（glob 通配 + 动态 GPU），已同步远程\n- batchsize 脚本修复（删 inline eval，bs16 加 gradient_checkpointing）\n- analyze_tau_sweep.py xlabel 修正（temperature → quality threshold）\n- detector_modernbert 状态修正（QUEUED/success → QUEUED/killed）\n- full_experiment_data.md 完整数据表生成\n- tau_theory_analysis.md：τ 理论依赖已知比例，但 Claim 3 不受影响（D025 一致）\n- n_min 随 batch_size 变化的论文注意事项已入 memory\n\n**等待中的 Worker 回调（2 个）**：\n1. `worker_ops_check_4_experiments_urgent` — SSH 检查 4 个 RUNNING 实验实际状态 + 运行 post-hoc eval\n2. `worker_code_ess_only_multiseed_scripts` — 准备 ess_only seed123/456 脚本\n\n**Registry RUNNING (4)**：ess_only_seed42 (cuda:1), golden_ratio_seed42 (cuda:0), nmin1_seed42 (cuda:2), tau_06_seed42 (cuda:3) — ETA 全部已过，Worker 正在查实际状态\n\n**Registry PREPARING (4)**：tau_05_seed42, tau_07_seed42, tau_09_seed42, tau_095_seed42 — 脚本已验证就绪，GPU 释放即提交\n\n### 4. 📋 待办（条件触发式）\n- `worker_ops_check_4_experiments_urgent` 回调 → 根据结果：\n  - 如已完成：更新 registry 为 DONE，读取 eval_ppl，**特别关注 ess_only_seed42 的 PPL**（决定论文 framing），向 Director 汇报\n  - 如仍在跑：报告实际进度\n  - GPU 释放后立即 `submit_on_allocated` 提交 τ sweep 剩余 4 组（cuda:1→tau_05, cuda:0→tau_07, cuda:3→tau_09, cuda:2→tau_095），命令已就绪见 report.md\n- `worker_code_ess_only_multiseed_scripts` 回调 → 确认脚本就绪，注册 ess_only_seed123/456 到 registry（PREPARING）\n- τ sweep 4 组全部完成 → 提交 ess_only seed123/456（dream 审稿指出的 #1 缺口）\n- ess_only_seed42 eval_ppl 出来后 → 填入 `artifacts/ess_only_analysis_template.md` 对比表，判断 Case A/B/C，产出论文 framing 建议\n- τ sweep 6 点数据齐全 → 用 `artifacts/analyze_tau_sweep.py` 出图 + 表格，支撑 Claim 3\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（剩 10 天）\n- **核心方法**：Dual-constrained adaptive b*：b* = inf{b ≥ 0 : α_eff(b) ≥ τ} s.t. ESS(b) ≥ n_min\n- **关键数字**：adaptive_fix 恢复 grid-best 改善的 ≈90%（ratio-of-means 90.1%，论文口径），无需 grid search\n- **决策链**：D019 MVP PASS → D021 α_eff 退化风险 → D023 dual-constraint 框架确认 → D025 τ 降级为 empirical HP → D026 checkpoint resume artifact（seed456 b≥2.0 排除）→ D027 grid_b_low 降优先级\n- **最关键待验证**：ess_only_seed42 PPL — 如果 PPL > uniform (17.693)，证明 max-intervention 有害，strongest evidence for min-intervention narrative\n- **τ 理论风险已解**：τ 推导依赖已知比例，但 b* 推导不依赖。τ 定位为 empirical HP with theoretical motivation，τ sweep 证明不敏感\n- **易错点**：\n  - ratio-of-means (90.1%) vs mean-of-ratios (91.0%) — 论文用前者\n  - seed456 b≥2.0 已 invalidated，统计中只用 2 seeds\n  - tau_06_seed42 的输出目录可能是 `tau_0.6_seed42`（带点号），不是 `tau_06_seed42`\n  - auto_eval_watcher 内存进程是旧代码（hardcoded GPU 3），重启后才用新代码\n  - n_min = max(2, batch_size//2)：bs 消融实验中 n_min 不是独立变量\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778859827.md"
+}

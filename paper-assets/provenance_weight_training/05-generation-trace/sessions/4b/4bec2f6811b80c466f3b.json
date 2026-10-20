@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bec2f6811b80c466f3b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis experiment coverage",
+  "task_key": "worker_analysis_experiment_coverage_20260515T155300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_experiment_coverage_20260515T155300_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "e2dc0c8db495d0f37f95e5fc719dba40fa44e1de78025a38a50ad5e2c62f8ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，已注册为 artifact `coverage_analysis`。\n\n## 核心结论\n\n**总体覆盖率 29.4% (10/34)**，10 天内需集中填补以下缺口：\n\n### P0 缺口排序\n\n| 优先级 | 实验 | Claim | 原因 |\n|--------|------|-------|------|\n| **P0-1** | grid_b_low ×3 seeds 重跑 | C2 | b=0.5 是否全局最优未确认，**Claim 2 有翻车风险** |\n| **P0-2** | τ sweep (等待) | C3 | 4 个已在跑，但 τ=0.6 已 negative |\n| **P0-3** | 60% contamination pipeline | C1+C2 | \"small effect size\" 的主要防御线，完全未启动 |\n| **P0-4** | batch_size=8/16 ablation | C1 | 回应 \"only bs=4\" concern，完全空白 |\n| **P0-5** | n_min=4/5 + ESS-only seed123 | C1 | 正在 PREPARING，等待即可 |\n\n### 各 Claim 状态\n\n- **Claim 1** (25%): ESS-only baseline 已证明 dual > ESS-only (+0.08 PPL)，核心证据到位。缺 batch_size ablation 和完整 n_min curve\n- **Claim 2** (40%): MVP PASS，但 **grid_b_low 失败未重跑是最大风险**——如果 b<0.5 更优，aggregate ratio 需重算\n- **Claim 3** (20%+running): τ sweep 正在跑。τ=0.6 已 negative，若 τ=0.7 也 negative 需收窄 robust range\n\n### 立即行动\n\n1. **grid_b_low 重跑** — 不能再等\n2. **60% datagen 启动** — unblock 整个 contamination pipeline\n3. τ sweep 和 n_min=4 等完成即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-experiment-coverage.md"
+}

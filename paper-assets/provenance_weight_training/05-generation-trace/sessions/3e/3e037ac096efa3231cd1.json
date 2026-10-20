@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3e037ac096efa3231cd1",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval bs16 both wait and eval",
+  "task_key": "worker_eval_bs16_both_wait_and_eval_20260521T174228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bs16_both_wait_and_eval_20260521T174228.log",
+    "occurrence": 1,
+    "bytes": 517657,
+    "sha256": "1b98cddeb39ecf8c72ce5a69aefbed99dd4f582021658dfdb52c03d271503030"
+  },
+  "statistics": {
+    "messages": 359,
+    "user_turns": 0,
+    "tool_calls": 140,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 140,
+      "tool_result": 140,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 359,
+      "chunks": [
+        {
+          "path": "3e037ac096efa3231cd1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e037ac096efa3231cd1-part-0002.json",
+          "message_count": 179
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-bs16-both-wait-and-eval.md"
+}

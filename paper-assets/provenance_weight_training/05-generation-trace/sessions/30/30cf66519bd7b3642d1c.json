@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30cf66519bd7b3642d1c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "urgent b8 status and eval",
+  "task_key": "worker_urgent_b8_status_and_eval_20260522T155959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_b8_status_and_eval_20260522T155959_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "750f4efbd134c5c33af736579cff72ba30f4b13c6fe4561d74514ad57ff4a6a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整结果：\n\n## B=8 Eval 结果汇总\n\n| Dataset | Adaptive PPL | Uniform PPL | Δ(A−U) |\n|---------|-------------|-------------|--------|\n| **Holdout** | 17.65 | 17.69 | **−0.04** |\n| **OWT** | 18.33 | 18.36 | **−0.03** |\n| **Wiki** | 15.32 | 15.34 | **−0.02** |\n\n**Adaptive 在所有三个 eval 集上均优于 Uniform**，但差距很小（Δ ≈ −0.02 ~ −0.04）。\n\n### Batch-size 趋势对比\n\n| Batch Size | Δ(adaptive−uniform) avg |\n|-----------|------------------------|\n| B=4 | −0.020 |\n| **B=8** | **−0.03** |\n| B=16 | −0.068 |\n\nB=8 的 Δ≈−0.03 落在 B=4 (−0.020) 和 B=16 (−0.068) 之间，**确认 adaptive 优势随 batch size 单调递增**，符合 batch-size amplification 假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-b8-status-and-eval.md"
+}

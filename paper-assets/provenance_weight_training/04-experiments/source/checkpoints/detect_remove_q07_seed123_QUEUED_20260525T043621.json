@@ -1,0 +1,16 @@
+{
+  "exp_id": "detect_remove_q07_seed123",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T04:35:46.625Z",
+    "updated_at": "2026-05-25T04:36:20.579Z",
+    "hypothesis": "D&R q>0.7 threshold seed=123 replicate. Retains ~50% data (184,908/370k). Cross-seed for error bar with seed42 (r3) and seed456.",
+    "parent": "detect_remove_q07_seed42_r3"
+  },
+  "timestamp": "2026-05-25T04:36:21.076475+00:00",
+  "trigger": "update_registry"
+}

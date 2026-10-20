@@ -1,0 +1,59 @@
+{
+  "exp_id": "detect_remove_q03_epoch_matched_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:18:10.019Z",
+    "updated_at": "2026-05-18T23:35:57.701Z",
+    "hypothesis": "Epoch-matched D&R q03: 1 epoch through q03 filtered data (116,935 samples, ~63M tokens, 1927 steps). If PPL ≈ 17.65 (same as epoch-matched q05), q03 vs q05 multi-epoch gap (17.25 vs 17.28) comes entirely from extra epochs (3.2x vs 2.4x), not data quality. If PPL significantly below 17.65, q03's stricter filtering genuinely yields higher quality data even at matched training budget.",
+    "parent": "detect_remove_q03_seed42_r2",
+    "spec": {
+      "command": "WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q03.jsonl --output_dir .../detect_remove_q03_epoch_matched_seed42 --model_name Qwen3-0.6B --weighting_method uniform --max_steps 1927 --seed 42",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "78529",
+      "log_path": "~/runs/provenance_weight_training/detect_remove_q03_epoch_matched_seed42.log",
+      "submitted_at": "2026-05-18T22:18:34.216Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data_filtered_q03.jsonl",
+      "data_count": 116935,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/output/models/detect_remove_q03_epoch_matched_seed42/final",
+      "wall_clock_seconds": 4643.5,
+      "gpu_hours": 1.29
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T23:28:29.606Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T23:28:34.763822+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_ppl_holdout": 17.74,
+      "eval_loss_holdout": 2.876,
+      "eval_holdout_tokens": 4077068,
+      "eval_method": "sliding_window_stride1024_maxlen2048_fp16_5000docs",
+      "total_steps": 1927,
+      "train_loss_final": 11.3917,
+      "interpretation": "PPL 17.74 vs epoch-matched q05 (17.65): q03 stricter filtering yields HIGHER PPL (+0.09) under matched training budget, not lower. This contradicts the hypothesis that stricter filtering improves data quality per-token. Meanwhile multi-epoch q03 (17.25) is much lower, confirming that the PPL advantage of q03 in multi-epoch setting comes from more training epochs on filtered data, not from higher per-token quality. Conclusion: under fixed training budget, stricter filtering (q03) actually hurts slightly compared to moderate filtering (q05), likely because removing too many borderline samples reduces diversity without sufficient quality gain."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T23:35:57.701Z"
+  },
+  "timestamp": "2026-05-18T23:35:57.989325+00:00",
+  "trigger": "update_registry"
+}

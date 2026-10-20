@@ -1,0 +1,1110 @@
+# cron hook bs8 nmin4 uniform seed123
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/cron_hook_bs8_nmin4_uniform_seed123.jsonl`
+- **Structured JSON:** [`f6ec2c9fb4b13b1fad06.json`](../../sessions/f6/f6ec2c9fb4b13b1fad06.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T03:22:40.502421+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: bs8_nmin4_uniform_seed123
+- project: provenance_weight_training
+- server: westd-41312
+- log_path: ~/runs/provenance_weight_training/bs8_nmin4_uniform_seed123.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-23T03:23:01.761513+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-23T03:23:01.812145+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T03:23:07.496439+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "provenance_weight_training",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T03:23:07.901023+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T03:23:08.405047+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "provenance_weight_training",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T03:23:08.508345+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "provenance_weight_training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "provenance_weight_training"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T03:23:09.937087+00:00_
+
+Error: result (444,867 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2440
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T03:23:10.089648+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"rho03_uniform_seed456\", \"success\": true, \"actions\": [\"Skipped (created 102s ago < interval 120s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2188
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T03:23:10.142362+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-23T03:22:39Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 239 个实验 — DONE 221, PREPARING 17, RUNNING 1\\n**DONE 分布**: failed 42, killed 19, negative 12, success 148\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-41312:cuda:0, westd-41312:cuda:1, westd-41312:cuda:2, westd-41312:cuda:3\\n- **实际运行**: 1 张 — westd-41312:cuda:2(rho03_uniform_seed456)\\n- **空闲（分配了没跑）**: westd-41312:cuda:0, westd-41312:cuda:1, westd-41312:cuda:3\\n\\n### 💾 磁盘余量\\n- **westd-41312**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `rho03_uniform_seed456` | westd-41312 | cuda:2 | 833051 | `~/runs/provenance_weight_training/rho03_uniform_seed456.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `bs8_nmin4_uniform_seed123` [failed] — 2026-05-23T03:22:32 — EXIT_CODE=1 (generic error — check log tail)\\n- `bs8_nmin4_adaptive_seed123` [failed] — 2026-05-23T03:22:14 — EXIT_CODE=1 (generic error — check log tail)\\n- `rho03_adaptive_seed456` [failed] — 2026-05-23T03:21:49 — EXIT_CODE=1 (generic error — check log tail)\\n- `rho03_uniform_seed123` [success] — 2026-05-23T00:24:24\\n- `rho03_uniform_seed42` [success] — 2026-05-23T00:24:21\\n\\n### 🔴 最近失败原因 (top 3)\\n- `bs8_nmin4_uniform_seed123`: EXIT_CODE=1 (generic error — check log tail)\\n- `bs8_nmin4_adaptive_seed123`: EXIT_CODE=1 (generic error — check log tail)\\n- `rho03_adaptive_seed456`: EXIT_CODE=1 (generic error — check log tail)\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|
+…[truncated 4558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1737
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T03:23:10.195424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/ROADMAP.md\", \"content\": \"# provenance_weight_training — Research Dashboard\\n\\n> 最后更新: 2026-05-22 18:44 UTC | 更新原因: D120 ρ=0.3 防御性实验已批准，同步 ROADMAP\\n\\n## 核心方向\\n**Analysis paper**: \\\"When, why, and how does detect-and-reweight work?\\\"\\n贡献排序: (1) Epoch confound >95% (2) Detector requirements: calibration+discrimination (3) Mechanism decomposition: 4-tier hierarchy (4) Adaptive b* tool。详见 paper_framing.md (D115)。\\n\\n## 当前阶段\\n**Round 11 审稿提交中（pending approval）。同时防御性补跑 ρ=0.3 boundary check。** DDL: **EMNLP 2026 ARR May 25**（~3 天）。\\n\\nRound 10 修复完成：13/13 issues resolved（含 M3 定量方差分解）。\\nM3 新增：α_eff 未解释方差 ~70% 检测器噪声 / ~30% b* 变换设计，已写入 §6。\\n\\n## 进行中\\n- [ ] ρ=0.3 adaptive τ=0.7 seed42 (cuda:0) — D120 批准，防御性补跑\\n- [ ] ρ=0.3 uniform seed42 (cuda:1) — D120 批准，防御性补跑\\n- [ ] Round 11 审稿 pending approval\\n\\n## 近期任务\\n- [ ] ρ=0.3 训练完成 → eval（holdout + OWT + Wiki bfloat16）\\n- [ ] ρ=0.3 结果写入 appendix 或作为 rebuttal 储备（不改变核心叙事）\\n- [ ] 等待 Round 11 审稿结果 → 目标 3.5+\\n\\n## 关键数据速查\\n| 指标 | 值 |\\n|------|-----|\\n| Adaptive 3-seed B=4 (τ=0.7, ρ=0.4) | 17.674±0.007 |\\n| Uniform 3-seed B=4 (ρ=0.4) | 17.694±0.008 |\\n| Δ(adaptive−uniform, B=4, ρ=0.4) | −0.020 (t=−7.1, p=0.019, p_BH=0.078) |\\n| Δ(adaptive−uniform, B=8, 1-seed) | −0.044 |\\n| Δ(adaptive−uniform, B=16, 3-seed) | −0.068±0.005 (3.4×, p<0.01) |\\n| Δ(adaptive−uniform, ρ=0.6) | −0.032 (p=0.010, p_BH≤0.018) |\\n| 1.7B 3-seed holdout | Δ=−0.013 |\\n| D&R full 3-seed | 17.278±0.007 |\\n| D&R epoch-matched 3-seed | 17.657±0.005 |\\n| Random reweight 3-seed | 17.951±0.007 |\\n| Epoch confound | >95% (relative to adaptive reweighting) |\\n| Bootstrap CI (B=4, ρ=0.4) | [−0.028, −0.012] |\\n| α_eff variance: detector noise | ~70% of unexplained |\\n| α_eff variance: b* transform | ~30% of unexplained |\\n\\n## GPU 预算\\n4× RTX PRO 6000 96GB on westd-41312\\n- cuda:0 — ρ=0.3 adaptive (
+…[truncated 1714 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1687
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T03:23:25.485506+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T03:23:25.536255+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_a52261d4.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T03:23:29.960202+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry.get('data', {}).get('experiments', [])\n# Find the 3 recent failed experiments\ntargets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\nfor exp in exps:\n    if exp.get('exp_id') in targets:\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"",
+  "description": "Extract details of 3 recent failed experiments from registry",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry.get('data', {}).get('experiments', [])\n# Find the 3 recent failed experiments\ntargets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\nfor exp in exps:\n    if exp.get('exp_id') in targets:\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"",
+    "description": "Extract details of 3 recent failed experiments from registry",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T03:23:30.362935+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    if exp.get('exp_id') in targets:
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T03:23:36.947067+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry.get('data', {})\n# Check structure\nif isinstance(experiments, dict):\n    print('Keys:', list(experiments.keys())[:10])\n    # Try to find in dict keys\n    targets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\n    for t in targets:\n        if t in experiments:\n            print(f'--- {t} ---')\n            print(json.dumps(experiments[t], indent=2)[:2000])\nelif isinstance(experiments, list):\n    print('List of', len(experiments))\nelse:\n    print('Type:', type(experiments))\n\"",
+  "description": "Probe registry structure and extract failed experiments",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry.get('data', {})\n# Check structure\nif isinstance(experiments, dict):\n    print('Keys:', list(experiments.keys())[:10])\n    # Try to find in dict keys\n    targets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\n    for t in targets:\n        if t in experiments:\n            print(f'--- {t} ---')\n            print(json.dumps(experiments[t], indent=2)[:2000])\nelif isinstance(experiments, list):\n    print('List of', len(experiments))\nelse:\n    print('Type:', type(experiments))\n\"",
+    "description": "Probe registry structure and extract failed experiments",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T03:23:37.101090+00:00_
+
+Keys: ['experiments', 'count', 'total', 'baseline']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "elapsed_ms": 154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T03:23:41.757264+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\ntargets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\nfor exp in experiments:\n    eid = exp.get('exp_id','') if isinstance(exp, dict) else ''\n    if eid in targets:\n        print(f'--- {eid} ---')\n        print(json.dumps(exp, indent=2)[:3000])\n        print()\n\" 2>&1 | head -200",
+  "description": "Extract failed experiments from registry list",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\ntargets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\nfor exp in experiments:\n    eid = exp.get('exp_id','') if isinstance(exp, dict) else ''\n    if eid in targets:\n        print(f'--- {eid} ---')\n        print(json.dumps(exp, indent=2)[:3000])\n        print()\n\" 2>&1 | head -200",
+    "description": "Extract failed experiments from registry list",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T03:23:42.159837+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-23T03:23:46.265978+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\nprint('Type:', type(experiments))\nif isinstance(experiments, list):\n    print('Count:', len(experiments))\n    print('First item type:', type(experiments[0]))\n    print('First item:', str(experiments[0])[:200])\nelif isinstance(experiments, dict):\n    print('Keys sample:', list(experiments.keys())[:5])\n\"",
+  "description": "Debug registry experiments structure",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\nprint('Type:', type(experiments))\nif isinstance(experiments, list):\n    print('Count:', len(experiments))\n    print('First item type:', type(experiments[0]))\n    print('First item:', str(experiments[0])[:200])\nelif isinstance(experiments, dict):\n    print('Keys sample:', list(experiments.keys())[:5])\n\"",
+    "description": "Debug registry experiments structure",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T03:23:46.366670+00:00_
+
+Type: &lt;class 'dict'>
+Keys sample: ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456', 'rho03_uniform_seed456', 'rho03_uniform_seed123']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T03:23:50.091060+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\ntargets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\nfor t in targets:\n    if t in experiments:\n        print(f'--- {t} ---')\n        print(json.dumps(experiments[t], indent=2)[:3000])\n        print()\n\"",
+  "description": "Extract 3 failed experiments from registry dict",
+  "timeout": "15000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training--claude-sessions-agent-a52261d4/d359aede-b7cc-4c27-a1b7-67fe4ee11215/tool-results/mcp-agent-ml-research-read_registry-1779506589862.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\ntargets = ['bs8_nmin4_uniform_seed123', 'bs8_nmin4_adaptive_seed123', 'rho03_adaptive_seed456']\nfor t in targets:\n    if t in experiments:\n        print(f'--- {t} ---')\n        print(json.dumps(experiments[t], indent=2)[:3000])\n        print()\n\"",
+    "description": "Extract 3 failed experiments from registry dict",
+    "timeout": "15000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T03:23:50.193243+00:00_
+
+--- bs8_nmin4_uniform_seed123 ---
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-23T01:08:21.983Z",
+  "updated_at": "2026-05-23T03:23:04.956Z",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123/checkpoint-1000\"",
+    "server": "westd-41312",
+    "gpu": [
+      "cuda:3"
+    ],
+    "pid": "833558",
+    "log_path": "~/runs/provenance_weight_training/bs8_nmin4_uniform_seed123.log",
+    "submitted_at": "2026-05-23T03:19:17.194Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 195.3,
+    "gpu_hours": 0.05
+  },
+  "hypothesis": "Cross-seed replicate (seed=123) uniform baseline at B=8 for paired comparison with bs8_nmin4_adaptive_seed123. Provides second data point for B=8 batch-size amplification.",
+  "reproduce": {
+    "finished_at": "2026-05-23T03:22:28.059Z"
+  },
+  "failure_reason": "EXIT_CODE=1 (generic error \u2014 check log tail)",
+  "conclusion": "failed",
+  "completed_at": "2026-05-23T03:22:32.518Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-23T03:22:44.697596+00:00"
+      }
+    ]
+  }
+}
+
+--- bs8_nmin4_adaptive_seed123 ---
+{
+  "status": "DONE",
+  "retry_count": 0,
+…[truncated 4010 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T03:24:00.355782+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T03:24:00.406383+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-23T03:24:07.499296+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T03:24:07.964295+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Glob",
+  "elapsed_ms": 464
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T03:24:09.722823+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T03:24:09.773793+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T03:24:21.846140+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "provenance_weight_training",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T03:24:21.898039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\", \"content\": \"# Memory\\n\\n## D062 coupling rule 已验证 (2026-05-17)\\n\\nbs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。\\n- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)\\n- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)\\n- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)\\n\\n结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。\\n\\n## Batch-adaptive τ 方向关闭 (2026-05-17)\\n\\n两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。\\n\\n## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)\\n\\ngrid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。\\n\\n## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)\\n\\nAdaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。\\nadaptive 方差仅为 uniform 的一半。\\n\\n## ρ=0.2 adaptive 无效 (2026-05-17)\\n\\nD068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。\\n\\n## ρ=0.3 boundary check 结果 (2026-05-23, 2-seed)\\n\\n| | Adaptive holdout | Uniform holdout | Δ holdout | Δ OWT | Δ Wiki |\\n|------|-----------------|----------------|-----------|-------|--------|\\n| seed42 | 17.422 | 17.422 | 0.000 | +0.010 | −0.032 |\\n| seed123 | 17.435 | 17.433 | +0.002 | +0.022 | −0.039 |\\n| **mean** | **17.429** | **17.428** | **+0.001** | **+0.016** | **−0.036** |\\n\\n**结论：ρ=0.3 是 transition zone。** Adaptive 在 holdout/OWT 上无效（Δ ≈ 0 或微正），仅 wiki 上有微弱优势（−0.036）。\\n- vs ρ=0.2: adaptive 有害 → ρ=0.3: 中性 → ρ=0.4: 有效 (Δ=−0.068)\\n- 确认 ρ=0.3 是 detect-and-reweight 从无效到有效的过渡点\\n- 论文可报告为：\\\"method becomes effective at ρ ≥ 0.4; at ρ=0.3 the signal is too weak for reliable reweighting\\\"\\n\\n## Grid-b 曲线平坦性 (2026-05-17)\\n\\n[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。\\n\\n## 30476 SIGKILL 事件 (2026-05-17)\\n\\n4 实验同时被 SIGKILL，oom_kill=0，根因
+…[truncated 3477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T03:24:49.481058+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:bs8_nmin4_uniform_seed123",
+  "project": "provenance_weight_training",
+  "task_prompt": "SSH 到服务器 westd-41312，诊断 3 个同时段失败的实验。它们都在 ~03:19 提交、~03:22 退出（EXIT_CODE=1），运行不到 5 分钟，全部从 checkpoint-1000 resume。极可能是同一个根因。\n\n## 需要诊断的实验\n\n1. **bs8_nmin4_uniform_seed123**\n   - 日志：~/runs/provenance_weight_training/bs8_nmin4_uniform_seed123.log\n   - 命令：`python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --batch_size 8 --gradient_accumulation_steps 2 --seed 123 --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123/checkpoint-1000`\n\n2. **bs8_nmin4_adaptive_seed123**\n   - 日志：~/runs/provenance_weight_training/bs8_nmin4_adaptive_seed123.log\n   - 命令类似，--weighting_method adaptive --tau 0.7 --n_min 4 --resume_from_checkpoint .../bs8_nmin4_adaptive_seed123/checkpoint-1000\n\n3. **rho03_adaptive_seed456**\n   - 日志：~/runs/provenance_weight_training/rho03_adaptive_seed456.log\n   - 命令类似，--data_path data/scored_data_rho03.jsonl --contamination_ratio 0.3 --batch_size 4 --gradient_accumulation_steps 4 --resume_from_checkpoint .../rho03_adaptive_seed456/checkpoint-1000\n\n## 诊断步骤（按顺序，有结论就停）\n\n1. 先看 bs8_nmin4_uniform_seed123 的日志尾部 80 行（找 Traceback / Error / CUDA OOM）\n2. 如果尾部没有明确错误，看开头 100 行（初始化崩溃）\n3. 检查 checkpoint 是否存在：\n   - `ls -la /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123/checkpoint-1000/`\n   - `ls -la /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_adaptive_seed123/checkpoint-1000/`\n   - `ls -la /root/autodl-tmp/provenance_weight_training/output/models/rho03_adaptive_seed456/checkpoint-1000/`\n4. 检查磁盘空间：`df -h /root/autodl-tmp/`\n5. 如果第一个日志有明确错误，快速看另外两个日志尾部 30 行确认是否相同错误\n\n## 输出格式\n\n最后输出一行 JSON：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true,\"affects_all_three\":true}",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:bs8_nmin4_uniform_seed123",
+    "project": "provenance_weight_training",
+    "task_prompt": "SSH 到服务器 westd-41312，诊断 3 个同时段失败的实验。它们都在 ~03:19 提交、~03:22 退出（EXIT_CODE=1），运行不到 5 分钟，全部从 checkpoint-1000 resume。极可能是同一个根因。\n\n## 需要诊断的实验\n\n1. **bs8_nmin4_uniform_seed123**\n   - 日志：~/runs/provenance_weight_training/bs8_nmin4_uniform_seed123.log\n   - 命令：`python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --batch_size 8 --gradient_accumulation_steps 2 --seed 123 --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123/checkpoint-1000`\n\n2. **bs8_nmin4_adaptive_seed123**\n   - 日志：~/runs/provenance_weight_training/bs8_nmin4_adaptive_seed123.log\n   - 命令类似，--weighting_method adaptive --tau 0.7 --n_min 4 --resume_from_checkpoint .../bs8_nmin4_adaptive_seed123/checkpoint-1000\n\n3. **rho03_adaptive_seed456**\n   - 日志：~/runs/provenance_weight_training/rho03_adaptive_seed456.log\n   - 命令类似，--data_path data/scored_data_rho03.jsonl --contamination_ratio 0.3 --batch_size 4 --gradient_accumulation_steps 4 --resume_from_checkpoint .../rho03_adaptive_seed456/checkpoint-1000\n\n## 诊断步骤（按顺序，有结论就停）\n\n1. 先看 bs8_nmin4_uniform_seed123 的日志尾部 80 行（找 Traceback / Error / CUDA OOM）\n2. 如果尾部没有明确错误，看开头 100 行（初始化崩溃）\n3. 检查 checkpoint 是否存在：\n   - `ls -la /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123/checkpoint-1000/`\n   - `ls -la /root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_adaptive_seed123/checkpoint-1000/`\n   - `ls -la /root/autodl-tmp/provenance_weight_training/output/models/rho03_adaptive_seed456/checkpoint-1000/`\n4. 检查磁盘空间：`df -h /root/autodl-tmp/`\n5. 如果第一个日志有明确错误，快速看另外两个日志尾部 30 行确认是否相同错误\n\n## 输出格式\n\n最后输出一行 JSON：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true,\"affects_all_three\":true}",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T03:24:53.220025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_bs8_nmin4_uniform_seed123_20260523T032450\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/logs/workers/worker_diagnose_bs8_nmin4_uniform_seed123_20260523T032450.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_bs8_nmin4_uniform_seed123_20260523T032450 started. Use get_worker_status('worker_diagnose_bs8_nmin4_uniform_seed123_20260523T032450') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3738
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-23T03:24:58.934481+00:00_
+
+Worker 已派出诊断 3 个实验的失败原因。等待 Worker 回调后再更新 registry 和汇报 Director。
+
+当前状态：
+- 1 个 RUNNING：rho03_uniform_seed456（cuda:2）
+- 3 个 failed 待诊断：bs8_nmin4_uniform_seed123、bs8_nmin4_adaptive_seed123、rho03_adaptive_seed456
+- 3 张 GPU 空闲（cuda:0/1/3）— 需要等诊断结果确定根因后，才能决定是否重跑
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:bs8_nmin4_uniform_seed123"
+}
+```
+
+</details>
+
+---

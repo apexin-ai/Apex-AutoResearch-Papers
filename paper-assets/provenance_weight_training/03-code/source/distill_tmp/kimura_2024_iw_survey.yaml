@@ -1,0 +1,18 @@
+paper_key: "kimura_2024_iw_survey"
+title: "A Short Survey on Importance Weighting for Machine Learning"
+venue: "TMLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["N/A (survey paper)"]
+  metrics:
+    - {name: "N/A (survey)", direction: "N/A"}
+  datasets:
+    - {name: "N/A (survey)", size: "N/A"}
+  ablation_dimensions: ["application domains (class imbalance, distribution shift, active learning, PU learning, model selection)"]
+  training_recipe: {method: "survey of importance weighting techniques"}
+  method_family: "importance weighting survey"
+
+narrative: N/A
+figures: N/A
+tables: N/A

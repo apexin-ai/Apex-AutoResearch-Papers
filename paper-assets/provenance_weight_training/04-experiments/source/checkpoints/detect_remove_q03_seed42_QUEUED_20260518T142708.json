@@ -1,0 +1,15 @@
+{
+  "exp_id": "detect_remove_q03_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:24:48.317Z",
+    "updated_at": "2026-05-18T14:27:07.897Z",
+    "hypothesis": "D&R threshold t=0.3: keep q≤0.3 (116,935 samples, 31.5%), the second most aggressive filtering level. Previous threshold_q03_seed42 on westd-47453 got PPL=17.253. This re-run on westd-30476 serves as reproducibility check and standardizes the threshold sweep on a single server. Part of 5-point D&R sensitivity curve (q01/q03/q05/q07/q09)."
+  },
+  "timestamp": "2026-05-18T14:27:08.183031+00:00",
+  "trigger": "update_registry"
+}

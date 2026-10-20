@@ -1,0 +1,64 @@
+{
+  "exp_id": "uniform_epoch_matched_seed456",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:42:58.560Z",
+    "updated_at": "2026-05-22T11:27:52.856Z",
+    "hypothesis": "Uniform epoch-matched seed456: trains on full data (scored_data.jsonl, 371499 samples) for 2533 steps with independent linear LR schedule (5e-5→0), effective batch=16 (bs=4 × grad_accum=4). Third seed for uniform epoch-matched baseline. Paired with uniform_epoch_matched_indep_lr_seed42 (holdout=18.062) and dr_epoch_matched experiments for epoch confound quantification.",
+    "parent": "uniform_epoch_matched_indep_lr_seed42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_epoch_matched_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --max_steps 2533 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\"",
+      "server": "westd-41312",
+      "gpu": "cuda:1",
+      "pid": 748574,
+      "log_path": "~/runs/provenance_weight_training/uniform_epoch_matched_seed456.log",
+      "submitted_at": "2026-05-22T09:43:09.347Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 456,
+      "checkpoint_source": "from_scratch",
+      "eval_data": [
+        "holdout_combined",
+        "owt_eval",
+        "wiki_eval"
+      ],
+      "wall_clock_seconds": 6283.5,
+      "gpu_hours": 1.75
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T11:12:24.109Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T11:12:29.685867+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "holdout_ppl": 18.068,
+      "holdout_loss": 2.8941,
+      "owt_ppl": 18.66,
+      "owt_loss": 2.9264,
+      "wiki_ppl": 15.515,
+      "wiki_loss": 2.7418,
+      "train_loss": 8.039,
+      "total_steps": 2533
+    },
+    "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/uniform_epoch_matched_seed456/final",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T11:27:52.856Z"
+  },
+  "timestamp": "2026-05-22T11:27:53.275823+00:00",
+  "trigger": "update_registry"
+}

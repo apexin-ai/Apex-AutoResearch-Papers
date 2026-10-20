@@ -1,0 +1,23 @@
+{
+  "exp_id": "rho03_adaptive_seed42",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:55:48.966Z",
+    "updated_at": "2026-05-22T18:56:06.289Z",
+    "spec": {
+      "hypothesis": "At ρ=0.3 (boundary between ρ=0.2 fail and ρ=0.4 success), adaptive τ=0.7 weighting should still improve over uniform but with smaller Δ than ρ=0.4 (Δ=−0.068). This tests the contamination threshold where detect-and-reweight becomes effective, establishing the method's sensitivity boundary.",
+      "parent": "rho02_adaptive_tau08_seed42",
+      "model_name": "Qwen3-0.6B",
+      "data_path": "data/scored_data_rho03.jsonl",
+      "data_count": 235555,
+      "seed": 42,
+      "server": "westd-41312"
+    }
+  },
+  "timestamp": "2026-05-22T18:56:06.749119+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,604 @@
+{
+  "schema_version": "1.0",
+  "id": "4001597f5370a93886b4",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "paper intro related work",
+  "task_key": "worker_paper_intro-related-work_20260515T233142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_intro-related-work_20260515T233142.jsonl",
+    "occurrence": 1,
+    "bytes": 41070,
+    "sha256": "879a9e1363388f6d9c3820dbed745fcbb215ebfa89c76459142648ddfb4fb72e"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T23:39:26.616266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/ 2>/dev/null",
+              "description": "Check existing paper and artifacts directories"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T23:39:26.616623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 344\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 15 22:30 .\ndrwxr-xr-x 4 ubuntu ubuntu   4096 May 15 05:23 ..\n-rw-r--r-- 1 ubuntu ubuntu  11615 May 15 20:19 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu  45186 May 15 20:19 acl_natbib.bst\n-rw-r--r-- 1 ubuntu ubuntu  15429 May 15 22:17 main.aux\n-rw-r--r-- 1 ubuntu ubuntu   6506 May 15 22:17 main.bbl\n-rw-r--r-- 1 ubuntu ubuntu   1463 May 15 22:17 main.blg\n-rw-r--r-- 1 ubuntu ubuntu  27225 May 15 22:17 main.log\n-rw-r--r-- 1 ubuntu ubuntu   1276 May 15 22:17 main.out\n-rw-r--r-- 1 ubuntu ubuntu 192299 May 15 22:17 main.pdf\n-rw-r--r-- 1 ubuntu ubuntu   1554 May 15 21:49 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  10897 May 15 22:30 method.tex\n-rw-r--r-- 1 ubuntu ubuntu   6034 May 15 21:48 references.bib\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 15 22:20 sections\n---\n_project\nadaptive_fix_seed42\nall_success_summary.md\nanalyze_tau_sweep.py\nbstar_distribution_analysis.md\ndata_generation\ndetector\ndrayson_comparison.md\ndream_reports\ness_only_analysis_template.md\ness_only_implementation.md\ness_only_seed42\nevaluation\nexperiment_setup_draft.md\nexperiment_status_summary.md\nexperiment_summary.md\nexperiment_summary_table.md\nfull_experiment_data.md\ngrid_b5_0_seed123\ngrid_eval_source_audit.md\ninterim_mvp_analysis.md\nliterature_diff_drayson.md\nliterature_notes.md\nliterature_scan_results.md\nliterature_tau_sensitivity.md\nmanifest.yaml\nmethod_section_draft.md\nmvp_analysis_draft.md\nmvp_analysis_summary.md\nnew_scripts_manifest.md\nnmin1_seed42\nnovelty_drayson_analysis.md\npaper_tables.md\nq1_ess_equivalence_analysis.md\nrelated_work_notes.md\nreview_issues.yaml\nrun_mvp.sh\nseed42_diagnostic.md\ntable1_data.md\ntau_095_seed42\ntau_09_seed42\ntau_b_strength.pdf\ntau_b_strength.png\ntau_derivation_check.md\ntau_fix_changelog.md\ntau_ppl_curve.pdf\ntau_ppl_curve.png\ntau_sweep.pdf\ntau_sweep.png\ntau_sweep_commands.md\ntau_sweep_curve_dummy.pdf\ntau_sweep_curve_dummy.png\ntau_sweep_improvement_dummy.pdf\ntau_sweep_improvement_dummy.png\ntau_sweep_readiness.md\ntau_theory_analysis.md\ntau_theo\n…[truncated 74 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T23:39:26.616807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T23:39:26.617013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T23:39:26.617200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T23:39:26.617380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for Minimum Intervention Reweighting paper\n2\t% Note: entries to be verified via verify_references before final submission\n3\t\n4\t@article{drayson2025detection,\n5\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n6\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n7\t  journal={arXiv preprint arXiv:2502.15654},\n8\t  year={2025}\n9\t}\n10\t\n11\t@article{he2025golden,\n12\t  title={Golden Ratio Weighting Prevents Model Collapse},\n13\t  author={He, Hengzhi and Xu, Shirong and Cheng, Guang},\n14\t  journal={arXiv preprint arXiv:2502.18049},\n15\t  year={2025}\n16\t}\n17\t\n18\t@article{wang2026survive,\n19\t  title={Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training},\n20\t  author={Wang, Kevin and Niu, Hongqian and Li, Didong},\n21\t  journal={arXiv preprint arXiv:2602.16065},\n22\t  year={2026}\n23\t}\n24\t\n25\t@article{shumailov2024model,\n26\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n27\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n28\t  journal={Nature},\n29\t  volume={631},\n30\t  pages={755--759},\n31\t  year={2024}\n32\t}\n33\t\n34\t@inproceedings{dohmatob2025strong,\n35\t  title={Strong Model Collapse},\n36\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n37\t  booktitle={ICLR},\n38\t  year={2025}\n39\t}\n40\t\n41\t@article{vehtari2024psis,\n42\t  title={Pareto Smoothed Importance Sampling},\n43\t  author={Vehtari, Aki and Simpson, Daniel and Gelman, Andrew and Yao, Yuling and Gabry, Jonah},\n44\t  journal={JMLR},\n45\t  year={2024}\n46\t}\n47\t\n48\t@inproceedings{sow2025dynamic,\n49\t  title={Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining},\n50\t  author={Sow, Daouda and Woisetschl{\\\"a}ger, Herbert and Bulusu, Saikiran and Wang, Shiqiang and Jacobsen, Hans-Arno and Liang, Yingbin},\n51\t  booktitle={ICLR},\n52\t  year={2025}\n53\t\n…[truncated 4590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T23:39:26.617542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/main.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T23:39:26.617690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath}\n10\t\\usepackage{amssymb}\n11\t\\usepackage{amsthm}\n12\t\\usepackage{algorithm}\n13\t\\usepackage{algorithmic}\n14\t\\usepackage{booktabs}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{hyperref}\n19\t\n20\t\\newtheorem{proposition}{Proposition}\n21\t\\newtheorem{definition}{Definition}\n22\t\n23\t\\newcommand{\\bstar}{b^*}\n24\t\\newcommand{\\aeff}{\\alpha_{\\mathrm{eff}}}\n25\t\\newcommand{\\nmin}{n_{\\min}}\n26\t\\newcommand{\\btau}{b_{\\tau}}\n27\t\\newcommand{\\bess}{b_{\\mathrm{ESS}}}\n28\t\n29\t\\title{Minimum Intervention Reweighting: Adaptive Exponent Selection\\\\for Contamination-Aware Pretraining}\n30\t\n31\t\\author{Anonymous}\n32\t\n33\t\\begin{document}\n34\t\\maketitle\n35\t\n36\t\\begin{abstract}\n37\t\\input{sections/abstract}\n38\t\\end{abstract}\n39\t\n40\t\\section{Introduction}\n41\t\\label{sec:intro}\n42\t\\input{sections/introduction}\n43\t\n44\t\\section{Related Work}\n45\t\\label{sec:related}\n46\t\\input{sections/related_work}\n47\t\n48\t\\section{Method}\n49\t\\label{sec:method}\n50\t\\input{sections/method}\n51\t\n52\t\\section{Experimental Setup}\n53\t\\label{sec:experiments}\n54\t\\input{sections/experiments}\n55\t\n56\t\\section{Results}\n57\t\\label{sec:results}\n58\t\\input{sections/results}\n59\t\n60\t\\section{Discussion}\n61\t\\label{sec:discussion}\n62\t\\input{sections/discussion}\n63\t\n64\t\\section{Conclusion}\n65\t\\label{sec:conclusion}\n66\t\\input{sections/conclusion}\n67\t\n68\t\\section*{Limitations}\n69\t\\label{sec:limitations}\n70\t\\input{sections/limitations}\n71\t\n72\t\\bibliography{references}\n73\t\\bibliographystyle{acl_natbib}\n74\t\n75\t\\appendix\n76\t\\input{sections/appendix}\n77\t\n78\t\\end{document}\n79\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T23:39:26.617833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/method.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T23:39:26.618101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\t\\subsection{Problem Setup}\n6\t\\label{sec:problem-setup}\n7\t\n8\tConsider a pretraining corpus $\\mathcal{D} = \\{x_1, \\ldots, x_N\\}$ comprising an unknown mixture of human-authored text $\\mathcal{D}_{\\mathrm{real}}$ and machine-generated text $\\mathcal{D}_{\\mathrm{synth}}$, with contamination rate $\\rho = |\\mathcal{D}_{\\mathrm{synth}}| / |\\mathcal{D}|$ unknown to the practitioner. A pretrained contamination detector assigns each sample a synthetic probability $q(x_i) \\in [0, 1]$.\n9\t\n10\tFollowing \\cite{drayson2025detection}, we define per-sample weights as\n11\t\\begin{equation}\n12\t    w_b(x_i) = (1 - q(x_i))^b, \\quad b \\geq 0,\n13\t    \\label{eq:weight}\n14\t\\end{equation}\n15\twhere $b = 0$ recovers uniform weighting and increasing $b$ progressively downweights samples with high synthetic probability. The weighted pretraining objective is\n16\t\\begin{equation}\n17\t    \\mathcal{L}(b) = \\frac{1}{\\sum_j w_b(x_j)} \\sum_{i} w_b(x_i) \\, \\ell(x_i; \\theta),\n18\t    \\label{eq:loss}\n19\t\\end{equation}\n20\twhere $\\ell(x_i; \\theta)$ is the per-sample language modeling loss.\n21\t\n22\t\\cite{drayson2025detection} treat $b$ as a hyperparameter selected via validation-based grid search, requiring separate training runs for each candidate value. Their optimal $b$ varies across model families (e.g., $b{=}10$ for GPT-2 and SmolLM $\\leq$360M vs.\\ $b{=}1$ for SmolLM 1.7B), making per-model tuning unavoidable. We instead derive $b$ adaptively per batch from the detector scores alone, requiring no validation set and no grid search.\n23\t\n24\t\\subsection{Dual-Constraint Framework}\n25\t\\label{sec:dual-constraint}\n26\t\n27\tThe exponent $b$ controls a fundamental trade-off: stronger downweighting (higher $b$) removes more synthetic influence but also discards effective training signal. We formalize this trade-off through two per-batch statistics.\n28\t\n29\t\\paragraph{Effective real proportion.} For a batch $\\mathcal{B} = \\{x_1, \\ldots, x_B\\}$ with weights $w_i = w_b(x_i)$, we \n…[truncated 9341 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T23:39:26.618260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T23:39:26.618496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — provenance_weight_training\\\\n\\\\n> 状态: STABLE (D023 dual-constraint + D029 ESS-only resolved + D035 τ sweep complete)\\\\n> 最后更新: 2026-05-15 21:30 UTC\\\\n> 投稿目标: EMNLP 2026 ARR May 25\\\\n\\\\n## Core Insight\\\\n\\\\nWeb 语料预训练面临合成数据污染问题（20-60%，来源未知），Drayson et al. (EMNLP 2025) 提出 w=(1-q)^b detect-and-reweight 框架，但 b 需要 per-model validation-based grid search（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1）。\\\\n\\\\n我们提出 **dual-constrained adaptive b***：per-batch 从 q-score 分布推导最优 b*，同时满足两个约束：\\\\n- **α_eff(b) ≥ τ** — 质量下界：确保加权后有效真实率达到收敛理论要求的阈值（\\\\\\\"至少做够清洁\\\\\\\"）\\\\n- **ESS(b) ≥ n_min** — 稳定上界：确保有效样本量不低于 Kish 阈值（\\\\\\\"不要清洁过头\\\\\\\"）\\\\n\\\\nb* = inf{b ≥ 0 : α_eff(b) ≥ τ} subject to ESS(b) ≥ n_min — **最小干预准则**：在保证质量的前提下，使用最少的 downweighting。\\\\n\\\\n**关键洞察**：α_eff(b) 单调递增、ESS(b) 单调递减。α_eff 给出 b 的下界 b_τ（需至少这么多清洁），ESS 给出 b 的上界 b_ESS（最多这么多清洁）。当 b_τ < b_ESS（~40% reweighted batches），α_eff 是 binding constraint，b* 远小于 ESS 上界（mean 1.67 vs 4.15）——方法选择保守干预而非最大干预。\\\\n\\\\n实现路径：**直接 loss reweighting**（gradient 层面连续加权），vs Drayson 的 SIR resampling（离散重采样）。\\\\n\\\\n### α_eff(b) 的角色（D023 修正定论）\\\\n\\\\n**D021 证明 α_eff(b) 严格单调递增**（dα_eff/db = Cov_w(x, ln x) ≥ 0）——这是正确的。\\\\n\\\\n**D021 的错误推论**：\\\\\\\"因此 α_eff 优化等价于 ESS 阈值化\\\\\\\"——这假设优化目标是 max α_eff(b) s.t. ESS ≥ n_min。但实际优化是 **inf{b : α_eff(b) ≥ τ}**——最小满足质量阈值的 b。单调性恰恰保证了 b_τ 的**存在性和唯一性**。\\\\n\\\\n**Q1 实证（Reviewer 独立核实）**：\\\\n- 51,913 micro-batches 中，49.9% clean (b*=0), 20.2% α_eff binding, 30.0% ESS binding\\\\n- 在需 reweighting 的 batch 中：40.1% α_eff binding, 59.9% ESS binding\\\\n- α_eff binding 时 b*=1.67，ESS-only 方法会选 b*=4.15（2.5× 更激进）\\\\n- α_eff binding 时 ESS=2.60（vs n_min=2.0，有 30% 余量）\\\\n\\\\n**论文呈现**：α_eff 是方法的核心组件（非仅 motivation），提供质量阈值约束。Figure: 双轴图展示 α_eff(b) 和 ESS(b) 曲线 + b_τ 和 b_ESS 标注。\\\\n\\\\n**τ 的定位（D025 定论 + D035 τ sweep 完整数据更新）**：收敛理论 (arXiv 2602.16065) 中 α = m₁/(m₁+m₂) 是已知设计参数，推导依赖已知比例。τ **不能声称有 propor\n…[truncated 10140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T23:39:26.618688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/sections/",
+              "description": "List existing section files"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T23:39:26.618823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 44\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 15 22:20 .\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 15 22:30 ..\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu  2434 May 15 22:20 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  3137 May 15 22:17 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  4831 May 15 22:16 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu 10939 May 15 21:29 method.tex\n-rw-r--r-- 1 ubuntu ubuntu  5760 May 15 22:17 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T23:39:26.618976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "file": "literature_map.yaml",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T23:39:26.619245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map for provenance_weight_training\\\\n# 研究方向：基于收敛理论的自适应污染重加权\\\\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\\\\n# 更新日期：2026-05-15（文献扫描：补充 Wang et al. + 4 方向新文献 + 修正 2 处错误）\\\\n\\\\n# ============================================================\\\\n# Category: direct-competitor\\\\n# 同主题/同方法的论文\\\\n# ============================================================\\\\n\\\\n- id: drayson_2025_detection_collapse\\\\n  title: \\\\\\\"Machine-Generated Text Detection Prevents Language Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"George Drayson, Emine Yilmaz, Vasileios Lampos\\\\\\\"\\\\n  venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n  year: 2025\\\\n  arxiv_id: \\\\\\\"2502.15654\\\\\\\"\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.15654\\\\\\\"\\\\n  github: \\\\\\\"https://github.com/GeorgeDrayson/model_collapse\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"使用同一公式 w=(1-q)^b 进行重加权，但 b 为验证集 empirical 选取，训练中固定\\\\\\\"\\\\n  method_summary: >\\\\n    Detect-and-reweight 防止递归训练 model collapse。检测器为 ModernBERT 150M\\\\n    (MAGE fine-tune, in-domain AUC=0.986, OOD AUC=0.943)。权重公式 wⱼ=(1-q(xⱼ))^b / Σₗ(1-q(xₗ))^b，\\\\n    通过 SIR 按权重重采样训练数据。b 通过 WikiText-2 验证集上 1 代递归训练后评估选取\\\\n    (GPT-2/SmolLM 135M/360M 用 b=10, SmolLM 1.7B 用 b=1)，训练全程固定。\\\\n    实验覆盖 4 个模型 (GPT-2 124M, SmolLM 135M/360M/1.7B)、10 代递归训练、6 种解码策略。\\\\n    结果 PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。\\\\n  key_findings: \\\\\\\"验证 detect-and-reweight 有效防止 model collapse 且优于纯人类数据训练；b 值对模型规模敏感（小模型 b=10，大模型 b=1）\\\\\\\"\\\\n  differentiation:\\\\n    b_selection: \\\\\\\"Drayson: 验证集 empirical grid search, per-model 固定 | 我们: α_eff(b) + ESS 约束, per-batch 自适应\\\\\\\"\\\\n    contamination_setting: \\\\\\\"Drayson: 不假设已知比例（原文明确声明），但实验为控制设置 | 我们: 未知比例（batch 统计量在线估计）\\\\\\\"\\\\n    detector: \\\\\\\"Drayson: ModernBERT 150M (AUC=0.986) | 我们: TF-IDF+LR (AUC=0.939)，证明轻量检测器即可\\\\\\\"\\\\n    theory: \\\\\\\"Drayson: 无 b 选取理论（SIR 启发式） | 我们: 收敛理论 motivated α_eff(b) 推导\\\\\\\"\\\\n    traini\n…[truncated 11597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T23:39:26.619437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T23:39:26.619598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWeb pretraining corpora are increasingly contaminated by machine-generated text, with recent estimates placing the synthetic fraction between 20\\% and 60\\%.\n2\tThis poses a fundamental threat to model quality: \\citet{shumailov2024model} demonstrate that training on recursively generated data leads to irreversible model collapse, and \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger degradation, ruling out data scaling as a remedy.\n3\tAs synthetic content becomes ubiquitous, \\emph{contamination-aware training}---strategies that explicitly account for data provenance during optimization---is necessary for maintaining pretraining quality.\n4\t\n5\tA natural mitigation is detect-and-reweight: assign each sample a weight $w(x) = (1 - q(x))^b$ based on a detector's estimated synthetic probability $q(x)$, where larger $b$ downweights suspected synthetic text more aggressively \\citep{drayson2025detection}.\n6\tHowever, the exponent $b$ is a sensitive per-model hyperparameter whose optimal value varies by an order of magnitude across scales: $b = 1$ for SmolLM-1.7B versus $b = 10$ for GPT-2 124M.\n7\tSelecting $b$ requires a clean validation set and grid search costing up to $6{\\times}$ the base training budget.\n8\tThe practical question is immediate: \\emph{how should $b$ be chosen without validation data?}\n9\t\n10\tWe propose a \\emph{dual-constraint framework} that derives the exponent adaptively per batch from two diagnostics computed on the detector scores alone.\n11\tThe effective real proportion $\\aeff(b)$ measures the weighted fraction of gradient signal attributable to real data and imposes a \\emph{quality floor}: $\\aeff(b) \\geq \\tau$---at least enough cleaning.\n12\tKish's effective sample size $\\mathrm{ESS}(b)$ \\citep{vehtari2024psis} quantifies weight concentration and imposes a \\emph{stability ceiling}: $\\mathrm{ESS}(b) \\geq \\nmin$---not so much cleaning that gradient signal degrades.\n13\tA key structura\n…[truncated 2927 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T23:39:26.619748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T23:39:26.619921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Synthetic Contamination and Model Collapse.}\n2\tTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov2024model}.\n3\t\\citet{alemohammad2024mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\n4\tMore critically, \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n5\tIndependent estimates suggest that synthetic content now constitutes 20--60\\% of web corpora, making this threat increasingly urgent.\n6\tThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.\n7\t\n8\t\\paragraph{Detection and Filtering of Machine-Generated Text.}\n9\tGiven the severity of contamination, a natural response is to detect and remove synthetic content.\n10\tDetectGPT~\\citep{mitchell2023detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob~\\citep{shi2024minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal.\n11\tBoth produce continuous confidence scores suitable as input to reweighting frameworks such as ours.\n12\tOn the mitigation side, \\citet{feng2025beyond} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.\n13\t\\citet{guo2025escaping} similarly rely on verification-based selection.\n14\tHard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.\n15\t\n16\tMost directly related to our work, \\citet{drayson2025detection} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight, where $q_j$ is the detector's synthetic probability.\n17\tWe adopt the s\n…[truncated 3880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T23:39:26.620340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/introduction.tex",
+              "content": "% Introduction for \"Minimum Intervention Reweighting: Adaptive Exponent Selection\n% for Contamination-Aware Pretraining\"\n% Generated: 2026-05-15\n% Framing: STABLE (D023 dual-constraint + D029 ESS-only + D035 tau sweep)\n\n\\section{Introduction}\n\\label{sec:intro}\n\nWeb pretraining corpora are increasingly contaminated by machine-generated text, with recent estimates placing the synthetic fraction between 20\\% and 60\\% \\citep{cheng2025contamination}.\nThis poses a fundamental threat to model quality: \\cite{shumailov2024model} demonstrate that training on recursively generated data leads to irreversible model collapse, and \\cite{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger degradation, ruling out data scaling as a remedy.\nAs synthetic content becomes ubiquitous, \\emph{contamination-aware training}---strategies that explicitly account for data provenance during optimization---is necessary for maintaining pretraining quality.\n\nA natural mitigation is detect-and-reweight: assign each sample a weight $w(x) = (1 - q(x))^b$ based on a detector's estimated synthetic probability $q(x)$, where larger $b$ downweights suspected synthetic text more aggressively \\citep{drayson2025detection}.\nHowever, the exponent $b$ is a sensitive per-model hyperparameter whose optimal value varies by an order of magnitude across model scales---$b = 1$ for SmolLM-1.7B versus $b = 10$ for GPT-2 124M---and selecting it requires a clean validation set and grid search costing up to $6{\\times}$ the base training budget.\nThe practical question is: \\emph{given per-sample detector scores $q(x)$, how should $b$ be chosen without validation?}\n\nWe propose a \\emph{dual-constraint framework} that derives the exponent adaptively per batch from two diagnostics computed on the detector scores alone.\nThe effective real proportion $\\aeff(b)$ measures the weighted fraction of gradient signal from real data and imposes a \\emph{quality floor}: $\\aeff(b) \\geq \\tau$---at least enough cleaning.\nKish's effective sample size $\\mathrm{ESS}(b)$ \\citep{vehtari2024psis} quantifies weight concentration and imposes a \\emph{stability ceiling}: $\\mathrm{ESS}(b) \\geq \\nmin$---not so much cleaning that gradient estimates degrade.\nA key structural insight makes this tractable: $\\aeff$ is strictly increasing in $b$ while $\\mathrm{ESS}$ is strictly decreasing, so the quality constraint yields a unique lower bound $\\btau$ and the stability constraint a unique upper bound $\\bess$.\nWe adopt a \\emph{minimum intervention principle}:\n\\begin{equation*}\n  \\bstar = \\inf\\{b \\geq 0 : \\aeff(b) \\geq \\tau\\} \\quad \\text{subject to} \\quad \\mathrm{ESS}(\\bstar) \\geq \\nmin,\n\\end{equation*}\nthe smallest exponent satisfying the quality floor.\nThis is deliberately conservative: apply enough decontamination to meet the quality target, but no more, preserving the largest possible effective sample size.\nIn practice, batches fall into three regimes---already clean ($\\bstar{=}0$), quality-binding ($\\bstar{=}\\btau$), and stability-binding ($\\bstar{=}\\bess$)---allowing the framework to handle heterogeneous contamination naturally.\nUnlike the discrete sampling-importance-resampling of \\cite{drayson2025detection}, we implement reweighting through direct loss scaling with continuous gradient contributions.\n\nWe evaluate on continued pretraining of Qwen3-0.6B on 132M FineWeb \\citep{penedo2024fineweb} tokens with 40\\% synthetic contamination (\\S\\ref{sec:experiments}).\nAdaptive $\\bstar$ with default hyperparameters ($\\tau{=}0.8$, $\\nmin{=}2$) matches the grid-search-optimal fixed $b$ within seed variance (PPL $17.650 {\\pm} 0.007$ vs.\\ $17.646 {\\pm} 0.007$ across three seeds) at zero validation cost.\nIt outperforms both uniform training (PPL $17.69$) and ESS-only maximum intervention (PPL $17.73$), confirming that minimum intervention is superior to maximum intervention.\nA lightweight TF-IDF + logistic regression detector (AUC\\,=\\,0.939) suffices for effective reweighting, and the quality threshold $\\tau$ admits a wide safe range of $[0.5, 0.8]$ within which all tested values improve over uniform training.\n\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n  \\item A dual-constraint framework for adaptive $\\bstar$ selection with minimum intervention semantics, providing validation-free per-batch exponent derivation from batch-level diagnostics (\\S\\ref{sec:method}).\n  \\item Empirical evidence that adaptive $\\bstar$ matches grid-search-optimal performance within seed variance at zero validation cost, and that minimum intervention (dual-constraint) outperforms maximum intervention (ESS-only) (\\S\\ref{sec:results}).\n  \\item Evidence that a lightweight TF-IDF + logistic regression detector suffices for effective reweighting (\\S\\ref{sec:results}).\n\\end{enumerate}\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T23:39:26.620557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T23:39:26.620706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/related_work.tex",
+              "content": "% Related Work for \"Minimum Intervention Reweighting: Adaptive Exponent Selection\n% for Contamination-Aware Pretraining\"\n% Generated: 2026-05-15\n% Framing: STABLE (D023 dual-constraint + D029 ESS-only + D035 tau sweep)\n\n\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Synthetic Contamination and Model Collapse.}\nTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse} \\citep{shumailov2024model}.\n\\cite{alemohammad2024mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\nMore critically, \\cite{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\nWith synthetic content now estimated at 20--60\\% of web corpora \\citep{cheng2025contamination}, these results motivate contamination-aware training strategies that explicitly account for data provenance rather than treating all tokens equally.\n\n\\paragraph{Detect and Reweight.}\nA natural response to contamination is to detect and remove synthetic content.\nDetectGPT \\citep{mitchell2023detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob \\citep{shi2024minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal; both produce continuous confidence scores suitable as input to reweighting frameworks.\n\\cite{feng2025beyond} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples; \\cite{guo2025escaping} similarly rely on verification-based selection.\nSoft reweighting avoids the precision--recall threshold inherent in hard filtering by assigning continuous weights.\n\nMost directly related to our work, \\cite{drayson2025detection} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight, where $q_j$ is a detector's synthetic probability.\nWe adopt the same weighting formula but differ in several fundamental ways.\n\\textbf{(i)}~Drayson et al.\\ select $b$ via validation-set grid search and fix it throughout training; different model scales require different values ($b{=}10$ for ${\\leq}360$M parameters, $b{=}1$ for 1.7B), making the choice per-model and expensive.\nOur $\\bstar$ is derived per-batch from dual constraints ($\\aeff \\geq \\tau$, $\\mathrm{ESS} \\geq \\nmin$) at zero validation cost, following a minimum intervention principle that selects the smallest sufficient exponent.\n\\textbf{(ii)}~Their SIR resampling discretizes the weight distribution; we apply direct loss reweighting with continuous gradient contributions.\n\\textbf{(iii)}~They employ a ModernBERT-150M detector (AUC\\,=\\,0.986) on WikiText-2 (${\\sim}$2M tokens); we show that a lightweight TF-IDF+LR detector (AUC\\,=\\,0.939) suffices on FineWeb-scale data (132M+ tokens).\n\n\\paragraph{Data Mixing and Reweighting.}\nA parallel line of work optimizes data composition without targeting synthetic contamination.\nAt the \\emph{domain} level, DoReMi \\citep{xie2023doremi} learns mixture weights via Group DRO with a proxy model, DSIR \\citep{xie2023dsir} performs importance resampling with $n$-gram features, \\cite{ye2025mixing} discover predictable functional forms relating mixing ratios to performance, and AIOLI \\citep{chen2025aioli} unifies these into an online adaptive framework.\nThese methods operate at the domain level and do not address instance-level contamination within a domain.\nAt the \\emph{instance} level, SoftDedup \\citep{he2024softdedup} downweights high-frequency samples via $n$-gram commonness, and \\cite{sow2025dynamic} derive sample weights from per-sample loss with convergence guarantees.\nOur reweighting differs from all of these in being driven by \\emph{provenance}---detector scores estimating human vs.\\ machine origin---rather than loss, frequency, or domain membership.\n\n\\paragraph{Theoretical Foundations.}\n\\cite{he2025golden} derive the optimal real-data weight under known mixture proportions, finding the golden-ratio reciprocal (${\\approx}0.62$) optimal when both sources are equally sized; their result requires the contamination ratio, unavailable in web-scale settings.\n\\cite{wang2026survive} prove that contaminated recursive training converges at a rate governed by the effective real-data fraction $\\alpha$, providing the theoretical motivation for our quality threshold: ensuring $\\aeff(b) \\geq \\tau$ guarantees a convergence-rate lower bound.\nWe operationalize this without the known-proportion assumption, estimating $\\aeff$ from batch-level statistics online.\nFor the stability constraint, we build on Kish's effective sample size and the Pareto-smoothed importance sampling framework of \\cite{vehtari2024psis}.\n\\cite{kimura2024iw} provide a broader treatment of importance weighting under distribution shift, within which our provenance-based reweighting can be viewed as covariate-shift correction where the covariate is synthetic origin probability.\n\n\\smallskip\n\\noindent\\textbf{Summary.}\nNo existing method provides principled per-batch exponent selection without validation.\nDrayson et al.\\ use the same $w{=}(1{-}q)^b$ formula but require per-model grid search; Golden Ratio weighting requires known mixture proportions; DoReMi and DSIR operate at the domain level rather than instance-level contamination.\nOur dual-constraint framework fills this gap by deriving the minimum intervention $\\bstar$ from batch-level diagnostics alone.\n"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T23:39:26.620923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T23:39:26.621097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "introduction_tex",
+              "type": "paper",
+              "description": "Introduction section draft for EMNLP 2026 submission. Covers contamination motivation, dual-constraint framework, minimum intervention principle, key results (adaptive matches grid-best within seed variance, min > max intervention), and 3 contributions.",
+              "project": "provenance_weight_training",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/introduction.tex",
+              "tags": "['paper', 'introduction', 'emnlp2026']"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T23:39:26.621272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_c6a67f\\\", \\\"name\\\": \\\"introduction_tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Introduction section draft for EMNLP 2026 submission. Covers contamination motivation, dual-constraint framework, minimum intervention principle, key results (adaptive matches grid-best within seed variance, min > max intervention), and 3 contributions.\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/paper/introduction_c6a67f.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T23:39:08.961160+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T23:39:26.621408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "related_work_tex",
+              "type": "paper",
+              "description": "Related Work section draft for EMNLP 2026 submission. Four groups: Synthetic Contamination/Collapse, Detect and Reweight (Drayson as closest prior work), Data Mixing/Reweighting, Theoretical Foundations. 20 citations total.",
+              "project": "provenance_weight_training",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper/related_work.tex",
+              "tags": "['paper', 'related_work', 'emnlp2026']"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T23:39:26.621554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_0b6096\\\", \\\"name\\\": \\\"related_work_tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Related Work section draft for EMNLP 2026 submission. Four groups: Synthetic Contamination/Collapse, Detect and Reweight (Drayson as closest prior work), Data Mixing/Reweighting, Theoretical Foundations. 20 citations total.\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/paper/related_work_0b6096.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T23:39:11.538211+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"related_work\\\", \\\"emnlp2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T23:39:26.621736+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已完成并注册。\n\n**Introduction** (`paper/introduction.tex`):\n- 5 段 + 3 条 contributions，约 1 页\n- 开篇：20-60% 污染 + strong collapse 动机\n- 中段：Drayson 的 b 需 per-model grid search → 提出 dual-constraint adaptive b*\n- 核心公式：b* = inf{b : α_eff(b) ≥ τ} s.t. ESS(b*) ≥ n_min\n- 结果：adaptive PPL 17.650±0.007 vs grid-best 17.646±0.007（within seed variance），优于 uniform (17.69) 和 ESS-only (17.73)\n- Contributions: (1) dual-constraint framework, (2) matches grid-best + min > max intervention, (3) lightweight detector sufficiency\n\n**Related Work** (`paper/related_work.tex`):\n- 4 组 + Summary，约 1 页，20 篇引用\n- Group 1: Collapse 动机 (Shumailov, Alemohammad, Dohmatob, Cheng)\n- Group 2: Detect-and-reweight，Drayson 作为 closest prior work，3 点差异化 (b 选择/SIR vs loss reweight/检测器规模)\n- Group 3: Data mixing (DoReMi, DSIR, Ye, AIOLI) + instance-level (SoftDedup, Sow)，区分 provenance-based vs loss/frequency/domain\n- Group 4: 理论基础 (Golden Ratio, Wang convergence, PSIS, IW survey)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-related-work_20260515T233142"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/paper-intro-related-work.md"
+}

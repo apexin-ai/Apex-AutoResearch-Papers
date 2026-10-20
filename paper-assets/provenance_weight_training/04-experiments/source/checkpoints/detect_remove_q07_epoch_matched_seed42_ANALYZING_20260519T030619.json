@@ -1,0 +1,54 @@
+{
+  "exp_id": "detect_remove_q07_epoch_matched_seed42",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T23:59:28.901Z",
+    "updated_at": "2026-05-19T03:06:18.807Z",
+    "hypothesis": "Epoch-matched D&R q07: 1 epoch through q07 filtered data (184,908 samples, ~100M tokens, 3047 steps). Part of 5-point epoch-matched curve (q01/q03/q05/q07/q09). If PPL converges to ~17.65-17.74 range like q03(17.74) and q05(17.65), confirms U-shape sweet spot is entirely multi-epoch artifact across the full threshold range.",
+    "reproduce": {
+      "finished_at": "2026-05-19T03:02:01.393Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-19T01:10:23.679Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T01:10:31.706284+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T03:02:06.510586+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q07.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q07_epoch_matched_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --max_steps 3047 --seed 42",
+      "server": "westd-30476",
+      "data_path": "data/scored_data_filtered_q07.jsonl",
+      "data_count": 184908,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42
+    },
+    "notes": "首次运行 EXIT_CODE=1 失败(~70min)，自动重试后训练完成(3047 steps, 6425s, EXIT_CODE=0)。Model saved to /root/autodl-tmp/output/models/detect_remove_q07_epoch_matched_seed42/final。等待 eval holdout PPL。",
+    "metrics": {
+      "eval_ppl_holdout": 17.62,
+      "eval_loss_holdout": 2.8689,
+      "eval_holdout_tokens": 4077068,
+      "eval_method": "sliding_window_stride1024_maxlen2048_fp16_5000docs",
+      "total_steps": 3047
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T03:06:19.109241+00:00",
+  "trigger": "update_registry"
+}

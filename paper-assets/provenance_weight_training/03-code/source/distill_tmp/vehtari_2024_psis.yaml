@@ -1,0 +1,19 @@
+paper_key: "vehtari_2024_psis"
+title: "Pareto Smoothed Importance Sampling"
+venue: "JMLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["standard importance sampling", "truncated importance sampling"]
+  metrics:
+    - {name: "ESS estimation accuracy", direction: "higher_better"}
+    - {name: "Pareto k-hat diagnostic", direction: "lower_better"}
+  datasets:
+    - {name: "Monte Carlo simulations", size: "N/A"}
+  ablation_dimensions: ["tail heaviness", "sample size", "approximation quality"]
+  training_recipe: {method: "generalized Pareto tail fitting for importance weights"}
+  method_family: "stabilized importance sampling"
+
+narrative: N/A
+figures: N/A
+tables: N/A

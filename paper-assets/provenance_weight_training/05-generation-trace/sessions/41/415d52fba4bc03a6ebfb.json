@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "415d52fba4bc03a6ebfb",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra server check restart uniform",
+  "task_key": "worker_infra_server-check-restart-uniform_20260513T231603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_server-check-restart-uniform_20260513T231603_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "46e7943f0489953717efab0c736ca183a2434cd5f12234f59699aaf46bbaf61b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个训练全部正常运行，均从 checkpoint-500 恢复。\n\n## 汇报\n\n**服务器状态**\n- GPU: 4x NVIDIA RTX PRO 6000 (98GB)，GPU 0 空闲，GPU 1/2/3 各占用 44GB\n- 磁盘: 根分区 45% (17GB free)，数据盘 11% (225GB free)\n- output symlink → 数据盘 ✓，HF cache 在数据盘 ✓\n- 无残留进程\n\n**Checkpoint 情况**\n- 3 个 seed 均有完整的 checkpoint-500（model.safetensors 1.1GB + optimizer.pt 2.2GB + trainer_state.json）\n\n**修复**\n- 脚本 `pretrain_weighted.py` 原本不支持 `--resume_from_checkpoint`，已添加该参数并传给 `trainer.train()`\n\n**训练提交**\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|------|-----|-----|-------------|------|\n| uniform_seed42 | cuda:1 | 45926 | uniform_seed42 | 运行中，step 502/6103 |\n| uniform_seed123 | cuda:2 | 46075 | uniform_seed123 | 运行中，从 ckpt-500 恢复 |\n| uniform_seed456 | cuda:3 | 46415 | uniform_seed456 | 运行中，从 ckpt-500 恢复 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-server-check-restart-uniform.md"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "adaptive_1_7b_seed456",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:55:35.805Z",
+    "updated_at": "2026-05-20T21:55:15.854Z",
+    "hypothesis": "Adaptive (dual-constrained) at 1.7B model scale (seed=456, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:3. Replicates adaptive_1_7b_seed42_v5 (PPL=13.27) with different seed for 3-seed error bars. Paired with uniform_1_7b_seed456.",
+    "parent": "adaptive_1_7b_seed42_v5",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\"",
+      "server": "westd-41312",
+      "gpu": "cuda:3",
+      "pid": "494706",
+      "log_path": "~/runs/provenance_weight_training/adaptive_1_7b_seed456.log",
+      "submitted_at": "2026-05-20T16:00:18.071Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-1.7B",
+      "seed": 456,
+      "checkpoint_source": "from_scratch",
+      "eval_data": "data/scored_data.jsonl (training, holdout eval built-in)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T21:09:28.993Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T21:09:34.067656+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_ppl_holdout": 13.27,
+      "eval_loss_holdout": 2.5853,
+      "eval_ppl_openwebtext": 13.29,
+      "eval_loss_openwebtext": 2.5871,
+      "eval_ppl_wikipedia": 10.947,
+      "eval_loss_wikipedia": 2.3931,
+      "downstream_arc_easy_acc_norm": 0.7146,
+      "downstream_arc_challenge_acc_norm": 0.4352,
+      "downstream_hellaswag_acc_norm": 0.6133,
+      "downstream_piqa_acc_norm": 0.7443,
+      "downstream_winogrande_acc": 0.6219,
+      "downstream_mean": 0.6259,
+      "train_loss_final": 9.115,
+      "total_steps": 6103,
+      "train_runtime_s": 18470,
+      "num_eval_tokens": 4077068
+    },
+    "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456/final",
+    "log_path": "~/runs/provenance_weight_training/adaptive_1_7b_seed456.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T21:55:16.234492+00:00",
+  "trigger": "update_registry"
+}

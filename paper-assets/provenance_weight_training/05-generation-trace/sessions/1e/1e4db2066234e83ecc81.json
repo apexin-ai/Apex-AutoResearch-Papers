@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e4db2066234e83ecc81",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh verify ess456 alive",
+  "task_key": "worker_ssh_verify_ess456_alive_20260517T213215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_ess456_alive_20260517T213215_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "1e88f3559211f5f133420ebeac036a7bf18b9847828e6e8a4cfa06c3012f6f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程存活，正常运行中。**\n\n- PID 133526 在 cuda:1 上，CPU 100%，GPU 显存 46530MiB，GPU 利用率 100%\n- tmux session `ess_only_seed456_r2` 存在\n- 当前进度：**3399/6103 (56%)**，从 checkpoint-2500 恢复，已跑约 31 分钟\n- 预计剩余：~1h36m（~2.12s/it）\n- epoch 0.15，loss 正常，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-ess456-alive.md"
+}

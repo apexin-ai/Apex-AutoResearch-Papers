@@ -1,0 +1,1267 @@
+{
+  "schema_version": "1.0",
+  "id": "02fed40cb1510d8d0a83",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "figure tau sweep plot",
+  "task_key": "worker_figure_tau_sweep_plot_20260515T233440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_tau_sweep_plot_20260515T233440.log",
+    "occurrence": 1,
+    "bytes": 55442,
+    "sha256": "e51707b03a3c1bf7a9b34f5ce9c0d68d703ad3a13aa8eee92c637f6f8966b268"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "34ae21ca-2498-4dfa-90b8-f2cb1e90bcc2",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778905200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e2b8b3c3-2d57-4752-86e4-45e9c9d4139d",
+                "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the draw-paper-figure skill file, then generate the figure on the server.",
+              "signature": "EpwCClkIDRgCKkAbmkbGq0RCA9qniGyTIpjb2skyoqXfhT/ss0k2wWDjqkWARwzsdbXk3Eq5gfGYjJpq7qW5ZO6i5DSlK2JdAg7PMg9jbGF1ZGUtb3B1cy00LTY4ABIMlW9sHN6N/HDK6zSGGgwo04FlzK1AeMl0wXwiMPDwAxX21PlFMT+QGZdvp3xI7kIC4BRKk0qw3o2H9eHyDoJpypQ6gVF+asC9HgKjZipxIV5g4Iecd50B2mc3ExkSGNswU4z7+UkfTXbT0IeQCmK6bUZ3cN7WLnjK/JvSyLP+X1NBrY++kpNJX3r4ix+B0+eaxgwRQX9rDnN+l26v62gF5CXGdLjYKWpco09buMJQJX1/bM1vGBjW+7GMpeDl8qkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "74b2cae3-19e8-4eb8-91ed-106c6ad6a632",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLF4hwMZsaAUTesu6VNpj5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11945,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11945
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BtACJaQNasy5qKUSsU8vXV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/skills/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "85198850-f570-4c05-9165-34e13b4fcf0b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLF4hwMZsaAUTesu6VNpj5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11945,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11945
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T23:34:49.741Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training.",
+              "is_error": true,
+              "tool_use_id": "toolu_01BtACJaQNasy5qKUSsU8vXV"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "4e310411-39ae-4dd6-a7c6-d81dff33cc79",
+            "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training."
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JNuG1aVu22kpTJNuiMNftt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "6bb5b179-ee93-4c45-a9d1-acff71e7845d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Maq1n67HXvkUya4gFo5wDh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 23392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 192
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T23:34:52.749Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JNuG1aVu22kpTJNuiMNftt",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 1\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成\n16\t\n17\t为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n18\t\n19\t## 触发条件\n20\t\n21\t- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n22\t- 论文写作阶段需要插图\n23\t- 实验结果需要可视化汇总\n24\t\n25\t## 通用样式标准（所有图表必须遵守）\n26\t\n27\t```python\n28\timport matplotlib\n29\tmatplotlib.use('Agg')\n30\timport matplotlib.pyplot as plt\n31\timport matplotlib.patches as mpatches\n32\timport numpy as np\n33\t\n34\t# 字体和全局样式\n35\tplt.rcParams.update({\n36\t    'font.family': 'DejaVu Sans',\n37\t    'font.size': 11,\n38\t    'axes.titlesize': 13,\n39\t    'axes.labelsize': 12,\n40\t    'xtick.labelsize': 10,\n41\t    'ytick.labelsize': 10,\n42\t    'legend.fontsize': 10,\n43\t    'figure.dpi': 300,\n44\t    'savefig.dpi': 300,\n45\t    'savefig.bbox': 'tight',\n46\t    'savefig.pad_inches': 0.05,\n47\t    'axes.spines.top': False,\n48\t    'axes.spines.right': False,\n49\t    'lines.linewidth': 1.8,\n50\t})\n51\t\n52\t# 色盲友好配色（Okabe-Ito）\n53\tCOLORS = {\n54\t    'fp16':   '#E69F00',  # 橙黄\n55\t    'nf4':    '#56B4E9',  # 天蓝\n56\t    'int8':   '#009E73',  # 绿\n57\t    'gptq':   '#F0E442',  # 黄\n58\t    'awq':    '#CC79A7',  # 粉紫\n59\t    'llama':  '#0072B2',  # 深蓝\n60\t    'qwen3':  '#D55E00',  # 橙红\n61\t    'gemma':  '#009E73',  # 绿\n62\t    'mistral':'#CC79A7',  # 粉紫\n63\t    'phi3':   '#F0E442',  # 黄\n64\t}\n65\t\n66\t# 方法标签\n67\tMETHOD_LABELS = {\n68\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n69\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n70\t}\n71\t```\n72\t\n73\t---\n74\t\n75\t## 1. Reliability Diagram（校准图）\n76\t\n77\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n78\t\n79\t```python\n80\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n81\t                              label='', color='#0072B2',\n82\t                              title='Reliability Diagram',\n83\t                              outpath='reliability.pdf'):\n84\t    \"\"\"\n85\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n86\t    \"\"\"\n87\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n88\t    bin_accs, bin_confs, bin_counts = [], [], []\n89\t\n90\t    for i in range(n_bins):\n91\t        lo, hi = bin_edges[i], bin_edges[i+1]\n92\t        mask = (confidences >= lo) & (confidences < hi)\n93\t        if mask.sum() > 0:\n94\t            bin_accs.append(accuracies[mask].mean())\n95\t            bin_confs.append(confidences[mask].mean())\n96\t            bin_counts.append(mask.sum())\n97\t        else:\n98\t            bin_accs.append(float('nan'))\n99\t            bin_confs.append((lo + hi) / 2)\n100\t            bin_counts.append(0)\n101\t\n102\t    bin_accs = np.array(bin_accs)\n103\t    bin_confs = np.array(bin_confs)\n104\t\n105\t    fig, (ax_main, ax_hist) = plt.subplots(\n106\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n107\t        sharex=True\n108\t    )\n109\t\n110\t    # 主图：gaps\n111\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n112\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n113\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n114\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n115\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n116\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n117\t    ax_main.set_ylabel('Accuracy')\n118\t    ax_main.set_title(title)\n119\t    ax_main.legend(loc='upper left', fontsize=9)\n120\t    ax_main.grid(True, alpha=0.3, zorder=1)\n121\t\n122\t    # ECE annotation\n123\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n124\t                    np.abs(bin_accs - bin_confs))\n125\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n126\t                 ha='right', va='bottom', fontsize=9,\n127\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n128\t\n129\t    # 直方图（样本密度）\n130\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n131\t                color=color, alpha=0.5)\n132\t    ax_hist.set_ylabel('Count', fontsize=9)\n133\t    ax_hist.set_xlabel('Confidence')\n134\t\n135\t    plt.tight_layout()\n136\t    plt.savefig(outpath)\n137\t    plt.close()\n138\t    print(f'Saved: {outpath}')\n139\t```\n140\t\n141\t### 批量生成 6 张对比图（EMNLP 论文用）\n142\t\n143\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n144\t\n145\t```python\n146\t# 在 A6000 服务器上执行\n147\tFIGURE_PLAN = [\n148\t    # (dataset, model, quant, regime, title)\n149\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n150\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n151\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n152\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n153\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n154\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n155\t]\n156\t```\n157\t\n158\t---\n159\t\n160\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n161\t\n162\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n163\t\n164\t```python\n165\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n166\t                     title='ΔECE Heatmap (vs FP16)',\n167\t                     outpath='ece_heatmap.pdf'):\n168\t    \"\"\"\n169\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n170\t    \"\"\"\n171\t    import matplotlib.colors as mcolors\n172\t\n173\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n174\t\n175\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n176\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n177\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n178\t    cmap = plt.cm.RdBu_r\n179\t\n180\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n181\t\n182\t    # 数值标注\n183\t    for i in range(len(methods)):\n184\t        for j in range(len(datasets)):\n185\t            val = delta_ece_matrix[i, j]\n186\t            if not np.isnan(val):\n187\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n188\t                sign = '+' if val > 0 else ''\n189\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n190\t                        fontsize=9, color=color, fontweight='bold')\n191\t\n192\t    ax.set_xticks(range(len(datasets)))\n193\t    ax.set_yticks(range(len(methods)))\n194\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n195\t    ax.set_yticklabels(methods)\n196\t    ax.set_title(title)\n197\t\n198\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n199\t    cbar.set_label('ΔECE (quantized − FP16)')\n200\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n201\t\n202\t    plt.tight_layout()\n203\t    plt.savefig(outpath)\n204\t    plt.close()\n205\t    print(f'Saved: {outpath}')\n206\t```\n207\t\n208\t---\n209\t\n210\t## 3. T* Scatter Plot（任务 Regime 可视化）\n211\t\n212\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n213\t\n214\t```python\n215\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n216\t    \"\"\"\n217\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n218\t    \"\"\"\n219\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n220\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n221\t    REGIME_BANDS = [\n222\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n223\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n224\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n225\t    ]\n226\t\n227\t    fig, ax = plt.subplots(figsize=(8, 4))\n228\t\n229\t    # 背景色区\n230\t    for lo, hi, color, label in REGIME_BANDS:\n231\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n232\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n233\t                color='gray', zorder=1)\n234\t\n235\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n236\t\n237\t    x = np.arange(len(DATASETS))\n238\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n239\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n240\t        ax.plot(x, y, 'o-', color=color, label=model,\n241\t                markersize=7, alpha=0.85, zorder=2)\n242\t\n243\t    ax.set_xticks(x)\n244\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n245\t    ax.set_ylabel('T* (FP16)')\n246\t    ax.set_ylim(0, 10.5)\n247\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n248\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n249\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n250\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n251\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n252\t\n253\t    plt.tight_layout()\n254\t    plt.savefig(outpath)\n255\t    plt.close()\n256\t    print(f'Saved: {outpath}')\n257\t```\n258\t\n259\t---\n260\t\n261\t## 4. 生成流程（SSH 执行）\n262\t\n263\t```python\n264\t# Step 1: 写脚本到服务器\n265\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n266\t# ... 粘贴上方代码 + 调用逻辑 ...\n267\tPYEOF\"\"\")\n268\t\n269\t# Step 2: 安装依赖（如有）\n270\tssh_execute(\"pip install matplotlib numpy -q\")\n271\t\n272\t# Step 3: 执行\n273\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n274\t\n275\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n276\tssh_execute(\"\"\"\n277\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n278\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n279\t    python3 -c \"\n280\timport matplotlib.pyplot as plt\n281\timport matplotlib.image as mpimg\n282\timg = mpimg.imread('$f')\n283\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n284\tax = fig.add_axes([0,0,1,1])\n285\tax.imshow(img); ax.axis('off')\n286\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n287\tplt.close()\"\n288\tdone\n289\t\"\"\")\n290\t\n291\t# Step 5: 验证\n292\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n293\t```\n294\t\n295\t---\n296\t\n297\t## 5. 图表 Checklist（提交前）\n298\t\n299\t- [ ] 300 DPI（`savefig.dpi=300`）\n300\t- [ ] 色盲友好配色（Okabe-Ito）\n301\t- [ ] 所有轴有标签（xlabel/ylabel）\n302\t- [ ] Legend 不遮挡数据\n303\t- [ ] 字号 ≥ 10pt（缩小到 column width 后仍可读）\n304\t- [ ] PDF 格式（矢量，LaTeX 直接用）\n305\t- [ ] Caption 完整（`\\caption{...}`）\n306\t- [ ] Error bar 或置信区间标注（如适用）\n307\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "310dbe21-53e2-4a95-839b-cd6379302b5e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 1\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术图表生成\n\n为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n\n## 触发条件\n\n- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n- 论文写作阶段需要插图\n- 实验结果需要可视化汇总\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色（Okabe-Ito）\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. 图表 Checklist（提交前）\n\n- [ ] 300 DPI（`savefig.dpi=300`）\n- [ ] 色盲友好配色（Okabe-Ito）\n- [ ] 所有轴有标签（xlabel/ylabel）\n- [ ] Legend 不遮挡数据\n- [ ] 字号 ≥ 10pt（缩小到 column width 后仍可读）\n- [ ] PDF 格式（矢量，LaTeX 直接用）\n- [ ] Caption 完整（`\\caption{...}`）\n- [ ] Error bar 或置信区间标注（如适用）\n",
+                "numLines": 307,
+                "startLine": 1,
+                "totalLines": 307
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the skill file. Let me create the Python script for the τ sweep figure and execute it on the server. Key points from the skill:\n\n1. Use `matplotlib.use('Agg')` \n2. Use DejaVu Sans font (since the skill says so, but the user wants Times New Roman/serif - I'll try serif first, fall back to DejaVu Sans)\n3. 300 DPI\n4. Color-blind friendly\n5. Save as both PDF and PNG\n\nThe user wants:\n- Dual Y-axis plot\n- Left Y: PPL (blue line + points), uniform baseline (gray dashed), ESS-only baseline (red dashed)\n\n\n- Right Y: b* mean (orange line + points)\n- X axis: τ values\n- Safe range [0.5, 0.8] highlighted\n- Best point τ=0.8 annotated\n- Academic style, ~3.5 inch wide, serif font, 8-10pt\n\nNow I'll write the script to generate this dual-axis plot and run it on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "9247b534-ca51-4b02-b88f-148305938042",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QPpniLc2VRp37D9CDMti8L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4894,
+                "cache_read_input_tokens": 23584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4894
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读完 skill，现在写脚本并在服务器上执行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "9f508d3f-2ea5-4f5f-8763-549f003a8ba2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QPpniLc2VRp37D9CDMti8L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4894,
+                "cache_read_input_tokens": 23584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4894
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XkLprsTMwh8CPd4a69Utcx",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "03c32d79-f79c-4b2e-8648-3f0101fc7b58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QPpniLc2VRp37D9CDMti8L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4894,
+                "cache_read_input_tokens": 23584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4894
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T23:35:02.924Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XkLprsTMwh8CPd4a69Utcx",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "92beda56-cf2d-4b38-bc90-f569263b4991",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E847FzSNJgYVPYUuoLAqRY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "account": "root",
+                "command": "mkdir -p /root/provenance_weight_training/artifacts/figures && cat > /tmp/tau_sweep_fig.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.ticker as ticker\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Liberation Serif'],\n    'font.size': 9,\n    'axes.titlesize': 10,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'lines.linewidth': 1.5,\n    'mathtext.fontset': 'stix',\n})\n\n# Data\ntau = np.array([0.5, 0.6, 0.7, 0.8, 0.9, 0.95])\nppl = np.array([17.688, 17.681, 17.679, 17.653, 17.712, 17.723])\nbstar = np.array([0.392, 0.590, 0.894, 1.399, 2.360, 3.078])\n\nuniform_ppl = 17.694\ness_only_ppl = 17.730\n\nfig, ax1 = plt.subplots(figsize=(3.5, 2.4))\n\n# Safe range background\nax1.axvspan(0.5, 0.8, alpha=0.10, color='#2196F3', zorder=0, label='Safe range')\n\n# PPL on left y-axis\ncolor_ppl = '#0072B2'\nax1.plot(tau, ppl, 'o-', color=color_ppl, markersize=4.5, zorder=5, label='PPL (ours)')\nax1.axhline(uniform_ppl, color='#888888', linestyle='--', linewidth=1.0, zorder=3, label=f'Uniform baseline ({uniform_ppl})')\nax1.axhline(ess_only_ppl, color='#D55E00', linestyle='--', linewidth=1.0, zorder=3, label=f'ESS-only baseline ({ess_only_ppl})')\n\n# Annotate optimal point\nax1.annotate(r'$\\tau^*\\!=\\!0.8$' + f'\\nPPL={ppl[3]:.3f}',\n             xy=(0.8, ppl[3]), xytext=(0.85, 17.635),\n             fontsize=7, color=color_ppl, fontweight='bold',\n             arrowprops=dict(arrowstyle='->', color=color_ppl, lw=0.8),\n             zorder=6)\n\nax1.set_xlabel(r'Threshold $\\tau$')\nax1.set_ylabel('Perplexity (PPL)', color=color_ppl)\nax1.tick_params(axis='y', labelcolor=color_ppl)\nax1.set_xlim(0.45, 1.0)\nax1.set_ylim(17.62, 17.75)\nax1.set_xticks(tau)\nax1.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.2f'))\n\n# b* on right y-axis\nax2 = ax1.twinx()\ncolor_bstar = '#E69F00'\nax2.plot(tau, bstar, 's--', color=color_bstar, markersize=4, zorder=4, label=r'$b^*$ mean')\nax2.set_ylabel(r'Mean $b^*$', color=color_bstar)\nax2.tick_params(axis='y', labelcolor=color_bstar)\nax2.spines['top'].set_visible(False)\nax2.spines['right'].set_color(color_bstar)\nax1.spines['left'].set_color(color_ppl)\n\n# Combined legend\nlines1, labels1 = ax1.get_legend_handles_labels()\nlines2, labels2 = ax2.get_legend_handles_labels()\nax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left', framealpha=0.9,\n           edgecolor='#cccccc', borderpad=0.4, handlelength=1.5)\n\nax1.grid(True, alpha=0.15, zorder=0)\n\nplt.tight_layout()\n\noutdir = '/root/provenance_weight_training/artifacts/figures'\nplt.savefig(f'{outdir}/tau_sweep.pdf')\nplt.savefig(f'{outdir}/tau_sweep.png')\nplt.close()\nprint('Done: tau_sweep.pdf + tau_sweep.png')\nPYEOF\necho \"Script written.\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "8d425fa0-0df7-47a7-8128-8dcf86636d69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7eiBMwsWkJS2tK9TRQNym",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 944,
+                "cache_read_input_tokens": 28478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 944
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T23:35:24.228Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E847FzSNJgYVPYUuoLAqRY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "febd3313-bb4e-48eb-a030-888bb711d9b4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lx27u2vc3S4cVFaXkmJaHE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-47453",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python /tmp/tau_sweep_fig.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "997b3ba8-4b0a-4c48-b51a-2bc1c641ea14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VgVow16XKWbX1YaKPAa4NR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1487,
+                "cache_read_input_tokens": 29422,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1487
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T23:35:28.641Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lx27u2vc3S4cVFaXkmJaHE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done: tau_sweep.pdf + tau_sweep.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "c81674b9-53fb-4a05-9dba-b4ea1ae615ad",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done: tau_sweep.pdf + tau_sweep.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Done: tau_sweep.pdf + tau_sweep.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013RUWBxhkLqpXx5ZhM6fkZ1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-47453",
+                "account": "root",
+                "command": "ls -la /root/provenance_weight_training/artifacts/figures/tau_sweep.*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "f1bc9906-4d38-4888-bdd2-495bc4f1803d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ia1hKASGPG348VtCLGhpt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 232,
+                "cache_read_input_tokens": 30909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 232
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T23:35:32.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013RUWBxhkLqpXx5ZhM6fkZ1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  29349 May 16 07:35 /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf\\\\n-rw-r--r-- 1 root root 108777 May 16 07:35 /root/provenance_weight_training/artifacts/figures/tau_sweep.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "cc8cc968-331b-4eb2-87e1-218d5f34c10e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  29349 May 16 07:35 /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf\\\\n-rw-r--r-- 1 root root 108777 May 16 07:35 /root/provenance_weight_training/artifacts/figures/tau_sweep.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  29349 May 16 07:35 /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf\\n-rw-r--r-- 1 root root 108777 May 16 07:35 /root/provenance_weight_training/artifacts/figures/tau_sweep.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "90c677c5-6d5e-4b24-a8eb-8c876f873322",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MNbgXdMTQudz2tavvQKAe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 287,
+                "cache_read_input_tokens": 31141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 287
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AtAQtE2TmrnezoHpgb4qDW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "44bcdf22-7411-471a-99fd-17022064f947",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MNbgXdMTQudz2tavvQKAe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 287,
+                "cache_read_input_tokens": 31141,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 287
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T23:35:35.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01AtAQtE2TmrnezoHpgb4qDW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "4c0d9b20-34e2-445b-b058-a35cec6cd693",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WJXmCet35ud7MnyohoVWRc",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "tau_sweep_figure",
+                "type": "chart",
+                "description": "τ sensitivity analysis dual-axis plot: PPL (left) vs b* mean (right), with uniform/ESS-only baselines and safe range annotation. For paper Figure.",
+                "project": "provenance_weight_training",
+                "source_path": "/root/provenance_weight_training/artifacts/figures/tau_sweep.pdf",
+                "tags": [
+                  "tau_sweep",
+                  "sensitivity",
+                  "paper_figure"
+                ],
+                "skill": "draw-paper-figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "2c1badd7-3b76-4420-a02a-725405a79252",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Csgy6TspT4BLnzvWTbzGx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 31428,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T23:35:39.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WJXmCet35ud7MnyohoVWRc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "5eded3cb-79ce-499f-8564-f19a2537c0bf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, but register_artifact expects a local path. Let me use the content approach or just register with a description noting the remote path.",
+              "signature": "EuwCClkIDRgCKkCTWn+Gt22HN7orZnFZ04fEUEYP1qXz2ZuNxG9pG1HbMVveFG9yfw4JV9UJ8zmUExmWIwBIJoNcNOF523Qigz0xMg9jbGF1ZGUtb3B1cy00LTY4ABIMxK2AbtVaUznhCokTGgwiBjSiMyWufuRi2ksiMDIi2tUy8Z/lLGjSzTvyLb57GfnThRDBZXjovKEMrSU+lyRj9El7XaJFK877J7Nx0SrAAYVWuVwkG3PujQkqcEnIvmBTbnWeeyPM6vNpabFA3weHF3eekAt16b18bo0q/pYJP5GMFp4X3PBKMD2Pd2KbjDf1x5dtY34DfBgUV6SNZMdqMr9fyD8Dx3nfF+r2ibceHPDlL9FFjfZAcCC03D7DdljN69JJ0K1tOPsqS05a2XREZKCI89wPzDkwJnEoff9tA//l6zfkD0VHPGliXtvXPHP1k/c+4WE+yzOyvVmC0zwsg7oCckincpbbkbUvAvUqHBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "1e2bfbb1-5dde-4b4a-b8e1-98ac687013b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vv86iy9Fbcy5eiPW8aDXT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 32148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "远程路径不能直接注册，用 content 方式注册。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "db0ec4be-df2d-4437-961b-f032f5ca5273",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vv86iy9Fbcy5eiPW8aDXT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 32148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011W5bx4E6uj2e1zCya9Wy35",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "tau_sweep_figure",
+                "type": "chart",
+                "description": "τ sensitivity analysis dual-axis plot: PPL (left) vs b* mean (right), with uniform/ESS-only baselines and safe range [0.5,0.8] annotation. Best point τ=0.8 (PPL=17.653). Remote path: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf (.png also available). Server: westd-47453.",
+                "project": "provenance_weight_training",
+                "content": "Remote files on westd-47453:\n- PDF: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf (29KB)\n- PNG: /root/provenance_weight_training/artifacts/figures/tau_sweep.png (109KB)",
+                "content_filename": "tau_sweep_location.txt",
+                "tags": [
+                  "tau_sweep",
+                  "sensitivity",
+                  "paper_figure"
+                ],
+                "skill": "draw-paper-figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "401feab2-8027-421f-8058-fd2286323041",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014vv86iy9Fbcy5eiPW8aDXT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 419,
+                "cache_read_input_tokens": 32148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 419
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T23:35:47.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011W5bx4E6uj2e1zCya9Wy35",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_c0d589\\\", \\\"name\\\": \\\"tau_sweep_figure\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"τ sensitivity analysis dual-axis plot: PPL (left) vs b* mean (right), with uniform/ESS-only baselines and safe range [0.5,0.8] annotation. Best point τ=0.8 (PPL=17.653). Remote path: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf (.png also available). Server: westd-47453.\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/chart/tau_sweep_location.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-15T23:35:47.058470+00:00\\\", \\\"tags\\\": [\\\"tau_sweep\\\", \\\"sensitivity\\\", \\\"paper_figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "bea1323f-8d78-4c19-9303-26bd155a9765",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_c0d589\\\", \\\"name\\\": \\\"tau_sweep_figure\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"τ sensitivity analysis dual-axis plot: PPL (left) vs b* mean (right), with uniform/ESS-only baselines and safe range [0.5,0.8] annotation. Best point τ=0.8 (PPL=17.653). Remote path: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf (.png also available). Server: westd-47453.\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/chart/tau_sweep_location.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"draw-paper-figure\\\", \\\"created_at\\\": \\\"2026-05-15T23:35:47.058470+00:00\\\", \\\"tags\\\": [\\\"tau_sweep\\\", \\\"sensitivity\\\", \\\"paper_figure\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_c0d589\", \"name\": \"tau_sweep_figure\", \"type\": \"chart\", \"description\": \"τ sensitivity analysis dual-axis plot: PPL (left) vs b* mean (right), with uniform/ESS-only baselines and safe range [0.5,0.8] annotation. Best point τ=0.8 (PPL=17.653). Remote path: /root/provenance_weight_training/artifacts/figures/tau_sweep.pdf (.png also available). Server: westd-47453.\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/tau_sweep_location.txt\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"draw-paper-figure\", \"created_at\": \"2026-05-15T23:35:47.058470+00:00\", \"tags\": [\"tau_sweep\", \"sensitivity\", \"paper_figure\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n文件位置（westd-47453）：\n- **PDF**: `/root/provenance_weight_training/artifacts/figures/tau_sweep.pdf` (29KB)\n- **PNG**: `/root/provenance_weight_training/artifacts/figures/tau_sweep.png` (109KB)\n\n图表内容：\n- 双 Y 轴：左轴 PPL（蓝色 `#0072B2`），右轴 b* mean（橙色 `#E69F00`）\n- 灰色虚线 = uniform baseline (17.694)，橙红虚线 = ESS-only baseline (17.730)\n- 浅蓝背景带标注 safe range [0.5, 0.8]\n- 箭头标注最优点 τ*=0.8, PPL=17.653\n- Serif 字体，3.5×2.4 inch，300 DPI，适合单栏排版"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "uuid": "b8cc5fc6-0c3f-4aae-ac21-43a8b8f50255",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019T8tcDPmtWy1Dnbhwym1Mz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 32567,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 783
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n文件位置（westd-47453）：\n- **PDF**: `/root/provenance_weight_training/artifacts/figures/tau_sweep.pdf` (29KB)\n- **PNG**: `/root/provenance_weight_training/artifacts/figures/tau_sweep.png` (109KB)\n\n图表内容：\n- 双 Y 轴：左轴 PPL（蓝色 `#0072B2`），右轴 b* mean（橙色 `#E69F00`）\n- 灰色虚线 = uniform baseline (17.694)，橙红虚线 = ESS-only baseline (17.730)\n- 浅蓝背景带标注 safe range [0.5, 0.8]\n- 箭头标注最优点 τ*=0.8, PPL=17.653\n- Serif 字体，3.5×2.4 inch，300 DPI，适合单栏排版"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 66454,
+            "duration_api_ms": 64353,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "dd4fa860-6523-4bcd-9a9d-c2c1bb85795f",
+            "total_cost_usd": 0.35805575,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 21903,
+              "cache_read_input_tokens": 274516,
+              "output_tokens": 3295,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21903,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 258,
+                  "cache_read_input_tokens": 32567,
+                  "cache_creation_input_tokens": 783,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 783
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1379,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001454,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 3295,
+                "cacheReadInputTokens": 274516,
+                "cacheCreationInputTokens": 21903,
+                "webSearchRequests": 0,
+                "costUSD": 0.35660175000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "655ff471-5a59-47eb-9b1d-48f9caa70d70"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/figure-tau-sweep-plot.md"
+}

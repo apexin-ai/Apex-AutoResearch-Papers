@@ -1,0 +1,19 @@
+{
+  "exp_id": "tau_0.6_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:58:48.894Z",
+    "updated_at": "2026-05-15T12:39:47.541Z",
+    "hypothesis": "τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).",
+    "parent": "adaptive_fix_seed42",
+    "conclusion": "killed",
+    "notes": "废弃: exp_id 含点号不合法，已用 tau_06_seed42 替代",
+    "completed_at": "2026-05-15T12:39:47.541Z"
+  },
+  "timestamp": "2026-05-15T12:39:47.727935+00:00",
+  "trigger": "update_registry"
+}

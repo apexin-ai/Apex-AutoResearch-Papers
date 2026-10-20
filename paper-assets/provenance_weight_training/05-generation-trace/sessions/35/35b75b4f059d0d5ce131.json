@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "35b75b4f059d0d5ce131",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "urgent gpu check and submit",
+  "task_key": "worker_urgent_gpu_check_and_submit_20260514T141056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_gpu_check_and_submit_20260514T141056.log",
+    "occurrence": 1,
+    "bytes": 636853,
+    "sha256": "945de570794e7d24a4b9e26272e1ac43eb6f8a29722f71afa1af16be2dd0fd15"
+  },
+  "statistics": {
+    "messages": 447,
+    "user_turns": 0,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 67,
+      "tool_call": 187,
+      "tool_result": 187,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 447,
+      "chunks": [
+        {
+          "path": "35b75b4f059d0d5ce131-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "35b75b4f059d0d5ce131-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "35b75b4f059d0d5ce131-part-0003.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/urgent-gpu-check-and-submit.md"
+}

@@ -1,0 +1,14 @@
+# Grid b-PPL Curve (rho=0.4, all seeds)
+# Source: provenance_weight_training registry, 2026-05-16
+# Metric: eval_ppl_holdout
+# seed456 b>=2.0: anomalous train_loss (5.4x), results may reflect training instability
+# b=0.1: experiments failed/killed, marked TBD
+b,seed42_PPL,seed123_PPL,seed456_PPL
+0.1,TBD,—,—
+0.3,17.640,—,—
+0.5,17.651,17.638,17.650
+1.0,17.692,17.674,17.680
+1.5,17.718,17.701,17.710
+2.0,17.741,17.725,17.989
+3.0,17.774,17.760,17.921
+5.0,17.818,17.804,17.993

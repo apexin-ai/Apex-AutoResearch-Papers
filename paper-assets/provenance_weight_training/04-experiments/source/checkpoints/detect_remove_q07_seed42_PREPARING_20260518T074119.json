@@ -1,0 +1,14 @@
+{
+  "exp_id": "detect_remove_q07_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:41:19.509Z",
+    "updated_at": "2026-05-18T07:41:19.509Z"
+  },
+  "timestamp": "2026-05-18T07:41:19.748179+00:00",
+  "trigger": "update_registry"
+}

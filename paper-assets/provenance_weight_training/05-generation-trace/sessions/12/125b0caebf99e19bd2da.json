@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "125b0caebf99e19bd2da",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "infra check cuda0 orphan",
+  "task_key": "worker_infra_check-cuda0-orphan_20260516T024328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-cuda0-orphan_20260516T024328.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/infra-check-cuda0-orphan.md"
+}

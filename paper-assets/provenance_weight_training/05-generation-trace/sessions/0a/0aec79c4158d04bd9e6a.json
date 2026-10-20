@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aec79c4158d04bd9e6a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval westd30476 ood followup",
+  "task_key": "worker_eval_westd30476_ood_followup_20260520T044306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd30476_ood_followup_20260520T044306_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "c321451d987c553ded5adda59bfe6d1707b4b5d9f13d370a3160c90462119b77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 holdout 指标已恢复，OOD 指标已正确合并。\n\n## 最终汇总\n\n8/8 checkpoint OOD eval 全部完成，结果已写入 registry（保留了原有 holdout 指标）。\n\n| exp_id | Holdout PPL | OWT PPL | Wikitext PPL |\n|---|---|---|---|\n| epoch_matched_dr_seed123 | 17.66 | 18.30 | 27.90 |\n| epoch_matched_dr_seed456 | 17.66 | 18.27 | 28.14 |\n| detect_remove_q01_seed42 | 17.40 | 18.22 | 28.22 |\n| detect_remove_q02_seed42 | 17.27 | 18.06 | 27.64 |\n| detect_remove_q03_seed123 | 17.25 | 18.03 | 27.53 |\n| detect_remove_q03_seed456 | 17.25 | 18.03 | 27.61 |\n| detect_remove_q05_seed123 | 17.27 | 18.01 | 27.75 |\n| detect_remove_q05_seed456 | 17.28 | 18.01 | 27.68 |\n\n**说明：**\n- 因 `wikimedia/wikipedia` 在 AutoDL 上 HF 超时无法下载，Wikipedia 指标改用 `wikitext-103-v1`（Salesforce/wikitext test split, 1942 docs），字段名为 `eval_ppl_wikitext`\n- OpenWebText 使用完整 5000 docs\n- OOD PPL 趋势与 holdout 一致：q03 阈值区间（q03/q05）OOD 表现最好，epoch_matched 和 q01 稍差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd30476-ood-followup.md"
+}

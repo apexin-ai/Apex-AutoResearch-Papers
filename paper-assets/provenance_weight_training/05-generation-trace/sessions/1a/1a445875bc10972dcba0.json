@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a445875bc10972dcba0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra download qwen3 1 7b westd30476",
+  "task_key": "worker_infra_download_qwen3_1_7b_westd30476_20260520T043803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_qwen3_1_7b_westd30476_20260520T043803_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "df598f9832a5755e119f74536bfe06e8d9c9628035436698e5338f4d71de27ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载稳定进行中。当前状态：\n\n- **model-00001-of-00002.safetensors**: 19MB / 3.20GB (1%), ~440KB/s\n- **model-00002-of-00002.safetensors**: 16MB / 594MB (3%), ~447KB/s\n- **预计总时间**: ~2-2.5 小时\n\n进程在后台运行 (PID 188339)，不会因 SSH 断开而中断。可以用以下命令随时查进度：\n```\ntail -10 /tmp/download_qwen3_1_7b.log\n```\n\n下载完成后日志末尾会出现 `DOWNLOAD COMPLETE`。需要我过一段时间再查一次进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen3-1-7b-westd30476.md"
+}

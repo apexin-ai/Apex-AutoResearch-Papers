@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c074a359c98f8671a60",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code posthoc eval grid b low",
+  "task_key": "worker_code_posthoc_eval_grid_b_low_20260515T083643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_posthoc_eval_grid_b_low_20260515T083643_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "ec67e7882fc27f9a62d84485a88a269723548d8ced6cd7e0a5aaccc70f576b41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建，参数接口验证通过。\n\n**产出：**\n- 脚本路径：`/root/provenance_weight_training/training/run_posthoc_eval_grid_b_low_seed42.sh`\n- 参数验证：`eval_perplexity.py --help` 确认 `--checkpoints`、`--data_path`、`--max_docs`、`--output_path` 均匹配\n- 结果输出到：`output/eval/posthoc_eval_grid_b_low_seed42.json`\n\n**当前状态：** 训练尚未完成（b=0.1 在跑，b=0.2/0.3 未开始），3 个 `final/` 目录都不存在。脚本有缺失检查，会跳过不存在的 checkpoint 并打印 WARNING，全部缺失则 exit 1。训练完成后运行：\n\n```bash\nbash training/run_posthoc_eval_grid_b_low_seed42.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-posthoc-eval-grid-b-low.md"
+}

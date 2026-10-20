@@ -1,0 +1,36 @@
+{
+  "exp_id": "ess_only_seed456_r2",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T20:25:26.810Z",
+    "updated_at": "2026-05-17T21:04:23.229Z",
+    "hypothesis": "ESS-only (max-intervention) seed456 re-run on westd-41312: b* = max{b : ESS(b) >= n_min} — proves dual-constraint adaptive (min-intervention) superior to ESS-only across seeds",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\"",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "133521",
+      "log_path": "~/runs/provenance_weight_training/ess_only_seed456_r2.log",
+      "submitted_at": "2026-05-17T21:00:43.303Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 219.9,
+      "gpu_hours": 0.06
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T21:04:21.425Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T21:04:23.229Z"
+  },
+  "timestamp": "2026-05-17T21:04:23.647091+00:00",
+  "trigger": "update_registry"
+}

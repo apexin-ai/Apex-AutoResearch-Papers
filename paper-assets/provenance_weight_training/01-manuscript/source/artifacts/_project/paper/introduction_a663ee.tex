@@ -1,0 +1,38 @@
+Web corpora increasingly contain machine-generated text.
+Recent estimates place the synthetic fraction at 20--60\% of crawled data~\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.
+Training on such contaminated data has concrete consequences: \citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---\emph{model collapse}---and \citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.
+A central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.
+The prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.
+
+A natural response is \emph{detect-and-reweight}: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.
+\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b{=}10$ for models at ${\leq}360$M parameters to $b{=}1$ at 1.7B, and misspecification degrades results substantially.
+Selecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).
+Other approaches assume even stronger supervision: \citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\rho$, which is precisely what is unavailable in practice.
+Hard detection-and-removal strategies~\citep{feng_2025_beyond_collapse} discard borderline samples entirely, sacrificing the smooth reweighting that continuous $q$-scores enable.
+
+Given per-sample detector scores $q(x)$, how should one choose $b$ without a validation set or known contamination proportion?
+We formulate this as a dual-constraint optimization over each training batch: find the smallest $b$ that ensures the weighted effective real proportion $\aeff(b)$ reaches a quality threshold $\tau$, while keeping Kish's effective sample size $\mathrm{ESS}(b)$ above a stability floor $\nmin$.
+The quality constraint has theoretical grounding: convergence rate under contaminated training improves with the effective real-data fraction~\citep{wang_2026_survive_contamination}, motivating a lower bound on $\aeff$.
+The stability constraint prevents extreme weight concentration that degrades gradient quality.
+These two requirements exhibit a natural opposition.
+$\aeff(b)$ increases monotonically in $b$ (Proposition~\ref{prop:monotone}), yielding a lower bound $\btau$---the minimum exponent needed to achieve the target quality.
+$\mathrm{ESS}(b)$ decreases monotonically, yielding an upper bound $\bess$---the maximum exponent before gradient stability degrades.
+The adaptive exponent $\bstar = \btau$ when the feasible region $[\btau, \bess]$ is non-empty, embodying a \emph{minimum intervention principle}: apply the least downweighting sufficient to meet the quality target, preserving as much effective training data as possible.
+When the constraints conflict ($\btau > \bess$), the stability ceiling takes precedence.
+
+This minimum-intervention semantics distinguishes the method from the alternative of maximizing $b$ subject only to ESS stability.
+Among batches that require reweighting, the dual-constraint solver selects $\bstar$ via the $\aeff$ bound in 40\% of cases, with mean $\bstar{=}1.67$; the ESS-only variant would choose $b{=}4.15$ in these same batches, 2.5$\times$ more aggressive.
+The remaining 49.9\% of batches have sufficient real-data content to skip reweighting entirely ($\bstar{=}0$).
+The per-batch $\bstar$ distribution (median 0.87, mean 1.40) adapts continuously to each batch's contamination composition without any held-out signal.
+
+On Qwen3-0.6B continued pretraining with 40\% synthetic contamination (132M+ tokens from FineWeb), adaptive reweighting achieves mean held-out perplexity of 17.651 across three seeds, matching the grid-searched optimum ($b{=}0.5$, mean 17.646) within seed-to-seed variance (\S\ref{sec:results}).
+The grid sweep requires six complete training runs to identify this optimum; the adaptive method requires one.
+The ESS-only variant (maximum intervention) yields mean PPL 17.723---worse than the uniform baseline (17.694)---confirming that maximum intervention degrades training while minimum intervention improves it.
+A lightweight TF-IDF + Logistic Regression detector (AUC\,=\,0.939, calibrated ECE\,=\,0.048) suffices throughout, suggesting that score calibration matters more than raw classification accuracy for provenance-based reweighting.
+
+Our contributions:
+\begin{itemize}[nosep,leftmargin=*]
+\item A dual-constraint framework for adaptive exponent selection: $\bstar = \inf\{b \geq 0 : \aeff(b) \geq \tau\}$ subject to $\mathrm{ESS}(b) \geq \nmin$, computed per-batch from detector scores with minimum-intervention semantics (\S\ref{sec:method}).
+\item Empirical evidence that adaptive $\bstar$ matches grid-searched best within seed variance at zero validation cost, and that minimum intervention (dual constraint) outperforms maximum intervention (ESS-only) across three seeds (\S\ref{sec:results}).
+\item A demonstration that a lightweight TF-IDF + LR detector with calibrated $q$-scores supports effective reweighting, achieving results comparable to stronger neural detectors (\S\ref{sec:experiments}).
+\end{itemize}

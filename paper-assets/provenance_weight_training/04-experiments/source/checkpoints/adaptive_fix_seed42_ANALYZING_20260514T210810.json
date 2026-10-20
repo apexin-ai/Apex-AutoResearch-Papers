@@ -1,0 +1,77 @@
+{
+  "exp_id": "adaptive_fix_seed42",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-14T13:32:30.463Z",
+    "updated_at": "2026-05-14T21:08:09.958Z",
+    "hypothesis": "D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint achieves meaningful improvement over uniform baseline (PPL=17.69) for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)",
+    "parent": "adaptive_seed42",
+    "notes": "最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801",
+    "failure_reason": "",
+    "completed_at": "",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "D012 代码验证通过（n_min=max(2,batch_size//2), 无EMA, import OK）。等 GPU 释放后提交。"
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T17:38:26.312269+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T20:39:45.953045+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_fix_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint output/models/adaptive_fix_seed42/checkpoint-1500\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "126796",
+      "log_path": "~/runs/provenance_weight_training/adaptive_fix_seed42.log",
+      "submitted_at": "2026-05-14T17:47:21.683Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T20:39:44.942Z"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 7.5167,
+      "train_runtime": 10304.37,
+      "train_samples_per_second": 9.476,
+      "train_steps_per_second": 0.592,
+      "total_steps": 6103,
+      "eval_loss_holdout": 2.8709,
+      "eval_ppl_holdout": 17.65,
+      "eval_tokens": 4077068,
+      "b_star_count": 51913,
+      "b_star_mean": 0.7136,
+      "b_star_median": 0.0688,
+      "b_star_std": 1.5472,
+      "b_star_min": 0,
+      "b_star_max": 20,
+      "b_star_p25": 0,
+      "b_star_p75": 0.8845,
+      "b_star_pct_below_0.5": 59.7,
+      "b_star_pct_0.5_to_1": 18.2,
+      "b_star_pct_1_to_2": 13.8,
+      "b_star_pct_above_2": 8.2
+    },
+    "checkpoint_path": "output/models/adaptive_fix_seed42/final"
+  },
+  "timestamp": "2026-05-14T21:08:10.027177+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3a676d918d0e42d7e79",
+  "project": "pgpf-collapse-filter",
+  "kind": "result",
+  "title": "exp phase0 ortho v2",
+  "task_key": "worker_exp_phase0_ortho_v2_20260513T062027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase0_ortho_v2_20260513T062027_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "4aba30ae8ccfb7eecd80f2ded4313535cfd3f363390b576c5fd355e883d7131e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**执行摘要：**\n- 杀掉旧 `phase0_ortho` 进程（使用旧代码，Step 2 无批量生成/无进度日志）\n- rsync 同步了 8 个 pgpf 源文件到服务器\n- 写了新 `phase0_orthogonality.py`，关键修复：\n  - Step 1: 训练后保存 checkpoint，重跑时自动加载跳过训练\n  - Step 2: batch_size=8 批量生成 + attention_mask + 每 100 样本进度日志 + try/except 容错\n  - Step 3: 双卡评分（ft model cuda:0, base model cuda:1）\n  - Step 4+5: 相关矩阵 + scatter plots + heatmap\n- 已提交为 `phase0_ortho_v2`（PID 10520），registry 状态 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase0-ortho-v2.md"
+}

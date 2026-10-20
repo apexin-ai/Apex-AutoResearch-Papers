@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "037728348eeeb2d2e18a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval 30476 triple eval",
+  "task_key": "worker_eval_30476-triple-eval_20260518T170650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_30476-triple-eval_20260518T170650_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "3bdbbb4b4d156812be7879647a22820443f4c4ddb5662a4780bd5bb2c69bde87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部完成。\n\n## 结果汇总\n\n| 实验 | Loss | PPL |\n|------|------|-----|\n| epoch_matched_dr_seed123 (final) | 2.8713 | **17.66** |\n| epoch_matched_dr_seed456 (final) | 2.8712 | **17.66** |\n| detect_remove_q07_seed42 (final) | 2.8519 | **17.32** |\n\n**detect_remove_q07**: final checkpoint PPL=17.32，比之前 checkpoint-3500 的 PPL=17.49 有所改善。\n\n**detect_remove_q01_seed42 进度**: 仍在 GPU 3 上训练中（PID 47640，已运行 ~2.5h），当前 checkpoint 到 4000（checkpoint-3000 / 3500 / 4000 已保存）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-30476-triple-eval.md"
+}

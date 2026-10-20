@@ -1,0 +1,14 @@
+{
+  "exp_id": "golden_ratio_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:20:12.943Z",
+    "updated_at": "2026-05-15T07:20:12.943Z"
+  },
+  "timestamp": "2026-05-15T07:20:13.016760+00:00",
+  "trigger": "update_registry"
+}

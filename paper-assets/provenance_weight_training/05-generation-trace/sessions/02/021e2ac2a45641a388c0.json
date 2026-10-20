@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "021e2ac2a45641a388c0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260516T012805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260516T012805_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "66f3b23423cc3143e1f9899c25b1115b24412b684a433aad392224abdbb889e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| exp_id | GPU | Step/Total | Progress | Loss | ETA | Status |\n|--------|-----|-----------|----------|------|-----|--------|\n| contamination_60_seed42_r2 | cuda:0 | 5537/6103 | 90.7% | 9.82 | ~21 min | RUNNING |\n| grid_b0_3_seed42 | cuda:1 | 334/6103 | 5.5% | 9.11 | ~7h 13min | RUNNING |\n| contamination_60_ess_only_seed42 | cuda:2 | 3261/6103 | 53.4% | 9.77 | ~1h 40min | RUNNING |\n| contamination_60_grid_b0_5_seed42 | cuda:3 | 6103/6103 | 100% | 9.26 | — | **COMPLETED** |\n\n注意事项：\n- **PID 255781 已不存在** — `contamination_60_grid_b0_5_seed42` 已完成训练，模型已保存到 `output/models/contamination_60_grid_b0_5_seed42/final`，EXIT_CODE=129（SIGHUP）\n- `grid_b0_3_seed42` 速度是其他实验的 2 倍慢（4.51s/it vs ~2.2s/it），VRAM 占用接近满载（93/95.6 GB）\n- GPU 3 已空闲，可用于新实验\n\n报告已写入 `artifacts/training_progress_20260516.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-copy-3.md"
+}

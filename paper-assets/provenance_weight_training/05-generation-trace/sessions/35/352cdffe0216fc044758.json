@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "352cdffe0216fc044758",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh launch rho02 tau08 30476",
+  "task_key": "worker_ssh_launch_rho02_tau08_30476_20260517T181325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_rho02_tau08_30476_20260517T181325_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "cafe2c1f423ef468377e0f2393ff1812ac945078bf3bc8e21150f469ec53b2f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，确认参数正确：\n\n- **PID**: 41376\n- **GPU**: cuda:2\n- **tmux session**: `rho02_adaptive_tau08_seed42`\n- **tau**: 0.8, **n_min**: 2, **seed**: 42\n- **max_steps**: 6103\n- **weighting_method**: adaptive\n- **数据**: 206,111 examples (scored_data_rho02.jsonl)\n- **输出**: `/root/autodl-tmp/output/models/rho02_adaptive_tau08_seed42/`\n- **日志**: `~/runs/provenance_weight_training/rho02_adaptive_tau08_seed42.log`\n\n预计训练时间约 5.4 小时（基于 3.18s/it）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-rho02-tau08-30476.md"
+}

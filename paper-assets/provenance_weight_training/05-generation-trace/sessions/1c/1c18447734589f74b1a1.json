@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c18447734589f74b1a1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose 30476 failures",
+  "task_key": "worker_diagnose_30476_failures_20260517T123743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_30476_failures_20260517T123743_result.json",
+    "occurrence": 1,
+    "bytes": 2289,
+    "sha256": "07428c6fa5565a6a79d3a214dbf4883574c79e33f5205b15d0fed15440968d0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：container 当前 session 从 18:01 启动，存在大量历史内存压力（7.8G µs full stall），进程列表干净。\n\n## 诊断结论\n\n### 失败根因\n**4 个训练进程被 SIGKILL 同时终止**（~19:46 server time / 11:46 UTC），最可能原因是 **cgroup OOM killer**。\n\n证据链：\n- 3/4 实验日志明确显示 `Killed`（SIGKILL），第 4 个（rho02）的 \"DONE\" 是假阳性（tee 管道掩盖了 kill 退出码）\n- `/proc/pressure/memory` 显示 7.8G µs full memory stall，表明容器曾经历严重内存压力\n- cgroup 内存限制 440 GiB，`free` 显示的 1.0 TiB 是宿主机内存，容器实际可用远小于此\n- 无服务器重启（uptime 218天），无磁盘满，GPU 4 卡健康\n- 不是 CUDA OOM（那会抛 Python 异常而非 SIGKILL）\n- 容器 session 18:01 启动，非平台级关机\n\n### 服务器当前状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 4× RTX PRO 6000 Black (96GB each)，全部健康，0 MiB 占用 |\n| 磁盘 | overlay 36%, /dev/sda2 3%，充足 |\n| 内存 | 当前 68 GiB used / 440 GiB cgroup limit |\n| 进程 | 仅 supervisord/jupyter/tensorboard，无训练进程 |\n\n### Checkpoint 情况\n**全部丢失**。4 个实验的 save_steps=500，但全部在 step 480-558 被 kill，仅 random_reweight_seed123 刚过 500 但未来得及写入。Output 目录仅存 step_metrics.jsonl（几 KB），无 model checkpoint 或 safetensors。\n\n| 实验 | 最后 step | 进度 | Checkpoint |\n|------|----------|------|-----------|\n| random_reweight_seed123_r2 | 558/6103 | 9% | 无 |\n| bs8_auto_nmin_r3 | 524/6103 | 9% | 无 |\n| batch_adaptive_tau_rho06_r3 | 530/6103 | 9% | 无 |\n| rho02_adaptive_tau09_r3 | 488/6103 | 8% | 无 |\n\n### 恢复建议\n\n1. **服务器可以立即恢复使用**，GPU/磁盘/网络均正常\n2. **需从头重跑所有 4 个实验**，无可用 checkpoint\n3. **降低并发**：4 个实验同时跑时 CPU 内存可能因 data loading + tokenization + 4 份 optimizer states 累积触顶。建议：\n   - 先跑 2 个实验，观察 `free -h` 中的内存变化\n   - 或把 save_steps 降到 200，确保更早保存 checkpoint\n   - 如果内存确实是瓶颈，可考虑使用 memory-mapped datasets 而非全量加载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-30476-failures.md"
+}

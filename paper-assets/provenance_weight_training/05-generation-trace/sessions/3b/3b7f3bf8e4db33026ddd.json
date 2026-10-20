@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b7f3bf8e4db33026ddd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval llama3b uniform lm eval",
+  "task_key": "worker_eval_llama3b_uniform_lm_eval_20260517T134622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama3b_uniform_lm_eval_20260517T134622_result.json",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "c2e7845f2d4bc4117575962bc3e76f03024eb0e232f79dbcebf1cf0ea0f04b87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MMLU evaluation is about 56% through loglikelihood inference (~31K/56K requests at ~320 it/s). Estimated ~80 seconds remaining. I'll check back shortly for results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama3b-uniform-lm-eval.md"
+}

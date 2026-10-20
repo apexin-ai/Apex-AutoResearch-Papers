@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2b2975ae864acab8ba27",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analysis grid b1 0 b1 5 seed456",
+  "task_key": "worker_analysis_grid_b1_0_b1_5_seed456_20260515T005252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grid_b1_0_b1_5_seed456_20260515T005252.log",
+    "occurrence": 1,
+    "bytes": 535427,
+    "sha256": "41d4ca6cab3c063bf374e15d0ed7626f23edc8dfd390e4f3d36976df7cd3cfb8"
+  },
+  "statistics": {
+    "messages": 366,
+    "user_turns": 0,
+    "tool_calls": 147,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 147,
+      "tool_result": 147,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 366,
+      "chunks": [
+        {
+          "path": "2b2975ae864acab8ba27-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b2975ae864acab8ba27-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b2975ae864acab8ba27-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-grid-b1-0-b1-5-seed456.md"
+}

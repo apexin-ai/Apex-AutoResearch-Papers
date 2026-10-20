@@ -1,0 +1,374 @@
+{
+  "schema_version": "1.0",
+  "id": "3db1e21537a5b10b4620",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "submit detect remove q05 seed456 r2",
+  "task_key": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_submit_detect_remove_q05_seed456_r2_20260518T090015.jsonl",
+    "occurrence": 1,
+    "bytes": 15847,
+    "sha256": "0068a6712e64737e764395f201cc05a608d24e505442bf43d9c8d61093287d50"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T09:02:19.098813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T09:02:19.099286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T09:02:19.099546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T09:02:19.099753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'detect_remove_q05_seed456'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T09:02:19.100039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 17:00:36 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   58C    P0            381W /  600W |   41757MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\\\n| N/A   34C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   62C    P0            363W /  600W |   41757MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   56C    P0            3\n…[truncated 1393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T09:02:19.100298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3297}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T09:02:19.100535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "rm -rf /root/autodl-tmp/output/models/detect_remove_q05_seed456/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T09:02:19.100740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T09:02:19.100928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q05_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/autodl-tmp/output/models/detect_remove_q05_seed456.log 2>&1 & echo \"PID: $!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T09:02:19.101090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q05_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/autodl-tmp/output/models/detect_remove_q05_seed456.log 2>&1 & echo \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 25509\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 32.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T09:02:19.101256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T09:02:19.101389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "tail -30 /root/autodl-tmp/output/models/detect_remove_q05_seed456.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T09:02:19.101556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 17:01:34 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.82.09              Driver Version: 580.82.09      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   58C    P0            361W /  600W |   41757MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:A8:00.0 Off |                  Off |\\\\n| N/A   51C    P0            366W /  600W |   41757MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   61C    P0            363W /  600W |   41757MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:D8:00.0 Off |                  Off |\\\\n| N/A   55C    P0            3\n…[truncated 1393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T09:02:19.101825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'weighting/b': 0.0, 'weighting/alpha_eff': 0.7558924192562699, 'weighting/ess': 4.0, 'weighting/mean_q': 0.24410757422447205, 'weighting/unweighted_loss': 3.6171674728393555, 'weighting/weighted_loss': 3.6171674728393555, 'weighting/tau_batch': 0.8, 'epoch': 0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.7564690252766013, 'weighting/ess': 4.0, 'weighting/mean_q': 0.2435309737920761, 'weighting/unweighted_loss': 2.452775239944458, 'weighting/weighted_loss': 2.452775239944458, 'weighting/tau_batch': 0.8, 'epoch': 0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.7983526568859816, 'weighting/ess': 4.0, 'weighting/mean_q': 0.2016473412513733, 'weighting/unweighted_loss': 2.0847396850585938, 'weighting/weighted_loss': 2.0847396850585938, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.8381628557108343, 'weighting/ess': 4.0, 'weighting/mean_q': 0.1618371456861496, 'weighting/unweighted_loss': 2.5808610916137695, 'weighting/weighted_loss': 2.5808610916137695, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.806584807112813, 'weighting/ess': 4.0, 'weighting/mean_q': 0.19341519474983215, 'weighting/unweighted_loss': 3.5506820678710938, 'weighting/weighted_loss': 3.5506820678710938, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.805302070453763, 'weighting/ess': 4.0, 'weighting/mean_q': 0.19469791650772095, 'weighting/unweighted_loss': 2.6093525886535645, 'weighting/weighted_loss': 2.6093525886535645, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.7936278833076358, 'weighting/ess': 4.0, 'weighting/mean_q': 0.20637211203575134, 'weighting/unweighted_loss': 3.2590675354003906, 'weighting/weighted_loss': 3.2590675354003906, 'weighting/tau_batch': 0.8, 'epoch': 0.0}\\\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.9314765273593366, 'weighting/ess': 4.0, \n…[truncated 6422 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T09:02:19.102078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "detect_remove_q05_seed456",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "provenance_weight_training",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q05_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3', 'server': 'westd-30476', 'gpu': 1, 'pid': 25514, 'data_path': 'data/scored_data_filtered_q05.jsonl', 'model_name': 'models/Qwen/Qwen3-0.6B', 'seed': 456, 'total_steps': 6103, 'estimated_time': '3.5h', 'note': 'Restarted after killing bugged PID 13654 (had extra --eval_data_path/--eval_steps/--use_wandb causing 5x slowdown + 29GB extra VRAM)'}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T09:02:19.102260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:46:10.870Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:02:12.772Z\\\", \\\"hypothesis\\\": \\\"Detect-and-remove baseline with q>0.5 threshold and seed=456 will produce similar PPL to seed42 (17.29), confirming reproducibility of the filtering approach across seeds.\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q05_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"gpu\\\": 1, \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"models/Qwen/Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"weighting_method\\\": \\\"uniform\\\", \\\"threshold\\\": 0.5, \\\"max_steps\\\": 6103, \\\"pid\\\": 25514, \\\"output_dir\\\": \\\"/root/autodl-tmp/output/models/detect_remove_q05_seed456\\\", \\\"tmux_session\\\": \\\"detect_remove_q05_seed456\\\", \\\"total_steps\\\": 6103, \\\"estimated_time\\\": \\\"3.5h\\\", \\\"note\\\": \\\"Restarted after killing bugged PID 13654 (had extra --eval_data_path/--eval_steps/--use_wandb causing 5x slowdown + 29GB extra VRAM)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4174}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T09:02:19.102450+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **PID 25514** 在 cuda:1 上运行，显存 ~41GB，符合预期\n- 总步数 6103，预计 ~3.5h 完成\n- 速度 2.10s/it (~28.6 steps/min)，低于预期的 50+ steps/min，但已无 eval/wandb 的额外开销\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_detect_remove_q05_seed456_r2_20260518T090015"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/submit-detect-remove-q05-seed456-r2.md"
+}

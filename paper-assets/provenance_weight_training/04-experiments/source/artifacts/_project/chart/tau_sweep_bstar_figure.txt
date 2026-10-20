@@ -1,0 +1,5 @@
+Remote server: westd-47453
+Files: /root/provenance_weight_training/output/figures/tau_sweep_bstar.pdf
+       /root/provenance_weight_training/output/figures/tau_sweep_bstar.png
+Format: 300dpi, Nature/ICML style, Okabe-Ito colors
+Content: τ (0.5-0.95) vs b* mean (squares, orange-red) and b* median (diamonds, green) on left axis; %b*>2 bar chart (semi-transparent amber) on right axis. Shows monotonic increase of b* with τ.

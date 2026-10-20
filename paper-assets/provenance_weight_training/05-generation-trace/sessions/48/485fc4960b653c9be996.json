@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "485fc4960b653c9be996",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops tau07 data integrity",
+  "task_key": "worker_ops_tau07_data_integrity_20260515T133351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tau07_data_integrity_20260515T133351_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "7efc8231b1d39a665a899b9b56577eee2159ea909dd8c67aa25b290b1f28f572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。最终状态：\n\n**tau_0.7_seed42**：\n- PID 208730 已 kill\n- tmux session tau_07_seed42 已销毁\n- 输出目录已清空\n- **需要干净重启** — 请用 `submit_training_job` 重新提交 tau_07_seed42\n\n**golden_ratio_seed42 eval**：\n- 两个进程均已死亡，无 eval 结果文件产出\n- **需要重新运行 eval**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-tau07-data-integrity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21acce55d119ff012aa6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "investigate rho06 tau07 binding",
+  "task_key": "worker_investigate_rho06_tau07_binding_20260523T114032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_rho06_tau07_binding_20260523T114032_result.json",
+    "occurrence": 1,
+    "bytes": 3272,
+    "sha256": "af46f394830c2d3dd7a1c87d06d02e9894d67e1efd54de6e8e9915cc0f9459a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部到位。以下是 3 项验证的结果。\n\n---\n\n## 结果 1 — ρ=0.6 tau=0.7 binding stats（最高优先级）\n\nappendix.tex:145 当前文本：\"ESS-binding rises to 66%, α_eff-binding drops to 33.4%\"\n\n**这些数字来自 tau=0.8 实验**（`contamination_60_adaptive_seed42_tau08`，实际 tau_batch=0.8），该实验给出 33.8% α_eff-binding / 64.9% ESS-binding。\n\n**ρ=0.6 tau=0.7 的正确 binding stats**（使用 `adaptive_rho06_tau07_seed{42,123,456}`，tau=0.7 阈值分类）：\n\n| Regime | seed42 | seed123 | seed456 | 3-seed 均值 |\n|--------|--------|---------|---------|------------|\n| α_eff-binding | 47.04% | 46.76% | 46.64% | **46.81%** |\n| ESS-binding | 48.39% | 48.69% | 48.88% | **48.65%** |\n| clean (b\\*=0) | 4.57% | 4.55% | 4.48% | **4.54%** |\n\nMean b\\* by regime (seed42): α_eff-binding=0.6352, ESS-binding=1.307, overall=0.9313\n\n**结论**：appendix 需要将 \"66% / 33.4%\" 改为 \"48.7% / 46.8% / 4.5% clean\"。\n\n---\n\n## 结果 2 — Constraint regime figure 数据来源（第二优先级）\n\n图文件：`artifacts/figures/constraint_regime_decomposition.{pdf,png}`，创建于 2026-05-16，修改于 2026-05-19。\n\n**图中数据**（从 PNG 读取）：\n- ρ=0.4 bar: 38.2% α_eff-binding, 60% ESS-binding, ~2% clean\n- ρ=0.6 bar: 33.4% α_eff-binding, 66% ESS-binding, ~1% clean\n\n**两个 bar 都有问题**：\n\n1. **ρ=0.4 bar**：显示 38.2%/60%，但 ρ=0.4 tau=0.7 的正确数据是 50.6%/43.6%/5.8%（`tau07_seed42`，与 appendix 文本 \"50.9%/43.3%/5.8%\" 一致）。图中 38.2%/60% 实际匹配 `binding_stats_seed42.json`（38.3%/59.78%），该 json 是对 **ρ=0.6 数据用 tau=0.8 阈值** 错误分类的结果。\n\n2. **ρ=0.6 bar**：显示 33.4%/66%，来自 `contamination_60_adaptive_seed42_tau08`（真实 tau=0.8）。正确的 tau=0.7 值是 47.0%/48.4%/4.6%。\n\n**根因**：`extract_figure_data.py` 的 `classify_regime()` 硬编码 `tau=0.8`，以及图生成可能直接用了错误分类的数据。\n\n**需要**：用 tau=0.7 阈值重新计算两组 binding stats 并重新生成图。\n\n---\n\n## 结果 3 — 4.9× sharpening exponent ratio（第三优先级）\n\nIntroduction: \"at 4.9× lower sharpening exponents than an ESS-only alternative\"\n\n**tau=0.7 下的 sharpening ratio**：\n\n| 设置 | α_eff-binding mean b\\* | ESS-only mean b\\* | ratio |\n|------|----------------------|-------------------|-------|\n| ρ=0.4 tau=0.7 | 0.614 | 3.550 | **5.78×** |\n| ρ=0.6 tau=0.7 | 0.635 | 3.126 | **4.92×** |\n\n对比 tau=0.8（原始数据）：\n| 设置 | α_eff-binding mean b\\* | ESS-only mean b\\* | ratio |\n|------|----------------------|-------------------|-------|\n| ρ=0.6 tau=0.8 | 1.099 | 3.126 | **2.85×** |\n\n**结论**：\n- Introduction 中 \"4.9×\" 如果指的是 ρ=0.6，在 tau=0.7 下仍然成立（4.92×），无需修改\n- 但 Introduction 同时写了 \"50.9% of batches\"，这个数来自 ρ=0.4。如果 50.9% 和 4.9× 要对应同一设置（ρ=0.4），那 ratio 应该是 **5.8×** 而非 4.9×\n- 建议：确认 Introduction 句子要引用哪个 ρ 的数据。如果是 ρ=0.4 → \"5.8×\"；如果是 ρ=0.6 → \"4.9×\"（但 α_eff-binding% 应改为 46.8%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-rho06-tau07-binding.md"
+}

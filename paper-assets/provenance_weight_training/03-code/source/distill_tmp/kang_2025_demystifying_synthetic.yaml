@@ -1,0 +1,21 @@
+paper_key: "kang_2025_demystifying_synthetic"
+title: "Demystifying Synthetic Data in LLM Pre-training: A Systematic Study of Scaling Laws, Benefits, and Pitfalls"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines: ["natural web data only", "synthetic data only (rephrased)", "synthetic data only (textbooks)"]
+  metrics:
+    - {name: "language modeling loss", direction: "lower_better"}
+    - {name: "training speed (compute efficiency)", direction: "higher_better"}
+  datasets:
+    - {name: "natural web texts", size: "varied budgets"}
+    - {name: "rephrased synthetic data", size: "varied"}
+    - {name: "generated textbooks", size: "varied"}
+  ablation_dimensions: ["synthetic type (rephrased vs textbook)", "mixture ratio", "model size", "data budget", "generator model size"]
+  training_recipe: {model: "over 1000 LLMs", compute: "100K+ GPU hours"}
+  method_family: "scaling law analysis of synthetic data mixtures"
+
+narrative: N/A
+figures: N/A
+tables: N/A

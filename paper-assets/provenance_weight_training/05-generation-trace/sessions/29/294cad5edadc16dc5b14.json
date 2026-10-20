@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "294cad5edadc16dc5b14",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_17_1779368457.md",
+  "task_key": "loop_17_1779368457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779368457.md",
+    "occurrence": 1,
+    "bytes": 4010,
+    "sha256": "c368c040876c5601b89e519994dac980f1db97a9458f8eef14559743575d2038"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-18T02:09:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-41312 分配 GPU: cuda:0, cuda:1, cuda:2, cuda:3（全部4张）\n- westd-30476 分配 GPU: cuda:0, cuda:1, cuda:2, cuda:3（全部4张）\n- output_dir 必须用 `/root/autodl-tmp/provenance_weight_training/output/models/` （持久卷）\n- WANDB_MODE=disabled（本项目不用 W&B，cron 靠 sentinel 判断完成）\n- 模型路径: `models/Qwen/Qwen3-0.6B`（相对于 `/root/provenance_weight_training/`）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- **westd-41312**: 工作目录 `/root/provenance_weight_training/`, Python via conda base, HF_HOME=/root/autodl-tmp/.hf_cache\n- **westd-30476**: 同上结构，output 在 `/root/autodl-tmp/provenance_weight_training/output/`\n- 数据: `data/scored_data.jsonl`（在工作目录下）\n- 活跃进程 westd-41312: qwen06b_uniform_seed42 (PID 125995, cuda:0), random_reweight_seed456 (PID 125367, cuda:3)\n- 活跃进程 westd-30476: rho02_adaptive_tau08_seed42 (PID 41387, cuda:2), grid_b0_3_seed456_r2 (PID 54779, cuda:0), batchsize16_nmin8_r3 (PID 48891, cuda:3)\n- 磁盘: westd-41312 ~400G可用, westd-30476 ~816G可用\n\n### 3. 📊 当前状态\n刚处理 CRON 回调：ess_only_seed456_r2 + ess_only_seed123_r2 在 westd-41312 cuda:1/2 上同时失败（进程存活仅220s，从checkpoint恢复后崩溃）。已派 Worker `worker_diagnose_ess_only_failed_r2_20260517T210613` SSH 诊断 root cause（查日志/checkpoint/dmesg）。已向 Director 汇报。\n\n**RUNNING 实验**:\n| exp_id | server | gpu | 目的 |\n|--------|--------|-----|------|\n| qwen06b_uniform_seed42 | westd-41312 | cuda:0 | 跨模型基线 |\n| random_reweight_seed456 | westd-41312 | cuda:3 | Claim 1 random degradation 跨seed |\n| rho02_adaptive_tau08_seed42 | westd-30476 | cuda:2 | Claim 3 ρ=0.2 tau=0.8 |\n| grid_b0_3_seed456_r2 | westd-30476 | cuda:0 | Claim 2 grid-best 跨seed |\n| batchsize16_nmin8_r3 | westd-30476 | cuda:3 | D062 coupling rule bs=16 |\n\n**空闲 GPU**: westd-41312 cuda:1, cuda:2; westd-30476 cuda:1\n\n**等待中**: Worker 诊断回调 → 确认 root cause → 决定是否重试 ESS-only 实验\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 如 checkpoint 损坏/路径错: 修复后重提交 ess_only_seed456_r2/seed123_r2 到 westd-41312 cuda:1/2; 如 OOM: 降 batch_size 或换 GPU 重试\n- westd-41312 cuda:1/2 空闲已汇报 Director → 诊断完成后立即填满\n- westd-30476 cuda:1 也空闲 → 检查是否有队列中的实验可以跑（ROADMAP 提到 30476 4卡分配但只有3个在跑）\n- 5个 RUNNING 实验完成 → 按 on-experiment-done 流程处理（success → 更新 matrix + 铺下一格; failed → 再诊断）\n- 所有 seed 实验完成 → Paper Agent 可以 unblock 5 pending patches\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25（距今 7 天）\n- **核心方法**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则）\n- **Claim 1** (dual > ESS-only) 已 ★★★★★，ESS-only 跨 seed 是锦上添花不是 blocking\n- **Claim 2** (adaptive ≈ grid) ★★★☆☆ 需要 grid_b0_3_seed456_r2 完成确认\n- **Claim 3** (proportion-robust) ★★☆☆☆ 需要 rho02_adaptive_tau08_seed42 数据\n- **D069**: MMLU +1.57pp 定位为 Discussion 观察，不升级 cross-model claim\n- **D067**: llama3b 跨模型结论从 \"negative\" 改为 \"neutral\"（不写入 paper 正面 claim）\n- **易错点**: ess_only 实验用的是 `--weighting_method ess_only`，这是 max-intervention 对照组（b* = max{b: ESS>=n_min}），不是我们的核心方法 adaptive（min-intervention）。失败不影响核心 narrative，但跨 seed 数据缺失会让 Reviewer 质疑 robustness\n- **易错点**: westd-30476 是 westd-47453 的替代（5/17 迁移），环境已修复但路径结构可能有细微差异\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779368457.md"
+}

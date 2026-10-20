@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c1c9db2f7387fab57fd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis full results summary",
+  "task_key": "worker_analysis_full-results-summary_20260516T075634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full-results-summary_20260516T075634_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "c4c995f6a6d549b4045d882d0353b8443b3538f3c9e32488824ca2a309e92355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。47 个实验已汇总为 CSV + Markdown，按四组分类：\n\n1. **Main Results** (23 rows): uniform/adaptive/ess_only/grid_b best，含 ρ=0.4 和 ρ=0.6\n2. **Ablations** (8 rows): nmin_ablation, tau_sweep, batchsize\n3. **Alternative Baselines** (2 rows): detect_remove, golden_ratio\n4. **Grid Sweep** (20 rows): b=0.3–5.0 全点，3 seeds\n\n文件路径：\n- `artifacts/full_results_summary.csv`\n- `artifacts/full_results_summary.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-results-summary.md"
+}

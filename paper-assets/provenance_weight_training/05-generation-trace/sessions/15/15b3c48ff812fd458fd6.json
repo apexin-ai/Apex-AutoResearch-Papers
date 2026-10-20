@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15b3c48ff812fd458fd6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis tau sweep figure",
+  "task_key": "worker_analysis_tau-sweep-figure_20260516T051035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tau-sweep-figure_20260516T051035_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "7b495d34d4e6dbb25155ffd9500592a6ab45a20625029f71e342601b18b6797c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 和 PNG 已生成并注册：\n\n- **PDF**: `artifacts/figures/tau_sweep_rho04.pdf`\n- **PNG**: `artifacts/figures/tau_sweep_rho04.png`\n- **Artifact ID**: `art_20260516_59707e`\n\n图表要素：蓝色曲线 + 圆形 marker 展示 τ∈[0.5, 0.95] 的 PPL 变化，红色星号标注最优点 τ*=0.8 (PPL=17.653)，灰色虚线 uniform baseline (17.694)，绿色虚线 grid-best (17.651)，浅蓝色带标注 safe range [0.5, 0.8]。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tau-sweep-figure.md"
+}

@@ -1,0 +1,57 @@
+{
+  "exp_id": "grid_b1_5_seed123",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:52:43.491Z",
+    "updated_at": "2026-05-14T11:18:32.771Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b1_5_seed123 --weighting_method grid --grid_b_value 1.5 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "68383",
+      "log_path": "~/runs/provenance_weight_training/grid_b1_5_seed123.log",
+      "submitted_at": "2026-05-14T06:53:49.321Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/provenance_weight_training/data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 123,
+      "wall_clock_seconds": 15883.5,
+      "gpu_hours": 4.41
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T11:06:15.864Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T11:06:16.350913+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/provenance_weight_training/output/models/grid_b1_5_seed123/final/",
+    "metrics": {
+      "eval_ppl_holdout": 17.701,
+      "eval_loss": 2.8736,
+      "eval_holdout_tokens": 4077068,
+      "train_loss": 10.478,
+      "total_steps": 6103,
+      "train_runtime_s": 15053,
+      "gpu_hours": 4.18
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T11:18:32.771Z"
+  },
+  "timestamp": "2026-05-14T11:18:32.807723+00:00",
+  "trigger": "update_registry"
+}

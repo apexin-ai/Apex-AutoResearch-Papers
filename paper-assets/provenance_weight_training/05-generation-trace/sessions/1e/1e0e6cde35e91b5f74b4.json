@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e0e6cde35e91b5f74b4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh gpu health 41312",
+  "task_key": "worker_ssh_gpu_health_41312_20260517T201514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_health_41312_20260517T201514_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "0d72c7f5dc89123f248760220c1f53a7949ed56073bb102307e0623f843c09dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 — westd-41312\n\n| GPU | 利用率 | 显存占用 | PID | 实验 | 进度 | 状态 |\n|-----|--------|----------|-----|------|------|------|\n| **0** | 100% | 46,539 / 97,887 MiB (48%) | 125995 | `qwen06b_uniform_seed42` | 3364/6103 (55%) | 🟢 运行中，预计剩余 ~1h36m |\n| **1** | 100% | 75,023 / 97,887 MiB (77%) | 115525 | `ess_only_seed456` | 3492/8477 (41%) | 🟢 运行中，预计剩余 ~25m |\n| **2** | 100% | 75,023 / 97,887 MiB (77%) | 115021 | `ess_only_seed123` | 4105/8477 (48%) | 🟢 运行中，预计剩余 ~23m |\n| **3** | 78% | 75,023 / 97,887 MiB (77%) | 125367 | `random_reweight_seed456` | 8009/8477 (94%) | 🟢 即将完成，预计剩余 ~2m24s |\n\n### 总结\n\n- **4 张 GPU 全部在用**，均有 python 训练进程\n- 所有实验均在正常运行中，**无异常/无完成**\n- `random_reweight_seed456`（GPU3）马上完成（94%），约 2-3 分钟后结束\n- `ess_only_seed456` 和 `ess_only_seed123`（GPU1/2）约 25 分钟内完成\n- `qwen06b_uniform_seed42`（GPU0）最慢，还需约 1.5 小时（速度 ~2.10s/it）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-health-41312.md"
+}

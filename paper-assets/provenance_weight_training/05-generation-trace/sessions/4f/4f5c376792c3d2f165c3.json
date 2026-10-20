@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4f5c376792c3d2f165c3",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval detect remove q05 v2 seed42",
+  "task_key": "worker_eval_detect_remove_q05_v2_seed42_20260521T200809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detect_remove_q05_v2_seed42_20260521T200809.log",
+    "occurrence": 1,
+    "bytes": 536557,
+    "sha256": "398dbaa5a3a683922f2385ca7c6a594ec7e03113aef338da76db67e613e59feb"
+  },
+  "statistics": {
+    "messages": 349,
+    "user_turns": 0,
+    "tool_calls": 144,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 144,
+      "tool_result": 144,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 349,
+      "chunks": [
+        {
+          "path": "4f5c376792c3d2f165c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4f5c376792c3d2f165c3-part-0002.json",
+          "message_count": 169
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-detect-remove-q05-v2-seed42.md"
+}

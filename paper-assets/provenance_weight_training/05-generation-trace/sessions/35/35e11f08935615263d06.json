@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35e11f08935615263d06",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778900101.md",
+  "task_key": "loop_11_1778900101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778900101.md",
+    "occurrence": 1,
+    "bytes": 5198,
+    "sha256": "95f9ec8a9f57ecce267ef62e3e2d8f797c09580c23cf5a81d9a88592ac31b2a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:51:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 @ westd-47453（4× RTX 6000 Pro 96G）。禁止用白名单外 GPU，即使 Director 指示也必须 push back\n- **WANDB_MODE=disabled 会导致 cron 误判训练失败**（contamination_60_uniform_seed42 教训）——后续实验不要禁用 W&B，或必须人工检查日志\n- GPU 预算极度紧张：已消耗 ~154h，剩余 ~26h（ROADMAP 数据，可能已进一步消耗）。每个实验必须精打细算\n- contamination_60_ess_only_seed42 在 registry 显示 RUNNING 但 spec 无 server/gpu/pid——可能是 orphan 或漏填 spec，接手后必须先确认其实际状态\n- 投稿目标 EMNLP 2026 ARR May 25（**剩 9 天**）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，项目路径 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 镜像：aml-train（conda 环境，非 venv）\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`data/scored_data.jsonl`（ρ=0.4, 371K 行），`data/scored_data_60.jsonl`（ρ=0.6, 371K 行），`data/scored_data_filtered_q05.jsonl`（hard-filter q>0.5, 153K 行）\n- 活跃进程（reconcile_crons 确认 4 个 RUNNING）：\n  - contamination_60_ess_only_seed42: PID 265012（**无 GPU/server 信息，可能 orphan**）\n  - grid_b0_3_seed42: PID 274304, cuda:1, tmux\n  - detect_remove_baseline_seed42: PID 276739, cuda:3, tmux\n  - contamination_60_tau07_seed42: PID 282223, cuda:0, tmux\n- Worker：`worker_infra_check-cuda0-orphan_20260516T024328` 正在运行（turn_count=0，可能卡住）\n- Cron：4 个活跃 cron 监控上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n**刚完成**：contamination_60 第一轮三组（adaptive/uniform/grid-best）已完成，进入诊断阶段。D045 确认 ρ=0.6 下 adaptive τ=0.8 显著劣于 grid-best，正在跑 τ-ρ 关系诊断实验。\n\n**RUNNING 实验**（4 个）：\n| exp_id | GPU | 用途 |\n|--------|-----|------|\n| contamination_60_tau07_seed42 | cuda:0 | ρ=0.6 τ=0.7 诊断（Reviewer 建议 τ=1-ρ×0.5） |\n| grid_b0_3_seed42 | cuda:1 | ρ=0.4 grid-b=0.3 sweep（Claim 2 b* 曲线） |\n| contamination_60_ess_only_seed42 | **不明** | ρ=0.6 ESS-only baseline（spec 缺失，需确认） |\n| detect_remove_baseline_seed42 | cuda:3 | detect-and-remove baseline（回应 reviewer \"why not just filter?\"） |\n\n**PREPARING**（6 个）：contamination_60_tau06_seed42, grid_b0_2/b0_1_seed42, adaptive_v2 × 3 seeds\n\n**等待中**：\n- 4 个 RUNNING 实验的 cron 回调\n- Worker `check-cuda0-orphan` 回调（可能卡住，turn_count=0）\n- cuda:2 空闲，等 Director 分配指示\n\n### 4. 📋 待办（条件触发式）\n- contamination_60_tau07_seed42 完成 → 分析 PPL，结合 contamination_60_seed42_r2（PPL=17.74）和 contamination_60_uniform（PPL=17.766）判断 τ 下调是否恢复 adaptive 优势；若 PPL ≤ 17.704（grid-best），τ=0.7 策略有效\n- contamination_60_ess_only_seed42 完成 → 与 contamination_60_seed42_r2 对比，验证 ρ=0.6 下 dual > ESS-only 是否仍成立\n- detect_remove_baseline_seed42 完成 → PPL 应 > adaptive（信息损失），写入 paper 作为 reviewer 回应\n- grid_b0_3_seed42 完成 → 结合 grid_b0_5（PPL=17.666）填充 b* 曲线低端，若 PPL > 17.666 则确认 b=0.5 是最优区间\n- contamination_60 诊断全部完成 + τ-ρ 关系明确 → 更新 Claim 3 framing：要么 τ=0.8 universally works，要么 τ 需随 ρ 调整（后者需 framing 调整提案）\n- GPU 预算耗尽前 → 优先级：(1) 正在跑的 4 个必须跑完，(2) contamination_60_tau06 是诊断关键第二点，(3) grid_b0_1/b0_2 可选\n\n### 5. 🎯 战略上下文\n**核心 story**：Dual-constraint adaptive b*（α_eff 质量下界 + ESS 稳定上界 → min-intervention）。三个 Claims：\n1. **Claim 1 ✅**：Dual > ESS-only，3 seeds 验证完毕\n2. **Claim 2 ✅**：Adaptive ≈ grid-best，3 seeds MVP PASS\n3. **Claim 3 🔄**：Proportion-free（τ 控制 bias-variance，不依赖 ρ）——**这是当前瓶颈**\n\n**关键风险**：D045 发现 ρ=0.6 下 adaptive τ=0.8 (PPL=17.74) 劣于 grid-best (PPL=17.704)。如果 τ 下调（0.6/0.7）也无法恢复，Claim 3 \"proportion-free\" 不成立，需要 framing 调整为 \"τ 需随 contamination level 调整\"。\n\n**易判断错的事**：\n- contamination_60_ess_only_seed42 看起来在 RUNNING 但 spec 缺失（无 server/gpu/pid），先确认实际状态再做任何决策\n- ρ=0.6 的 uniform baseline PPL=17.766，adaptive PPL=17.74 仍优于 uniform（-0.026），只是劣于 grid-best（+0.036）。不要把\"劣于 grid-best\"等同于\"方法失败\"\n- n_min=2 是论文主结果（D043），n_min=3 降为 sensitivity analysis。所有 adaptive_fix 系列才是主结果，adaptive 系列（n_min=3）是辅助\n- bs=8 negative (D042) 写入 n_min analysis 作为 limitation，不影响核心 claims（均在 bs=4 下验证）\n- 检测器是 TF-IDF+LR（AUC=0.939, ECE=0.048），不是 ModernBERT（D007/D008 决策链）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778900101.md"
+}

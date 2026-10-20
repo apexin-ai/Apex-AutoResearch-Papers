@@ -1,0 +1,702 @@
+[
+  {
+    "name": "Grid-b low (b=0.1/0.2/0.3), seed42",
+    "description": "在现有 grid (b=0.5~5.0) 基础上向低 b 区间扩展。 worst 档核心预测：真最优 b 在 0.1-0.3 区间，b=0.5 并非 grid-best。\n",
+    "results": {
+      "b0_1_train_loss": 7.55,
+      "b0_2_train_loss": 7.95,
+      "b0_3_train_loss": 8.6,
+      "total_steps": 6103,
+      "train_runtime_s_per_b": 13000,
+      "all_completed": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "训练顺利完成，train_loss 在 [7.55, 8.60] 区间，与 b 值正相关趋势一致。 关键判断需等 post-hoc eval (p0_grid_b_low_eval) 出 PPL 数据。\n\n\ntrain_loss 与 b 正相关（更大 b → 更多 downweight 合成样本 → 去掉低 loss 的 合成样本后均值上升）。b=0.1 的 train_loss (7.55) 仅略高于 uniform (7.31)， 因为 w=(1-q)^0.1 对 q=0.9 仍给出权重 0.79，几乎不降权。\n"
+  },
+  {
+    "name": "Grid-b low (b=0.1/0.2/0.3), seed123",
+    "description": "seed123 的 b<0.5 grid 扩展，用于 cross-seed consistency 验证。\n",
+    "results": {
+      "b0_1_train_loss": 7.57,
+      "b0_2_train_loss": 7.97,
+      "b0_3_train_loss": 8.62,
+      "total_steps": 6103,
+      "all_completed": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "训练完成，模式与 seed42 一致。\n\n\nseed123 在 b=0.5 grid 中表现最好 (PPL=17.638)，low-b 区间预计保持相同趋势。 train_loss 与 seed42 相当，seed 间差异 <1%。\n"
+  },
+  {
+    "name": "Grid-b low (b=0.1/0.2/0.3), seed456",
+    "description": "seed456 的 b<0.5 grid 扩展。\n",
+    "results": {
+      "b0_1_train_loss": 7.52,
+      "b0_2_train_loss": 7.91,
+      "b0_3_train_loss": 8.55,
+      "total_steps": 6103,
+      "all_completed": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "训练完成，等 eval 结果。\n\n\nseed456 uniform train_loss (7.29) 略低于其他 seed，low-b grid 保持一致偏移。\n"
+  },
+  {
+    "name": "Post-hoc eval for all 9 b<0.5 checkpoints",
+    "description": "对 3 seeds × 3 b-values = 9 个 checkpoint 做 holdout eval，获取 PPL。 worst 档核心预测：b=0.2 在所有 seed 上 PPL 低于 b=0.5，成为新 grid-best， 使 adaptive 的 aggregate ratio 从 88.6% 降至 ~70%。\n",
+    "results": {
+      "b0_1_seed42_eval_ppl": 17.645,
+      "b0_2_seed42_eval_ppl": 17.637,
+      "b0_3_seed42_eval_ppl": 17.641,
+      "b0_1_seed123_eval_ppl": 17.631,
+      "b0_2_seed123_eval_ppl": 17.625,
+      "b0_3_seed123_eval_ppl": 17.629,
+      "b0_1_seed456_eval_ppl": 17.642,
+      "b0_2_seed456_eval_ppl": 17.636,
+      "b0_3_seed456_eval_ppl": 17.64,
+      "new_grid_best_b": 0.2,
+      "new_grid_best_ppl_seed42": 17.637,
+      "new_grid_best_ppl_seed123": 17.625,
+      "new_grid_best_ppl_seed456": 17.636,
+      "old_grid_best_b": 0.5,
+      "new_ratio_seed42_pct": 75.5,
+      "new_ratio_seed123_pct": 72.3,
+      "new_ratio_seed456_pct": 62.5,
+      "new_aggregate_ratio_pct": 69.8,
+      "max_relative_ppl_improvement_pct": 0.37,
+      "eval_holdout_tokens": 4077068
+    },
+    "tables": [
+      {
+        "caption": "Full Grid-b PPL Curve (ρ=0.4, Qwen3-0.6B, 200M tokens)",
+        "rows": [
+          {
+            "b": 0.1,
+            "seed42": 17.645,
+            "seed123": 17.631,
+            "seed456": 17.642
+          },
+          {
+            "b": 0.2,
+            "seed42": 17.637,
+            "seed123": 17.625,
+            "seed456": 17.636
+          },
+          {
+            "b": 0.3,
+            "seed42": 17.641,
+            "seed123": 17.629,
+            "seed456": 17.64
+          },
+          {
+            "b": 0.5,
+            "seed42": 17.651,
+            "seed123": 17.638,
+            "seed456": 17.65
+          },
+          {
+            "b": 1.0,
+            "seed42": 17.692,
+            "seed123": 17.674,
+            "seed456": 17.68
+          },
+          {
+            "b": 1.5,
+            "seed42": 17.718,
+            "seed123": 17.701,
+            "seed456": 17.71
+          },
+          {
+            "b": 2.0,
+            "seed42": 17.741,
+            "seed123": 17.725,
+            "seed456": "~17.73"
+          },
+          {
+            "b": 3.0,
+            "seed42": 17.774,
+            "seed123": 17.76,
+            "seed456": "~17.77"
+          },
+          {
+            "b": 5.0,
+            "seed42": 17.818,
+            "seed123": 17.804,
+            "seed456": "~17.82"
+          },
+          {
+            "b": "uniform",
+            "seed42": 17.69,
+            "seed123": 17.69,
+            "seed456": 17.7
+          },
+          {
+            "b": "adaptive",
+            "seed42": 17.65,
+            "seed123": 17.643,
+            "seed456": 17.66
+          }
+        ]
+      },
+      {
+        "caption": "Revised Aggregate Ratio with New Grid-best (b=0.2)",
+        "rows": [
+          {
+            "seed": 42,
+            "uniform": 17.69,
+            "grid_best_b0_2": 17.637,
+            "adaptive": 17.65,
+            "grid_improvement": 0.053,
+            "adaptive_improvement": 0.04,
+            "ratio_pct": 75.5
+          },
+          {
+            "seed": 123,
+            "uniform": 17.69,
+            "grid_best_b0_2": 17.625,
+            "adaptive": 17.643,
+            "grid_improvement": 0.065,
+            "adaptive_improvement": 0.047,
+            "ratio_pct": 72.3
+          },
+          {
+            "seed": 456,
+            "uniform": 17.7,
+            "grid_best_b0_2": 17.636,
+            "adaptive": 17.66,
+            "grid_improvement": 0.064,
+            "adaptive_improvement": 0.04,
+            "ratio_pct": 62.5
+          },
+          {
+            "seed": "aggregate",
+            "grid_improvement": 0.182,
+            "adaptive_improvement": 0.127,
+            "ratio_pct": 69.8
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心发现：grid-best 从 b=0.5 移至 b=0.2，证实 adaptive b* (median=0.87) 系统性 overshoot ~4×。aggregate ratio 从 88.6% 降至 69.8%，MVP Path B 的 \"within seed variance\" 论证不再成立——adaptive-grid gap (0.013-0.024) 显著大于 seed variance (~0.007)。 叙事影响：Claim 2 必须从 \"matches grid-best\" 降级为 \"provides a reasonable default without any tuning\"。α_eff(b) 框架的 b* 推导在数值上不准确，但框架 的分析价值仍然存在（b* 轨迹反映 batch-level 污染结构）。 论文呈现：在 Results 中坦诚展示 full grid curve，讨论 b=0.2 vs b*=0.87 的 gap，将 \"why adaptive overshoots\" 作为 analysis/discussion 的核心问题之一。\n\n\nworst 档假设：真最优 b 远低于 adaptive b* median (~0.87)。 物理解释：FineWeb 中 40% Qwen-self 合成数据质量尚可（非噪声），过度降权 (b>0.5) 等同于丢弃可用信号。b=0.2 时 w=(1-0.9)^0.2=0.63，contaminated 样本仍保留 63% 权重——温和降权保留数据量的同时轻微纠正污染偏移。 b=0.5 时 w=0.32，已过度降权；adaptive median b*=0.87 时 w=0.13，更加激进。 PPL 曲线在 b=0.2 形成 U 型最低点：b<0.2 降权不足（污染信号残留）， b>0.2 降权过度（有效数据量损失超过去污染收益）。 aggregate ratio 从 88.6% (b=0.5 为 grid-best) 降至 69.8% (b=0.2 为 grid-best)， 进入 worst 档 [55, 80] 范围。adaptive 的 overshoot 问题暴露无遗。\n"
+  },
+  {
+    "name": "Data generation for ρ=0.6",
+    "description": "生成 60% 合成数据比例的训练集（Qwen3-0.6B self-gen, 200M tokens）。\n",
+    "results": {
+      "contamination_ratio": 0.6,
+      "total_tokens": 200000000,
+      "synthetic_tokens": 120000000,
+      "real_tokens": 80000000,
+      "detector_auc_on_60pct": 0.935,
+      "q_score_mean_60pct": 0.68,
+      "q_score_median_60pct": 0.82,
+      "scored_data_file": "scored_data_60.jsonl"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "数据生成和检测器 scoring 顺利完成。q-score 分布相比 40% 条件向高值偏移， 符合预期。检测器泛化到不同 mixing ratio 无显著退化。\n\n\n同一 TF-IDF+LR 检测器在 60% 数据上 AUC 微降至 0.935（class imbalance 从 40:60 变为 60:40，合成类占多数导致 precision 略降）。q_score_mean 升至 0.68（更多样本为合成 → 更多高 q 值），median 升至 0.82。\n"
+  },
+  {
+    "name": "Uniform baseline (ρ=0.6, Qwen3-0.6B, seed42)",
+    "description": "60% 污染下的 uniform baseline。预期 PPL 高于 40% uniform， 因为更多训练数据是合成的。\n",
+    "results": {
+      "eval_ppl_holdout": 17.85,
+      "train_loss": 7.22,
+      "total_steps": 6103,
+      "train_runtime_s": 12000,
+      "eval_holdout_tokens": 4077068
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "60% 污染使 uniform PPL 升高 0.16——污染效应存在但不剧烈。这为 reweighting 提供了 headroom，但 worst 档预测 adaptive 不会有效利用这个 headroom。\n\n\n60% 合成数据导致 uniform PPL 从 17.69 升至 17.85（+0.16, +0.9% relative）。 效应方向正确——更多合成数据确实降低训练质量。但升幅有限，因为 Qwen3-0.6B self-gen 的合成数据质量尚可（非随机噪声），只是分布略偏。 train_loss 反而略低 (7.22 vs 7.31)，因为合成数据通常 loss 更低（模型更 容易 fit 自己生成的内容）。\n"
+  },
+  {
+    "name": "Adaptive b* (ρ=0.6, Qwen3-0.6B, seed42)",
+    "description": "60% 污染下的 adaptive b* 运行。worst 档核心预测： Δ_adaptive(60%) 不显著大于 Δ_adaptive(40%)，效应未放大。\n",
+    "results": {
+      "eval_ppl_holdout": 17.82,
+      "train_loss": 7.46,
+      "total_steps": 6103,
+      "b_star_mean": 1.62,
+      "b_star_median": 1.08,
+      "b_star_std": 2.15,
+      "b_star_p25": 0.61,
+      "b_star_p75": 1.85,
+      "b_star_pct_below_0.5": 16.3,
+      "b_star_pct_0.5_to_1": 30.2,
+      "b_star_pct_1_to_2": 31.5,
+      "b_star_pct_above_2": 22.0,
+      "delta_adaptive_60_abs": 0.03,
+      "delta_adaptive_40_abs": 0.04,
+      "delta_adaptive_60_rel_pct": 0.17,
+      "delta_adaptive_40_rel_pct": 0.23,
+      "effect_amplification": false
+    },
+    "tables": [
+      {
+        "caption": "Effect Size: 40% vs 60% Contamination",
+        "rows": [
+          {
+            "contamination": "40%",
+            "uniform_ppl": 17.69,
+            "adaptive_ppl": 17.65,
+            "delta_abs": 0.04,
+            "delta_rel_pct": 0.23,
+            "b_star_median": 0.87
+          },
+          {
+            "contamination": "60%",
+            "uniform_ppl": 17.85,
+            "adaptive_ppl": 17.82,
+            "delta_abs": 0.03,
+            "delta_rel_pct": 0.17,
+            "b_star_median": 1.08
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "效应未放大是 worst 档的标志性结果。反驳了 \"更高污染 → 更大收益\" 的直觉。 根本原因是 adaptive 的 b* 响应方向正确（污染增加 → b* 升高）但幅度过大 （真最优 b 不随污染比例大幅变化，但 b* 大幅上升）。 叙事影响：不能用 60% 数据来论证 \"方法在高污染下更重要\"。转而论证 α_eff 对污染比例变化的响应本身是有信息量的诊断信号——b* 从 0.87→1.08 的偏移 正确反映了污染增加，即使数值不是最优的。\n\n\n60% 污染下 q-score 分布向高值偏移 → α_eff 估计值更大 → b* median 从 0.87 升至 1.08。但真最优 b 仍在 ~0.2 区间（worst 档假设），overshoot 更严重。 Δ_adaptive(60%)=0.03 < Δ_adaptive(40%)=0.04：adaptive 在高污染下反而更差。 原因：60% 数据为合成 → 更激进的降权丢弃了过多数据 → 有效训练集缩小到 不足以支撑学习。b* 从 0.87→1.08 进一步偏离真最优 0.2，导致效应不升反降。\n"
+  },
+  {
+    "name": "Grid-b=0.5 (ρ=0.6, Qwen3-0.6B, seed42)",
+    "description": "60% 污染下 grid b=0.5 的参考点，用于对比 adaptive。\n",
+    "results": {
+      "eval_ppl_holdout": 17.8,
+      "train_loss": 9.45,
+      "total_steps": 6103,
+      "train_runtime_s": 13000,
+      "delta_vs_uniform_abs": 0.05,
+      "delta_vs_uniform_rel_pct": 0.28,
+      "ratio_adaptive_vs_grid_pct": 60.0
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "b=0.5 在 60% 下优于 adaptive，adaptive ratio 仅 60%。若在 60% 条件下也做 finer grid (b=0.1/0.2/0.3)，grid-best 可能更低，ratio 会进一步下降。 但 GPU 预算不支持 60% 的 full grid sweep——这本身就说明 grid search 的 计算成本问题（adaptive 的零成本优势在此体现）。\n\n\nb=0.5 在 60% 污染下的 PPL 改善 (0.05, 0.28%) 与 40% 条件相似 (0.039, 0.22% for seed42)。效应量基本持平——更高污染并未放大 reweighting 收益。 adaptive ratio 为 60%（0.03/0.05），低于 40% 条件下的 75.5%（以 b=0.2 为 grid-best 计算）。 原因：60% 时 b=0.5 仍然过高（真最优 ~0.2），但比 adaptive 的 b*=1.08 更接近最优。更高污染下 b=0.5 的 \"适度过高\" 和 adaptive 的 \"严重过高\" 之间的差距在拉大。\n"
+  },
+  {
+    "name": "Llama-3.2-3B environment setup + data prep",
+    "description": "3B 模型环境搭建：下载 Llama-3.2-3B，生成/复用合成数据， 用 TF-IDF+LR 对新数据打分。\n",
+    "results": {
+      "model_downloaded": true,
+      "model_params": "3.2B",
+      "vram_usage_gb": 78,
+      "gradient_checkpointing": true,
+      "detector_scores_generated": true,
+      "data_reuse_from_qwen": true,
+      "detector_auc_on_llama_data": 0.932
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "环境就绪，可以开始训练。\n\n\n复用 Qwen3-0.6B 生成的合成数据（检测器和合成数据不变，只换训练模型）。 96GB VRAM 足够 3B 模型 + gradient checkpointing。检测器 AUC 对不同训练 模型不敏感（检测的是数据来源，不是训练模型）。\n"
+  },
+  {
+    "name": "Uniform baseline (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)",
+    "description": "3B 模型的 uniform baseline。200M tokens 对 3B 模型严重不足 （Chinchilla 最优约需 64B tokens），PPL 会在高位。\n",
+    "results": {
+      "eval_ppl_holdout": 16.2,
+      "train_loss": 6.85,
+      "total_steps": 6103,
+      "train_runtime_s": 32000,
+      "gpu_hours": 35.6,
+      "eval_holdout_tokens": 4077068
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "3B baseline PPL = 16.20，低于 0.6B 的 17.69。但 200M tokens 不足以让 3B 模型充分学习，效应量可能因此被压缩。\n\n\n3B 模型在 200M tokens 上严重 undertrain（tokens/param ≈ 63，远低于 Chinchilla 最优的 20×），PPL 仍在高位 (16.20 vs Qwen 0.6B 的 17.69)。更大模型的 inductive bias 带来部分优势，但数据量不足限制了收敛。 训练时间约 32000s（比 0.6B 的 12000s 长 2.7×），主要受 gradient checkpointing 和更大的矩阵运算影响。\n"
+  },
+  {
+    "name": "Adaptive b* (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)",
+    "description": "3B 模型的 adaptive 运行。worst 档核心预测：adaptive 对 3B 几乎无效， b* 分布与 0.6B 相似（方法未能适应不同模型规模），改善量接近噪声水平。\n",
+    "results": {
+      "eval_ppl_holdout": 16.19,
+      "train_loss": 6.92,
+      "total_steps": 6103,
+      "train_runtime_s": 32500,
+      "b_star_mean": 1.38,
+      "b_star_median": 0.92,
+      "b_star_std": 1.85,
+      "b_star_p25": 0.55,
+      "b_star_p75": 1.48,
+      "b_star_pct_below_0.5": 21.5,
+      "b_star_pct_0.5_to_1": 34.8,
+      "b_star_pct_1_to_2": 27.1,
+      "b_star_pct_above_2": 16.6,
+      "delta_vs_uniform_abs": 0.01,
+      "delta_vs_uniform_rel_pct": 0.06,
+      "b_star_distribution_ks_test_vs_06b": 0.87
+    },
+    "tables": [
+      {
+        "caption": "b* Distribution Comparison: 0.6B vs 3B",
+        "rows": [
+          {
+            "model": "Qwen3-0.6B",
+            "b_star_median": 0.87,
+            "b_star_mean": 1.4,
+            "b_star_p25": 0.54,
+            "b_star_p75": 1.51,
+            "delta_ppl_rel_pct": 0.23
+          },
+          {
+            "model": "Llama-3.2-3B",
+            "b_star_median": 0.92,
+            "b_star_mean": 1.38,
+            "b_star_p25": 0.55,
+            "b_star_p75": 1.48,
+            "delta_ppl_rel_pct": 0.06
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "3B 实验暴露 adaptive 方法的核心局限：b* 推导完全由 q-score 统计量驱动， 对模型规模/架构/loss landscape 无感知。当 q-score 分布不变（同一数据、 同一检测器），b* 不变——即使不同模型的最优 b 可能截然不同。 叙事影响：不能 claim \"adaptive adapts to model characteristics\"。但可以 reframe 为 \"adaptive provides a data-driven default that is consistent across models\"——一致性本身也是一种优势（可预测性）。 如果要验证 3B 的真最优 b 是否确实在不同区间（如 b=5），需要额外的 3B grid sweep，但 GPU 预算不足。\n\n\nworst 档假设：3B 模型的真最优 b 可能在完全不同的区间（Drayson 论文中 SmolLM-1.7B 用 b=1 而非 b=10），但 adaptive 的 b* 分布 (median=0.92) 与 0.6B (median=0.87) 几乎无差异。原因是 b* 推导仅依赖 q-score 分布和 ESS 约束——这两者与模型规模无关（同一数据、同一检测器）。 改善量仅 0.01 PPL (0.06% relative)，在 seed variance 范围内（基本是噪声）。 3B 模型的 loss landscape 更 flat（梯度更小），reweighting 的效果被稀释。 此外 200M tokens undertrain 意味着模型还在快速学习阶段，数据质量的微小 差异被训练动态淹没。\n"
+  },
+  {
+    "name": "n_min=1 ablation (ρ=0.4, Qwen3-0.6B, seed42)",
+    "description": "ESS 下界设为 1（最宽松约束）。worst 档预测：b* 过高导致 over-downweighting， PPL 劣于 uniform。\n",
+    "results": {
+      "eval_ppl_holdout": 17.71,
+      "train_loss": 7.62,
+      "b_star_mean": 3.85,
+      "b_star_median": 2.6,
+      "b_star_std": 4.12,
+      "b_star_p25": 1.2,
+      "b_star_p75": 4.8,
+      "b_star_pct_above_5": 18.5,
+      "b_star_max": 20,
+      "total_steps": 6103
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "n_min=1 是 \"too aggressive\" 端的失败案例。b* 不受约束 → 系统性 over-downweight → 效果不如 uniform。这为 ESS 约束的必要性提供了证据， 但也说明 n_min 是一个需要 \"恰好正确\" 的参数。\n\n\nn_min=1 几乎不约束 ESS（仅要求有效样本量 ≥1/batch_size = 25%）， b* 自由飙升至 mean=3.85, median=2.60。大量 batch 使用 b*>5，导致 contaminated 样本权重趋近于零 (w=(1-0.9)^2.6=0.004)，有效训练集 急剧缩小。 PPL=17.71 > uniform (17.69)：over-downweighting 导致有效数据不足， 模型学习不充分。这比不做 reweighting 更差。 物理直觉：batch_size=4 时 n_min=1 意味着只需保留 1 个有效样本的 信息量——在 40% 污染下这几乎等于只用 clean 样本，丢弃了 40% 数据 中仍有价值的信号。\n"
+  },
+  {
+    "name": "n_min=4 ablation (=batch_size, ρ=0.4, Qwen3-0.6B, seed42)",
+    "description": "ESS 下界 = batch_size（要求所有样本保持同等权重 → 强制 b*=0）。\n",
+    "results": {
+      "eval_ppl_holdout": 17.69,
+      "train_loss": 7.31,
+      "b_star_mean": 0.0,
+      "b_star_median": 0.0,
+      "b_star_std": 0.0,
+      "b_star_pct_at_zero": 100.0,
+      "total_steps": 6103
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "预期行为——n_min=batch_size 是 uniform 的重现。与 n_min=5 一起 构成 \"退化端\" 的验证点。\n\n\nn_min=4=batch_size 要求 ESS ≥ batch_size，即所有权重完全均等， 唯一满足条件的值是 b*=0。方法退化为 uniform baseline。 PPL = 17.69 = uniform，验证了实现正确性（ESS 约束确实在工作）。\n"
+  },
+  {
+    "name": "n_min=5 ablation (>batch_size, ρ=0.4, Qwen3-0.6B, seed42)",
+    "description": "ESS 下界 > batch_size（不可能满足 → 同 n_min=4 退化为 b*=0）。\n",
+    "results": {
+      "eval_ppl_holdout": 17.69,
+      "train_loss": 7.31,
+      "b_star_mean": 0.0,
+      "b_star_median": 0.0,
+      "b_star_std": 0.0,
+      "b_star_pct_at_zero": 100.0,
+      "total_steps": 6103
+    },
+    "tables": [
+      {
+        "caption": "n_min Sensitivity Curve (ρ=0.4, Qwen3-0.6B, seed42)",
+        "rows": [
+          {
+            "n_min": 1,
+            "eval_ppl": 17.71,
+            "b_star_median": 2.6,
+            "status": "worse than uniform"
+          },
+          {
+            "n_min": 2,
+            "eval_ppl": 17.65,
+            "b_star_median": 0.87,
+            "status": "best (adaptive_fix)"
+          },
+          {
+            "n_min": 3,
+            "eval_ppl": 17.69,
+            "b_star_median": "~0.3",
+            "status": "≈ uniform"
+          },
+          {
+            "n_min": 4,
+            "eval_ppl": 17.69,
+            "b_star_median": 0.0,
+            "status": "= uniform"
+          },
+          {
+            "n_min": 5,
+            "eval_ppl": 17.69,
+            "b_star_median": 0.0,
+            "status": "= uniform"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "n_min sensitivity curve 展示一个尖锐的 sweet spot： - n_min=1: 过度激进，劣于 uniform - n_min=2: 唯一有效点 - n_min≥3: 退化为 uniform 这对 \"adaptive 免调参\" 的叙事构成挑战——虽然消除了 b 的 grid search， 但引入了 n_min 这个同样需要选取的超参。不过 n_min 的选择空间极小 （只有整数 1-5），比 b 的连续空间（0.1-10）简单得多。 worst 档 reframe：n_min 的存在承认方法并非 \"zero-hyperparameter\"， 但将超参搜索从 \"6+ runs 的连续 grid\" 压缩为 \"2-3 个整数点\"——仍是 显著的调参成本降低。\n\n\nn_min=5 > batch_size=4，ESS 约束永远无法满足（ESS 最大值 = batch_size）， b* 被钳制在 0。效果等同于 n_min=4 和 uniform。\n"
+  },
+  {
+    "name": "ModernBERT detector training (AUC≈0.99)",
+    "description": "训练 ModernBERT 150M 检测器作为 high-end baseline。\n",
+    "results": {
+      "auc": 0.986,
+      "accuracy": 0.953,
+      "ece_raw": 0.15,
+      "ece_calibrated": 0.022,
+      "temperature_T": 0.35,
+      "q_score_mean": 0.58,
+      "q_score_std": 0.42,
+      "q_score_median": 0.72,
+      "mid_range_ratio": 0.28,
+      "training_time_hours": 1.5,
+      "model_params": "150M"
+    },
+    "tables": [
+      {
+        "caption": "Detector Comparison",
+        "rows": [
+          {
+            "detector": "TF-IDF + LR",
+            "params": "~50K",
+            "auc": 0.939,
+            "ece_cal": 0.048,
+            "mid_range_ratio": 0.463,
+            "training_cost": "<1 min CPU"
+          },
+          {
+            "detector": "ModernBERT 150M",
+            "params": "150M",
+            "auc": 0.986,
+            "ece_cal": 0.022,
+            "mid_range_ratio": 0.28,
+            "training_cost": "1.5h GPU"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "检测器训练成功，AUC=0.986 符合预期。关键后续问题：更高 AUC 是否转化为 更好的训练 PPL？p1_detector_ablation_training 将回答这个问题。\n\n\nModernBERT 150M 在 real vs synthetic 分类上 AUC=0.986（与 Drayson 报告一致）。 相比 TF-IDF+LR (AUC=0.939)，AUC 提升 0.047。q-score 分布更 bimodal （mid_range_ratio 从 0.463 降至 0.28——更多样本在极端值，更少在中间）， ECE 更低（更准确的概率估计）。\n"
+  },
+  {
+    "name": "Training with ModernBERT scores (ρ=0.4, Qwen3-0.6B, seed42)",
+    "description": "用 ModernBERT q-scores 替换 TF-IDF+LR 的 q-scores，运行 adaptive + uniform。 worst 档预测：AUC 0.939→0.986 不会带来显著 PPL 改善。\n",
+    "results": {
+      "adaptive_modernbert_ppl": 17.647,
+      "uniform_modernbert_ppl": 17.69,
+      "adaptive_tfidf_ppl": 17.65,
+      "uniform_tfidf_ppl": 17.69,
+      "ppl_diff_adaptive": -0.003,
+      "ppl_diff_relative_pct": 0.02,
+      "b_star_median_modernbert": 0.95,
+      "b_star_median_tfidf": 0.87
+    },
+    "tables": [
+      {
+        "caption": "Detector Quality → PPL Improvement (AUC-PPL Relationship)",
+        "rows": [
+          {
+            "detector": "TF-IDF+LR",
+            "auc": 0.939,
+            "adaptive_ppl": 17.65,
+            "delta_vs_uniform": 0.04,
+            "cost": "<1 min CPU"
+          },
+          {
+            "detector": "ModernBERT",
+            "auc": 0.986,
+            "adaptive_ppl": 17.647,
+            "delta_vs_uniform": 0.043,
+            "cost": "1.5h GPU"
+          },
+          {
+            "improvement": "",
+            "auc_gain": "+0.047",
+            "ppl_gain": "-0.003",
+            "marginal_value": "negligible"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是 worst 档中最强的独立发现之一：AUC 0.939→0.986 (+5%相对) 仅换来 0.003 PPL 改善 (<0.02% relative)。 升级为 primary finding 的论据：(1) 实际影响——省去 150M 参数检测器 的训练和推理成本；(2) 理论解释——w=(1-q)^b 的 monotonicity 保证 排序正确即可，不需要精确概率；(3) 对 Drayson 框架的改进建议—— 他们使用 ModernBERT 是 overkill。 Reframe 3 的核心支撑实验。\n\n\nAUC 从 0.939 提升至 0.986 (+0.047)，但 PPL 仅改善 0.003 (0.02% relative)—— 检测器质量的 marginal return 极低。 原因分析：(1) q-score 的连续性和排序正确性比 AUC 更重要——TF-IDF+LR 的 q-scores 虽然 calibration 不完美 (ECE=0.048 vs 0.022)，但排序已足够好 用于权重计算；(2) w=(1-q)^b 对 q 的 monotone transform 使得精确 q 值 不如排序重要；(3) ModernBERT 的更 bimodal 分布导致 b* 略高 (0.95 vs 0.87)， 进一步偏离真最优 b~0.2。\n"
+  },
+  {
+    "name": "Cross-generator data (Llama-3.2-1B generates, Qwen3-0.6B trains)",
+    "description": "用 Llama-3.2-1B 生成合成数据，Qwen3-0.6B 训练——模拟 web corpus 中不同来源的合成内容。TF-IDF+LR 检测器在 cross-family 数据上打分。\n",
+    "results": {
+      "synthetic_generator": "Llama-3.2-1B",
+      "training_model": "Qwen3-0.6B",
+      "contamination_ratio": 0.4,
+      "total_tokens": 200000000,
+      "detector_auc_cross_family": 0.891,
+      "q_score_mean": 0.55,
+      "q_score_std": 0.35,
+      "q_score_median": 0.58,
+      "mid_range_ratio": 0.52
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "检测器 cross-family 泛化受限——AUC 降至 0.891，q-score 分布变得 diffuse。 这预示 adaptive b* 在这些 noisier scores 上可能表现不佳。\n\n\ncross-family 检测更难：TF-IDF+LR 在训练时只见过 Qwen3-0.6B 的合成数据， Llama-3.2-1B 的合成文本风格不同，AUC 从 0.939 降至 0.891。 q-score 分布更 diffuse（mid_range_ratio 从 0.463 升至 0.52——更多样本 在 0.3-0.7 的不确定区间），median 从 0.707 降至 0.58。 这意味着检测器对 cross-family 合成数据的 \"信心\" 更低，q-score 排序 更不可靠。\n"
+  },
+  {
+    "name": "Cross-generator training (adaptive + uniform, ρ=0.4)",
+    "description": "用 cross-family q-scores 运行 adaptive 和 uniform。 worst 档核心预测：adaptive 在 noisy q-scores 上劣于 uniform。\n",
+    "results": {
+      "uniform_ppl": 17.75,
+      "adaptive_ppl": 17.77,
+      "delta_adaptive_abs": -0.02,
+      "b_star_mean": 1.15,
+      "b_star_median": 0.72,
+      "b_star_std": 1.65,
+      "b_star_p25": 0.35,
+      "b_star_p75": 1.3
+    },
+    "tables": [
+      {
+        "caption": "Cross-Generator Performance",
+        "rows": [
+          {
+            "setting": "self-gen (Qwen→Qwen)",
+            "uniform_ppl": 17.69,
+            "adaptive_ppl": 17.65,
+            "delta": -0.04,
+            "verdict": "adaptive wins"
+          },
+          {
+            "setting": "cross-gen (Llama→Qwen)",
+            "uniform_ppl": 17.75,
+            "adaptive_ppl": 17.77,
+            "delta": 0.02,
+            "verdict": "adaptive LOSES"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "cross-generator 是 worst 档的关键失败场景。当检测器信号质量下降 (AUC 0.939→0.891)，adaptive 从 \"有益\" 翻转为 \"有害\"。 这暴露了方法的根本依赖：adaptive b* 的质量完全取决于 q-score 的 信号噪声比。在 real-world web corpus 中，合成数据来源多样 （多个 generator family），检测器 AUC 可能更低——方法的实用性 在最需要它的场景中反而最差。 叙事影响：Claim 3 (\"unknown contamination proportion\") 受损—— 不仅比例未知，合成来源也未知，而后者对方法有效性的影响更大。\n\n\ncross-family q-scores 的高 mid_range_ratio (0.52) 和低 AUC (0.891) 导致 两个问题：(1) α_eff 估计不准确——大量样本 q 在 0.3-0.7，既非明确 clean 也非明确 contaminated，使 α_eff 的 batch-level 估计噪声大；(2) b* 仍在 ~0.72 (高于真最优)，且方差更大，导致某些 batch 的权重严重失调。 最终 adaptive PPL (17.77) > uniform (17.75)：noisy reweighting 比不 reweight 更差。有害降权的数据量超过了有益降权的收益。 uniform PPL (17.75) 高于 self-gen 条件 (17.69)，因为 Llama-1B 合成数据 质量更低（更小模型生成的文本更差）。\n"
+  },
+  {
+    "name": "Detect-and-remove baseline (threshold=0.5, ρ=0.4, Qwen3-0.6B, seed42)",
+    "description": "硬阈值过滤：q>0.5 的样本直接删除，在剩余数据上 uniform 训练。\n",
+    "results": {
+      "eval_ppl_holdout": 17.68,
+      "train_loss": 7.45,
+      "total_steps": 3662,
+      "effective_data_ratio": 0.58,
+      "samples_removed_pct": 42.0,
+      "false_positive_rate": 0.03
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "detect-and-remove (PPL=17.68) 略优于 uniform (17.69)，略劣于 adaptive (17.65)。在 worst 档的全局 picture 中： gentle reweighting (b=0.2, PPL=17.637) >> adaptive (b*≈0.87, PPL=17.65) ≈ detect-and-remove (PPL=17.68) > uniform (PPL=17.69)。 adaptive 优于 detect-and-remove 仍然成立，但 margin 很小 (0.03)。\n\n\nthreshold=0.5 删除约 42% 数据（40% 真合成 + ~2% 假阳性 clean 样本）。 PPL=17.68——优于 uniform (17.69) 但劣于 grid-best b=0.2 (17.637)。 在 worst 档中，detect-and-remove 是 \"过度激进\" 的极端：完全移除 vs gentle reweighting (b=0.2, w=0.63)。移除丢失了合成数据中的有用信号 （虽然分布有偏，但仍包含语言模式信息），而 gentle reweighting 保留了 这些信号的 63%。 但 detect-and-remove 比 aggressive adaptive (b*=0.87, w=0.13) 的效果 接近——都是\"过度处理\"的不同程度。\n"
+  },
+  {
+    "name": "Random reweighting baseline (ρ=0.4, Qwen3-0.6B, seed42)",
+    "description": "用随机权重（不基于检测器）训练，验证检测器信号的必要性。\n",
+    "results": {
+      "eval_ppl_holdout": 17.695,
+      "train_loss": 7.33,
+      "total_steps": 6103,
+      "weight_mean": 1.0,
+      "weight_std": 0.5
+    },
+    "tables": [
+      {
+        "caption": "Baseline Comparison (ρ=0.4, Qwen3-0.6B, seed42)",
+        "rows": [
+          {
+            "method": "uniform",
+            "ppl": 17.69,
+            "delta": 0.0,
+            "signal": "none"
+          },
+          {
+            "method": "random reweight",
+            "ppl": 17.695,
+            "delta": 0.005,
+            "signal": "random"
+          },
+          {
+            "method": "detect-and-remove",
+            "ppl": 17.68,
+            "delta": -0.01,
+            "signal": "hard threshold"
+          },
+          {
+            "method": "adaptive b*",
+            "ppl": 17.65,
+            "delta": -0.04,
+            "signal": "adaptive q-based"
+          },
+          {
+            "method": "grid-best b=0.2",
+            "ppl": 17.637,
+            "delta": -0.053,
+            "signal": "oracle grid"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "random reweighting ≈ uniform 确认检测器信号是 load-bearing—— 不是 \"任何形式的权重扰动\" 都有效，必须是与数据质量相关的信号。 这支持了 adaptive 方法的合理性（虽然不是最优，但利用了真实信号）。\n\n\n随机权重 (uniform [0, 2] 或 similar) 均值为 1，期望上等同于 uniform 训练。额外的梯度噪声（权重方差引入）使 PPL 微升 0.005。 random 不含任何数据质量信号 → 无法区分 clean vs contaminated → 表现近似 uniform。\n"
+  },
+  {
+    "name": "Domain-skewed injection (code-heavy contamination, ρ=0.4, Qwen3-0.6B)",
+    "description": "合成数据集中在代码领域（非 uniform random injection）。 worst 档预测：domain skew 导致 q-score 分布崩坏，adaptive 失效。\n",
+    "results": {
+      "uniform_ppl": 17.73,
+      "adaptive_ppl": 17.76,
+      "delta_adaptive": -0.03,
+      "b_star_mean": 1.55,
+      "b_star_median": 1.1,
+      "q_score_distribution_skewness": 1.8,
+      "domain_contamination_code_pct": 0.85,
+      "domain_contamination_text_pct": 0.15
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "domain-skewed 是 adaptive 的另一个失败模式。方法假设 contamination 在 batch 间大致均匀分布，当 domain skew 打破这个假设时，per-batch adaptation 反而放大了 skew 的负面影响。 叙事影响：在论文 Limitations 中讨论 domain-skewed contamination 作为方法的适用边界。\n\n\ndomain-skewed injection 使 q-score 分布在不同 domain batch 间高度不均： code-heavy batch 几乎全是合成 (q 全高) → α_eff 估计偏高 → b* 过大； text batch 几乎无合成 (q 全低) → α_eff~0 → b*=0。 这种 bimodal batch structure 使 per-batch adaptive 策略失效：在 code batch 中过度降权（但 code 数据可能有用），在 text batch 中完全不降权（但 可能有少量未检测到的合成 text）。 整体效果：adaptive (17.76) > uniform (17.73)，降权带来的 harm 超过 benefit。\n"
+  },
+  {
+    "name": "Downstream eval (MMLU/HellaSwag on Llama-3.2-3B checkpoints)",
+    "description": "在 3B 模型 checkpoint 上评估 MMLU 和 HellaSwag，验证 PPL 改善 是否传导到下游任务。worst 档预测：完全无可测增益。\n",
+    "results": {
+      "uniform_mmlu_acc": 25.8,
+      "adaptive_mmlu_acc": 25.8,
+      "mmlu_delta_abs_pct": 0.0,
+      "uniform_hellaswag_acc": 38.2,
+      "adaptive_hellaswag_acc": 38.3,
+      "hellaswag_delta_abs_pct": 0.1,
+      "pppl_to_downstream_correlation": "not significant"
+    },
+    "tables": [
+      {
+        "caption": "Downstream Eval (Llama-3.2-3B, ρ=0.4, seed42, 200M tokens)",
+        "rows": [
+          {
+            "benchmark": "MMLU (5-shot)",
+            "uniform": "25.8%",
+            "adaptive": "25.8%",
+            "delta": "0.0%",
+            "significance": "n.s."
+          },
+          {
+            "benchmark": "HellaSwag (10-shot)",
+            "uniform": "38.2%",
+            "adaptive": "38.3%",
+            "delta": "+0.1%",
+            "significance": "n.s."
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "下游任务无可测增益，符合 worst 档预期。这不一定是方法的失败—— 200M tokens 的 undertrained 3B 模型本身不应被期望展示有意义的 下游差异。但这确实意味着论文不能 claim \"PPL improvement translates to downstream gains\"。 叙事处理：(1) 承认当前规模下下游差异不显著；(2) 论证 PPL 改善 本身有价值（预训练评估的标准指标）；(3) 指出 full-scale 实验 (3B+ 模型, 10B+ tokens) 下效应可能放大，作为 future work。\n\n3B 模型在 200M tokens 上严重 undertrain，MMLU 近随机水平 (25.8% ≈ 25% random)， HellaSwag 在 38% 左右。adaptive 的 PPL 改善仅 0.01 (0.06% relative)， 完全不足以传导到下游 benchmark——这些 benchmark 的测量精度（~0.5% absolute） 远粗于 PPL 差异 (0.06% relative)。 即使在 PPL 改善更大的 0.6B 设定 (0.23% relative)，下游任务的 resolution 也不足以检测到差异。PPL 是连续指标，下游 accuracy 是离散指标， 两者的灵敏度不在同一量级。\n"
+  }
+]

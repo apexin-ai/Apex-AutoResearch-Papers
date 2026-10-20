@@ -1,0 +1,18 @@
+{
+  "exp_id": "grid_b0_2_seed42",
+  "project": "provenance_weight_training",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:26:47.719Z",
+    "updated_at": "2026-05-16T17:17:01.201Z",
+    "hypothesis": "Grid-b sweep b=0.2 on ρ=0.4 data, seed42. Interpolation between b=0.1 and b=0.3 to characterize PPL curve shape in low-b region.",
+    "parent": "grid_b_seed42_batch",
+    "conclusion": "killed",
+    "notes": "Director 预算修正砍掉：b=0.1 和 b=0.3 两点足够推断趋势，b=0.2 不再需要。→ D042 修正：grid_b0_2 重新加入，排在 grid_b0_1/b0_3 之后的下一个空 GPU。"
+  },
+  "timestamp": "2026-05-16T17:17:01.345328+00:00",
+  "trigger": "update_registry"
+}

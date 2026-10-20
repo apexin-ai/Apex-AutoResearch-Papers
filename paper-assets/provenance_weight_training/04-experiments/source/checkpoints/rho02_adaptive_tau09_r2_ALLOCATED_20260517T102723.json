@@ -1,0 +1,41 @@
+{
+  "exp_id": "rho02_adaptive_tau09_r2",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:25:34.927Z",
+    "updated_at": "2026-05-17T10:27:23.012Z",
+    "spec": {
+      "hypothesis": "Adaptive weighting with τ=0.9 on ρ=0.2 (low contamination): even at 20% contamination, stricter α_eff threshold should find non-trivial b* and outperform uniform. Retry on westd-30476 after 47453 loss.",
+      "parent": "rho02_adaptive_tau09_seed42",
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "weighting_method": "adaptive",
+      "contamination_ratio": 0.2,
+      "tau": 0.9,
+      "n_min": 2,
+      "data_path": "data/scored_data_rho02.jsonl",
+      "data_count": 206111,
+      "command": "bash scripts/run_rho02_adaptive_tau09_seed42.sh",
+      "target_gpu": "westd-30476:cuda:3",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:3"
+      ],
+      "account": "root"
+    },
+    "server": "westd-30476",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-30476",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-17T10:26:56.170Z"
+    }
+  },
+  "timestamp": "2026-05-17T10:27:23.172380+00:00",
+  "trigger": "update_registry"
+}

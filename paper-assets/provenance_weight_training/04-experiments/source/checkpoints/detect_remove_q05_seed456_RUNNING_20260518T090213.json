@@ -1,0 +1,34 @@
+{
+  "exp_id": "detect_remove_q05_seed456",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:46:10.870Z",
+    "updated_at": "2026-05-18T09:02:12.772Z",
+    "hypothesis": "Detect-and-remove baseline with q>0.5 threshold and seed=456 will produce similar PPL to seed42 (17.29), confirming reproducibility of the filtering approach across seeds.",
+    "parent": "",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q05_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3",
+      "server": "westd-30476",
+      "gpu": 1,
+      "data_path": "data/scored_data_filtered_q05.jsonl",
+      "data_count": 153725,
+      "model_name": "models/Qwen/Qwen3-0.6B",
+      "seed": 456,
+      "weighting_method": "uniform",
+      "threshold": 0.5,
+      "max_steps": 6103,
+      "pid": 25514,
+      "output_dir": "/root/autodl-tmp/output/models/detect_remove_q05_seed456",
+      "tmux_session": "detect_remove_q05_seed456",
+      "total_steps": 6103,
+      "estimated_time": "3.5h",
+      "note": "Restarted after killing bugged PID 13654 (had extra --eval_data_path/--eval_steps/--use_wandb causing 5x slowdown + 29GB extra VRAM)"
+    }
+  },
+  "timestamp": "2026-05-18T09:02:13.030809+00:00",
+  "trigger": "update_registry"
+}

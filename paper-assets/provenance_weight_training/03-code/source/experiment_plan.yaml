@@ -1,0 +1,274 @@
+experiments:
+- id: mvp_uniform
+  name: Uniform baselines × 3 seeds (ρ=0.4, Qwen3-0.6B, 200M tokens)
+  claim: Claim 2
+  priority: MVP
+  depends_on: ''
+  gpu_hours_estimate: 10.3
+  pass_criteria: Baselines established
+  registry_id: uniform_seed42
+- id: mvp_grid_b_seed42
+  name: Grid-b sweep (b=0.5/1.0/1.5/2.0/3.0/5.0), seed42
+  claim: Claim 2
+  priority: MVP
+  depends_on: mvp_uniform
+  gpu_hours_estimate: 22.5
+  pass_criteria: Best-b identified, monotonic trend
+  registry_id: grid_b_seed42_batch
+- id: mvp_grid_b_seed123
+  name: Grid-b sweep × 6 values, seed123
+  claim: Claim 2
+  priority: MVP
+  depends_on: mvp_uniform
+  gpu_hours_estimate: 22.0
+  pass_criteria: Cross-seed consistency
+  registry_id: grid_b0_5_seed123
+- id: mvp_grid_b_seed456
+  name: Grid-b sweep × 6 values, seed456
+  claim: Claim 2
+  priority: MVP
+  depends_on: mvp_uniform
+  gpu_hours_estimate: 22.0
+  pass_criteria: 3-seed grid-b curve complete
+  registry_id: grid_b0_5_seed456
+- id: mvp_adaptive_fix
+  name: Adaptive_fix (n_min=2, no EMA) × 3 seeds
+  claim: Claim 1, Claim 2
+  priority: MVP
+  depends_on: mvp_uniform
+  gpu_hours_estimate: 10.0
+  pass_criteria: MVP ratio ≥ 90% or Path B pass
+  registry_id: adaptive_fix_seed42
+- id: mvp_detector
+  name: TF-IDF + LR detector (AUC=0.939, ECE=0.048)
+  claim: Claim 1
+  priority: MVP
+  depends_on: ''
+  gpu_hours_estimate: 0.1
+  pass_criteria: AUC ≥ 0.85, ECE ≤ 0.10
+  registry_id: detector_tfidf_lr
+- id: p0_grid_b_low_seed42
+  name: Grid-b low (b=0.1/0.2/0.3), seed42 (ρ=0.4, Qwen3-0.6B)
+  claim: Claim 2
+  priority: P0
+  depends_on: mvp_grid_b_seed42
+  gpu_hours_estimate: 11.0
+  pass_criteria: Confirm b=0.5 is optimal OR find better b<0.5; update grid-best accordingly
+  notes: 'Script: /root/provenance_weight_training/run_grid_b_low_seed42.sh'
+- id: p0_grid_b_low_seed123
+  name: Grid-b low (b=0.1/0.2/0.3), seed123 (ρ=0.4, Qwen3-0.6B)
+  claim: Claim 2
+  priority: P0
+  depends_on: mvp_grid_b_seed123
+  gpu_hours_estimate: 11.0
+  pass_criteria: Cross-seed consistency for b<0.5 region
+  notes: 'Script: /root/provenance_weight_training/run_grid_b_low_seed123.sh'
+- id: p0_grid_b_low_seed456
+  name: Grid-b low (b=0.1/0.2/0.3), seed456 (ρ=0.4, Qwen3-0.6B)
+  claim: Claim 2
+  priority: P0
+  depends_on: mvp_grid_b_seed456
+  gpu_hours_estimate: 11.0
+  pass_criteria: 3-seed b<0.5 curve complete
+  notes: 'Script: /root/provenance_weight_training/run_grid_b_low_seed456.sh'
+- id: p0_grid_b_low_eval
+  name: Post-hoc eval for all 9 b<0.5 checkpoints
+  claim: Claim 2
+  priority: P0
+  depends_on: p0_grid_b_low_seed42, p0_grid_b_low_seed123, p0_grid_b_low_seed456
+  gpu_hours_estimate: 1.0
+  pass_criteria: All 9 eval_ppl_holdout values collected
+  notes: 'Script: /root/provenance_weight_training/run_posthoc_eval_grid_b_low.sh'
+- id: p0_contamination_60_datagen
+  name: Data generation for ρ=0.6 (Qwen3-0.6B, 200M tokens)
+  claim: Claim 1, Claim 2
+  priority: P0
+  depends_on: ''
+  gpu_hours_estimate: 4.0
+  pass_criteria: scored_data_60.jsonl ready with contamination_ratio=0.6
+  registry_id: p0_contamination_60_datagen
+- id: p0_contamination_60_uniform
+  name: Uniform baseline (ρ=0.6, Qwen3-0.6B, seed42)
+  claim: Claim 1
+  priority: P0
+  depends_on: p0_contamination_60_datagen
+  gpu_hours_estimate: 3.6
+  pass_criteria: Baseline PPL established for 60% condition
+  registry_id: contamination_60_uniform_seed42
+- id: p0_contamination_60_adaptive
+  name: Adaptive b* (ρ=0.6, Qwen3-0.6B, seed42)
+  claim: Claim 1, Claim 2
+  priority: P0
+  depends_on: p0_contamination_60_datagen
+  gpu_hours_estimate: 3.6
+  pass_criteria: 'Δ_adaptive(60%) > Δ_adaptive(40%): effect amplifies with contamination'
+  registry_id: contamination_60_seed42_r2
+- id: p0_contamination_60_grid_b0_5
+  name: Grid-b=0.5 (ρ=0.6, Qwen3-0.6B, seed42)
+  claim: Claim 2
+  priority: P0
+  depends_on: p0_contamination_60_datagen
+  gpu_hours_estimate: 3.6
+  pass_criteria: Grid reference for adaptive comparison at 60%
+  registry_id: contamination_60_grid_b0_5_seed42
+- id: p0_nmin_1
+  name: n_min=1 ablation (ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 1
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: Characterize n_min=1 behavior (may over-downweight)
+  registry_id: nmin1_seed42
+- id: p0_nmin_4
+  name: n_min=4 ablation (=batch_size, ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 1
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: n_min=batch_size forces b*=0 always → expect uniform-equivalent
+  registry_id: nmin4_seed42
+- id: p0_nmin_5
+  name: n_min=5 ablation (>batch_size, ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 1
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: n_min>batch_size → degenerate case, uniform performance
+  notes: n_min=2 (adaptive_fix_seed42) and n_min=3 (adaptive_seed42) already done
+- id: p1_detector_modernbert
+  name: ModernBERT detector training (AUC≈0.99)
+  claim: Claim 1
+  priority: P1
+  depends_on: mvp_detector
+  gpu_hours_estimate: 2.0
+  pass_criteria: Detector trained, scores generated
+  notes: detector_modernbert in registry (QUEUED). Need to re-score training data.
+- id: p1_detector_ablation_training
+  name: Training with ModernBERT scores (ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 1
+  priority: P1
+  depends_on: p1_detector_modernbert
+  gpu_hours_estimate: 7.0
+  pass_criteria: 'Quantify AUC→PPL relationship: higher AUC detector → better/worse
+    reweighting'
+  notes: adaptive + uniform with ModernBERT scores
+- id: p1_cross_generator_datagen
+  name: Cross-generator data (Llama-3.2-1B generates, Qwen3-0.6B trains)
+  claim: Claim 3
+  priority: P1
+  depends_on: ''
+  gpu_hours_estimate: 8.0
+  pass_criteria: Synthetic data from different model family ready + detector scored
+- id: p1_cross_generator_training
+  name: Cross-generator training (adaptive + uniform, ρ=0.4)
+  claim: Claim 3
+  priority: P1
+  depends_on: p1_cross_generator_datagen
+  gpu_hours_estimate: 7.0
+  pass_criteria: Adaptive maintains advantage with cross-generator contamination
+- id: p1_llama3b_setup
+  name: Llama-3.2-3B environment setup + data prep (demoted from P0 by D024)
+  claim: Claim 1, Claim 2
+  priority: P1
+  depends_on: ''
+  gpu_hours_estimate: 1.0
+  pass_criteria: Model downloaded, detector scores generated, data ready
+- id: p1_llama3b_uniform
+  name: Uniform baseline (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)
+  claim: Claim 1
+  priority: P1
+  depends_on: p1_llama3b_setup
+  gpu_hours_estimate: 12.0
+  pass_criteria: Baseline PPL for 3B model
+- id: p1_llama3b_adaptive
+  name: Adaptive b* (ρ=0.4, Llama-3.2-3B, seed42, 200M tokens)
+  claim: Claim 1, Claim 2
+  priority: P1
+  depends_on: p1_llama3b_setup
+  gpu_hours_estimate: 12.0
+  pass_criteria: adaptive > uniform on 3B model
+- id: p1_baseline_detect_remove
+  name: Detect-and-remove baseline (threshold=0.5, ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 2
+  priority: P1
+  depends_on: mvp_detector
+  gpu_hours_estimate: 3.6
+  pass_criteria: Adaptive reweighting > hard filtering (preserves more data)
+  registry_id: dr_epoch_matched_indep_lr_seed42
+- id: p1_baseline_random_reweight
+  name: Random reweighting baseline (ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 1
+  priority: P1
+  depends_on: ''
+  gpu_hours_estimate: 3.6
+  pass_criteria: Adaptive > random → detector signal is load-bearing
+  registry_id: random_reweight_baseline_seed42
+- id: p0_ess_only_baseline
+  name: 'ESS-only adaptive baseline: max{b : ESS≥n_min} (ρ=0.4, Qwen3-0.6B, seed42)'
+  claim: Claim 1
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: Dual-constraint adaptive b* ≥ ESS-only b* on eval_ppl_holdout
+  notes: 'Head-to-head: min-intervention (α_eff+ESS) vs max-intervention (ESS-only).
+    If ESS-only wins, α_eff''s independent value is weakened.'
+  registry_id: ess_only_seed42
+- id: p0_tau_fix_validation
+  name: τ independence fix + validation (ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 3
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: Fixed τ (no contamination_ratio dependency) achieves similar PPL
+    to current adaptive_fix
+  notes: 'CRITICAL: current code L278-279 has τ = 1.0 - contamination_ratio * 0.5,
+    contradicts Claim 3'
+  registry_id: adaptive_fix_seed42
+- id: p0_tau_sweep
+  name: τ sweep (τ=0.5/0.6/0.7/0.8/0.9, ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 3
+  priority: P0
+  depends_on: p0_tau_fix_validation
+  gpu_hours_estimate: 5.0
+  pass_criteria: 'Method robust across τ values: PPL variance < 0.05 across τ range'
+  notes: 'tau=0.6 running. Remaining: tau=0.5/0.7/0.9/0.95 configs pre-staging'
+  registry_id: tau_06_seed42
+- id: p0_golden_ratio_baseline
+  name: Golden Ratio oracle baseline (w=1/φ, ρ=0.4, Qwen3-0.6B, seed42)
+  claim: Claim 2, Claim 3
+  priority: P0
+  depends_on: mvp_uniform
+  gpu_hours_estimate: 3.6
+  pass_criteria: Adaptive ≥ Golden Ratio OR clear explanation of when GR is better/worse
+  notes: Fixed weight w*=1/φ≈0.618 for synthetic, 1.0 for real. Tests known-proportion
+    oracle
+  registry_id: golden_ratio_seed42
+- id: p0_batchsize_8
+  name: batch_size=8 + grad_accum=2 (ρ=0.4, Qwen3-0.6B, seed42, adaptive)
+  claim: Claim 1
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: n_min=2 still effective at batch_size=8; b* distribution broadens
+  registry_id: bs8_nmin2_seed42_r2
+- id: p0_batchsize_16
+  name: batch_size=16 + grad_accum=1 (ρ=0.4, Qwen3-0.6B, seed42, adaptive)
+  claim: Claim 1
+  priority: P0
+  depends_on: mvp_adaptive_fix
+  gpu_hours_estimate: 3.6
+  pass_criteria: n_min knife-edge resolves with larger batch; b* variance decreases
+- id: p2_domain_skewed
+  name: Domain-skewed injection (code-heavy contamination, ρ=0.4, Qwen3-0.6B)
+  claim: Claim 3
+  priority: P2
+  depends_on: ''
+  gpu_hours_estimate: 7.0
+  pass_criteria: Adaptive handles non-uniform domain distribution
+- id: p2_downstream_eval
+  name: Downstream eval (MMLU/HellaSwag on Llama-3.2-3B checkpoints)
+  claim: Claim 1, Claim 2
+  priority: P2
+  depends_on: p0_llama3b_adaptive
+  gpu_hours_estimate: 2.0
+  pass_criteria: Downstream task improvement correlates with PPL improvement

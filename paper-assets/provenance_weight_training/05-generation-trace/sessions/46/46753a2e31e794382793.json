@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46753a2e31e794382793",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis grid b1 5 seed123",
+  "task_key": "worker_analysis_grid_b1_5_seed123_20260514T110803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grid_b1_5_seed123_20260514T110803_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "c17c4ca546235f0566d456db523b319df7f2d43e914df3a623f7a510b787fd60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMETRICS:\neval_ppl_holdout: N/A (训练未配置 evaluation)\neval_loss: N/A\neval_holdout_tokens: N/A\ntrain_loss: 10.4776\ntotal_steps: 6103\ntrain_runtime_s: 15053.1\ngpu_hours: 4.18\nwandb_run_id: N/A\n\nCHECKPOINT:\npath: /root/provenance_weight_training/output/models/grid_b1_5_seed123/final/\nexists: true\nsize_mb: ~1137 (model.safetensors 1192MB)\n\nANOMALIES:\n- 无 OOM、NaN、error\n- 唯一 warning: FutureWarning `tokenizer` deprecated, use `processing_class` (无害)\n- train_loss 偏高 (10.48)，loss 从 ~11.3 降到 ~9.9，仅训练 0.26 epoch\n- 无 eval 步骤——训练脚本未配置 holdout evaluation，需要单独跑 eval\n```\n\n**关键发现**：这次训练**没有执行 evaluation**，日志中完全没有 eval 相关输出。需要用单独的 eval 脚本对 `final/` checkpoint 跑 held-out perplexity 才能拿到 eval_ppl_holdout 等指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grid-b1-5-seed123.md"
+}

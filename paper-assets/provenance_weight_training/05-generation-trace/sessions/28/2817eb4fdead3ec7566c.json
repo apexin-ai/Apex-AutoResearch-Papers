@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2817eb4fdead3ec7566c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops fix grid b0 5 seed456 monitoring",
+  "task_key": "worker_ops_fix_grid_b0_5_seed456_monitoring_20260514T212131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_grid_b0_5_seed456_monitoring_20260514T212131_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "75ba44b01b50c9bc7e0906a7e90a5d76f97c7cd2e6c3b3fc25f2f09c6aa29e96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| Exit marker 删除 | ✅ DELETED_OK |\n| 日志重定向 | ✅ 工作正常，74KB 已写入，PID 145565 |\n| tmux session | 存在（`grid_b0_5_seed456`） |\n| 训练进度 | **step 56/6103**（~1%），loss ~2.2-2.8，速度 2.12s/step，预计剩余 ~3h34m |\n| 日志路径 | `~/runs/provenance_weight_training/grid_b0_5_seed456.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-grid-b0-5-seed456-monitoring.md"
+}

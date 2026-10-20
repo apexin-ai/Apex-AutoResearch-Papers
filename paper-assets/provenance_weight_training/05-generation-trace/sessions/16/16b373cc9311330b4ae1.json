@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16b373cc9311330b4ae1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "viz tau sweep chart",
+  "task_key": "worker_viz_tau_sweep_chart_20260515T185807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_tau_sweep_chart_20260515T185807_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "445955c86b5f12f6c83193aae54dd73c1b2c5aa76745d2f91b3d1e65b1e069e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件位于服务器 `/root/provenance_weight_training/figures/`:\n\n| 文件 | 大小 |\n|------|------|\n| `tau_sweep.pdf` | 21K |\n| `tau_sweep.png` | 86K (300 dpi) |\n\n图表包含：\n- 左轴 PPL（蓝色实心圆 + 实线），右轴 b*_mean（红色空心方块 + 虚线）\n- τ=0.8 星号标记 optimal，τ=0.9/0.95 灰色标记 negative\n- Uniform / Golden Ratio 水平参考线\n- [0.5, 0.8] safe range 浅绿背景带\n- 3.5×2.5 in，字体 ≥10pt，线宽 1.5，适合双栏排版"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-tau-sweep-chart-copy-2.md"
+}

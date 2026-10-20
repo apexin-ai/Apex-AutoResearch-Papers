@@ -1,0 +1,78 @@
+paper_key: "he_2024_softdedup"
+title: "SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines: ["random sampling (no dedup)", "hard deduplication (MinHashLSH)"]
+  metrics:
+    - {name: "perplexity (Pile test)", direction: "lower_better"}
+    - {name: "perplexity (SlimPajama test)", direction: "lower_better"}
+    - {name: "downstream accuracy (12 tasks)", direction: "higher_better"}
+    - {name: "training steps to match baseline perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "RedPajama CommonCrawl", size: "40B tokens"}
+    - {name: "SlimPajama CommonCrawl", size: "40B tokens"}
+    - {name: "Falcon RefinedWeb", size: "40B tokens"}
+  ablation_dimensions: ["partition granularity K (10-100)", "weight disparity T (2x-10x)", "dataset dedup level (none/medium/rigorous)"]
+  training_recipe: {optimizer: "not specified", lr: "2e-4 → 2e-5", hardware: "V100 GPUs, 930+ GPU-hours", model: "LLaMA-1.3B", batch_size: 512, seq_len: 1024}
+  method_family: "n-gram commonness-based data reweighting"
+
+positioning:
+  core_claim: "Soft deduplication via inverse n-gram commonness weighting achieves 26%+ training step reduction and +1.77% downstream accuracy with negligible overhead (7 CPU-hours)"
+  key_results: "26-39% fewer training steps to match baseline perplexity; +1.77% average downstream accuracy; works on already-deduplicated data"
+  limitations: ["limited to 1.3B parameter models", "more comprehensive evaluation on mixed data sources needed"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Duplicate data in pretraining datasets diminishes LLM performance"
+  tension: "Hard deduplication randomly discards one sample per cluster, risking valuable information loss"
+  key_insight: "Section 3.2 — continuous weighting W(x) ∝ 1/p(x) based on n-gram occurrence probability replaces binary dedup decision"
+  argument_chain: "dedup problem → hard vs soft framing → n-gram commonness metric → efficient approximate sampling → validate on 3 datasets with varying dedup levels"
+  contribution_framing: "3 contributions: commonness metric, soft dedup method, empirical validation showing complementarity with hard dedup"
+  intro_structure: "4 paragraphs: (1) dedup importance, (2) hard dedup limitations, (3) soft alternative, (4) contributions"
+  notable_technique: "Testing on already-rigorously-deduplicated Falcon RefinedWeb proves method is complementary, not redundant"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Visual comparison of hard dedup (remove) vs soft dedup (reweight) on duplicate clusters"
+    narrative_role: "Immediately communicates the key insight: reweight instead of remove"
+    design_elements: ["side-by-side comparison", "weight annotations", "sample clusters"]
+    visual_style: "Simple schematic with colored samples and weight labels"
+  result_figures:
+    - figure_id: "Figures 3-5"
+      viz_type: "line_plot"
+      what_compared: "Perplexity and downstream accuracy trajectories for SoftDedup vs baselines across 3 datasets"
+      how_gain_highlighted: "SoftDedup curve reaches baseline level faster, with gap maintained"
+      design_note: "Three-dataset presentation proves generality across dedup levels"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied: ["partition count K"]
+      design_note: "Perplexity stable across K, downstream improves with finer partitions"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["weight disparity T"]
+      design_note: "Larger disparities (10x) consistently better"
+  figure_narrative_role: "Fig1 (concept) → Fig2 (workflow) → Fig3-5 (results on 3 datasets) → Fig6-7 (ablations)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (tasks)"
+    col_axis: "Baseline vs HardDedup vs SoftDedup"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "bold_best + improvement column"
+    statistical_reporting: "single run"
+    num_baselines: 2
+    design_note: "12-task breakdown with average; improvement column makes gains salient"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 2-4: detailed perplexity per subset for each dataset"
+    reason: "Subset-level breakdown supports generality claim without cluttering main table"

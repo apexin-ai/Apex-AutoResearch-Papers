@@ -1,0 +1,15 @@
+{
+  "exp_id": "tau07_seed456",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:44:04.805Z",
+    "updated_at": "2026-05-19T20:44:12.315Z",
+    "hypothesis": "τ=0.7 sensitivity test (seed=456, ρ=0.4). R3-N2 requires multi-seed τ sensitivity data. Paired with tau07_seed123 for 2-seed mean±std at τ=0.7. Direct comparison against adaptive_ood_seed456 (τ=0.8, same seed) isolates τ effect."
+  },
+  "timestamp": "2026-05-19T20:44:12.650882+00:00",
+  "trigger": "update_registry"
+}

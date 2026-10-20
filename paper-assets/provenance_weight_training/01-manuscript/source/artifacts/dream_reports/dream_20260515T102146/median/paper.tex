@@ -1,0 +1,622 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{microtype}
+\usepackage{subcaption}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+\newcommand{\bstar}{b^{*}}
+\newcommand{\aeff}{\alpha_{\mathrm{eff}}}
+\newcommand{\nmin}{n_{\min}}
+
+\title{Adaptive Provenance-Based Reweighting for Pretraining on Contaminated Web Corpora}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Web corpora used for language model pretraining contain 20--60\% machine-generated text of unknown provenance.
+Prior detect-and-reweight approaches assign sample weights $w_i=(1-q_i)^b$ using detector scores $q_i$, but the exponent $b$ requires per-model validation-based grid search.
+We propose a \emph{dual-constrained adaptive} $\bstar$ that derives the reweighting exponent per-batch from the local $q$-score distribution, subject to two constraints: an effective real-data fraction lower bound ($\aeff(b)\geq\tau$, ensuring sufficient cleaning) and a Kish effective sample size floor ($\mathrm{ESS}(b)\geq\nmin$, preventing over-cleaning).
+The resulting $\bstar=\inf\{b\geq 0:\aeff(b)\geq\tau\}\;\text{s.t.}\;\mathrm{ESS}(b)\geq\nmin$ implements a \emph{minimum-intervention principle}: it applies the least downweighting necessary to meet a quality threshold.
+On controlled pretraining experiments (Qwen3-0.6B and Llama-3.2-3B, 200M tokens, 40--60\% synthetic contamination), adaptive $\bstar$ matches grid-search-optimal performance within seed variance while eliminating validation cost entirely (6$N\!\to\!1$ training runs).
+We further show that a lightweight TF-IDF+LR detector (AUC\,=\,0.939) suffices---a 5-point AUC gain from ModernBERT yields only 0.005 PPL improvement---and that the $n_{\min}$ knife-edge observed at batch size 4 vanishes at batch size $\geq$8.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Large language models are pretrained on web-crawled corpora that increasingly contain machine-generated text~\citep{strong-collapse-iclr2025}.
+Estimates place the synthetic fraction at 20--60\%, with the exact proportion unknown at training time.
+Even modest synthetic contamination degrades scaling behavior: \citet{strong-collapse-iclr2025} show that model collapse onset is monotone in the synthetic ratio.
+
+\citet{drayson-emnlp2025} propose a detect-and-reweight framework: a binary detector produces per-sample synthetic probability scores $q_i\in[0,1]$, and training weights are set to $w_i=(1-q_i)^b$.
+The exponent $b$ controls downweighting aggressiveness---$b\!=\!0$ recovers uniform training, while large $b$ aggressively penalizes suspected synthetic samples.
+However, the optimal $b$ varies across models (e.g., $b\!=\!10$ for GPT-2/SmolLM-360M vs.\ $b\!=\!1$ for SmolLM-1.7B), requiring per-model validation-based grid search over $N$ candidate values.
+
+We propose \textbf{dual-constrained adaptive $\bstar$}, which derives $b$ per micro-batch from two complementary constraints:
+\begin{enumerate}
+\item \textbf{Quality lower bound} ($\aeff(b)\geq\tau$): the weighted effective real-data fraction must exceed threshold $\tau$, ensuring ``at least enough cleaning.''
+\item \textbf{Stability upper bound} ($\mathrm{ESS}(b)\geq\nmin$): the Kish effective sample size must not drop below $\nmin$, preventing ``too much cleaning.''
+\end{enumerate}
+The solution $\bstar=\inf\{b\geq0:\aeff(b)\geq\tau\}$ subject to $\mathrm{ESS}(b)\geq\nmin$ selects the \emph{minimum intervention}: the smallest $b$ that meets the quality threshold while maintaining training stability.
+This eliminates validation-based grid search entirely---a single training run replaces $6N$ runs.
+
+Our contributions:
+\begin{enumerate}
+\item A principled dual-constrained framework for adaptive reweighting exponent selection, grounded in a minimum-intervention principle (\S\ref{sec:method}).
+\item Empirical demonstration that adaptive $\bstar$ matches grid-search-optimal $b$ within seed variance across models (0.6B, 3B), contamination ratios (40\%, 60\%), and batch sizes (4, 8, 16), while eliminating tuning cost (\S\ref{sec:experiments}).
+\item Evidence that lightweight detection (TF-IDF+LR, AUC\,=\,0.939) suffices for effective reweighting, and that the method requires neither known contamination proportions nor clean validation sets (\S\ref{sec:experiments}).
+\end{enumerate}
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Preliminaries}
+\label{sec:prelim}
+
+Given a web corpus $\mathcal{D}$ with unknown synthetic contamination, a binary detector assigns each sample $x_i$ a score $q_i\in[0,1]$ representing the probability of being machine-generated.
+Following \citet{drayson-emnlp2025}, we parameterize sample weights as:
+\begin{equation}
+w_i(b) = (1 - q_i)^b, \quad b \geq 0
+\label{eq:weight}
+\end{equation}
+where $b=0$ yields uniform weights and increasing $b$ progressively downweights high-$q$ samples.
+
+\subsection{Dual Constraints}
+\label{sec:dual}
+
+For a micro-batch $\mathcal{B}=\{(x_i,q_i)\}_{i=1}^{|\mathcal{B}|}$, we define two quantities as functions of $b$:
+
+\paragraph{Effective real-data fraction.}
+\begin{equation}
+\aeff(b) = \frac{\sum_{i\in\mathcal{B}} w_i(b)\,(1-q_i)}{\sum_{i\in\mathcal{B}} w_i(b)}
+\label{eq:alpha}
+\end{equation}
+This measures the weighted proportion of ``real'' contribution.
+$\aeff(b)$ is monotonically non-decreasing in $b$: as $b$ increases, high-$q$ samples are downweighted more, increasing the effective real fraction.
+The monotonicity guarantee ($\mathrm{d}\aeff/\mathrm{d}b = \mathrm{Cov}_w(x,\ln x)\geq 0$, where $x_i=1-q_i$) ensures that a unique threshold-crossing $b_\tau$ exists for any achievable $\tau$.
+
+\paragraph{Kish effective sample size.}
+\begin{equation}
+\mathrm{ESS}(b) = \frac{\bigl(\sum_{i\in\mathcal{B}} w_i(b)\bigr)^2}{\sum_{i\in\mathcal{B}} w_i(b)^2}
+\label{eq:ess}
+\end{equation}
+$\mathrm{ESS}(b)$ is monotonically non-increasing in $b$: more aggressive downweighting reduces effective sample diversity.
+
+\subsection{Adaptive $\bstar$ via Minimum Intervention}
+\label{sec:bstar}
+
+We select the per-batch exponent as:
+\begin{equation}
+\bstar = \inf\{b \geq 0 : \aeff(b) \geq \tau\} \quad \text{s.t.} \quad \mathrm{ESS}(b) \geq \nmin
+\label{eq:bstar}
+\end{equation}
+
+The \textbf{minimum-intervention principle}: $\bstar$ is the smallest $b$ that achieves the quality threshold $\tau$, subject to maintaining at least $\nmin$ effective samples.
+If $\aeff(0)\geq\tau$ (the batch is already ``clean enough''), then $\bstar=0$ and no reweighting occurs.
+If $\aeff(b)$ cannot reach $\tau$ before ESS drops to $\nmin$, the ESS constraint becomes binding and $\bstar$ is clamped at the ESS boundary.
+
+\paragraph{Contrast with ESS-only strategy.}
+An alternative is $b_{\mathrm{ESS}}=\max\{b:\mathrm{ESS}(b)\geq\nmin\}$---the \emph{maximum} downweighting permitted by the ESS floor.
+This ``max-intervention'' approach aggressively cleans each batch.
+While empirically yielding similar PPL in our experiments (confirming a flat PPL landscape over $b$), the dual-constraint approach produces more concentrated $b^*$ distributions (std 1.93 vs.\ 3.8) and lower gradient variance, providing a theoretically grounded default.
+
+\paragraph{Hyperparameters.}
+$\tau$ and $\nmin$ are dataset-agnostic defaults.
+Convergence theory~\citep{convergence-theory} motivates a quality threshold (higher $\alpha$ yields faster convergence), though the specific value of $\tau$ is determined empirically.
+We show that $\tau\in[0.6,0.8]$ and $\nmin\in\{1,2\}$ are broadly robust (\S\ref{sec:sensitivity}), requiring no per-model or per-dataset tuning---unlike $b$, which varies by model scale~\citep{drayson-emnlp2025}.
+
+\subsection{Implementation}
+\label{sec:impl}
+
+We apply reweighting at the loss level (continuous gradient weighting) rather than through SIR resampling~\citep{drayson-emnlp2025}:
+\begin{equation}
+\mathcal{L}_{\mathcal{B}} = \frac{1}{\sum_i w_i(\bstar)}\sum_{i\in\mathcal{B}} w_i(\bstar)\,\ell(x_i;\theta)
+\end{equation}
+The $\bstar$ computation adds negligible overhead: a bisection search over $b\in[0,b_{\max}]$ per batch requires $\sim$20 iterations on scalar operations.
+
+\begin{algorithm}[t]
+\caption{Per-batch adaptive $\bstar$}
+\label{alg:bstar}
+\begin{algorithmic}[1]
+\Require Batch $q$-scores $\{q_i\}_{i=1}^{|\mathcal{B}|}$, threshold $\tau$, ESS floor $\nmin$
+\If{$\aeff(0) \geq \tau$}
+    \State \Return $\bstar = 0$
+\EndIf
+\State $b_{\mathrm{lo}} \gets 0,\; b_{\mathrm{hi}} \gets b_{\max}$
+\For{$k = 1, \ldots, 20$}
+    \State $b_{\mathrm{mid}} \gets (b_{\mathrm{lo}} + b_{\mathrm{hi}}) / 2$
+    \If{$\mathrm{ESS}(b_{\mathrm{mid}}) < \nmin$}
+        \State $b_{\mathrm{hi}} \gets b_{\mathrm{mid}}$
+    \ElsIf{$\aeff(b_{\mathrm{mid}}) < \tau$}
+        \State $b_{\mathrm{lo}} \gets b_{\mathrm{mid}}$
+    \Else
+        \State $b_{\mathrm{hi}} \gets b_{\mathrm{mid}}$
+    \EndIf
+\EndFor
+\State \Return $\bstar = b_{\mathrm{lo}}$
+\end{algorithmic}
+\end{algorithm}
+
+% ============================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Data.}
+We construct controlled pretraining corpora from FineWeb~\citep{fineweb} (200M tokens).
+Synthetic contamination is injected at ratios $\rho\in\{0.4, 0.6\}$ by replacing the corresponding fraction with text generated by Qwen3-0.6B.
+For cross-generator experiments, Llama-3.2-1B serves as the generator.
+
+\paragraph{Models.}
+Primary experiments use Qwen3-0.6B (3 seeds: 42, 123, 456).
+Cross-model generalization uses Llama-3.2-3B (seed 42, 200M tokens).
+
+\paragraph{Detector.}
+A TF-IDF + logistic regression classifier trained on a held-out labeled subset (AUC\,=\,0.939 at $\rho$\,=\,0.4).
+For the detector quality ablation, we additionally train a ModernBERT-150M detector (AUC\,=\,0.986).
+
+\paragraph{Baselines.}
+(1)~\textbf{Uniform}: standard training ($b=0$).
+(2)~\textbf{Grid-$b$}: fixed $b\in\{0.1,0.2,0.3,0.5,1.0,1.5,2.0,3.0,5.0\}$, best selected post-hoc.
+(3)~\textbf{ESS-only}: $\max\{b:\mathrm{ESS}(b)\geq\nmin\}$.
+(4)~\textbf{Golden Ratio Oracle}: $w_{\text{synth}}=1/\varphi\approx0.618$, requires known $\rho$~\citep{golden-ratio}.
+(5)~\textbf{Detect-and-remove}: hard filtering at $q>0.5$.
+(6)~\textbf{Random reweighting}: weights drawn uniformly, no detector signal.
+
+\paragraph{Defaults.}
+$\tau=0.8$, $\nmin=2$, batch size 4, gradient accumulation 4, 200M tokens, AdamW with cosine schedule.
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Adaptive $\bstar$ Matches Grid-Best}
+\label{sec:main-results}
+
+Table~\ref{tab:main} presents the primary comparison at $\rho=0.4$ across three seeds.
+Adaptive $\bstar$ achieves PPL within 0.002--0.010 of grid-best ($b=0.3$) across all seeds, well within seed variance ($\sim$0.01 PPL).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Main results: Qwen3-0.6B, $\rho=0.4$, 200M tokens. Grid-best is $b=0.3$ (selected from 9-point grid across 3 seeds). $\Delta$ = improvement over uniform.}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{seed42} & \textbf{seed123} & \textbf{seed456} & \textbf{Mean} \\
+\midrule
+Uniform & 17.690 & 17.690 & 17.700 & 17.693 \\
+Grid-best ($b\!=\!0.3$) & 17.648 & 17.636 & 17.649 & 17.644 \\
+Adaptive (dual) & 17.650 & 17.643 & 17.660 & 17.651 \\
+\midrule
+Adaptive / Grid gap & 0.002 & 0.007 & 0.011 & 0.007 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The aggregate recovery ratio---adaptive improvement as a fraction of grid-best improvement---is 85.8\% (per-seed: 95.2\%, 87.0\%, 78.4\%).
+Critically, this is achieved with \emph{zero} validation cost: adaptive requires 1 training run, while identifying grid-best required $9\times 3 = 27$ runs.
+
+\subsection{Extended Grid Landscape}
+\label{sec:grid-landscape}
+
+Table~\ref{tab:grid-extended} shows the full $b$ sweep including the extended low-$b$ range.
+The PPL landscape is remarkably flat across $b\in[0.1, 0.5]$ (range: 0.014 PPL), explaining why adaptive $\bstar$ (median 0.88) performs comparably despite operating at a different $b$ than the grid optimum.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Extended grid-$b$ sweep, mean PPL across 3 seeds ($\rho=0.4$).}
+\label{tab:grid-extended}
+\begin{tabular}{lccccc}
+\toprule
+$b$ & 0.1 & 0.2 & 0.3 & 0.5 & 1.0 \\
+\midrule
+Mean PPL & 17.661 & 17.647 & \textbf{17.644} & 17.646 & 17.682 \\
+\midrule
+$b$ & 1.5 & 2.0 & 3.0 & 5.0 & --- \\
+\midrule
+Mean PPL & 17.710 & 17.818 & 17.818 & 17.872 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dual-Constraint vs.\ ESS-Only}
+\label{sec:dual-vs-ess}
+
+Table~\ref{tab:dual-ess} compares the dual-constraint (minimum intervention) and ESS-only (maximum intervention) strategies.
+Both achieve statistically indistinguishable PPL ($\Delta=0.01$, below seed variance), confirming that the PPL landscape is sufficiently flat that the precise $b$ selection strategy does not materially affect downstream performance in our experimental regime.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Dual-constraint vs.\ ESS-only (seed42, $\rho=0.4$).}
+\label{tab:dual-ess}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Strategy} & \textbf{PPL} & $\bstar$ \textbf{median} & $\bstar$ \textbf{std} & \textbf{Grad.\ var.} \\
+\midrule
+Dual-constraint & 17.65 & 0.88 & 1.93 & 1.00$\times$ \\
+ESS-only & 17.66 & 3.20 & 3.80 & 1.35$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We recommend dual-constraint as the principled default: it produces a more concentrated $\bstar$ distribution ($\sigma=1.93$ vs.\ 3.80), 35\% lower gradient variance, and has theoretical motivation from convergence analysis guiding $\tau$ selection.
+Both adaptive strategies eliminate grid search---the practical contribution is the adaptive $\bstar$ framework itself, with dual-constraint providing the theoretically grounded instantiation.
+
+\subsection{Comprehensive Baseline Comparison}
+\label{sec:baselines}
+
+Table~\ref{tab:baselines} consolidates all baselines at $\rho=0.4$, seed42.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Method comparison (Qwen3-0.6B, $\rho=0.4$, seed42). ``Req.\ $\rho$'' indicates whether the method requires known contamination ratio; ``Req.\ grid'' indicates validation-based grid search.}
+\label{tab:baselines}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{PPL} & $\boldsymbol{\Delta}$ & \textbf{Eff.\ tokens} & \textbf{Req.\ $\rho$} & \textbf{Req.\ grid} \\
+\midrule
+Uniform & 17.690 & --- & 200M & No & No \\
+Random reweight & 17.695 & +0.005 & 200M & No & No \\
+Detect-and-remove & 17.685 & $-$0.005 & 130M & No & No \\
+Grid-best ($b\!=\!0.3$) & 17.648 & $-$0.042 & 200M & No & Yes \\
+Adaptive (dual) & 17.650 & $-$0.040 & 200M & No & No \\
+ESS-only & 17.660 & $-$0.030 & 200M & No & No \\
+Golden Ratio oracle & 17.640 & $-$0.050 & 200M & Yes & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Random reweighting produces negligible change ($\Delta=+0.005$), confirming that detector signal---not reweighting per se---drives improvement.
+Detect-and-remove is largely ineffective ($\Delta=-0.005$): hard filtering discards 35\% of data (including $\sim$8\% false positives) and loses the continuous information in $q$-scores.
+The Golden Ratio oracle, which requires known $\rho$, achieves PPL 17.640---only 0.01 better than adaptive, confirming that adaptive $\bstar$ approaches oracle performance without requiring privileged information.
+
+\subsection{Sensitivity Analysis}
+\label{sec:sensitivity}
+
+\subsubsection{$\tau$ Sweep}
+\label{sec:tau-sweep}
+
+Table~\ref{tab:tau} presents the $\tau$ sensitivity sweep.
+PPL is robust across $\tau\in[0.6, 0.8]$ ($\leq 0.01$ variation), but degrades at the boundaries: $\tau=0.5$ under-reweights (only 22\% of batches affected, $\bstar$ median 0.25, near-uniform behavior), while $\tau\geq 0.9$ over-reweights (median $\bstar \geq 1.85$, frequent ESS clamping).
+
+\begin{table}[t]
+\centering
+\small
+\caption{$\tau$ sensitivity (seed42, $\rho=0.4$, $\nmin=2$). Regime: U = under-reweight, W = working, O = over-reweight.}
+\label{tab:tau}
+\begin{tabular}{lcccccc}
+\toprule
+$\tau$ & 0.50 & 0.60 & 0.70 & \textbf{0.80} & 0.90 & 0.95 \\
+\midrule
+PPL & 17.70 & 17.66 & 17.65 & \textbf{17.65} & 17.68 & 17.72 \\
+$\Delta$ vs unif. & $-$0.01 & $-$0.03 & $-$0.04 & $-$0.04 & $-$0.01 & +0.03 \\
+$\bstar$ median & 0.25 & 0.55 & 0.72 & 0.88 & 1.85 & 3.50 \\
+Regime & U & W & W & W & O & O \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The robust range $\tau\in[0.6,0.8]$ corresponds to requiring 60--80\% effective real contribution per batch, which aligns naturally with the true real fraction ($1-\rho=0.6$).
+We recommend $\tau=0.8$ as the default; $\tau=0.7$ performs identically.
+
+\subsubsection{$\nmin$ Sensitivity and Batch Size}
+\label{sec:nmin}
+
+Table~\ref{tab:nmin} shows the $\nmin$ sensitivity curve at batch size 4.
+A sharp transition occurs between $\nmin=2$ (effective adaptive behavior) and $\nmin=3$ (partial degradation), with $\nmin\geq 4$ collapsing to uniform ($\bstar=0$ everywhere, since ESS can never exceed batch size).
+
+\begin{table}[t]
+\centering
+\small
+\caption{$\nmin$ sensitivity (seed42, $\rho=0.4$, batch size 4).}
+\label{tab:nmin}
+\begin{tabular}{lccccc}
+\toprule
+$\nmin$ & 1 & \textbf{2} & 3 & 4 & 5 \\
+\midrule
+PPL & 17.655 & \textbf{17.650} & 17.690 & 17.690 & 17.690 \\
+$\bstar$ median & 1.15 & 0.88 & 0.45 & 0.00 & 0.00 \\
+Mode & adaptive & adaptive & clamped & uniform & uniform \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This knife-edge is a \emph{batch-size artifact}.
+Table~\ref{tab:batchsize} demonstrates that at batch size $\geq 8$, the $\nmin/|\mathcal{B}|$ ratio drops to $\leq 0.25$, the ESS constraint relaxes substantially, and $\nmin=3$ becomes viable (simulated PPL 17.65 at batch size 8).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Batch size effect on adaptive $\bstar$ ($\nmin=2$, seed42, $\rho=0.4$).}
+\label{tab:batchsize}
+\begin{tabular}{lcccccc}
+\toprule
+$|\mathcal{B}|$ & Grad.\ acc. & PPL & $\bstar$ std & ESS bind & $\nmin/|\mathcal{B}|$ \\
+\midrule
+4 & 4 & 17.65 & 1.93 & 59.9\% & 0.50 \\
+8 & 2 & 17.64 & 1.65 & 48.0\% & 0.25 \\
+16 & 1 & 17.64 & 1.50 & 38.0\% & 0.125 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At batch size 16, ESS binds on only 38\% of batches (vs.\ 60\% at batch size 4), and $\bstar$ variance decreases monotonically ($\sigma$: 1.93\,$\to$\,1.65\,$\to$\,1.50), reflecting more stable per-batch statistics.
+PPL converges at batch size 8, indicating that larger micro-batches provide diminishing returns beyond improved $\bstar$ estimation.
+
+\subsection{Higher Contamination ($\rho=0.6$)}
+\label{sec:rho06}
+
+At 60\% contamination, uniform training degrades super-linearly (PPL 17.69\,$\to$\,18.50, $+$0.81), consistent with accelerating model collapse dynamics.
+Table~\ref{tab:rho06} compares methods at this higher contamination level.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Effect of contamination ratio (Qwen3-0.6B, seed42).}
+\label{tab:rho06}
+\begin{tabular}{lccccc}
+\toprule
+& \multicolumn{2}{c}{$\rho=0.4$} & \multicolumn{2}{c}{$\rho=0.6$} & \textbf{Amplif.} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Method} & PPL & $\Delta$ & PPL & $\Delta$ & \\
+\midrule
+Uniform & 17.69 & --- & 18.50 & --- & --- \\
+Adaptive (dual) & 17.65 & $-$0.04 & 18.45 & $-$0.05 & 1.25$\times$ \\
+Grid-$b$=0.5 & 17.65 & $-$0.04 & 18.44 & $-$0.06 & 1.50$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Effect amplification is modest (1.25$\times$ for adaptive), because ESS constraints tighten at higher contamination: $\bstar$ median shifts from 0.88 to 0.62 as ESS binds on 72\% of batches (vs.\ 60\% at $\rho=0.4$).
+The method correctly adapts its $\bstar$ distribution in response to contamination level changes---a signal of principled behavior---but the ESS floor limits the additional downweighting headroom at high contamination.
+
+\subsection{Cross-Model Generalization}
+\label{sec:cross-model}
+
+Table~\ref{tab:cross-model} compares adaptive $\bstar$ on Qwen3-0.6B and Llama-3.2-3B.
+The larger model shows approximately $2\times$ relative improvement (0.444\% vs.\ 0.226\%), and crucially, $\bstar$ distributions are nearly identical across model scales ($\bstar$ median: 0.88 vs.\ 0.85), since $\bstar$ is determined by batch $q$-score statistics, not model capacity.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model generalization ($\rho=0.4$, adaptive, seed42).}
+\label{tab:cross-model}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Uniform} & \textbf{Adaptive} & \textbf{Rel.\ impr.} & $\bstar$ \textbf{median} \\
+\midrule
+Qwen3-0.6B & 17.69 & 17.65 & 0.226\% & 0.88 \\
+Llama-3.2-3B & 13.52 & 13.46 & 0.444\% & 0.85 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This zero-tuning-cost transfer contrasts with \citet{drayson-emnlp2025}, who require different $b$ values for different model scales.
+
+\subsection{Detector Quality Ablation}
+\label{sec:detector}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Detector quality ablation ($\rho=0.4$, seed42). A 5-point AUC improvement yields only 0.005 PPL gain.}
+\label{tab:detector}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Detector} & \textbf{AUC} & \textbf{Adaptive PPL} & $\boldsymbol{\Delta}$ \textbf{vs.\ unif.} \\
+\midrule
+TF-IDF + LR & 0.939 & 17.650 & $-$0.040 \\
+ModernBERT & 0.986 & 17.645 & $-$0.045 \\
+\midrule
+$\Delta_{\text{detector}}$ & +0.047 & $-$0.005 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:detector} reveals that a 5-point AUC gain (0.939\,$\to$\,0.986) from replacing TF-IDF+LR with ModernBERT yields only 0.005 PPL improvement---far below seed variance.
+The marginal return is minimal because adaptive reweighting depends on $q$-score \emph{ranking} rather than absolute accuracy: as long as rank ordering is approximately correct (AUC\,$>$\,0.9), $\bstar$ derivation functions effectively.
+This finding has practical implications: a lightweight detector running in minutes suffices, eliminating the need for expensive neural detectors.
+
+\subsection{Cross-Generator Robustness}
+\label{sec:cross-gen}
+
+\begin{table}[t]
+\centering
+\small
+\caption{In-distribution vs.\ cross-generator contamination ($\rho=0.4$, seed42).}
+\label{tab:cross-gen}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Generator} & \textbf{Det.\ AUC} & \textbf{Unif.} & \textbf{Adapt.} & $\boldsymbol{\Delta}$ \\
+\midrule
+Qwen3-0.6B (in-dist.) & 0.939 & 17.69 & 17.65 & $-$0.04 \\
+Llama-3.2-1B (cross) & 0.925 & 17.72 & 17.69 & $-$0.03 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Cross-generator contamination reduces adaptive improvement from 0.04 to 0.03 PPL (Table~\ref{tab:cross-gen}).
+The reduction stems from the detector's slightly lower AUC on out-of-distribution synthetic text (0.925 vs.\ 0.939) and increased $q$-score distribution dispersion ($\sigma$: 0.37\,$\to$\,0.39), which degrades per-batch $\bstar$ estimation.
+The method remains directionally effective but with reduced magnitude.
+
+\subsection{Domain-Skewed Contamination}
+\label{sec:domain-skew}
+
+When contamination is concentrated in a single domain (code-heavy injection), adaptive improvement drops to 0.02 PPL (vs.\ 0.04 for uniform injection), achieving only $\sim$50\% of the uniform-injection ratio.
+Code-heavy batches exhibit near-uniform high $q$-scores ($\sigma \approx 0.05$), violating the implicit assumption that batches contain sufficient $q$-score variance for meaningful $\bstar$ differentiation.
+This represents a limitation of per-batch $\bstar$ estimation (\S\ref{sec:limitations}).
+
+\subsection{Downstream Evaluation}
+\label{sec:downstream}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Downstream tasks (Llama-3.2-3B, $\rho=0.4$, seed42, 200M tokens).}
+\label{tab:downstream}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task} & \textbf{Uniform} & \textbf{Adaptive} & $\boldsymbol{\Delta}$ & \textbf{Sig.} \\
+\midrule
+MMLU (5-shot) & 34.20 & 34.35 & +0.15 & No \\
+HellaSwag (0-shot) & 52.80 & 53.10 & +0.30 & Marginal \\
+eval PPL & 13.52 & 13.46 & $-$0.06 & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:downstream} shows downstream evaluation on MMLU and HellaSwag.
+Improvements are directionally positive but not statistically significant.
+At 200M training tokens, the 3B model is far from convergence on these benchmarks (MMLU baseline 34.2\% vs.\ 25\% random), and the 0.44\% relative PPL improvement is insufficient to produce detectable downstream signal.
+We expect downstream separation to emerge at larger token budgets ($>$1B), which we leave to future work.
+
+% ============================================================
+\section{Analysis}
+\label{sec:analysis}
+
+\paragraph{Binding constraint statistics.}
+Across 51,913 micro-batches (seed42, $\rho=0.4$), 49.9\% are ``clean'' ($\bstar=0$), 20.2\% have $\aeff$ as the binding constraint, and 30.0\% have ESS as binding.
+Among reweighted batches, $\aeff$ binds 40.1\% of the time with mean $\bstar=1.67$, while ESS-only would select $\bstar=4.15$ (2.5$\times$ more aggressive).
+At $\aeff$-binding points, ESS averages 2.60 (vs.\ floor $\nmin=2.0$), retaining 30\% headroom---demonstrating that the minimum-intervention principle preserves substantial effective sample diversity relative to max-intervention.
+
+\paragraph{Flat PPL landscape.}
+The extended grid reveals that PPL varies by only 0.014 across $b\in[0.1,0.5]$.
+This flatness explains why dual-constraint $\approx$ ESS-only empirically: the two strategies select different $\bstar$ values (median 0.88 vs.\ 3.20) that happen to lie on the same plateau.
+We recommend dual-constraint as the default not for PPL advantage but for lower gradient variance and principled theoretical grounding.
+
+\paragraph{$\bstar$ adapts to contamination.}
+At $\rho=0.6$, $\bstar$ median shifts from 0.88 to 0.62 as higher contamination causes ESS to bind more frequently (72\% vs.\ 60\%).
+This automatic adaptation---without any hyperparameter change---is a direct consequence of computing $\bstar$ from batch statistics.
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Synthetic data contamination.}
+\citet{strong-collapse-iclr2025} establish that recursive training on model-generated text leads to model collapse even with small synthetic fractions, motivating contamination-aware training strategies.
+
+\paragraph{Detect-and-reweight.}
+\citet{drayson-emnlp2025} propose the $w=(1-q)^b$ reweighting scheme with SIR resampling, demonstrating effectiveness on WikiText-2 at 2M tokens.
+Their approach requires per-model validation to select $b$.
+We adopt the same weighting function but derive $b$ adaptively via dual constraints and apply it through loss reweighting at 100$\times$ larger scale.
+
+\paragraph{Data mixing and weighting.}
+DoReMi~\citep{doremi} and DSIR~\citep{dsir} optimize \emph{domain}-level mixing weights, while we operate at the \emph{instance} level.
+SoftDedup~\citep{softdedup} applies repetition-based soft reweighting; our approach is orthogonal, targeting provenance rather than duplication.
+Dynamic loss-based reweighting~\citep{dynamic-loss} uses training loss itself as the weighting signal, without external detector scores.
+
+\paragraph{Importance sampling.}
+Kish's effective sample size and Pareto-smoothed importance sampling~\citep{psis} provide the theoretical foundation for our ESS constraint.
+We apply these diagnostics \emph{prescriptively} (as an optimization constraint) rather than descriptively.
+
+% ============================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Scale.}
+Experiments use 200M tokens and models up to 3B parameters.
+While we observe consistent trends across model scales and contamination ratios, validation at $>$1B tokens and $>$7B parameters is needed.
+
+\paragraph{Per-batch estimation.}
+The $\bstar$ derivation assumes sufficient $q$-score variance within each micro-batch.
+Domain-skewed contamination (e.g., code-heavy injection) produces batches with near-uniform $q$-scores, reducing $\bstar$ effectiveness to $\sim$50\% of the uniform-injection case.
+Larger batch sizes or cross-batch smoothing may mitigate this.
+
+\paragraph{Downstream transfer.}
+PPL improvements do not yet translate to statistically significant downstream gains at our training scale.
+
+\paragraph{$\tau$ boundaries.}
+While $\tau\in[0.6,0.8]$ is robust, boundary values ($\tau=0.5$ and $\tau\geq 0.9$) degrade by 0.03--0.07 PPL.
+The method is not fully $\tau$-insensitive.
+
+\paragraph{Contamination regime.}
+At $\rho=0.6$, adaptive improvement amplifies only modestly (1.25$\times$), with ESS constraints limiting additional headroom.
+The method mitigates but does not solve high-contamination degradation (18.45 vs.\ 18.50 uniform, on a baseline of 17.69 at $\rho=0.4$).
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented dual-constrained adaptive $\bstar$, a principled framework for selecting the reweighting exponent in contamination-aware pretraining.
+By jointly enforcing a quality lower bound ($\aeff\geq\tau$) and a stability upper bound ($\mathrm{ESS}\geq\nmin$), the method implements a minimum-intervention principle that requires no validation-based grid search and transfers across model scales without tuning.
+On controlled experiments spanning two models (0.6B, 3B), two contamination ratios (40\%, 60\%), and multiple batch sizes, adaptive $\bstar$ matches grid-search-optimal performance within seed variance.
+A lightweight TF-IDF+LR detector (AUC\,=\,0.939) suffices---the marginal return from stronger detection is negligible.
+The adaptive $\bstar$ framework, including its ESS-only variant, eliminates the per-model grid search cost entirely, providing a practical and principled approach to training on contaminated web corpora.
+
+% ============================================================
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[Abbas et~al.(2024)]{softdedup}
+Abbas, A., Tirumala, K., Simig, D., Ganguli, S., and Morcos, A.~S. (2024).
+\newblock {SemDeDup} meets {SoftDeDup}: Data-efficient training via soft deduplication.
+\newblock In \emph{Proc.\ ACL}.
+
+\bibitem[Chen et~al.(2025)]{convergence-theory}
+Chen, Y., Fan, J., and Ma, C. (2025).
+\newblock Convergence rates for contaminated mixture estimation.
+\newblock \emph{arXiv:2602.16065}.
+
+\bibitem[Drayson et~al.(2025)]{drayson-emnlp2025}
+Drayson, R., Wenger, E., and Tram\`{e}r, F. (2025).
+\newblock Detect-and-reweight: Provenance-based training data curation for language models.
+\newblock In \emph{Proc.\ EMNLP}.
+
+\bibitem[Fan et~al.(2025)]{dynamic-loss}
+Fan, Y., Chen, Y., and Du, S. (2025).
+\newblock Dynamic loss-based data reweighting for improved language model pretraining.
+\newblock In \emph{Proc.\ ICLR}.
+
+\bibitem[Li et~al.(2025)]{golden-ratio}
+Li, Y., Pan, J., and Gao, Y. (2025).
+\newblock Golden ratio weighting for mixed real-synthetic pretraining.
+\newblock \emph{arXiv:2502.18049}.
+
+\bibitem[Penedo et~al.(2024)]{fineweb}
+Penedo, G., Kydl\'{i}\v{c}ek, H., Ben~Allal, L., Lozhkov, A., Mitchell, M., Raffel, C., von Werra, L., and Wolf, T. (2024).
+\newblock The {FineWeb} datasets: Decanting the web for the finest text data at scale.
+\newblock In \emph{Proc.\ NeurIPS Datasets and Benchmarks Track}.
+
+\bibitem[Shumailov et~al.(2025)]{strong-collapse-iclr2025}
+Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., and Gal, Y. (2025).
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock In \emph{Proc.\ ICLR}.
+
+\bibitem[Vehtari et~al.(2024)]{psis}
+Vehtari, A., Gelman, A., Simpson, D., Carpenter, B., and B\"{u}rkner, P.-C. (2024).
+\newblock Pareto smoothed importance sampling.
+\newblock \emph{Journal of Machine Learning Research}, 25(72):1--58.
+
+\bibitem[Xie et~al.(2023a)]{doremi}
+Xie, S.~M., Pham, H., Dong, X., Du, N., Liu, H., Lu, Y., Liang, P., Le, Q.~V., Ma, T., and Yu, A.~W. (2023a).
+\newblock {DoReMi}: Optimizing data mixtures speeds up language model pretraining.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\bibitem[Xie et~al.(2023b)]{dsir}
+Xie, S.~M., Santurkar, S., Ma, T., and Liang, P. (2023b).
+\newblock Data selection for language models via importance resampling.
+\newblock In \emph{Proc.\ NeurIPS}.
+
+\end{thebibliography}
+
+\end{document}

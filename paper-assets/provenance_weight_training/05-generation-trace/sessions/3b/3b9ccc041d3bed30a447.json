@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9ccc041d3bed30a447",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code ngram scoring",
+  "task_key": "worker_code_ngram_scoring_20260518T114901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ngram_scoring_20260518T114901_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "d739fe0a482a5078fe7a432bea3e5a4b08d7b22cdd1b034076b87f86ea2f441b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "N-gram PPL scoring complete.\n\n**Results:**\n- **Total samples scored:** 371,499\n- **5-gram model:** 574,866 unique contexts (trained on 50K sample)\n- **PPL statistics:** mean=4.46, min=1.03, max=2901.06\n- **Output file:** `/root/provenance_weight_training/data/scored_data_ngram.jsonl` (944MB)\n- **New field:** `ngram_ppl` added to each sample\n- **Runtime:** ~18 minutes on CPU\n\nOutput is ready. Each sample now has the `ngram_ppl` field alongside existing `text`, `q_score`, and metadata fields."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ngram-scoring.md"
+}

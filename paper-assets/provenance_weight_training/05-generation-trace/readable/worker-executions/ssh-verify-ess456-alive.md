@@ -1,0 +1,525 @@
+# ssh verify ess456 alive
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_ssh_verify_ess456_alive_20260517T213215.log`
+- **Structured JSON:** [`d994c0fe620297a045a1.json`](../../sessions/d9/d994c0fe620297a045a1.json)
+
+## Before a recorded user message
+
+10 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e585f4f6-454d-4e73-b4a2-634f9a5d1d88",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779069600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d0246290-b360-41d6-8013-f8ba5d5d8725",
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check if a training job is running on a specific server (westd-41312). Let me use the SSH tools to execute the commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "uuid": "f6049b9a-81ed-432a-bd76-a3bf59ee8522",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mqupo4o6fbQ3J6WqyvpcFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12283,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12283
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Kb7G7qwzx9bpbKqAHDm4az`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "uuid": "52d58b15-61e4-47c8-9360-b38e418fb838",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mqupo4o6fbQ3J6WqyvpcFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12283,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12283
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T21:32:27.369Z_
+
+<details><summary>↩ Tool result · `toolu_01Kb7G7qwzx9bpbKqAHDm4az`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "uuid": "5982adae-c424-4bf0-8e59-702a83a30eef",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01W3dBFowh3gbuEgyPFvL6G6`</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ps aux | grep -E '133526|133521' | grep -v grep; echo \"---TMUX---\"; tmux list-sessions 2>/dev/null | grep ess_only_seed456; echo \"---GPU---\"; nvidia-smi | grep -A2 \"  1  \"; echo \"---LOG1---\"; tail -20 ~/runs/provenance_weight_training/ess_only_seed456_r2.log 2>/dev/null; echo \"---LOG2---\"; tail -20 /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/train*.log 2>/dev/null",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "uuid": "2139aae0-9777-4991-aac7-76088d99aa5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PZCVJJC6QyUDk5doWwrosn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 395,
+      "cache_read_input_tokens": 24124,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 395
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T21:32:33.580Z_
+
+<details><summary>↩ Tool result · `toolu_01W3dBFowh3gbuEgyPFvL6G6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"root     133521  0.0  0.0   4496  3488 pts/3    Ss+  05:00   0:00 bash -c rm -f /tmp/agent-ml-exit/ess_only_seed456_r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/provenance_weight_training/ess_only_seed456_r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/ess_only_seed456_r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/provenance_weight_training && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\\"'; } > ~/runs/provenance_weight_training/ess_only_seed456_r2.log 2>&1\\nroot     133526  100  0.3 85944996 3910928 pts/3 Sl  05:00  32:08 python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\n---TMUX---\\ness_only_seed456_r2: 1 windows (created Mon May 18 05:00:43 2026)\\n---GPU---\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   58C    P0            369W /  600W |   46539MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n--\\n|    1   N/A  N/A          133526      C   python                                46530MiB |\\n|    2   N/A  N/A          133449      C   python                                46530MiB |\\n|    3   N/A  N/A          136149      C   python                                46530MiB |\\n---LOG1---\\n{'weighting/b': 1.54296875, 'weighting/alpha_eff': 0.7278408516174062, 'weighting/ess': 2.003679585832111, 'weighting/mean_q': 0.5944689512252808, 'weighting/unweighted_loss': 1.5166881084442139, 'weighting/weighted_loss': 2.3812508583068848, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 1.73828125, 'weighting/alpha_eff': 0.9623698996617385, 'weighting/ess': 2.0000659697099503, 'weighting/mean_q': 0.5131645798683167, 'weighting/unweighted_loss': 2.2933082580566406, 'weighting/weighted_loss': 2.9652459621429443, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'loss': 10.7112, 'grad_norm': 20.25, 'learning_rate': 4.497153700189753e-05, 'epoch': 0.15}\\n{'weighting/b': 0.80078125, 'weighting/alpha_eff': 0.11478912138142512, 'weighting/ess': 2.008168176630345, 'weighting/mean_q': 0.9460507035255432, 'weighting/unweighted_loss': 1.691784381866455, 'weighting/weighted_loss': 2.4423654079437256, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.439453125, 'weighting/alpha_eff': 0.6528644663429045, 'weighting/ess': 2.0031189572424237, 'weighting/mean_q': 0.7267961502075195, 'weighting/unweighted_loss': 1.8753221035003662, 'weighting/weighted_loss': 3.1024603843688965, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'we\\n\\n... [截断: 输出过长，省略 2310 字符] ...\\n\\n609375, 'weighting/alpha_eff': 0.5692532468185528, 'weighting/ess': 2.0022935031036906, 'weighting/mean_q': 0.7151469588279724, 'weighting/unweighted_loss': 1.772650122642517, 'weighting/weighted_loss': 2.636133909225464, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.888671875, 'weighting/alpha_eff': 0.043193143734546975, 'weighting/ess': 2.0021585552797516, 'weighting/mean_q': 0.9792444109916687, 'weighting/unweighted_loss': 1.2731921672821045, 'weighting/weighted_loss': 1.4531424045562744, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.810546875, 'weighting/alpha_eff': 0.5268858319220204, 'weighting/ess': 2.0091599226706474, 'weighting/mean_q': 0.7501570582389832, 'weighting/unweighted_loss': 1.9658563137054443, 'weighting/weighted_loss': 2.6261093616485596, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.341796875, 'weighting/alpha_eff': 0.3717542957170995, 'weighting/ess': 2.0073902119669924, 'weighting/mean_q': 0.8617768287658691, 'weighting/unweighted_loss': 1.489715576171875, 'weighting/weighted_loss': 2.2146880626678467, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 5.13671875, 'weighting/alpha_eff': 0.8402262667826899, 'weighting/ess': 2.0000705117061397, 'weighting/mean_q': 0.4596980810165405, 'weighting/unweighted_loss': 2.164830207824707, 'weighting/weighted_loss': 3.2759995460510254, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 2.138671875, 'weighting/alpha_eff': 0.7353689248764427, 'weighting/ess': 2.0018676864689997, 'weighting/mean_q': 0.577625036239624, 'weighting/unweighted_loss': 1.6920322179794312, 'weighting/weighted_loss': 1.8317351341247559, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n\\r 56%|█████▌    | 3394/6103 [31:28<1:35:03,  2.11s/it]\\r                                                     \\r\\r 56%|█████▌    | 3394/6103 [31:28<1:35:03,  2.11s/it]\\r 56%|█████▌    | 3395/6103 [31:29<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:29<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:30<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:30<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:31<1:38:29,  2.18s/it]\\r 56%|█████▌    | 3396/6103 [31:31<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:31<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:32<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:32<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:33<1:37:27,  2.16s/it]\\r 56%|█████▌    | 3397/6103 [31:33<1:36:35,  2.14s/it]\\r                                                     \\r\\r 56%|█████▌    | 3397/6103 [31:34<1:36:35,  2.14s/it]\\r                                                     \\r\\r 56%|█████▌    | 3397/6103 [31:35<1:36:35,  2.14s/it]\\r                                                     \\r\\r 56%|█████▌    | 3397/6103 [31:35<1:36:35,  2.14s/it]\\r 56%|█████▌    | 3398/6103 [31:35<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:36<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:36<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:37<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:37<1:36:09,  2.13s/it]\\r 56%|█████▌    | 3399/6103 [31:37<1:35:42,  2.12s/it]\\r                                                     \\r\\r 56%|█████▌    | 3399/6103 [31:38<1:35:42,  2.12s/it]\\r                                                     \\r\\r 56%|█████▌    | 3399/6103 [31:38<1:35:42,  2.12s/it]---LOG2---\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "uuid": "25617ca4-9aa7-40c4-9342-5241333b9a5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"root     133521  0.0  0.0   4496  3488 pts/3    Ss+  05:00   0:00 bash -c rm -f /tmp/agent-ml-exit/ess_only_seed456_r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/provenance_weight_training/ess_only_seed456_r2.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/ess_only_seed456_r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/provenance_weight_training && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\\\\\\"'; } > ~/runs/provenance_weight_training/ess_only_seed456_r2.log 2>&1\\\\nroot     133526  100  0.3 85944996 3910928 pts/3 Sl  05:00  32:08 python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\\\n---TMUX---\\\\ness_only_seed456_r2: 1 windows (created Mon May 18 05:00:43 2026)\\\\n---GPU---\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   58C    P0            369W /  600W |   46539MiB /  97887MiB |    100%      Default |\\\\n|                                         |                        |             Disabled |\\\\n--\\\\n|    1   N/A  N/A          133526      C   python                                46530MiB |\\\\n|    2   N/A  N/A          133449      C   python                                46530MiB |\\\\n|    3   N/A  N/A          136149      C   python                                46530MiB |\\\\n---LOG1---\\\\n{'weighting/b': 1.54296875, 'weighting/alpha_eff': 0.7278408516174062, 'weighting/ess': 2.003679585832111, 'weighting/mean_q': 0.5944689512252808, 'weighting/unweighted_loss': 1.5166881084442139, 'weighting/weighted_loss': 2.3812508583068848, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 1.73828125, 'weighting/alpha_eff': 0.9623698996617385, 'weighting/ess': 2.0000659697099503, 'weighting/mean_q': 0.5131645798683167, 'weighting/unweighted_loss': 2.2933082580566406, 'weighting/weighted_loss': 2.9652459621429443, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'loss': 10.7112, 'grad_norm': 20.25, 'learning_rate': 4.497153700189753e-05, 'epoch': 0.15}\\\\n{'weighting/b': 0.80078125, 'weighting/alpha_eff': 0.11478912138142512, 'weighting/ess': 2.008168176630345, 'weighting/mean_q': 0.9460507035255432, 'weighting/unweighted_loss': 1.691784381866455, 'weighting/weighted_loss': 2.4423654079437256, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 0.439453125, 'weighting/alpha_eff': 0.6528644663429045, 'weighting/ess': 2.0031189572424237, 'weighting/mean_q': 0.7267961502075195, 'weighting/unweighted_loss': 1.8753221035003662, 'weighting/weighted_loss': 3.1024603843688965, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'we\\\\n\\\\n... [截断: 输出过长，省略 2310 字符] ...\\\\n\\\\n609375, 'weighting/alpha_eff': 0.5692532468185528, 'weighting/ess': 2.0022935031036906, 'weighting/mean_q': 0.7151469588279724, 'weighting/unweighted_loss': 1.772650122642517, 'weighting/weighted_loss': 2.636133909225464, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 0.888671875, 'weighting/alpha_eff': 0.043193143734546975, 'weighting/ess': 2.0021585552797516, 'weighting/mean_q': 0.9792444109916687, 'weighting/unweighted_loss': 1.2731921672821045, 'weighting/weighted_loss': 1.4531424045562744, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 0.810546875, 'weighting/alpha_eff': 0.5268858319220204, 'weighting/ess': 2.0091599226706474, 'weighting/mean_q': 0.7501570582389832, 'weighting/unweighted_loss': 1.9658563137054443, 'weighting/weighted_loss': 2.6261093616485596, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 0.341796875, 'weighting/alpha_eff': 0.3717542957170995, 'weighting/ess': 2.0073902119669924, 'weighting/mean_q': 0.8617768287658691, 'weighting/unweighted_loss': 1.489715576171875, 'weighting/weighted_loss': 2.2146880626678467, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 5.13671875, 'weighting/alpha_eff': 0.8402262667826899, 'weighting/ess': 2.0000705117061397, 'weighting/mean_q': 0.4596980810165405, 'weighting/unweighted_loss': 2.164830207824707, 'weighting/weighted_loss': 3.2759995460510254, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n{'weighting/b': 2.138671875, 'weighting/alpha_eff': 0.7353689248764427, 'weighting/ess': 2.0018676864689997, 'weighting/mean_q': 0.577625036239624, 'weighting/unweighted_loss': 1.6920322179794312, 'weighting/weighted_loss': 1.8317351341247559, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\\\n\\\\r 56%|█████▌    | 3394/6103 [31:28<1:35:03,  2.11s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3394/6103 [31:28<1:35:03,  2.11s/it]\\\\r 56%|█████▌    | 3395/6103 [31:29<1:38:29,  2.18s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3395/6103 [31:29<1:38:29,  2.18s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3395/6103 [31:30<1:38:29,  2.18s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3395/6103 [31:30<1:38:29,  2.18s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3395/6103 [31:31<1:38:29,  2.18s/it]\\\\r 56%|█████▌    | 3396/6103 [31:31<1:37:27,  2.16s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3396/6103 [31:31<1:37:27,  2.16s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3396/6103 [31:32<1:37:27,  2.16s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3396/6103 [31:32<1:37:27,  2.16s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3396/6103 [31:33<1:37:27,  2.16s/it]\\\\r 56%|█████▌    | 3397/6103 [31:33<1:36:35,  2.14s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3397/6103 [31:34<1:36:35,  2.14s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3397/6103 [31:35<1:36:35,  2.14s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3397/6103 [31:35<1:36:35,  2.14s/it]\\\\r 56%|█████▌    | 3398/6103 [31:35<1:36:09,  2.13s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3398/6103 [31:36<1:36:09,  2.13s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3398/6103 [31:36<1:36:09,  2.13s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3398/6103 [31:37<1:36:09,  2.13s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3398/6103 [31:37<1:36:09,  2.13s/it]\\\\r 56%|█████▌    | 3399/6103 [31:37<1:35:42,  2.12s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3399/6103 [31:38<1:35:42,  2.12s/it]\\\\r                                                     \\\\r\\\\r 56%|█████▌    | 3399/6103 [31:38<1:35:42,  2.12s/it]---LOG2---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"root     133521  0.0  0.0   4496  3488 pts/3    Ss+  05:00   0:00 bash -c rm -f /tmp/agent-ml-exit/ess_only_seed456_r2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/provenance_weight_training/ess_only_seed456_r2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/ess_only_seed456_r2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/provenance_weight_training && export CUDA_VISIBLE_DEVICES=1 && timeout 43200 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export WANDB_MODE=disabled && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\\"'; } > ~/runs/provenance_weight_training/ess_only_seed456_r2.log 2>&1\\nroot     133526  100  0.3 85944996 3910928 pts/3 Sl  05:00  32:08 python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --n_min 2 --tau 0.8 --max_steps 6103 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --warmup_ratio 0.05 --weight_decay 0.01 --bf16 --save_total_limit 3 --save_only_model --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\n---TMUX---\\ness_only_seed456_r2: 1 windows (created Mon May 18 05:00:43 2026)\\n---GPU---\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   58C    P0            369W /  600W |   46539MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n--\\n|    1   N/A  N/A          133526      C   python                                46530MiB |\\n|    2   N/A  N/A          133449      C   python                                46530MiB |\\n|    3   N/A  N/A          136149      C   python                                46530MiB |\\n---LOG1---\\n{'weighting/b': 1.54296875, 'weighting/alpha_eff': 0.7278408516174062, 'weighting/ess': 2.003679585832111, 'weighting/mean_q': 0.5944689512252808, 'weighting/unweighted_loss': 1.5166881084442139, 'weighting/weighted_loss': 2.3812508583068848, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 1.73828125, 'weighting/alpha_eff': 0.9623698996617385, 'weighting/ess': 2.0000659697099503, 'weighting/mean_q': 0.5131645798683167, 'weighting/unweighted_loss': 2.2933082580566406, 'weighting/weighted_loss': 2.9652459621429443, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'loss': 10.7112, 'grad_norm': 20.25, 'learning_rate': 4.497153700189753e-05, 'epoch': 0.15}\\n{'weighting/b': 0.80078125, 'weighting/alpha_eff': 0.11478912138142512, 'weighting/ess': 2.008168176630345, 'weighting/mean_q': 0.9460507035255432, 'weighting/unweighted_loss': 1.691784381866455, 'weighting/weighted_loss': 2.4423654079437256, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.439453125, 'weighting/alpha_eff': 0.6528644663429045, 'weighting/ess': 2.0031189572424237, 'weighting/mean_q': 0.7267961502075195, 'weighting/unweighted_loss': 1.8753221035003662, 'weighting/weighted_loss': 3.1024603843688965, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'we\\n\\n... [截断: 输出过长，省略 2310 字符] ...\\n\\n609375, 'weighting/alpha_eff': 0.5692532468185528, 'weighting/ess': 2.0022935031036906, 'weighting/mean_q': 0.7151469588279724, 'weighting/unweighted_loss': 1.772650122642517, 'weighting/weighted_loss': 2.636133909225464, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.888671875, 'weighting/alpha_eff': 0.043193143734546975, 'weighting/ess': 2.0021585552797516, 'weighting/mean_q': 0.9792444109916687, 'weighting/unweighted_loss': 1.2731921672821045, 'weighting/weighted_loss': 1.4531424045562744, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.810546875, 'weighting/alpha_eff': 0.5268858319220204, 'weighting/ess': 2.0091599226706474, 'weighting/mean_q': 0.7501570582389832, 'weighting/unweighted_loss': 1.9658563137054443, 'weighting/weighted_loss': 2.6261093616485596, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 0.341796875, 'weighting/alpha_eff': 0.3717542957170995, 'weighting/ess': 2.0073902119669924, 'weighting/mean_q': 0.8617768287658691, 'weighting/unweighted_loss': 1.489715576171875, 'weighting/weighted_loss': 2.2146880626678467, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 5.13671875, 'weighting/alpha_eff': 0.8402262667826899, 'weighting/ess': 2.0000705117061397, 'weighting/mean_q': 0.4596980810165405, 'weighting/unweighted_loss': 2.164830207824707, 'weighting/weighted_loss': 3.2759995460510254, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n{'weighting/b': 2.138671875, 'weighting/alpha_eff': 0.7353689248764427, 'weighting/ess': 2.0018676864689997, 'weighting/mean_q': 0.577625036239624, 'weighting/unweighted_loss': 1.6920322179794312, 'weighting/weighted_loss': 1.8317351341247559, 'weighting/tau_batch': 0.8, 'epoch': 0.15}\\n\\r 56%|█████▌    | 3394/6103 [31:28<1:35:03,  2.11s/it]\\r                                                     \\r\\r 56%|█████▌    | 3394/6103 [31:28<1:35:03,  2.11s/it]\\r 56%|█████▌    | 3395/6103 [31:29<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:29<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:30<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:30<1:38:29,  2.18s/it]\\r                                                     \\r\\r 56%|█████▌    | 3395/6103 [31:31<1:38:29,  2.18s/it]\\r 56%|█████▌    | 3396/6103 [31:31<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:31<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:32<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:32<1:37:27,  2.16s/it]\\r                                                     \\r\\r 56%|█████▌    | 3396/6103 [31:33<1:37:27,  2.16s/it]\\r 56%|█████▌    | 3397/6103 [31:33<1:36:35,  2.14s/it]\\r                                                     \\r\\r 56%|█████▌    | 3397/6103 [31:34<1:36:35,  2.14s/it]\\r                                                     \\r\\r 56%|█████▌    | 3397/6103 [31:35<1:36:35,  2.14s/it]\\r                                                     \\r\\r 56%|█████▌    | 3397/6103 [31:35<1:36:35,  2.14s/it]\\r 56%|█████▌    | 3398/6103 [31:35<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:36<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:36<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:37<1:36:09,  2.13s/it]\\r                                                     \\r\\r 56%|█████▌    | 3398/6103 [31:37<1:36:09,  2.13s/it]\\r 56%|█████▌    | 3399/6103 [31:37<1:35:42,  2.12s/it]\\r                                                     \\r\\r 56%|█████▌    | 3399/6103 [31:38<1:35:42,  2.12s/it]\\r                                                     \\r\\r 56%|█████▌    | 3399/6103 [31:38<1:35:42,  2.12s/it]---LOG2---\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+**进程存活，正常运行中。**
+
+- PID 133526 在 cuda:1 上，CPU 100%，GPU 显存 46530MiB，GPU 利用率 100%
+- tmux session `ess_only_seed456_r2` 存在
+- 当前进度：**3399/6103 (56%)**，从 checkpoint-2500 恢复，已跑约 31 分钟
+- 预计剩余：~1h36m（~2.12s/it）
+- epoch 0.15，loss 正常，无报错
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "uuid": "c88d9b76-7350-47ae-a1cd-54c772fc941c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019suoeVFPhHiM4bP51Jr7Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3951,
+      "cache_read_input_tokens": 24519,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3951
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 10_
+
+**进程存活，正常运行中。**
+
+- PID 133526 在 cuda:1 上，CPU 100%，GPU 显存 46530MiB，GPU 利用率 100%
+- tmux session `ess_only_seed456_r2` 存在
+- 当前进度：**3399/6103 (56%)**，从 checkpoint-2500 恢复，已跑约 31 分钟
+- 预计剩余：~1h36m（~2.12s/it）
+- epoch 0.15，loss 正常，无报错
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 16421,
+  "duration_api_ms": 15748,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "8b3bb592-7e58-4527-aee0-3175e9a5b92e",
+  "total_cost_usd": 0.14930424999999997,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 16629,
+    "cache_read_input_tokens": 60484,
+    "output_tokens": 565,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16629,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 156,
+        "cache_read_input_tokens": 24519,
+        "cache_creation_input_tokens": 3951,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3951
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 881,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000971,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 565,
+      "cacheReadInputTokens": 60484,
+      "cacheCreationInputTokens": 16629,
+      "webSearchRequests": 0,
+      "costUSD": 0.14833324999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "eb5634c6-c087-495f-ad0c-ce6a5b272852"
+}
+```
+
+</details>
+
+---

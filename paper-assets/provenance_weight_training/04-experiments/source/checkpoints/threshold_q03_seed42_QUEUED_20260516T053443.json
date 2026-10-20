@@ -1,0 +1,15 @@
+{
+  "exp_id": "threshold_q03_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:34:34.545Z",
+    "updated_at": "2026-05-16T05:34:43.835Z",
+    "hypothesis": "Hard-filter threshold sensitivity: remove q>0.3 samples, train uniformly on remaining. Paired with detect_remove (q>0.5) and threshold_q07 (q>0.7) to test if filtering requires precise threshold calibration while adaptive does not."
+  },
+  "timestamp": "2026-05-16T05:34:43.992133+00:00",
+  "trigger": "update_registry"
+}

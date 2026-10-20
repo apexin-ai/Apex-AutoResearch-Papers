@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "073f182174033845f10f",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "check rho03 status and eval",
+  "task_key": "worker_check_rho03_status_and_eval_20260522T235651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_rho03_status_and_eval_20260522T235651.log",
+    "occurrence": 1,
+    "bytes": 1207433,
+    "sha256": "f1ccbf8a1e3e6b256514ee522b7728f317610cafe467e519de7cd90c06b7870e"
+  },
+  "statistics": {
+    "messages": 1016,
+    "user_turns": 1,
+    "tool_calls": 460,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 5,
+      "assistant": 74,
+      "tool_call": 460,
+      "tool_result": 460,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 949,
+      "chunks": [
+        {
+          "path": "073f182174033845f10f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "073f182174033845f10f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "073f182174033845f10f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "073f182174033845f10f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "073f182174033845f10f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "073f182174033845f10f-part-0006.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "073f182174033845f10f-part-0006.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-rho03-status-and-eval.md"
+}

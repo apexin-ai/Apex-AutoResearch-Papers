@@ -1,0 +1,15 @@
+{
+  "exp_id": "random_subset_epoch_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:45:39.415Z",
+    "updated_at": "2026-05-24T08:47:46.641Z",
+    "hypothesis": "Random-subset multi-epoch baseline: train on a random 31.48% subset (matching D&R q>0.3 retention rate, 116935 docs) for full 6103 steps (~3.2 content epochs). If D&R's advantage over uniform is purely from multi-epoch exposure, random subset should match D&R PPL (~17.25). If D&R outperforms random subset, filtering quality is load-bearing beyond the epoch effect."
+  },
+  "timestamp": "2026-05-24T08:47:47.131142+00:00",
+  "trigger": "update_registry"
+}

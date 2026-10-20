@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "310d8ba3eea59d4a9c6b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix cuda visible devices batch",
+  "task_key": "worker_fix_cuda_visible_devices_batch_20260516T230240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda_visible_devices_batch_20260516T230240_result.json",
+    "occurrence": 1,
+    "bytes": 1981,
+    "sha256": "7065f66f9ad4a97153c6b74577b4846fd372bfc272a269a5684e287df4759c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_batchsize16_nmin8_seed42.sh` 在 westd-41312 上不存在（可能未创建或名称不同）。\n\n---\n\n## 修复完成\n\n### westd-47453：31 个文件修复\n| 文件 | 修改 |\n|------|------|\n| run_adaptive_v2_seed123.sh | `export CUDA_VISIBLE_DEVICES=-1` → 注释 |\n| run_adaptive_v2_seed42.sh | 同上 |\n| run_adaptive_v2_seed456.sh | 同上 |\n| run_batch_adaptive_tau_rho06_seed42.sh | 同上 |\n| run_batchsize16.sh | 同上 |\n| run_bs8_auto_nmin_seed42.sh | 同上 |\n| run_contamination_60_tau06.sh | 同上 |\n| run_detect_remove.sh | 同上 |\n| run_grid_b0_1_seed42.sh | 同上 |\n| run_grid_b0_2_seed42.sh | 同上 |\n| run_grid_b_low_seed42.sh | 同上 |\n| run_hybrid_rho04_seed42.sh | 同上 |\n| run_hybrid_rho06_seed42.sh | 同上 |\n| run_llama3b_adaptive_seed42.sh | 同上 |\n| run_llama3b_adaptive_tau09_seed42.sh | 同上 |\n| run_llama3b_uniform_seed42.sh | 同上 |\n| run_nmin5.sh | 同上 |\n| run_prepare_rho02.sh | 同上 |\n| run_prepare_rho06.sh | 同上 |\n| run_random_reweight.sh | 同上 |\n| run_rho02_adaptive_tau09_seed42.sh | 已是注释（之前修复过） |\n| run_rho06_adaptive.sh | 同上 |\n| run_rho06_grid_b05.sh | 同上 |\n| run_rho06_uniform.sh | 同上 |\n| run_tau_05/06/07/09/095_nmin2.sh (5个) | 同上 |\n| run_threshold_q03.sh | 同上 |\n| run_threshold_q07_resume_r2.sh | 同上 |\n\n### westd-41312：26 个文件修复\n同名文件集合（少 5 个：westd-41312 上 `run_hybrid_rho04/06`、`run_llama3b_adaptive`、`run_llama3b_uniform`、`run_threshold_q07_resume_r2` 的值不是 -1，无需修改）。\n\n### 未修改的文件（保留特定 GPU 指定）\n含 `CUDA_VISIBLE_DEVICES=0/1/2/3` 或 `=$GPU_ID` 的文件未动，这些是有意的 GPU 绑定。\n\n### 验证结果\n- `grep \"export CUDA_VISIBLE_DEVICES=-1\"` → 两台服务器均返回 0 结果\n- `bash -n` → 所有修改文件语法检查通过\n- `run_batchsize16_nmin8_seed42.sh` 在 westd-41312 不存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda-visible-devices-batch.md"
+}

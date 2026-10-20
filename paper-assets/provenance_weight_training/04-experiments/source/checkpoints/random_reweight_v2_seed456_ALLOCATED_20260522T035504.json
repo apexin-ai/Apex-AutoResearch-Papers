@@ -1,0 +1,15 @@
+{
+  "exp_id": "random_reweight_v2_seed456",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:32:33.573Z",
+    "updated_at": "2026-05-22T03:55:03.735Z",
+    "hypothesis": "Random reweight seed456 v2: uses scored_data_random_shuffle.jsonl + adaptive weighting (matching seed42/seed123 config). Third seed for detector signal load-bearing test. Paired with random_reweight_baseline_seed42 (17.958) and random_reweight_seed123 (17.945)."
+  },
+  "timestamp": "2026-05-22T03:55:04.182979+00:00",
+  "trigger": "update_registry"
+}

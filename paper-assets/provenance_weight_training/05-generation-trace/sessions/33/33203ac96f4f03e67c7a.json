@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33203ac96f4f03e67c7a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops submit grid b low seed42",
+  "task_key": "worker_ops_submit_grid_b_low_seed42_20260515T011919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_grid_b_low_seed42_20260515T011919_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "16b88f563da49853c3e0bcef81e714926f1daa681d0f1896c711c89fda2dfc84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| GPU 1 | PID 163662，46514 MiB，正在训练 |\n| 当前阶段 | b=0.1, step 32, loss ~2.46 |\n| tmux session | `grid_b_low_seed42` |\n| 脚本修改 | 已添加 `--eval_data_path data/human/eval_holdout.jsonl` |\n| Registry | `grid_b_low_seed42` → RUNNING |\n| 日志 | `output/logs/` 目录已补建，但初始输出未捕获（tee 启动时目录不存在） |\n\n3 个 b 值（0.1→0.2→0.3）串行执行，预计总计 ~11h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-grid-b-low-seed42.md"
+}

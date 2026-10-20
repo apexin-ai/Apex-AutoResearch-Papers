@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "273cdbd6b76585267480",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "extract adaptive 1 7b seed456 accnorm",
+  "task_key": "worker_extract_adaptive_1_7b_seed456_accnorm_20260520T215613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_adaptive_1_7b_seed456_accnorm_20260520T215613_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "2aa2fb82e29dd0b0c57ee361716d8c6ae74cb02def4fb83ee094d99bff391c0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`adaptive_1_7b_seed456` 的 acc_norm 结果：\n\n| Task | acc_norm |\n|------|---------|\n| arc_challenge | 0.4352 |\n| arc_easy | 0.7146 |\n| hellaswag | 0.6133 |\n| piqa | 0.7443 |\n| winogrande | N/A（该 task 不输出 acc_norm） |\n\nwinogrande 只有 `acc` (0.6219)，没有 `acc_norm` 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-adaptive-1-7b-seed456-accnorm.md"
+}

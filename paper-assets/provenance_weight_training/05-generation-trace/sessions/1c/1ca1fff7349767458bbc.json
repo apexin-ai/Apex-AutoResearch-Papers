@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ca1fff7349767458bbc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops github repo sync",
+  "task_key": "worker_ops_github-repo-sync_20260526T122448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_github-repo-sync_20260526T122448_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "3175ef0cf66a1bda63fe18373bb026769c087afc3dbe8340469b36ed8183c7f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**更新内容：**\n- **文件**: `README.md`\n- **改动**:\n  1. 标题从 `Provenance Weight Training` → `When Does Detect-and-Reweight Work for Synthetic Contamination?`\n  2. 副标题从旧论文标题 `\"When Does Detect-and-Reweight Work? Epoch Confounds and Adaptive Reweighting in Continued LM Pretraining\"` → `Code for anonymous EMNLP 2026 submission.`\n  3. 新增 `## Abstract` 章节，内容与论文最终版一致\n\n**其他文件无需更新** — 旧论文标题仅出现在 README.md 中，代码文件中无旧标题引用，无 setup.py/pyproject.toml。\n\n- **Commit**: `29cabf455c9dfd406994503a77c4047c389305e2`\n- **仓库**: `https://github.com/anonymous-nlp-2026/provenance_weight_training`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-github-repo-sync.md"
+}

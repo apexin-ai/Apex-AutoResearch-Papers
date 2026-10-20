@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "315ca2602f2ed6ba0f0c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval bs8 nmin2 seed42 r2",
+  "task_key": "worker_eval_bs8_nmin2_seed42_r2_20260515T225558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bs8_nmin2_seed42_r2_20260515T225558_result.json",
+    "occurrence": 1,
+    "bytes": 336,
+    "sha256": "ed472644c6434a12a89074dfed6a5ddee55a238a7233b57aa6068e9036162435"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。任务完成。\n\n**bs8_nmin2_seed42_r2 结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| eval_loss | 2.8752 |\n| eval_ppl_holdout | 17.73 |\n| eval_tokens | 4,077,068 |\n| train_loss | 5.4065 |\n| total_steps | 6103 |\n| b* mean/median | 2.2712 / 1.4918 |\n| b* std/range | 2.768 / [0, 20] |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bs8-nmin2-seed42-r2.md"
+}

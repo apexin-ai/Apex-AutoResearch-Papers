@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18a717579851e197f23c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check 41312 status and eval",
+  "task_key": "worker_check_41312_status_and_eval_20260518T015812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_41312_status_and_eval_20260518T015812_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "f7492793c927b965d1f66c5abd3fc09b26fb9a153a0b62ea43382c8ce37b65f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**GPU 状态 (westd-41312)：** 4x RTX PRO 6000 Blackwell (98GB)，全部 100% 占用。\n\n| 实验 | GPU | 进度 | ETA | 状态 |\n|------|-----|------|-----|------|\n| contamination_60_adaptive_seed456 | 0 | 370/6103 (6%) | ~3h31m | **running** |\n| contamination_60_uniform_seed456 | 1 | 393/6103 (6%) | ~3h20m | **running** |\n| grid_b0_1_seed123 | 2 | 390/6103 (6%) | ~3h20m | **running** |\n| grid_b0_1_seed456 | 3 | 388/6103 (6%) | ~3h20m | **running** |\n\n4 个实验均在运行中，刚跑了约 14 分钟，预计还需 ~3.5 小时完成。无 final checkpoint，暂无法 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-41312-status-and-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0662021fc8fc1126dfd",
+  "project": "pgpf-collapse-filter",
+  "kind": "result",
+  "title": "analysis lc tfidf ortho verify",
+  "task_key": "worker_analysis_lc_tfidf_ortho_verify_20260513T112155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lc_tfidf_ortho_verify_20260513T112155_result.json",
+    "occurrence": 1,
+    "bytes": 1783,
+    "sha256": "cee7922febb7da61deb410474820020ba5d726cd4441bdea35de3fda49b19dd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了。注意 FAIL 是因为 `quality_vs_confidence` Spearman = -0.9979，但这在原始 BLEU-4 分析中也完全相同（-0.9979），与 LC 指标无关。原始 Phase 0 判定标准只检查 Pearson |r|，所以原结果也是 PASS。\n\n## 验证结果\n\n### LC 指标\nPhase 0 数据和当前代码均使用 **BLEU-4**，尚未改为 TF-IDF cosine。\n\n### TF-IDF Cosine LC 完整相关系数矩阵\n\n**Pearson r:**\n\n| | LC | SN | Quality | Confidence |\n|---|---|---|---|---|\n| **LC** | 1.0 | **-0.3598** | 0.0144 | -0.0339 |\n| **SN** | | 1.0 | -0.0289 | 0.1080 |\n| **Quality** | | | 1.0 | -0.2871 |\n| **Confidence** | | | | 1.0 |\n\n**Spearman rho:**\n\n| | LC | SN | Quality | Confidence |\n|---|---|---|---|---|\n| **LC** | 1.0 | **-0.3773** | 0.0749 | -0.0651 |\n| **SN** | | 1.0 | -0.1212 | 0.1123 |\n| **Quality** | | | 1.0 | -0.9979* |\n| **Confidence** | | | | 1.0 |\n\n*\\*Quality vs Confidence Spearman = -0.9979 与 BLEU-4 版本完全相同，是 PPL/log-prob 的固有数学关系，非 LC 相关问题。*\n\n### 判定（按原 Phase 0 Pearson 标准）\n\n- 所有 Pearson |r| < 0.7: **PASS** (|r|_max = 0.3598)\n- LC vs Confidence |r| < 0.5: **PASS** (|r| = 0.0339)\n- **OVERALL: PASS**\n\n### BLEU-4 vs TF-IDF Cosine 对比（Pearson）\n\n| 属性对 | BLEU-4 | TF-IDF cosine | 变化 |\n|---|---|---|---|\n| LC vs SN | -0.117 | **-0.360** | 绝对值增大，仍 < 0.7 |\n| LC vs Quality | -0.048 | 0.014 | 趋近零 |\n| LC vs Confidence | 0.303 | **-0.034** | 大幅下降，正交性更好 |\n| |r|_max | 0.303 | 0.360 | 略有上升 |\n\nTF-IDF cosine LC 与 Confidence 的相关性从 0.303 降至 0.034，正交性显著改善。LC vs SN 相关性有所增加（-0.117 → -0.360），但仍远低于 0.7 阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lc-tfidf-ortho-verify.md"
+}

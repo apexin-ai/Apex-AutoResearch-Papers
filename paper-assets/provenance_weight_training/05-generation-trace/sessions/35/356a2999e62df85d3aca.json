@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "356a2999e62df85d3aca",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "figures apply calibrated rc",
+  "task_key": "worker_figures_apply_calibrated_rc_20260524T233405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figures_apply_calibrated_rc_20260524T233405_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "527bda13912a03cb69d46cfdabd118e39e87fab96e233bb4f750b5accd502d4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。5 个脚本共生成 10 组 PDF+PNG，时间戳均为 `May 24 23:37`，无报错：\n\n- `dual_constraint_illustration` (×2，来自 generate_optimized 和 plot_dual_constraint)\n- `grid_b_trend_clean`\n- `constraint_regime_decomposition`\n- `tau_rho_rank_preservation`\n- `dr_dual_curve`\n- `delta_vs_rho`\n- `fig1_overview`\n- `batch_size_amplification`\n- `detector_requirements`\n- `tau_sweep_rho04`\n\nrcParams 更新内容：font.size→9, tick labelsize→8, legend.fontsize→8, axes.linewidth→0.8, grid(0.5/0.3/#CCCCCC), savefig.pad_inches→0.05, axes.edgecolor→black, font.serif 首位改为 Times New Roman。内联 grid 参数和 pad_inches 也已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figures-apply-calibrated-rc.md"
+}

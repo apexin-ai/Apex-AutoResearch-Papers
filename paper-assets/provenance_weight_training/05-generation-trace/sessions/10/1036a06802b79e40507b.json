@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1036a06802b79e40507b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval westd30476 ood batch",
+  "task_key": "worker_eval_westd30476_ood_batch_20260520T042004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd30476_ood_batch_20260520T042004_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "04c187a8254635076204dc711512d404069feef79b5ebba087e2a29513557d6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OOD 数据正在下载中 (PID=188100)，约 1 分钟后检查进度。\n\n状态：\n- 已部署 `eval_ppl_ood.py` 到服务器\n- 已确认所有 8 个 checkpoint 路径（均在 `/root/autodl-tmp/output/models/` 下，都有 `final/` 子目录）\n- 正在后台下载 OpenWebText + Wikipedia 数据（streaming 5000 docs each）\n- 下载完成后将在 4 个 GPU 上并行启动 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd30476-ood-batch.md"
+}

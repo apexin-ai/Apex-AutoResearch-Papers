@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "175314abf7031b0adca4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra westd30476 env check and eval",
+  "task_key": "worker_infra_westd30476_env_check_and_eval_20260520T040101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd30476_env_check_and_eval_20260520T040101_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "fa353fa9412779cae455d135e7a5278fe427f53a6f8379bff26e3bb0336b05cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个 eval 已完成并更新 registry 为 DONE。\n\n## 最终汇总\n\n| exp_id | Checkpoint | Loss | PPL | 耗时 |\n|--------|-----------|------|-----|------|\n| **eval_epoch_matched_seed123** | epoch_matched_dr_seed123 | 2.8713 | **17.66** | 104s |\n| **eval_epoch_matched_seed456** | epoch_matched_dr_seed456 | 2.8712 | **17.66** | 104s |\n| **eval_q03_r2** | detect_remove_q03_seed42_r2 | 2.8480 | **17.25** | 111s |\n| **eval_q04** | detect_remove_q04_seed42 | 2.8485 | **17.26** | 104s |\n| **eval_q06** | detect_remove_q06_seed42 | 2.8507 | **17.30** | 107s |\n| **eval_q07_final** | detect_remove_q07_seed42 | 2.8519 | **17.32** | 104s |\n| **eval_q01_final_v2** | detect_remove_q01_seed42 | 2.8563 | **17.40** | 105s |\n\n**关键发现**：\n- Epoch-matched baseline PPL = 17.66（两个 seed 完全一致）\n- 所有 detect-remove 变体均低于 baseline（PPL 17.25–17.40），确认数据过滤有效\n- q=0.3 最优（PPL 17.25），q=0.1 反而不如 q=0.3（17.40 vs 17.25），说明过度过滤导致数据量不足\n- PPL 随 q 阈值单调递增的趋势在 q=0.1 处打破，呈 U 型曲线，最优点在 q=0.3 附近\n\n**缺失 checkpoint**：无，所有 7 个 checkpoint 均存在（路径修正为 `/root/autodl-tmp/output/models/`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd30476-env-check-and-eval.md"
+}

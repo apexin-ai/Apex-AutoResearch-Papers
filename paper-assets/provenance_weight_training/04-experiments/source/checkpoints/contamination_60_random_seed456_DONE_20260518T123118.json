@@ -1,0 +1,36 @@
+{
+  "exp_id": "contamination_60_random_seed456",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:18:44.245Z",
+    "updated_at": "2026-05-18T12:31:18.086Z",
+    "hypothesis": "Cross-seed replication (seed456) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.",
+    "parent": "contamination_60_random_seed42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3",
+      "server": "westd-41312",
+      "gpu": 3,
+      "data_path": "data/scored_data_60.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 456,
+      "checkpoint_source": "models/Qwen/Qwen3-0.6B",
+      "eval_data": "N/A (training experiment, not eval)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_ppl_holdout": 17.88,
+      "eval_loss_holdout": 2.8837,
+      "eval_holdout_tokens": 4077068
+    },
+    "checkpoint_path": "/root/provenance_weight_training/output/contamination_60_random_seed456/",
+    "log_path": "/root/provenance_weight_training/logs/contamination_60_random_seed456.log",
+    "completed_at": "2026-05-18T12:31:18.086Z"
+  },
+  "timestamp": "2026-05-18T12:31:18.331522+00:00",
+  "trigger": "update_registry"
+}

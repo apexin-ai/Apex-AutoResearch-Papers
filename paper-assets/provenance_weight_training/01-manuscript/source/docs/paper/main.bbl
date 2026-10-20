@@ -1,0 +1,274 @@
+\begin{thebibliography}{38}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Abbas et~al.(2023)Abbas, Tirumala, Simig, Ganguli, and
+  Morcos}]{abbas2023semdedup}
+Amro Abbas, Kushal Tirumala, D{\'a}niel Simig, Surya Ganguli, and Ari~S.
+  Morcos. 2023.
+\newblock {SemDeDup}: Data-efficient learning at web-scale through semantic
+  deduplication.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Albalak et~al.(2024)Albalak, Elazar, Xie, Longpre, Lambert, Wang,
+  Muennighoff, Hou, Pan, Jeong, Raffel, Chang, Hashimoto, and
+  Wang}]{albalak2024survey}
+Alon Albalak, Yanai Elazar, Sang~Michael Xie, Shayne Longpre, Nathan Lambert,
+  Xinyi Wang, Niklas Muennighoff, Bairu Hou, Liangming Pan, Haewon Jeong, Colin
+  Raffel, Shiyu Chang, Tatsunori Hashimoto, and William~Yang Wang. 2024.
+\newblock A survey on data selection for language models.
+\newblock \emph{TMLR}.
+
+\bibitem[{Alemohammad et~al.(2024)Alemohammad, Casco-Rodriguez, Luzi, Humayun,
+  Babaei, LeJeune, Siahkoohi, and Baraniuk}]{alemohammad2024mad}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed~Imtiaz Humayun,
+  Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard~G. Baraniuk. 2024.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Amin et~al.(2025)Amin, Babakniya, Bie, Kong, Syed, and
+  Vassilvitskii}]{amin2025escaping}
+Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, and Sergei
+  Vassilvitskii. 2025.
+\newblock Escaping collapse: The strength of weak data for large language model
+  training.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Bengio et~al.(2009)Bengio, Louradour, Collobert, and
+  Weston}]{bengio2009curriculum}
+Yoshua Bengio, J{\'e}r{\^o}me Louradour, Ronan Collobert, and Jason Weston.
+  2009.
+\newblock Curriculum learning.
+\newblock In \emph{ICML}.
+
+\bibitem[{Cheng et~al.(2025)Cheng, Chang, and Wu}]{cheng2025contamination}
+Yuxing Cheng, Yi~Chang, and Yuan Wu. 2025.
+\newblock A survey on data contamination for large language models.
+\newblock \emph{arXiv preprint arXiv:2502.14425}.
+
+\bibitem[{Cortes et~al.(2010)Cortes, Mansour, and Mohri}]{cortes2010learning}
+Corinna Cortes, Yishay Mansour, and Mehryar Mohri. 2010.
+\newblock Learning bounds for importance weighting.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Dohmatob et~al.(2025)Dohmatob, Feng, Subramonian, and
+  Kempe}]{dohmatob2025strong}
+Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, and Julia Kempe. 2025.
+\newblock Strong model collapse.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Drayson et~al.(2025)Drayson, Yilmaz, and
+  Lampos}]{drayson2025detection}
+George Drayson, Emine Yilmaz, and Vasileios Lampos. 2025.
+\newblock Machine-generated text detection prevents language model collapse.
+\newblock \emph{arXiv preprint arXiv:2502.15654}.
+
+\bibitem[{Engstrom et~al.(2024)Engstrom, Feldmann, and
+  M{\u{a}}dry}]{engstrom2024dsdm}
+Logan Engstrom, Axel Feldmann, and Aleksander M{\u{a}}dry. 2024.
+\newblock {DsDm}: Model-aware dataset selection with datamodels.
+\newblock In \emph{ICML}.
+
+\bibitem[{Fang et~al.(2020)Fang, Lu, Niu, and Sugiyama}]{fang2020rethinking}
+Tongtong Fang, Nan Lu, Gang Niu, and Masashi Sugiyama. 2020.
+\newblock Rethinking importance weighting for deep learning under distribution
+  shift.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Feng et~al.(2025)Feng, Dohmatob, Yang, Charton, and
+  Kempe}]{feng2025beyond}
+Yunzhen Feng, Elvis Dohmatob, Pu~Yang, Fran{\c{c}}ois Charton, and Julia Kempe.
+  2025.
+\newblock Beyond model collapse: Scaling up with synthesized data requires
+  verification.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Grangier et~al.(2025)Grangier, Fan, Seto, and
+  Ablin}]{grangier2025crisp}
+David Grangier, Simin Fan, Skyler Seto, and Pierre Ablin. 2025.
+\newblock Task-adaptive pretrained language models via clustered-importance
+  sampling.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Gunasekar et~al.(2023)Gunasekar, Zhang, Aneja, Mendes, Del~Giorno,
+  Gopi, Javaheripi, Kauffmann, de~Rosa, Saarikivi, Salim, Shah, Behl, Wang,
+  Bubeck, Eldan, Kalai, Lee, and Li}]{gunasekar2023textbooks}
+Suriya Gunasekar, Yi~Zhang, Jyoti Aneja, Caio C{\'e}sar~Teodoro Mendes, Allie
+  Del~Giorno, Sivakanth Gopi, Mojan Javaheripi, Piero Kauffmann, Gustavo
+  de~Rosa, Olli Saarikivi, Adil Salim, Shital Shah, Harkirat~Singh Behl, Xin
+  Wang, S{\'e}bastien Bubeck, Ronen Eldan, Adam~Tauman Kalai, Yin~Tat Lee, and
+  Yuanzhi Li. 2023.
+\newblock Textbooks are all you need.
+\newblock \emph{arXiv preprint arXiv:2306.11644}.
+
+\bibitem[{Guo et~al.(2017)Guo, Pleiss, Sun, and
+  Weinberger}]{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu~Sun, and Kilian~Q. Weinberger. 2017.
+\newblock On calibration of modern neural networks.
+\newblock In \emph{ICML}.
+
+\bibitem[{Gururangan et~al.(2020)Gururangan, Marasovi{\'c}, Swayamdipta, Lo,
+  Beltagy, Downey, and Smith}]{gururangan2020dont}
+Suchin Gururangan, Ana Marasovi{\'c}, Swabha Swayamdipta, Kyle Lo, Iz~Beltagy,
+  Doug Downey, and Noah~A. Smith. 2020.
+\newblock Don't stop pretraining: Adapt language models to domains and tasks.
+\newblock In \emph{ACL}.
+
+\bibitem[{Hans et~al.(2024)Hans, Schwarzschild, Cherepanova, Kazemi, Saha,
+  Goldblum, Geiping, and Goldstein}]{hans2024binoculars}
+Abhimanyu Hans, Avi Schwarzschild, Valeriia Cherepanova, Hamid Kazemi,
+  Aniruddha Saha, Micah Goldblum, Jonas Geiping, and Tom Goldstein. 2024.
+\newblock Spotting {LLMs} with binoculars: Zero-shot detection of
+  machine-generated text.
+\newblock In \emph{ICML}.
+
+\bibitem[{He et~al.(2025)He, Xu, and Cheng}]{he2025golden}
+Hengzhi He, Shirong Xu, and Guang Cheng. 2025.
+\newblock Golden ratio weighting prevents model collapse.
+\newblock \emph{arXiv preprint arXiv:2502.18049}.
+
+\bibitem[{Kazdan et~al.(2025)Kazdan, Schaeffer, Dey, Gerstgrasser, Rafailov,
+  Donoho, and Koyejo}]{kazdan2025collapse}
+Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael
+  Rafailov, David~L. Donoho, and Sanmi Koyejo. 2025.
+\newblock Collapse or thrive? perils and promises of synthetic data in a
+  self-generating world.
+\newblock In \emph{ICML}.
+
+\bibitem[{Kish(1965)}]{kish1965survey}
+Leslie Kish. 1965.
+\newblock \emph{Survey Sampling}.
+\newblock Wiley.
+
+\bibitem[{Li et~al.(2023)Li, Bubeck, Eldan, Del~Giorno, Gunasekar, and
+  Lee}]{li2023textbooks2}
+Yuanzhi Li, S{\'e}bastien Bubeck, Ronen Eldan, Allie Del~Giorno, Suriya
+  Gunasekar, and Yin~Tat Lee. 2023.
+\newblock Textbooks are all you need {II}: phi-1.5 technical report.
+\newblock \emph{arXiv preprint arXiv:2309.05463}.
+
+\bibitem[{Mindermann et~al.(2022)Mindermann, Brauner, Razzak, Sharma, Kirsch,
+  Xu, H{\"o}ltgen, Gomez, Morisot, Farquhar, and
+  Gal}]{mindermann2022prioritized}
+S{\"o}ren Mindermann, Jan~M Brauner, Muhammed~T Razzak, Mrinank Sharma, Andreas
+  Kirsch, Winnie Xu, Benedikt H{\"o}ltgen, Aidan~N Gomez, Adrien Morisot,
+  Sebastian Farquhar, and Yarin Gal. 2022.
+\newblock Prioritized training on points that are learnable, worth learning,
+  and not yet learnt.
+\newblock In \emph{ICML}.
+
+\bibitem[{Mitchell et~al.(2023)Mitchell, Lee, Khazatsky, Manning, and
+  Finn}]{mitchell2023detectgpt}
+Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher~D. Manning, and
+  Chelsea Finn. 2023.
+\newblock {DetectGPT}: Zero-shot machine-generated text detection using
+  probability curvature.
+\newblock In \emph{ICML}.
+
+\bibitem[{Nait~Saada et~al.(2025)Nait~Saada, Bethune, Klein, Grangier, Cuturi,
+  and Ablin}]{naitsaada2025illusion}
+Thiziri Nait~Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi,
+  and Pierre Ablin. 2025.
+\newblock The data-quality illusion: Rethinking classifier-based quality
+  filtering for {LLM} pretraining.
+\newblock \emph{arXiv preprint arXiv:2510.00866}.
+
+\bibitem[{Owen(2013)}]{owen2013mc}
+Art~B. Owen. 2013.
+\newblock \emph{Monte Carlo Theory, Methods and Examples}.
+\newblock Self-published.
+\newblock Chapter 9: Importance Sampling.
+
+\bibitem[{Penedo et~al.(2024)Penedo, Kydl{\'\i}{\v{c}}ek, Ben~Allal, Lozhkov,
+  Mitchell, Raffel, von Werra, and Wolf}]{penedo2024fineweb}
+Guilherme Penedo, Hynek Kydl{\'\i}{\v{c}}ek, Loubna Ben~Allal, Anton Lozhkov,
+  Margaret Mitchell, Colin Raffel, Leandro von Werra, and Thomas Wolf. 2024.
+\newblock {The FineWeb Datasets}: Decanting the web for the finest text data at
+  scale.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}.
+
+\bibitem[{Shi et~al.(2024)Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and
+  Zettlemoyer}]{shi2024minkprob}
+Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra
+  Blevins, Danqi Chen, and Luke Zettlemoyer. 2024.
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Shumailov et~al.(2024)Shumailov, Shumaylov, Zhao, Papernot, Anderson,
+  and Gal}]{shumailov2024model}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson,
+  and Yarin Gal. 2024.
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:755--759.
+
+\bibitem[{Sow et~al.(2025)Sow, Woisetschl{\"a}ger, Bulusu, Wang, Jacobsen, and
+  Liang}]{sow2025dynamic}
+Daouda Sow, Herbert Woisetschl{\"a}ger, Saikiran Bulusu, Shiqiang Wang,
+  Hans-Arno Jacobsen, and Yingbin Liang. 2025.
+\newblock Dynamic loss-based sample reweighting for improved large language
+  model pretraining.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Tay et~al.(2022)Tay, Dehghani, Rao, Fedus, Abnar, Chung, Narang,
+  Yogatama, Vaswani, and Metzler}]{tay2022scale}
+Yi~Tay, Mostafa Dehghani, Jinfeng Rao, William Fedus, Samira Abnar, Hyung~Won
+  Chung, Sharan Narang, Dani Yogatama, Ashish Vaswani, and Donald Metzler.
+  2022.
+\newblock Scale efficiently: Insights from pre-training and fine-tuning
+  transformers.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Vehtari et~al.(2024)Vehtari, Simpson, Gelman, Yao, and
+  Gabry}]{vehtari2024psis}
+Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, and Jonah Gabry. 2024.
+\newblock Pareto smoothed importance sampling.
+\newblock \emph{Journal of Machine Learning Research}, 25(72):1--58.
+
+\bibitem[{Wang et~al.(2026)Wang, Niu, and Li}]{wang2026survive}
+Kevin Wang, Hongqian Niu, and Didong Li. 2026.
+\newblock Can generative artificial intelligence survive data contamination?
+  theoretical guarantees under contaminated recursive training.
+\newblock \emph{arXiv preprint arXiv:2602.16065}.
+
+\bibitem[{Wenzek et~al.(2020)Wenzek, Lachaux, Conneau, Chaudhary, Guzm{\'a}n,
+  Joulin, and Grave}]{wenzek2020ccnet}
+Guillaume Wenzek, Marie-Anne Lachaux, Alexis Conneau, Vishrav Chaudhary,
+  Francisco Guzm{\'a}n, Armand Joulin, and Edouard Grave. 2020.
+\newblock {CCNet}: Extracting high quality monolingual datasets from web crawl
+  data.
+\newblock In \emph{LREC}.
+
+\bibitem[{Wu et~al.(2025)Wu, Yang, Zhan, Yuan, Chao, and Wong}]{wu2025survey}
+Junchao Wu, Shu Yang, Runzhe Zhan, Yulin Yuan, Lidia~Sam Chao, and Derek~Fai
+  Wong. 2025.
+\newblock A survey on {LLM}-generated text detection: Necessity, methods, and
+  future directions.
+\newblock \emph{Computational Linguistics}, 51(1):275--338.
+
+\bibitem[{Xie et~al.(2023{\natexlab{a}})Xie, Pham, Dong, Du, Liu, Lu, Liang,
+  Le, Ma, and Yu}]{xie2023doremi}
+Sang~Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy
+  Liang, Quoc~V. Le, Tengyu Ma, and Adams~Wei Yu. 2023{\natexlab{a}}.
+\newblock {DoReMi}: Optimizing data mixtures speeds up language model
+  pretraining.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Xie et~al.(2023{\natexlab{b}})Xie, Santurkar, Ma, and
+  Liang}]{xie2023dsir}
+Sang~Michael Xie, Shibani Santurkar, Tengyu Ma, and Percy Liang.
+  2023{\natexlab{b}}.
+\newblock Data selection for language models via importance resampling.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Yang et~al.(2025)Yang, Yang, Zhang et~al.}]{yang2025qwen3}
+An~Yang, Baosong Yang, Beichen Zhang, and 1 others. 2025.
+\newblock {Qwen3} technical report.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[{Ye et~al.(2025)Ye, Liu, Sun, Zhou, Zhan, and Qiu}]{ye2025mixing}
+Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, and Xipeng Qiu.
+  2025.
+\newblock Data mixing laws: Optimizing data mixtures by predicting language
+  modeling performance.
+\newblock In \emph{ICLR}.
+
+\end{thebibliography}

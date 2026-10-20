@@ -1,0 +1,15 @@
+Remote paths on westd-47453:
+- PDF: /root/provenance_weight_training/output/figures/tau_sweep_dual_axis.pdf (28K)
+- PNG: /root/provenance_weight_training/output/figures/tau_sweep_dual_axis.png (174K)
+- Script: /root/provenance_weight_training/scripts/plot_tau_sweep.py
+
+Data used:
+τ     | eval_ppl_holdout | b*_mean
+0.5   | 17.688           | 0.3923
+0.6   | 17.6805          | 0.5899
+0.7   | 17.6793          | 0.8943
+0.8   | 17.6527          | 1.399
+0.9   | 17.712           | 2.36
+0.95  | 17.723           | 3.0775
+
+Uniform baseline PPL = 17.6939

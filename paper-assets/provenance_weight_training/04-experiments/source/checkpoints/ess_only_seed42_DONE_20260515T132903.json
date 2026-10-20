@@ -1,0 +1,63 @@
+{
+  "exp_id": "ess_only_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:20:13.656Z",
+    "updated_at": "2026-05-15T13:29:03.148Z",
+    "hypothesis": "ESS-only adaptive baseline (max-intervention): b* = max{b : ESS(b) ≥ n_min} — proves min-intervention (adaptive) superior to max-intervention (ESS-only)",
+    "server": "westd-47453",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T09:13:26.412Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/ess_only_seed42 --weighting_method ess_only --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\"",
+      "finished_at": "2026-05-15T12:50:22.690Z",
+      "training_hours": 3.62
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/ess_only_seed42 --weighting_method ess_only --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "189240",
+      "log_path": "~/runs/provenance_weight_training/ess_only_seed42.log",
+      "submitted_at": "2026-05-15T09:13:28.595Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 15334.6,
+      "gpu_hours": 4.26
+    },
+    "pid": "189240",
+    "log_path": "~/runs/provenance_weight_training/ess_only_seed42.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T12:50:24.148259+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_ppl": 17.73,
+      "eval_loss": 2.875,
+      "b_star_median": 1.58,
+      "b_star_mean": 3.51,
+      "vs_uniform_ppl_delta": "+0.06",
+      "vs_adaptive_ppl_delta": "+0.08"
+    },
+    "checkpoint_path": "/root/provenance_weight_training/output/models/ess_only_seed42",
+    "completed_at": "2026-05-15T13:29:03.148Z"
+  },
+  "timestamp": "2026-05-15T13:29:03.256163+00:00",
+  "trigger": "update_registry"
+}

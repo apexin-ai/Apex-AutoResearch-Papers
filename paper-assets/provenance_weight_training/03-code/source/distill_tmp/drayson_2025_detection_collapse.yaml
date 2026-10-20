@@ -1,0 +1,80 @@
+paper_key: "drayson_2025_detection_collapse"
+title: "Machine-Generated Text Detection Prevents Language Model Collapse"
+venue: "EMNLP 2025"
+full_text_available: true
+
+research:
+  baselines: ["oracle (pure human data)", "no mitigation baseline", "greedy decoding", "beam search", "pure sampling", "temperature sampling", "top-k sampling", "nucleus sampling"]
+  metrics:
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "token accuracy", direction: "higher_better"}
+    - {name: "diversity (n-gram)", direction: "higher_better"}
+    - {name: "Self-BLEU", direction: "lower_better"}
+    - {name: "MAUVE", direction: "higher_better"}
+    - {name: "readability (Flesch-Kincaid)", direction: "higher_better"}
+  datasets:
+    - {name: "WikiText-2", size: "36,718 train docs"}
+    - {name: "MAGE benchmark", size: "154K human + 294K machine texts"}
+  ablation_dimensions: ["decoding strategy (6 types)", "mixing coefficients (α,β,γ)", "model scale (124M-1.7B)", "resampling bias b", "max resample count r_max"]
+  training_recipe: {optimizer: "AdamW", lr: "5e-5", hardware: "not specified", batch_size: 8, epochs_per_gen: 1, generations: 10}
+  method_family: "importance resampling via synthetic text detection"
+
+positioning:
+  core_claim: "Machine-generated text detectors can provide calibrated importance weights for resampling, preventing model collapse and even outperforming oracle human-only training"
+  key_results: "Perplexity reduction up to -25.65% vs baseline; MAUVE improvement +16.42%; exceeds oracle performance with equal human-synthetic ratio"
+  limitations: ["fine-tuning only (not pretraining from scratch)", "limited to open-ended text generation tasks", "max model 1.7B parameters", "fixed dataset size per generation"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM outputs proliferating across web, risking future training on diluted human text"
+  tension: "Model collapse is well-documented but prevention methods are limited; synthetic data has benefits in controlled settings but uncontrolled accumulation is dangerous"
+  key_insight: "Section 3.3 — detector confidence as importance weight for SIR resampling; weight formula w_j = (1-q(x_j))^b / Σ(1-q(x_l))^b"
+  argument_chain: "problem (collapse) → measure collapse across 6 decoding strategies → train detector → use detector as importance weight → show curated synthetic > pure human"
+  contribution_framing: "5 numbered contributions at end of intro: evaluation, decoding impact, detector training, resampling method, cross-scale validation"
+  intro_structure: "4 paragraphs: (1) proliferation risk, (2) existing collapse literature, (3) gap in detection-based prevention, (4) contributions"
+  notable_technique: "Demonstrating curated synthetic data outperforms pure human data — flips the narrative from 'avoid synthetic' to 'curate synthetic'"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "teaser_result"
+    description: "Perplexity and accuracy progression over 100 generations for GPT-2 and SmolLM2 across 6 decoding strategies"
+    narrative_role: "Establishes collapse severity varies dramatically by decoding strategy — motivates decoding-aware approach"
+    design_elements: ["multi-panel grid (2 models × 2 metrics)", "6 colored lines per panel", "100-generation x-axis"]
+    visual_style: "Line plots with generation on x-axis, clear divergence patterns between deterministic vs stochastic decoding"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Baseline vs oracle vs proposed method over 10 generations across 6 metrics"
+      how_gain_highlighted: "Proposed method tracks oracle while baseline diverges"
+      design_note: "6-panel layout covering all metrics simultaneously; convergence to oracle is visually compelling"
+    - figure_id: "Figure 4"
+      viz_type: "distribution_plot"
+      what_compared: "Perplexity distributions at generations 0, 11, 99"
+      how_gain_highlighted: "Baseline distribution shifts dramatically; proposed method maintains original distribution shape"
+      design_note: "KDE plots showing distribution stability — persuasive visual for 'no degradation' claim"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (collapse severity) → Figure 2 (method pipeline) → Figure 3 (mitigation curves) → Figure 4 (distribution stability)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (decoding strategies)"
+    col_axis: "metrics (perplexity, accuracy, diversity, Self-BLEU, MAUVE, readability)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "generation 0 vs 99 comparison with arrows"
+    statistical_reporting: "single run per config"
+    num_baselines: 6
+    design_note: "Side-by-side Gen 0 and Gen 99 columns make degradation immediately visible"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["mixing coefficients (α,β,γ)", "model size", "decoding strategy"]
+      variation_style: "delta_from_base"
+      design_note: "Percentage change format makes improvements/degradations instantly readable"
+  supplementary_tables:
+    in_appendix: true
+    content: "Detector performance breakdown (Table 2), additional mixing configurations"
+    reason: "Keep main tables focused on collapse and mitigation; detector details secondary"

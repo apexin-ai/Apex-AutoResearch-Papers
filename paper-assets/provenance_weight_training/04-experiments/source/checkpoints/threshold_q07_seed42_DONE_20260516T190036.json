@@ -1,0 +1,52 @@
+{
+  "exp_id": "threshold_q07_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T05:34:35.477Z",
+    "updated_at": "2026-05-16T19:00:36.842Z",
+    "hypothesis": "Hard-filter threshold sensitivity: remove q>0.7 samples (least aggressive, keeps most data+contamination), train uniformly. If PPL varies >0.1 across q=0.3/0.5/0.7 thresholds, proves filtering needs precise calibration while adaptive is threshold-free.",
+    "server": "westd-47453",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T06:00:07.874Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_threshold_q07_seed42.sh\""
+    },
+    "completed_at": "2026-05-16T10:22:01.172Z",
+    "notes": "Training crashed at step 2235/6103 (37%, epoch 0.19). No error/traceback in log — process silently killed (likely instance reclaim or OOM). Last checkpoint: checkpoint-2000. Log last modified 2026-05-16 18:20:09 CST.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Training crashed at step 2235/6103 (37%, epoch 0.19). No error/traceback in log — process silently killed (likely instance reclaim or OOM). Last checkpoint: checkpoint-2000. Log last modified 2026-05-16 18:20:09 CST."
+      }
+    },
+    "spec": {
+      "command": "bash scripts/run_threshold_q07_resume.sh",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "324550",
+      "log_path": "~/runs/provenance_weight_training/threshold_q07_seed42_resume.log",
+      "submitted_at": "2026-05-16T10:43:15Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/provenance_weight_training/data/scored_data_filtered_q07.jsonl",
+      "data_count": 184908,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "resume_from": "checkpoint-2000",
+      "wall_clock_seconds": 29841.8,
+      "gpu_hours": 8.29
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T19:00:36.989876+00:00",
+  "trigger": "update_registry"
+}

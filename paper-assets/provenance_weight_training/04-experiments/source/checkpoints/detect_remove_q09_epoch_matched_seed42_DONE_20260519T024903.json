@@ -1,0 +1,58 @@
+{
+  "exp_id": "detect_remove_q09_epoch_matched_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:28:26.693Z",
+    "updated_at": "2026-05-19T02:49:02.649Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=3 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q09.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q09_epoch_matched_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --max_steps 3770 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\"",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "89871",
+      "log_path": "~/runs/provenance_weight_training/detect_remove_q09_epoch_matched_seed42.log",
+      "submitted_at": "2026-05-19T00:28:58.885Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data_filtered_q09.jsonl",
+      "data_count": 228743,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "wall_clock_seconds": 8403.8,
+      "gpu_hours": 2.33
+    },
+    "hypothesis": "Epoch-matched D&R q09: 1 epoch through q09 filtered data (228,743 samples, ~124M tokens, 3770 steps). Most lenient filter in the curve (61.6% retained, only 1.6x epochs in multi-epoch). Part of 5-point epoch-matched curve. If PPL converges to ~17.65-17.74 range, confirms U-shape is entirely multi-epoch artifact even at the least-filtered end.",
+    "reproduce": {
+      "finished_at": "2026-05-19T02:42:50.661Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T02:42:55.919377+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_ppl_holdout": 17.628,
+      "eval_loss_holdout": 2.8695,
+      "eval_holdout_tokens": 4077068,
+      "eval_method": "sliding_window_stride1024_maxlen2048_fp16_5000docs",
+      "total_steps": 3770,
+      "train_loss_final": 9.9127
+    },
+    "checkpoint_path": "/root/autodl-tmp/output/models/detect_remove_q09_epoch_matched_seed42/final",
+    "log_path": "~/runs/provenance_weight_training/detect_remove_q09_epoch_matched_seed42.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T02:49:02.649Z"
+  },
+  "timestamp": "2026-05-19T02:49:03.220312+00:00",
+  "trigger": "update_registry"
+}

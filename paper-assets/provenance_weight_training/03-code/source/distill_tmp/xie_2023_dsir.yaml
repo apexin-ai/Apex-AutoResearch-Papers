@@ -1,0 +1,22 @@
+paper_key: "xie_2023_dsir"
+title: "Data Selection for Language Models via Importance Resampling"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["random selection", "heuristic filtering", "expert curation"]
+  metrics:
+    - {name: "KL reduction (feature space)", direction: "higher_better"}
+    - {name: "GLUE accuracy", direction: "higher_better"}
+    - {name: "downstream task accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "The Pile (source)", size: "100M documents"}
+    - {name: "Wikipedia + books (target)", size: "not specified"}
+    - {name: "GLUE benchmark", size: "standard"}
+  ablation_dimensions: ["target distribution", "feature representation", "selection budget"]
+  training_recipe: {method: "importance resampling with hashed n-gram features", compute: "4.5 hours for 100M docs"}
+  method_family: "importance resampling for data selection"
+
+narrative: N/A
+figures: N/A
+tables: N/A

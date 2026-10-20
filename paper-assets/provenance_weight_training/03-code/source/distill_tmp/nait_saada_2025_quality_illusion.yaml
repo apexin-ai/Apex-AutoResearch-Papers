@@ -1,0 +1,19 @@
+paper_key: "nait_saada_2025_quality_illusion"
+title: "The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining"
+venue: "arXiv preprint 2025"
+full_text_available: false
+
+research:
+  baselines: ["unfiltered pretraining data", "classifier-based quality filtering (CQF)"]
+  metrics:
+    - {name: "downstream task performance", direction: "higher_better"}
+    - {name: "language modeling perplexity on high-quality set", direction: "lower_better"}
+  datasets:
+    - {name: "pretraining corpora with CQF", size: "not specified"}
+  ablation_dimensions: ["quality score threshold", "classifier type"]
+  training_recipe: {method: "classifier-based quality filtering analysis"}
+  method_family: "quality filtering critique"
+
+narrative: N/A
+figures: N/A
+tables: N/A

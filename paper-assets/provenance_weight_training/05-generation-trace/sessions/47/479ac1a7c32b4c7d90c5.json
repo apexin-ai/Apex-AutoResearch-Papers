@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "479ac1a7c32b4c7d90c5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis ess upper bound",
+  "task_key": "worker_analysis_ess-upper-bound_20260516T160218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ess-upper-bound_20260516T160218_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "df69fb50cec4d34927658718acf30fc148c603f4b91ffd81e6c1807a8ff7727d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n## 结果汇总\n\n### α_eff binding batch (N=1,976 / 5,000 样本，占比 ~40%)\n\n| 指标 | Dual b* (实际) | ESS-only b* (上界) |\n|------|---------------|-------------------|\n| Mean | 1.19 | 5.88 |\n| Median | 0.80 | 3.59 |\n| p25 | 0.46 | 1.97 |\n| p75 | 1.37 | 7.44 |\n\n### 比值（ESS-only / Dual）\n\n| 统计量 | 值 |\n|--------|-----|\n| Ratio of means | **4.94×** |\n| Per-batch median | **3.61×** |\n| Per-batch p25 | 1.70× |\n| Per-batch p75 | 9.71× |\n\n### Cross-check（step_metrics.jsonl 实际训练）\n\n- Training records (b>0): 25,991\n- α_eff binding rate: **40.1%**（alpha_eff ≈ 0.8）\n- ESS binding rate: 65.3%（ESS ≈ 2.0）\n- b* when α_eff binding: mean=1.15, median=0.80\n\n### 论文 Claim 1 更新\n\n| | 旧值 | 修正后 |\n|--|------|--------|\n| Dual b* | 1.67 | **1.19** |\n| ESS-only b* | 4.15 | **5.88** |\n| Ratio | 2.5× | **4.94×** (means) / **3.61×** (medians) |\n\n修正后比值更大，\"最小干预\"论据更强。建议论文用 median ratio 3.61× 或 ratio of means 4.94×（后者对 outlier 敏感，前者更稳健）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ess-upper-bound.md"
+}

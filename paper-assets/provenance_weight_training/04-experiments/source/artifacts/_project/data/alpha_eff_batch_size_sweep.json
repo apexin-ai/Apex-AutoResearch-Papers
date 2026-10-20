@@ -1,0 +1,22 @@
+{
+  "bs4": {
+    "n_batches": 5000,
+    "pearson_r": 0.706,
+    "spearman_r": 0.699,
+    "mae": 0.114,
+    "alpha_eff_distribution": {"0.0": 551, "0.25": 1706, "0.5": 1775, "0.75": 832, "1.0": 136}
+  },
+  "bs8": {
+    "n_batches": 5000,
+    "pearson_r": 0.697,
+    "spearman_r": 0.683,
+    "mae": 0.097
+  },
+  "bs16": {
+    "n_batches": 5000,
+    "pearson_r": 0.707,
+    "spearman_r": 0.691,
+    "mae": 0.075
+  },
+  "conclusion": "Pearson r stable across all batch sizes (0.697-0.707). bs=4 discretization does NOT reduce correlation. MAE increases from 0.075 (bs16) to 0.114 (bs4) due to coarser granularity."
+}

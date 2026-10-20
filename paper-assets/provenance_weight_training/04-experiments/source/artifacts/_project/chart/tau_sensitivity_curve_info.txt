@@ -1,0 +1,14 @@
+τ Sensitivity Curve Figure
+
+Server paths:
+- PDF: /root/provenance_weight_training/output/figures/tau_sensitivity.pdf (29 KB)
+- PNG: /root/provenance_weight_training/output/figures/tau_sensitivity.png (203 KB)
+- Script: /root/provenance_weight_training/output/figures/plot_tau_sensitivity_v2.py
+
+Content:
+- Left axis (blue solid, circles): Held-out PPL vs τ. Optimal at τ=0.8, PPL=17.6527 (star marker)
+- Right axis (red dashed, squares): Mean b* vs τ, star at τ=0.8
+- Gray horizontal dashed line: Uniform baseline PPL=17.6939
+- Light blue shading: Safe range [0.5, 0.8]
+
+Key finding: τ=0.8 achieves lowest PPL (17.6527), -0.23% vs uniform baseline (17.6939).

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef79ec18f5123c272d0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status 41312 gpu check",
+  "task_key": "worker_status_41312_gpu_check_20260518T093040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_41312_gpu_check_20260518T093040_result.json",
+    "occurrence": 1,
+    "bytes": 2336,
+    "sha256": "028e9c57939c1ddd38096fb64f390d465946dce75fff211e7ede16f41688a15f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results Summary\n\n### GPU Status (4x NVIDIA RTX PRO 6000 Blackwell, 98GB each)\n\n| GPU | Utilization | Memory | Process PID | Experiment |\n|-----|------------|--------|-------------|------------|\n| 0 | 94% | 46.5/97.9 GB | 181818 | contamination_60_ess_only_seed123 |\n| 1 | 97% | 46.5/97.9 GB | 182193 | contamination_60_ess_only_seed456 |\n| 2 | 100% | 46.5/97.9 GB | 183255 | contamination_60_random_seed123 |\n| 3 | 100% | 46.5/97.9 GB | 183337 | contamination_60_random_seed456 |\n\n### Running Experiments (ρ=0.6 cross-seed, 6103 total steps)\n\n| Experiment | GPU | Step | Progress | CPU Time | Started | ETA |\n|------------|-----|------|----------|----------|---------|-----|\n| contamination_60_ess_only_seed123 | 0 | 5424/6103 | **88.9%** | 191 min | 14:19 | ~24 min |\n| contamination_60_ess_only_seed456 | 1 | 5427/6103 | **88.9%** | 191 min | 14:20 | ~24 min |\n| contamination_60_random_seed123 | 2 | 4922/6103 | **80.6%** | 173 min | 14:38 | ~42 min |\n| contamination_60_random_seed456 | 3 | 4919/6103 | **80.6%** | 173 min | 14:38 | ~42 min |\n\nSpeed: ~2.11 s/step. The ess_only experiments started ~19 min earlier and are accordingly further ahead.\n\n**Tmux sessions:** `contamination_60_random_seed123`, `contamination_60_random_seed456` (the ess_only runs were launched via nohup, not tmux).\n\n### Old Experiments Status\n\n| Experiment | Status | Final Checkpoint | Completed |\n|------------|--------|-----------------|-----------|\n| qwen06b_uniform_seed42 | **Not found** at expected path. `qwen06b_uniform_seed42_v2` exists instead | checkpoint-6103 + `final/` + `eval_results.json` | **Yes** (finished ~05:57 May 18) |\n| ess_only_seed123 | checkpoint-6103 + `final/` | **Yes** (finished ~07:25 May 18) |\n| ess_only_seed456 | checkpoint-6103 + `final/` | **Yes** (finished ~07:07 May 18) |\n| random_reweight_seed456 | checkpoint-6103 + `final/` | **Yes** (finished ~08:29 May 18) |\n\nAll 4 old experiments completed successfully (all reached step 6103 with `final/` directory). The uniform experiment directory is named `qwen06b_uniform_seed42_v2` (not `qwen06b_uniform_seed42`), and it additionally has `eval_results.json`.\n\n### Estimated Completion\n\n- **ess_only seed123/456**: ~17:55 UTC (about 25 min from now)\n- **random seed123/456**: ~18:13 UTC (about 43 min from now)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-41312-gpu-check.md"
+}

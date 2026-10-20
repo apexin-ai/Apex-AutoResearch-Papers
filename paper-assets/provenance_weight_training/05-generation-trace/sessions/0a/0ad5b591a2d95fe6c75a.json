@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ad5b591a2d95fe6c75a",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778899240.md",
+  "task_key": "loop_11_1778899240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778899240.md",
+    "occurrence": 1,
+    "bytes": 5578,
+    "sha256": "d3142a9ea89ce60be560e2192aa2b88f7439f4708f718b46b887039a1a8f3c50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:17:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（westd-47453），只有这 4 张卡，不可用其他\n- GPU 预算极度紧张：已消耗 ~154h，剩余 ~26h，每个实验 ~3.6h，最多再跑 ~7 个实验\n- contamination_60_ess_only_seed42 用了 `WANDB_MODE=disabled`——cron 可能误判 failed（之前 uniform 实验已踩过此坑，见 memory.md）。完成后必须 SSH 检查日志确认真实状态，不要信 cron 的 conclusion\n- 投稿 deadline：EMNLP 2026 ARR May 25（距今 9 天）\n- n_min=2 是论文主结果（D043），n_min=3 降为 sensitivity analysis\n- τ=0.8 是经验最优（D036），τ>0.8 退化\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，4× RTX 6000 Pro 96G\n- 工作目录：/root/provenance_weight_training\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 镜像：aml-train\n- 模型路径：/root/provenance_weight_training/models/Qwen/Qwen3-0.6B\n- 数据路径：/root/provenance_weight_training/data/scored_data.jsonl（ρ=0.4, 371K 行），scored_data_60.jsonl（ρ=0.6, 371K 行）\n- 活跃进程：\n  - contamination_60_ess_only_seed42: PID 265012, cuda:2, WANDB_MODE=disabled\n  - grid_b0_3_seed42: PID 274304, cuda:1, cron 活跃\n  - detect_remove_baseline_seed42: PID 276739, cuda:3\n- Cron 活跃：contamination_60_ess_only_seed42 + grid_b0_3_seed42（reconcile 确认均 still running）\n- contamination_60_tau07_seed42（PREPARING）在 cuda:0 已有 PID 282218，tau_05_nmin2_seed42 也在 cuda:0 有 PID 281298——**注意可能有 GPU 冲突，下一个我需要 SSH 检查 cuda:0 到底跑的是哪个**\n\n### 3. 📊 当前状态\n**3 个实验 RUNNING，12 个 PREPARING，51 个 DONE（38 success, 3 negative, 6 failed, 4 killed）。Worker 池=0（全部已完成）。**\n\n刚完成的关键结果——contamination_60（ρ=0.6）三组已出：\n- adaptive (τ=0.8): PPL=17.74（contamination_60_seed42_r2）\n- grid-best (b=0.5): PPL=17.704 ← **grid 反超 adaptive**\n- uniform: PPL=17.766\n\n**D045 关键发现**：ρ=0.6 下 adaptive τ=0.8 显著劣于 grid-best（+0.036 PPL），这对 Claim 3（proportion-free）构成威胁。Director 已启动 τ-ρ 关系诊断（contamination_60_tau07_seed42 用 τ=1-ρ×0.5=0.7）。\n\n等待中：\n- contamination_60_ess_only_seed42 完成回调 → 补全 ρ=0.6 四组对比（adaptive vs grid vs uniform vs ess-only）\n- grid_b0_3_seed42 完成回调 → Claim 2 b* 曲线插值点\n- detect_remove_baseline_seed42 完成回调 → reviewer 问题 \"为什么不直接 filter\" 的回答\n- D044 待执行：τ sweep 重跑 5 个实验（n_min=2 统一修复 confound），但 GPU 预算可能不够全跑\n- cuda:0 状态不明（两个 PREPARING 实验都登记了 cuda:0 的 PID）\n\n### 4. 📋 待办（条件触发式）\n- contamination_60_ess_only_seed42 cron 回调 → SSH 检查日志（WANDB_MODE=disabled 可能误判）→ 更新 registry → 汇总 ρ=0.6 四组对比 → 汇报 Director（adaptive vs grid gap 是否被 ESS-only 更差来 offset？Claim 1 在 ρ=0.6 是否仍成立？）\n- grid_b0_3_seed42 完成 → 更新 b* 曲线（b=0.1/0.2/0.3/0.5/1.0），看 b=0.3 是否比 b=0.5 更优\n- detect_remove_baseline_seed42 完成 → 对比 detect-and-remove vs adaptive vs uniform，若 PPL > adaptive 则 claim \"reweighting > hard filtering\" 成立\n- ρ=0.6 四组全部出齐 → 若 adaptive < grid（不太可能）或 adaptive ≈ grid → Claim 3 成立；若 adaptive > grid（已出现）→ 需要 τ-ρ 调整公式（τ=f(ρ)），contamination_60_tau07_seed42 是关键诊断\n- contamination_60_tau07_seed42 完成 → 若 τ=0.7 恢复到 ≤17.704 → Claim 3 可以救（\"τ should scale with ρ\"）；若仍差 → Claim 3 需要 weaken 或 reframe\n- GPU 空出来后 → 优先级排序（预算 ~26h 减去当前跑的 ~6-8h ≈ 18h ≈ 5 个实验）：contamination_60_tau06_seed42 > grid_b0_2_seed42 > τ sweep n_min=2 重跑（但 5 个全跑需 18h，可能只能选 3-4 个）\n- 论文 experiments section → 依赖 contamination_60 全部结果 + τ-ρ 诊断结论\n\n### 5. 🎯 战略上下文\n**项目核心**：Dual-constrained adaptive b*（α_eff + ESS → min-intervention），替代 Drayson 的 validation grid search。三个 claims：\n1. ✅ Dual > ESS-only（3 seeds 验证完毕）\n2. ✅ Adaptive ≈ grid-best（3 seeds, zero validation cost）\n3. ⚠️ Proportion-free（ρ=0.6 结果动摇——adaptive τ=0.8 PPL=17.74 > grid PPL=17.704）\n\n**最容易判断错的事**：\n- Claim 3 不是死了，是需要 reframe。ρ=0.6 下 adaptive 劣于 grid 说明 τ=0.8 在高污染下不再最优——但如果 τ=f(ρ) 公式（如 τ=1-ρ×0.5）能恢复性能，Claim 3 变成 \"proportion-aware via τ\" 而非 \"proportion-free\"。等 contamination_60_tau07_seed42 结果再定论\n- GPU 预算只够 ~5 个实验了。D044 想重跑 5 个 τ sweep（n_min=2），但这会耗尽预算。需要跟 Director 确认优先级——τ-ρ 诊断（2 个）比 τ sweep 重跑（5 个）更紧急\n- cuda:0 有两个 PREPARING 实验登记了 PID，必须先 SSH 检查真实状态再做调度\n- 论文 deadline 9 天。experiments section 依赖 contamination_60 + τ-ρ 诊断。如果 Claim 3 需要 reframe，abstract/intro/conclusion 全要改（framing-reaudit skill）\n- EXIT_CODE=129 (SIGHUP) 反复出现但不影响训练结果——不要因为这个就把已完成的实验标 failed\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778899240.md"
+}

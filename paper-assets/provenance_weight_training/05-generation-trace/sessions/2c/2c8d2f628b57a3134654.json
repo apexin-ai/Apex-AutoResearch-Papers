@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c8d2f628b57a3134654",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778892974.md",
+  "task_key": "loop_10_1778892974",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778892974.md",
+    "occurrence": 1,
+    "bytes": 4043,
+    "sha256": "0aee5c3cc44adadf55f6ee1e3b7aba11f2720153609640a5906d0006454a5ad4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T00:46:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on westd-47453，不可用其他卡\n- ess_only 实验 conclusion 必须是 success（验证性实验，PPL 高是预期行为，不是 negative）\n- post-hoc eval 必须用 `eval_perplexity.py --max_docs 5000 --stride 1024 --fp16`，否则指标不可比\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，服务器用 conda 不是 venv\n- contamination_60 系列 OOM 过两次（cuda:0 被其他进程占显存），提交前确认目标 GPU 无 zombie 进程\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`/root/provenance_weight_training/data/scored_data.jsonl`（ρ=0.4 contamination）\n- 高 contamination 数据：已生成 ρ=0.6 版本（p0_contamination_60_datagen DONE）\n- W&B project：provenance_weight_training\n- 活跃进程：\n  - bs8_nmin2_seed42_r2 (PID 238714, cuda:2, tmux)\n  - contamination_60_uniform_seed42 (PID 250074, cuda:1, tmux)\n- Cron 监控：bs8_nmin2_seed42_r2 + contamination_60_uniform_seed42 均 reconciled\n\n### 3. 📊 当前状态\n刚收到 ess_only_seed123 CRON 回调（训练正常退出）。ess_only_seed456 同时完成。已派两个 Worker 做 post-hoc eval：\n- Worker analysis:ess_only_seed123（cuda:0 eval）— 等待回调\n- Worker analysis:ess_only_seed456（cuda:3 eval）— 等待回调（在我之前已有 Worker 启动）\n\n已向 Director 汇报分析中，承诺 eval 完成后立即更新 registry + 完整 metrics 汇报。\n\nRUNNING：bs8_nmin2_seed42_r2 (cuda:2), contamination_60_uniform_seed42 (cuda:1)\nQUEUED：grid_b_low_seed42_r2, contamination_60_grid_b0_5_seed42\nPREPARING：adaptive_v2_seed42/123/456\n\n### 4. 📋 待办\n- Worker analysis:ess_only_seed123 回调 → 读 metrics → update_registry(conclusion=success, status=DONE) → 记录 vs_uniform_delta / vs_adaptive_delta\n- Worker analysis:ess_only_seed456 回调 → 同上\n- 两个 seed 都 DONE → Claim 1 完成 3/3 seeds → 向 Director 完整汇报（附三 seed 汇总表 + 统计量）+ 更新 report.md + 触发 on-experiment-done 文献联动\n- eval 完成释放 cuda:0/3 → 立即提交 QUEUED 实验（grid_b_low_seed42_r2 on cuda:0, contamination_60_grid_b0_5_seed42 on cuda:3）\n- bs8_nmin2_seed42_r2 cron 回调 → 分析 batch_size=8 泛化性（Claim 覆盖：batch_size 泛化 1/1）\n- contamination_60_uniform_seed42 cron 回调 → 作为 ρ=0.6 uniform baseline，后续与 contamination_60_grid/adaptive 对比\n- 全部当前批完成 → 评估论文初稿启动条件（ROADMAP 中列出的 dream_simulate review_mode=full）\n\n### 5. 🎯 战略上下文\n- **核心方向**：Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界），投 EMNLP 2026 ARR May 25（**还剩 ~9 天**）\n- **Claim 1**（dual > ESS-only）即将 3/3 完成，预期 PPL 模式：adaptive (~17.65) < uniform (~17.69) < ESS-only (~17.73)\n- **Claim 2**（adaptive ≈ grid）已 3 seeds ✅\n- **Claim 3**（τ controls bias-variance）τ sweep 6/6 ✅，safe range [0.5,0.8]\n- **关键决策链**：D023 dual-constraint → D029 ESS-only 退化确认 → D033 n_min variance 叙事证伪 → D034 n_min 转 robustness 叙事 → D035 Claim 3 reframe → D036 τ sweep 完成 → D037 bs8 配置修正 → D038 writing_plan 批准\n- **易错点**：ess_only 的高 PPL 不是 negative result，是预期的退化行为（验证 dual constraint 的必要性）。不要触发 red-section framing 流程\n- **GPU 余量紧张**：~40h 剩余，P0 实验优先，P1 需评估取舍。contamination_60 系列已 OOM 两次，可能需要降 gradient_accumulation 或清 zombie\n- **D038 writing_plan 已批准**：论文 Full Draft 已启动（Paper Agent），实验和写作并行推进中\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778892974.md"
+}

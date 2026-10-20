@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11c2289f65507e496564",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh eval all 41312",
+  "task_key": "worker_ssh_eval_all_41312_20260517T214040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_all_41312_20260517T214040_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "0ea57e84896628306a4d08a61d1a9eadd9df75dcd13ec148615fbfe08c846768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "270 秒后回来检查。`qwen06b_uniform_seed42_v2` 预计那时已完成，将立即对其跑 eval。其余 3 个实验预计完成时间：\n\n| 实验 | 当前步数 | 预计完成 |\n|------|---------|---------|\n| qwen06b_uniform_seed42_v2 | 5814/6103 | ~10 min |\n| ess_only_seed456 | 3674/6103 | ~85 min |\n| ess_only_seed123 | 3158/6103 | ~103 min |\n| random_reweight_seed456 | 1321/6103 | ~168 min |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-all-41312.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "205daa2038229e3626d0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh retry grid b03 seed123",
+  "task_key": "worker_ssh_retry_grid_b03_seed123_20260517T214546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry_grid_b03_seed123_20260517T214546_result.json",
+    "occurrence": 1,
+    "bytes": 220,
+    "sha256": "6d8746cd5cd8cc3e557bd5249c9ae5589cd2d7be5fa1779bf2666eba01fdbebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 被占用** — GPU 1 上有进程 PID 53826 (python)，占用 41748MiB 显存，GPU 利用率 99%。\n\n所有 4 张 GPU 都有进程在跑，无空闲卡可用。任务终止，不执行 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-grid-b03-seed123.md"
+}

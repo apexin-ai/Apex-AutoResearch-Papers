@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3db91cdeb601d6c7c3e6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap_ci_20260521T143048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_20260521T143048_result.json",
+    "occurrence": 1,
+    "bytes": 2496,
+    "sha256": "f1a1f86327630e1fa470b379515131cf4ea19cde152a970cf38dc4143d10ef8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**CSV**: `artifacts/_project/data/bootstrap_ci_results.csv` (art_20260521_ab9336)\n\n### 完整 CI 表\n\n**Individual Groups (BCa 95% CI, B=10000)**\n\n| Group | Mean | 95% CI | Width |\n|-------|------|--------|-------|\n| adaptive ρ=0.4 τ=0.7 holdout | 17.674 | [17.666, 17.679] | 0.013 |\n| uniform ρ=0.4 holdout | 17.694 | [17.686, 17.699] | 0.013 |\n| adaptive ρ=0.4 OWT | 18.347 | [18.344, 18.348] | 0.004 |\n| uniform ρ=0.4 OWT | 18.373 | [18.365, 18.380] | 0.015 |\n| adaptive ρ=0.4 Wiki | 15.330 | [15.315, 15.340] | 0.025 |\n| uniform ρ=0.4 Wiki | 15.357 | [15.335, 15.371] | 0.036 |\n| TF-IDF adaptive holdout | 17.651 | [17.643, 17.655] | 0.012 |\n| GPT-2 adaptive holdout | 17.792 | [17.788, 17.795] | 0.006 |\n| N-gram adaptive holdout | 17.823 | [17.820, 17.825] | 0.005 |\n| adaptive ρ=0.6 holdout | 17.731 | [17.727, 17.734] | 0.007 |\n| uniform ρ=0.6 holdout | 17.763 | [17.754, 17.769] | 0.015 |\n\n**Paired Differences (all includes_zero = False → all significant)**\n\n| Comparison | Δ Mean | 95% CI | Significant? |\n|------------|--------|--------|-------------|\n| Δ(adapt−unif) ρ=0.4 holdout | −0.020 | [−0.025, −0.016] | **Yes** |\n| Δ(adapt−unif) ρ=0.4 OWT | −0.026 | [−0.043, −0.018] | **Yes** |\n| Δ(adapt−unif) ρ=0.4 Wiki | −0.027 | [−0.044, −0.013] | **Yes** |\n| Δ(TF-IDF−GPT-2) holdout | −0.141 | [−0.145, −0.138] | **Yes** |\n| Δ(TF-IDF−N-gram) holdout | −0.172 | [−0.180, −0.168] | **Yes** |\n| Δ(GPT-2−N-gram) holdout | −0.031 | [−0.035, −0.029] | **Yes** |\n| Δ(adapt−unif) ρ=0.6 holdout | −0.032 | [−0.038, −0.028] | **Yes** |\n\n### 总结\n\n**7/7 paired comparisons 的 95% BCa CI 均不包含 0，全部显著。**\n\n- **Claim 1** (Adaptive vs Uniform ρ=0.4): Adaptive 在 holdout/OWT/Wiki 三个指标上均显著优于 Uniform（Δ ≈ −0.02 ~ −0.03 PPL），效果在 OOD 数据上保持。\n- **Claim 2** (Detector ablation): TF-IDF >> GPT-2 >> N-gram，三两两比较全部显著，差距大（TF-IDF vs N-gram Δ=−0.172，CI 极窄）。\n- **Claim 3** (ρ=0.6): Adaptive 显著优于 Uniform（Δ=−0.032），效果比 ρ=0.4 时更大。\n\n**统计功效评估**: n=3 seeds 下 CI 宽度在 0.005–0.031 之间，所有效果量均远超 CI 宽度，说明尽管样本量小，效果足够稳健。Detector ablation 的 CI 最窄（seed 间方差极小），Adaptive vs Uniform 的 OOD 指标 CI 相对较宽但仍排除 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci.md"
+}

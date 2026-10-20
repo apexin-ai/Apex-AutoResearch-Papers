@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34bb0e3dbdf82cc45c6f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitor adaptive fix progress",
+  "task_key": "worker_monitor_adaptive_fix_progress_20260514T203845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_adaptive_fix_progress_20260514T203845_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "4b3dbb0023d8d7b2c65091a1e927704ad3354875ff408321412f171d9f6f87cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四个日志文件均无 error/traceback/exception（grep 返回 0 匹配，exit code 1 是 grep 无匹配的正常行为）。\n\n## 训练进度汇总\n\n| 实验 | 当前 step / 总 step | 进度 | epoch | loss | 速度 | 预估剩余 |\n|------|---------------------|------|-------|------|------|----------|\n| **adaptive_fix_seed42** | 6097 / 6103 | **99.9%** | 0.26 | 9.72 | ~2.22s/it | **~13s** |\n| **adaptive_fix_seed123** | 6077 / 6103 | **99.6%** | 0.26 | 8.98 | ~2.25s/it | **~58s** |\n| **adaptive_fix_seed456** | 5589 / 6103 | **91.6%** | 0.24 | — | ~2.21s/it | **~19min** |\n| **grid_b_seed42_batch** | 3735 / 6103 | **61.2%** | 0.16 | 11.27 | ~2.12s/it | **~1h24min** |\n\n- 四组实验均正常运行，**无报错**\n- seed42 和 seed123 即将完成（几十秒内）\n- seed456 约 19 分钟后完成\n- grid_b_seed42_batch 进度较慢，还需约 1.5 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-adaptive-fix-progress.md"
+}

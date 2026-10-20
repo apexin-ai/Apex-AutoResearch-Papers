@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02adff338502c1497c41",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code contamination 60 scripts",
+  "task_key": "worker_code_contamination_60_scripts_20260515T202717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_contamination_60_scripts_20260515T202717_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "33de0af82f0885bdfda04aa52187f80865788e02197d908c122c8af11dccca4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 脚本路径\n| 实验 | 脚本 |\n|------|------|\n| adaptive (ρ=0.6) | `/root/provenance_weight_training/run_contamination_60_adaptive.sh` |\n| uniform (ρ=0.6) | `/root/provenance_weight_training/run_contamination_60_uniform.sh` |\n| grid b=0.5 (ρ=0.6) | `/root/provenance_weight_training/run_contamination_60_grid_b05.sh` |\n\n### 验证结果\n- 数据文件 `scored_data_60.jsonl`：✅ 存在，907MB\n- `bash -n` 语法检查：✅ 3 个脚本均通过\n- output 目录：✅ 3 个目标目录均不存在，无覆盖风险\n- 权限：✅ 已 chmod +x\n\n### 参数修正\n任务描述中有 2 处参数名与实际脚本不匹配，已修正：\n- `--weighting_method fixed` → **`grid`**（脚本 choices 中无 `fixed`）\n- `--fixed_b 0.5` → **`--grid_b_value 0.5`**（实际参数名）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-contamination-60-scripts.md"
+}

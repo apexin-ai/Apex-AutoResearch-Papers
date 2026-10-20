@@ -1,0 +1,16 @@
+{
+  "exp_id": "adaptive_fix_seed123",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:32:31.409Z",
+    "updated_at": "2026-05-14T13:38:39.110Z",
+    "hypothesis": "D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63, uniform PPL=17.69)",
+    "parent": "adaptive_seed123"
+  },
+  "timestamp": "2026-05-14T13:38:39.148305+00:00",
+  "trigger": "update_registry"
+}

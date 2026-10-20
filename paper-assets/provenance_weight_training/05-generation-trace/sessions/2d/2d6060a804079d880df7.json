@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d6060a804079d880df7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "writing update paper framing",
+  "task_key": "worker_writing_update_paper_framing_20260514T233747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_update_paper_framing_20260514T233747_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "87600d3615f4f1618f26a8fc7953c12376d58340c6865f2012663adb0cef3ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 已更新。核心变更：\n\n1. **Path B 定稿** — 默认叙事为 \"adaptive matches grid-best within seed variance, eliminates tuning cost\"，Path A 保留为升级选项\n2. **Drayson 三层差异化** — (a) principled b* vs empirical b, (b) loss reweighting vs SIR resampling, (c) unknown proportion vs known proportion。定位为 complementary approaches，非\"我们更好\"\n3. **n_min robustness** — D012 修复作为 ESS 约束敏感度低的 practical robustness 证据，纳入 Method ablation 规划\n4. **双叙事弹性** — Claims 中无硬编码数字，用 \"within seed variance\" / \"eliminates grid search cost\" / \"consistent improvement\" 表述，≥90% 和 85-90% 场景均可承载\n5. **Core Claims 重组** — Claim 1 聚焦 α_eff(b) 理论框架，Claim 2 聚焦免调参实用结果，Claim 3 为 setting contribution"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-update-paper-framing.md"
+}

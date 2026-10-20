@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "084b98147d78623a4ac1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh check lmeval 41312",
+  "task_key": "worker_ssh_check_lmeval_41312_20260517T220202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_lmeval_41312_20260517T220202_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "fba7536f6ba59232c6bf90cc94af9cd5722904afa6c318327ec99813b0ec89aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n| 项目 | 状态 |\n|------|------|\n| **lm_eval** | 已安装，版本 `0.4.11`，路径 `/root/miniconda3/bin/lm_eval` |\n| **adaptive_fix_seed42** | checkpoint 存在，`/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/final/`，含完整模型文件（model.safetensors 1.1GB + tokenizer） |\n| **qwen06b_uniform_seed42** | 目录不存在，未找到 trainer_state.json，该模型尚未在此服务器上训练 |\n\nlm-evaluation-harness 已就绪，可直接用 `lm_eval` 命令运行评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-lmeval-41312.md"
+}

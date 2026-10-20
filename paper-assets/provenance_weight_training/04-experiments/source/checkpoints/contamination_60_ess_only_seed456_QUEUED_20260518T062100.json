@@ -1,0 +1,16 @@
+{
+  "exp_id": "contamination_60_ess_only_seed456",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:18:41.546Z",
+    "updated_at": "2026-05-18T06:21:00.068Z",
+    "hypothesis": "Cross-seed replication (seed456) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.",
+    "parent": "contamination_60_ess_only_seed42"
+  },
+  "timestamp": "2026-05-18T06:21:00.361225+00:00",
+  "trigger": "update_registry"
+}

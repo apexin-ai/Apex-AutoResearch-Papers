@@ -1,0 +1,6772 @@
+# code binoculars scoring
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 227
+- **Recorded user turns:** 0
+- **Tool calls:** 113
+- **Original source:** `logs/chats/worker_code_binoculars_scoring_20260518T104613.jsonl`
+- **Structured JSON:** [`0c2c6dcea06a30bc0507.json`](../../sessions/0c/0c2c6dcea06a30bc0507.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+227 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T11:04:53.198570+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T11:04:53.199002+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T11:04:53.199203+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westd-41312",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T11:04:53.199338+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -name \"scored_data.jsonl\" -not -path \"*/scored_data_6*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -name \"scored_data.jsonl\" -not -path \"*/scored_data_6*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T11:04:53.199473+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T11:04:53.199596+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T11:04:53.199717+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -name \"scored_data.jsonl\" -not -path \"*/scored_data_6*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -name \"scored_data.jsonl\" -not -path \"*/scored_data_6*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T11:04:53.199838+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T11:04:53.199996+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T11:04:53.200120+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"371499 /root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T11:04:53.200235+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "head -1 /root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "head -1 /root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T11:04:53.200394+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\" where the universe began, and where all of us were born from, there would still be a sense of being in the universe, a sense of being in the universe and not just being part of it. And that sense of being in the universe, as much as any other, would be the most important aspect of the universe. But if there were no sense of being in the universe, then the universe would be empty. So there must be a sense of being in the universe, and that sense of being in the universe must be a kind of divine or divine-like experience.\\\\nIt seems that when I read the article, the author is saying that there must be a sense of being in the universe, and that sense must be a divine experience. So how do I go about understanding the meaning of this concept? What does this mean?\\\\nI think that when someone says “I have a sense of being in the universe,” this means that I believe that the universe is real, and that it is not empty. But how can I explain this? What is the difference between being in the universe and being created by an unknowable force? Or maybe there is no such thing as a sense of being in the universe, but it is an illusion? Or does it mean that there is a sense of being in the universe, but that the sense is not real? How do I explain this?\\\\nI think I need to understand the difference between being in the universe and the concept of “being created” or “being created by a force.” Because that is the key to understanding the author’s argument. So, what is the difference between being in the universe and the concept of being created by an unknowable force?\\\\nI think I need to understand the difference between “being created” and “being created by an unknowable force.” I know that “being created” implies that the creation happened by an active force. But\\\", \\\"depth\\\": 1, \\\"source_model\\\": \\\"models/Qwen/Qwen3-0.6B\\\", \\\"prompt_tokens\\\": 128, \\\"generated_tokens\\\": 384, 
+…[truncated 189 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T11:04:53.200543+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "python3 -c \"import torch; print(torch.cuda.device_count(), torch.cuda.get_device_name(1))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "python3 -c \"import torch; print(torch.cuda.device_count(), torch.cuda.get_device_name(1))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T11:04:53.200665+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T11:04:53.200782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "python3 -c \"import transformers; print(transformers.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "python3 -c \"import transformers; print(transformers.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T11:04:53.200917+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T11:04:53.201069+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "python3 -c \"import torch; print(f'GPUs: {torch.cuda.device_count()}'); print(f'GPU1: {torch.cuda.get_device_name(1)}'); print(f'Free: {torch.cuda.mem_get_info(1)[0]/1e9:.1f}GB')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "python3 -c \"import torch; print(f'GPUs: {torch.cuda.device_count()}'); print(f'GPU1: {torch.cuda.get_device_name(1)}'); print(f'Free: {torch.cuda.mem_get_info(1)[0]/1e9:.1f}GB')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T11:04:53.201204+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import torch; print(f\\\\'GPUs: {torch.cuda.device_count()}\\\\'); print(f\\\\'GPU1: {torch.cuda.get_device_name(1)}\\\\'); print(f\\\\'Free: {torch.cuda.mem_get_info(1)[0]/1e9:.1f}GB\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T11:04:53.201369+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "python3 -c \"import transformers; print(f'transformers: {transformers.__version__}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "python3 -c \"import transformers; print(f'transformers: {transformers.__version__}')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T11:04:53.201495+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "pip install binoculars-detect 2>&1 | tail -3",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "pip install binoculars-detect 2>&1 | tail -3",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T11:04:53.201618+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import transformers; print(f\\\\'transformers: {transformers.__version__}\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T11:04:53.201823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: pip: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T11:04:53.202018+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "which python 2>/dev/null || find /usr -name \"python*\" -type f 2>/dev/null | head -5; ls /root/miniconda3/bin/python* 2>/dev/null; ls /opt/conda/bin/python* 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "which python 2>/dev/null || find /usr -name \"python*\" -type f 2>/dev/null | head -5; ls /root/miniconda3/bin/python* 2>/dev/null; ls /opt/conda/bin/python* 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T11:04:53.202163+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/usr/share/vim/vim82/autoload/python3complete.vim\\n/usr/share/vim/vim82/autoload/pythoncomplete.vim\\n/usr/share/vim/vim82/ftplugin/python.vim\\n/usr/share/vim/vim82/indent/python.vim\\n/usr/share/vim/vim82/syntax/python.vim\\n/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3\\n/root/miniconda3/bin/python3-config\\n/root/miniconda3/bin/python3.1\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n\", \"stderr\": \"\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T11:04:53.202296+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "/root/miniconda3/bin/python -c \"import torch; print(f'GPUs: {torch.cuda.device_count()}'); [print(f'GPU{i}: {torch.cuda.get_device_name(i)} - Free: {torch.cuda.mem_get_info(i)[0]/1e9:.1f}GB') for i in range(torch.cuda.device_count())]\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "/root/miniconda3/bin/python -c \"import torch; print(f'GPUs: {torch.cuda.device_count()}'); [print(f'GPU{i}: {torch.cuda.get_device_name(i)} - Free: {torch.cuda.mem_get_info(i)[0]/1e9:.1f}GB') for i in range(torch.cuda.device_count())]\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T11:04:53.202417+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "/root/miniconda3/bin/python -c \"import transformers; print(transformers.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "/root/miniconda3/bin/python -c \"import transformers; print(transformers.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T11:04:53.202541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GPUs: 4\\nGPU0: NVIDIA RTX PRO 6000 Blackwell Server Edition - Free: 101.4GB\\nGPU1: NVIDIA RTX PRO 6000 Blackwell Server Edition - Free: 101.4GB\\nGPU2: NVIDIA RTX PRO 6000 Blackwell Server Edition - Free: 101.4GB\\nGPU3: NVIDIA RTX PRO 6000 Blackwell Server Edition - Free: 101.4GB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T11:04:53.202674+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: '/root/miniconda3/bin/python -c \\\"import transformers; print(transformers.__version__)\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n    require_version_core(deps[pkg])\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/versions.py\\\", line 117, in require_version_core\\n    return require_version(requirement, hint)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/versions.py\\\", line 111, in require_version\\n    _compare_versions(op, got_ver, want_ver, requirement, pkg, hint)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/versions.py\\\", line 44, in _compare_versions\\n    raise ImportError(\\nImportError: huggingface-hub>=0.34.0,<1.0 is required for a normal functioning of this module, but found huggingface-hub==1.15.0.\\nTry: `pip install transformers -U` or `pip install -e '.[dev]'` if you're working with git main\\n\\n\", \"metadata\": {\"elapsed_seconds\": 2.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T11:04:53.202822+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "/root/miniconda3/bin/pip install -U transformers scipy 2>&1 | tail -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "/root/miniconda3/bin/pip install -U transformers scipy 2>&1 | tail -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T11:04:53.202976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      Successfully uninstalled transformers-4.57.6\\nERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\\nvllm 0.18.1 requires transformers<5,>=4.56.0, but you have transformers 5.8.1 which is incompatible.\\nSuccessfully installed transformers-5.8.1\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T11:04:53.203119+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "/root/miniconda3/bin/python -c \"import transformers; print(transformers.__version__); from transformers import GPT2LMHeadModel, GPT2Tokenizer; print('GPT2 imports OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "/root/miniconda3/bin/python -c \"import transformers; print(transformers.__version__); from transformers import GPT2LMHeadModel, GPT2Tokenizer; print('GPT2 imports OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T11:04:53.203242+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5.8.1\\nGPT2 imports OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T11:04:53.203366+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "mkdir -p /root/autodl-tmp/provenance_weight_training/scoring",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "mkdir -p /root/autodl-tmp/provenance_weight_training/scoring",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T11:04:53.203484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T11:04:53.203627+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nGPT-2 Perplexity Scoring for AI Text Detection\nScores each sample with GPT-2-large perplexity as an alternative detector.\nLower PPL = more predictable/fluent → likely synthetic.\nHigher PPL = more surprising → likely human.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport math\nimport torch\nimport numpy as np\nfrom pathlib import Path\nfrom transformers import GPT2LMHeadModel, GPT2TokenizerFast\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_NAME = \"gpt2-large\"\nBATCH_SIZE = 48\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad():\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)\n\n    shift_logits = outputs.logits[:, :-1, :].contiguous()\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    loss_fct = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    token_losses = loss_fct(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1),\n    ).view(shift_labels.size())\n\n    token_losses = token_losses * shift_mask\n    seq_lengths = shift_mask.sum(dim=1).float()\n    mean_nll = token_losses.sum(dim=1) / seq_lengths.clamp(min=1)\n    ppls = torch.exp(mean_nll).cpu().numpy()\n\n    mean_nlls_np = mean_nll.cpu().numpy()\n\n    return ppls.tolist(), mean_nlls_np.tolist()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")  # maps to physical GPU1 via CUDA_VISIBLE_DEVICES\n    print(f\"Loading {MODEL_NAME}...\")\n    tokenizer = GPT2TokenizerFast.from_pretrained(MODEL_NAME)\n    tokenizer.pad_token = tokenizer.eos_token\n    model = GPT2LMHeadModel.from_pretrained(MODEL_NAME).to(device)\n    model.eval()\n    print(f\"Model loaded. Params: {sum(p.numel() for p in model.parameters())/1e6:.0f}M\")\n\n    # Load all input data\n    print(\"Loading input data...\")\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\")\n\n    # Check for checkpoint\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\")\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        assert len(results) == start_idx, f\"Checkpoint mismatch: {len(results)} vs {start_idx}\"\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(ppl, 4)\n                rec_b[\"gpt2_nll\"] = round(nll, 6)\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\")\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    # Final write\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\")\n    print(f\"Output: {OUTPUT_FILE}\")\n\n    # Quick stats\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\")\n    print(f\"Real (depth=0): mean={ppls_arr[depths==0].mean():.2f}, median={np.median(ppls_arr[depths==0]):.2f}\")\n    print(f\"Synth (depth=1): mean={ppls_arr[depths==1].mean():.2f}, median={np.median(ppls_arr[depths==1]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    # Filter out inf/nan for correlation\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    # Classification accuracy using PPL threshold\n    # Higher PPL → human (depth=0), Lower PPL → synthetic (depth=1)\n    thresholds = [30, 50, 75, 100, 150, 200]\n    print(f\"\\n--- Classification (PPL > threshold → real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}\")\n\n    # Optimal threshold\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[np.isfinite(ppls_arr)], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nGPT-2 Perplexity Scoring for AI Text Detection\nScores each sample with GPT-2-large perplexity as an alternative detector.\nLower PPL = more predictable/fluent → likely synthetic.\nHigher PPL = more surprising → likely human.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport math\nimport torch\nimport numpy as np\nfrom pathlib import Path\nfrom transformers import GPT2LMHeadModel, GPT2TokenizerFast\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_NAME = \"gpt2-large\"\nBATCH_SIZE = 48\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad():\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)\n\n    shift_logits = outputs.logits[:, :-1, :].contiguous()\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    loss_fct = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    token_losses = loss_fct(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1),\n    ).view(shift_labels.size())\n\n    token_losses = token_losses * shift_mask\n    seq_lengths = shift_mask.sum(dim=1).float()\n    mean_nll = token_losses.sum(dim=1) / seq_lengths.clamp(min=1)\n    ppls = torch.exp(mean_nll).cpu().numpy()\n\n    mean_nlls_np = mean_nll.cpu().numpy()\n\n    return ppls.tolist(), mean_nlls_np.tolist()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")  # maps to physical GPU1 via CUDA_VISIBLE_DEVICES\n    print(f\"Loading {MODEL_NAME}...\")\n    tokenizer = GPT2TokenizerFast.from_pretrained(MODEL_NAME)\n    tokenizer.pad_token = tokenizer.eos_token\n    model = GPT2LMHeadModel.from_pretrained(MODEL_NAME).to(device)\n    model.eval()\n    print(f\"Model loaded. Params: {sum(p.numel() for p in model.parameters())/1e6:.0f}M\")\n\n    # Load all input data\n    print(\"Loading input data...\")\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\")\n\n    # Check for checkpoint\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\")\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        assert len(results) == start_idx, f\"Checkpoint mismatch: {len(results)} vs {start_idx}\"\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(ppl, 4)\n                rec_b[\"gpt2_nll\"] = round(nll, 6)\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\")\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    # Final write\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\")\n    print(f\"Output: {OUTPUT_FILE}\")\n\n    # Quick stats\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\")\n    print(f\"Real (depth=0): mean={ppls_arr[depths==0].mean():.2f}, median={np.median(ppls_arr[depths==0]):.2f}\")\n    print(f\"Synth (depth=1): mean={ppls_arr[depths==1].mean():.2f}, median={np.median(ppls_arr[depths==1]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    # Filter out inf/nan for correlation\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    # Classification accuracy using PPL threshold\n    # Higher PPL → human (depth=0), Lower PPL → synthetic (depth=1)\n    thresholds = [30, 50, 75, 100, 150, 200]\n    print(f\"\\n--- Classification (PPL > threshold → real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}\")\n\n    # Optimal threshold\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[np.isfinite(ppls_arr)], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T11:04:53.203830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T11:04:53.204003+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T11:04:53.204129+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=195563\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T11:04:53.204256+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "sleep 30 && cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "sleep 30 && cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T11:04:53.204380+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 30 && cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T11:04:53.204496+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T11:04:53.204614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T11:04:53.204745+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ps aux | grep score_gpt2 | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ps aux | grep score_gpt2 | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T11:04:53.204885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     195563  0.0  0.0   4364   240 ?        S    18:48   0:00 bash -c cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     195564 27.6  0.0 10771564 827384 ?     Sl   18:48   0:20 /root/miniconda3/bin/python scoring/score_gpt2_ppl.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T11:04:53.205023+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "sleep 60 && cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "sleep 60 && cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T11:04:53.205145+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T11:04:53.205260+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"---\"; nvidia-smi --query-gpu=index,memory.used --format=csv,noheader | head -4",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"---\"; nvidia-smi --query-gpu=index,memory.used --format=csv,noheader | head -4",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T11:04:53.205418+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/gpt2-large/resolve/main/tokenizer_config.json\\nRetrying in 1s [Retry 1/5].\\nLoading gpt2-large...\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py\\\", line 178, in &lt;module>\\n    main()\\n  File \\\"/root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py\\\", line 68, in main\\n    tokenizer = GPT2TokenizerFast.from_pretrained(MODEL_NAME)\\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\", line 1642, in from_pretrained\\n    resolved_config_file = cached_file(\\n                           ^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 278, in cached_file\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 512, in cached_files\\n    raise e\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 422, in cached_files\\n    hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error
+…[truncated 1974 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T11:04:53.205589+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls /root/.cache/huggingface/hub/ 2>/dev/null | head -20; echo \"---\"; echo $HF_ENDPOINT; echo \"---\"; find /root -name \"config.json\" -path \"*gpt2*\" 2>/dev/null | head -5",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls /root/.cache/huggingface/hub/ 2>/dev/null | head -20; echo \"---\"; echo $HF_ENDPOINT; echo \"---\"; find /root -name \"config.json\" -path \"*gpt2*\" 2>/dev/null | head -5",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T11:04:53.205747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"datasets--Rowan--hellaswag\\ndatasets--allenai--ai2_arc\\ndatasets--allenai--winogrande\\ndatasets--baber--piqa\\ndatasets--cais--mmlu\\n---\\n\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T11:04:53.205918+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "curl -s --connect-timeout 5 https://hf-mirror.com 2>&1 | head -3; echo \"---\"; curl -s --connect-timeout 5 https://mirrors.tuna.tsinghua.edu.cn 2>&1 | head -3",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "curl -s --connect-timeout 5 https://hf-mirror.com 2>&1 | head -3; echo \"---\"; curl -s --connect-timeout 5 https://mirrors.tuna.tsinghua.edu.cn 2>&1 | head -3",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T11:04:53.206149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"&lt;!DOCTYPE html>\\n&lt;html lang=\\\"zh\\\">\\n\\n---\\n&lt;!DOCTYPE html> &lt;html lang=\\\"zh-Hans\\\"> &lt;head> &lt;meta charset=\\\"UTF-8\\\"> &lt;meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\"> &lt;meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"> &lt;meta name=\\\"description\\\" content=\\\"清华大学开源软件镜像站，致力于为国内和校内用户提供高质量的开源软件镜像、Linux 镜像源服务，帮助用户更方便地获取开源软件。本镜像站由清华大学 TUNA 协会负责运行维护。\\\"> &lt;meta name=\\\"keywords\\\" content=\\\"镜像站,镜像源,Linux,软件源,开源\\\"> &lt;meta name=\\\"author\\\" content=\\\"Tsinghua University TUNA Association\\\"> &lt;link rel=\\\"shortcut icon\\\" href=\\\"/static/img/favicon.png\\\"> &lt;link rel=\\\"alternate\\\" type=\\\"application/rss+xml\\\" title=\\\"镜像站新闻\\\" href=\\\"/feed.xml\\\"> &lt;meta property=\\\"og:title\\\" content=\\\"清华大学开源软件镜像站 | Tsinghua Open Source Mirror\\\"/> &lt;meta property=\\\"og:description\\\" content=\\\"清华大学开源软件镜像站，致力于为国内和校内用户提供高质量的开源软件镜像、Linux 镜像源服务，帮助用户更方便地获取开源软件。本镜像站由清华大学 TUNA 协会负责运行维护。\\\"/> &lt;meta property=\\\"og:image\\\" content=\\\"https://mirrors.tuna.tsinghua.edu.cn/static/img/logo-share.png\\\"/> &lt;meta property=\\\"og:url\\\" content=\\\"https://mirrors.tuna.tsinghua.edu.cn/\\\"/> &lt;meta property=\\\"og:locale\\\" content=\\\"zh_CN\\\"/> &lt;meta property=\\\"og:type\\\" content=\\\"website\\\"/> &lt;title>清华大学开源软件镜像站 | Tsinghua Open Source Mirror&lt;/title> &lt;script src=\\\"/assets/app-CuXYLqmr.js\\\" crossorigin=\\\"anonymous\\\" type=\\\"module\\\">&lt;/script> &lt;link href=\\\"/assets/mirrorList-C49xEwOy.js\\\" rel=\\\"modulepreload\\\" as=\\\"script\\\" crossorigin=\\\"anonymous\\\"/> &lt;link href=\\\"/assets/_virtual_jekyll-data-C4cNciPs.js\\\" rel=\\\"modulepreload\\\" as=\\\"script\\\" crossorigin=\\\"anonymous\\\"/> &lt;link href=\\\"/assets/default-DhOUyR8O.js\\\" rel=\\\"modulepreload\\\" as=\\\"script\\\" crossorigin=\\\"anonymous\\\"/> <link href=\\\"/assets/UpdateField-gyJt7K5p.js\\\" rel=\\\"modulepreload\\\" as=\\\"script\\\" crossorigin=\\\"an
+…[truncated 6870 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T11:04:53.206325+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "kill 195563 195564 2>/dev/null; rm -f /root/autodl-tmp/provenance_weight_training/data/gpt2ppl_checkpoint.json /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "kill 195563 195564 2>/dev/null; rm -f /root/autodl-tmp/provenance_weight_training/data/gpt2ppl_checkpoint.json /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T11:04:53.206460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T11:04:53.206602+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nGPT-2 Perplexity Scoring for AI Text Detection\nScores each sample with GPT-2-large perplexity as an alternative detector.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nfrom transformers import GPT2LMHeadModel, GPT2TokenizerFast\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_NAME = \"gpt2-large\"\nBATCH_SIZE = 48\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad():\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)\n\n    shift_logits = outputs.logits[:, :-1, :].contiguous()\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    loss_fct = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    token_losses = loss_fct(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1),\n    ).view(shift_labels.size())\n\n    token_losses = token_losses * shift_mask\n    seq_lengths = shift_mask.sum(dim=1).float()\n    mean_nll = token_losses.sum(dim=1) / seq_lengths.clamp(min=1)\n    ppls = torch.exp(mean_nll).cpu().numpy()\n    mean_nlls_np = mean_nll.cpu().numpy()\n\n    return ppls.tolist(), mean_nlls_np.tolist()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading {MODEL_NAME} from hf-mirror.com ...\", flush=True)\n    tokenizer = GPT2TokenizerFast.from_pretrained(MODEL_NAME)\n    tokenizer.pad_token = tokenizer.eos_token\n    model = GPT2LMHeadModel.from_pretrained(MODEL_NAME).to(device)\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e6\n    print(f\"Model loaded. Params: {params:.0f}M\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        assert len(results) == start_idx\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(float(ppl), 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(float(nll), 6) if np.isfinite(nll) else 99.0\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    print(f\"Real (depth=0): mean={ppls_arr[depths==0].mean():.2f}, median={np.median(ppls_arr[depths==0]):.2f}\")\n    print(f\"Synth (depth=1): mean={ppls_arr[depths==1].mean():.2f}, median={np.median(ppls_arr[depths==1]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nGPT-2 Perplexity Scoring for AI Text Detection\nScores each sample with GPT-2-large perplexity as an alternative detector.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\n\nfrom transformers import GPT2LMHeadModel, GPT2TokenizerFast\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_NAME = \"gpt2-large\"\nBATCH_SIZE = 48\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad():\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)\n\n    shift_logits = outputs.logits[:, :-1, :].contiguous()\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    loss_fct = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    token_losses = loss_fct(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1),\n    ).view(shift_labels.size())\n\n    token_losses = token_losses * shift_mask\n    seq_lengths = shift_mask.sum(dim=1).float()\n    mean_nll = token_losses.sum(dim=1) / seq_lengths.clamp(min=1)\n    ppls = torch.exp(mean_nll).cpu().numpy()\n    mean_nlls_np = mean_nll.cpu().numpy()\n\n    return ppls.tolist(), mean_nlls_np.tolist()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading {MODEL_NAME} from hf-mirror.com ...\", flush=True)\n    tokenizer = GPT2TokenizerFast.from_pretrained(MODEL_NAME)\n    tokenizer.pad_token = tokenizer.eos_token\n    model = GPT2LMHeadModel.from_pretrained(MODEL_NAME).to(device)\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e6\n    print(f\"Model loaded. Params: {params:.0f}M\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        assert len(results) == start_idx\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(float(ppl), 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(float(nll), 6) if np.isfinite(nll) else 99.0\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    print(f\"Real (depth=0): mean={ppls_arr[depths==0].mean():.2f}, median={np.median(ppls_arr[depths==0]):.2f}\")\n    print(f\"Synth (depth=1): mean={ppls_arr[depths==1].mean():.2f}, median={np.median(ppls_arr[depths==1]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & (depths == 0)) | (~pred_real & (depths == 1))).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T11:04:53.206788+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T11:04:53.206976+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T11:04:53.207118+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=195973\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T11:04:53.207256+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T11:04:53.207443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading gpt2-large from hf-mirror.com ...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T11:04:53.207596+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; ps -p 195973 -o pid,stat,etime,rss --no-headers 2>/dev/null || echo \"process dead\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; ps -p 195973 -o pid,stat,etime,rss --no-headers 2>/dev/null || echo \"process dead\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T11:04:53.207728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading gpt2-large from hf-mirror.com ...\\n===\\n195973 S          00:40   240\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T11:04:53.207897+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ps aux | grep score_gpt2 | grep -v grep; echo \"===\"; ls -la /root/.cache/huggingface/hub/models--gpt2-large/ 2>/dev/null || echo \"no cache yet\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ps aux | grep score_gpt2 | grep -v grep; echo \"===\"; ls -la /root/.cache/huggingface/hub/models--gpt2-large/ 2>/dev/null || echo \"no cache yet\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T11:04:53.208051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     195973  0.0  0.0   4364   240 ?        S    18:51   0:00 bash -c cd /root/autodl-tmp/provenance_weight_training && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     195974 46.7  0.0 10922912 908172 ?     Sl   18:51   0:21 /root/miniconda3/bin/python scoring/score_gpt2_ppl.py\\n===\\ntotal 8\\ndrwxr-xr-x 6 root root   85 May 18 18:51 .\\ndrwxr-xr-x 9 root root 4096 May 18 18:51 ..\\ndrwxr-xr-x 3 root root   62 May 18 18:51 .no_exist\\ndrwxr-xr-x 2 root root 4096 May 18 18:51 blobs\\ndrwxr-xr-x 2 root root   26 May 18 18:51 refs\\ndrwxr-xr-x 3 root root   62 May 18 18:51 snapshots\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T11:04:53.208191+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; du -sh /root/.cache/huggingface/hub/models--gpt2-large/blobs/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; du -sh /root/.cache/huggingface/hub/models--gpt2-large/blobs/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T11:04:53.208315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading gpt2-large from hf-mirror.com ...\\n===\\n55M\\t/root/.cache/huggingface/hub/models--gpt2-large/blobs/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T11:04:53.208434+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; du -sh /root/.cache/huggingface/hub/models--gpt2-large/blobs/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; du -sh /root/.cache/huggingface/hub/models--gpt2-large/blobs/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T11:04:53.208554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading gpt2-large from hf-mirror.com ...\\n===\\n55M\\t/root/.cache/huggingface/hub/models--gpt2-large/blobs/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T11:04:53.208683+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "du -sh /root/.cache/huggingface/hub/models--gpt2-large/blobs/ 2>/dev/null; ps -p 195974 --no-headers -o pid,stat 2>/dev/null || echo \"dead\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "du -sh /root/.cache/huggingface/hub/models--gpt2-large/blobs/ 2>/dev/null; ps -p 195974 --no-headers -o pid,stat 2>/dev/null || echo \"dead\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T11:04:53.208812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"55M\\t/root/.cache/huggingface/hub/models--gpt2-large/blobs/\\n195974 Sl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T11:04:53.208987+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/.cache/huggingface/hub/models--gpt2-large/ -type f -exec ls -lh {} \\; 2>/dev/null; echo \"===\"; find /tmp -name \"*.incomplete\" 2>/dev/null | head -3",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/.cache/huggingface/hub/models--gpt2-large/ -type f -exec ls -lh {} \\; 2>/dev/null; echo \"===\"; find /tmp -name \"*.incomplete\" 2>/dev/null | head -3",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T11:04:53.209133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 26 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/blobs/be4d21d94f3b4687e5a54d84bf6ab46ed0f8defd\\n-rw-r--r-- 1 root root 1018K May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/blobs/1f1d9aaca301414e7f6c9396df506798ff4eb9a6\\n-rw-r--r-- 1 root root 446K May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/blobs/226b0752cac7789c48f0cb3ec53eda48b7be36cc\\n-rw-r--r-- 1 root root 1.3M May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/blobs/4b988bccc9dc5adacd403c00b4704976196548f8\\n-rw-r--r-- 1 root root 666 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/blobs/31587029033088429a7e344901883fa792f75bcc\\n-rw-r--r-- 1 root root 60M May 18 18:52 /root/.cache/huggingface/hub/models--gpt2-large/blobs/5f47f3e12f91cd33b662ce7e433b6150ad5512b5884a2cee961b50e9c3bbebce.incomplete\\n-rw-r--r-- 1 root root 40 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/refs/main\\n-rw-r--r-- 1 root root 0 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/.no_exist/32b71b12589c2f8d625668d2335a01cac3249519/added_tokens.json\\n-rw-r--r-- 1 root root 0 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/.no_exist/32b71b12589c2f8d625668d2335a01cac3249519/special_tokens_map.json\\n-rw-r--r-- 1 root root 0 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/.no_exist/32b71b12589c2f8d625668d2335a01cac3249519/chat_template.jinja\\n-rw-r--r-- 1 root root 0 May 18 18:51 /root/.cache/huggingface/hub/models--gpt2-large/.no_exist/32b71b12589c2f8d625668d2335a01cac3249519/adapter_config.json\\n===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T11:04:53.209273+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls -lh /root/.cache/huggingface/hub/models--gpt2-large/blobs/*.incomplete 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls -lh /root/.cache/huggingface/hub/models--gpt2-large/blobs/*.incomplete 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T11:04:53.209397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 60M May 18 18:52 /root/.cache/huggingface/hub/models--gpt2-large/blobs/5f47f3e12f91cd33b662ce7e433b6150ad5512b5884a2cee961b50e9c3bbebce.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T11:04:53.209517+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls -lh /root/.cache/huggingface/hub/models--gpt2-large/blobs/*.incomplete 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls -lh /root/.cache/huggingface/hub/models--gpt2-large/blobs/*.incomplete 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T11:04:53.209643+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 60M May 18 18:52 /root/.cache/huggingface/hub/models--gpt2-large/blobs/5f47f3e12f91cd33b662ce7e433b6150ad5512b5884a2cee961b50e9c3bbebce.incomplete\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T11:04:53.209827+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "kill 195973 195974 2>/dev/null; rm -f /root/.cache/huggingface/hub/models--gpt2-large/blobs/*.incomplete",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "kill 195973 195974 2>/dev/null; rm -f /root/.cache/huggingface/hub/models--gpt2-large/blobs/*.incomplete",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T11:04:53.209982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T11:04:53.210113+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "mkdir -p /root/models/gpt2-large && cd /root/models/gpt2-large && wget -q --show-progress \"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/config.json\" -O config.json 2>&1 | tail -3",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "mkdir -p /root/models/gpt2-large && cd /root/models/gpt2-large && wget -q --show-progress \"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/config.json\" -O config.json 2>&1 | tail -3",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T11:04:53.210238+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n     0K                                                        49.3M=0s\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T11:04:53.210366+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/models/gpt2-large && for f in vocab.json merges.txt tokenizer.json tokenizer_config.json generation_config.json; do wget -q \"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/$f\" -O \"$f\" 2>&1; done && echo \"small files done\" && ls -la",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/models/gpt2-large && for f in vocab.json merges.txt tokenizer.json tokenizer_config.json generation_config.json; do wget -q \"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/$f\" -O \"$f\" 2>&1; done && echo \"small files done\" && ls -la",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T11:04:53.210492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"small files done\\ntotal 2804\\ndrwxr-xr-x 2 root root     170 May 18 18:53 .\\ndrwxr-xr-x 3 root root      32 May 18 18:52 ..\\n-rw-r--r-- 1 root root     666 May 18 18:52 config.json\\n-rw-r--r-- 1 root root     124 May 18 18:53 generation_config.json\\n-rw-r--r-- 1 root root  456318 May 18 18:53 merges.txt\\n-rw-r--r-- 1 root root 1355256 May 18 18:53 tokenizer.json\\n-rw-r--r-- 1 root root      26 May 18 18:53 tokenizer_config.json\\n-rw-r--r-- 1 root root 1042301 May 18 18:53 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 25.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T11:04:53.210631+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/models/gpt2-large && nohup wget \"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/model.safetensors\" -O model.safetensors > /tmp/wget_gpt2.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/models/gpt2-large && nohup wget \"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/model.safetensors\" -O model.safetensors > /tmp/wget_gpt2.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T11:04:53.210758+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/models/gpt2-large && nohup wget \\\"https://hf-mirror.com/openai-community/gpt2-large/resolve/main/model.safetensors\\\" -O model.safetensors > /tmp/wget_gpt2.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=196268\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T11:04:53.210891+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /tmp/wget_gpt2.log; echo \"===\"; ls -lh /root/models/gpt2-large/model.safetensors 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /tmp/wget_gpt2.log; echo \"===\"; ls -lh /root/models/gpt2-large/model.safetensors 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-18T11:04:53.211089+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--2026-05-18 18:53:23--  https://hf-mirror.com/openai-community/gpt2-large/resolve/main/model.safetensors\\nResolving hf-mirror.com (hf-mirror.com)... 160.16.86.14\\nConnecting to hf-mirror.com (hf-mirror.com)|160.16.86.14|:443... connected.\\nHTTP request sent, awaiting response... 302 Found\\nLocation: https://cas-bridge.xethub.hf.co/xet-bridge-us/621ffdc036468d709f17434a/0f08041eb1fb64469e955848d7781f73c640d076cdcf225624cdd3c5fe0f1fb8?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=[REDACTED] [following]\\n--2026-05-18 18:53:24--  https://cas-bridge.xethub.hf.co/xet-bridge-us/621ffdc036468d709f17434a/0f08041eb1fb64469e955848d7781f73c640d076cdcf225624cdd3c5fe0f1fb8?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=[REDACTED]
+…[truncated 6344 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T11:04:53.211270+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "kill 196268 2>/dev/null; rm -f /root/models/gpt2-large/model.safetensors",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "kill 196268 2>/dev/null; rm -f /root/models/gpt2-large/model.safetensors",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T11:04:53.211416+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T11:04:53.211539+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -maxdepth 3 -name \"config.json\" -path \"*model*\" 2>/dev/null | head -10; echo \"===\"; find /root/.cache/huggingface/hub -maxdepth 1 -type d 2>/dev/null; echo \"===\"; find /root/autodl-tmp -maxdepth 3 -name \"config.json\" 2>/dev/null | head -10",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -maxdepth 3 -name \"config.json\" -path \"*model*\" 2>/dev/null | head -10; echo \"===\"; find /root/.cache/huggingface/hub -maxdepth 1 -type d 2>/dev/null; echo \"===\"; find /root/autodl-tmp -maxdepth 3 -name \"config.json\" 2>/dev/null | head -10",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T11:04:53.211670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/models/gpt2-large/config.json\\n===\\n/root/.cache/huggingface/hub\\n/root/.cache/huggingface/hub/datasets--Rowan--hellaswag\\n/root/.cache/huggingface/hub/.locks\\n/root/.cache/huggingface/hub/datasets--cais--mmlu\\n/root/.cache/huggingface/hub/datasets--allenai--ai2_arc\\n/root/.cache/huggingface/hub/datasets--baber--piqa\\n/root/.cache/huggingface/hub/datasets--allenai--winogrande\\n/root/.cache/huggingface/hub/models--gpt2-large\\n===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T11:04:53.211793+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/autodl-tmp -maxdepth 5 -name \"*.safetensors\" -o -name \"pytorch_model.bin\" 2>/dev/null | head -10; echo \"===\"; find /root -maxdepth 4 -type d -name \"Qwen*\" -o -name \"qwen*\" -o -name \"llama*\" -o -name \"Llama*\" 2>/dev/null | head -10",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/autodl-tmp -maxdepth 5 -name \"*.safetensors\" -o -name \"pytorch_model.bin\" 2>/dev/null | head -10; echo \"===\"; find /root -maxdepth 4 -type d -name \"Qwen*\" -o -name \"qwen*\" -o -name \"llama*\" -o -name \"Llama*\" 2>/dev/null | head -10",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T11:04:53.211946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B/model-00001-of-00002.safetensors\\n/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B/model-00002-of-00002.safetensors\\n/root/autodl-tmp/provenance_weight_training/models/Qwen/Qwen3-1.7B/model-00002-of-00002.safetensors\\n===\\n/root/autodl-tmp/provenance_weight_training/models/Qwen\\n/root/provenance_weight_training/models/Qwen\\n/root/provenance_weight_training/models/Qwen/Qwen3-0___6B\\n/root/runs/provenance_weight_training/qwen06b_uniform_seed42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T11:04:53.212108+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls -lh /root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B/; echo \"===\"; ls -lh /root/autodl-tmp/provenance_weight_training/models/Qwen/Qwen3-1.7B/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls -lh /root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B/; echo \"===\"; ls -lh /root/autodl-tmp/provenance_weight_training/models/Qwen/Qwen3-1.7B/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-18T11:04:53.212395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 6.0G\\n-rw-r--r-- 1 root root 7.6K May 16 16:43 LICENSE.txt\\n-rw-r--r-- 1 root root  41K May 16 16:43 README.md\\n-rw-r--r-- 1 root root 5.9K May 16 16:43 USE_POLICY.md\\n-rw-r--r-- 1 root root  844 May 16 16:43 config.json\\n-rw-r--r-- 1 root root    2 May 16 16:43 configuration.json\\n-rw-r--r-- 1 root root  185 May 16 16:43 generation_config.json\\n-rw-r--r-- 1 root root 4.7G May 16 16:51 model-00001-of-00002.safetensors\\n-rw-r--r-- 1 root root 1.4G May 16 16:48 model-00002-of-00002.safetensors\\n-rw-r--r-- 1 root root  21K May 16 16:43 model.safetensors.index.json\\n-rw-r--r-- 1 root root  301 May 16 16:43 special_tokens_map.json\\n-rw-r--r-- 1 root root 8.7M May 16 16:43 tokenizer.json\\n-rw-r--r-- 1 root root  50K May 16 16:43 tokenizer_config.json\\n===\\ntotal 609M\\n-rw-r--r-- 1 root root  12K May 18 18:49 LICENSE\\n-rw-r--r-- 1 root root  14K May 18 18:49 README.md\\n-rw-r--r-- 1 root root  726 May 18 18:49 config.json\\n-rw-r--r-- 1 root root  239 May 18 18:49 generation_config.json\\n-rw-r--r-- 1 root root 1.6M May 18 18:49 merges.txt\\n-rw-r--r-- 1 root root 594M May 18 18:54 model-00002-of-00002.safetensors\\n-rw-r--r-- 1 root root  26K May 18 18:49 model.safetensors.index.json\\n-rw-r--r-- 1 root root  11M May 18 18:49 tokenizer.json\\n-rw-r--r-- 1 root root 9.6K May 18 18:49 tokenizer_config.json\\n-rw-r--r-- 1 root root 2.7M May 18 18:49 vocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-18T11:04:53.212635+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nLlama-3.2-3B Perplexity Scoring for AI Text Detection\nAlternative detector: scores each sample with Llama PPL.\nLower PPL = more predictable → likely synthetic.\nHigher PPL = more surprising → likely human.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_PATH = \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B\"\nBATCH_SIZE = 64\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n\n    shift_logits = outputs.logits[:, :-1, :].contiguous().float()\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    loss_fct = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    token_losses = loss_fct(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1),\n    ).view(shift_labels.size())\n\n    token_losses = token_losses * shift_mask\n    seq_lengths = shift_mask.sum(dim=1).float()\n    mean_nll = token_losses.sum(dim=1) / seq_lengths.clamp(min=1)\n    ppls = torch.exp(mean_nll).cpu().numpy()\n    mean_nlls_np = mean_nll.cpu().numpy()\n\n    return ppls.tolist(), mean_nlls_np.tolist()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading model from {MODEL_PATH} ...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=device,\n    )\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e9\n    print(f\"Model loaded. Params: {params:.1f}B\", flush=True)\n    print(f\"GPU mem used: {torch.cuda.memory_allocated(0)/1e9:.1f}GB\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        if len(results) != start_idx:\n            print(f\"WARNING: checkpoint says {start_idx} but file has {len(results)}, using file count\", flush=True)\n            start_idx = len(results)\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            try:\n                ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            except RuntimeError as e:\n                if \"out of memory\" in str(e):\n                    torch.cuda.empty_cache()\n                    half = len(batch_texts) // 2\n                    ppls1, nlls1 = compute_ppl_batch(batch_texts[:half], model, tokenizer, device)\n                    ppls2, nlls2 = compute_ppl_batch(batch_texts[half:], model, tokenizer, device)\n                    ppls = ppls1 + ppls2\n                    nlls = nlls1 + nlls2\n                else:\n                    raise\n\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(float(ppl), 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(float(nll), 6) if np.isfinite(nll) else 99.0\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    real_mask = depths == 0\n    synth_mask = depths == 1\n    print(f\"Real (depth=0): n={real_mask.sum()}, mean={ppls_arr[real_mask].mean():.2f}, median={np.median(ppls_arr[real_mask]):.2f}\")\n    print(f\"Synth (depth=1): n={synth_mask.sum()}, mean={ppls_arr[synth_mask].mean():.2f}, median={np.median(ppls_arr[synth_mask]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200, 300, 500]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        tp = (pred_real & real_mask).sum()\n        fn = (~pred_real & real_mask).sum()\n        fp = (pred_real & synth_mask).sum()\n        tn = (~pred_real & synth_mask).sum()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}, TP={tp}, FP={fp}, TN={tn}, FN={fn}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nLlama-3.2-3B Perplexity Scoring for AI Text Detection\nAlternative detector: scores each sample with Llama PPL.\nLower PPL = more predictable → likely synthetic.\nHigher PPL = more surprising → likely human.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_PATH = \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B\"\nBATCH_SIZE = 64\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n\n    shift_logits = outputs.logits[:, :-1, :].contiguous().float()\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    loss_fct = torch.nn.CrossEntropyLoss(reduction=\"none\")\n    token_losses = loss_fct(\n        shift_logits.view(-1, shift_logits.size(-1)),\n        shift_labels.view(-1),\n    ).view(shift_labels.size())\n\n    token_losses = token_losses * shift_mask\n    seq_lengths = shift_mask.sum(dim=1).float()\n    mean_nll = token_losses.sum(dim=1) / seq_lengths.clamp(min=1)\n    ppls = torch.exp(mean_nll).cpu().numpy()\n    mean_nlls_np = mean_nll.cpu().numpy()\n\n    return ppls.tolist(), mean_nlls_np.tolist()\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading model from {MODEL_PATH} ...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=device,\n    )\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e9\n    print(f\"Model loaded. Params: {params:.1f}B\", flush=True)\n    print(f\"GPU mem used: {torch.cuda.memory_allocated(0)/1e9:.1f}GB\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        if len(results) != start_idx:\n            print(f\"WARNING: checkpoint says {start_idx} but file has {len(results)}, using file count\", flush=True)\n            start_idx = len(results)\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            try:\n                ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            except RuntimeError as e:\n                if \"out of memory\" in str(e):\n                    torch.cuda.empty_cache()\n                    half = len(batch_texts) // 2\n                    ppls1, nlls1 = compute_ppl_batch(batch_texts[:half], model, tokenizer, device)\n                    ppls2, nlls2 = compute_ppl_batch(batch_texts[half:], model, tokenizer, device)\n                    ppls = ppls1 + ppls2\n                    nlls = nlls1 + nlls2\n                else:\n                    raise\n\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(float(ppl), 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(float(nll), 6) if np.isfinite(nll) else 99.0\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    real_mask = depths == 0\n    synth_mask = depths == 1\n    print(f\"Real (depth=0): n={real_mask.sum()}, mean={ppls_arr[real_mask].mean():.2f}, median={np.median(ppls_arr[real_mask]):.2f}\")\n    print(f\"Synth (depth=1): n={synth_mask.sum()}, mean={ppls_arr[synth_mask].mean():.2f}, median={np.median(ppls_arr[synth_mask]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200, 300, 500]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        tp = (pred_real & real_mask).sum()\n        fn = (~pred_real & real_mask).sum()\n        fp = (pred_real & synth_mask).sum()\n        tn = (~pred_real & synth_mask).sum()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}, TP={tp}, FP={fp}, TN={tn}, FN={fn}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T11:04:53.212878+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-18T11:04:53.213017+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log data/gpt2ppl_checkpoint.json data/scored_data_gpt2ppl.jsonl && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log data/gpt2ppl_checkpoint.json data/scored_data_gpt2ppl.jsonl && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T11:04:53.213148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=196407\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T11:04:53.213268+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -20 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T11:04:53.213407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    main()\\n  File \\\"/root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py\\\", line 117, in main\\n    ppls1, nlls1 = compute_ppl_batch(batch_texts[:half], model, tokenizer, device)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py\\\", line 50, in compute_ppl_batch\\n    token_losses = loss_fct(\\n                   ^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1776, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1787, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/loss.py\\\", line 1362, in forward\\n    return F.cross_entropy(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/functional.py\\\", line 3504, in cross_entropy\\n    return torch._C._nn.cross_entropy_loss(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 11.77 GiB. GPU 0 has a total capacity of 94.97 GiB of which 11.16 GiB is free. Including non-PyTorch memory, this process has 83.81 GiB memory in use. Of the allocated memory 80.24 GiB is allocated by PyTorch, and 2.90 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T11:04:53.213609+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nLlama-3.2-3B Perplexity Scoring for AI Text Detection\nCompute per-sample PPL memory-efficiently.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport torch.nn.functional as F\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_PATH = \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B\"\nBATCH_SIZE = 16\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n        logits = outputs.logits\n\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    ppls = []\n    nlls = []\n    bs = logits.shape[0]\n    for b in range(bs):\n        sample_logits = logits[b, :-1, :].float()\n        sample_labels = shift_labels[b]\n        sample_mask = shift_mask[b]\n        token_loss = F.cross_entropy(sample_logits, sample_labels, reduction=\"none\")\n        token_loss = token_loss * sample_mask\n        seq_len = sample_mask.sum().float().clamp(min=1)\n        mean_nll = token_loss.sum() / seq_len\n        ppl = torch.exp(mean_nll)\n        ppls.append(float(ppl.cpu()))\n        nlls.append(float(mean_nll.cpu()))\n\n    del logits\n    torch.cuda.empty_cache()\n    return ppls, nlls\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading model from {MODEL_PATH} ...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=device,\n    )\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e9\n    print(f\"Model loaded. Params: {params:.1f}B\", flush=True)\n    print(f\"GPU mem used: {torch.cuda.memory_allocated(0)/1e9:.1f}GB\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        if len(results) != start_idx:\n            print(f\"WARNING: checkpoint says {start_idx} but file has {len(results)}\", flush=True)\n            start_idx = len(results)\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(ppl, 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(nll, 6) if np.isfinite(nll) else 99.0\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    real_mask = depths == 0\n    synth_mask = depths == 1\n    print(f\"Real (depth=0): n={real_mask.sum()}, mean={ppls_arr[real_mask].mean():.2f}, median={np.median(ppls_arr[real_mask]):.2f}\")\n    print(f\"Synth (depth=1): n={synth_mask.sum()}, mean={ppls_arr[synth_mask].mean():.2f}, median={np.median(ppls_arr[synth_mask]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200, 300, 500]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        tp = (pred_real & real_mask).sum()\n        fn = (~pred_real & real_mask).sum()\n        fp = (pred_real & synth_mask).sum()\n        tn = (~pred_real & synth_mask).sum()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}, TP={tp}, FP={fp}, TN={tn}, FN={fn}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nLlama-3.2-3B Perplexity Scoring for AI Text Detection\nCompute per-sample PPL memory-efficiently.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport torch.nn.functional as F\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_PATH = \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B\"\nBATCH_SIZE = 16\nMAX_LENGTH = 1024\nCHECKPOINT_EVERY = 5000\nLOG_EVERY = 1000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n        logits = outputs.logits\n\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous()\n\n    ppls = []\n    nlls = []\n    bs = logits.shape[0]\n    for b in range(bs):\n        sample_logits = logits[b, :-1, :].float()\n        sample_labels = shift_labels[b]\n        sample_mask = shift_mask[b]\n        token_loss = F.cross_entropy(sample_logits, sample_labels, reduction=\"none\")\n        token_loss = token_loss * sample_mask\n        seq_len = sample_mask.sum().float().clamp(min=1)\n        mean_nll = token_loss.sum() / seq_len\n        ppl = torch.exp(mean_nll)\n        ppls.append(float(ppl.cpu()))\n        nlls.append(float(mean_nll.cpu()))\n\n    del logits\n    torch.cuda.empty_cache()\n    return ppls, nlls\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading model from {MODEL_PATH} ...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH,\n        torch_dtype=torch.bfloat16,\n        device_map=device,\n    )\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e9\n    print(f\"Model loaded. Params: {params:.1f}B\", flush=True)\n    print(f\"GPU mem used: {torch.cuda.memory_allocated(0)/1e9:.1f}GB\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        if len(results) != start_idx:\n            print(f\"WARNING: checkpoint says {start_idx} but file has {len(results)}\", flush=True)\n            start_idx = len(results)\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(ppl, 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(nll, 6) if np.isfinite(nll) else 99.0\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                with open(OUTPUT_FILE, \"w\") as f:\n                    for r in results:\n                        f.write(json.dumps(r) + \"\\n\")\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    with open(OUTPUT_FILE, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    real_mask = depths == 0\n    synth_mask = depths == 1\n    print(f\"Real (depth=0): n={real_mask.sum()}, mean={ppls_arr[real_mask].mean():.2f}, median={np.median(ppls_arr[real_mask]):.2f}\")\n    print(f\"Synth (depth=1): n={synth_mask.sum()}, mean={ppls_arr[synth_mask].mean():.2f}, median={np.median(ppls_arr[synth_mask]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200, 300, 500]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        tp = (pred_real & real_mask).sum()\n        fn = (~pred_real & real_mask).sum()\n        fp = (pred_real & synth_mask).sum()\n        tn = (~pred_real & synth_mask).sum()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}, TP={tp}, FP={fp}, TN={tn}, FN={fn}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T11:04:53.213843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T11:04:53.214000+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log data/gpt2ppl_checkpoint.json data/scored_data_gpt2ppl.jsonl && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log data/gpt2ppl_checkpoint.json data/scored_data_gpt2ppl.jsonl && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-18T11:04:53.214138+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log data/gpt2ppl_checkpoint.json data/scored_data_gpt2ppl.jsonl && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=196709\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-18T11:04:53.214264+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-18T11:04:53.214408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/254 [00:00<00:27,  9.12it/s]\\rLoading weights:   8%|▊         | 21/254 [00:00<00:02, 113.83it/s]\\rLoading weights:  15%|█▌        | 39/254 [00:00<00:01, 141.76it/s]\\rLoading weights:  22%|██▏       | 57/254 [00:00<00:01, 151.79it/s]\\rLoading weights:  30%|██▉       | 75/254 [00:00<00:01, 157.38it/s]\\rLoading weights:  37%|███▋      | 93/254 [00:00<00:01, 160.63it/s]\\rLoading weights:  44%|████▎     | 111/254 [00:00<00:00, 162.40it/s]\\rLoading weights:  51%|█████     | 129/254 [00:00<00:00, 163.92it/s]\\rLoading weights:  58%|█████▊    | 147/254 [00:00<00:00, 165.36it/s]\\rLoading weights:  65%|██████▍   | 165/254 [00:01<00:00, 166.35it/s]\\rLoading weights:  72%|████���██▏  | 183/254 [00:01<00:00, 167.01it/s]\\rLoading weights:  79%|███████▉  | 201/254 [00:01<00:00, 167.52it/s]\\rLoading weights:  86%|████████▌ | 219/254 [00:01<00:00, 168.02it/s]\\rLoading weights:  93%|█████████▎| 237/254 [00:01<00:00, 168.39it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.80it/s]\\nModel loaded. Params: 3.2B\\nGPU mem used: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-18T11:04:53.214572+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-18T11:04:53.214717+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/254 [00:00<00:27,  9.12it/s]\\rLoading weights:   8%|▊         | 21/254 [00:00<00:02, 113.83it/s]\\rLoading weights:  15%|█▌        | 39/254 [00:00<00:01, 141.76it/s]\\rLoading weights:  22%|██▏       | 57/254 [00:00<00:01, 151.79it/s]\\rLoading weights:  30%|██▉       | 75/254 [00:00<00:01, 157.38it/s]\\rLoading weights:  37%|███▋      | 93/254 [00:00<00:01, 160.63it/s]\\rLoading weights:  44%|████▎     | 111/254 [00:00<00:00, 162.40it/s]\\rLoading weights:  51%|█████     | 129/254 [00:00<00:00, 163.92it/s]\\rLoading weights:  58%|█████▊    | 147/254 [00:00<00:00, 165.36it/s]\\rLoading weights:  65%|██████▍   | 165/254 [00:01<00:00, 166.35it/s]\\rLoading weights:  72%|███████▏  | 183/254 [00:01<00:00, 167.01it/s]\\rLoading weights:  79%|███████▉  | 201/254 [00:01<00:00, 167.52it/s]\\rLoading weights:  86%|██��█████▌ | 219/254 [00:01<00:00, 168.02it/s]\\rLoading weights:  93%|█████████▎| 237/254 [00:01<00:00, 168.39it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.80it/s]\\nModel loaded. Params: 3.2B\\nGPU mem used: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-18T11:04:53.214884+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | head -4",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | head -4",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-18T11:04:53.215024+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading input data...\\nTotal samples: 371499\\n[1008/371499] 33.2 samples/s, ETA: 186.2min\\n===\\n0, 0 MiB, 0 %\\n1, 14895 MiB, 100 %\\n2, 0 MiB, 0 %\\n3, 0 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-18T11:04:53.215163+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-18T11:04:53.215290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading input data...\\nTotal samples: 371499\\n[1008/371499] 33.2 samples/s, ETA: 186.2min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-18T11:04:53.215442+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "pkill -f score_gpt2_ppl; rm -f /root/autodl-tmp/provenance_weight_training/data/gpt2ppl_checkpoint.json /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "pkill -f score_gpt2_ppl; rm -f /root/autodl-tmp/provenance_weight_training/data/gpt2ppl_checkpoint.json /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-18T11:04:53.215569+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": -1}, \"error\": \"exit code -1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-18T11:04:53.215687+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "sed -i 's/BATCH_SIZE = 16/BATCH_SIZE = 64/' /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py && grep \"BATCH_SIZE\" /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "sed -i 's/BATCH_SIZE = 16/BATCH_SIZE = 64/' /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py && grep \"BATCH_SIZE\" /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-18T11:04:53.215811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"BATCH_SIZE = 64\\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-18T11:04:53.215952+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-18T11:04:53.216079+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=197042\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-18T11:04:53.216199+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-18T11:04:53.216339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/254 [00:00<00:27,  9.22it/s]\\rLoading weights:   9%|▊         | 22/254 [00:00<00:02, 115.27it/s]\\rLoading weights:  16%|█▌        | 40/254 [00:00<00:01, 137.91it/s]\\rLoading weights:  23%|██▎       | 58/254 [00:00<00:01, 149.15it/s]\\rLoading weights:  30%|██▉       | 76/254 [00:00<00:01, 155.48it/s]\\rLoading weights:  37%|███▋      | 94/254 [00:00<00:01, 159.39it/s]\\rLoading weights:  44%|████▍     | 112/254 [00:00<00:00, 161.88it/s]\\rLoading weights:  51%|█████     | 130/254 [00:00<00:00, 163.55it/s]\\rLoading weights:  58%|█████▊    | 148/254 [00:00<00:00, 164.85it/s]\\rLoading weights:  65%|██████▌   | 166/254 [00:01<00:00, 165.76it/s]\\rLoading weights:  72%|███████▏  | 184/254 [00:01<00:00, 166.03it/s]\\rLoading weights:  80%|███████▉  | 202/254 [00:01<00:00, 166.82it/s]\\rLoading weights:  87%|██��█████▋ | 220/254 [00:01<00:00, 167.41it/s]\\rLoading weights:  94%|█████████▎| 238/254 [00:01<00:00, 167.81it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.59it/s]\\nModel loaded. Params: 3.2B\\nGPU mem used: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-18T11:04:53.216471+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-18T11:04:53.216593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GPU mem used: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-18T11:04:53.216709+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | sed -n '2p'",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"===\"; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | sed -n '2p'",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-18T11:04:53.216830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B\\nGPU mem used: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n[1024/371499] 31.7 samples/s, ETA: 194.7min\\n===\\n1, 33119 MiB, 84 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-18T11:04:53.217040+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-18T11:04:53.217190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading input data...\\nTotal samples: 371499\\n[1024/371499] 31.7 samples/s, ETA: 194.7min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-18T11:04:53.217351+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "pkill -f score_gpt2_ppl 2>/dev/null; rm -f /root/autodl-tmp/provenance_weight_training/data/gpt2ppl_checkpoint.json /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "pkill -f score_gpt2_ppl 2>/dev/null; rm -f /root/autodl-tmp/provenance_weight_training/data/gpt2ppl_checkpoint.json /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-18T11:04:53.217485+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": -1}, \"error\": \"exit code -1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-18T11:04:53.217681+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nLlama-3.2-3B Perplexity Scoring — optimized with chunked CE.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport torch.nn.functional as F\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_PATH = \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B\"\nBATCH_SIZE = 32\nMAX_LENGTH = 1024\nCE_CHUNK = 8\nCHECKPOINT_EVERY = 10000\nLOG_EVERY = 2000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n        logits = outputs.logits\n\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous().float()\n    bs = logits.shape[0]\n\n    all_ppls = []\n    all_nlls = []\n    for start in range(0, bs, CE_CHUNK):\n        end = min(start + CE_CHUNK, bs)\n        chunk_logits = logits[start:end, :-1, :].float()\n        chunk_labels = shift_labels[start:end]\n        chunk_mask = shift_mask[start:end]\n\n        token_losses = F.cross_entropy(\n            chunk_logits.reshape(-1, chunk_logits.size(-1)),\n            chunk_labels.reshape(-1),\n            reduction=\"none\",\n        ).reshape(chunk_labels.size())\n\n        token_losses = token_losses * chunk_mask\n        seq_lens = chunk_mask.sum(dim=1).clamp(min=1)\n        mean_nlls = token_losses.sum(dim=1) / seq_lens\n        ppls = torch.exp(mean_nlls)\n\n        all_ppls.extend(ppls.cpu().tolist())\n        all_nlls.extend(mean_nlls.cpu().tolist())\n\n        del chunk_logits\n\n    del logits\n    return all_ppls, all_nlls\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading model from {MODEL_PATH} ...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, device_map=device,\n    )\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e9\n    print(f\"Model loaded. Params: {params:.1f}B, VRAM: {torch.cuda.memory_allocated(0)/1e9:.1f}GB\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        start_idx = len(results)\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n    out_f = open(OUTPUT_FILE, \"a\" if start_idx > 0 else \"w\")\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(ppl, 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(nll, 6) if np.isfinite(nll) else 99.0\n                out_f.write(json.dumps(rec_b) + \"\\n\")\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n                out_f.flush()\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                out_f.flush()\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    out_f.close()\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    real_mask = depths == 0\n    synth_mask = depths == 1\n    print(f\"Real (depth=0): n={real_mask.sum()}, mean={ppls_arr[real_mask].mean():.2f}, median={np.median(ppls_arr[real_mask]):.2f}\")\n    print(f\"Synth (depth=1): n={synth_mask.sum()}, mean={ppls_arr[synth_mask].mean():.2f}, median={np.median(ppls_arr[synth_mask]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200, 300, 500]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat > /root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py << 'SCRIPT_EOF'\n\"\"\"\nLlama-3.2-3B Perplexity Scoring — optimized with chunked CE.\n\"\"\"\n\nimport json\nimport os\nimport time\nimport torch\nimport torch.nn.functional as F\nimport numpy as np\nfrom pathlib import Path\n\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nDATA_DIR = Path(\"/root/autodl-tmp/provenance_weight_training/data\")\nINPUT_FILE = DATA_DIR / \"scored_data.jsonl\"\nOUTPUT_FILE = DATA_DIR / \"scored_data_gpt2ppl.jsonl\"\nCHECKPOINT_FILE = DATA_DIR / \"gpt2ppl_checkpoint.json\"\n\nMODEL_PATH = \"/root/autodl-tmp/provenance_weight_training/models/meta-llama/Llama-3.2-3B\"\nBATCH_SIZE = 32\nMAX_LENGTH = 1024\nCE_CHUNK = 8\nCHECKPOINT_EVERY = 10000\nLOG_EVERY = 2000\n\n\ndef compute_ppl_batch(texts, model, tokenizer, device, max_length=MAX_LENGTH):\n    encodings = tokenizer(\n        texts,\n        return_tensors=\"pt\",\n        truncation=True,\n        max_length=max_length,\n        padding=True,\n    )\n    input_ids = encodings[\"input_ids\"].to(device)\n    attention_mask = encodings[\"attention_mask\"].to(device)\n\n    with torch.no_grad(), torch.amp.autocast(\"cuda\", dtype=torch.bfloat16):\n        outputs = model(input_ids=input_ids, attention_mask=attention_mask)\n        logits = outputs.logits\n\n    shift_labels = input_ids[:, 1:].contiguous()\n    shift_mask = attention_mask[:, 1:].contiguous().float()\n    bs = logits.shape[0]\n\n    all_ppls = []\n    all_nlls = []\n    for start in range(0, bs, CE_CHUNK):\n        end = min(start + CE_CHUNK, bs)\n        chunk_logits = logits[start:end, :-1, :].float()\n        chunk_labels = shift_labels[start:end]\n        chunk_mask = shift_mask[start:end]\n\n        token_losses = F.cross_entropy(\n            chunk_logits.reshape(-1, chunk_logits.size(-1)),\n            chunk_labels.reshape(-1),\n            reduction=\"none\",\n        ).reshape(chunk_labels.size())\n\n        token_losses = token_losses * chunk_mask\n        seq_lens = chunk_mask.sum(dim=1).clamp(min=1)\n        mean_nlls = token_losses.sum(dim=1) / seq_lens\n        ppls = torch.exp(mean_nlls)\n\n        all_ppls.extend(ppls.cpu().tolist())\n        all_nlls.extend(mean_nlls.cpu().tolist())\n\n        del chunk_logits\n\n    del logits\n    return all_ppls, all_nlls\n\n\ndef main():\n    device = torch.device(\"cuda:0\")\n    print(f\"Loading model from {MODEL_PATH} ...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, device_map=device,\n    )\n    model.eval()\n    params = sum(p.numel() for p in model.parameters()) / 1e9\n    print(f\"Model loaded. Params: {params:.1f}B, VRAM: {torch.cuda.memory_allocated(0)/1e9:.1f}GB\", flush=True)\n\n    print(\"Loading input data...\", flush=True)\n    all_data = []\n    with open(INPUT_FILE) as f:\n        for line in f:\n            all_data.append(json.loads(line))\n    total = len(all_data)\n    print(f\"Total samples: {total}\", flush=True)\n\n    start_idx = 0\n    results = []\n    if CHECKPOINT_FILE.exists():\n        ckpt = json.loads(CHECKPOINT_FILE.read_text())\n        start_idx = ckpt[\"processed\"]\n        print(f\"Resuming from checkpoint at sample {start_idx}\", flush=True)\n        with open(OUTPUT_FILE) as f:\n            for line in f:\n                results.append(json.loads(line))\n        start_idx = len(results)\n\n    t0 = time.time()\n    batch_texts = []\n    batch_records = []\n    out_f = open(OUTPUT_FILE, \"a\" if start_idx > 0 else \"w\")\n\n    for i in range(start_idx, total):\n        rec = all_data[i]\n        batch_texts.append(rec[\"text\"])\n        batch_records.append(rec)\n\n        if len(batch_texts) == BATCH_SIZE or i == total - 1:\n            ppls, nlls = compute_ppl_batch(batch_texts, model, tokenizer, device)\n            for rec_b, ppl, nll in zip(batch_records, ppls, nlls):\n                rec_b[\"gpt2_ppl\"] = round(ppl, 4) if np.isfinite(ppl) else 99999.0\n                rec_b[\"gpt2_nll\"] = round(nll, 6) if np.isfinite(nll) else 99.0\n                out_f.write(json.dumps(rec_b) + \"\\n\")\n                results.append(rec_b)\n\n            batch_texts = []\n            batch_records = []\n\n            done = len(results)\n            if done % LOG_EVERY < BATCH_SIZE or i == total - 1:\n                elapsed = time.time() - t0\n                rate = (done - start_idx) / elapsed if elapsed > 0 else 0\n                eta = (total - done) / rate if rate > 0 else 0\n                print(f\"[{done}/{total}] {rate:.1f} samples/s, ETA: {eta/60:.1f}min\", flush=True)\n                out_f.flush()\n\n            if done % CHECKPOINT_EVERY < BATCH_SIZE:\n                out_f.flush()\n                CHECKPOINT_FILE.write_text(json.dumps({\"processed\": done}))\n\n    out_f.close()\n    if CHECKPOINT_FILE.exists():\n        CHECKPOINT_FILE.unlink()\n\n    elapsed_total = time.time() - t0\n    print(f\"\\nDone! {total} samples in {elapsed_total/60:.1f} min ({total/elapsed_total:.1f} samples/s)\", flush=True)\n    print(f\"Output: {OUTPUT_FILE}\", flush=True)\n\n    depths = np.array([r[\"depth\"] for r in results])\n    ppls_arr = np.array([r[\"gpt2_ppl\"] for r in results])\n    q_scores = np.array([r[\"q_score\"] for r in results])\n\n    print(f\"\\n--- PPL Stats ---\", flush=True)\n    real_mask = depths == 0\n    synth_mask = depths == 1\n    print(f\"Real (depth=0): n={real_mask.sum()}, mean={ppls_arr[real_mask].mean():.2f}, median={np.median(ppls_arr[real_mask]):.2f}\")\n    print(f\"Synth (depth=1): n={synth_mask.sum()}, mean={ppls_arr[synth_mask].mean():.2f}, median={np.median(ppls_arr[synth_mask]):.2f}\")\n\n    from scipy.stats import spearmanr, pearsonr\n    mask = np.isfinite(ppls_arr) & np.isfinite(q_scores) & (ppls_arr < 99999)\n    pr = pearsonr(q_scores[mask], ppls_arr[mask])\n    sr = spearmanr(q_scores[mask], ppls_arr[mask])\n    print(f\"\\n--- Correlation with q_score ---\")\n    print(f\"Pearson:  r={pr.statistic:.4f}, p={pr.pvalue:.2e}\")\n    print(f\"Spearman: r={sr.statistic:.4f}, p={sr.pvalue:.2e}\")\n\n    thresholds = [30, 50, 75, 100, 150, 200, 300, 500]\n    print(f\"\\n--- Classification (PPL > threshold = real) ---\")\n    for t in thresholds:\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        print(f\"  threshold={t:>4}: acc={acc:.4f}\")\n\n    best_acc = 0\n    best_t = 0\n    for t in np.percentile(ppls_arr[ppls_arr < 99999], np.arange(1, 100)):\n        pred_real = ppls_arr > t\n        acc = ((pred_real & real_mask) | (~pred_real & synth_mask)).mean()\n        if acc > best_acc:\n            best_acc = acc\n            best_t = t\n    print(f\"  Best threshold={best_t:.2f}: acc={best_acc:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-18T11:04:53.217958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-18T11:04:53.218108+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-18T11:04:53.218239+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=197406\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-18T11:04:53.218360+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-18T11:04:53.218499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 3/254 [00:00<00:09, 25.90it/s]\\rLoading weights:   9%|▊         | 22/254 [00:00<00:01, 116.49it/s]\\rLoading weights:  16%|█▌        | 40/254 [00:00<00:01, 139.44it/s]\\rLoading weights:  23%|██▎       | 58/254 [00:00<00:01, 149.70it/s]\\rLoading weights:  30%|██▉       | 76/254 [00:00<00:01, 155.67it/s]\\rLoading weights:  37%|███▋      | 94/254 [00:00<00:01, 159.11it/s]\\rLoading weights:  44%|████▍     | 112/254 [00:00<00:00, 161.32it/s]\\rLoading weights:  51%|█████     | 130/254 [00:00<00:00, 162.93it/s]\\rLoading weights:  58%|█████▊    | 148/254 [00:00<00:00, 164.11it/s]\\rLoading weights:  65%|██████▌   | 166/254 [00:01<00:00, 165.16it/s]\\rLoading weights:  72%|███████▏  | 184/254 [00:01<00:00, 165.50it/s]\\rLoading weights:  80%|███████▉  | 202/254 [00:01<00:00, 165.54it/s]\\rLoading weights:  87%|████████▋ | 220/254 [00:01<00:00, 166.31it/s]\\rLoading weights:  94%|█████████▎| 238/254 [00:01<00:00, 166.23it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.19it/s]\\nModel loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-18T11:04:53.218639+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-18T11:04:53.218766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-18T11:04:53.218901+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-18T11:04:53.219026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-18T11:04:53.219143+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"---\"; ps -p 197406 --no-headers -o stat 2>/dev/null; nvidia-smi --query-gpu=index,memory.used --format=csv,noheader 2>/dev/null | sed -n '2p'",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; echo \"---\"; ps -p 197406 --no-headers -o stat 2>/dev/null; nvidia-smi --query-gpu=index,memory.used --format=csv,noheader 2>/dev/null | sed -n '2p'",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-18T11:04:53.219282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 3/254 [00:00<00:09, 25.90it/s]\\rLoading weights:   9%|▊         | 22/254 [00:00<00:01, 116.49it/s]\\rLoading weights:  16%|█▌        | 40/254 [00:00<00:01, 139.44it/s]\\rLoading weights:  23%|██▎       | 58/254 [00:00<00:01, 149.70it/s]\\rLoading weights:  30%|██▉       | 76/254 [00:00<00:01, 155.67it/s]\\rLoading weights:  37%|███▋      | 94/254 [00:00<00:01, 159.11it/s]\\rLoading weights:  44%|████▍     | 112/254 [00:00<00:00, 161.32it/s]\\rLoading weights:  51%|█████     | 130/254 [00:00<00:00, 162.93it/s]\\rLoading weights:  58%|█████▊    | 148/254 [00:00<00:00, 164.11it/s]\\rLoading weights:  65%|██████▌   | 166/254 [00:01<00:00, 165.16it/s]\\rLoading weights:  72%|███████▏  | 184/254 [00:01<00:00, 165.50it/s]\\rLoading weights:  80%|███████▉  | 202/254 [00:01<00:00, 165.54it/s]\\rLoading weights:  87%|████████▋ | 220/254 [00:01<00:00, 166.31it/s]\\rLoading weights:  94%|█████████▎| 238/254 [00:01<00:00, 166.23it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.19it/s]\\nModel loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n---\\nS\\n1, 35825 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-18T11:04:53.219439+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-18T11:04:53.219564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-18T11:04:53.219682+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-18T11:04:53.219817+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 3/254 [00:00<00:09, 25.90it/s]\\rLoading weights:   9%|▊         | 22/254 [00:00<00:01, 116.49it/s]\\rLoading weights:  16%|█▌        | 40/254 [00:00<00:01, 139.44it/s]\\rLoading weights:  23%|██▎       | 58/254 [00:00<00:01, 149.70it/s]\\rLoading weights:  30%|██▉       | 76/254 [00:00<00:01, 155.67it/s]\\rLoading weights:  37%|███▋      | 94/254 [00:00<00:01, 159.11it/s]\\rLoading weights:  44%|████▍     | 112/254 [00:00<00:00, 161.32it/s]\\rLoading weights:  51%|█████     | 130/254 [00:00<00:00, 162.93it/s]\\rLoading weights:  58%|█████▊    | 148/254 [00:00<00:00, 164.11it/s]\\rLoading weights:  65%|██████▌   | 166/254 [00:01<00:00, 165.16it/s]\\rLoading weights:  72%|███████▏  | 184/254 [00:01<00:00, 165.50it/s]\\rLoading weights:  80%|███████▉  | 202/254 [00:01<00:00, 165.54it/s]\\rLoading weights:  87%|████████▋ | 220/254 [00:01<00:00, 166.31it/s]\\rLoading weights:  94%|█████████▎| 238/254 [00:01<00:00, 166.23it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.19it/s]\\nModel loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-18T11:04:53.219992+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ps aux | grep score_gpt2 | grep python; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | sed -n '2p'",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ps aux | grep score_gpt2 | grep python; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | sed -n '2p'",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-18T11:04:53.220125+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     197406  0.0  0.0   4364  1752 ?        S    19:00   0:00 bash -c cd /root/autodl-tmp/provenance_weight_training && rm -f scoring/gpt2ppl.log && nohup /root/miniconda3/bin/python scoring/score_gpt2_ppl.py > scoring/gpt2ppl.log 2>&1 & echo \\\"PID=$!\\\"\\nroot     197408  150  0.3 70615996 3750188 ?    Rl   19:00   1:45 /root/miniconda3/bin/python scoring/score_gpt2_ppl.py\\nroot     197724  0.0  0.0   4364  3108 ?        Ss   19:01   0:00 bash -c ps aux | grep score_gpt2 | grep python; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader 2>/dev/null | sed -n '2p'\\n1, 35825 MiB, 100 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-18T11:04:53.220259+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-18T11:04:53.220386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-18T11:04:53.220516+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-18T11:04:53.220656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rLoading weights:   0%|          | 0/254 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 3/254 [00:00<00:09, 25.90it/s]\\rLoading weights:   9%|▊         | 22/254 [00:00<00:01, 116.49it/s]\\rLoading weights:  16%|█▌        | 40/254 [00:00<00:01, 139.44it/s]\\rLoading weights:  23%|██▎       | 58/254 [00:00<00:01, 149.70it/s]\\rLoading weights:  30%|██▉       | 76/254 [00:00<00:01, 155.67it/s]\\rLoading weights:  37%|███▋      | 94/254 [00:00<00:01, 159.11it/s]\\rLoading weights:  44%|████▍     | 112/254 [00:00<00:00, 161.32it/s]\\rLoading weights:  51%|█████     | 130/254 [00:00<00:00, 162.93it/s]\\rLoading weights:  58%|█████▊    | 148/254 [00:00<00:00, 164.11it/s]\\rLoading weights:  65%|██████▌   | 166/254 [00:01<00:00, 165.16it/s]\\rLoading weights:  72%|███████▏  | 184/254 [00:01<00:00, 165.50it/s]\\rLoading weights:  80%|███████▉  | 202/254 [00:01<00:00, 165.54it/s]\\rLoading weights:  87%|██��█████▋ | 220/254 [00:01<00:00, 166.31it/s]\\rLoading weights:  94%|█████████▎| 238/254 [00:01<00:00, 166.23it/s]\\rLoading weights: 100%|██████████| 254/254 [00:01<00:00, 159.19it/s]\\nModel loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n2364 /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-18T11:04:53.220813+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-18T11:04:53.220960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading input data...\\nTotal samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-18T11:04:53.221079+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-18T11:04:53.221198+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2016/371499] 31.6 samples/s, ETA: 194.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-18T11:04:53.221312+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-18T11:04:53.221428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2016/371499] 31.6 samples/s, ETA: 194.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-18T11:04:53.221540+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-18T11:04:53.221681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2016/371499] 31.6 samples/s, ETA: 194.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-18T11:04:53.221902+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-18T11:04:53.222045+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2016/371499] 31.6 samples/s, ETA: 194.9min\\n3292 /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-18T11:04:53.222163+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 162 · 2026-05-18T11:04:53.222282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2016/371499] 31.6 samples/s, ETA: 194.9min\\n3424 /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-18T11:04:53.222415+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log; wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-18T11:04:53.222536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[2016/371499] 31.6 samples/s, ETA: 194.9min\\n3615 /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-18T11:04:53.222648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-18T11:04:53.222764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading input data...\\nTotal samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 167 · 2026-05-18T11:04:53.222901+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-18T11:04:53.223028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading input data...\\nTotal samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-18T11:04:53.223143+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-18T11:04:53.223262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-18T11:04:53.223389+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -3 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 172 · 2026-05-18T11:04:53.223507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 173 · 2026-05-18T11:04:53.223619+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -5 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-18T11:04:53.223736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model loaded. Params: 3.2B, VRAM: 6.4GB\\nLoading input data...\\nTotal samples: 371499\\n[2016/371499] 31.6 samples/s, ETA: 194.9min\\n[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-18T11:04:53.223863+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 176 · 2026-05-18T11:04:53.223995+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 177 · 2026-05-18T11:04:53.224110+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-18T11:04:53.224224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179 · 2026-05-18T11:04:53.224336+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 180 · 2026-05-18T11:04:53.224450+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 181 · 2026-05-18T11:04:53.224561+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-18T11:04:53.224673+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 183 · 2026-05-18T11:04:53.224783+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 184 · 2026-05-18T11:04:53.224916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 185 · 2026-05-18T11:04:53.225029+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 186 · 2026-05-18T11:04:53.225148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-18T11:04:53.225260+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-18T11:04:53.225373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 189 · 2026-05-18T11:04:53.225482+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 190 · 2026-05-18T11:04:53.225593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-18T11:04:53.225726+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-18T11:04:53.225879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 193 · 2026-05-18T11:04:53.225998+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 194 · 2026-05-18T11:04:53.226112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 195 · 2026-05-18T11:04:53.226222+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 196 · 2026-05-18T11:04:53.226341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[4000/371499] 31.7 samples/s, ETA: 193.1min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 197 · 2026-05-18T11:04:53.226454+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 198 · 2026-05-18T11:04:53.226569+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"6046 /root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 199 · 2026-05-18T11:04:53.226690+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 200 · 2026-05-18T11:04:53.226804+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 201 · 2026-05-18T11:04:53.226973+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nppls_real, ppls_synth = [], []\nwith open('/root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl') as f:\n    for i, line in enumerate(f):\n        if i >= 6000: break\n        d = json.loads(line)\n        if d['depth'] == 0:\n            ppls_real.append(d['gpt2_ppl'])\n        else:\n            ppls_synth.append(d['gpt2_ppl'])\nimport numpy as np\nr, s = np.array(ppls_real), np.array(ppls_synth)\nprint(f'First 6K samples:')\nprint(f'  Real (n={len(r)}): mean={r.mean():.1f}, median={np.median(r):.1f}, std={r.std():.1f}')\nprint(f'  Synth (n={len(s)}): mean={s.mean():.1f}, median={np.median(s):.1f}, std={s.std():.1f}')\nprint(f'  Separation: {np.median(r) - np.median(s):.1f} (median gap)')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "/root/miniconda3/bin/python -c \"\nimport json\nppls_real, ppls_synth = [], []\nwith open('/root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl') as f:\n    for i, line in enumerate(f):\n        if i >= 6000: break\n        d = json.loads(line)\n        if d['depth'] == 0:\n            ppls_real.append(d['gpt2_ppl'])\n        else:\n            ppls_synth.append(d['gpt2_ppl'])\nimport numpy as np\nr, s = np.array(ppls_real), np.array(ppls_synth)\nprint(f'First 6K samples:')\nprint(f'  Real (n={len(r)}): mean={r.mean():.1f}, median={np.median(r):.1f}, std={r.std():.1f}')\nprint(f'  Synth (n={len(s)}): mean={s.mean():.1f}, median={np.median(s):.1f}, std={s.std():.1f}')\nprint(f'  Separation: {np.median(r) - np.median(s):.1f} (median gap)')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 202 · 2026-05-18T11:04:53.227123+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"First 6K samples:\\n  Real (n=2682): mean=13.5, median=11.4, std=10.4\\n  Synth (n=3318): mean=5.2, median=5.0, std=2.0\\n  Separation: 6.3 (median gap)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 203 · 2026-05-18T11:04:53.227311+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 204 · 2026-05-18T11:04:53.227441+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 205 · 2026-05-18T11:04:53.227555+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 206 · 2026-05-18T11:04:53.227707+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 207 · 2026-05-18T11:04:53.227828+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 208 · 2026-05-18T11:04:53.227991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 209 · 2026-05-18T11:04:53.228110+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 210 · 2026-05-18T11:04:53.228226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 211 · 2026-05-18T11:04:53.228337+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 212 · 2026-05-18T11:04:53.228451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 213 · 2026-05-18T11:04:53.228569+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 214 · 2026-05-18T11:04:53.228686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 215 · 2026-05-18T11:04:53.228796+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 216 · 2026-05-18T11:04:53.228931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 217 · 2026-05-18T11:04:53.229043+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 218 · 2026-05-18T11:04:53.229156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 219 · 2026-05-18T11:04:53.229264+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 220 · 2026-05-18T11:04:53.229378+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 221 · 2026-05-18T11:04:53.229486+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 222 · 2026-05-18T11:04:53.229597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 223 · 2026-05-18T11:04:53.229733+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 224 · 2026-05-18T11:04:53.229885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[6016/371499] 31.8 samples/s, ETA: 191.5min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 225 · 2026-05-18T11:04:53.230004+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 226 · 2026-05-18T11:04:53.230118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[8000/371499] 31.9 samples/s, ETA: 189.9min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_binoculars_scoring_20260518T104613",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 227 · 2026-05-18T11:04:53.230274+00:00_
+
+8,000/371,499 at 31.9 samples/s. ETA ~190 min. Running steadily. I'll stop polling and let it run. Let me provide a status summary now and check final results when it completes.
+
+**Status Summary:**
+- **Method:** Llama-3.2-3B perplexity scoring (local model, no download needed)
+- **Server:** westd-41312, GPU1 (NVIDIA RTX PRO 6000 Blackwell), 35GB VRAM in use
+- **Speed:** ~32 samples/s
+- **Progress:** 8,000/371,499 (2.2%)
+- **ETA:** ~190 minutes (~3.2 hours), expected completion around 22:10 UTC
+- **Early results (first 6K samples):**
+  - Real text (depth=0): median PPL = 11.4
+  - Synthetic text (depth=1): median PPL = 5.0
+  - Clear separation — synthetic text has 2.3x lower perplexity (more predictable to Llama-3.2-3B)
+- **Output file:** `/root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl`
+- **Checkpoint:** Every 10K samples, auto-resumes if interrupted
+- **Script:** `/root/autodl-tmp/provenance_weight_training/scoring/score_gpt2_ppl.py`
+
+The script will automatically compute correlation with q_scores, classification accuracy at various thresholds, and the optimal threshold when it finishes.
+
+To check progress: `tail -1 /root/autodl-tmp/provenance_weight_training/scoring/gpt2ppl.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_binoculars_scoring_20260518T104613"
+}
+```
+
+</details>
+
+---

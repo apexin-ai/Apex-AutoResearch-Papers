@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "481f0fb8f25bd48c6ace",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code detector tfidf lr",
+  "task_key": "worker_code_detector-tfidf-lr_20260513T231629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_detector-tfidf-lr_20260513T231629_result.json",
+    "occurrence": 1,
+    "bytes": 1352,
+    "sha256": "3793bebc0024c33be240dbbb976140ee163074857906905ca1c4aa8e9a7351b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**选中配置**: `combo_degrade` — unigrams only, max_features=10000, C=0.01, 截断前 100 词\n\n| 指标 | 值 |\n|------|-----|\n| **AUC** | 0.939 |\n| **Accuracy** | 85.8% |\n| **ECE (raw → calibrated)** | 0.240 → 0.048 |\n| **Temperature T** | 0.204 |\n| **q-score mean/std/median** | 0.600 / 0.374 / 0.707 |\n| **mid-range (0.1-0.9) 比例** | **46.3%** |\n\n**q-score 分布 (calibrated, 温度缩放后)**:\n\n```\n0.0-0.1:  4624  ███████████████\n0.1-0.2:  2936  ██████████\n0.2-0.3:  2020  ███████\n0.3-0.4:  1659  █████\n0.4-0.5:  1410  ████\n0.5-0.6:  1337  ████\n0.6-0.7:  1244  ████\n0.7-0.8:  1429  ████\n0.8-0.9:  2157  ███████\n0.9-1.0: 11826  ████████████████████████████████████████\n```\n\n**模型保存路径**: `westd-47453:/root/provenance_weight_training/output/detector_tfidf/`\n- `tfidf_vectorizer.joblib` (361K)\n- `lr_model.joblib` (79K)\n- `predictions.jsonl` (30,642 rows)\n- `calibration_results.json`\n\n目标完全达成：AUC 0.939（在 0.85-0.98 范围），mid-range 46.3%（远超 5% 阈值）。q-score 分布平滑，不再是二值化的。不需要进一步调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-detector-tfidf-lr.md"
+}

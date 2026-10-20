@@ -1,0 +1,34 @@
+{
+  "exp_id": "batchsize16_nmin8_r2",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:17:10.215Z",
+    "updated_at": "2026-05-23T03:23:40.397Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/provenance_weight_training && bash scripts/run_bs16_nmin8_r2.sh\"",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "48881",
+      "log_path": "~/runs/provenance_weight_training/batchsize16_nmin8_r2.log",
+      "submitted_at": "2026-05-17T19:32:48.742Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 324648.2,
+      "gpu_hours": 90.18
+    },
+    "server": "westd-41312",
+    "gpu": "cuda:2",
+    "account": "root",
+    "conclusion": "killed",
+    "completed_at": "2026-05-17T11:44:39.058Z"
+  },
+  "timestamp": "2026-05-23T03:23:41.013225+00:00",
+  "trigger": "update_registry"
+}

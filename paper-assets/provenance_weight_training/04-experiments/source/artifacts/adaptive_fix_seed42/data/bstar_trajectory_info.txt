@@ -1,0 +1,4 @@
+CSV on server: /root/provenance_weight_training/artifacts/figure_data/bstar_trajectory_seed42.csv
+Columns: step, b_star, alpha_eff, ess, regime
+Rows: 24412 (deduped from 51913 raw lines, removing restart overlaps)
+Steps: 0-6102 (6103 training steps x 4 micro-batches)

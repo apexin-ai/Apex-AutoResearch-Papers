@@ -1,0 +1,38 @@
+{
+  "exp_id": "adaptive_fix_seed123",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:32:31.409Z",
+    "updated_at": "2026-05-14T17:38:38.031Z",
+    "hypothesis": "D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63, uniform PPL=17.69)",
+    "parent": "adaptive_seed123",
+    "notes": "Killed for resubmit without inline eval. 中间数据: step ~1554/6103 (25%), eval_ppl@step1000=22.30, eval_loss=3.1045. Inline eval 每次~44min×12次=~8.8h 效率问题。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_fix_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model --overwrite_output_dir\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "123092",
+      "log_path": "~/runs/provenance_weight_training/adaptive_fix_seed123.log",
+      "submitted_at": "2026-05-14T17:37:54.262Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 43.0,
+      "gpu_hours": 0.01
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T17:38:30.239Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T17:38:37.294Z"
+  },
+  "timestamp": "2026-05-14T17:38:38.077247+00:00",
+  "trigger": "update_registry"
+}

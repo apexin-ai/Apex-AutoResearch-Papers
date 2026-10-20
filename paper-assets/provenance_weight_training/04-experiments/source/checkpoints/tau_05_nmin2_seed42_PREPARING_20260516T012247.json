@@ -1,0 +1,18 @@
+{
+  "exp_id": "tau_05_nmin2_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:22:47.367Z",
+    "updated_at": "2026-05-16T01:22:47.367Z",
+    "spec": {
+      "hypothesis": "τ=0.5 rerun with correct n_min=2 (original tau_05_seed42 used n_min=3 confound). Most permissive α_eff threshold, expect b*≈0 for many batches.",
+      "parent": "tau_05_seed42"
+    }
+  },
+  "timestamp": "2026-05-16T01:22:47.492898+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "460619c2c0920fe0643d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "exp uniform epoch matched indep lr",
+  "task_key": "worker_exp_uniform_epoch_matched_indep_lr_20260521T115212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_uniform_epoch_matched_indep_lr_20260521T115212_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "5de63e86190749bce2c820419ff3cf9dbdb87b1b20fe75caf64dae65c40fa779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n**总结：**\n- **exp_id**: `uniform_epoch_matched_indep_lr_seed42`\n- **PID**: 604874, GPU: cuda:2, server: westd-41312\n- **total_steps**: 2533 (确认 `0/2533` 进度条)\n- **lr_scheduler_type**: cosine (从 config 输出确认)\n- **预计耗时**: ~2.08s/step × 2533 ≈ 1.5h\n- 给脚本新增了 `--lr_scheduler_type` 参数（默认 linear，本次传 cosine），已同步写入 TrainingArguments 和 config_summary\n- Registry 状态: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-uniform-epoch-matched-indep-lr.md"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "gpt2_adaptive_seed123",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:34:08.013Z",
+    "updated_at": "2026-05-21T00:35:53.331Z",
+    "hypothesis": "GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.",
+    "parent": "gpt2_adaptive_seed42",
+    "server": "westd-41312",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-41312",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T18:34:25.885Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_gpt2ppl_qscore.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"",
+      "finished_at": "2026-05-21T00:35:49.664Z",
+      "training_hours": 6.02
+    },
+    "spec": {
+      "command": "python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_gpt2ppl_qscore.jsonl",
+      "server": "westd-41312",
+      "gpu": "cuda:1",
+      "pid": "514246",
+      "log_path": "~/runs/provenance_weight_training/gpt2_adaptive_seed123.log",
+      "data_path": "data/scored_data_gpt2ppl_qscore.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 123,
+      "checkpoint_source": "from_scratch",
+      "output_dir": "/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123",
+      "detector": "GPT-2 PPL (AUC=0.913)"
+    },
+    "pid": "514246",
+    "log_path": "~/runs/provenance_weight_training/gpt2_adaptive_seed123.log",
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T00:35:53.718431+00:00",
+  "trigger": "update_registry"
+}

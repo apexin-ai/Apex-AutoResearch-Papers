@@ -1,0 +1,32 @@
+{
+  "exp_id": "threshold_q07_seed42",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 2,
+    "created_at": "2026-05-16T05:34:35.477Z",
+    "updated_at": "2026-05-16T19:15:00.883Z",
+    "hypothesis": "Hard-filter threshold sensitivity: remove q>0.7 samples (least aggressive, keeps most data+contamination), train uniformly. If PPL varies >0.1 across q=0.3/0.5/0.7 thresholds, proves filtering needs precise calibration while adaptive is threshold-free.",
+    "server": "westd-47453",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T06:00:07.874Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_threshold_q07_seed42.sh\""
+    },
+    "completed_at": "2026-05-16T10:22:01.172Z",
+    "notes": "Resume r2 from checkpoint-5500 (stuck at step 5999 due to disk full + wandb error loop). wandb/ deleted, WANDB_MODE=disabled. 604 steps remaining.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Resume r2 from checkpoint-5500 (stuck at step 5999 due to disk full + wandb error loop). wandb/ deleted, WANDB_MODE=disabled. 604 steps remaining."
+      }
+    }
+  },
+  "timestamp": "2026-05-16T19:15:01.059659+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f8e9fac8471e8999887",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code random reweight baseline",
+  "task_key": "worker_code_random_reweight_baseline_20260516T061055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_random_reweight_baseline_20260516T061055_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "0f6beef1d21fce8d5dfba5222013203c945b0ba87869d7b0b1a41b3402033f12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**结果：脚本已就绪，无需新建。**\n\n现有代码已完整支持 random reweight baseline：\n\n- **训练代码**：`/root/provenance_weight_training/training/pretrain_weighted.py`（line 174）已实现 `--weighting_method random`\n  - 每 batch 从 U(0,2) 独立采样权重\n  - 归一化到 mean=1\n  - 不使用 q_score 信息\n- **启动脚本**：`/root/provenance_weight_training/scripts/run_random_reweight_seed42.sh`\n  - 参数与 adaptive_v2_seed42 一致（batch_size=4, grad_accum=4, lr=5e-5, seed=42, 200M tokens → 6103 steps, Qwen3-0.6B, bf16）\n  - 输出到 `output/models/random_reweight_seed42`\n  - wandb run name: `random_reweight_seed42`\n\n**启动命令**（正式训练时）：\n```bash\ncd /root/provenance_weight_training && bash scripts/run_random_reweight_seed42.sh\n```\n\nDry-run 验证通过：3 步训练正常，random 权重 ESS 在 2.6~3.8 间（batch size=4 的合理范围），weighted_loss 与 unweighted_loss 有差异，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-random-reweight-baseline-copy-2.md"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "contamination_60_adaptive_seed42_tau08",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:38:07.151Z",
+    "updated_at": "2026-05-20T09:41:12.912Z",
+    "hypothesis": "Retrain adaptive (ρ=0.6, τ=0.8, seed=42) from scratch on Qwen3-0.6B to obtain checkpoint for OOD+downstream eval. Original contamination_60_seed42_r2 (PPL=17.74) confirmed holdout performance but checkpoint was cleaned up. Paired with seed123/456 for 3-seed τ=0.8 comparison against τ=0.7 (17.735/17.727/17.732).",
+    "parent": "contamination_60_seed42_r2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed42_tau08 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.6 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\"",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "459319",
+      "log_path": "~/runs/provenance_weight_training/contamination_60_adaptive_seed42_tau08.log",
+      "submitted_at": "2026-05-20T09:40:21.580Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-20T09:41:13.298168+00:00",
+  "trigger": "update_registry"
+}

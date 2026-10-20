@@ -1,0 +1,3620 @@
+# research llama3b results
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 111
+- **Recorded user turns:** 0
+- **Tool calls:** 55
+- **Original source:** `logs/chats/worker_research_llama3b_results_20260519T051512.jsonl`
+- **Structured JSON:** [`1538085d47e71fd0fa28.json`](../../sessions/15/1538085d47e71fd0fa28.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+111 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T05:22:47.220628+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T05:22:47.220986+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T05:22:47.221161+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "filters": "{'exp_id': 'llama3b'}",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "provenance_weight_training",
+    "filters": "{'exp_id': 'llama3b'}",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T05:22:47.221309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5355}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T05:22:47.221442+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root/autodl-tmp -path \"*llama3b*\" -name \"*.json\" 2>/dev/null; find /root/provenance_weight_training -path \"*llama*\" -name \"*.json\" 2>/dev/null; find /root -maxdepth 4 -path \"*llama*\" -name \"results*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root/autodl-tmp -path \"*llama3b*\" -name \"*.json\" 2>/dev/null; find /root/provenance_weight_training -path \"*llama*\" -name \"*.json\" 2>/dev/null; find /root -maxdepth 4 -path \"*llama*\" -name \"results*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T05:22:47.221581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/config.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/configuration.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/generation_config.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/model.safetensors.index.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/special_tokens_map.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/tokenizer.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T05:22:47.221754+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "provenance_weight_training",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T05:22:47.222962+00:00_
+
+Error: result (293,489 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T05:22:47.223183+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root -maxdepth 5 -name \"*.json\" 2>/dev/null | grep -i -E \"(result|eval|metric|llama|benchmark)\" | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root -maxdepth 5 -name \"*.json\" 2>/dev/null | grep -i -E \"(result|eval|metric|llama|benchmark)\" | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T05:22:47.223357+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/provenance_weight_training/output/eval_results/bs8_auto_nmin_seed42_eval.json\\n/root/autodl-tmp/output/models/rho02_adaptive_tau08_seed42/eval_results.json\\n/root/autodl-tmp/output/models/grid_b0_3_seed123/eval_results.json\\n/root/autodl-tmp/output/models/grid_b0_3_seed456_r2/eval_results.json\\n/root/autodl-tmp/output/models/contamination_60_seed123/eval_results.json\\n/root/autodl-tmp/output/models/contamination_60_seed123/eval_results_new.json\\n/root/autodl-tmp/output/models/contamination_60_uniform_seed123/eval_results.json\\n/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/eval_final.json\\n/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/eval_ckpt5500.json\\n/root/autodl-tmp/output/models/contamination_60_random_seed42/eval_holdout_final.json\\n/root/autodl-tmp/output/models/detect_remove_q05_epoch_matched_seed42/eval_results.json\\n/root/autodl-tmp/output/models/detect_remove_q04_seed42/eval_results.json\\n/root/autodl-tmp/output/models/detect_remove_q02_seed42/eval_results.json\\n/root/autodl-tmp/output/models/detect_remove_q03_seed123/eval_results.json\\n/root/autodl-tmp/output/models/detect_remove_q03_seed456/eval_results.json\\n/root/autodl-tmp/output/models/detect_remove_q03_epoch_matched_seed42/eval_holdout_final.json\\n/root/autodl-tmp/output/models/detect_remove_q09_epoch_matched_seed42/eval_results.json\\n/root/autodl-tmp/output/eval_results_contamination_60_all.json\\n/root/autodl-tmp/output/eval_q05_seed123.json\\n/root/autodl-tmp/output/eval_q05_seed456.json\\n/root/autodl-tmp/output/eval_q09_seed42.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/config.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/configuration.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/generation_config.json\\n/root/provenance_weight_training/models/meta-llama/Llama-3.2-3B/model.safetensors.index.
+…[truncated 1090 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T05:22:47.223504+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root -maxdepth 5 -type d -name \"*llama3b*\" 2>/dev/null; find /root/autodl-tmp -maxdepth 4 -type d 2>/dev/null | head -40; find /root/provenance_weight_training -maxdepth 3 -type d 2>/dev/null | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root -maxdepth 5 -type d -name \"*llama3b*\" 2>/dev/null; find /root/autodl-tmp -maxdepth 4 -type d 2>/dev/null | head -40; find /root/provenance_weight_training -maxdepth 3 -type d 2>/dev/null | head -60",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T05:22:47.223678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp\\n/root/autodl-tmp/.autodl\\n/root/autodl-tmp/provenance_weight_training\\n/root/autodl-tmp/provenance_weight_training/output\\n/root/autodl-tmp/provenance_weight_training/output/eval_results\\n/root/autodl-tmp/provenance_weight_training/output/models\\n/root/autodl-tmp/provenance_weight_training/output/models/batchsize16_nmin8_r2\\n/root/autodl-tmp/provenance_weight_training/data\\n/root/autodl-tmp/provenance_weight_training/data/human\\n/root/autodl-tmp/provenance_weight_training/data/synthetic\\n/root/autodl-tmp/provenance_weight_training/data/synthetic/shard_0\\n/root/autodl-tmp/provenance_weight_training/data/synthetic/shard_1\\n/root/autodl-tmp/provenance_weight_training/data/synthetic/shard_2\\n/root/autodl-tmp/provenance_weight_training/data/synthetic/shard_3\\n/root/autodl-tmp/provenance_weight_training/data/detector_input\\n/root/autodl-tmp/provenance_weight_training/data/detector_input/human\\n/root/autodl-tmp/provenance_weight_training/data/detector_input/synthetic\\n/root/autodl-tmp/provenance_weight_training/data/detector_input_10pct\\n/root/autodl-tmp/provenance_weight_training/data/detector_input_10pct/human\\n/root/autodl-tmp/provenance_weight_training/data/detector_input_10pct/synthetic\\n/root/autodl-tmp/provenance_weight_training/data/detector_input_5pct\\n/root/autodl-tmp/provenance_weight_training/data/detector_input_5pct/synthetic\\n/root/autodl-tmp/provenance_weight_training/data/detector_input_5pct/human\\n/root/autodl-tmp/provenance_weight_training/scripts\\n/root/autodl-tmp/output\\n/root/autodl-tmp/output/models\\n/root/autodl-tmp/output/models/bs8_auto_nmin_seed42\\n/root/autodl-tmp/output/models/bs8_auto_nmin_seed42/checkpoint-6000\\n/root/autodl-tmp/output/models/bs8_auto_nmin_seed42/checkpoint-6103\\n/root/autodl-tmp/output/models/bs8_auto_nmin_seed42/final\\n/root/autodl-tmp/output/models/batch_adaptive_tau_rho06_seed42\\n/root/autodl-tmp/output/models/batch_ada
+…[truncated 2841 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T05:22:47.223889+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Parse registry for llama3b experiments",
+  "prompt": "Parse the large registry JSON file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt to find all experiments related to \"llama3b\" or \"llama\" or \"cross-architecture\" or \"cross_arch\".\n\nThe file is JSON with schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nSteps:\n1. First probe the structure with jq\n2. Extract and search through all experiment entries for anything mentioning llama3b, llama, cross-architecture, cross_arch in any field (exp_id, description, config, metrics, etc.)\n3. For each matching experiment, extract ALL fields especially: exp_id, status, metrics (PPL, MMLU, HellaSwag, ARC, WinoGrande, etc.), config parameters, conclusion\n\nReport the complete data for every matching experiment verbatim - do not summarize or truncate any metric values.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Parse registry for llama3b experiments",
+    "prompt": "Parse the large registry JSON file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt to find all experiments related to \"llama3b\" or \"llama\" or \"cross-architecture\" or \"cross_arch\".\n\nThe file is JSON with schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nSteps:\n1. First probe the structure with jq\n2. Extract and search through all experiment entries for anything mentioning llama3b, llama, cross-architecture, cross_arch in any field (exp_id, description, config, metrics, etc.)\n3. For each matching experiment, extract ALL fields especially: exp_id, status, metrics (PPL, MMLU, HellaSwag, ARC, WinoGrande, etc.), config parameters, conclusion\n\nReport the complete data for every matching experiment verbatim - do not summarize or truncate any metric values.",
+    "subagent_type": "general-purpose"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T05:22:47.224063+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root -maxdepth 6 -path \"*llama3b*\" -o -path \"*cross_arch*\" -o -path \"*cross-arch*\" 2>/dev/null | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root -maxdepth 6 -path \"*llama3b*\" -o -path \"*cross_arch*\" -o -path \"*cross-arch*\" 2>/dev/null | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T05:22:47.224190+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "ls -la /root/provenance_weight_training/eval_results/ 2>/dev/null; echo \"---\"; ls -la /root/provenance_weight_training/results/ 2>/dev/null; echo \"---\"; ls -la /root/provenance_weight_training/artifacts/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "ls -la /root/provenance_weight_training/eval_results/ 2>/dev/null; echo \"---\"; ls -la /root/provenance_weight_training/results/ 2>/dev/null; echo \"---\"; ls -la /root/provenance_weight_training/artifacts/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T05:22:47.224319+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "grep -rl \"llama\" /root/provenance_weight_training/eval_results/ 2>/dev/null; grep -rl \"llama\" /root/provenance_weight_training/results/ 2>/dev/null; grep -rl \"llama\" /root/provenance_weight_training/artifacts/ 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "grep -rl \"llama\" /root/provenance_weight_training/eval_results/ 2>/dev/null; grep -rl \"llama\" /root/provenance_weight_training/results/ 2>/dev/null; grep -rl \"llama\" /root/provenance_weight_training/artifacts/ 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T05:22:47.224448+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt",
+  "description": "Check file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -c /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt",
+    "description": "Check file size"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T05:22:47.224565+00:00_
+
+296984 /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T05:22:47.224686+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "head -c 500 /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt",
+  "description": "Probe file structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "head -c 500 /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt",
+    "description": "Probe file structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T05:22:47.224803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"uniform_1_7b_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:09:34.029Z\", \"updated_at\": \"2026-05-19T04:15:16.584Z\", \"hypothesis\": \"From-scratch uniform baseline at 1.7B scale with seed123, paired with adaptive_1_7b_seed123, to provide unconfounded comparison (unlike seed42 Plan B which had optimizer resume artifact)\", \"spec\": {\"command\": \"train uniform_1_7b_seed123\", \"server\": \"w
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T05:22:47.224955+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# Search patterns\npatterns = [r'llama3b', r'llama', r'cross.architecture', r'cross_arch']\n\nmatching = {}\nfor exp_id, exp_data in experiments.items():\n    # Serialize everything to string for searching\n    full_text = json.dumps({exp_id: exp_data}, default=str).lower()\n    for pat in patterns:\n        if re.search(pat.lower(), full_text):\n            matching[exp_id] = exp_data\n            break\n\nprint(f'Total experiments: {len(experiments)}')\nprint(f'Matching experiments: {len(matching)}')\nprint('---')\nprint('Matching exp_ids:')\nfor eid in sorted(matching.keys()):\n    print(f'  {eid}')\n\" 2>&1",
+  "description": "Parse JSON and find matching experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# Search patterns\npatterns = [r'llama3b', r'llama', r'cross.architecture', r'cross_arch']\n\nmatching = {}\nfor exp_id, exp_data in experiments.items():\n    # Serialize everything to string for searching\n    full_text = json.dumps({exp_id: exp_data}, default=str).lower()\n    for pat in patterns:\n        if re.search(pat.lower(), full_text):\n            matching[exp_id] = exp_data\n            break\n\nprint(f'Total experiments: {len(experiments)}')\nprint(f'Matching experiments: {len(matching)}')\nprint('---')\nprint('Matching exp_ids:')\nfor eid in sorted(matching.keys()):\n    print(f'  {eid}')\n\" 2>&1",
+    "description": "Parse JSON and find matching experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T05:22:47.225086+00:00_
+
+Total experiments: 175
+Matching experiments: 2
+---
+Matching exp_ids:
+  llama3b_adaptive_seed42
+  llama3b_uniform_seed42
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T05:22:47.225211+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\nfor exp_id in ['llama3b_adaptive_seed42', 'llama3b_uniform_seed42']:\n    print('=' * 80)\n    print(f'EXPERIMENT: {exp_id}')\n    print('=' * 80)\n    print(json.dumps(experiments[exp_id], indent=2, default=str))\n    print()\n\" 2>&1",
+  "description": "Extract full data for matching experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\nfor exp_id in ['llama3b_adaptive_seed42', 'llama3b_uniform_seed42']:\n    print('=' * 80)\n    print(f'EXPERIMENT: {exp_id}')\n    print('=' * 80)\n    print(json.dumps(experiments[exp_id], indent=2, default=str))\n    print()\n\" 2>&1",
+    "description": "Extract full data for matching experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T05:22:47.225355+00:00_
+
+================================================================================
+EXPERIMENT: llama3b_adaptive_seed42
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-16T11:24:54.473Z",
+  "updated_at": "2026-05-17T14:21:50.544Z",
+  "spec": {
+    "hypothesis": "Llama-3.2-3B adaptive \u03c4=0.8 at \u03c1=0.4. Paired with llama3b_uniform to test cross-model generalization of adaptive reweighting.",
+    "model_name": "unsloth/Llama-3.2-3B",
+    "seed": 42,
+    "contamination_ratio": 0.4,
+    "data_count": 371499,
+    "command": "bash scripts/run_llama3b_adaptive_seed42.sh",
+    "server": "westd-41312",
+    "data_path": "data/scored_data.jsonl",
+    "gpu": "cuda:1",
+    "pid": 4005
+  },
+  "hypothesis": "Adaptive b* generalizes across model architectures: Llama-3.2-3B with provenance-weighted training should show PPL improvement over uniform baseline proportional to Qwen3-0.6B results, confirming the method is not architecture-specific and dual-constraint b* transfers.",
+  "parent": "adaptive_fix_seed42",
+  "conclusion": "negative",
+  "reproduce": {
+    "finished_at": "2026-05-17T13:58:27.135Z"
+  },
+  "failure_reason": "process dead 5\u00d7 with no sentinel/W&B \u2014 auto-resolved as failed",
+  "completed_at": "2026-05-17T13:58:28.583Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-17T13:58:31.913203+00:00"
+      }
+    ]
+  },
+  "metrics": {
+    "ppl": 10.58,
+    "eval_loss": 2.359,
+    "eval_tokens": 4017316
+  },
+  "notes": "\u8bca\u65ad\u4e2d: cron \u62a5 process dead 5\u00d7 + no W&B\uff0c\u4f46 memory.md \u6709 PPL=10.58 \u7ed3\u8bba\u3002\u7591\u4f3c\u8bad\u7ec3\u5b8c\u6210\u4f46\u76d1\u63a7\u7f3a\u5931\u3002Worker worker_diagnose_llama3b_adaptive_seed42_20260517T140045 \u6b63\u5728 SSH \u786e\u8ba4\u3002\u65e5\u5fd7\u6587\u4ef6 /root/runs/provenance_weight_training/llama3b_adaptive_seed42.log \
+…[truncated 1558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T05:22:47.225509+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# Broader search: anything referencing cross-model, cross_model, generalization across, 3b, 3B\npatterns = [r'cross.model', r'cross_model', r'3b', r'3\\.2']\n\nmatching = {}\nfor exp_id, exp_data in experiments.items():\n    full_text = json.dumps({exp_id: exp_data}, default=str).lower()\n    for pat in patterns:\n        if re.search(pat, full_text):\n            if exp_id not in ['llama3b_adaptive_seed42', 'llama3b_uniform_seed42']:\n                matching[exp_id] = exp_data\n                # find the matching context\n                break\n\nprint(f'Additional experiments referencing cross-model/3b/3.2: {len(matching)}')\nfor eid in sorted(matching.keys()):\n    exp = matching[eid]\n    # Print just the fields that contain the match\n    full_text = json.dumps({eid: exp}, default=str)\n    snippets = []\n    for pat in patterns:\n        for m in re.finditer(pat, full_text, re.IGNORECASE):\n            start = max(0, m.start() - 80)\n            end = min(len(full_text), m.end() + 80)\n            snippets.append(full_text[start:end])\n    print(f'  {eid} (status={exp.get(\\\"status\\\",\\\"?\\\")}):')\n    for s in snippets[:3]:\n        print(f'    ...{s}...')\n\" 2>&1",
+  "description": "Broader search for cross-model or 3B references in other experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# Broader search: anything referencing cross-model, cross_model, generalization across, 3b, 3B\npatterns = [r'cross.model', r'cross_model', r'3b', r'3\\.2']\n\nmatching = {}\nfor exp_id, exp_data in experiments.items():\n    full_text = json.dumps({exp_id: exp_data}, default=str).lower()\n    for pat in patterns:\n        if re.search(pat, full_text):\n            if exp_id not in ['llama3b_adaptive_seed42', 'llama3b_uniform_seed42']:\n                matching[exp_id] = exp_data\n                # find the matching context\n                break\n\nprint(f'Additional experiments referencing cross-model/3b/3.2: {len(matching)}')\nfor eid in sorted(matching.keys()):\n    exp = matching[eid]\n    # Print just the fields that contain the match\n    full_text = json.dumps({eid: exp}, default=str)\n    snippets = []\n    for pat in patterns:\n        for m in re.finditer(pat, full_text, re.IGNORECASE):\n            start = max(0, m.start() - 80)\n            end = min(len(full_text), m.end() + 80)\n            snippets.append(full_text[start:end])\n    print(f'  {eid} (status={exp.get(\\\"status\\\",\\\"?\\\")}):')\n    for s in snippets[:3]:\n        print(f'    ...{s}...')\n\" 2>&1",
+    "description": "Broader search for cross-model or 3B references in other experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T05:22:47.225676+00:00_
+
+Additional experiments referencing cross-model/3b/3.2: 31
+  adaptive_1_7b_seed123 (status=DONE):
+    ..., "ts": "2026-05-19T01:05:28.647322+00:00"}]}, "metrics": {"eval_ppl_holdout": 13.25, "eval_loss_holdout": 2.5843}, "conclusion": "success", "checkpoint_path": "/r...
+  adaptive_1_7b_seed42 (status=DONE):
+    ...: 0, "created_at": "2026-05-18T11:47:25.251Z", "updated_at": "2026-05-18T19:07:03.284Z", "hypothesis": "Scale validation: adaptive provenance weighting on Qwen3-1....
+    ... "gpu_hours": 4.1}, "conclusion": "success", "completed_at": "2026-05-18T19:07:03.284Z"}}...
+  adaptive_seed123 (status=DONE):
+    ..., "updated_at": "2026-05-15T16:43:08.120Z", "hypothesis": "Adaptive b* (from \u03b1_eff theory) matches or exceeds grid-searched best-b without grid search, seed=...
+  adaptive_seed42 (status=DONE):
+    ..., "updated_at": "2026-05-15T16:43:05.333Z", "hypothesis": "Adaptive b* (from \u03b1_eff theory) matches or exceeds grid-searched best-b without grid search, seed=...
+  adaptive_seed456 (status=DONE):
+    ..., "updated_at": "2026-05-15T16:43:10.982Z", "hypothesis": "Adaptive b* (from \u03b1_eff theory) matches or exceeds grid-searched best-b without grid search, seed=...
+  batch_adaptive_tau_rho04_seed42 (status=DONE):
+    ...2.336Z", "spec": {"hypothesis": "Batch-adaptive \u03c4: \u03c4_batch = clamp(\u03b1_eff_natural + 0.3, 0.5, \u03c4). Reduces over-intervention on clean batches. E...
+    ...ho04_seed42.log", "hypothesis": "Batch-adaptive \u03c4 (\u03c4_batch = clamp(\u03b1_eff_natural + 0.3, 0.5, \u03c4)) reduces over-intervention on clean batches by...
+  batch_adaptive_tau_rho06_r3 (status=DONE):
+    ...": "Batch-adaptive \u03c4 on \u03c1=0.6 data: per-batch \u03c4_batch = clamp(\u03b1_eff_natural + 0.3, 0.5, 0.95) adapts threshold to local contamination density....
+  batch_adaptive_tau_rho06_r5 (status=DONE):
+    ...": "Batch-adaptive \u03c4 on \u03c1=0.6 data: per-batch \u03c4_batch = clamp(\u03b1_eff_natural + 0.3, 0.5, 0.95) adapts threshold t
+…[truncated 5435 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T05:22:47.225865+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# More targeted: llama (case insensitive), cross-architecture, cross_arch, cross.model, cross_model, Llama\npatterns = [r'llama', r'cross[\\-_\\s]arch', r'cross[\\-_\\s]model']\n\nmatching = {}\nfor exp_id, exp_data in experiments.items():\n    full_text = json.dumps({exp_id: exp_data}, default=str).lower()\n    for pat in patterns:\n        if re.search(pat, full_text):\n            matching[exp_id] = exp_data\n            break\n\nprint(f'Matching experiments: {len(matching)}')\nfor eid in sorted(matching.keys()):\n    print(f'  {eid}')\n\" 2>&1",
+  "description": "Targeted search for llama/cross-arch/cross-model experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# More targeted: llama (case insensitive), cross-architecture, cross_arch, cross.model, cross_model, Llama\npatterns = [r'llama', r'cross[\\-_\\s]arch', r'cross[\\-_\\s]model']\n\nmatching = {}\nfor exp_id, exp_data in experiments.items():\n    full_text = json.dumps({exp_id: exp_data}, default=str).lower()\n    for pat in patterns:\n        if re.search(pat, full_text):\n            matching[exp_id] = exp_data\n            break\n\nprint(f'Matching experiments: {len(matching)}')\nfor eid in sorted(matching.keys()):\n    print(f'  {eid}')\n\" 2>&1",
+    "description": "Targeted search for llama/cross-arch/cross-model experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T05:22:47.226008+00:00_
+
+Matching experiments: 2
+  llama3b_adaptive_seed42
+  llama3b_uniform_seed42
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T05:22:47.226143+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# Check 1_7b experiments and eval_adaptive_1_7b - these are scale/architecture generalization\ntargets = [k for k in experiments.keys() if '1_7b' in k or '1.7b' in k.lower()]\nprint('1.7B experiments:')\nfor t in sorted(targets):\n    print(f'  {t}')\n\n# Also check if any experiment mentions llama in hypothesis/notes\nfor exp_id, exp_data in experiments.items():\n    if exp_id in ['llama3b_adaptive_seed42', 'llama3b_uniform_seed42']:\n        continue\n    hyp = str(exp_data.get('hypothesis', ''))\n    notes = str(exp_data.get('notes', ''))\n    conclusion_text = str(exp_data.get('conclusion', ''))\n    spec_hyp = str(exp_data.get('spec', {}).get('hypothesis', ''))\n    all_text = hyp + notes + spec_hyp\n    if re.search(r'llama|cross.arch|cross.model|generali[sz]', all_text, re.IGNORECASE):\n        print(f'  Also references generalization: {exp_id}')\n        # print snippet\n        for pat in [r'llama', r'cross', r'generali']:\n            for m in re.finditer(pat, all_text, re.IGNORECASE):\n                s = max(0, m.start()-50)\n                e = min(len(all_text), m.end()+50)\n                print(f'    ...{all_text[s:e]}...')\n\" 2>&1",
+  "description": "Check 1.7B experiments and generalization references"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1240aaf6-101c-4508-aac4-6d4b47f22c2b/tool-results/mcp-agent-ml-research-read_registry-1779167741072.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexperiments = data['data']['experiments']\n\n# Check 1_7b experiments and eval_adaptive_1_7b - these are scale/architecture generalization\ntargets = [k for k in experiments.keys() if '1_7b' in k or '1.7b' in k.lower()]\nprint('1.7B experiments:')\nfor t in sorted(targets):\n    print(f'  {t}')\n\n# Also check if any experiment mentions llama in hypothesis/notes\nfor exp_id, exp_data in experiments.items():\n    if exp_id in ['llama3b_adaptive_seed42', 'llama3b_uniform_seed42']:\n        continue\n    hyp = str(exp_data.get('hypothesis', ''))\n    notes = str(exp_data.get('notes', ''))\n    conclusion_text = str(exp_data.get('conclusion', ''))\n    spec_hyp = str(exp_data.get('spec', {}).get('hypothesis', ''))\n    all_text = hyp + notes + spec_hyp\n    if re.search(r'llama|cross.arch|cross.model|generali[sz]', all_text, re.IGNORECASE):\n        print(f'  Also references generalization: {exp_id}')\n        # print snippet\n        for pat in [r'llama', r'cross', r'generali']:\n            for m in re.finditer(pat, all_text, re.IGNORECASE):\n                s = max(0, m.start()-50)\n                e = min(len(all_text), m.end()+50)\n                print(f'    ...{all_text[s:e]}...')\n\" 2>&1",
+    "description": "Check 1.7B experiments and generalization references"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T05:22:47.226300+00:00_
+
+1.7B experiments:
+  adaptive_1_7b_planb_control
+  adaptive_1_7b_seed123
+  adaptive_1_7b_seed42
+  adaptive_1_7b_seed42_r2
+  eval_adaptive_1_7b
+  eval_adaptive_1_7b_v2
+  eval_uniform_1_7b_resumed
+  eval_uniform_1_7b_v2
+  eval_uniform_1_7b_v3
+  uniform_1_7b_seed123
+  uniform_1_7b_seed42
+  uniform_1_7b_seed42_r2
+  Also references generalization: ngram_uniform_seed42
+    ...ptive, confirming adaptive advantage generalizes across detectors....
+    ...han ngram_adaptive, confirming adaptive advantage generalizes across detectors....
+  Also references generalization: gpt2_adaptive_seed42
+    ... adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector....
+  Also references generalization: batchsize16_nmin8_r3
+    ...s=4 adaptive, confirms coupling rule generalizes across batch sizes. Critical: micro-batch must exceed n_...
+    ...mparable to bs=4 adaptive, confirms coupling rule generalizes across batch sizes. Critical: micro-batch must...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T05:22:47.226509+00:00_
+
+The two directly matching experiments are `llama3b_adaptive_seed42` and `llama3b_uniform_seed42`. Here is the complete verbatim data for each:
+
+---
+
+## Experiment 1: `llama3b_adaptive_seed42`
+
+```json
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-16T11:24:54.473Z",
+  "updated_at": "2026-05-17T14:21:50.544Z",
+  "spec": {
+    "hypothesis": "Llama-3.2-3B adaptive τ=0.8 at ρ=0.4. Paired with llama3b_uniform to test cross-model generalization of adaptive reweighting.",
+    "model_name": "unsloth/Llama-3.2-3B",
+    "seed": 42,
+    "contamination_ratio": 0.4,
+    "data_count": 371499,
+    "command": "bash scripts/run_llama3b_adaptive_seed42.sh",
+    "server": "westd-41312",
+    "data_path": "data/scored_data.jsonl",
+    "gpu": "cuda:1",
+    "pid": 4005
+  },
+  "hypothesis": "Adaptive b* generalizes across model architectures: Llama-3.2-3B with provenance-weighted training should show PPL improvement over uniform baseline proportional to Qwen3-0.6B results, confirming the method is not architecture-specific and dual-constraint b* transfers.",
+  "parent": "adaptive_fix_seed42",
+  "conclusion": "negative",
+  "reproduce": {
+    "finished_at": "2026-05-17T13:58:27.135Z"
+  },
+  "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+  "completed_at": "2026-05-17T13:58:28.583Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-17T13:58:31.913203+00:00"
+      }
+    ]
+  },
+  "metrics": {
+    "ppl": 10.58,
+    "eval_loss": 2.359,
+    "eval_tokens": 4017316
+  },
+  "notes": "诊断中: cron 报 process dead 5× + no W&B，但 memory.md 有 PPL=10.58 结论。疑似训练完成但监控缺失。Worker worker_diagnose_llama3b_adaptive_seed42_20260517T140045 正在 SSH 确认。日志文件 /root/runs/provenance_weight_training/llama3b_adaptive_seed42.log 不存在。"
+}
+```
+
+**Key facts:**
+- Model: `unsloth/Llama-3.2-3B`
+- Method: Adaptive provenance weighting (τ=0.8, ρ=0.4)
+- Conclusion: **negative**
+- Metrics: PPL=10.58, eval_loss=2.35
+…[truncated 2935 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Agent",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T05:22:47.226679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/provenance_weight_training/scripts/run_llama3b_adaptive_seed42.sh\\n/root/provenance_weight_training/scripts/run_llama3b_adaptive_tau09_seed42.sh\\n/root/provenance_weight_training/scripts/run_llama3b_uniform_seed42.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T05:22:47.226820+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x  2 root root  151 May 19 11:06 .\\ndrwxr-xr-x 17 root root 4096 May 18 15:11 ..\\n-rw-r--r--  1 root root  281 May 19 11:06 detect_remove_q07_epoch_matched_seed42_eval.json\\n-rw-r--r--  1 root root  246 May 18 08:45 grid_b0_3_seed456_r2.json\\n-rw-r--r--  1 root root  257 May 18 06:26 rho02_adaptive_tau08_seed42.json\\n---\\ntotal 8\\ndrwxr-xr-x  2 root root   39 May 15 20:44 .\\ndrwxr-xr-x 17 root root 4096 May 18 15:11 ..\\n-rw-r--r--  1 root root 3187 May 15 20:44 summary_table.csv\\n---\\ntotal 4\\ndrwxr-xr-x  4 root root   52 May 16 07:35 .\\ndrwxr-xr-x 17 root root 4096 May 18 15:11 ..\\ndrwxr-xr-x  2 root root  153 May 16 06:22 figure_data\\ndrwxr-xr-x  2 root root  190 May 16 07:35 figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T05:22:47.226979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T05:22:47.227145+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "cat /root/provenance_weight_training/results/summary_table.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "cat /root/provenance_weight_training/results/summary_table.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T05:22:47.227305+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_id,method,variant,seed,b_value,tau,n_min,eval_ppl,eval_loss,relative_to_uniform_pct,eval_source,status\\nadaptive_fix_seed123,adaptive_fix,,123,,,,21.8455,3.083996,23.464,trainer_state(fallback),DONE\\nadaptive_fix_seed42,adaptive_fix,,42,,,,21.9083,3.086866,23.819,trainer_state(fallback),DONE\\nadaptive_fix_seed456,adaptive_fix,,456,,,,22.3035,3.104744,26.052,trainer_state(fallback),DONE\\nadaptive_seed123,adaptive,,123,,,,17.6308,2.869649,-0.356,eval_perplexity_results,DONE\\nadaptive_seed42,adaptive,,42,,,,17.6440,2.870398,-0.281,eval_perplexity_results,DONE\\nadaptive_seed456,adaptive,,456,,,,17.6419,2.870278,-0.293,eval_perplexity_results,DONE\\ndiagnostic_contamination0_seed42,diagnostic,c0,42,,,,18.1519,2.898775,2.589,eval_diagnostic_contamination0.json,DONE\\ndiagnostic_contamination100_seed42,diagnostic,c100,42,,,,,,,none,STARTED\\ness_only_seed42,ess_only,,42,,,,,,,none,RUNNING(step=5500)\\ngolden_ratio_seed42,golden_ratio,,42,,,,,,,none,RUNNING(step=5000)\\ngrid_b0_5_seed123,grid,,123,0.5,,,17.6379,2.870052,-0.316,eval_results/grid_b0_5_seed123_eval.json,DONE\\ngrid_b0_5_seed42,grid,,42,0.5,,,17.6510,2.870791,-0.242,eval_results/grid_b0_5_seed42_eval.json,DONE\\ngrid_b0_5_seed456,grid,,456,0.5,,,17.6454,2.870476,-0.274,eval_results/grid_b0_5_seed456_eval.json,DONE\\ngrid_b1_0_seed123,grid,,123,1.0,,,17.6742,2.872108,-0.111,eval_results/grid_b1_0_seed123_eval.json,DONE\\ngrid_b1_0_seed42,grid,,42,1.0,,,17.6915,2.873087,-0.013,eval_results/grid_b1_0_seed42_eval.json,DONE\\ngrid_b1_0_seed456,grid,,456,1.0,,,17.6816,2.872522,-0.069,eval_results/grid_b1_0_seed456_eval.json,DONE\\ngrid_b1_5_seed123,grid,,123,1.5,,,17.7014,2.873646,0.043,eval_results/grid_b1_5_seed123_eval.json,DONE\\ngrid_b1_5_seed42,grid,,42,1.5,,,17.7184,2.874602,0.139,eval_results/grid_b1_5_seed42_eval.json,DONE\\ngrid_b1_5_seed456,grid,,456,1.5,,,17.7088,2.874063,0.085,eval_results/grid_b1_5_seed456_eval.json,DONE\\ngrid_b2_0_seed1
+…[truncated 1415 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T05:22:47.227449+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "cat /root/provenance_weight_training/scripts/run_llama3b_adaptive_seed42.sh; echo \"===\"; cat /root/provenance_weight_training/scripts/run_llama3b_uniform_seed42.sh; echo \"===\"; cat /root/provenance_weight_training/scripts/run_llama3b_adaptive_tau09_seed42.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "cat /root/provenance_weight_training/scripts/run_llama3b_adaptive_seed42.sh; echo \"===\"; cat /root/provenance_weight_training/scripts/run_llama3b_uniform_seed42.sh; echo \"===\"; cat /root/provenance_weight_training/scripts/run_llama3b_adaptive_tau09_seed42.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T05:22:47.227649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Llama-3.2-3B adaptive tau=0.8 n_min=2 (cross-model validation)\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport CUDA_VISIBLE_DEVICES=1\\nexport WANDB_MODE=offline\\n\\ncd /root/provenance_weight_training\\n\\nSEED=42\\n\\npython training/pretrain_weighted.py \\\\\\n    --data_path data/scored_data.jsonl \\\\\\n    --eval_data_path data/human/eval_holdout.jsonl \\\\\\n    --output_dir output/models/llama3b_adaptive_seed${SEED} \\\\\\n    --model_name models/meta-llama/Llama-3.2-3B \\\\\\n    --weighting_method adaptive \\\\\\n    --tau 0.8 \\\\\\n    --n_min 2 \\\\\\n    --contamination_ratio 0.4 \\\\\\n    --num_train_tokens 200000000 \\\\\\n    --batch_size 4 \\\\\\n    --gradient_accumulation_steps 4 \\\\\\n    --learning_rate 5e-5 \\\\\\n    --max_length 2048 \\\\\\n    --seed ${SEED} \\\\\\n    --use_wandb \\\\\\n    --wandb_project provenance-weight-training \\\\\\n    --wandb_run_name llama3b_adaptive_seed${SEED} \\\\\\n    --eval_steps 500 \\\\\\n    --save_steps 500 \\\\\\n    --logging_steps 10 \\\\\\n    --bf16 \\\\\\n    --gradient_checkpointing \\\\\\n    --save_total_limit 3 \\\\\\n    --save_only_model\\n\\necho \\\"DONE: llama3b_adaptive seed${SEED}\\\"\\n===\\n#!/bin/bash\\n# Llama-3.2-3B uniform baseline (cross-model validation)\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport CUDA_VISIBLE_DEVICES=0\\nexport WANDB_MODE=offline\\n\\ncd /root/provenance_weight_training\\n\\nSEED=42\\n\\npython training/pretrain_weighted.py \\\\\\n    --data_path data/scored_data.jsonl \\\\\\n    --eval_data_path data/human/eval_holdout.jsonl \\\\\\n    --output_dir output/models/llama3b_uniform_seed${SEED} \\\\\\n    --model_name models/meta-llama/Llama-3.2-3B \\\\\\n    --weighting_method uniform \\\\\\n    --contamination_ratio 
+…[truncated 2022 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T05:22:47.227810+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Read project memory and artifacts",
+  "prompt": "Read the following files from the project provenance_weight_training and report their complete contents verbatim (do not summarize):\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/ROADMAP.md\n\nLook for any mentions of llama3b, cross-architecture, MMLU, HellaSwag, or downstream benchmarks. Report all relevant sections verbatim.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Read project memory and artifacts",
+    "prompt": "Read the following files from the project provenance_weight_training and report their complete contents verbatim (do not summarize):\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/ROADMAP.md\n\nLook for any mentions of llama3b, cross-architecture, MMLU, HellaSwag, or downstream benchmarks. Report all relevant sections verbatim.",
+    "subagent_type": "general-purpose"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T05:22:47.227988+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T05:22:47.228144+00:00_
+
+1	# Memory
+2	
+3	## D062 coupling rule 已验证 (2026-05-17)
+4	
+5	bs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。
+6	- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)
+7	- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)
+8	- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)
+9	
+10	结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。
+11	
+12	## Batch-adaptive τ 方向关闭 (2026-05-17)
+13	
+14	两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。
+15	
+16	## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)
+17	
+18	grid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。
+19	
+20	## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)
+21	
+22	Adaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。
+23	adaptive 方差仅为 uniform 的一半。
+24	
+25	## ρ=0.2 adaptive 无效 (2026-05-17)
+26	
+27	D068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。
+28	
+29	## Grid-b 曲线平坦性 (2026-05-17)
+30	
+31	[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。
+32	
+33	## 30476 SIGKILL 事件 (2026-05-17)
+34	
+35	4 实验同时被 SIGKILL，oom_kill=0，根因不明。教训：查 cgroup 计数器。
+36	
+37	## Llama-3.2-3B 跨模型泛化 (2026-05-17) — neutral-to-positive
+38	
+39	PPL: adaptive 10.58 vs uniform 10.53 (Δ=+0.05); MMLU: adaptive 53.42% vs uniform 51.85% (Δ=+1.57pp, 3.9σ)
+40	
+41	## 1.7B 规模验证 — positive (2026-05-18) — Line B
+42	
+43	Qwen3-1.7B: adaptive PPL=13.27 vs uniform (Plan B) PPL=13.50, Δ=-0.23。
+44	Plan B 公平性限制：uniform fresh optimizer。1.7B seed123 from scratch 在跑消除 confound。
+45	
+46	## Multi-Detector 结论 (2026-05-18, 更新)
+47	
+48	| Detector | AUC | Adaptive PPL | Uniform PPL | Δ | 结论 |
+49	|----------|-----|-------------|-------------|---|------|
+50	| TF-IDF+LR | 0.94 | 17.65 | 17.69 | -0.04 | ✅ positive |
+51	| GPT-2 PPL | 0.913 | **17.79** | 17.69 | **+0.10** | ❌ negative |
+52	| N-gram PPL | 0.73 | 17.82 | 17.69 | +0.13 | ❌ negative |
+53	
+54	**关键洞察：AUC 不是充分条件。**
+55	- N-gram: b*≈0（信号太弱，算法正确不干预）
+56	- GPT-2: b* 活跃 1.17-9
+…[truncated 1781 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T05:22:47.228310+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T05:22:47.228451+00:00_
+
+1	# provenance_weight_training — Research Dashboard
+2	
+3	> 最后更新: 2026-05-19 04:20 UTC
+4	
+5	> 最后更新: 2026-05-19 04:00 UTC | 更新原因: 全部实验完成 + 1.7B scale amplification 撤回 (D090) + 论文最终整合
+6	
+7	> 核心方向：Dual-constrained adaptive b*：α_eff 质量下界 + ESS 稳定上界 → 最小干预准则。详见 paper_framing.md。
+8	
+9	## 当前进展
+10	- **阶段**: ✅ 全部实验完成 → 论文最终整合 + Round 3 审稿
+11	- **投稿目标**: EMNLP 2026 ARR May 25（~5 天）
+12	- **D090**: 1.7B scale amplification 撤回。uniform from-scratch=13.26 ≈ adaptive 13.26（Δ=-0.01）。D083 的 5.9× 放大完全是 Plan B confound。1.7B 重定位为 "method generalizes without degradation"
+13	- **核心 claims 不受影响**: Claim 1 (dual-constrained), Claim 2 (≈grid-best), Claim 3 (proportion-robust) 全部基于 0.6B 三 seed
+14	- **Paper Agent**: 正在执行 1.7B 叙事修正 patch
+15	
+16	## 剩余任务
+17	- [ ] Paper Agent: 1.7B scale amplification 叙事修正（D090 patch）
+18	- [ ] Round 3 内部审稿提交
+19	- [ ] 最终 pre-submission 检查（dash 清零、引用一致性、编译）
+20	
+21	## GPU 状态
+22	- **41312**: 全部 idle（全部实验完成）
+23	- **30476**: 全部 idle（全部实验完成）
+24	- 已消耗: ~670h+
+25	
+26	## 关键决策日志
+27	
+28	| ID | 日期 | 摘要 | 关联实验 |
+29	|----|------|------|----------|
+30	| D090 | 2026-05-19 | 1.7B scale amplification claim 撤回，改为 "method gener | uniform_1_7b_seed123, adaptive_1_7b_seed123, adaptive_1_7b_seed42, uniform_1_7b_seed42 |
+31	| D089 | 2026-05-19 | D089: 实验阶段正式收尾——Reviewer 确认覆盖度足以支撑 Main Conference | adaptive_1_7b_seed123, detect_remove_q03_seed123, detect_remove_q01_epoch_matched_seed42 |
+32	| D088 | 2026-05-18 | D088: q03 epoch-matched 证实 U-shape sweet spot 完全由  | detect_remove_q03_epoch_matched_seed42, detect_remove_q05_epoch_matched_seed42, detect_remove_q03_seed42_r2 |
+33	| D087 | 2026-05-18 | D087: GPT-2 检测器负向——adaptive 17.79 > uniform 17.69， | gpt2_adaptive_seed42, gpt2_uniform_seed42, ngram_adaptive_seed42, adaptive_fix_seed42 |
+34	| D086 | 2026-05-18 | D086: U 形 sweet spot 修正——q03=17.25 取代 q05=17.28 为最 | detect_remove_q03_seed42_r2, detect_remove_q04_seed42, detect_remove_q06_seed42, detect_remove_q01_seed42 |
+35	| D085 | 2026-05-18 | D085: Threshold curve U 形确认——q01=17.40 ≈ q09=17.4
+…[truncated 779 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T05:22:47.228697+00:00_
+
+Here are the complete contents of both files:
+
+---
+
+## /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md
+
+```
+# Memory
+
+## D062 coupling rule 已验证 (2026-05-17)
+
+bs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。
+- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)
+- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)
+- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)
+
+结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。
+
+## Batch-adaptive τ 方向关闭 (2026-05-17)
+
+两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。
+
+## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)
+
+grid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。
+
+## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)
+
+Adaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。
+adaptive 方差仅为 uniform 的一半。
+
+## ρ=0.2 adaptive 无效 (2026-05-17)
+
+D068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。
+
+## Grid-b 曲线平坦性 (2026-05-17)
+
+[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。
+
+## 30476 SIGKILL 事件 (2026-05-17)
+
+4 实验同时被 SIGKILL，oom_kill=0，根因不明。教训：查 cgroup 计数器。
+
+## Llama-3.2-3B 跨模型泛化 (2026-05-17) — neutral-to-positive
+
+PPL: adaptive 10.58 vs uniform 10.53 (Δ=+0.05); MMLU: adaptive 53.42% vs uniform 51.85% (Δ=+1.57pp, 3.9σ)
+
+## 1.7B 规模验证 — positive (2026-05-18) — Line B
+
+Qwen3-1.7B: adaptive PPL=13.27 vs uniform (Plan B) PPL=13.50, Δ=-0.23。
+Plan B 公平性限制：uniform fresh optimizer。1.7B seed123 from scratch 在跑消除 confound。
+
+## Multi-Detector 结论 (2026-05-18, 更新)
+
+| Detector | AUC | Adaptive PPL | Uniform PPL | Δ | 结论 |
+|----------|-----|-------------|-------------|---|------|
+| TF-IDF+LR | 0.94 | 17.65 | 17.69 | -0.04 | ✅ positive |
+| GPT-2 PPL | 0.913 | **17.79** | 17.69 | **+0.10** | ❌ negative |
+| N-gram PPL | 0.73 | 17.82 | 17.69 | +0.13 | ❌ negative |
+
+**关键洞察：AUC 不是充分条件。**
+- N-gram: b*≈0（信号太弱，算法正确不干预）
+- GPT-2: b* 活跃 1.17-9.66（
+…[truncated 5402 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T05:22:47.228919+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root -maxdepth 6 -path \"*llama3b*\" 2>/dev/null | grep -v __pycache__ | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root -maxdepth 6 -path \"*llama3b*\" 2>/dev/null | grep -v __pycache__ | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T05:22:47.229065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/provenance_weight_training/scripts/run_llama3b_adaptive_seed42.sh\\n/root/provenance_weight_training/scripts/run_llama3b_adaptive_tau09_seed42.sh\\n/root/provenance_weight_training/scripts/run_llama3b_uniform_seed42.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T05:22:47.229201+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root -maxdepth 6 -name \"*.log\" 2>/dev/null | grep -i llama | head -20; echo \"===\"; find /root/runs -name \"*llama*\" 2>/dev/null | head -20; echo \"===\"; find /root -maxdepth 5 -name \"*llama3b*eval*\" -o -name \"*llama3b*mmlu*\" -o -name \"*llama3b*hellaswag*\" 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root -maxdepth 6 -name \"*.log\" 2>/dev/null | grep -i llama | head -20; echo \"===\"; find /root/runs -name \"*llama*\" 2>/dev/null | head -20; echo \"===\"; find /root -maxdepth 5 -name \"*llama3b*eval*\" -o -name \"*llama3b*mmlu*\" -o -name \"*llama3b*hellaswag*\" 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T05:22:47.229332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===\\n===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T05:22:47.229451+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-30476",
+  "command": "find /root/autodl-tmp -maxdepth 5 -path \"*llama3b*\" 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-30476",
+    "command": "find /root/autodl-tmp -maxdepth 5 -path \"*llama3b*\" 2>/dev/null | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T05:22:47.229571+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T05:22:47.229732+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -maxdepth 6 -path \"*llama3b*\" 2>/dev/null | grep -v __pycache__ | head -50",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -maxdepth 6 -path \"*llama3b*\" 2>/dev/null | grep -v __pycache__ | head -50",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T05:22:47.229892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/provenance_weight_training/output/logs/llama3b_uniform_seed42.log\\n/root/autodl-tmp/provenance_weight_training/output/logs/llama3b_adaptive_seed42.log\\n/root/autodl-tmp/provenance_weight_training/output/logs/eval_llama3b_uniform_seed42.log\\n/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_hellaswag\\n/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_hellaswag/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final\\n/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu\\n/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final\\n/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval\\n/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final\\n/root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final\\n/root/provenance_weight_training/scripts/run_llama3b_adaptive_seed42.sh\\n/root/provenance_weight_training/scripts/run_llama3b_adaptive_tau09_seed42.sh\\n/root/provenance_weight_training/scripts/run_llama3b_uniform_seed42.sh\\n/root/provenance_weight_training/eval_results_llama3b_adaptive_seed42_reeval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T05:22:47.230069+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_hellaswag -name \"*.json\" -exec cat {} \\;",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_hellaswag -name \"*.json\" -exec cat {} \\;",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T05:22:47.230383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"acc,none\\\": 0.5408285202150966,\\n      \\\"acc_stderr,none\\\": 0.004973117975062486,\\n      \\\"acc_norm,none\\\": 0.7308305118502291,\\n      \\\"acc_norm_stderr,none\\\": 0.00442621765491807\\n    }\\n  },\\n  \\\"group_subtasks\\\": {\\n    \\\"hellaswag\\\": []\\n  },\\n  \\\"configs\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"task\\\": \\\"hellaswag\\\",\\n      \\\"tag\\\": [\\n        \\\"multiple_choice\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"Rowan/hellaswag\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"process_docs\\\": \\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\n    def _process_doc(doc):\\\\n        ctx = doc[\\\\\\\"ctx_a\\\\\\\"] + \\\\\\\" \\\\\\\" + doc[\\\\\\\"ctx_b\\\\\\\"].capitalize()\\\\n        out_doc = {\\\\n            \\\\\\\"query\\\\\\\": preprocess(doc[\\\\\\\"activity_label\\\\\\\"] + \\\\\\\": \\\\\\\" + ctx),\\\\n            \\\\\\\"choices\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\"endings\\\\\\\"]],\\\\n            \\\\\\\"gold\\\\\\\": int(doc[\\\\\\\"label\\\\\\\"]),\\\\n        }\\\\n        return out_doc\\\\n\\\\n    return dataset.map(_process_doc)\\\\n\\\",\\n      \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n      \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"choices\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\\"split\\\": null,\\n        \\\"process_docs\\\": \\\"&lt;function process_docs at 0x7f96b75f16c0>\\\",\\n        \\\"fewshot_indices\\\": null,\\n        \\\"samples\\\": null,\\n      
+…[truncated 7785 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T05:22:47.230548+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu -name \"*.json\" -exec cat {} \\;",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu -name \"*.json\" -exec cat {} \\;",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T05:22:47.230866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"acc,none\\\": 0.5185158809286426,\\n      \\\"acc_stderr,none\\\": 0.004049567188890835,\\n      \\\"alias\\\": \\\"mmlu\\\"\\n    },\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.46482465462274175,\\n      \\\"acc_stderr,none\\\": 0.006906849403390851,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n    \\\"mmlu_formal_logic\\\": {\\n      \\\"alias\\\": \\\"  - formal_logic\\\",\\n      \\\"acc,none\\\": 0.2777777777777778,\\n      \\\"acc_stderr,none\\\": 0.04006168083848877\\n    },\\n    \\\"mmlu_high_school_european_history\\\": {\\n      \\\"alias\\\": \\\"  - high_school_european_history\\\",\\n      \\\"acc,none\\\": 0.6606060606060606,\\n      \\\"acc_stderr,none\\\": 0.03697442205031597\\n    },\\n    \\\"mmlu_high_school_us_history\\\": {\\n      \\\"alias\\\": \\\"  - high_school_us_history\\\",\\n      \\\"acc,none\\\": 0.6519607843137255,\\n      \\\"acc_stderr,none\\\": 0.03343311240488421\\n    },\\n    \\\"mmlu_high_school_world_history\\\": {\\n      \\\"alias\\\": \\\"  - high_school_world_history\\\",\\n      \\\"acc,none\\\": 0.7088607594936709,\\n      \\\"acc_stderr,none\\\": 0.02957160106575333\\n    },\\n    \\\"mmlu_international_law\\\": {\\n      \\\"alias\\\": \\\"  - international_law\\\",\\n      \\\"acc,none\\\": 0.6859504132231405,\\n      \\\"acc_stderr,none\\\": 0.04236964753041019\\n    },\\n    \\\"mmlu_jurisprudence\\\": {\\n      \\\"alias\\\": \\\"  - jurisprudence\\\",\\n      \\\"acc,none\\\": 0.5740740740740741,\\n      \\\"acc_stderr,none\\\": 0.04780343626936791\\n    },\\n    \\\"mmlu_logical_fallacies\\\": {\\n      \\\"alias\\\": \\\"  - logical_fallacies\\\",\\n      \\\"acc,none\\\": 0.6257668711656442,\\n      \\\"acc_stderr,none\\\": 0.03802068102899616\\n    },\\n    \\\"mmlu_moral_disputes\\\": {\\n      \\\"alias\\\": \\\"  - moral_disputes\\\",\\n      \\\"acc,none\\\": 0.48
+…[truncated 7659 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T05:22:47.231041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval -name \"*.json\" -exec cat {} \\;",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval -name \"*.json\" -exec cat {} \\;",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T05:22:47.231358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"acc,none\\\": 0.5363473411670981,\\n      \\\"acc_stderr,none\\\": 0.004976579655169286,\\n      \\\"acc_norm,none\\\": 0.7248556064528978,\\n      \\\"acc_norm_stderr,none\\\": 0.004456743108170788\\n    }\\n  },\\n  \\\"group_subtasks\\\": {\\n    \\\"hellaswag\\\": []\\n  },\\n  \\\"configs\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"task\\\": \\\"hellaswag\\\",\\n      \\\"tag\\\": [\\n        \\\"multiple_choice\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"Rowan/hellaswag\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"process_docs\\\": \\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\n    def _process_doc(doc):\\\\n        ctx = doc[\\\\\\\"ctx_a\\\\\\\"] + \\\\\\\" \\\\\\\" + doc[\\\\\\\"ctx_b\\\\\\\"].capitalize()\\\\n        out_doc = {\\\\n            \\\\\\\"query\\\\\\\": preprocess(doc[\\\\\\\"activity_label\\\\\\\"] + \\\\\\\": \\\\\\\" + ctx),\\\\n            \\\\\\\"choices\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\"endings\\\\\\\"]],\\\\n            \\\\\\\"gold\\\\\\\": int(doc[\\\\\\\"label\\\\\\\"]),\\\\n        }\\\\n        return out_doc\\\\n\\\\n    return dataset.map(_process_doc)\\\\n\\\",\\n      \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n      \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"choices\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\\"split\\\": null,\\n        \\\"process_docs\\\": \\\"&lt;function process_docs at 0x7f2bc8bfdda0>\\\",\\n        \\\"fewshot_indices\\\": null,\\n        \\\"samples\\\": null,\\n     
+…[truncated 7787 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T05:22:47.231534+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/provenance_weight_training/eval_results_llama3b_adaptive_seed42_reeval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/provenance_weight_training/eval_results_llama3b_adaptive_seed42_reeval.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T05:22:47.231681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"llama3b_adaptive_seed42/final\\\": {\\n    \\\"loss\\\": 2.3589855313961063,\\n    \\\"perplexity\\\": 10.580212712678067,\\n    \\\"num_tokens\\\": 4017316,\\n    \\\"elapsed_seconds\\\": 156.0,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/llama3b_adaptive_seed42/final\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T05:22:47.231811+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/logs/eval_llama3b_uniform_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/logs/eval_llama3b_uniform_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T05:22:47.231987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"The tokenizer you are loading from '/root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42/final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading eval data: /root/autodl-tmp/provenance_weight_training/data/human/eval_holdout.jsonl (max 2000 docs)\\n  Loaded 2000 documents\\n\\n============================================================\\nEvaluating: /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42/final\\n============================================================\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  2.43it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.26it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.82it/s]\\n  [500/2000] tokens=415499, loss=2.3623\\n  [1000/2000] tokens=782453, loss=2.3431\\n  [1500/2000] tokens=1200276, loss=2.3388\\n  [2000/2000] tokens=1526195, loss=2.3397\\n  Loss: 2.3397  Perplexity: 10.38  Tokens: 1526195  Time: 62s\\n\\nResults saved to /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42/eval_results.json\\n\\n======================================================================\\nCheckpoint                         Loss   Perplexity     Tokens\\n----------------------------------------------------------------------\\nllama3b_uniform_seed42/final     2.3397        10.38    1526195\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T05:22:47.232187+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results.json') as f:\n    data = json.load(f)\n# Only print top-level results (not sub-tasks)\nfor k,v in data['results'].items():\n    if k in ['mmlu','hellaswag','arc_easy','arc_challenge','winogrande','piqa','boolq','openbookqa']:\n        print(f'{k}: {v}')\n    elif 'mmlu_' in k and not any(x in k for x in ['formal','high_school','college','professional','business','clinical','global','human','management','marketing','medical','miscellaneous','nutrition','moral','philosophy','prehistory','world','international','jurisprudence','logical','abstract','anatomy','astronomy','computer','econometrics','electrical','elementary','machine','virology','sociology','security','public','us_foreign']):\n        print(f'{k}: {v}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results.json') as f:\n    data = json.load(f)\n# Only print top-level results (not sub-tasks)\nfor k,v in data['results'].items():\n    if k in ['mmlu','hellaswag','arc_easy','arc_challenge','winogrande','piqa','boolq','openbookqa']:\n        print(f'{k}: {v}')\n    elif 'mmlu_' in k and not any(x in k for x in ['formal','high_school','college','professional','business','clinical','global','human','management','marketing','medical','miscellaneous','nutrition','moral','philosophy','prehistory','world','international','jurisprudence','logical','abstract','anatomy','astronomy','computer','econometrics','electrical','elementary','machine','virology','sociology','security','public','us_foreign']):\n        print(f'{k}: {v}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T05:22:47.232368+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'/root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results.json\\\\') as f:\\\\n    data = json.load(f)\\\\n# Only print top-level results (not sub-tasks)\\\\nfor k,v in data[\\\\'results\\\\'].items():\\\\n    if k in [\\\\'mmlu\\\\',\\\\'hellaswag\\\\',\\\\'arc_easy\\\\',\\\\'arc_challenge\\\\',\\\\'winogrande\\\\',\\\\'piqa\\\\',\\\\'boolq\\\\',\\\\'openbookqa\\\\']:\\\\n        print(f\\\\'{k}: {v}\\\\')\\\\n    elif \\\\'mmlu_\\\\' in k and not any(x in k for x in [\\\\'formal\\\\',\\\\'high_school\\\\',\\\\'college\\\\',\\\\'professional\\\\',\\\\'business\\\\',\\\\'clinical\\\\',\\\\'global\\\\',\\\\'human\\\\',\\\\'management\\\\',\\\\'marketing\\\\',\\\\'medical\\\\',\\\\'miscellaneous\\\\',\\\\'nutrition\\\\',\\\\'moral\\\\',\\\\'philosophy\\\\',\\\\'prehistory\\\\',\\\\'world\\\\',\\\\'international\\\\',\\\\'jurisprudence\\\\',\\\\'logical\\\\',\\\\'abstract\\\\',\\\\'anatomy\\\\',\\\\'astronomy\\\\',\\\\'computer\\\\',\\\\'econometrics\\\\',\\\\'electrical\\\\',\\\\'elementary\\\\',\\\\'machine\\\\',\\\\'virology\\\\',\\\\'sociology\\\\',\\\\'security\\\\',\\\\'public\\\\',\\\\'us_foreign\\\\']):\\\\n        print(f\\\\'{k}: {v}\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T05:22:47.232523+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/; echo \"===\"; ls -la /root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/; echo \"===\"; ls -la /root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-19T05:22:47.232654+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42 -name \"eval*\" 2>/dev/null; echo \"===\"; find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_adaptive_seed42 -name \"eval*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42 -name \"eval*\" 2>/dev/null; echo \"===\"; find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_adaptive_seed42 -name \"eval*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-19T05:22:47.232787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 144\\ndrwxr-xr-x 2 root root    112 May 17 23:15 .\\ndrwxr-xr-x 3 root root    116 May 17 23:04 ..\\n-rw-r--r-- 1 root root  10880 May 17 23:04 results_2026-05-17T23-04-08.600878.json\\n-rw-r--r-- 1 root root 133030 May 17 23:15 results_2026-05-17T23-15-45.959609.json\\n===\\ntotal 20\\ndrwxr-xr-x 2 root root    61 May 18 02:13 .\\ndrwxr-xr-x 3 root root   115 May 18 02:13 ..\\n-rw-r--r-- 1 root root 16902 May 18 02:13 results_2026-05-18T02-13-58.029068.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T05:22:47.232942+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42 -name \\\"eval*\\\" 2>/dev/null; echo \\\"===\\\"; find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_adaptive_seed42 -name \\\"eval*\\\" 2>/dev/null'\\n\\nExit code: 1\\n\\nStdout:\\n\\n===\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T05:22:47.233093+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"(mmlu|hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq|openbookqa)\"' -A 10 | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"(mmlu|hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq|openbookqa)\"' -A 10 | head -60",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T05:22:47.233293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"mmlu\\\": {\\n      \\\"acc,none\\\": 0.5341831647913403,\\n      \\\"acc_stderr,none\\\": 0.004053441248848279,\\n      \\\"alias\\\": \\\"mmlu\\\"\\n    },\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.48884165781083955,\\n      \\\"acc_stderr,none\\\": 0.006998640073928516,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n    \\\"mmlu_formal_logic\\\": {\\n      \\\"alias\\\": \\\"  - formal_logic\\\",\\n      \\\"acc,none\\\": 0.3253968253968254,\\n      \\\"acc_stderr,none\\\": 0.04190596438871138\\n--\\n    \\\"mmlu\\\": {\\n      \\\"acc,none\\\": 0.5341831647913403,\\n      \\\"acc_stderr,none\\\": 0.004053441248848279,\\n      \\\"alias\\\": \\\"mmlu\\\"\\n    },\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.48884165781083955,\\n      \\\"acc_stderr,none\\\": 0.006998640073928516,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n    \\\"mmlu_other\\\": {\\n      \\\"acc,none\\\": 0.5992919214676536,\\n      \\\"acc_stderr,none\\\": 0.008526252426078854,\\n      \\\"alias\\\": \\\" - other\\\"\\n--\\n    \\\"mmlu\\\": [\\n      \\\"mmlu_stem\\\",\\n      \\\"mmlu_other\\\",\\n      \\\"mmlu_social_sciences\\\",\\n      \\\"mmlu_humanities\\\"\\n    ]\\n  },\\n  \\\"configs\\\": {\\n    \\\"mmlu_abstract_algebra\\\": {\\n      \\\"task\\\": \\\"mmlu_abstract_algebra\\\",\\n      \\\"task_alias\\\": \\\"abstract_algebra\\\",\\n--\\n    \\\"mmlu\\\": 2,\\n    \\\"mmlu_abstract_algebra\\\": 1.0,\\n    \\\"mmlu_anatomy\\\": 1.0,\\n    \\\"mmlu_astronomy\\\": 1.0,\\n    \\\"mmlu_business_ethics\\\": 1.0,\\n    \\\"mmlu_clinical_knowledge\\\": 1.0,\\n    \\\"mmlu_college_biology\\\": 1.0,\\n    \\\"mmlu_college_chemistry\\\": 1.0,\\n    \\\"mmlu_college_computer_science\\\": 1.0,\\n    \\\"mmlu_college_mathematics\\\": 1.0,\\n    \\\"mmlu_college_medicine\\\": 1.0,\\n--\\n    \\\"mmlu\\\": {\\n      \\\"acc\\\": true\\n    },\\n    \\\"mmlu_abstract_algebra\\
+…[truncated 147 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T05:22:47.233485+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-18T02-13-58.029068.json | grep -E '\"(mmlu|hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq|openbookqa)\"' -A 10 | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-18T02-13-58.029068.json | grep -E '\"(mmlu|hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq|openbookqa)\"' -A 10 | head -60",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T05:22:47.233687+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"arc_easy\\\": {\\n      \\\"alias\\\": \\\"arc_easy\\\",\\n      \\\"acc,none\\\": 0.7218013468013468,\\n      \\\"acc_stderr,none\\\": 0.00919505960158374,\\n      \\\"acc_norm,none\\\": 0.6843434343434344,\\n      \\\"acc_norm_stderr,none\\\": 0.009537019245566315\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"acc,none\\\": 0.5276837283409679,\\n      \\\"acc_stderr,none\\\": 0.004982127315605238,\\n      \\\"acc_norm,none\\\": 0.7046405098585939,\\n      \\\"acc_norm_stderr,none\\\": 0.004552718360513183\\n    },\\n    \\\"piqa\\\": {\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"acc,none\\\": 0.7622415669205659,\\n      \\\"acc_stderr,none\\\": 0.009932525779525558,\\n      \\\"acc_norm,none\\\": 0.7693144722524483,\\n      \\\"acc_norm_stderr,none\\\": 0.009828959550983209\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"acc,none\\\": 0.6890292028413575,\\n      \\\"acc_stderr,none\\\": 0.013009534736285902\\n    }\\n  },\\n  \\\"group_subtasks\\\": {\\n    \\\"hellaswag\\\": [],\\n    \\\"arc_easy\\\": [],\\n    \\\"piqa\\\": [],\\n    \\\"winogrande\\\": []\\n  },\\n  \\\"configs\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"task\\\": \\\"arc_easy\\\",\\n      \\\"tag\\\": [\\n        \\\"ai2_arc\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"allenai/ai2_arc\\\",\\n      \\\"dataset_name\\\": \\\"ARC-Easy\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"test_split\\\": \\\"test\\\",\\n      \\\"doc_to_text\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n      \\\"doc_to_target\\\": \\\"{{choices.label.index(answerKey)}}\\\",\\n--\\n    \\\"hellaswag\\\": {\\n      \\\"task\\\": \\\"hellaswag\\\",\\n      \\\"tag\\\": [\\n        \\\"multiple_choice\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"Rowan/hellaswag\\\",\\n      \\\"training
+…[truncated 976 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T05:22:47.233920+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-04-08.600878.json | grep -E '\"(mmlu|hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq|openbookqa)\"' -A 10 | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-04-08.600878.json | grep -E '\"(mmlu|hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq|openbookqa)\"' -A 10 | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T05:22:47.234115+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"hellaswag\\\": {\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"acc,none\\\": 0.5363473411670981,\\n      \\\"acc_stderr,none\\\": 0.004976579655169286,\\n      \\\"acc_norm,none\\\": 0.7248556064528978,\\n      \\\"acc_norm_stderr,none\\\": 0.004456743108170788\\n    }\\n  },\\n  \\\"group_subtasks\\\": {\\n    \\\"hellaswag\\\": []\\n  },\\n  \\\"configs\\\": {\\n    \\\"hellaswag\\\": {\\n      \\\"task\\\": \\\"hellaswag\\\",\\n      \\\"tag\\\": [\\n        \\\"multiple_choice\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"Rowan/hellaswag\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"process_docs\\\": \\\"def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\\\\n    def _process_doc(doc):\\\\n        ctx = doc[\\\\\\\"ctx_a\\\\\\\"] + \\\\\\\" \\\\\\\" + doc[\\\\\\\"ctx_b\\\\\\\"].capitalize()\\\\n        out_doc = {\\\\n            \\\\\\\"query\\\\\\\": preprocess(doc[\\\\\\\"activity_label\\\\\\\"] + \\\\\\\": \\\\\\\" + ctx),\\\\n            \\\\\\\"choices\\\\\\\": [preprocess(ending) for ending in doc[\\\\\\\"endings\\\\\\\"]],\\\\n            \\\\\\\"gold\\\\\\\": int(doc[\\\\\\\"label\\\\\\\"]),\\\\n        }\\\\n        return out_doc\\\\n\\\\n    return dataset.map(_process_doc)\\\\n\\\",\\n      \\\"doc_to_text\\\": \\\"{{query}}\\\",\\n      \\\"doc_to_target\\\": \\\"{{label}}\\\",\\n      \\\"unsafe_code\\\": false,\\n--\\n    \\\"hellaswag\\\": 1.0\\n  },\\n  \\\"n-shot\\\": {\\n    \\\"hellaswag\\\": 10\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T05:22:47.234315+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-18T02-13-58.029068.json | grep -E '\"n-shot\"' -A 10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/qwen_uniform_downstream/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-18T02-13-58.029068.json | grep -E '\"n-shot\"' -A 10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T05:22:47.234464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"n-shot\\\": {\\n    \\\"arc_easy\\\": 0,\\n    \\\"hellaswag\\\": 0,\\n    \\\"piqa\\\": 0,\\n    \\\"winogrande\\\": 0\\n  },\\n  \\\"higher_is_better\\\": {\\n    \\\"arc_easy\\\": {\\n      \\\"acc\\\": true,\\n      \\\"acc_norm\\\": true\\n    },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T05:22:47.234594+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"n-shot\"' -A 10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"n-shot\"' -A 10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T05:22:47.234732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"n-shot\\\": {\\n    \\\"mmlu_abstract_algebra\\\": 5,\\n    \\\"mmlu_anatomy\\\": 5,\\n    \\\"mmlu_astronomy\\\": 5,\\n    \\\"mmlu_business_ethics\\\": 5,\\n    \\\"mmlu_clinical_knowledge\\\": 5,\\n    \\\"mmlu_college_biology\\\": 5,\\n    \\\"mmlu_college_chemistry\\\": 5,\\n    \\\"mmlu_college_computer_science\\\": 5,\\n    \\\"mmlu_college_mathematics\\\": 5,\\n    \\\"mmlu_college_medicine\\\": 5,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T05:22:47.234899+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results.json | grep -E '\"n-shot\"' -A 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results.json | grep -E '\"n-shot\"' -A 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T05:22:47.235072+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results.json | grep -E \\\\'\\\"n-shot\\\"\\\\' -A 5'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\ncat: /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results.json: No such file or directory\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T05:22:47.235202+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -maxdepth 6 -name \"*llama3b*uniform*reeval*\" -o -name \"*llama3b*uniform*eval*result*\" 2>/dev/null | head -10; echo \"===\"; find /root/autodl-tmp/provenance_weight_training/output/models -maxdepth 2 -name \"eval*\" 2>/dev/null | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -maxdepth 6 -name \"*llama3b*uniform*reeval*\" -o -name \"*llama3b*uniform*eval*result*\" 2>/dev/null | head -10; echo \"===\"; find /root/autodl-tmp/provenance_weight_training/output/models -maxdepth 2 -name \"eval*\" 2>/dev/null | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T05:22:47.235340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===\\n/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho04_seed42/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho06_seed42/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/qwen06b_uniform_seed42_v2/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/contamination_60_uniform_seed456/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_1_seed123/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_1_seed456/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/eval_results_batch_may18.json\\n/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/eval_results.json\\n/root/autodl-tmp/provenance_weight_training/output/models/gpt2_uniform_seed42/eval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T05:22:47.235482+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T05:22:47.235618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 132\\ndrwxr-xr-x 2 root root     61 May 17 22:22 .\\ndrwxr-xr-x 3 root root    115 May 17 22:22 ..\\n-rw-r--r-- 1 root root 132954 May 17 22:22 results_2026-05-17T22-22-46.288874.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-19T05:22:47.235742+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/*.json | grep -E '\"n-shot\"|\"mmlu\"' -A 5 | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/*.json | grep -E '\"n-shot\"|\"mmlu\"' -A 5 | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T05:22:47.235899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"mmlu\\\": {\\n      \\\"acc,none\\\": 0.5185158809286426,\\n      \\\"acc_stderr,none\\\": 0.004049567188890835,\\n      \\\"alias\\\": \\\"mmlu\\\"\\n    },\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.46482465462274175,\\n      \\\"acc_stderr,none\\\": 0.006906849403390851,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n--\\n    \\\"mmlu\\\": {\\n      \\\"acc,none\\\": 0.5185158809286426,\\n      \\\"acc_stderr,none\\\": 0.004049567188890835,\\n      \\\"alias\\\": \\\"mmlu\\\"\\n    },\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.46482465462274175,\\n      \\\"acc_stderr,none\\\": 0.006906849403390851,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n--\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-19T05:22:47.236050+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-17T22-22-46.288874.json | grep -E '\"n-shot\"' -A 5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-17T22-22-46.288874.json | grep -E '\"n-shot\"' -A 5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-19T05:22:47.236183+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"n-shot\\\": {\\n    \\\"mmlu_abstract_algebra\\\": 5,\\n    \\\"mmlu_anatomy\\\": 5,\\n    \\\"mmlu_astronomy\\\": 5,\\n    \\\"mmlu_business_ethics\\\": 5,\\n    \\\"mmlu_clinical_knowledge\\\": 5,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-19T05:22:47.236304+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -maxdepth 8 -name \"*llama3b*\" -name \"*.json\" 2>/dev/null | grep -v __pycache__ | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -maxdepth 8 -name \"*llama3b*\" -name \"*.json\" 2>/dev/null | grep -v __pycache__ | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-19T05:22:47.236435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/provenance_weight_training/eval_results_llama3b_adaptive_seed42_reeval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-19T05:22:47.236556+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"(hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq)\"' -A 6 | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"(hellaswag|arc_easy|arc_challenge|winogrande|piqa|boolq)\"' -A 6 | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-19T05:22:47.236679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-19T05:22:47.236825+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -oP '\"[^\"]+\":' | head -5; echo \"---\"; cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep '\"results\"' -A 2 | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -oP '\"[^\"]+\":' | head -5; echo \"---\"; cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep '\"results\"' -A 2 | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-19T05:22:47.236985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"results\\\":\\n\\\"mmlu\\\":\\n\\\"acc,none\\\":\\n\\\"acc_stderr,none\\\":\\n\\\"alias\\\":\\n---\\n  \\\"results\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"acc,none\\\": 0.5341831647913403,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-19T05:22:47.237110+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | head -3; echo \"---\"; cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -oP '\"(results|group_subtasks|n-shot)\":' | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | head -3; echo \"---\"; cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -oP '\"(results|group_subtasks|n-shot)\":' | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-19T05:22:47.237246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"mmlu\\\": {\\n---\\n\\\"results\\\":\\n\\\"group_subtasks\\\":\\n\\\"n-shot\\\":\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-19T05:22:47.237386+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-19T05:22:47.237524+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12\\ndrwxr-xr-x 17 root root 4096 May 18 13:28 .\\ndrwxr-xr-x  7 root root  184 May 18 07:06 ..\\ndrwxr-xr-x  6 root root   89 May 17 23:07 adaptive_fix_fewshot\\ndrwxr-xr-x  3 root root  116 May 17 23:04 llama3b_adaptive_lm_eval\\ndrwxr-xr-x  3 root root  115 May 17 22:06 llama3b_uniform_hellaswag\\ndrwxr-xr-x  3 root root  115 May 17 22:22 llama3b_uniform_mmlu\\n-rw-r--r--  1 root root  281 May 17 22:48 ppl_batchsize16_nmin8_seed42.json\\n-rw-r--r--  1 root root  266 May 18 13:28 ppl_grid_b0_1_seed123.json\\ndrwxr-xr-x  3 root root  117 May 17 22:17 qwen_adaptive_arc_easy\\ndrwxr-xr-x  3 root root  112 May 17 22:58 qwen_adaptive_fix_all\\ndrwxr-xr-x  3 root root  112 May 18 01:23 qwen_adaptive_fix_downstream\\ndrwxr-xr-x  3 root root  117 May 17 22:14 qwen_adaptive_hellaswag\\ndrwxr-xr-x  3 root root  117 May 17 22:18 qwen_adaptive_piqa\\ndrwxr-xr-x  3 root root  117 May 17 22:19 qwen_adaptive_winogrande\\ndrwxr-xr-x  3 root root   84 May 17 22:35 qwen_base_arc_easy\\ndrwxr-xr-x  3 root root   84 May 17 22:32 qwen_base_hellaswag\\ndrwxr-xr-x  3 root root   84 May 17 22:35 qwen_base_piqa\\ndrwxr-xr-x  3 root root   84 May 17 22:36 qwen_base_winogrande\\ndrwxr-xr-x  3 root root  115 May 18 02:13 qwen_uniform_downstream\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-19T05:22:47.237683+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -30 /root/autodl-tmp/provenance_weight_training/output/logs/llama3b_adaptive_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -30 /root/autodl-tmp/provenance_weight_training/output/logs/llama3b_adaptive_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-19T05:22:47.237975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'weighting/b': 0.47999998927116394, 'weighting/alpha_eff': 0.548215882594021, 'weighting/ess': 2.0420813599013163, 'weighting/mean_q': 0.7795799374580383, 'weighting/unweighted_loss': 1.5926964282989502, 'weighting/weighted_loss': 2.0487656593322754, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 2.319999933242798, 'weighting/alpha_eff': 0.6708340575149944, 'weighting/ess': 2.000099114342404, 'weighting/mean_q': 0.6519861221313477, 'weighting/unweighted_loss': 2.1583540439605713, 'weighting/weighted_loss': 3.0325005054473877, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.6483938521375078, 'weighting/alpha_eff': 0.8, 'weighting/ess': 2.1806524024359515, 'weighting/mean_q': 0.5814173221588135, 'weighting/unweighted_loss': 1.9335496425628662, 'weighting/weighted_loss': 2.7706124782562256, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.6794530221854282, 'weighting/alpha_eff': 0.8, 'weighting/ess': 2.0498854960134945, 'weighting/mean_q': 0.6034416556358337, 'weighting/unweighted_loss': 1.9237396717071533, 'weighting/weighted_loss': 2.682140350341797, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 1.0399999618530273, 'weighting/alpha_eff': 0.48040669468665964, 'weighting/ess': 2.0120445614228832, 'weighting/mean_q': 0.7565009593963623, 'weighting/unweighted_loss': 1.6597874164581299, 'weighting/weighted_loss': 2.41776180267334, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 9.239999771118164, 'weighting/alpha_eff': 0.7080316068311742, 'weighting/ess': 2.000787032338606, 'weighting/mean_q': 0.5099426507949829, 'weighting/unweighted_loss': 1.764247179031372, 'weighting/weighted_loss': 2.6173622608184814, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.6232258185023464, 'weighting/alpha_eff': 0.8000000000000003, 'weighting/ess': 2.4701635708864695, 'weighting/mean_q': 0.5353490710258484, 'weighting/unweighted_loss': 1.892633557319
+…[truncated 5830 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-19T05:22:47.238164+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "tail -30 /root/autodl-tmp/provenance_weight_training/output/logs/llama3b_uniform_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "tail -30 /root/autodl-tmp/provenance_weight_training/output/logs/llama3b_uniform_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-19T05:22:47.238364+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'weighting/b': 0.0, 'weighting/alpha_eff': 0.22042005509138107, 'weighting/ess': 4.0, 'weighting/mean_q': 0.7795799374580383, 'weighting/unweighted_loss': 1.5615324974060059, 'weighting/weighted_loss': 1.5615324974060059, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.34801384806632996, 'weighting/ess': 4.0, 'weighting/mean_q': 0.6519861221313477, 'weighting/unweighted_loss': 2.1417012214660645, 'weighting/weighted_loss': 2.1417012214660645, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.4185826936736703, 'weighting/ess': 4.0, 'weighting/mean_q': 0.5814173221588135, 'weighting/unweighted_loss': 1.9020599126815796, 'weighting/weighted_loss': 1.9020599126815796, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.3965583322569728, 'weighting/ess': 4.0, 'weighting/mean_q': 0.6034416556358337, 'weighting/unweighted_loss': 1.915818214416504, 'weighting/weighted_loss': 1.915818214416504, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.2434990182518959, 'weighting/ess': 4.0, 'weighting/mean_q': 0.7565009593963623, 'weighting/unweighted_loss': 1.6448205709457397, 'weighting/weighted_loss': 1.6448205709457397, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.4900573641061783, 'weighting/ess': 4.0, 'weighting/mean_q': 0.5099426507949829, 'weighting/unweighted_loss': 1.7513275146484375, 'weighting/weighted_loss': 1.7513275146484375, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.4646509289741516, 'weighting/ess': 4.0, 'weighting/mean_q': 0.5353490710258484, 'weighting/unweighted_loss': 1.8570619821548462, 'weighting/weighted_loss': 1.8570619821548462, 'weighting/tau_batch': 0.8, 'epoch': 0.26}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.5806200951337814, 'weighting/
+…[truncated 5601 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-19T05:22:47.238544+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root -maxdepth 6 -name \"*uniform*reeval*\" -o -name \"*uniform*eval_results*\" 2>/dev/null | grep -i llama | head -10; echo \"===\"; find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42 -name \"*.json\" 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root -maxdepth 6 -name \"*uniform*reeval*\" -o -name \"*uniform*eval_results*\" 2>/dev/null | grep -i llama | head -10; echo \"===\"; find /root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42 -name \"*.json\" 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-19T05:22:47.238686+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"===\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-19T05:22:47.238812+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "find /root/autodl-tmp/provenance_weight_training/output/models -maxdepth 3 -type d 2>/dev/null | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "find /root/autodl-tmp/provenance_weight_training/output/models -maxdepth 3 -type d 2>/dev/null | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-19T05:22:47.238989+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/provenance_weight_training/output/models\\n/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho04_seed42\\n/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho04_seed42/final\\n/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho06_seed42\\n/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho06_seed42/final\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_2_seed42\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_2_seed42/final\\n/root/autodl-tmp/provenance_weight_training/output/models/batchsize16_nmin8_seed42\\n/root/autodl-tmp/provenance_weight_training/output/models/batchsize16_nmin8_seed42/final\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_3_seed456\\n/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_3_seed456/final\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42\\n/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/final\\n/root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed123\\n/root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed123/final\\n/root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456\\n/root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/final\\n/root/autodl-tmp/provenance_weight_training/output/models/random_reweight_seed456\\n/root/autodl-tmp/provenance_weight_training/output/models/random_reweight_seed456/final\\n/root/autodl-tmp/provenance_weight_training/output/models/qwen06b_uniform_seed42_v2\\n/root/autodl-tmp/provenance_weight_training/output/models/qwen06b_uniform_seed42_v2/final\\n/root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456\\n/root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456/final\\n/root/autodl-tmp/prove
+…[truncated 692 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-19T05:22:47.239181+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"mmlu_(stem|social_sciences|humanities|other)\"' -A 4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_adaptive_lm_eval/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_adaptive_seed42__final/results_2026-05-17T23-15-45.959609.json | grep -E '\"mmlu_(stem|social_sciences|humanities|other)\"' -A 4",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-19T05:22:47.239388+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.48884165781083955,\\n      \\\"acc_stderr,none\\\": 0.006998640073928516,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n--\\n    \\\"mmlu_other\\\": {\\n      \\\"acc,none\\\": 0.5992919214676536,\\n      \\\"acc_stderr,none\\\": 0.008526252426078854,\\n      \\\"alias\\\": \\\" - other\\\"\\n    },\\n--\\n    \\\"mmlu_social_sciences\\\": {\\n      \\\"acc,none\\\": 0.6139096522586935,\\n      \\\"acc_stderr,none\\\": 0.008628757844465387,\\n      \\\"alias\\\": \\\" - social sciences\\\"\\n    },\\n--\\n    \\\"mmlu_stem\\\": {\\n      \\\"acc,none\\\": 0.45987947986045036,\\n      \\\"acc_stderr,none\\\": 0.008678442837079754,\\n      \\\"alias\\\": \\\" - stem\\\"\\n    },\\n--\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.48884165781083955,\\n      \\\"acc_stderr,none\\\": 0.006998640073928516,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n    \\\"mmlu_other\\\": {\\n      \\\"acc,none\\\": 0.5992919214676536,\\n      \\\"acc_stderr,none\\\": 0.008526252426078854,\\n      \\\"alias\\\": \\\" - other\\\"\\n    },\\n    \\\"mmlu_social_sciences\\\": {\\n      \\\"acc,none\\\": 0.6139096522586935,\\n      \\\"acc_stderr,none\\\": 0.008628757844465387,\\n      \\\"alias\\\": \\\" - social sciences\\\"\\n    },\\n    \\\"mmlu_stem\\\": {\\n      \\\"acc,none\\\": 0.45987947986045036,\\n      \\\"acc_stderr,none\\\": 0.008678442837079754,\\n      \\\"alias\\\": \\\" - stem\\\"\\n    }\\n--\\n    \\\"mmlu_humanities\\\": [\\n      \\\"mmlu_formal_logic\\\",\\n      \\\"mmlu_high_school_european_history\\\",\\n      \\\"mmlu_high_school_us_history\\\",\\n      \\\"mmlu_high_school_world_history\\\",\\n--\\n    \\\"mmlu_social_sciences\\\": [\\n      \\\"mmlu_econometrics\\\",\\n      \\\"mmlu_high_school_geography\\\",\\n      \\\"mmlu_high_school_government_and_politics\\\",\\n      \\\"mmlu_high_school_macroeconomics\\\
+…[truncated 1842 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-19T05:22:47.239543+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-17T22-22-46.288874.json | grep -E '\"mmlu_(stem|social_sciences|humanities|other)\"' -A 4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-41312",
+    "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval/llama3b_uniform_mmlu/__root__autodl-tmp__provenance_weight_training__output__models__llama3b_uniform_seed42__final/results_2026-05-17T22-22-46.288874.json | grep -E '\"mmlu_(stem|social_sciences|humanities|other)\"' -A 4",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-19T05:22:47.239738+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.46482465462274175,\\n      \\\"acc_stderr,none\\\": 0.006906849403390851,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n--\\n    \\\"mmlu_other\\\": {\\n      \\\"acc,none\\\": 0.5841647891857097,\\n      \\\"acc_stderr,none\\\": 0.00858719547180611,\\n      \\\"alias\\\": \\\" - other\\\"\\n    },\\n--\\n    \\\"mmlu_social_sciences\\\": {\\n      \\\"acc,none\\\": 0.5970100747481313,\\n      \\\"acc_stderr,none\\\": 0.00869725213947898,\\n      \\\"alias\\\": \\\" - social sciences\\\"\\n    },\\n--\\n    \\\"mmlu_stem\\\": {\\n      \\\"acc,none\\\": 0.45734221376466855,\\n      \\\"acc_stderr,none\\\": 0.00868307644112023,\\n      \\\"alias\\\": \\\" - stem\\\"\\n    },\\n--\\n    \\\"mmlu_humanities\\\": {\\n      \\\"acc,none\\\": 0.46482465462274175,\\n      \\\"acc_stderr,none\\\": 0.006906849403390851,\\n      \\\"alias\\\": \\\" - humanities\\\"\\n    },\\n    \\\"mmlu_other\\\": {\\n      \\\"acc,none\\\": 0.5841647891857097,\\n      \\\"acc_stderr,none\\\": 0.00858719547180611,\\n      \\\"alias\\\": \\\" - other\\\"\\n    },\\n    \\\"mmlu_social_sciences\\\": {\\n      \\\"acc,none\\\": 0.5970100747481313,\\n      \\\"acc_stderr,none\\\": 0.00869725213947898,\\n      \\\"alias\\\": \\\" - social sciences\\\"\\n    },\\n    \\\"mmlu_stem\\\": {\\n      \\\"acc,none\\\": 0.45734221376466855,\\n      \\\"acc_stderr,none\\\": 0.00868307644112023,\\n      \\\"alias\\\": \\\" - stem\\\"\\n    }\\n--\\n    \\\"mmlu_humanities\\\": [\\n      \\\"mmlu_formal_logic\\\",\\n      \\\"mmlu_high_school_european_history\\\",\\n      \\\"mmlu_high_school_us_history\\\",\\n      \\\"mmlu_high_school_world_history\\\",\\n--\\n    \\\"mmlu_social_sciences\\\": [\\n      \\\"mmlu_econometrics\\\",\\n      \\\"mmlu_high_school_geography\\\",\\n      \\\"mmlu_high_school_government_and_politics\\\",\\n      \\\"mmlu_high_school_macroeconomics\\\",\\n-
+…[truncated 1836 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_llama3b_results_20260519T051512",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-19T05:22:47.240000+00:00_
+
+数据收集完成。以下是完整结果表。
+
+---
+
+## Llama-3.2-3B Cross-Architecture 实验完整结果
+
+### 训练配置
+
+| 参数 | 值 |
+|------|-----|
+| Model | `unsloth/Llama-3.2-3B` (3.21B params) |
+| Data | `data/scored_data.jsonl` (371,499 samples, ρ=0.4) |
+| Tokens | 200M |
+| Batch size | 4 (grad_accum=4, effective=16) |
+| LR | 5e-5 |
+| Max length | 2048 |
+| Seed | 42 |
+| Precision | bf16 + gradient checkpointing |
+| Steps | 6,103 |
+| Runtime | ~26h each |
+| Server | westd-41312 (RTX PRO 6000 Blackwell) |
+| Adaptive τ | 0.8, n_min=2 |
+
+---
+
+### PPL (Holdout Perplexity)
+
+| exp_id | Method | Eval Loss | PPL | Eval Tokens | Source |
+|--------|--------|-----------|-----|-------------|--------|
+| `llama3b_uniform_seed42` | Uniform | 2.3397 | **10.38** | 1,526,195 | eval log + registry |
+| `llama3b_adaptive_seed42` | Adaptive | 2.3590 | **10.58** | 4,017,316 | reeval JSON + registry |
+
+> **⚠️ PPL 不可直接比较**: eval tokens 差 2.6x（1.5M vs 4.0M），说明使用了不同 eval 配置。memory.md 记录的 uniform PPL=10.53 在服务器上找不到对应 eval 文件，唯一可验证值为 10.38。
+
+---
+
+### MMLU (5-shot, lm-eval-harness v0.4.11)
+
+| Category | Uniform (%) | Adaptive (%) | Δ (pp) |
+|----------|-------------|--------------|--------|
+| **Overall** | **51.85** ± 0.41 | **53.42** ± 0.41 | **+1.57** |
+| Humanities | 46.48 ± 0.69 | 48.88 ± 0.70 | +2.40 |
+| Social Sciences | 59.70 ± 0.87 | 61.39 ± 0.86 | +1.69 |
+| STEM | 45.73 ± 0.87 | 45.99 ± 0.87 | +0.25 |
+| Other | 58.42 ± 0.86 | 59.93 ± 0.85 | +1.51 |
+
+Source: `llama3b_uniform_mmlu` / `llama3b_adaptive_lm_eval` (westd-41312)
+
+---
+
+### HellaSwag (10-shot)
+
+| Model | acc (%) | acc_norm (%) | Source |
+|-------|---------|-------------|--------|
+| Uniform | 54.08 ± 0.50 | **73.08** ± 0.44 | `llama3b_uniform_hellaswag` |
+| Adaptive | 53.63 ± 0.50 | **72.49** ± 0.45 | `llama3b_adaptive_lm_eval` (first run) |
+| **Δ** | **-0.45** | **-0.60** | |
+
+---
+
+### 0-shot Downstream (uniform only)
+
+| Benchmark | acc (%) | acc_norm (%) | Source |
+|-----------|---------|-------------|--------|
+| ARC-Easy | 72.18 ± 0.92 | 68.43 ± 0.95 | `qwen_uniform_downstream` |
+| HellaSwag | 52.77 ± 0.50 | 70.46 ± 0.46 | `qwen_uniform_downstream` |
+| PIQA | 76.22 ± 0.99 | 76.93 ± 0.98 | `qwen_uniform_downstream` |
+| WinoGrande | 68.90 ± 1.30 | — | `qwen_uniform_downstream` |
+
+> **Adaptive 模型缺少 0-shot ARC/PIQA/WinoGrande 评测。**
+
+---
+
+### 总结
+
+| Metric | Uniform | Adaptive | Δ | 方向 |
+|--------|---------|----------|---|------|
+| PPL | 10.38* | 10.58* | +0.20* | ❌ adaptive worse |
+| MMLU (5-shot) | 51.85% | 53.42% | +1.57pp | ✅ adaptive better |
+| HellaSwag (10-shot, acc_norm) | 73.08% | 72.49% | -0.60pp | ❌ adaptive worse |
+
+\* PPL eval 配置不一致，需要用相同数据重新评测才能公平比较。
+
+---
+
+### 需要注意的问题
+
+1. **PPL eval 不一致**: uniform 用 2000 docs (1.5M tokens)，adaptive 用 4.0M tokens。需要统一 eval 才能比较。
+2. **memory.md PPL=10.53 来源不明**: 服务器上没有对应文件，可能是某次未保存的 eval 或记录错误。
+3. **Adaptive 缺少 0-shot downstream**: ARC/PIQA/WinoGrande 只有 uniform 的结果。
+4. **Registry 结论**: adaptive 标记为 `negative`，uniform 标记为 `success`。Adaptive 训练过程中 process died 5 次，W&B 缺失。
+5. **第三个脚本 `run_llama3b_adaptive_tau09_seed42.sh`**: 使用 τ=0.9, ρ=0.2 的配置（数据为 `scored_data_rho02.jsonl`），但 registry 中没有对应实验记录，可能未运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_llama3b_results_20260519T051512"
+}
+```
+
+</details>
+
+---

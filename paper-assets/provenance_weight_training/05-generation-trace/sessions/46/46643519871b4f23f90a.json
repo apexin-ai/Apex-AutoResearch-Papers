@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46643519871b4f23f90a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose p0 nmin 5 and permuted",
+  "task_key": "worker_diagnose_p0_nmin_5_and_permuted_20260524T164432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_p0_nmin_5_and_permuted_20260524T164432_result.json",
+    "occurrence": 1,
+    "bytes": 2184,
+    "sha256": "55bbd48a34262fb08360263bb7a784c3b9fc7265034ffa0eb2c074c897e29807"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 实验 1: p0_nmin_5\n- **失败点**: step 500/6103（~8%），保存 checkpoint 时\n- **根因**: **磁盘空间不足**。模型 shard 写入成功，但保存 optimizer state 时磁盘写满，触发 `RuntimeError: basic_ios::clear: iostream error` → `RuntimeError: [enforce fail at inline_container.cc:668]`\n- Traceback: `trainer._save_optimizer_and_scheduler` → `torch.save(optimizer.state_dict())` → iostream error\n\n### 实验 2: permuted_score_control_seed42\n- **失败点**: step 500/6103（~8%），保存 checkpoint 时\n- **根因**: **磁盘空间不足**。`OSError: [Errno 28] No space left on device` — 连 checkpoint 目录都创建不了\n- 路径: `/root/autodl-tmp/.../permuted_score_control_seed42/checkpoint-500`\n\n### 实验 3: p0_batchsize_16\n- **失败点**: step 0，第一个 forward pass\n- **根因**: **GPU 显存不足（与磁盘无关）**。`torch.OutOfMemoryError: Tried to allocate 18.55 GiB`，GPU 总容量 95GB 已被占用 80GB。batch_size=16 对 Qwen3-0.6B 来说太大，logits float 转换需要 18.55GB。\n\n### 共同原因分析\n- **p0_nmin_5 + permuted_score_control_seed42**: 共同原因是 `/root/autodl-tmp` **磁盘满**。两个实验同时运行，在 step 500 同时尝试保存 checkpoint，把 250GB 数据盘写满。当前磁盘已恢复到 56%（111GB 可用），说明旧 checkpoint 已被清理。\n- **p0_batchsize_16**: 独立原因 — GPU OOM，batch_size=16 太大。\n\n### 是否可以直接重试\n\n| 实验 | 能否直接重试 | 说明 |\n|------|------------|------|\n| p0_nmin_5 | **可以** | 当前磁盘 111GB 可用。建议先清理不需要的旧 checkpoint，并避免同时在多个实验保存大量 checkpoint |\n| permuted_score_control_seed42 | **可以** | 同上 |\n| p0_batchsize_16 | **需改参数** | batch_size=16 OOM，需降到 4-8，或加 gradient_checkpointing |\n\n**建议**: 重试前检查 `/root/autodl-tmp` 下有多少旧 checkpoint 占空间，设置 `--save_total_limit 2` 已有但仍可能因多个实验同时写 checkpoint 而爆盘。如果要同时跑多个实验，考虑错开 save_steps 或减少保存频率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-p0-nmin-5-and-permuted.md"
+}

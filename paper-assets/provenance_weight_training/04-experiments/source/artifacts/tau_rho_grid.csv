@@ -1,0 +1,10 @@
+tau,rho,ppl,exp_id
+0.50,0.4,17.688,tau_05_seed42
+0.60,0.4,17.6805,tau_06_seed42
+0.70,0.4,17.6793,tau_07_seed42
+0.80,0.4,17.6527,adaptive_fix_seed42
+0.90,0.4,17.712,tau_09_seed42
+0.95,0.4,17.723,tau_095_seed42
+0.60,0.6,17.7359,contamination_60_tau06_seed42
+0.70,0.6,17.730,contamination_60_tau07_seed42
+0.80,0.6,17.740,contamination_60_seed42_r2

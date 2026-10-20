@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ea8901b89a4e6f73049",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops 30476 status check",
+  "task_key": "worker_ops_30476_status_check_20260519T015226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_30476_status_check_20260519T015226_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "96750327111fbd2dec104511030ff1dc4c72a93ecfa4c87909a2c9c7a3eca7a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-30476 状态报告\n\n### GPU 状态 (4x RTX PRO 6000 Blackwell, 98GB each)\n\n| GPU | 温度 | 功耗 | 显存占用 | 利用率 | 进程 |\n|-----|------|------|---------|--------|------|\n| 0 | 28°C | 33W/600W | 0MiB/97887MiB | 0% | 空闲 |\n| 1 | 28°C | 35W/600W | 0MiB/97887MiB | 0% | 空闲 |\n| 2 | 62°C | 378W/600W | 41757MiB/97887MiB | 99% | PID 93817 (python) |\n| 3 | 59°C | 361W/600W | 41757MiB/97887MiB | 99% | PID 89876 (python) |\n\n### 实验存活状态\n\n| 实验 | PID | GPU | 状态 | 进度 | ETA |\n|------|-----|-----|------|------|-----|\n| **q07 epoch-matched seed42** | 93812 (wrapper) / 93817 (python) | GPU 2 | 运行中 | **1125/3047 (37%)** | ~67min |\n| **q03 seed456** | — | — | **未运行** | — | — |\n| **q09 epoch-matched seed42** | 89871 (wrapper) / 89876 (python) | GPU 3 | 运行中 | **2389/3770 (63%)** | ~48min |\n\n### 训练指标（最新）\n\n- **q07**: loss=1.83, epoch=0.1, 速度 2.10s/it\n- **q09**: loss=2.57, epoch=0.17, 速度 2.09s/it\n- 两个实验均为 uniform weighting (weighted_loss == unweighted_loss)\n\n### Tmux Sessions\n- `detect_remove_q07_epoch_matched_seed42` (创建于 09:13)\n- `detect_remove_q09_epoch_matched_seed42` (创建于 08:28)\n\n### 磁盘\n`/root/autodl-tmp`: 135G/250G used (54%), 116G 可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-30476-status-check.md"
+}

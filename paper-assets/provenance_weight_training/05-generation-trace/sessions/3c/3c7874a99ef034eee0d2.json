@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7874a99ef034eee0d2",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b0 3 seed123",
+  "task_key": "worker_eval_grid_b0_3_seed123_20260518T013238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid_b0_3_seed123_20260518T013238_result.json",
+    "occurrence": 1,
+    "bytes": 311,
+    "sha256": "2143cdb5c0fdc61ed469a4c908b8d1552620f7c909ba81bd7e6838fc72ffab6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated.\n\n**结果：grid_b0_3_seed123 eval PPL = 17.58**（loss=2.8667, 4,077,068 tokens）\n\nCross-seed grid curve 对比（b=0.3）：\n- seed123: **17.58**\n- seed456: **17.64**\n\n两个 seed 的 PPL 差值约 0.06，一致性良好。Claim 2 的最后一个数据点已就位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b0-3-seed123.md"
+}

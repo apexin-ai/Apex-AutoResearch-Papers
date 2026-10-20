@@ -1,0 +1,35 @@
+{
+  "exp_id": "random_reweight_seed123",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-17T08:15:03.968Z",
+    "updated_at": "2026-05-21T20:27:55.976Z",
+    "server": "westd-30476",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_random_reweight_seed123.sh\"",
+      "finished_at": "2026-05-17T11:17:16.882Z"
+    },
+    "failure_reason": "Traceback → , in main trainer = WeightedTrainer( ^^^^^^^^^^^^^^^^ File \"/root/provenance_weight_training/training/pretrain_weighted.py\", line 101, in __init__ super().__init__(**kwargs) TypeError: Trainer.__init__() got an unexpected keyword argument 'tokenizer'",
+    "completed_at": "2026-05-17T11:17:19.899Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T11:17:28.307496+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-21T20:27:56.393288+00:00",
+  "trigger": "update_registry"
+}

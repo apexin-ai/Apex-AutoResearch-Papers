@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1306a6b145bcfe4e8c22",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh setup 30476 full",
+  "task_key": "worker_ssh_setup_30476_full_20260517T101827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_setup_30476_full_20260517T101827_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "548c2a6768a850b7fc906f5dcaf1f4addb50d440f1c7decd32e7ceca0bdb4926"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks passed. Here's the summary:\n\n---\n\n## Setup Complete: westd-30476\n\n| Item | Status |\n|------|--------|\n| **Python** | 3.12.3 (miniconda3) |\n| **PyTorch** | 2.8.0+cu128 |\n| **CUDA** | 12.8 (Driver 580.82.09) |\n| **transformers** | 5.8.1 |\n| **All imports** | OK (torch, transformers, datasets, accelerate, peft, safetensors) |\n| **Code sync** | 32 .py files + all .sh scripts synced from 41312 |\n| **Data sync** | 7.1G transferred (scored_data, mixed_data, filtered, hybrid, synthetic) |\n| **Model** | Qwen3-0.6B loaded (596M params, vocab=151643) |\n| **Output dir** | `/dev/shm/output/models` (220G tmpfs RAM disk) |\n| **GPUs** | 4x NVIDIA RTX PRO 6000 Blackwell (102GB each), all free (0 MiB used) |\n| **Disk** | 9.5G free on root overlay; checkpoints go to /dev/shm (220G) |\n\n**Blockers:** None. Training can start immediately.\n\n**Note:** Root disk is 69% full (9.5G free). All checkpoint output must use `/dev/shm/output/models` to avoid filling the root filesystem. The `/dev/shm` is RAM-backed (220G), so checkpoints are lost on reboot. Important results should be pulled off-server promptly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-setup-30476-full.md"
+}

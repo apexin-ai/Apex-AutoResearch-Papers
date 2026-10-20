@@ -1,0 +1,40 @@
+% Introduction for "Minimum Intervention Reweighting: Adaptive Exponent Selection
+% for Contamination-Aware Pretraining"
+% Generated: 2026-05-15
+% Framing: STABLE (D023 dual-constraint + D029 ESS-only + D035 tau sweep)
+
+\section{Introduction}
+\label{sec:intro}
+
+Web pretraining corpora are increasingly contaminated by machine-generated text, with recent estimates placing the synthetic fraction between 20\% and 60\% \citep{cheng2025contamination}.
+This poses a fundamental threat to model quality: \cite{shumailov2024model} demonstrate that training on recursively generated data leads to irreversible model collapse, and \cite{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger degradation, ruling out data scaling as a remedy.
+As synthetic content becomes ubiquitous, \emph{contamination-aware training}---strategies that explicitly account for data provenance during optimization---is necessary for maintaining pretraining quality.
+
+A natural mitigation is detect-and-reweight: assign each sample a weight $w(x) = (1 - q(x))^b$ based on a detector's estimated synthetic probability $q(x)$, where larger $b$ downweights suspected synthetic text more aggressively \citep{drayson2025detection}.
+However, the exponent $b$ is a sensitive per-model hyperparameter whose optimal value varies by an order of magnitude across model scales---$b = 1$ for SmolLM-1.7B versus $b = 10$ for GPT-2 124M---and selecting it requires a clean validation set and grid search costing up to $6{\times}$ the base training budget.
+The practical question is: \emph{given per-sample detector scores $q(x)$, how should $b$ be chosen without validation?}
+
+We propose a \emph{dual-constraint framework} that derives the exponent adaptively per batch from two diagnostics computed on the detector scores alone.
+The effective real proportion $\aeff(b)$ measures the weighted fraction of gradient signal from real data and imposes a \emph{quality floor}: $\aeff(b) \geq \tau$---at least enough cleaning.
+Kish's effective sample size $\mathrm{ESS}(b)$ \citep{vehtari2024psis} quantifies weight concentration and imposes a \emph{stability ceiling}: $\mathrm{ESS}(b) \geq \nmin$---not so much cleaning that gradient estimates degrade.
+A key structural insight makes this tractable: $\aeff$ is strictly increasing in $b$ while $\mathrm{ESS}$ is strictly decreasing, so the quality constraint yields a unique lower bound $\btau$ and the stability constraint a unique upper bound $\bess$.
+We adopt a \emph{minimum intervention principle}:
+\begin{equation*}
+  \bstar = \inf\{b \geq 0 : \aeff(b) \geq \tau\} \quad \text{subject to} \quad \mathrm{ESS}(\bstar) \geq \nmin,
+\end{equation*}
+the smallest exponent satisfying the quality floor.
+This is deliberately conservative: apply enough decontamination to meet the quality target, but no more, preserving the largest possible effective sample size.
+In practice, batches fall into three regimes---already clean ($\bstar{=}0$), quality-binding ($\bstar{=}\btau$), and stability-binding ($\bstar{=}\bess$)---allowing the framework to handle heterogeneous contamination naturally.
+Unlike the discrete sampling-importance-resampling of \cite{drayson2025detection}, we implement reweighting through direct loss scaling with continuous gradient contributions.
+
+We evaluate on continued pretraining of Qwen3-0.6B on 132M FineWeb \citep{penedo2024fineweb} tokens with 40\% synthetic contamination (\S\ref{sec:experiments}).
+Adaptive $\bstar$ with default hyperparameters ($\tau{=}0.8$, $\nmin{=}2$) matches the grid-search-optimal fixed $b$ within seed variance (PPL $17.651 {\pm} 0.007$ vs.\ $17.646 {\pm} 0.007$ across three seeds) at zero validation cost.
+It outperforms both uniform training (PPL $17.69$) and ESS-only maximum intervention (PPL $17.73$), confirming that minimum intervention is superior to maximum intervention.
+A lightweight TF-IDF + logistic regression detector (AUC\,=\,0.939) suffices for effective reweighting, and the quality threshold $\tau$ admits a wide safe range of $[0.5, 0.8]$ within which all tested values improve over uniform training.
+
+Our contributions are:
+\begin{enumerate}[nosep,leftmargin=*]
+  \item A dual-constraint framework for adaptive $\bstar$ selection with minimum intervention semantics, providing validation-free per-batch exponent derivation from batch-level diagnostics (\S\ref{sec:method}).
+  \item Empirical evidence that adaptive $\bstar$ matches grid-search-optimal performance within seed variance at zero validation cost, and that minimum intervention (dual-constraint) outperforms maximum intervention (ESS-only) (\S\ref{sec:results}).
+  \item Evidence that a lightweight TF-IDF + logistic regression detector suffices for effective reweighting (\S\ref{sec:results}).
+\end{enumerate}

@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "16086acdb408afb31777",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "verify adaptive fix seed456 alive",
+  "task_key": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_verify_adaptive_fix_seed456_alive_20260514T151727.jsonl",
+    "occurrence": 1,
+    "bytes": 6561,
+    "sha256": "26e852394db5f52446127a55d639add84e01cec6ea9861667133ef62e8c76f3f"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T15:17:55.526230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T15:17:55.526548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T15:17:55.526710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "ps -p 115066 -o pid,stat,etime,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T15:17:55.526884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"115066 Ss+        00:33 bash -c rm -f /tmp/agent-ml-exit/adaptive_fix_seed456.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/provenance_weight_training/adaptive_fix_seed456.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/adaptive_fix_seed456.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/provenance_weight_training && export CUDA_VISIBLE_DEVICES=3 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"'; } > ~/runs/provenance_weight_training/adaptive_fix_seed456.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T15:17:55.527053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "tail -30 /root/runs/provenance_weight_training/adaptive_fix_seed456.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T15:17:55.527185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-47453",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T15:17:55.527384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'weighting/b': 0.3799999952316284, 'weighting/alpha_eff': 0.5442514319930755, 'weighting/ess': 2.0208199142120744, 'weighting/mean_q': 0.782768964767456, 'weighting/unweighted_loss': 1.857261061668396, 'weighting/weighted_loss': 2.9842541217803955, 'epoch': 0}\\\\n{'weighting/b': 2.180000066757202, 'weighting/alpha_eff': 0.7570179307959822, 'weighting/ess': 2.0021838058167547, 'weighting/mean_q': 0.5748080611228943, 'weighting/unweighted_loss': 3.348764419555664, 'weighting/weighted_loss': 4.733870029449463, 'epoch': 0}\\\\n{'weighting/b': 1.7999999523162842, 'weighting/alpha_eff': 0.445018922901502, 'weighting/ess': 2.0042539298469917, 'weighting/mean_q': 0.7460025548934937, 'weighting/unweighted_loss': 1.3101565837860107, 'weighting/weighted_loss': 1.1578221321105957, 'epoch': 0.0}\\\\n{'weighting/b': 1.2118325520010387, 'weighting/alpha_eff': 0.8000000000000002, 'weighting/ess': 2.054967273104835, 'weighting/mean_q': 0.5740038156509399, 'weighting/unweighted_loss': 2.2037901878356934, 'weighting/weighted_loss': 3.027273654937744, 'epoch': 0.0}\\\\n{'weighting/b': 0.4134673393865649, 'weighting/alpha_eff': 0.8000000000000002, 'weighting/ess': 2.648570562958112, 'weighting/mean_q': 0.5274823904037476, 'weighting/unweighted_loss': 2.4209444522857666, 'weighting/weighted_loss': 3.369513750076294, 'epoch': 0.0}\\\\n{'weighting/b': 0.5, 'weighting/alpha_eff': 0.6768560818085353, 'weighting/ess': 2.0496084555191194, 'weighting/mean_q': 0.7259959578514099, 'weighting/unweighted_loss': 2.1090993881225586, 'weighting/weighted_loss': 2.929879665374756, 'epoch': 0.0}\\\\n{'weighting/b': 1.100000023841858, 'weighting/alpha_eff': 0.5625739718842853, 'weighting/ess': 2.0110304497326523, 'weighting/mean_q': 0.709583580493927, 'weighting/unweighted_loss': 0.9463828206062317, 'weighting/weighted_loss': 0.6632298231124878, 'epoch': 0.0}\\\\n{'weighting/b': 2.0399999618530273, 'weighting/alpha_eff': 0.7147231387572107, 'weighting/ess': 2.00\n…[truncated 6331 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T15:17:55.527549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"112475, 46514 MiB\\\\n108213, 74998 MiB\\\\n109362, 74998 MiB\\\\n115071, 46514 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T15:17:55.527713+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，验证结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| PID 115066 | 存活，状态 `Ss+`，已运行 33 秒 |\n| GPU cuda:3 | PID 115071（子进程）占用 46514 MiB 显存 |\n| 训练进度 | step 11/6103，速度 ~2.25s/it，预计 ~3h50m |\n| WANDB | 无错误（已设 `WANDB_MODE=disabled`） |\n| 日志 | adaptive weighting 指标正常输出，`alpha_eff` 在 0.04-0.8 范围波动，loss 在合理区间 |\n\n训练已成功启动并稳定运行。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_adaptive_fix_seed456_alive_20260514T151727"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/verify-adaptive-fix-seed456-alive.md"
+}

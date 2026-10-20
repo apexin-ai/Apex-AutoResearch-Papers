@@ -1,0 +1,19 @@
+paper_key: "yang_2026_data_mixing_agent"
+title: "Data Mixing Agent: Learning to Re-weight Domains for Continual Pre-training"
+venue: "ACL 2026"
+full_text_available: false
+
+research:
+  baselines: ["static mixture baselines", "DoReMi", "heuristic reweighting"]
+  metrics:
+    - {name: "math reasoning accuracy", direction: "higher_better"}
+    - {name: "source field benchmark performance", direction: "higher_better"}
+  datasets:
+    - {name: "math reasoning benchmarks", size: "not specified"}
+  ablation_dimensions: ["source field generalization", "target model generalization", "domain space generalization"]
+  training_recipe: {model: "LLMs (various)", method: "reinforcement learning on mixing trajectories"}
+  method_family: "RL-based domain reweighting agent"
+
+narrative: N/A
+figures: N/A
+tables: N/A

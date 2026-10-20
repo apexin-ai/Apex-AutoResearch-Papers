@@ -1,0 +1,881 @@
+# analysis gpt2 adaptive eval result
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_analysis_gpt2_adaptive_eval_result_20260518T232739.log`
+- **Structured JSON:** [`92064b5cb83b28cda4ff.json`](../../sessions/92/92064b5cb83b28cda4ff.json)
+
+## Before a recorded user message
+
+17 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1515e283-fd0d-4489-9d13-a1ca896aa7fc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779162600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b149bb98-53d5-4469-a13b-d10e1c2a9574",
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to monitor the GPT-2 adaptive eval results on a remote server. Let me start by SSHing to the server and checking the eval status.
+
+Let me first load the necessary MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "ea98e90d-c1c9-4baa-9aae-fd3a1286125e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0188ZPd3hfG9H9uuCDLazAFX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12675,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12675
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0129napFTJF7goBjot1tWSiZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "589c466a-541f-4bd4-9685-510a32a91051",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0188ZPd3hfG9H9uuCDLazAFX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12675,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12675
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T23:27:54.754Z_
+
+<details><summary>↩ Tool result · `toolu_0129napFTJF7goBjot1tWSiZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "d599be7f-7441-4c01-975d-065ed141eba1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+SSH 到 westd-41312 检查 eval 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "e8e1789d-d7c9-4059-ac56-2431fc47397b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Ji9V7vQAXvPDy7fqrZ9zR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 24516,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XEUTTBjiikLPitcp6YPjdM`</summary>
+
+```json
+{
+  "server": "westd-41312",
+  "command": "while ! grep -q \"Perplexity\\|perplexity\\|ppl\\|PPL\\|Final\" ~/runs/provenance_weight_training/eval_gpt2_adaptive_seed42.log 2>/dev/null; do sleep 10; done && cat ~/runs/provenance_weight_training/eval_gpt2_adaptive_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "c019580e-014f-457a-8966-0b97def58dc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Ji9V7vQAXvPDy7fqrZ9zR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 900,
+      "cache_read_input_tokens": 24516,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 900
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T23:28:00.147Z_
+
+<details><summary>↩ Tool result · `toolu_01XEUTTBjiikLPitcp6YPjdM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nLoading eval data: data/human/eval_holdout.jsonl (max 5000 docs)\\n  Loaded 5000 documents\\n\\n============================================================\\nEvaluating: /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\\n============================================================\\n\\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/310 [00:00<00:32,  9.50it/s]\\rLoading weights:  70%|███████   | 218/310 [00:00<00:00, 1241.85it/s]\\rLoading weights: 100%|██████████| 310/310 [00:00<00:00, 1170.12it/s]\\n  [500/5000] tokens=421647, loss=2.9137\\n  [1000/5000] tokens=797069, loss=2.8988\\n  [1500/5000] tokens=1222096, loss=2.8793\\n  [2000/5000] tokens=1552850, loss=2.8774\\n  [2500/5000] tokens=1934557, loss=2.8993\\n  [3000/5000] tokens=2373975, loss=2.9050\\n  [3500/5000] tokens=2836560, loss=2.8839\\n  [4000/5000] tokens=3221738, loss=2.8857\\n  [4500/5000] tokens=3644142, loss=2.8865\\n  [5000/5000] tokens=4077068, loss=2.8789\\n  Loss: 2.8789  Perplexity: 17.79  Tokens: 4077068  Time: 126s\\n\\nResults saved to eval_perplexity_results.json\\n\\n======================================================================\\nCheckpoint                         Loss   Perplexity     Tokens\\n----------------------------------------------------------------------\\ngpt2_adaptive_seed42/final       2.8789        17.79    4077068\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "9ef5c53f-39be-4203-b5e6-f10d03941599",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\nLoading eval data: data/human/eval_holdout.jsonl (max 5000 docs)\\\\n  Loaded 5000 documents\\\\n\\\\n============================================================\\\\nEvaluating: /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\\\\n============================================================\\\\n\\\\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/310 [00:00<00:32,  9.50it/s]\\\\rLoading weights:  70%|███████   | 218/310 [00:00<00:00, 1241.85it/s]\\\\rLoading weights: 100%|██████████| 310/310 [00:00<00:00, 1170.12it/s]\\\\n  [500/5000] tokens=421647, loss=2.9137\\\\n  [1000/5000] tokens=797069, loss=2.8988\\\\n  [1500/5000] tokens=1222096, loss=2.8793\\\\n  [2000/5000] tokens=1552850, loss=2.8774\\\\n  [2500/5000] tokens=1934557, loss=2.8993\\\\n  [3000/5000] tokens=2373975, loss=2.9050\\\\n  [3500/5000] tokens=2836560, loss=2.8839\\\\n  [4000/5000] tokens=3221738, loss=2.8857\\\\n  [4500/5000] tokens=3644142, loss=2.8865\\\\n  [5000/5000] tokens=4077068, loss=2.8789\\\\n  Loss: 2.8789  Perplexity: 17.79  Tokens: 4077068  Time: 126s\\\\n\\\\nResults saved to eval_perplexity_results.json\\\\n\\\\n======================================================================\\\\nCheckpoint                         Loss   Perplexity     Tokens\\\\n----------------------------------------------------------------------\\\\ngpt2_adaptive_seed42/final       2.8789        17.79    4077068\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nLoading eval data: data/human/eval_holdout.jsonl (max 5000 docs)\\n  Loaded 5000 documents\\n\\n============================================================\\nEvaluating: /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\\n============================================================\\n\\rLoading weights:   0%|          | 0/310 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/310 [00:00<00:32,  9.50it/s]\\rLoading weights:  70%|███████   | 218/310 [00:00<00:00, 1241.85it/s]\\rLoading weights: 100%|██████████| 310/310 [00:00<00:00, 1170.12it/s]\\n  [500/5000] tokens=421647, loss=2.9137\\n  [1000/5000] tokens=797069, loss=2.8988\\n  [1500/5000] tokens=1222096, loss=2.8793\\n  [2000/5000] tokens=1552850, loss=2.8774\\n  [2500/5000] tokens=1934557, loss=2.8993\\n  [3000/5000] tokens=2373975, loss=2.9050\\n  [3500/5000] tokens=2836560, loss=2.8839\\n  [4000/5000] tokens=3221738, loss=2.8857\\n  [4500/5000] tokens=3644142, loss=2.8865\\n  [5000/5000] tokens=4077068, loss=2.8789\\n  Loss: 2.8789  Perplexity: 17.79  Tokens: 4077068  Time: 126s\\n\\nResults saved to eval_perplexity_results.json\\n\\n======================================================================\\nCheckpoint                         Loss   Perplexity     Tokens\\n----------------------------------------------------------------------\\ngpt2_adaptive_seed42/final       2.8789        17.79    4077068\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The eval is complete. Let me extract the results:
+
+- GPT-2 adaptive PPL = 17.79
+- GPT-2 adaptive loss = 2.8789
+
+Comparison with baselines:
+- GPT-2 uniform PPL = 17.69
+- GPT-2 adaptive PPL = 17.79
+- Δ = +0.10 (worse than uniform)
+
+This is a negative result. The GPT-2 adaptive weighting actually made perplexity worse compared to uniform. This suggests the GPT-2 detector (AUC=0.913) doesn't produce useful enough signal for adaptive weighting, similar to the n-gram negative result.
+
+
+Now I need to update the registry with these results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "835b4943-0ee8-4457-84cd-c7ec31513d0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019mfaS45Rirr7dFsrt63i65",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 25416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Eval 完成。更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "daf2d84d-209c-4c18-9064-37cd3799ce4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019mfaS45Rirr7dFsrt63i65",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 25416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SGsrfHtvmTBUg7QNQsH9j1`</summary>
+
+```json
+{
+  "exp_id": "gpt2_adaptive_seed42",
+  "field": "metrics",
+  "value": {
+    "eval_ppl_holdout": 17.79,
+    "eval_loss_holdout": 2.8789
+  },
+  "project": "provenance_weight_training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "73f24985-8597-4e2e-83a0-6965d4526662",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019mfaS45Rirr7dFsrt63i65",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 25416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T23:28:07.446Z_
+
+<details><summary>↩ Tool result · `toolu_01SGsrfHtvmTBUg7QNQsH9j1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt2_adaptive_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:27:04.666Z\", \"updated_at\": \"2026-05-18T23:28:07.078Z\", \"spec\": {\"command\": \"WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir .../gpt2_adaptive_seed42 --weighting_method adaptive --tau 0.8 --n_min 2 --seed 42\", \"server\": \"westd-41312\", \"gpu\": [\"cuda:0\"], \"pid\": \"245417\", \"log_path\": \"~/runs/provenance_weight_training/gpt2_adaptive_seed42.log\", \"submitted_at\": \"2026-05-18T19:27:04.198Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_gpt2ppl_qscore.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42}, \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but practical detector still enables effective adaptive training. If adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector.\", \"reproduce\": {\"finished_at\": \"2026-05-18T23:25:26.511Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:25:31.727843+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\", \"metrics\": {\"eval_ppl_holdout\": 17.79, \"eval_loss_holdout\": 2.8789}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7951}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "f68fa8a6-06d8-4e60-8593-e1b2b2899c41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gpt2_adaptive_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T19:27:04.666Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:28:07.078Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir .../gpt2_adaptive_seed42 --weighting_method adaptive --tau 0.8 --n_min 2 --seed 42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"245417\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/gpt2_adaptive_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T19:27:04.198Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_gpt2ppl_qscore.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen/Qwen3-0.6B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but practical detector still enables effective adaptive training. If adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T23:25:26.511Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T23:25:31.727843+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.79, \\\"eval_loss_holdout\\\": 2.8789}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7951}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gpt2_adaptive_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:27:04.666Z\", \"updated_at\": \"2026-05-18T23:28:07.078Z\", \"spec\": {\"command\": \"WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir .../gpt2_adaptive_seed42 --weighting_method adaptive --tau 0.8 --n_min 2 --seed 42\", \"server\": \"westd-41312\", \"gpu\": [\"cuda:0\"], \"pid\": \"245417\", \"log_path\": \"~/runs/provenance_weight_training/gpt2_adaptive_seed42.log\", \"submitted_at\": \"2026-05-18T19:27:04.198Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_gpt2ppl_qscore.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42}, \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but practical detector still enables effective adaptive training. If adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector.\", \"reproduce\": {\"finished_at\": \"2026-05-18T23:25:26.511Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:25:31.727843+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\", \"metrics\": {\"eval_ppl_holdout\": 17.79, \"eval_loss_holdout\": 2.8789}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7951}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014eu9qeEE82RntQNAzNjZiQ`</summary>
+
+```json
+{
+  "exp_id": "gpt2_adaptive_seed42",
+  "field": "status",
+  "value": "DONE",
+  "project": "provenance_weight_training",
+  "spec": {
+    "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final",
+    "log_path": "~/runs/provenance_weight_training/gpt2_adaptive_seed42.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "1102b3b0-242a-4fe5-9c4b-238bfae549ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019mfaS45Rirr7dFsrt63i65",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 25416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T23:28:09.718Z_
+
+<details><summary>↩ Tool result · `toolu_014eu9qeEE82RntQNAzNjZiQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"gpt2_adaptive_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:27:04.666Z\", \"updated_at\": \"2026-05-18T23:28:08.286Z\", \"spec\": {\"command\": \"WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir .../gpt2_adaptive_seed42 --weighting_method adaptive --tau 0.8 --n_min 2 --seed 42\", \"server\": \"westd-41312\", \"gpu\": [\"cuda:0\"], \"pid\": \"245417\", \"log_path\": \"~/runs/provenance_weight_training/gpt2_adaptive_seed42.log\", \"submitted_at\": \"2026-05-18T19:27:04.198Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_gpt2ppl_qscore.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\", \"wall_clock_seconds\": 14464.1, \"gpu_hours\": 4.02}, \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but practical detector still enables effective adaptive training. If adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector.\", \"reproduce\": {\"finished_at\": \"2026-05-18T23:25:26.511Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:25:31.727843+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\", \"metrics\": {\"eval_ppl_holdout\": 17.79, \"eval_loss_holdout\": 2.8789}, \"completed_at\": \"2026-05-18T23:28:08.287Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8877}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "54c78060-c234-4a25-b439-dfa2074a4dd6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"gpt2_adaptive_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T19:27:04.666Z\\\", \\\"updated_at\\\": \\\"2026-05-18T23:28:08.286Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir .../gpt2_adaptive_seed42 --weighting_method adaptive --tau 0.8 --n_min 2 --seed 42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"245417\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/gpt2_adaptive_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T19:27:04.198Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_gpt2ppl_qscore.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen/Qwen3-0.6B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\\\", \\\"wall_clock_seconds\\\": 14464.1, \\\"gpu_hours\\\": 4.02}, \\\"hypothesis\\\": \\\"GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but practical detector still enables effective adaptive training. If adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T23:25:26.511Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T23:25:31.727843+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.79, \\\"eval_loss_holdout\\\": 2.8789}, \\\"completed_at\\\": \\\"2026-05-18T23:28:08.287Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8877}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"gpt2_adaptive_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:27:04.666Z\", \"updated_at\": \"2026-05-18T23:28:08.286Z\", \"spec\": {\"command\": \"WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir .../gpt2_adaptive_seed42 --weighting_method adaptive --tau 0.8 --n_min 2 --seed 42\", \"server\": \"westd-41312\", \"gpu\": [\"cuda:0\"], \"pid\": \"245417\", \"log_path\": \"~/runs/provenance_weight_training/gpt2_adaptive_seed42.log\", \"submitted_at\": \"2026-05-18T19:27:04.198Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_gpt2ppl_qscore.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\", \"wall_clock_seconds\": 14464.1, \"gpu_hours\": 4.02}, \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but practical detector still enables effective adaptive training. If adaptive PPL < uniform with GPT-2 scores, method generalizes beyond high-AUC TF-IDF detector.\", \"reproduce\": {\"finished_at\": \"2026-05-18T23:25:26.511Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:25:31.727843+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\", \"metrics\": {\"eval_ppl_holdout\": 17.79, \"eval_loss_holdout\": 2.8789}, \"completed_at\": \"2026-05-18T23:28:08.287Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8877}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+## GPT-2 Adaptive Eval 结果
+
+| 实验 | PPL | Loss |
+|------|-----|------|
+| GPT-2 uniform | 17.69 | - |
+| **GPT-2 adaptive** | **17.79** | **2.8789** |
+| Δ | **+0.10** | - |
+
+**负向结果。** GPT-2 adaptive PPL = 17.79，比 uniform baseline (17.69) 高 0.10，方向相反。
+
+对比 TF-IDF 结果（adaptive 17.65 vs uniform 17.69, Δ = -0.04），GPT-2 detector 尽管 AUC=0.913，但其 adaptive weighting 没有带来收益，反而略微恶化。这与 n-gram detector 的负向结果类似，说明 detector AUC 高不等于能产生有效的训练权重信号。TF-IDF detector 可能在某种特征维度上更好地区分了对训练有用的样本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "uuid": "d4782125-96d0-4f25-bd18-c4f8b37a0818",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013jhSVCDxBoa25SdDVCSTQT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2054,
+      "cache_read_input_tokens": 26260,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2054
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 17_
+
+## GPT-2 Adaptive Eval 结果
+
+| 实验 | PPL | Loss |
+|------|-----|------|
+| GPT-2 uniform | 17.69 | - |
+| **GPT-2 adaptive** | **17.79** | **2.8789** |
+| Δ | **+0.10** | - |
+
+**负向结果。** GPT-2 adaptive PPL = 17.79，比 uniform baseline (17.69) 高 0.10，方向相反。
+
+对比 TF-IDF 结果（adaptive 17.65 vs uniform 17.69, Δ = -0.04），GPT-2 detector 尽管 AUC=0.913，但其 adaptive weighting 没有带来收益，反而略微恶化。这与 n-gram detector 的负向结果类似，说明 detector AUC 高不等于能产生有效的训练权重信号。TF-IDF detector 可能在某种特征维度上更好地区分了对训练有用的样本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 26160,
+  "duration_api_ms": 24198,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "283aa0e9-eb6f-4dca-8009-42f0332abea1",
+  "total_cost_usd": 0.17806075000000002,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 16473,
+    "cache_read_input_tokens": 88033,
+    "output_tokens": 1189,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16473,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 284,
+        "cache_read_input_tokens": 26260,
+        "cache_creation_input_tokens": 2054,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2054
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1238,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001323,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1189,
+      "cacheReadInputTokens": 88033,
+      "cacheCreationInputTokens": 16473,
+      "webSearchRequests": 0,
+      "costUSD": 0.17673775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2948351e-c6fe-40e3-9426-ec35c07f5279"
+}
+```
+
+</details>
+
+---

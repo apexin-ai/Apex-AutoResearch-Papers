@@ -1,0 +1,18 @@
+paper_key: "wang_2026_survive_contamination"
+title: "Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training"
+venue: "arXiv preprint 2026"
+full_text_available: false
+
+research:
+  baselines: ["uncontaminated recursive training"]
+  metrics:
+    - {name: "convergence rate", direction: "higher_better"}
+  datasets:
+    - {name: "theoretical framework (general distributions)", size: "N/A"}
+  ablation_dimensions: ["fraction of real data", "baseline model convergence rate"]
+  training_recipe: {method: "recursive training under contamination"}
+  method_family: "convergence theory for contaminated recursive training"
+
+narrative: N/A
+figures: N/A
+tables: N/A

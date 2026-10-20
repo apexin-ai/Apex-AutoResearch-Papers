@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dd33240b0dc0006b4c3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose contamination 60 uniform seed42",
+  "task_key": "worker_diagnose_contamination_60_uniform_seed42_20260516T010513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_contamination_60_uniform_seed42_20260516T010513_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "1ca6917262c4710b3258991ebb11882cd561fd5f93a150b0bc6a53839aef5bf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 项目 | 结果 |\n|------|------|\n| 训练完成 | ✓ 6103/6103 steps, 3:35:04 |\n| SIGHUP 原因 | 训练完成后发生（与 bs8_nmin2_seed42_r2 相同模式） |\n| Checkpoint 有效 | ✓ final/ 目录，model.safetensors = 1.19GB |\n| **Eval PPL** | **17.77** (loss=2.8773, 4.08M tokens) |\n| Registry | conclusion 已更新为 success，metrics 已写入 |\n\n与 bs8_nmin2_seed42_r2 (PPL=17.73) 几乎一致，符合 uniform baseline 预期。无需重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-contamination-60-uniform-seed42.md"
+}

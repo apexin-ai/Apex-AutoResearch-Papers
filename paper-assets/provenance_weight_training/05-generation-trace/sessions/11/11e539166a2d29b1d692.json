@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e539166a2d29b1d692",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval bs16 seed456 ood reeval r2",
+  "task_key": "worker_eval_bs16_seed456_ood_reeval_r2_20260522T084756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bs16_seed456_ood_reeval_r2_20260522T084756_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "82fb7facd67a3f71d8bcd1bfd8e2b09aad1123bc4b66bf1af1af9df033fa498b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成——re-eval 之前已经跑完，registry 也已更新。验证如下：\n\n**旧 eval（参数不对，tokens 偏少）：**\n\n| | OWT ppl | OWT tokens | Wiki ppl | Wiki tokens |\n|---|---|---|---|---|\n| adaptive seed456 | 17.807 | 5,000,859 | 14.713 | 5,009,907 |\n\n**新 eval（已修正，参数与 seed42/123 一致）：**\n\n| | OWT ppl | OWT tokens | Wiki ppl | Wiki tokens |\n|---|---|---|---|---|\n| adaptive seed456 | **18.313** | 6,767,242 ✓ | **15.296** | 27,000,339 ✓ |\n| uniform seed456 | **18.390** | 6,767,242 ✓ | **15.363** | 27,000,339 ✓ |\n\n**对比 seed42/123 参考范围：**\n\n| | OWT ppl | Wiki ppl |\n|---|---|---|\n| adaptive seed42 | 18.309 | 15.286 |\n| adaptive seed123_r2 | 18.325 | 15.348 |\n| **adaptive seed456** | **18.313** ✓ | **15.296** ✓ |\n| uniform seed42 | 18.364 | 15.337 |\n| uniform seed123 | 18.369 | 15.381 |\n| **uniform seed456** | **18.390** ✓ | **15.363** ✓ |\n\nToken 数量与参考一致（OWT 6,767,242 / Wiki 27,000,339），PPL 均在预期范围内。Registry 中两个实验的 metrics 已是修正后的值，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bs16-seed456-ood-reeval-r2.md"
+}

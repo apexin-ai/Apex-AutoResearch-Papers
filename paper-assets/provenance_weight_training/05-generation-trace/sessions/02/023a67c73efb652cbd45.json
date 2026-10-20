@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "023a67c73efb652cbd45",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code prep rho02 adaptive tau09",
+  "task_key": "worker_code_prep_rho02_adaptive_tau09_20260516T125401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_rho02_adaptive_tau09_20260516T125401_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "fefc3262cf2aac7b22022241b03bfbc9b077b495c2f9876251093a09433538be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。总结：\n\n- **脚本**：`/root/provenance_weight_training/scripts/run_rho02_adaptive_tau09_seed42.sh` (chmod +x)\n- **数据**：`data/scored_data_rho02.jsonl` (626MB，确认存在)\n- **修复**：相比原版移除了 `--use_wandb`/`--wandb_project`/`--wandb_run_name`，添加了 `export CUDA_VISIBLE_DEVICES=1`（第一行），日志输出到 `~/runs/provenance_weight_training/rho02_adaptive_tau09_seed42.log`\n- **关键参数**：adaptive, tau=0.9, n_min=2, batch_size=4, seed=42, rho=0.2\n- **启动方式**：rho02_uniform_seed42 完成后直接 `nohup bash scripts/run_rho02_adaptive_tau09_seed42.sh &`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-rho02-adaptive-tau09.md"
+}

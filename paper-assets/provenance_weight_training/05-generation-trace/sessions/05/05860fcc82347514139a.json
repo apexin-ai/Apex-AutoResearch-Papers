@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05860fcc82347514139a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "audit nmin eval consistency",
+  "task_key": "worker_audit_nmin_eval_consistency_20260515T155958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_nmin_eval_consistency_20260515T155958_result.json",
+    "occurrence": 1,
+    "bytes": 2659,
+    "sha256": "16ef2f7ee643ce592fada01e64c610b31dc370fe8c2cf3cd6889fed76891c142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Phase 1: 差异根因报告\n\n### PPL=17.644 来源\n- **文件**: `/root/provenance_weight_training/output/eval_perplexity_results.json`\n- **eval 方法**: `eval_perplexity.py`（sliding window, stride=1024, fp16 autocast）\n- **eval 数据**: 5000 docs, 4,077,068 tokens\n- **生成环境**: **旧 AutoDL 服务器**（checkpoint 路径含 `/root/autodl-tmp/`）\n- **nmin_ablation_analysis.py 路径**: 前 3 个 lookup 位置都不存在，fallback 到 Location 4（aggregated file）\n\n### PPL=17.690 来源\n- **文件**: Registry `adaptive_seed42.metrics.eval_ppl_holdout`\n- **eval 方法**: **HuggingFace Trainer inline eval**（训练时自动触发，`--eval_steps 500`）\n- **eval 数据**: 4,080,000 tokens（不同 token 计数方式）\n\n### 具体原因\n**两个不同 eval pipeline 产生了不同结果**：\n1. Trainer inline eval 用 HuggingFace 的 loss 聚合（计算方式不同于 sliding window），token 计数 4,080,000\n2. `eval_perplexity.py` 用 sliding window (stride=1024)，token 计数 4,077,068\n3. Token 数差 2,932（0.07%），PPL 差 0.046\n\n**为什么只有 adaptive_seed42 (n_min=3) 有此问题**：它是最早的实验，registry 只记录了 inline eval 值。后续的 adaptive_fix_seed42 和 nmin1_seed42 都做了 post-hoc eval 并更新了 registry。\n\n### 额外发现\n- `nmin_ablation_analysis.py` 中 n_min=2 的值是 **hardcoded** (`17.650, \"hardcoded (D018 confirmed)\"`)，非从 eval 文件读取\n- n_min=3 的值来自旧 AutoDL 服务器迁移过来的 eval 文件\n\n---\n\n## Phase 2: 统一 Eval 结果\n\n**Pipeline**: `eval_perplexity.py --data_path data/human/eval_holdout.jsonl --max_docs 5000 --max_length 2048` (fp16, sliding window stride=1024, GPU 0 on westd-47453)\n\n| n_min | Experiment | PPL | Loss | Tokens | 耗时 |\n|-------|-----------|-----|------|--------|------|\n| 1 | nmin1_seed42 | **17.789** | 2.8786 | 4,077,068 | 172s |\n| 2 | adaptive_fix_seed42 | **17.653** | 2.8709 | 4,077,068 | 157s |\n| 3 | adaptive_seed42 | **17.644** | 2.8704 | 4,077,068 | 153s |\n\n**结论**：n_min=2 和 n_min=3 性能接近（Δ=0.009），均优于 n_min=1（+0.135/+0.145）。\n\n---\n\n## Phase 3: 已完成操作\n\n1. **Registry 已更新**: `adaptive_seed42.metrics.eval_ppl_holdout` 从 17.69 → 17.644，`eval_holdout_tokens` 从 4,080,000 → 4,077,068，添加了 eval_method 和 eval_note 审计记录\n2. **统一 eval 文件**: 已保存至服务器 `output/eval_results/unified_nmin_ablation_eval.json`\n3. **Artifact 已注册**: `art_20260515_293dac`\n4. **未修改** `nmin_ablation_analysis.py` 和图表 — 等 Director 决定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-nmin-eval-consistency.md"
+}

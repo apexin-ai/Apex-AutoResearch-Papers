@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2723a8fe87716ef99f51",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check grid b3 0 seed123 eval",
+  "task_key": "worker_check_grid_b3_0_seed123_eval_20260514T143922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_grid_b3_0_seed123_eval_20260514T143922_result.json",
+    "occurrence": 1,
+    "bytes": 119,
+    "sha256": "e979e1a560f3d0cc48ac8a99c46e07b11e2655c5436d5c5d34f7d2c5145ec811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "auto_eval_watcher 已完成 eval。结果：\n\n- **eval_loss**: 2.8770\n- **eval_ppl_holdout**: 17.7601"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-grid-b3-0-seed123-eval.md"
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "detect_remove_q02_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:47:54.392Z",
+    "updated_at": "2026-05-18T23:29:56.719Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/provenance_weight_training && python -c \\\"import json; f=open('data/scored_data.jsonl'); o=open('data/scored_data_filtered_q02.jsonl','w'); count=sum(1 for l in f if json.loads(l).get('q_score',1)<=0.2 and o.write(l)); o.close(); print(f'q02 filtered: {count} samples')\\\" && wc -l data/scored_data_filtered_q02.jsonl && WANDB_MODE=disabled python training/pretrain_weighted.py --model_name models/Qwen/Qwen3-0.6B --data_path data/scored_data_filtered_q02.jsonl --output_dir /root/autodl-tmp/output/models/detect_remove_q02_seed42 --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\"",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "65827",
+      "log_path": "~/runs/provenance_weight_training/detect_remove_q02_seed42.log",
+      "submitted_at": "2026-05-18T19:47:54.017Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/output/models/detect_remove_q02_seed42/final",
+      "data_count": 91654
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T23:22:37.551Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T23:22:43.918775+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_ppl_holdout": 17.27,
+      "eval_loss_holdout": 2.8491,
+      "eval_holdout_tokens": 4077068,
+      "eval_method": "eval_perplexity.py --max_docs 5000 --max_length 2048 (final checkpoint)",
+      "train_loss": 11.348,
+      "train_steps": 6103,
+      "data_count": 91654
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T23:29:57.552957+00:00",
+  "trigger": "update_registry"
+}

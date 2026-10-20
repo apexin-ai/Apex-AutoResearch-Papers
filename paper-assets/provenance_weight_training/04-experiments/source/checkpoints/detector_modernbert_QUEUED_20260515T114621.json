@@ -1,0 +1,16 @@
+{
+  "exp_id": "detector_modernbert",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:40:06.106Z",
+    "updated_at": "2026-05-15T11:46:21.026Z",
+    "conclusion": "killed",
+    "hypothesis": "ModernBERT-base can distinguish Qwen3-0.6B synthetic text from FineWeb human text with AUC>=0.95 and ECE<=0.05"
+  },
+  "timestamp": "2026-05-15T11:46:21.117026+00:00",
+  "trigger": "update_registry"
+}

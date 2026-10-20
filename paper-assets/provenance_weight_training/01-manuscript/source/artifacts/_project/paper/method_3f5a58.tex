@@ -1,0 +1,178 @@
+% Method section for "Minimum Intervention Reweighting" (EMNLP 2026)
+% Generated: 2026-05-15
+% Based on: paper_framing.md (STABLE, D023/D029/D035)
+% Requires macros: \bstar, \aeff, \nmin, \btau, \bess (defined in main.tex preamble)
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Setup}
+\label{sec:problem-setup}
+
+Let $\mathcal{D} = \{x_1, \ldots, x_N\}$ denote a pretraining corpus comprising human-written text $\mathcal{D}_{\mathrm{real}}$ and machine-generated text $\mathcal{D}_{\mathrm{synth}}$, with unknown contamination rate $\rho = |\mathcal{D}_{\mathrm{synth}}| / |\mathcal{D}|$.
+A pretrained detector assigns each sample a synthetic probability $q(x_i) \in [0, 1]$.
+Following \citet{drayson_2025_detection_collapse}, we define per-sample weights
+\begin{equation}
+  w_b(x_i) = (1 - q(x_i))^b, \quad b \geq 0,
+  \label{eq:weight}
+\end{equation}
+where $b = 0$ recovers uniform weighting and increasing $b$ progressively downweights high-$q$ samples.
+The weighted training objective is
+\begin{equation}
+  \mathcal{L}(b) = \frac{\sum_{i} w_b(x_i) \, \ell(x_i; \theta)}{\sum_{j} w_b(x_j)},
+  \label{eq:loss}
+\end{equation}
+where $\ell(x_i; \theta)$ is the per-sample language modeling loss.
+
+\citet{drayson_2025_detection_collapse} treat $b$ as a hyperparameter selected via validation-based grid search, with reported optima ranging from $b{=}1$ (SmolLM-1.7B) to $b{=}10$ (GPT-2 124M), making per-model tuning unavoidable.
+We instead derive $b$ adaptively per batch from the detector scores alone, requiring no validation set.
+
+\subsection{Dual-Constraint Framework}
+\label{sec:dual-constraint}
+
+Higher $b$ removes more synthetic influence but also discards effective training signal.
+We formalize this trade-off through two per-batch statistics.
+
+\paragraph{Effective real proportion.}
+For a batch $\mathcal{B} = \{x_1, \ldots, x_B\}$ with weights $w_i(b) = (1 - q_i)^b$, we define
+\begin{equation}
+  \aeff(b) = \frac{\sum_{i \in \mathcal{B}} w_i(b) \cdot \mathbf{1}[x_i \in \mathcal{D}_{\mathrm{real}}]}{\sum_{i \in \mathcal{B}} w_i(b)},
+  \label{eq:alpha_eff}
+\end{equation}
+measuring the effective fraction of real data after reweighting.
+Since true provenance labels are unavailable at training time, we use the detector's hard prediction $\mathbf{1}[q(x_i) < 0.5]$ as a proxy; all theoretical properties below hold for this approximation.
+
+\paragraph{Effective sample size.}
+Kish's effective sample size \citep{vehtari_2024_psis} quantifies weight concentration:
+\begin{equation}
+  \mathrm{ESS}(b) = \frac{\left(\sum_{i \in \mathcal{B}} w_i(b)\right)^2}{\sum_{i \in \mathcal{B}} w_i^2(b)}.
+  \label{eq:ess}
+\end{equation}
+$\mathrm{ESS}(0) = B$ under uniform weights, decreasing toward $1$ as $b \to \infty$ for any batch containing synthetic samples.
+
+\begin{proposition}[Monotonicity]
+\label{prop:monotonicity}
+For any batch containing both real and synthetic samples with non-identical $q$-scores:
+\begin{enumerate}[leftmargin=*,nosep]
+  \item $\aeff(b)$ is strictly increasing in $b$.
+  \item $\mathrm{ESS}(b)$ is strictly decreasing in $b$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+For (1), differentiating Eq.~\eqref{eq:alpha_eff} using $\frac{dw_i}{db} = w_i \ln(1 {-} q_i)$ yields
+\begin{equation}
+  \frac{d\aeff}{db} = \aeff(1 {-} \aeff) \!\left( \mathbb{E}_w[\ln(1{-}q) \mid \mathrm{real}] - \mathbb{E}_w[\ln(1{-}q) \mid \mathrm{synth}] \right)\!,
+  \label{eq:dalpha}
+\end{equation}
+where $\mathbb{E}_w$ denotes expectation under the normalized weight distribution.
+Since real samples have lower $q$-scores, $\ln(1{-}q)$ is strictly less negative for real than synthetic samples, making the parenthesized difference positive.
+For (2), increasing $b$ multiplies each weight by $(1{-}q_i)^{\Delta b}$, a factor varying across samples, which concentrates the normalized weight distribution and strictly increases $\sum_i \tilde{w}_i^2$, hence decreasing ESS.
+Full proofs appear in Appendix~\ref{app:proofs}.
+\end{proof}
+
+Proposition~\ref{prop:monotonicity} establishes that quality and sample efficiency move in opposite directions as $b$ increases, motivating two complementary constraints.
+
+\paragraph{Quality lower bound.}
+We require $\aeff(b) \geq \tau$ for a threshold $\tau \in (0, 1)$.
+By strict monotonicity, this defines a unique lower bound
+\begin{equation}
+  \btau = \inf\{b \geq 0 : \aeff(b) \geq \tau\}
+  \label{eq:b_tau}
+\end{equation}
+on the exponent---the minimum intervention needed to achieve quality $\tau$.
+\citet{wang_2026_survive_contamination} show that pretraining convergence rate scales with effective real data fraction, providing theoretical motivation for maintaining $\aeff$ above a threshold.
+
+\paragraph{Stability upper bound.}
+We require $\mathrm{ESS}(b) \geq \nmin$ for a floor $\nmin \geq 1$.
+By strict monotonicity, this defines a unique upper bound
+\begin{equation}
+  \bess = \sup\{b \geq 0 : \mathrm{ESS}(b) \geq \nmin\}
+  \label{eq:b_ess}
+\end{equation}
+beyond which gradient estimates become unreliable due to weight concentration.
+
+\paragraph{Minimum intervention principle.}
+We select
+\begin{equation}
+  \bstar = \begin{cases}
+    0 & \text{if } \aeff(0) \geq \tau \\
+    \btau & \text{if } \btau \leq \bess \\
+    \bess & \text{if } \btau > \bess
+  \end{cases}
+  \label{eq:bstar}
+\end{equation}
+yielding three regimes:
+(1)~\textbf{Already clean} ($\aeff(0) \geq \tau$): the unweighted batch meets quality $\tau$; set $\bstar = 0$.
+(2)~\textbf{$\aeff$-binding} ($\btau \leq \bess$): the quality constraint determines $\bstar = \btau$, applying the \emph{minimum} intervention to reach $\tau$, with ESS margin remaining.
+(3)~\textbf{ESS-binding} ($\btau > \bess$): quality $\tau$ is infeasible under the stability constraint; $\bstar = \bess$ applies the maximum stable intervention.
+
+The key insight is that when the feasible region $[\btau, \bess]$ is non-empty, the method selects its \emph{left} endpoint---downweighting no more than necessary.
+This contrasts with an ESS-only strategy that selects $\bess$ (the right endpoint), maximizing cleaning at the cost of discarding useful gradient signal from borderline samples.
+In our experiments (\S\ref{sec:results}), 40.1\% of reweighted batches are $\aeff$-binding, where mean $\bstar = 1.67$ compared to $4.15$ under ESS-only---a $2.5\times$ less aggressive exponent that retains $\mathrm{ESS} = 2.60$, well above the floor $\nmin = 2$.
+
+\subsection{Algorithm}
+\label{sec:algorithm}
+
+Algorithm~\ref{alg:solver} solves for $\bstar$ via bisection on $\aeff$, exploiting monotonicity (Proposition~\ref{prop:monotonicity}) to guarantee convergence.
+
+\begin{algorithm}[t]
+\caption{Per-batch adaptive exponent solver}
+\label{alg:solver}
+\begin{algorithmic}[1]
+\REQUIRE Batch scores $\{q_1, \ldots, q_B\}$, threshold $\tau$, ESS floor $\nmin$, tolerance $\varepsilon$, cap $b_{\max}$
+\ENSURE Optimal exponent $\bstar$
+\IF{$\aeff(0) \geq \tau$}
+  \STATE \textbf{return} $\bstar = 0$ \hfill $\triangleright$ Already clean
+\ENDIF
+\STATE $b_{\mathrm{lo}} \leftarrow 0,\; b_{\mathrm{hi}} \leftarrow b_{\max}$ \hfill $\triangleright$ Bisect for $\btau$
+\WHILE{$b_{\mathrm{hi}} - b_{\mathrm{lo}} > \varepsilon$}
+  \STATE $b_{\mathrm{mid}} \leftarrow (b_{\mathrm{lo}} + b_{\mathrm{hi}}) / 2$
+  \IF{$\aeff(b_{\mathrm{mid}}) < \tau$}
+    \STATE $b_{\mathrm{lo}} \leftarrow b_{\mathrm{mid}}$
+  \ELSE
+    \STATE $b_{\mathrm{hi}} \leftarrow b_{\mathrm{mid}}$
+  \ENDIF
+\ENDWHILE
+\STATE $\btau \leftarrow b_{\mathrm{hi}}$
+\IF{$\mathrm{ESS}(\btau) \geq \nmin$}
+  \STATE \textbf{return} $\bstar = \btau$ \hfill $\triangleright$ $\aeff$-binding
+\ELSE
+  \STATE Find $\bess = \sup\{b : \mathrm{ESS}(b) \geq \nmin\}$ via bisection
+  \STATE \textbf{return} $\bstar = \bess$ \hfill $\triangleright$ ESS-binding
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Implementation.}
+We apply $\bstar$ through loss reweighting: each sample's loss is scaled by its normalized weight $\bar{w}_i = w_{\bstar}(x_i) / \sum_j w_{\bstar}(x_j)$, yielding continuous gradient contributions from all samples including those with intermediate $q$-scores.
+This contrasts with the sampling-importance-resampling (SIR) approach of \citet{drayson_2025_detection_collapse}, which discretely resamples a subset of the batch, introducing additional variance and discarding partial information from borderline samples.
+
+\paragraph{Computational cost.}
+Each evaluation of $\aeff$ or ESS costs $O(B)$ for batch size $B$.
+Bisection requires $O(\log(b_{\max} / \varepsilon))$ iterations, giving total per-batch overhead $O(B \log(b_{\max} / \varepsilon))$---negligible compared to the $O(BHD)$ cost of transformer forward and backward passes with hidden dimension $H$ and depth $D$.
+With $b_{\max} = 20$ and $\varepsilon = 0.01$, this amounts to ${\sim}11$ iterations per batch.
+
+\subsection{Hyperparameters}
+\label{sec:hyperparameters}
+
+The framework replaces the single sensitive exponent $b$ with two hyperparameters, $\tau$ and $\nmin$, both admitting principled defaults that transfer across settings without per-model tuning.
+
+\paragraph{Quality threshold $\tau$.}
+\citet{wang_2026_survive_contamination} establish that pretraining convergence rate scales with effective real data proportion, motivating a quality threshold.
+However, their analysis assumes known mixture proportions; since we do not assume known $\rho$, $\tau$ is an empirical hyperparameter with theoretical motivation rather than a theoretically derived quantity.
+We evaluate $\tau \in \{0.5, 0.6, 0.7, 0.8, 0.9, 0.95\}$ at $\rho = 0.4$ (\S\ref{sec:results}).
+All values in $[0.5, 0.8]$ improve over uniform training, with PPL spanning only $0.035$ across this range (17.688 at $\tau{=}0.5$ to 17.653 at $\tau{=}0.8$).
+We adopt $\tau = 0.8$ as the default.
+The sensitivity is asymmetric: under-cleaning ($\tau < 0.8$) yields mild degradation, while over-cleaning ($\tau > 0.8$) causes sharper regression as $\bstar$ inflates (mean $\bstar = 2.36$ at $\tau{=}0.9$ vs.\ $1.40$ at $\tau{=}0.8$), excessively suppressing borderline samples whose gradient signal remains useful.
+
+\paragraph{ESS floor $\nmin$.}
+The stability constraint prevents gradient instability from weight concentration.
+At $\nmin = 1$ (effectively unconstrained), $\bstar$ inflates to mean $7.20$ with 46.7\% of batches exceeding $\bstar = 2$, yielding PPL~$= 17.789$---worse than uniform ($17.694$) by $+0.095$, confirming that unconstrained downweighting is harmful.
+At $\nmin \geq B$, the constraint forces $\bstar = 0$ for all batches, recovering uniform training.
+We use $\nmin = 2$ (half the batch size for $B = 4$), which yields consistent improvement across three seeds (\S\ref{sec:results}).
+
+\paragraph{Comparison with fixed $b$.}
+Both $\tau$ and $\nmin$ admit wide effective ranges ($\tau \in [0.5, 0.8]$, $\nmin \in \{2, 3\}$) and can be set once without per-model adjustment.
+In contrast, the fixed $b$ of \citet{drayson_2025_detection_collapse} spans an order of magnitude across model scales and requires a clean validation set plus grid search costing up to $6{\times}$ the training budget.
+Our adaptive $\bstar$ eliminates this cost entirely.

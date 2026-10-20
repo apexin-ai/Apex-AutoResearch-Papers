@@ -1,0 +1,14 @@
+{
+  "exp_id": "grid_b2_0_seed123",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:52:55.329Z",
+    "updated_at": "2026-05-14T02:52:55.329Z"
+  },
+  "timestamp": "2026-05-14T02:52:55.348747+00:00",
+  "trigger": "update_registry"
+}

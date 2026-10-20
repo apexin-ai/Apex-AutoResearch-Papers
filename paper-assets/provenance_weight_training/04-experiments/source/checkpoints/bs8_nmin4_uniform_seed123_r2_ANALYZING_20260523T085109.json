@@ -1,0 +1,50 @@
+{
+  "exp_id": "bs8_nmin4_uniform_seed123_r2",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:24:23.816Z",
+    "updated_at": "2026-05-23T08:51:08.919Z",
+    "spec": {
+      "command": "python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir .../bs8_nmin4_uniform_seed123 --model_name Qwen3-0.6B --weighting_method uniform --batch_size 8 --gradient_accumulation_steps 2 --lr 5e-5 --seed 123 --bf16 --save_total_limit 2 --resume_from_checkpoint checkpoint-500",
+      "server": "westd-41312",
+      "gpu": "cuda:3",
+      "pid": 835333,
+      "log_path": "~/runs/provenance_weight_training/bs8_nmin4_uniform_seed123_r2.log",
+      "submitted_at": "2026-05-23T03:25:06.274Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 235555,
+      "model_name": "Qwen3-0.6B",
+      "seed": 123,
+      "hyperparams": {
+        "weighting_method": "uniform",
+        "contamination_ratio": 0.4,
+        "batch_size": 8,
+        "gradient_accumulation_steps": 2,
+        "effective_batch_size": 16,
+        "lr": "5e-5",
+        "scheduler": "linear",
+        "max_length": 2048,
+        "num_train_tokens": 200000000,
+        "max_steps": 6103,
+        "save_total_limit": 2,
+        "resumed_from": "checkpoint-500"
+      }
+    },
+    "hypothesis": "Cross-seed replicate (seed=123) uniform baseline at B=8. Retry from checkpoint-500 after disk-full crash. Provides second data point for B=8 batch-size amplification.",
+    "metrics": {
+      "eval_ppl_holdout": 17.687,
+      "eval_ppl_owt": 18.37,
+      "eval_ppl_wiki": 15.385
+    },
+    "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed123/final"
+  },
+  "timestamp": "2026-05-23T08:51:09.395685+00:00",
+  "trigger": "update_registry"
+}

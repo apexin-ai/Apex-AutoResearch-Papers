@@ -1,0 +1,678 @@
+{
+  "schema_version": "1.0",
+  "id": "1de0c0dfe7018ab7a8fb",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analysis update experiment summary bf16",
+  "task_key": "worker_analysis_update_experiment_summary_bf16_20260515T100302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_update_experiment_summary_bf16_20260515T100302.log",
+    "occurrence": 1,
+    "bytes": 35862,
+    "sha256": "fd42e5746ee33bb58558c04019d013ffbf777a768a1b5bade112541d42c419c0"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "548f011a-edb3-4be3-a7a2-ef2a8438e653",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778845200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "22f74830-2a4c-48d4-8009-2ac8da44397a",
+                "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the existing experiment_summary.md first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "275f0d29-93d6-46d5-a49a-118f7ffe8d91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RVHW6Nj7LCnnb2zCRoLCog",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12061,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12061
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G7VBySUajoKW8tut7VfMpd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_summary.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "f6f64b2c-9494-4109-a12b-b31695ee715f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RVHW6Nj7LCnnb2zCRoLCog",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12061,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12061
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:03:15.808Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G7VBySUajoKW8tut7VfMpd",
+              "type": "tool_result",
+              "content": "1\t# Experiment Summary: Provenance Weight Training\n2\t\n3\tAll data sourced from project registry (`provenance_weight_training`). Generated 2026-05-15.\n4\t\n5\t**Setup**: Qwen3-0.6B, 200M tokens, 371K samples (40% synthetic contamination), eval on held-out human data (4.08M tokens).\n6\t\n7\t---\n8\t\n9\t## Table 1: Grid-b Sweep (eval_ppl_holdout)\n10\t\n11\t| b | seed42 | seed123 | seed456 | Mean | Std |\n12\t|-----|--------|---------|---------|-------|-------|\n13\t| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n14\t| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 |\n15\t| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 |\n16\t| 2.0 | 17.741 | 17.725 | *RUNNING* | 17.733 | 0.011 |\n17\t| 3.0 | 17.774 | 17.760 | *RUNNING* | 17.767 | 0.010 |\n18\t| 5.0 | 17.818 | 17.804 | *RUNNING* | 17.811 | 0.010 |\n19\t\n20\t- Best b = 0.5 across all seeds (monotonically increasing PPL with b)\n21\t- seed456 b={2.0, 3.0, 5.0} still running; Mean/Std for those rows computed from 2 seeds only\n22\t\n23\t---\n24\t\n25\t## Table 2: Method Comparison (eval_ppl_holdout)\n26\t\n27\t| Method | seed42 | seed123 | seed456 | Mean | Std |\n28\t|------------------|--------|---------|---------|-------|-------|\n29\t| Uniform | 17.690 | 17.690 | 17.700 | 17.693 | 0.006 |\n30\t| Grid-best (b=0.5)| 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n31\t| Adaptive_fix | 17.650 | 17.643 | 17.660 | 17.651 | 0.009 |\n32\t\n33\t- Both grid-best and adaptive_fix improve over uniform baseline\n34\t- Adaptive_fix is within 0.005 PPL of grid-best without requiring grid search\n35\t\n36\t---\n37\t\n38\t## Table 3: Improvement Analysis\n39\t\n40\t| Metric | seed42 | seed123 | seed456 | Mean |\n41\t|-------------------------------|---------|---------|---------|---------|\n42\t| Uniform PPL | 17.690 | 17.690 | 17.700 | 17.693 |\n43\t| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 | 17.651 |\n44\t| Grid-best PPL | 17.651 | 17.638 | 17.650 | 17.646 |\n45\t| Δ(adaptive_fix vs uniform) | 0.0400 | 0.0470 | 0.0400 | 0.0423 |\n46\t| Δ(grid-best vs uniform) | 0.0390 | 0.0520 | 0.0500 | 0.0470 |\n47\t| Ratio (Δ_adaptive/Δ_grid %) | 102.6% | 90.4% | 80.0% | 91.0% |\n48\t\n49\t- Adaptive_fix recovers 91.0% of grid-best improvement on average (no grid search needed)\n50\t- seed42: adaptive_fix slightly outperforms grid-best (ratio > 100%)\n51\t- seed123/456: grid-best has edge, but adaptive_fix is within 0.01 PPL\n52\t\n53\t---\n54\t\n55\t## Table 4: b* Distribution Statistics (from adaptive_fix)\n56\t\n57\t| Statistic | seed42 | seed123 | seed456 | Mean | CV |\n58\t|---------------|--------|---------|---------|-------|------|\n59\t| b* Mean | 1.399 | 1.431 | 1.416 | 1.415 | 1.1% |\n60\t| b* Median | 0.871 | 0.880 | 0.880 | 0.877 | 0.6% |\n61\t| b* Std | 1.933 | 2.029 | 1.993 | 1.985 | 2.4% |\n62\t| b* P25 | 0.540 | 0.540 | 0.540 | 0.540 | 0.0% |\n63\t| b* P75 | 1.512 | 1.520 | 1.520 | 1.517 | 0.3% |\n64\t| % below 0.5 | 20.9% | 20.9% | 20.9% | 20.9% | 0.0% |\n65\t\n66\t- b* distribution is highly stable across seeds (CV < 2.5% for all statistics)\n67\t- Median b* ≈ 0.88, close to grid-best b=0.5 but allowing batch-level adaptation\n68\t- ~21% of batches get b* < 0.5 (strong downweighting), ~16% get b* > 2.0\n69\t\n70\t---\n71\t\n72\t## Source Experiment IDs\n73\t\n74\t| Experiment ID | Status | conclusion |\n75\t|------------------------|---------|-----------|\n76\t| grid_b_seed42_batch | DONE | success |\n77\t| grid_b0_5_seed123 | DONE | success |\n78\t| grid_b1_0_seed123 | DONE | success |\n79\t| grid_b1_5_seed123 | DONE | success |\n80\t| grid_b2_0_seed123 | DONE | success |\n81\t| grid_b3_0_seed123 | DONE | success |\n82\t| grid_b5_0_seed123 | DONE | success |\n83\t| grid_b0_5_seed456 | DONE | success |\n84\t| grid_b1_0_seed456 | DONE | success |\n85\t| grid_b1_5_seed456 | DONE | success |\n86\t| grid_b2_0_seed456 | RUNNING | — |\n87\t| grid_b3_0_seed456 | RUNNING | — |\n88\t| grid_b5_0_seed456 | RUNNING | — |\n89\t| uniform_seed42 | DONE | success |\n90\t| uniform_seed123 | DONE | success |\n91\t| uniform_seed456 | DONE | success |\n92\t| adaptive_fix_seed42 | DONE | success |\n93\t| adaptive_fix_seed123 | DONE | success |\n94\t| adaptive_fix_seed456 | DONE | success |\n95\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "ad1b0f7f-04f3-415c-8906-38c82c7d4f00",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_summary.md",
+                "content": "# Experiment Summary: Provenance Weight Training\n\nAll data sourced from project registry (`provenance_weight_training`). Generated 2026-05-15.\n\n**Setup**: Qwen3-0.6B, 200M tokens, 371K samples (40% synthetic contamination), eval on held-out human data (4.08M tokens).\n\n---\n\n## Table 1: Grid-b Sweep (eval_ppl_holdout)\n\n| b | seed42 | seed123 | seed456 | Mean | Std |\n|-----|--------|---------|---------|-------|-------|\n| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 |\n| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 |\n| 2.0 | 17.741 | 17.725 | *RUNNING* | 17.733 | 0.011 |\n| 3.0 | 17.774 | 17.760 | *RUNNING* | 17.767 | 0.010 |\n| 5.0 | 17.818 | 17.804 | *RUNNING* | 17.811 | 0.010 |\n\n- Best b = 0.5 across all seeds (monotonically increasing PPL with b)\n- seed456 b={2.0, 3.0, 5.0} still running; Mean/Std for those rows computed from 2 seeds only\n\n---\n\n## Table 2: Method Comparison (eval_ppl_holdout)\n\n| Method | seed42 | seed123 | seed456 | Mean | Std |\n|------------------|--------|---------|---------|-------|-------|\n| Uniform | 17.690 | 17.690 | 17.700 | 17.693 | 0.006 |\n| Grid-best (b=0.5)| 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n| Adaptive_fix | 17.650 | 17.643 | 17.660 | 17.651 | 0.009 |\n\n- Both grid-best and adaptive_fix improve over uniform baseline\n- Adaptive_fix is within 0.005 PPL of grid-best without requiring grid search\n\n---\n\n## Table 3: Improvement Analysis\n\n| Metric | seed42 | seed123 | seed456 | Mean |\n|-------------------------------|---------|---------|---------|---------|\n| Uniform PPL | 17.690 | 17.690 | 17.700 | 17.693 |\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 | 17.651 |\n| Grid-best PPL | 17.651 | 17.638 | 17.650 | 17.646 |\n| Δ(adaptive_fix vs uniform) | 0.0400 | 0.0470 | 0.0400 | 0.0423 |\n| Δ(grid-best vs uniform) | 0.0390 | 0.0520 | 0.0500 | 0.0470 |\n| Ratio (Δ_adaptive/Δ_grid %) | 102.6% | 90.4% | 80.0% | 91.0% |\n\n- Adaptive_fix recovers 91.0% of grid-best improvement on average (no grid search needed)\n- seed42: adaptive_fix slightly outperforms grid-best (ratio > 100%)\n- seed123/456: grid-best has edge, but adaptive_fix is within 0.01 PPL\n\n---\n\n## Table 4: b* Distribution Statistics (from adaptive_fix)\n\n| Statistic | seed42 | seed123 | seed456 | Mean | CV |\n|---------------|--------|---------|---------|-------|------|\n| b* Mean | 1.399 | 1.431 | 1.416 | 1.415 | 1.1% |\n| b* Median | 0.871 | 0.880 | 0.880 | 0.877 | 0.6% |\n| b* Std | 1.933 | 2.029 | 1.993 | 1.985 | 2.4% |\n| b* P25 | 0.540 | 0.540 | 0.540 | 0.540 | 0.0% |\n| b* P75 | 1.512 | 1.520 | 1.520 | 1.517 | 0.3% |\n| % below 0.5 | 20.9% | 20.9% | 20.9% | 20.9% | 0.0% |\n\n- b* distribution is highly stable across seeds (CV < 2.5% for all statistics)\n- Median b* ≈ 0.88, close to grid-best b=0.5 but allowing batch-level adaptation\n- ~21% of batches get b* < 0.5 (strong downweighting), ~16% get b* > 2.0\n\n---\n\n## Source Experiment IDs\n\n| Experiment ID | Status | conclusion |\n|------------------------|---------|-----------|\n| grid_b_seed42_batch | DONE | success |\n| grid_b0_5_seed123 | DONE | success |\n| grid_b1_0_seed123 | DONE | success |\n| grid_b1_5_seed123 | DONE | success |\n| grid_b2_0_seed123 | DONE | success |\n| grid_b3_0_seed123 | DONE | success |\n| grid_b5_0_seed123 | DONE | success |\n| grid_b0_5_seed456 | DONE | success |\n| grid_b1_0_seed456 | DONE | success |\n| grid_b1_5_seed456 | DONE | success |\n| grid_b2_0_seed456 | RUNNING | — |\n| grid_b3_0_seed456 | RUNNING | — |\n| grid_b5_0_seed456 | RUNNING | — |\n| uniform_seed42 | DONE | success |\n| uniform_seed123 | DONE | success |\n| uniform_seed456 | DONE | success |\n| adaptive_fix_seed42 | DONE | success |\n| adaptive_fix_seed123 | DONE | success |\n| adaptive_fix_seed456 | DONE | success |\n",
+                "numLines": 95,
+                "startLine": 1,
+                "totalLines": 95
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to update the experiment_summary.md with:\n\n1. Fill in the seed456 values for b=2.0/3.0/5.0 with the † annotation\n2. Add footnote about checkpoint resume artifact\n3. Adjust Mean/Std for b=2.0/3.0/5.0 to use only seed42+seed123\n4. Add a \"Table 1 (Paper)\" view\n5. Keep all raw data intact\n6. Update experiment status for the three seed456 runs\n\nLet me compute the statistics:\n\nb=0.5: mean = (17.651+17.638+17.650)/3 = 52.939/3 = 17.6463, std = sqrt(((17.651-17.6463)^2 + (17.638-17.6463)^2 + (17.650-17.6463)^2)/2) \n\n\nCalculating the deviations and variance to get std = 0.007 ✓\n\nb=1.0: mean = (17.692+17.674+17.680)/3 = 53.046/3 = 17.682, std already 0.009 ✓\n\nb=1.5: mean = (17.718+17.701+17.710)/3 = 53.129/3 = 17.7097, std already 0.009 ✓\n\nNow checking the cases with only two seeds. For b=2.0, I'm getting a mean of 17.733 with a standard deviation around 0.011. For b=3.0, the mean comes out to 17.767.\n\nFor b=3.0 and b=5.0, both yield a standard deviation of approximately 0.010, which matches what was already in the document since these were computed from the same two seeds. I just need to add the seed456 values with proper annotations.\n\nNow I'm organizing the output into two tables—one showing the complete record with all the † markers, and another cleaned-up version for the paper itself. I'll also need to update the experiment IDs to mark those three as complete and add the corresponding footnote.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "a7304cb1-1ec0-42c3-812e-3137a760e42b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hf7G7x1KktQmTzGsPg8CRD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 23508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2005
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the updated file with all the required changes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "4fdf920b-e064-4baf-b638-2113d4ff9cbd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hf7G7x1KktQmTzGsPg8CRD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 23508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2005
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dr7kWs15qvXeeSpXG2xwxm",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_summary.md",
+                "content": "# Experiment Summary: Provenance Weight Training\n\nAll data sourced from project registry (`provenance_weight_training`). Generated 2026-05-15.\n\n**Setup**: Qwen3-0.6B, 200M tokens, 371K samples (40% synthetic contamination), eval on held-out human data (4.08M tokens).\n\n---\n\n## Table 1: Grid-b Sweep — Full Record (eval_ppl_holdout)\n\n| b | seed42 | seed123 | seed456 | Mean | Std | Seeds |\n|-----|--------|---------|---------|-------|-------|-------|\n| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 | 3 |\n| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 | 3 |\n| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 | 3 |\n| 2.0 | 17.741 | 17.725 | 17.989† | 17.733 | 0.011 | 2* |\n| 3.0 | 17.774 | 17.760 | 17.921† | 17.767 | 0.010 | 2* |\n| 5.0 | 17.818 | 17.804 | 17.993† | 17.811 | 0.010 | 2* |\n\n†checkpoint resume artifact: seed456 b={2.0, 3.0, 5.0} were resumed from fp32 checkpoints with --bf16 mixed precision enabled, causing inflated PPL (+0.16 to +0.25 vs other seeds). These values are excluded from Mean/Std computation.\n\n\\*Mean/Std computed from seed42 + seed123 only.\n\n- Best b = 0.5 across all seeds (monotonically increasing PPL with b)\n\n---\n\n## Table 1a: Grid-b Sweep — Paper View (eval_ppl_holdout)\n\n| b | Mean | Std | Seeds |\n|-----|-------|-------|-------|\n| 0.5 | 17.646 | 0.007 | 3 |\n| 1.0 | 17.682 | 0.009 | 3 |\n| 1.5 | 17.710 | 0.009 | 3 |\n| 2.0 | 17.733 | 0.011 | 2 |\n| 3.0 | 17.767 | 0.010 | 2 |\n| 5.0 | 17.811 | 0.010 | 2 |\n\nFor paper Table 1: b=0.5/1.0/1.5 report 3-seed mean+/-std; b=2.0/3.0/5.0 report 2-seed mean+/-std (seed42+seed123).\n\n---\n\n## Table 2: Method Comparison (eval_ppl_holdout)\n\n| Method | seed42 | seed123 | seed456 | Mean | Std |\n|------------------|--------|---------|---------|-------|-------|\n| Uniform | 17.690 | 17.690 | 17.700 | 17.693 | 0.006 |\n| Grid-best (b=0.5)| 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n| Adaptive_fix | 17.650 | 17.643 | 17.660 | 17.651 | 0.009 |\n\n- Both grid-best and adaptive_fix improve over uniform baseline\n- Adaptive_fix is within 0.005 PPL of grid-best without requiring grid search\n\n---\n\n## Table 3: Improvement Analysis\n\n| Metric | seed42 | seed123 | seed456 | Mean |\n|-------------------------------|---------|---------|---------|---------|\n| Uniform PPL | 17.690 | 17.690 | 17.700 | 17.693 |\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 | 17.651 |\n| Grid-best PPL | 17.651 | 17.638 | 17.650 | 17.646 |\n| Δ(adaptive_fix vs uniform) | 0.0400 | 0.0470 | 0.0400 | 0.0423 |\n| Δ(grid-best vs uniform) | 0.0390 | 0.0520 | 0.0500 | 0.0470 |\n| Ratio (Δ_adaptive/Δ_grid %) | 102.6% | 90.4% | 80.0% | 91.0% |\n\n- Adaptive_fix recovers 91.0% of grid-best improvement on average (no grid search needed)\n- seed42: adaptive_fix slightly outperforms grid-best (ratio > 100%)\n- seed123/456: grid-best has edge, but adaptive_fix is within 0.01 PPL\n\n---\n\n## Table 4: b* Distribution Statistics (from adaptive_fix)\n\n| Statistic | seed42 | seed123 | seed456 | Mean | CV |\n|---------------|--------|---------|---------|-------|------|\n| b* Mean | 1.399 | 1.431 | 1.416 | 1.415 | 1.1% |\n| b* Median | 0.871 | 0.880 | 0.880 | 0.877 | 0.6% |\n| b* Std | 1.933 | 2.029 | 1.993 | 1.985 | 2.4% |\n| b* P25 | 0.540 | 0.540 | 0.540 | 0.540 | 0.0% |\n| b* P75 | 1.512 | 1.520 | 1.520 | 1.517 | 0.3% |\n| % below 0.5 | 20.9% | 20.9% | 20.9% | 20.9% | 0.0% |\n\n- b* distribution is highly stable across seeds (CV < 2.5% for all statistics)\n- Median b* ≈ 0.88, close to grid-best b=0.5 but allowing batch-level adaptation\n- ~21% of batches get b* < 0.5 (strong downweighting), ~16% get b* > 2.0\n\n---\n\n## Source Experiment IDs\n\n| Experiment ID | Status | Conclusion |\n|------------------------|---------|-----------|\n| grid_b_seed42_batch | DONE | success |\n| grid_b0_5_seed123 | DONE | success |\n| grid_b1_0_seed123 | DONE | success |\n| grid_b1_5_seed123 | DONE | success |\n| grid_b2_0_seed123 | DONE | success |\n| grid_b3_0_seed123 | DONE | success |\n| grid_b5_0_seed123 | DONE | success |\n| grid_b0_5_seed456 | DONE | success |\n| grid_b1_0_seed456 | DONE | success |\n| grid_b1_5_seed456 | DONE | success |\n| grid_b2_0_seed456 | DONE | checkpoint resume artifact† |\n| grid_b3_0_seed456 | DONE | checkpoint resume artifact† |\n| grid_b5_0_seed456 | DONE | checkpoint resume artifact† |\n| uniform_seed42 | DONE | success |\n| uniform_seed123 | DONE | success |\n| uniform_seed456 | DONE | success |\n| adaptive_fix_seed42 | DONE | success |\n| adaptive_fix_seed123 | DONE | success |\n| adaptive_fix_seed456 | DONE | success |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "9506e283-59d9-43ba-94fe-9dfb39eace53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hf7G7x1KktQmTzGsPg8CRD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 23508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2005
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T10:03:49.498Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dr7kWs15qvXeeSpXG2xwxm",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_summary.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "7afecb96-bf88-479a-8f13-2a372afb1446",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_summary.md",
+              "content": "# Experiment Summary: Provenance Weight Training\n\nAll data sourced from project registry (`provenance_weight_training`). Generated 2026-05-15.\n\n**Setup**: Qwen3-0.6B, 200M tokens, 371K samples (40% synthetic contamination), eval on held-out human data (4.08M tokens).\n\n---\n\n## Table 1: Grid-b Sweep — Full Record (eval_ppl_holdout)\n\n| b | seed42 | seed123 | seed456 | Mean | Std | Seeds |\n|-----|--------|---------|---------|-------|-------|-------|\n| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 | 3 |\n| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 | 3 |\n| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 | 3 |\n| 2.0 | 17.741 | 17.725 | 17.989† | 17.733 | 0.011 | 2* |\n| 3.0 | 17.774 | 17.760 | 17.921† | 17.767 | 0.010 | 2* |\n| 5.0 | 17.818 | 17.804 | 17.993† | 17.811 | 0.010 | 2* |\n\n†checkpoint resume artifact: seed456 b={2.0, 3.0, 5.0} were resumed from fp32 checkpoints with --bf16 mixed precision enabled, causing inflated PPL (+0.16 to +0.25 vs other seeds). These values are excluded from Mean/Std computation.\n\n\\*Mean/Std computed from seed42 + seed123 only.\n\n- Best b = 0.5 across all seeds (monotonically increasing PPL with b)\n\n---\n\n## Table 1a: Grid-b Sweep — Paper View (eval_ppl_holdout)\n\n| b | Mean | Std | Seeds |\n|-----|-------|-------|-------|\n| 0.5 | 17.646 | 0.007 | 3 |\n| 1.0 | 17.682 | 0.009 | 3 |\n| 1.5 | 17.710 | 0.009 | 3 |\n| 2.0 | 17.733 | 0.011 | 2 |\n| 3.0 | 17.767 | 0.010 | 2 |\n| 5.0 | 17.811 | 0.010 | 2 |\n\nFor paper Table 1: b=0.5/1.0/1.5 report 3-seed mean+/-std; b=2.0/3.0/5.0 report 2-seed mean+/-std (seed42+seed123).\n\n---\n\n## Table 2: Method Comparison (eval_ppl_holdout)\n\n| Method | seed42 | seed123 | seed456 | Mean | Std |\n|------------------|--------|---------|---------|-------|-------|\n| Uniform | 17.690 | 17.690 | 17.700 | 17.693 | 0.006 |\n| Grid-best (b=0.5)| 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n| Adaptive_fix | 17.650 | 17.643 | 17.660 | 17.651 | 0.009 |\n\n- Both grid-best and adaptive_fix improve over uniform baseline\n- Adaptive_fix is within 0.005 PPL of grid-best without requiring grid search\n\n---\n\n## Table 3: Improvement Analysis\n\n| Metric | seed42 | seed123 | seed456 | Mean |\n|-------------------------------|---------|---------|---------|---------|\n| Uniform PPL | 17.690 | 17.690 | 17.700 | 17.693 |\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 | 17.651 |\n| Grid-best PPL | 17.651 | 17.638 | 17.650 | 17.646 |\n| Δ(adaptive_fix vs uniform) | 0.0400 | 0.0470 | 0.0400 | 0.0423 |\n| Δ(grid-best vs uniform) | 0.0390 | 0.0520 | 0.0500 | 0.0470 |\n| Ratio (Δ_adaptive/Δ_grid %) | 102.6% | 90.4% | 80.0% | 91.0% |\n\n- Adaptive_fix recovers 91.0% of grid-best improvement on average (no grid search needed)\n- seed42: adaptive_fix slightly outperforms grid-best (ratio > 100%)\n- seed123/456: grid-best has edge, but adaptive_fix is within 0.01 PPL\n\n---\n\n## Table 4: b* Distribution Statistics (from adaptive_fix)\n\n| Statistic | seed42 | seed123 | seed456 | Mean | CV |\n|---------------|--------|---------|---------|-------|------|\n| b* Mean | 1.399 | 1.431 | 1.416 | 1.415 | 1.1% |\n| b* Median | 0.871 | 0.880 | 0.880 | 0.877 | 0.6% |\n| b* Std | 1.933 | 2.029 | 1.993 | 1.985 | 2.4% |\n| b* P25 | 0.540 | 0.540 | 0.540 | 0.540 | 0.0% |\n| b* P75 | 1.512 | 1.520 | 1.520 | 1.517 | 0.3% |\n| % below 0.5 | 20.9% | 20.9% | 20.9% | 20.9% | 0.0% |\n\n- b* distribution is highly stable across seeds (CV < 2.5% for all statistics)\n- Median b* ≈ 0.88, close to grid-best b=0.5 but allowing batch-level adaptation\n- ~21% of batches get b* < 0.5 (strong downweighting), ~16% get b* > 2.0\n\n---\n\n## Source Experiment IDs\n\n| Experiment ID | Status | Conclusion |\n|------------------------|---------|-----------|\n| grid_b_seed42_batch | DONE | success |\n| grid_b0_5_seed123 | DONE | success |\n| grid_b1_0_seed123 | DONE | success |\n| grid_b1_5_seed123 | DONE | success |\n| grid_b2_0_seed123 | DONE | success |\n| grid_b3_0_seed123 | DONE | success |\n| grid_b5_0_seed123 | DONE | success |\n| grid_b0_5_seed456 | DONE | success |\n| grid_b1_0_seed456 | DONE | success |\n| grid_b1_5_seed456 | DONE | success |\n| grid_b2_0_seed456 | DONE | checkpoint resume artifact† |\n| grid_b3_0_seed456 | DONE | checkpoint resume artifact† |\n| grid_b5_0_seed456 | DONE | checkpoint resume artifact† |\n| uniform_seed42 | DONE | success |\n| uniform_seed123 | DONE | success |\n| uniform_seed456 | DONE | success |\n| adaptive_fix_seed42 | DONE | success |\n| adaptive_fix_seed123 | DONE | success |\n| adaptive_fix_seed456 | DONE | success |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 6,
+                  "oldLines": 22,
+                  "newStart": 6,
+                  "newLines": 40,
+                  "lines": [
+                    " ",
+                    " ---",
+                    " ",
+                    "-## Table 1: Grid-b Sweep (eval_ppl_holdout)",
+                    "+## Table 1: Grid-b Sweep — Full Record (eval_ppl_holdout)",
+                    " ",
+                    "-| b | seed42 | seed123 | seed456 | Mean | Std |",
+                    "-|-----|--------|---------|---------|-------|-------|",
+                    "-| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |",
+                    "-| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 |",
+                    "-| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 |",
+                    "-| 2.0 | 17.741 | 17.725 | *RUNNING* | 17.733 | 0.011 |",
+                    "-| 3.0 | 17.774 | 17.760 | *RUNNING* | 17.767 | 0.010 |",
+                    "-| 5.0 | 17.818 | 17.804 | *RUNNING* | 17.811 | 0.010 |",
+                    "+| b | seed42 | seed123 | seed456 | Mean | Std | Seeds |",
+                    "+|-----|--------|---------|---------|-------|-------|-------|",
+                    "+| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 | 3 |",
+                    "+| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 | 3 |",
+                    "+| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 | 3 |",
+                    "+| 2.0 | 17.741 | 17.725 | 17.989† | 17.733 | 0.011 | 2* |",
+                    "+| 3.0 | 17.774 | 17.760 | 17.921† | 17.767 | 0.010 | 2* |",
+                    "+| 5.0 | 17.818 | 17.804 | 17.993† | 17.811 | 0.010 | 2* |",
+                    " ",
+                    "+†checkpoint resume artifact: seed456 b={2.0, 3.0, 5.0} were resumed from fp32 checkpoints with --bf16 mixed precision enabled, causing inflated PPL (+0.16 to +0.25 vs other seeds). These values are excluded from Mean/Std computation.",
+                    "+",
+                    "+\\*Mean/Std computed from seed42 + seed123 only.",
+                    "+",
+                    " - Best b = 0.5 across all seeds (monotonically increasing PPL with b)",
+                    "-- seed456 b={2.0, 3.0, 5.0} still running; Mean/Std for those rows computed from 2 seeds only",
+                    " ",
+                    " ---",
+                    " ",
+                    "+## Table 1a: Grid-b Sweep — Paper View (eval_ppl_holdout)",
+                    "+",
+                    "+| b | Mean | Std | Seeds |",
+                    "+|-----|-------|-------|-------|",
+                    "+| 0.5 | 17.646 | 0.007 | 3 |",
+                    "+| 1.0 | 17.682 | 0.009 | 3 |",
+                    "+| 1.5 | 17.710 | 0.009 | 3 |",
+                    "+| 2.0 | 17.733 | 0.011 | 2 |",
+                    "+| 3.0 | 17.767 | 0.010 | 2 |",
+                    "+| 5.0 | 17.811 | 0.010 | 2 |",
+                    "+",
+                    "+For paper Table 1: b=0.5/1.0/1.5 report 3-seed mean+/-std; b=2.0/3.0/5.0 report 2-seed mean+/-std (seed42+seed123).",
+                    "+",
+                    "+---",
+                    "+",
+                    " ## Table 2: Method Comparison (eval_ppl_holdout)",
+                    " ",
+                    " | Method | seed42 | seed123 | seed456 | Mean | Std |"
+                  ]
+                },
+                {
+                  "oldStart": 71,
+                  "oldLines": 7,
+                  "newStart": 89,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ## Source Experiment IDs",
+                    " ",
+                    "-| Experiment ID | Status | conclusion |",
+                    "+| Experiment ID | Status | Conclusion |",
+                    " |------------------------|---------|-----------|",
+                    " | grid_b_seed42_batch | DONE | success |",
+                    " | grid_b0_5_seed123 | DONE | success |"
+                  ]
+                },
+                {
+                  "oldStart": 83,
+                  "oldLines": 9,
+                  "newStart": 101,
+                  "newLines": 9,
+                  "lines": [
+                    " | grid_b0_5_seed456 | DONE | success |",
+                    " | grid_b1_0_seed456 | DONE | success |",
+                    " | grid_b1_5_seed456 | DONE | success |",
+                    "-| grid_b2_0_seed456 | RUNNING | — |",
+                    "-| grid_b3_0_seed456 | RUNNING | — |",
+                    "-| grid_b5_0_seed456 | RUNNING | — |",
+                    "+| grid_b2_0_seed456 | DONE | checkpoint resume artifact† |",
+                    "+| grid_b3_0_seed456 | DONE | checkpoint resume artifact† |",
+                    "+| grid_b5_0_seed456 | DONE | checkpoint resume artifact† |",
+                    " | uniform_seed42 | DONE | success |",
+                    " | uniform_seed123 | DONE | success |",
+                    " | uniform_seed456 | DONE | success |"
+                  ]
+                }
+              ],
+              "originalFile": "# Experiment Summary: Provenance Weight Training\n\nAll data sourced from project registry (`provenance_weight_training`). Generated 2026-05-15.\n\n**Setup**: Qwen3-0.6B, 200M tokens, 371K samples (40% synthetic contamination), eval on held-out human data (4.08M tokens).\n\n---\n\n## Table 1: Grid-b Sweep (eval_ppl_holdout)\n\n| b | seed42 | seed123 | seed456 | Mean | Std |\n|-----|--------|---------|---------|-------|-------|\n| 0.5 | 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n| 1.0 | 17.692 | 17.674 | 17.680 | 17.682 | 0.009 |\n| 1.5 | 17.718 | 17.701 | 17.710 | 17.710 | 0.009 |\n| 2.0 | 17.741 | 17.725 | *RUNNING* | 17.733 | 0.011 |\n| 3.0 | 17.774 | 17.760 | *RUNNING* | 17.767 | 0.010 |\n| 5.0 | 17.818 | 17.804 | *RUNNING* | 17.811 | 0.010 |\n\n- Best b = 0.5 across all seeds (monotonically increasing PPL with b)\n- seed456 b={2.0, 3.0, 5.0} still running; Mean/Std for those rows computed from 2 seeds only\n\n---\n\n## Table 2: Method Comparison (eval_ppl_holdout)\n\n| Method | seed42 | seed123 | seed456 | Mean | Std |\n|------------------|--------|---------|---------|-------|-------|\n| Uniform | 17.690 | 17.690 | 17.700 | 17.693 | 0.006 |\n| Grid-best (b=0.5)| 17.651 | 17.638 | 17.650 | 17.646 | 0.007 |\n| Adaptive_fix | 17.650 | 17.643 | 17.660 | 17.651 | 0.009 |\n\n- Both grid-best and adaptive_fix improve over uniform baseline\n- Adaptive_fix is within 0.005 PPL of grid-best without requiring grid search\n\n---\n\n## Table 3: Improvement Analysis\n\n| Metric | seed42 | seed123 | seed456 | Mean |\n|-------------------------------|---------|---------|---------|---------|\n| Uniform PPL | 17.690 | 17.690 | 17.700 | 17.693 |\n| Adaptive_fix PPL | 17.650 | 17.643 | 17.660 | 17.651 |\n| Grid-best PPL | 17.651 | 17.638 | 17.650 | 17.646 |\n| Δ(adaptive_fix vs uniform) | 0.0400 | 0.0470 | 0.0400 | 0.0423 |\n| Δ(grid-best vs uniform) | 0.0390 | 0.0520 | 0.0500 | 0.0470 |\n| Ratio (Δ_adaptive/Δ_grid %) | 102.6% | 90.4% | 80.0% | 91.0% |\n\n- Adaptive_fix recovers 91.0% of grid-best improvement on average (no grid search needed)\n- seed42: adaptive_fix slightly outperforms grid-best (ratio > 100%)\n- seed123/456: grid-best has edge, but adaptive_fix is within 0.01 PPL\n\n---\n\n## Table 4: b* Distribution Statistics (from adaptive_fix)\n\n| Statistic | seed42 | seed123 | seed456 | Mean | CV |\n|---------------|--------|---------|---------|-------|------|\n| b* Mean | 1.399 | 1.431 | 1.416 | 1.415 | 1.1% |\n| b* Median | 0.871 | 0.880 | 0.880 | 0.877 | 0.6% |\n| b* Std | 1.933 | 2.029 | 1.993 | 1.985 | 2.4% |\n| b* P25 | 0.540 | 0.540 | 0.540 | 0.540 | 0.0% |\n| b* P75 | 1.512 | 1.520 | 1.520 | 1.517 | 0.3% |\n| % below 0.5 | 20.9% | 20.9% | 20.9% | 20.9% | 0.0% |\n\n- b* distribution is highly stable across seeds (CV < 2.5% for all statistics)\n- Median b* ≈ 0.88, close to grid-best b=0.5 but allowing batch-level adaptation\n- ~21% of batches get b* < 0.5 (strong downweighting), ~16% get b* > 2.0\n\n---\n\n## Source Experiment IDs\n\n| Experiment ID | Status | conclusion |\n|------------------------|---------|-----------|\n| grid_b_seed42_batch | DONE | success |\n| grid_b0_5_seed123 | DONE | success |\n| grid_b1_0_seed123 | DONE | success |\n| grid_b1_5_seed123 | DONE | success |\n| grid_b2_0_seed123 | DONE | success |\n| grid_b3_0_seed123 | DONE | success |\n| grid_b5_0_seed123 | DONE | success |\n| grid_b0_5_seed456 | DONE | success |\n| grid_b1_0_seed456 | DONE | success |\n| grid_b1_5_seed456 | DONE | success |\n| grid_b2_0_seed456 | RUNNING | — |\n| grid_b3_0_seed456 | RUNNING | — |\n| grid_b5_0_seed456 | RUNNING | — |\n| uniform_seed42 | DONE | success |\n| uniform_seed123 | DONE | success |\n| uniform_seed456 | DONE | success |\n| adaptive_fix_seed42 | DONE | success |\n| adaptive_fix_seed123 | DONE | success |\n| adaptive_fix_seed456 | DONE | success |\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。主要变更：\n\n- **Table 1** 重命名为 \"Full Record\"，填入 seed456 b=2.0/3.0/5.0 的 PPL 值并标注 †，添加 Seeds 列，Mean/Std 仅用 seed42+seed123 计算（与之前一致），脚注说明 fp32→bf16 偏差\n- **Table 1a** 新增 \"Paper View\"，只展示用于论文的 mean±std 和 seed 数\n- **Source Experiment IDs** 三个 seed456 实验状态改为 DONE，conclusion 标注 checkpoint resume artifact\n- Table 2/3/4 不受影响，保持不变"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "uuid": "c6f185be-e7f1-46d1-8b69-3a295e8d5b34",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y2SNqkRQw7rdFTLHHrdkaa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3137,
+                "cache_read_input_tokens": 25513,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3137
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。主要变更：\n\n- **Table 1** 重命名为 \"Full Record\"，填入 seed456 b=2.0/3.0/5.0 的 PPL 值并标注 †，添加 Seeds 列，Mean/Std 仅用 seed42+seed123 计算（与之前一致），脚注说明 fp32→bf16 偏差\n- **Table 1a** 新增 \"Paper View\"，只展示用于论文的 mean±std 和 seed 数\n- **Source Experiment IDs** 三个 seed456 实验状态改为 DONE，conclusion 标注 checkpoint resume artifact\n- Table 2/3/4 不受影响，保持不变"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 44579,
+            "duration_api_ms": 45440,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "85878089-a8b7-4d55-8888-d6525ec12fb7",
+            "total_cost_usd": 0.22399775,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 17203,
+              "cache_read_input_tokens": 60468,
+              "output_tokens": 3385,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17203,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 197,
+                  "cache_read_input_tokens": 25513,
+                  "cache_creation_input_tokens": 3137,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3137
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1520,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001595,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 3385,
+                "cacheReadInputTokens": 60468,
+                "cacheCreationInputTokens": 17203,
+                "webSearchRequests": 0,
+                "costUSD": 0.22240274999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6a2fde95-0832-4f5a-ae22-83480400b4d7"
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-update-experiment-summary-bf16.md"
+}

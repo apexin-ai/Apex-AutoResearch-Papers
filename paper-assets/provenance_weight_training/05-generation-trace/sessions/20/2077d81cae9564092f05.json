@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2077d81cae9564092f05",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh progress check 41312",
+  "task_key": "worker_ssh_progress_check_41312_20260517T205057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress_check_41312_20260517T205057_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "cd5a9660060f68235c6c3bc02b5ec9a72bdeaa1e8a4113abe30dabc85efc1c7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "综合分析。计算速度和 ETA。\n\n关键发现：所有 4 个 checkpoint 间的训练速度一致为 **2.11 s/step**。step_metrics 文件存在 ~38-57 min 的写入延迟（OS buffer 未 flush），实际进度比文件记录更前。\n\n| 实验 | 估算当前 step/total | 最近 loss | 速度 | eval_data_path | 预估完成 (UTC) |\n|------|---------------------|-----------|------|----------------|----------------|\n| qwen06b_uniform_seed42 (GPU0) | ~5565/6103 | 1.93 | 2.11 s/step | **无** | **~21:12 UTC May 17** |\n| ess_only_seed456 (GPU1) | ~3000/6103 (eval中) | 2.88 | 2.11 s/step + 44min/eval | 有 | **~03:17 UTC May 18** |\n| ess_only_seed123 (GPU2) | ~3000/6103 (eval中) | 2.46 | 2.11 s/step + 44min/eval | 有 | **~03:13 UTC May 18** |\n| random_reweight_seed456 (GPU3) | ~1870/6103 | 0.95 | 2.11 s/step + 44min/eval | 有 | **~06:00 UTC May 18** |\n\n**状态详情：**\n- 全部 4 进程存活，GPU 利用率 93-100%，温度 62-73°C\n- GPU 显存：GPU0 (uniform) 46GB/98GB；GPU1-3 均 75GB/98GB（额外显存用于 eval 数据）\n- uniform 实验 **没有** `--eval_data_path`，只做训练，最先完成（约 19 分钟后）\n- ess_only 两个实验当前均在执行 step 3000 的 eval（每次 eval ~44 min）\n- random 实验刚完成 step 1500 的 eval，已恢复训练\n- 每 500 步触发一次 eval + save（有 eval_data_path 的实验）\n\n**注意：** uniform 实验用了 `--max_steps 6103` 而非 `--num_train_tokens`，且无 eval，所以显存占用低且速度稳定无中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-check-41312.md"
+}

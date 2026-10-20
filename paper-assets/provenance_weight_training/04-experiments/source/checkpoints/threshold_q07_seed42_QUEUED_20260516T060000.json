@@ -1,0 +1,15 @@
+{
+  "exp_id": "threshold_q07_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:34:35.477Z",
+    "updated_at": "2026-05-16T06:00:00.824Z",
+    "hypothesis": "Hard-filter threshold sensitivity: remove q>0.7 samples (least aggressive, keeps most data+contamination), train uniformly. If PPL varies >0.1 across q=0.3/0.5/0.7 thresholds, proves filtering needs precise calibration while adaptive is threshold-free."
+  },
+  "timestamp": "2026-05-16T06:00:00.983764+00:00",
+  "trigger": "update_registry"
+}

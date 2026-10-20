@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b70fb0541cf1d669034",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh contamination 60 seed123 30476",
+  "task_key": "worker_ssh_contamination_60_seed123_30476_20260517T230418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_contamination_60_seed123_30476_20260517T230418_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "ee6cd16d5c59d6a891fe391999234612082476ea9b87c364c6cd89bf0e7d7056"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动，运行正常。\n\n## 汇总\n\n| 项目 | 结果 |\n|------|------|\n| GPU 2 状态 | 占用 37011MiB / 97887MiB, 99% 利用率 |\n| PID | 63158 (python), tmux wrapper 63153 |\n| 数据 | 371499 examples loaded |\n| 总步数 | 6103 steps (200M tokens) |\n| 当前进度 | step 1/6103, ~3.1s/it → 预计约 5.25 小时完成 |\n| 日志 | `~/runs/provenance_weight_training/contamination_60_seed123.log` |\n| tmux session | `contamination_60_seed123` |\n\n**注意**: 去掉了 `--dataloader_num_workers 0`，因为脚本不支持该参数（脚本内部未使用显式 DataLoader，依赖框架默认行为 num_workers=0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-contamination-60-seed123-30476.md"
+}

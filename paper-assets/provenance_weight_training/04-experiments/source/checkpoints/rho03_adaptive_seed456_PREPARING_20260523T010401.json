@@ -1,0 +1,23 @@
+{
+  "exp_id": "rho03_adaptive_seed456",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T01:04:00.701Z",
+    "updated_at": "2026-05-23T01:04:00.701Z",
+    "spec": {
+      "hypothesis": "Third seed (456) for ρ=0.3 boundary check. With seed42 Δ=0.000 and seed123 Δ=+0.002 on holdout, seed456 should confirm ρ=0.3 as neutral transition zone (Δ ≈ 0), enabling paired t-test (N=3) to formally establish non-significance at the boundary.",
+      "parent": "rho03_adaptive_seed42",
+      "model_name": "Qwen3-0.6B",
+      "data_path": "data/scored_data_rho03.jsonl",
+      "data_count": 235555,
+      "seed": 456,
+      "server": "westd-41312"
+    }
+  },
+  "timestamp": "2026-05-23T01:04:01.153255+00:00",
+  "trigger": "update_registry"
+}

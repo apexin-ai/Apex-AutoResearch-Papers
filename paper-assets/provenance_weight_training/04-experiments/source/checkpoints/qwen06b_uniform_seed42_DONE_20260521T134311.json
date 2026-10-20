@@ -1,0 +1,67 @@
+{
+  "exp_id": "qwen06b_uniform_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:59:14.580Z",
+    "updated_at": "2026-05-21T13:43:11.396Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/provenance_weight_training && bash scripts/run_uniform_seed42_v2.sh\"",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "125995",
+      "log_path": "/root/runs/provenance_weight_training/qwen06b_uniform_seed42.log",
+      "submitted_at": "2026-05-17T18:17:17.865Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 50000,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "weighting_method": "uniform",
+      "checkpoint_path": "/root/autodl-tmp/provenance_weight_training/output/models/qwen06b_uniform_seed42_v2/final",
+      "wall_clock_seconds": 14806.2,
+      "gpu_hours": 4.11
+    },
+    "hypothesis": "Uniform baseline retrain (seed42) without inline eval overhead — provides clean PPL baseline for Claim 1/2 comparison and enables lm-eval downstream evaluation on same checkpoint",
+    "reproduce": {
+      "finished_at": "2026-05-17T21:52:18.403Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T21:52:22.072131+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_ppl_holdout": 17.69,
+      "eval_loss_holdout": 2.8733,
+      "eval_holdout_tokens": 4077068,
+      "train_loss": 1.9882,
+      "note": "v2 run on westd-41312 (no inline eval)",
+      "downstream_arc_easy_acc_norm": 0.6128,
+      "downstream_arc_challenge_acc_norm": 0.3481,
+      "downstream_hellaswag_acc_norm": 0.4836,
+      "downstream_piqa_acc_norm": 0.6877,
+      "downstream_winogrande_acc": 0.5856,
+      "downstream_eval_method": "lm_eval 0.4.11, 0-shot, float16, batch_size=auto",
+      "eval_ppl_openwebtext": 18.365,
+      "eval_ppl_wikipedia": 15.335
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T22:24:04.055Z",
+    "eval_ppl_openwebtext": 18.37,
+    "eval_ppl_wikipedia": 15.34
+  },
+  "timestamp": "2026-05-21T13:43:11.775399+00:00",
+  "trigger": "update_registry"
+}

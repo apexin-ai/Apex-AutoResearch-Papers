@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "039d3f6186b50ffa1806",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit 30476 remaining 3exp",
+  "task_key": "worker_submit_30476_remaining_3exp_20260517T134159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_30476_remaining_3exp_20260517T134159_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "75fcf0e43964d6cf17621a57dcbbc761b2d26ba4f635636adedd5435c77ff93c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。4 个实验均在运行：\n\n| exp_id | GPU | PID | 显存 |\n|---|---|---|---|\n| random_reweight_seed123_r5 | cuda:0 | 20073 | 46505 MiB, 99% |\n| bs8_auto_nmin_r5 | cuda:1 | 22466 | 81687 MiB, 100% |\n| batch_adaptive_tau_rho06_r5 | cuda:2 | 22904 | 1825 MiB (加载中) |\n| rho02_adaptive_tau09_r5 | cuda:3 | 22095 | 46505 MiB, 94% |\n\n内存：93Gi / 1.0Ti used (898Gi available)，充裕。cuda:2 刚启动还在加载模型，其余 3 卡已进入训练。4 个 tmux session 全部确认存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-30476-remaining-3exp.md"
+}

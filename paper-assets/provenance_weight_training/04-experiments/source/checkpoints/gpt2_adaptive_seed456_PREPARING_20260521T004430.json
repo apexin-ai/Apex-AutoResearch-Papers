@@ -1,0 +1,14 @@
+{
+  "exp_id": "gpt2_adaptive_seed456",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:44:29.948Z",
+    "updated_at": "2026-05-21T00:44:29.948Z"
+  },
+  "timestamp": "2026-05-21T00:44:30.401294+00:00",
+  "trigger": "update_registry"
+}

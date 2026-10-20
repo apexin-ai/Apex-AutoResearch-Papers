@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c836ec327f8fa3c6099",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis tau sweep visualization",
+  "task_key": "worker_analysis_tau_sweep_visualization_20260515T184311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tau_sweep_visualization_20260515T184311_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "af7c05f941f7757e66baeb7231fbe25a43cc5c3066015ae5d0cd1a28409a9d3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件：**\n- `westd-47453:/root/provenance_weight_training/output/figures/tau_sensitivity.pdf` (37K)\n- `westd-47453:/root/provenance_weight_training/output/figures/tau_sensitivity.png` (273K)\n\n**图表内容：**\n- **(a) τ vs PPL** — 6 个 τ 点连线，τ=0.8 红色星号标注最优（PPL=17.6527），uniform baseline 灰色虚线（17.694），grid-best 灰色点线（17.651），[0.5, 0.8] 浅绿背景（safe），(0.8, 0.95] 浅红背景（degraded）\n- **(b) τ vs b\\* 分布** — 左轴蓝色实线 b\\* mean，右轴红色虚线 b\\* pct_above_2，标注 τ↑ 导致 b\\* 膨胀的趋势"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tau-sweep-visualization.md"
+}

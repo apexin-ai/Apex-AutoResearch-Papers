@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20ac9283a9dec943912f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis bstar trajectory",
+  "task_key": "worker_analysis_bstar-trajectory_20260516T142250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bstar-trajectory_20260516T142250_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "e2b868db8e5dd9cd766a5c9fdf8767e96cf489f17dbd588ccc2949620e136958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 artifact 已注册。任务完成。\n\n## 分析结论\n\n**Figure 1: b* 轨迹**\n- b* 均值 ≈ 1.40，标准差 ≈ 0.98\n- 训练前 1/4 均值 = 1.409，后 1/4 均值 = 1.367\n- **趋势：稳定** — 方法从训练一开始就完成了校准，b* 不随训练步数系统性递减或递增\n\n**Figure 2: α_eff binding rate**\n- 训练早期（step 0–2000）：α_eff binding rate 仅 ~10–12%，ESS 约束主导\n- step 2000 之后：α_eff binding rate 跳升至 ~37% 并稳定\n- 整体：α_eff binding 19.1%，ESS binding 29.5%，无约束激活 51.4%\n- **解读**：step 2000 左右模型学会了识别污��模式，更多 batch 触碰 α_eff 上界（0.8），但 ESS 约束仍是更常见的活跃约束\n\n**PDF 文件位置**（服务器 westd-47453）：\n- `/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/bstar_trajectory.pdf`\n- `/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42/alpha_eff_binding_rate.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bstar-trajectory.md"
+}

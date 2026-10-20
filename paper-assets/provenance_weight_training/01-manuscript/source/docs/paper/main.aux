@@ -1,0 +1,1276 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{drayson2025detection}
+\citation{cheng2025contamination}
+\citation{shumailov2024model,dohmatob2025strong}
+\citation{feng2025beyond}
+\citation{wang2026survive}
+\citation{kish1965survey,vehtari2024psis}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{shumailov2024model}
+\citation{alemohammad2024mad}
+\citation{dohmatob2025strong}
+\citation{cheng2025contamination}
+\citation{kazdan2025collapse}
+\citation{amin2025escaping}
+\citation{gunasekar2023textbooks,li2023textbooks2}
+\citation{mitchell2023detectgpt}
+\citation{hans2024binoculars}
+\citation{shi2024minkprob}
+\citation{wu2025survey}
+\citation{wenzek2020ccnet}
+\citation{xie2023doremi,xie2023dsir,grangier2025crisp,ye2025mixing}
+\citation{bengio2009curriculum,mindermann2022prioritized,sow2025dynamic,engstrom2024dsdm}
+\citation{abbas2023semdedup}
+\citation{albalak2024survey}
+\citation{naitsaada2025illusion}
+\citation{drayson2025detection}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Three effectiveness conditions for detect-and-reweight. \textbf  {(a)}~D\&R achieves the best raw perplexity (PPL); epoch-matched controls reveal that multi-epoch exposure on filtered data accounts for the bulk of the advantage (\S  \ref {sec:results}). \textbf  {(b)}~Only detectors with both high AUC \emph  {and} low ECE fall in the effective zone; comparable AUC with poor calibration degrades PPL below uniform. \textbf  {(c)}~Adaptive $b^*{\approx }0.9$ operates near the grid-search optimum, while ESS-only $b{\approx }3.5$ falls in the degradation zone.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{Three effectiveness conditions for detect-and-reweight. \textbf {(a)}~D\&R achieves the best raw perplexity (PPL); epoch-matched controls reveal that multi-epoch exposure on filtered data accounts for the bulk of the advantage (\S \ref {sec:results}). \textbf {(b)}~Only detectors with both high AUC \emph {and} low ECE fall in the effective zone; comparable AUC with poor calibration degrades PPL below uniform. \textbf {(c)}~Adaptive $\bstar {\approx }0.9$ operates near the grid-search optimum, while ESS-only $b{\approx }3.5$ falls in the degradation zone}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic Contamination and Model Collapse.}{2}{section*.2}\protected@file@percent }
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN@col{2}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@writefile{toc}{\contentsline {paragraph}{Detection, Filtering, and Data Reweighting.}{2}{section*.3}\protected@file@percent }
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\citation{cortes2010learning}
+\citation{fang2020rethinking}
+\citation{sow2025dynamic}
+\citation{ye2025mixing}
+\citation{he2025golden}
+\citation{wang2026survive}
+\citation{guo2017calibration}
+\citation{kish1965survey}
+\citation{cheng2025contamination}
+\citation{drayson2025detection}
+\citation{wang2026survive}
+\citation{kish1965survey}
+\@LN@col{1}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@writefile{toc}{\contentsline {paragraph}{Theoretical Foundations.}{3}{section*.4}\protected@file@percent }
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the detect-and-reweight pipeline. A TF-IDF + LR detector assigns contamination scores $q(x)$; a dual-constrained optimizer selects $b$ to satisfy quality-floor and effective-sample-size constraints; the resulting weights $w(x) = (1{-}q(x))^{b}$ are applied during training.}}{3}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:pipeline}{{2}{3}{Overview of the detect-and-reweight pipeline. A TF-IDF + LR detector assigns contamination scores $q(x)$; a dual-constrained optimizer selects $b$ to satisfy quality-floor and effective-sample-size constraints; the resulting weights $w(x) = (1{-}q(x))^{b}$ are applied during training}{figure.caption.5}{}}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@writefile{toc}{\contentsline {paragraph}{Quality floor.}{3}{section*.6}\protected@file@percent }
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@writefile{toc}{\contentsline {paragraph}{Stability ceiling.}{3}{section*.7}\protected@file@percent }
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@writefile{toc}{\contentsline {paragraph}{Adaptive $b^*$.}{3}{section*.8}\protected@file@percent }
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\newlabel{eq:bstar}{{1}{3}{Adaptive $\bstar $}{equation.1}{}}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\citation{penedo2024fineweb}
+\citation{gururangan2020dont}
+\citation{yang2025qwen3}
+\citation{drayson2025detection}
+\citation{drayson2025detection}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Dual-constraint $b^*$ selection for two representative batches ($B{=}4$, $\tau {=}0.7$, $n_{\min }{=}2$). \textbf  {(a)}~Quality constraint binds: $\alpha _{\mathrm  {eff}}(b)$ reaches $\tau $ before $\mathrm  {ESS}(b)$ drops below $n_{\min }$, so $b^*= b_{\tau }$. \textbf  {(b)}~Stability constraint binds: $\mathrm  {ESS}(b)$ hits the floor first, so $b^*= b_{\mathrm  {ESS}}$. Green: feasible interval; red: over-sharpening.}}{4}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:dual_constraint}{{3}{4}{Dual-constraint $\bstar $ selection for two representative batches ($B{=}4$, $\tau {=}0.7$, $\nmin {=}2$). \textbf {(a)}~Quality constraint binds: $\aeff (b)$ reaches $\tau $ before $\mathrm {ESS}(b)$ drops below $\nmin $, so $\bstar = \btau $. \textbf {(b)}~Stability constraint binds: $\mathrm {ESS}(b)$ hits the floor first, so $\bstar = \bess $. Green: feasible interval; red: over-sharpening}{figure.caption.9}{}}
+\@LN@col{1}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training Data.}{4}{section*.10}\protected@file@percent }
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@writefile{toc}{\contentsline {paragraph}{Detector.}{4}{section*.11}\protected@file@percent }
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Training configuration for continued pretraining.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:config}{{1}{4}{Training configuration for continued pretraining}{table.caption.13}{}}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@writefile{toc}{\contentsline {paragraph}{Training.}{4}{section*.12}\protected@file@percent }
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.14}\protected@file@percent }
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@writefile{toc}{\contentsline {paragraph}{Methods.}{4}{section*.15}\protected@file@percent }
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\citation{he2025golden}
+\citation{drayson2025detection}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Main comparison: held-out PPL ($\downarrow $) at $\rho {=}0.4$, 1 content epoch. Adaptive and Uniform: 5-seed means (seeds 42, 123, 456, 789, 234); ESS-only and Random: 3-seed means (seeds 42, 123, 456); Permuted: single seed (42). Adaptive uses $\tau {=}0.7$, $n_{\min }{=}2$. Permuted randomly shuffles $q$-scores across samples, destroying provenance signal while preserving weight non-uniformity ($\Delta {=}{+}0.225$).}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:main}{{2}{5}{Main comparison: held-out PPL ($\downarrow $) at $\rho {=}0.4$, 1 content epoch. Adaptive and Uniform: 5-seed means (seeds 42, 123, 456, 789, 234); ESS-only and Random: 3-seed means (seeds 42, 123, 456); Permuted: single seed (42). Adaptive uses $\tau {=}0.7$, $\nmin {=}2$. Permuted randomly shuffles $q$-scores across samples, destroying provenance signal while preserving weight non-uniformity ($\Delta {=}{+}0.225$)}{table.caption.16}{}}
+\@LN{279}{4}
+\@LN{280}{4}
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN{288}{4}
+\@LN{289}{4}
+\@LN{290}{4}
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{5}{Results}{section.5}{}}
+\@LN{299}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main-results}{{5.1}{5}{Main Results}{subsection.5.1}{}}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Held-out PPL as a function of fixed sharpening exponent $b$ (grid search, $\rho {=}0.4$). Seed\,42 provides the full nine-point sweep (circles); cross-seed markers at $b{=}0.5$ (triangles) confirm the plateau region. The shaded region marks $b \geq 2$ where PPL degrades past the uniform baseline; ESS-only $b^*$ (overall mean ${\approx }$3.5) falls in this degradation zone, while adaptive $b^*$ (mean ${\approx }$0.9) operates near the curve minimum.}}{5}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:grid_b_trend}{{4}{5}{Held-out PPL as a function of fixed sharpening exponent $b$ (grid search, $\rho {=}0.4$). Seed\,42 provides the full nine-point sweep (circles); cross-seed markers at $b{=}0.5$ (triangles) confirm the plateau region. The shaded region marks $b \geq 2$ where PPL degrades past the uniform baseline; ESS-only $\bstar $ (overall mean ${\approx }$3.5) falls in this degradation zone, while adaptive $\bstar $ (mean ${\approx }$0.9) operates near the curve minimum}{figure.caption.17}{}}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces D\&R threshold--PPL relationship ($\rho {=}0.4$, 3 seeds). Blue: raw (multi-epoch) PPL with effective epoch counts annotated. Orange: epoch-matched PPL (single content epoch), saturating at the adaptive $b^*$ level (green dashed).}}{6}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:dr_dual_curve}{{5}{6}{D\&R threshold--PPL relationship ($\rho {=}0.4$, 3 seeds). Blue: raw (multi-epoch) PPL with effective epoch counts annotated. Orange: epoch-matched PPL (single content epoch), saturating at the adaptive $\bstar $ level (green dashed)}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hard filtering and multi-epoch exposure.}{6}{section*.18}\protected@file@percent }
+\@LN{346}{5}
+\@LN{347}{5}
+\@LN{348}{5}
+\@LN{349}{5}
+\@LN{350}{5}
+\@LN{351}{5}
+\@LN{352}{5}
+\@LN{353}{5}
+\@LN{354}{5}
+\@LN{355}{5}
+\@LN{356}{5}
+\@LN{357}{5}
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Effect of contamination ratio on adaptive reweighting effectiveness. $\Delta $ = adaptive $-$ uniform holdout PPL (lower is better). Error bars show $\pm $1 SD across seeds. The method transitions from harmful to beneficial between $\rho {=}0.3$ and $0.4$ (shaded).}}{6}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:delta_vs_rho}{{6}{6}{Effect of contamination ratio on adaptive reweighting effectiveness. $\Delta $ = adaptive $-$ uniform holdout PPL (lower is better). Error bars show $\pm $1 SD across seeds. The method transitions from harmful to beneficial between $\rho {=}0.3$ and $0.4$ (shaded)}{figure.caption.20}{}}
+\@LN{378}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Robustness and Boundary Conditions}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:robustness}{{5.2}{6}{Robustness and Boundary Conditions}{subsection.5.2}{}}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@writefile{toc}{\contentsline {paragraph}{Scale.}{6}{section*.22}\protected@file@percent }
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\citation{he2025golden}
+\citation{he2025golden}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces D\&R threshold comparison ($\rho {=}0.4$). Raw PPL traces a U-shape across thresholds; epoch-matched PPL (single content epoch) decreases monotonically and saturates near the adaptive $b^*$ level. D\&R's 0.424 PPL advantage (at $q{>}0.3$) shrinks to $\Delta {=}0.017$ when content epochs are equalized. All raw PPL values are 3-seed means; epoch-matched values at $q{>}0.3$ and $q{>}0.7$ are single-seed. Full 9-threshold sweep in Table~\ref {tab:dr_threshold}.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:epoch_match}{{3}{7}{D\&R threshold comparison ($\rho {=}0.4$). Raw PPL traces a U-shape across thresholds; epoch-matched PPL (single content epoch) decreases monotonically and saturates near the adaptive $\bstar $ level. D\&R's 0.424 PPL advantage (at $q{>}0.3$) shrinks to $\Delta {=}0.017$ when content epochs are equalized. All raw PPL values are 3-seed means; epoch-matched values at $q{>}0.3$ and $q{>}0.7$ are single-seed. Full 9-threshold sweep in Table~\ref {tab:dr_threshold}}{table.caption.21}{}}
+\@LN{410}{6}
+\@LN{411}{6}
+\@LN{412}{6}
+\@LN{413}{6}
+\@LN{414}{6}
+\@writefile{toc}{\contentsline {paragraph}{Out-of-distribution evaluation.}{7}{section*.23}\protected@file@percent }
+\@LN{415}{6}
+\@LN{416}{6}
+\@LN{417}{6}
+\@LN{418}{6}
+\@LN{419}{6}
+\@LN{420}{6}
+\@LN{421}{6}
+\@LN{422}{6}
+\@LN{423}{6}
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN{428}{6}
+\@writefile{toc}{\contentsline {paragraph}{Calibration, not just discrimination.}{7}{section*.24}\protected@file@percent }
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Hyperparameter Sensitivity}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:sensitivity}{{5.3}{7}{Hyperparameter Sensitivity}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Quality threshold $\tau $.}{7}{section*.26}\protected@file@percent }
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Auxiliary baselines at $\rho {=}0.4$. Grid-best selected post-hoc from nine candidates (Appendix~\ref {app:grid}). Golden Ratio requires known $\rho $~\citep  {he2025golden}. D\&R uses ${\sim }$3.2 content epochs (Table~\ref {tab:epoch_match}).}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:aux}{{4}{7}{Auxiliary baselines at $\rho {=}0.4$. Grid-best selected post-hoc from nine candidates (Appendix~\ref {app:grid}). Golden Ratio requires known $\rho $~\citep {he2025golden}. D\&R uses ${\sim }$3.2 content epochs (Table~\ref {tab:epoch_match})}{table.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Batch-size amplification of adaptive reweighting ($n_{\min }{=}\lfloor B/2 \rfloor $). The adaptive advantage over uniform increases monotonically with micro-batch size, from $1.0{\times }$ ($B{=}4$) to $3.0{\times }$ ($B{=}16$); $\Delta $ values and $\pm $1\,SD shown above each bar.}}{7}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:batch_amp}{{7}{7}{Batch-size amplification of adaptive reweighting ($\nmin {=}\lfloor B/2 \rfloor $). The adaptive advantage over uniform increases monotonically with micro-batch size, from $1.0{\times }$ ($B{=}4$) to $3.0{\times }$ ($B{=}16$); $\Delta $ values and $\pm $1\,SD shown above each bar}{figure.caption.28}{}}
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@writefile{toc}{\contentsline {paragraph}{ESS floor $n_{\min }$.}{7}{section*.27}\protected@file@percent }
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\citation{drayson2025detection}
+\citation{tay2022scale,ye2025mixing}
+\citation{wang2026survive}
+\citation{owen2013mc}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Constraint regime decomposition at two contamination levels (seed\,42). At $\rho {=}0.4$, ${\sim }$50\% of batches are $\alpha _{\mathrm  {eff}}$-binding and ${\sim }$44\% ESS-binding, with ${\sim }$6\% clean; at $\rho {=}0.6$, the constraints are nearly balanced (${\sim }$49\% ESS-binding, ${\sim }$47\% $\alpha _{\mathrm  {eff}}$-binding).}}{8}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:regime_decomp}{{8}{8}{Constraint regime decomposition at two contamination levels (seed\,42). At $\rho {=}0.4$, ${\sim }$50\% of batches are $\aeff $-binding and ${\sim }$44\% ESS-binding, with ${\sim }$6\% clean; at $\rho {=}0.6$, the constraints are nearly balanced (${\sim }$49\% ESS-binding, ${\sim }$47\% $\aeff $-binding)}{figure.caption.30}{}}
+\newlabel{sec:regime}{{5.3}{8}{Constraint regime}{section*.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Constraint regime.}{8}{section*.29}\protected@file@percent }
+\@LN{471}{7}
+\@LN{472}{7}
+\@LN{473}{7}
+\@LN{474}{7}
+\@LN{475}{7}
+\@LN{476}{7}
+\@LN{477}{7}
+\@LN{478}{7}
+\@LN{479}{7}
+\@LN{480}{7}
+\@LN{481}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{D\&R as the strongest strategy.}{8}{section*.31}\protected@file@percent }
+\@LN{482}{7}
+\@LN{483}{7}
+\@LN{484}{7}
+\@LN{485}{7}
+\@LN{486}{7}
+\@LN{487}{7}
+\@LN{488}{7}
+\@LN{489}{7}
+\@LN{490}{7}
+\@writefile{toc}{\contentsline {paragraph}{When uniform beats reweighting.}{8}{section*.32}\protected@file@percent }
+\@LN{491}{7}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Decision summary for practitioners. $\Delta $ values are relative to uniform (positive = worse). When any observed condition is violated, uniform is the safer default.}}{8}{table.caption.33}\protected@file@percent }
+\newlabel{tab:decision}{{5}{8}{Decision summary for practitioners. $\Delta $ values are relative to uniform (positive = worse). When any observed condition is violated, uniform is the safer default}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{Effect size and downstream impact.}{8}{section*.34}\protected@file@percent }
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@writefile{toc}{\contentsline {paragraph}{Limitations of $\alpha _{\mathrm  {eff}}$ as a proxy.}{8}{section*.35}\protected@file@percent }
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\bibdata{references}
+\bibcite{abbas2023semdedup}{{1}{2023}{{Abbas et~al.}}{{Abbas, Tirumala, Simig, Ganguli, and Morcos}}}
+\bibcite{albalak2024survey}{{2}{2024}{{Albalak et~al.}}{{Albalak, Elazar, Xie, Longpre, Lambert, Wang, Muennighoff, Hou, Pan, Jeong, Raffel, Chang, Hashimoto, and Wang}}}
+\bibcite{alemohammad2024mad}{{3}{2024}{{Alemohammad et~al.}}{{Alemohammad, Casco-Rodriguez, Luzi, Humayun, Babaei, LeJeune, Siahkoohi, and Baraniuk}}}
+\bibcite{amin2025escaping}{{4}{2025}{{Amin et~al.}}{{Amin, Babakniya, Bie, Kong, Syed, and Vassilvitskii}}}
+\bibcite{bengio2009curriculum}{{5}{2009}{{Bengio et~al.}}{{Bengio, Louradour, Collobert, and Weston}}}
+\bibcite{cheng2025contamination}{{6}{2025}{{Cheng et~al.}}{{Cheng, Chang, and Wu}}}
+\bibcite{cortes2010learning}{{7}{2010}{{Cortes et~al.}}{{Cortes, Mansour, and Mohri}}}
+\bibcite{dohmatob2025strong}{{8}{2025}{{Dohmatob et~al.}}{{Dohmatob, Feng, Subramonian, and Kempe}}}
+\bibcite{drayson2025detection}{{9}{2025}{{Drayson et~al.}}{{Drayson, Yilmaz, and Lampos}}}
+\bibcite{engstrom2024dsdm}{{10}{2024}{{Engstrom et~al.}}{{Engstrom, Feldmann, and M{\u {a}}dry}}}
+\bibcite{fang2020rethinking}{{11}{2020}{{Fang et~al.}}{{Fang, Lu, Niu, and Sugiyama}}}
+\bibcite{feng2025beyond}{{12}{2025}{{Feng et~al.}}{{Feng, Dohmatob, Yang, Charton, and Kempe}}}
+\bibcite{grangier2025crisp}{{13}{2025}{{Grangier et~al.}}{{Grangier, Fan, Seto, and Ablin}}}
+\bibcite{gunasekar2023textbooks}{{14}{2023}{{Gunasekar et~al.}}{{Gunasekar, Zhang, Aneja, Mendes, Del~Giorno, Gopi, Javaheripi, Kauffmann, de~Rosa, Saarikivi, Salim, Shah, Behl, Wang, Bubeck, Eldan, Kalai, Lee, and Li}}}
+\bibcite{guo2017calibration}{{15}{2017}{{Guo et~al.}}{{Guo, Pleiss, Sun, and Weinberger}}}
+\bibcite{gururangan2020dont}{{16}{2020}{{Gururangan et~al.}}{{Gururangan, Marasovi{\'c}, Swayamdipta, Lo, Beltagy, Downey, and Smith}}}
+\bibcite{hans2024binoculars}{{17}{2024}{{Hans et~al.}}{{Hans, Schwarzschild, Cherepanova, Kazemi, Saha, Goldblum, Geiping, and Goldstein}}}
+\bibcite{he2025golden}{{18}{2025}{{He et~al.}}{{He, Xu, and Cheng}}}
+\bibcite{kazdan2025collapse}{{19}{2025}{{Kazdan et~al.}}{{Kazdan, Schaeffer, Dey, Gerstgrasser, Rafailov, Donoho, and Koyejo}}}
+\bibcite{kish1965survey}{{20}{1965}{{Kish}}{{}}}
+\bibcite{li2023textbooks2}{{21}{2023}{{Li et~al.}}{{Li, Bubeck, Eldan, Del~Giorno, Gunasekar, and Lee}}}
+\bibcite{mindermann2022prioritized}{{22}{2022}{{Mindermann et~al.}}{{Mindermann, Brauner, Razzak, Sharma, Kirsch, Xu, H{\"o}ltgen, Gomez, Morisot, Farquhar, and Gal}}}
+\@LN@col{1}
+\@LN{543}{8}
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section*.36}{}}
+\@LN{544}{8}
+\@LN{545}{8}
+\@LN{546}{8}
+\@LN{547}{8}
+\@LN{548}{8}
+\@LN{549}{8}
+\@LN{550}{8}
+\@LN{551}{8}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN@col{2}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\bibcite{mitchell2023detectgpt}{{23}{2023}{{Mitchell et~al.}}{{Mitchell, Lee, Khazatsky, Manning, and Finn}}}
+\bibcite{naitsaada2025illusion}{{24}{2025}{{Nait~Saada et~al.}}{{Nait~Saada, Bethune, Klein, Grangier, Cuturi, and Ablin}}}
+\bibcite{owen2013mc}{{25}{2013}{{Owen}}{{}}}
+\bibcite{penedo2024fineweb}{{26}{2024}{{Penedo et~al.}}{{Penedo, Kydl{\'\i }{\v {c}}ek, Ben~Allal, Lozhkov, Mitchell, Raffel, von Werra, and Wolf}}}
+\bibcite{shi2024minkprob}{{27}{2024}{{Shi et~al.}}{{Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and Zettlemoyer}}}
+\bibcite{shumailov2024model}{{28}{2024}{{Shumailov et~al.}}{{Shumailov, Shumaylov, Zhao, Papernot, Anderson, and Gal}}}
+\bibcite{sow2025dynamic}{{29}{2025}{{Sow et~al.}}{{Sow, Woisetschl{\"a}ger, Bulusu, Wang, Jacobsen, and Liang}}}
+\bibcite{tay2022scale}{{30}{2022}{{Tay et~al.}}{{Tay, Dehghani, Rao, Fedus, Abnar, Chung, Narang, Yogatama, Vaswani, and Metzler}}}
+\bibcite{vehtari2024psis}{{31}{2024}{{Vehtari et~al.}}{{Vehtari, Simpson, Gelman, Yao, and Gabry}}}
+\bibcite{wang2026survive}{{32}{2026}{{Wang et~al.}}{{Wang, Niu, and Li}}}
+\bibcite{wenzek2020ccnet}{{33}{2020}{{Wenzek et~al.}}{{Wenzek, Lachaux, Conneau, Chaudhary, Guzm{\'a}n, Joulin, and Grave}}}
+\bibcite{wu2025survey}{{34}{2025}{{Wu et~al.}}{{Wu, Yang, Zhan, Yuan, Chao, and Wong}}}
+\bibcite{xie2023doremi}{{35}{2023{a}}{{Xie et~al.}}{{Xie, Pham, Dong, Du, Liu, Lu, Liang, Le, Ma, and Yu}}}
+\bibcite{xie2023dsir}{{36}{2023{b}}{{Xie et~al.}}{{Xie, Santurkar, Ma, and Liang}}}
+\bibcite{yang2025qwen3}{{37}{2025}{{Yang et~al.}}{{Yang, Yang, Zhang et~al.}}}
+\bibcite{ye2025mixing}{{38}{2025}{{Ye et~al.}}{{Ye, Liu, Sun, Zhou, Zhan, and Qiu}}}
+\@LN@col{1}
+\@LN{649}{9}
+\@LN{650}{9}
+\@LN{651}{9}
+\@LN{652}{9}
+\@LN{653}{9}
+\@LN{654}{9}
+\@LN{655}{9}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN@col{2}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Proofs}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:proofs}{{A}{10}{Proofs}{appendix.A}{}}
+\newlabel{prop:monotone}{{1}{10}{$\alpha _{\mathrm {eff}}$ monotonicity}{proposition.1}{}}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\newlabel{prop:ess_mono}{{2}{10}{ESS monotonicity}{proposition.2}{}}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\citation{kish1965survey,owen2013mc}
+\@LN@col{1}
+\@LN{746}{10}
+\@LN{747}{10}
+\@LN{748}{10}
+\@LN{749}{10}
+\@LN{750}{10}
+\@LN{751}{10}
+\@LN{752}{10}
+\@LN{753}{10}
+\@LN{754}{10}
+\@LN{755}{10}
+\@LN{756}{10}
+\@LN{757}{10}
+\@LN{758}{10}
+\@LN{759}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Algorithm Details}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:algorithm}{{B}{11}{Algorithm Details}{appendix.B}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Per-batch adaptive $b^{*}$ selection}}{11}{algorithm.1}\protected@file@percent }
+\newlabel{alg:bstar}{{1}{11}{Per-batch adaptive $b^{*}$ selection}{algorithm.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Adaptive $b^*$ trajectory over 6{,}103 training steps (seed\,42, $\rho {=}0.4$). The exponent alternates between clean ($b^*{=}0$), $\alpha _{\mathrm  {eff}}$-binding, and ESS-binding regimes with no systematic drift, reflecting per-batch adaptation to local $q$-score composition.}}{11}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:bstar_traj}{{9}{11}{Adaptive $\bstar $ trajectory over 6{,}103 training steps (seed\,42, $\rho {=}0.4$). The exponent alternates between clean ($\bstar {=}0$), $\aeff $-binding, and ESS-binding regimes with no systematic drift, reflecting per-batch adaptation to local $q$-score composition}{figure.caption.38}{}}
+\@LN@col{2}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Grid Search Details}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:grid}{{C}{11}{Grid Search Details}{appendix.C}{}}
+\@LN{768}{10}
+\@LN{769}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Full grid search results ($\rho {=}0.4$, seed\,42). $b \in [0.1, 0.5]$ forms a broad plateau (three-seed mean for $b{=}0.1$: $17.655 \pm 0.009$); $b{=}0.3$ is the post-hoc best.}}{11}{table.caption.39}\protected@file@percent }
+\newlabel{tab:grid_full}{{6}{11}{Full grid search results ($\rho {=}0.4$, seed\,42). $b \in [0.1, 0.5]$ forms a broad plateau (three-seed mean for $b{=}0.1$: $17.655 \pm 0.009$); $b{=}0.3$ is the post-hoc best}{table.caption.39}{}}
+\@LN{770}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Quality Threshold Sweep}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:tau_sweep}{{D}{11}{Quality Threshold Sweep}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Quality threshold sweep ($n_{\min }{=}2$, $\rho {=}0.4$). $\Delta $ relative to 3-seed uniform baseline (Holdout 17.694, OWT 18.375, Wiki 15.359). $^\star $\,$\tau {=}0.7$: 5-seed mean (SD from 5 seeds); $\tau {=}0.8$: 3 from-scratch seeds (Appendix~\ref {app:resume_artifact}). The 5-seed comparison in Table~\ref {tab:main} yields $\Delta {=}{-}0.023$. Other values from single-seed exploratory sweep (seed\,42, holdout only). $\tau {=}0.7$ achieves the lowest holdout and largest OOD gains ($|\Delta | \geq 0.028$); $\tau {=}0.8$'s OOD effect is smaller ($|\Delta | \leq 0.009$).}}{11}{table.caption.40}\protected@file@percent }
+\newlabel{tab:tau}{{7}{11}{Quality threshold sweep ($\nmin {=}2$, $\rho {=}0.4$). $\Delta $ relative to 3-seed uniform baseline (Holdout 17.694, OWT 18.375, Wiki 15.359). $^\star $\,$\tau {=}0.7$: 5-seed mean (SD from 5 seeds); $\tau {=}0.8$: 3 from-scratch seeds (Appendix~\ref {app:resume_artifact}). The 5-seed comparison in Table~\ref {tab:main} yields $\Delta {=}{-}0.023$. Other values from single-seed exploratory sweep (seed\,42, holdout only). $\tau {=}0.7$ achieves the lowest holdout and largest OOD gains ($|\Delta | \geq 0.028$); $\tau {=}0.8$'s OOD effect is smaller ($|\Delta | \leq 0.009$)}{table.caption.40}{}}
+\@LN{771}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Batch-Adaptive $\tau $}{11}{appendix.E}\protected@file@percent }
+\newlabel{app:batch_adaptive}{{E}{11}{Batch-Adaptive $\tau $}{appendix.E}{}}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN@col{1}
+\@LN{781}{11}
+\@LN{782}{11}
+\@LN{783}{11}
+\@LN{784}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {F}$\tau $--$\rho $ Rank Preservation}{12}{appendix.F}\protected@file@percent }
+\newlabel{app:tau_rho}{{F}{12}{\texorpdfstring {$\tau $--$\rho $}{tau-rho} Rank Preservation}{appendix.F}{}}
+\@LN{785}{11}
+\@LN{786}{11}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces (a) Held-out PPL as a function of quality threshold $\tau $ at $\rho \in \{0.4, 0.6\}$. $\tau {=}0.7$ and $\tau {=}0.8$ yield comparable holdout PPL at $\rho {=}0.4$; at $\rho {=}0.6$, $\tau {=}0.7$ is statistically better (paired $t{=}{-}4.70$, $p{<}0.05$, 3 seeds, $\Delta {=}{-}0.005$). $\tau {=}0.7$ also achieves lower OOD perplexity at both levels ($\rho {=}0.6$: $\Delta _{\text  {OWT}}{=}{-}0.014$, $\Delta _{\text  {Wiki}}{=}{-}0.013$, 2 seeds). (b) Normalized PPL gap relative to uniform at shared $\tau $ values.}}{12}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:tau_rho_rank}{{10}{12}{(a) Held-out PPL as a function of quality threshold $\tau $ at $\rho \in \{0.4, 0.6\}$. $\tau {=}0.7$ and $\tau {=}0.8$ yield comparable holdout PPL at $\rho {=}0.4$; at $\rho {=}0.6$, $\tau {=}0.7$ is statistically better (paired $t{=}{-}4.70$, $p{<}0.05$, 3 seeds, $\Delta {=}{-}0.005$). $\tau {=}0.7$ also achieves lower OOD perplexity at both levels ($\rho {=}0.6$: $\Delta _{\text {OWT}}{=}{-}0.014$, $\Delta _{\text {Wiki}}{=}{-}0.013$, 2 seeds). (b) Normalized PPL gap relative to uniform at shared $\tau $ values}{figure.caption.41}{}}
+\@LN{787}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Hybrid and Threshold Comparison}{12}{appendix.G}\protected@file@percent }
+\newlabel{app:hybrid}{{G}{12}{Hybrid and Threshold Comparison}{appendix.G}{}}
+\@LN{788}{11}
+\@LN{789}{11}
+\@LN{790}{11}
+\@LN{791}{11}
+\@LN{792}{11}
+\@LN{793}{11}
+\@LN{794}{11}
+\@LN{795}{11}
+\@LN{796}{11}
+\@LN{797}{11}
+\@LN{798}{11}
+\@LN{799}{11}
+\@LN{800}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Method comparison across contamination levels (seed\,42, $\tau {=}0.8$). $^*$Hybrid at $\rho {=}0.6$ filters high-confidence synthetic ($q{>}0.95$), reducing effective $\rho $ to ${\approx }0.4$; PPL is not directly comparable to $\rho {=}0.6$ baselines.}}{12}{table.caption.42}\protected@file@percent }
+\newlabel{tab:hybrid}{{8}{12}{Method comparison across contamination levels (seed\,42, $\tau {=}0.8$). $^*$Hybrid at $\rho {=}0.6$ filters high-confidence synthetic ($q{>}0.95$), reducing effective $\rho $ to ${\approx }0.4$; PPL is not directly comparable to $\rho {=}0.6$ baselines}{table.caption.42}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces D\&R threshold sensitivity ($\rho {=}0.4$, seed\,42 unless noted). Raw PPL traces a U-shaped curve (minimum at $q{>}0.3$); epoch-matched PPL (single content epoch) decreases monotonically and saturates near the adaptive $b^*$ level (${\approx }$17.65) at $q{\geq }0.5$; the U-shape is thus a multi-epoch artifact. $^\dagger $\,3-seed mean $17.250 \pm 0.001$.}}{12}{table.caption.43}\protected@file@percent }
+\newlabel{tab:dr_threshold}{{9}{12}{D\&R threshold sensitivity ($\rho {=}0.4$, seed\,42 unless noted). Raw PPL traces a U-shaped curve (minimum at $q{>}0.3$); epoch-matched PPL (single content epoch) decreases monotonically and saturates near the adaptive $\bstar $ level (${\approx }$17.65) at $q{\geq }0.5$; the U-shape is thus a multi-epoch artifact. $^\dagger $\,3-seed mean $17.250 \pm 0.001$}{table.caption.43}{}}
+\@LN{801}{11}
+\@LN{802}{11}
+\@LN{803}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Downstream Task Evaluation}{12}{appendix.H}\protected@file@percent }
+\newlabel{app:downstream}{{H}{12}{Downstream Task Evaluation}{appendix.H}{}}
+\@LN{804}{11}
+\@LN{805}{11}
+\@LN{806}{11}
+\@LN{807}{11}
+\@LN{808}{11}
+\@LN{809}{11}
+\@LN{810}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Downstream benchmarks (Qwen3-0.6B, $\rho {=}0.4$). Seed\,42 used a checkpoint-resumed adaptive model; from-scratch seeds (123, 456) show mixed direction with mean $|\Delta | \leq 0.01$. All differences within standard error ($\pm 0.01$). Models use $\tau {=}0.8$; $\tau {=}0.7$ yields identical 3-seed means (0.5414).}}{12}{table.caption.44}\protected@file@percent }
+\newlabel{tab:downstream}{{10}{12}{Downstream benchmarks (Qwen3-0.6B, $\rho {=}0.4$). Seed\,42 used a checkpoint-resumed adaptive model; from-scratch seeds (123, 456) show mixed direction with mean $|\Delta | \leq 0.01$. All differences within standard error ($\pm 0.01$). Models use $\tau {=}0.8$; $\tau {=}0.7$ yields identical 3-seed means (0.5414)}{table.caption.44}{}}
+\@LN@col{1}
+\@LN{811}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Higher Contamination Details}{13}{appendix.I}\protected@file@percent }
+\newlabel{app:rho06}{{I}{13}{Higher Contamination Details}{appendix.I}{}}
+\@LN{812}{12}
+\@LN{813}{12}
+\@LN{814}{12}
+\@LN{815}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Results at $\rho {=}0.6$ (Qwen3-0.6B, $n_{\min }{=}2$). Adaptive uses $\tau {=}0.7$ (consistent with main results); other methods are $\tau $-independent. $^\ddagger $Post-hoc oracle; seed\,42 only. Adaptive vs.\ Uniform: $\Delta {=}{-}0.032$, paired $t{=}{-}15.4$, $p{=}0.004$ (full precision; 3dp rounding yields $t{=}{-}9.95$, $p{=}0.010$). ESS-only collapses onto Uniform (both $17.763$); Random ($17.861$) confirms detector signal is load-bearing.}}{13}{table.caption.45}\protected@file@percent }
+\newlabel{tab:rho06}{{11}{13}{Results at $\rho {=}0.6$ (Qwen3-0.6B, $\nmin {=}2$). Adaptive uses $\tau {=}0.7$ (consistent with main results); other methods are $\tau $-independent. $^\ddagger $Post-hoc oracle; seed\,42 only. Adaptive vs.\ Uniform: $\Delta {=}{-}0.032$, paired $t{=}{-}15.4$, $p{=}0.004$ (full precision; 3dp rounding yields $t{=}{-}9.95$, $p{=}0.010$). ESS-only collapses onto Uniform (both $17.763$); Random ($17.861$) confirms detector signal is load-bearing}{table.caption.45}{}}
+\@LN{816}{12}
+\@LN{817}{12}
+\@LN{818}{12}
+\@LN{819}{12}
+\@LN{820}{12}
+\@LN{821}{12}
+\@LN{822}{12}
+\@LN{823}{12}
+\@LN{824}{12}
+\@LN{825}{12}
+\@LN{826}{12}
+\@LN{827}{12}
+\@LN{828}{12}
+\@LN{829}{12}
+\@LN{830}{12}
+\@LN{831}{12}
+\@LN{832}{12}
+\@LN{833}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {J}$\alpha _{\mathrm  {eff}}$ Proxy Validation}{13}{appendix.J}\protected@file@percent }
+\newlabel{app:alpha_validation}{{J}{13}{\texorpdfstring {$\alpha _{\mathrm {eff}}$}{alpha-eff} Proxy Validation}{appendix.J}{}}
+\@LN{834}{12}
+\@LN{835}{12}
+\@LN{836}{12}
+\@LN{837}{12}
+\@LN{838}{12}
+\@LN{839}{12}
+\@LN{840}{12}
+\@LN{841}{12}
+\@writefile{toc}{\contentsline {paragraph}{Cross-seed stability.}{13}{section*.47}\protected@file@percent }
+\@LN{842}{12}
+\@LN{843}{12}
+\@LN{844}{12}
+\@LN{845}{12}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Correlation between $\alpha _{\mathrm  {eff}}(0)$ and true batch-level real fraction across batch sizes ($\rho {=}0.4$, seed\,42). Values use a binarized proxy $\hat  {r}_i = \mathbf  {1}[q_i \leq 0.5]$ for discrete comparison; the continuous formulation used during training (\S  \ref {sec:method}) achieves $r \approx 0.77$--$0.79$ depending on batch size. The consistent negative bias (${\approx }{-}0.03$) indicates that $\alpha _{\mathrm  {eff}}$ slightly underestimates the true real fraction, biasing the method toward conservative intervention.}}{13}{table.caption.46}\protected@file@percent }
+\newlabel{tab:alpha_corr}{{12}{13}{Correlation between $\aeff (0)$ and true batch-level real fraction across batch sizes ($\rho {=}0.4$, seed\,42). Values use a binarized proxy $\hat {r}_i = \mathbf {1}[q_i \leq 0.5]$ for discrete comparison; the continuous formulation used during training (\S \ref {sec:method}) achieves $r \approx 0.77$--$0.79$ depending on batch size. The consistent negative bias (${\approx }{-}0.03$) indicates that $\aeff $ slightly underestimates the true real fraction, biasing the method toward conservative intervention}{table.caption.46}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Per-seed $\alpha _{\mathrm  {eff}}$--$\bar  {q}$ correlation ($\rho {=}0.4$, $B{=}4$). Cross-seed spread is $<$0.003 for Pearson $r$ and $<$0.007 for Spearman $\rho _s$, indicating stable proxy fidelity across random seeds. $r(\alpha _{\mathrm  {eff}}, \bar  {q}) = 0.80$ measures the proxy's fidelity to batch composition; the ground-truth correlation $r(\alpha _{\mathrm  {eff}}, \text  {true real fraction}) \approx 0.79$ (\S  \ref {sec:discussion}) is slightly lower due to detector noise. The per-seed table demonstrates cross-seed stability rather than superseding the ground-truth estimate.}}{13}{table.caption.48}\protected@file@percent }
+\newlabel{tab:alpha_corr_perseed}{{13}{13}{Per-seed $\aeff $--$\bar {q}$ correlation ($\rho {=}0.4$, $B{=}4$). Cross-seed spread is $<$0.003 for Pearson $r$ and $<$0.007 for Spearman $\rho _s$, indicating stable proxy fidelity across random seeds. $r(\aeff , \bar {q}) = 0.80$ measures the proxy's fidelity to batch composition; the ground-truth correlation $r(\aeff , \text {true real fraction}) \approx 0.79$ (\S \ref {sec:discussion}) is slightly lower due to detector noise. The per-seed table demonstrates cross-seed stability rather than superseding the ground-truth estimate}{table.caption.48}{}}
+\@LN{846}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Detector Comparison}{13}{appendix.K}\protected@file@percent }
+\newlabel{app:detector}{{K}{13}{Detector Comparison}{appendix.K}{}}
+\@LN{847}{12}
+\@LN{848}{12}
+\@LN{849}{12}
+\@LN{850}{12}
+\@LN{851}{12}
+\@LN{852}{12}
+\@LN{853}{12}
+\@LN{854}{12}
+\@LN{855}{12}
+\@LN{856}{12}
+\@LN{857}{12}
+\@LN{858}{12}
+\@LN{859}{12}
+\@LN{860}{12}
+\@LN{861}{12}
+\@LN{862}{12}
+\@LN{863}{12}
+\@LN{864}{12}
+\@LN{865}{12}
+\@LN{866}{12}
+\@LN{867}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Detector and Synthetic Data Details}{13}{appendix.L}\protected@file@percent }
+\newlabel{app:detector_details}{{L}{13}{Detector and Synthetic Data Details}{appendix.L}{}}
+\@writefile{toc}{\contentsline {paragraph}{TF-IDF+LR detector.}{13}{section*.50}\protected@file@percent }
+\@LN{868}{12}
+\@LN{869}{12}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Detector comparison for adaptive reweighting ($\rho {=}0.4$, $\tau {=}0.8$, 3 seeds). Uniform baseline PPL\,=\,17.694. $\Delta $ = Adaptive $-$ Uniform (negative is better). TF-IDF+LR calibrated via temperature scaling. The $\tau $ confound is conservative: TF-IDF+LR at $\tau {=}0.7$ achieves 17.674 (Table~\ref {tab:main}).}}{14}{table.caption.49}\protected@file@percent }
+\newlabel{tab:detector}{{14}{14}{Detector comparison for adaptive reweighting ($\rho {=}0.4$, $\tau {=}0.8$, 3 seeds). Uniform baseline PPL\,=\,17.694. $\Delta $ = Adaptive $-$ Uniform (negative is better). TF-IDF+LR calibrated via temperature scaling. The $\tau $ confound is conservative: TF-IDF+LR at $\tau {=}0.7$ achieves 17.674 (Table~\ref {tab:main})}{table.caption.49}{}}
+\@LN{870}{13}
+\@LN{871}{13}
+\@LN{872}{13}
+\@LN{873}{13}
+\@LN{874}{13}
+\@LN{875}{13}
+\@LN{876}{13}
+\@LN{877}{13}
+\@LN{878}{13}
+\@LN{879}{13}
+\@LN{880}{13}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic data generation.}{14}{section*.51}\protected@file@percent }
+\@LN{881}{13}
+\@LN{882}{13}
+\@LN{883}{13}
+\@LN{884}{13}
+\@LN{885}{13}
+\@LN{886}{13}
+\@LN{887}{13}
+\@LN{888}{13}
+\@LN{889}{13}
+\@LN{890}{13}
+\@LN{891}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Low Contamination Analysis}{14}{appendix.M}\protected@file@percent }
+\newlabel{app:rho02}{{M}{14}{Low Contamination Analysis}{appendix.M}{}}
+\@LN{892}{13}
+\@LN{893}{13}
+\@LN{894}{13}
+\@LN{895}{13}
+\@LN{896}{13}
+\@LN{897}{13}
+\@LN{898}{13}
+\@LN{899}{13}
+\@LN{900}{13}
+\@LN{901}{13}
+\@LN{902}{13}
+\@LN{903}{13}
+\@LN{904}{13}
+\@LN{905}{13}
+\@LN{906}{13}
+\@LN{907}{13}
+\@LN{908}{13}
+\@LN{909}{13}
+\@LN{910}{13}
+\@LN@col{2}
+\@LN{911}{13}
+\@LN{912}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Cross-Model Transfer}{14}{appendix.N}\protected@file@percent }
+\newlabel{app:cross_model}{{N}{14}{Cross-Model Transfer}{appendix.N}{}}
+\@LN{913}{13}
+\@LN{914}{13}
+\@LN{915}{13}
+\@LN{916}{13}
+\@LN{917}{13}
+\@LN{918}{13}
+\@LN{919}{13}
+\@LN{920}{13}
+\@LN{921}{13}
+\@LN{922}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-model transfer: Llama-3.2-3B generator, Qwen3-0.6B trainer ($\rho {=}0.4$, single seed). Mixed results reflect evaluation-set distribution sensitivity rather than consistent quality differences.}}{14}{table.caption.52}\protected@file@percent }
+\newlabel{tab:cross_model}{{15}{14}{Cross-model transfer: Llama-3.2-3B generator, Qwen3-0.6B trainer ($\rho {=}0.4$, single seed). Mixed results reflect evaluation-set distribution sensitivity rather than consistent quality differences}{table.caption.52}{}}
+\@LN{923}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Checkpoint Resume Artifact}{14}{appendix.O}\protected@file@percent }
+\newlabel{app:resume_artifact}{{O}{14}{Checkpoint Resume Artifact}{appendix.O}{}}
+\@LN{924}{13}
+\@LN{925}{13}
+\@LN{926}{13}
+\@LN{927}{13}
+\@LN{928}{13}
+\@LN{929}{13}
+\@LN{930}{13}
+\@LN{931}{13}
+\@LN{932}{13}
+\@LN{933}{13}
+\@LN{934}{13}
+\@LN{935}{13}
+\@LN{936}{13}
+\@LN{937}{13}
+\@LN{938}{13}
+\@LN{939}{13}
+\@LN{940}{13}
+\@LN{941}{13}
+\@LN{942}{13}
+\@LN{943}{13}
+\@LN{944}{13}
+\@LN{945}{13}
+\@LN{946}{13}
+\@LN{947}{13}
+\@LN{948}{13}
+\@LN{949}{13}
+\@LN@col{1}
+\@LN{950}{14}
+\@LN{951}{14}
+\@LN{952}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Additional Contamination Rate}{15}{appendix.P}\protected@file@percent }
+\newlabel{app:rho03}{{P}{15}{Additional Contamination Rate}{appendix.P}{}}
+\@LN{953}{14}
+\@LN{954}{14}
+\@LN{955}{14}
+\@LN{956}{14}
+\@LN{957}{14}
+\@LN{958}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Results at $\rho {=}0.3$ (Qwen3-0.6B, 3 seeds). Holdout $\Delta {=}{+}0.002$ ($t(2){=}1.60$, $p{=}0.25$, non-significant); OOD available for seeds 42 and 123 only, mixed in direction.}}{15}{table.caption.53}\protected@file@percent }
+\newlabel{tab:rho03}{{16}{15}{Results at $\rho {=}0.3$ (Qwen3-0.6B, 3 seeds). Holdout $\Delta {=}{+}0.002$ ($t(2){=}1.60$, $p{=}0.25$, non-significant); OOD available for seeds 42 and 123 only, mixed in direction}{table.caption.53}{}}
+\@LN{959}{14}
+\@LN{960}{14}
+\@LN{961}{14}
+\@LN{962}{14}
+\@LN{963}{14}
+\@LN{964}{14}
+\@LN{965}{14}
+\@LN{966}{14}
+\@LN{967}{14}
+\@LN{968}{14}
+\@LN{969}{14}
+\@LN{970}{14}
+\@LN{971}{14}
+\@LN{972}{14}
+\@LN{973}{14}
+\@LN{974}{14}
+\@LN{975}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Statistical Power Analysis}{15}{appendix.Q}\protected@file@percent }
+\newlabel{app:power}{{Q}{15}{Statistical Power Analysis}{appendix.Q}{}}
+\@LN{976}{14}
+\@LN{977}{14}
+\@LN{978}{14}
+\@LN{979}{14}
+\@LN{980}{14}
+\@LN{981}{14}
+\@LN{982}{14}
+\@LN{983}{14}
+\@LN{984}{14}
+\@LN{985}{14}
+\@LN@col{2}
+\@LN{986}{14}
+\@LN{987}{14}
+\@LN{988}{14}
+\@LN{989}{14}
+\@LN{990}{14}
+\@LN{991}{14}
+\@LN{992}{14}
+\@LN{993}{14}
+\@LN{994}{14}
+\@LN{995}{14}
+\@LN{996}{14}
+\@LN{997}{14}
+\@LN{998}{14}
+\@LN{999}{14}
+\@LN{1000}{14}
+\@LN{1001}{14}
+\@LN{1002}{14}
+\@LN{1003}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Supplementary Analyses Summary}{15}{appendix.R}\protected@file@percent }
+\newlabel{app:summary}{{R}{15}{Supplementary Analyses Summary}{appendix.R}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Summary of supplementary analyses.}}{15}{table.caption.54}\protected@file@percent }
+\newlabel{tab:appendix_summary}{{17}{15}{Summary of supplementary analyses}{table.caption.54}{}}
+\@LN{1004}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Use of AI Assistance}{15}{appendix.S}\protected@file@percent }
+\@LN{1005}{14}
+\@LN{1006}{14}
+\gdef \@abspage@last{15}

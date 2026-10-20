@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "380b0a0763ee838287a7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra fix uniform resubmit",
+  "task_key": "worker_infra_fix-uniform-resubmit_20260513T232214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-uniform-resubmit_20260513T232214_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "1c91257aa1f2271d7ca006171dc40f5480d3a226068981be525fd900e38a6554"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 tmux session 存在，GPU 1 已在训练（93% utilization, 44GB），GPU 2-3 正在加载模型。\n\n### 汇报\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|------|-----|-----|-------------|------|\n| uniform_seed42 | cuda:1 | 47603 | uniform_seed42 | 成功，已在训练 |\n| uniform_seed123 | cuda:2 | 47749 | uniform_seed123 | 成功，模型加载中 |\n| uniform_seed456 | cuda:3 | 47890 | uniform_seed456 | 成功，模型加载中 |\n\n所有修改已完成：\n- 旧 tmux sessions 和残留进程已 kill\n- `pretrain_weighted.py` 已添加 `--save_total_limit` 和 `--save_only_model` CLI 参数，TrainingArguments 已对接\n- 旧数据文件已删除\n- 3 个任务均通过 `submit_training_job` 正确提交（有 cron 监控），从 checkpoint-500 恢复，`save_total_limit=2`，`save_only_model` 启用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-uniform-resubmit.md"
+}

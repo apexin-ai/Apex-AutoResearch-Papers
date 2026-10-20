@@ -1,0 +1,77 @@
+paper_key: "sow_2025_dynamic_reweighting"
+title: "Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines: ["uniform sampling", "DoGE", "DoReMi", "DoGE+LinUpper", "DoReMi+LinUpper", "Quadratic strategy", "Extremes strategy"]
+  metrics:
+    - {name: "per-domain perplexity", direction: "lower_better"}
+    - {name: "few-shot accuracy (5-shot)", direction: "higher_better"}
+    - {name: "QA task accuracy", direction: "higher_better"}
+    - {name: "mean accuracy across 19 tasks", direction: "higher_better"}
+  datasets:
+    - {name: "SlimPajama", size: "7 domains"}
+    - {name: "FineWeb 15T", size: "~100B tokens (1.4B) / ~175B tokens (7B)"}
+  ablation_dimensions: ["reweighting strategy (LinUpper/Quadratic/Extremes)", "temperature r schedule", "model scale (124M-7B)", "domain sampling (uniform vs non-uniform)"]
+  training_recipe: {optimizer: "AdamW", lr: "cosine decay", hardware: "FSDP", models: "GPT2-mini (120M) to Llama 7B"}
+  method_family: "instance-level loss-based reweighting"
+
+positioning:
+  core_claim: "Instance-level loss-based reweighting (LinUpper) achieves zero-overhead training improvement by downweighting already-learned samples, and complements domain-level methods"
+  key_results: "7B model: +1.35% mean accuracy across 19 tasks; synergistic with DoGE/DoReMi (+0.5-0.7% additional); zero computational overhead"
+  limitations: ["smaller models show less benefit", "inconsistent across some benchmarks", "temperature schedule requires tuning", "theory assumes interpolation regime"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Current LLM pretraining treats all samples uniformly despite varying informativeness — manual curation is infeasible at web scale"
+  tension: "Domain-level methods (DoReMi, DoGE) miss fine-grained instance differences; vision-based curriculum methods don't apply to single-epoch LLM training"
+  key_insight: "Section 3 — Theorem 1 convergence bound analysis: error term δ^t minimized by downweighting samples with small loss gaps; leads directly to LinUpper formula"
+  argument_chain: "uniform waste → convergence bound with weight error → derive optimal weight (Proposition 1) → three strategies → validate across scales → show synergy with domain methods"
+  contribution_framing: "3 contributions: instance-level strategies, theoretical framework (first explicit characterization), empirical validation from 124M to 7B"
+  intro_structure: "5 paragraphs: (1) LLM pretraining efficiency challenge, (2) existing approach limitations, (3) our approach overview, (4) theoretical contribution, (5) contributions list"
+  notable_technique: "Zero overhead claim is killer selling point — 'uses losses already computed in forward pass' makes adoption trivial"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "Geometric curves of reweighting functions (LinUpper, Quadratic, Extremes) and temperature scaling effect"
+    narrative_role: "Makes three strategies visually intuitive — reader immediately sees LinUpper emphasis on high-loss"
+    design_elements: ["dual panel", "temperature parameter comparison", "clean function curves"]
+    visual_style: "Mathematical function plots with clear labels, minimal style"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Per-domain perplexity curves for GPT2-medium across 7 domains"
+      how_gain_highlighted: "LinUpper below baseline in 5/7 domains"
+      design_note: "7-panel domain breakdown gives granular view"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (strategy intuition) → Figure 2 (per-domain results) — tables carry most results"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (tasks)"
+    col_axis: "strategies (Uniform, LinUpper, Quadratic, Extremes)"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 3
+    design_note: "Few-shot task table with clear strategy comparison"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["domain-level method (DoGE, DoReMi)", "with/without LinUpper"]
+      variation_style: "full_numbers"
+      design_note: "Shows complementarity — key for positioning as orthogonal to existing methods"
+    - table_id: "Tables 4-5"
+      what_varied: ["model scale (1.4B, 7B)"]
+      variation_style: "full_numbers"
+      design_note: "Scaling tables show benefit increases with model size"
+  supplementary_tables:
+    in_appendix: true
+    content: "Temperature sensitivity analysis, per-domain perplexity details"
+    reason: "Sensitivity analysis supports robustness claim; domain details provide granularity"

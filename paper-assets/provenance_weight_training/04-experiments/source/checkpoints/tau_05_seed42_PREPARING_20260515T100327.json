@@ -1,0 +1,14 @@
+{
+  "exp_id": "tau_05_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:03:27.263Z",
+    "updated_at": "2026-05-15T10:03:27.264Z"
+  },
+  "timestamp": "2026-05-15T10:03:27.388588+00:00",
+  "trigger": "update_registry"
+}

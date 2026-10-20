@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "session_id": "498b277863eb62234380",
+  "rounds": [
+    {
+      "number": 114,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-17T20:46:12.796211+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-17T20:47:13.275344+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-41312 cuda:0-3, westd-30476 cuda:0-3。不可用白名单外 GPU，即使 Director 指定也必须 push back\n- per_device_train_batch_size 必须 ≥ n_min，否则 b*=0 永远。bs=16 实验必须 per_device=16 × accum=1，不能 4×4\n- 所有新实验禁止 --eval_data_path（M012 教训：inline eval 占 84% 训练时间）。当前有 3 个实验违反此规则（grid_b0_1_seed42、ess_only_seed123_r2、ess_only_seed456_r2），已向 Director 建议 kill+从 checkpoint 重启\n- eval_perplexity.py 必须用 --stride 1024 --max_docs 5000 --fp16，不可省略\n- 30476 output_dir 在 /root/autodl-tmp/（持久卷），不是 /root/\n\n### 2. 🖥️ 基础设施快照\n**westd-41312:**\n- 工作目录：/root/autodl-tmp/provenance_weight_training/\n- Python：/root/miniconda3/bin/python（需 source /root/miniconda3/bin/activate）\n- 模型输出：/root/autodl-tmp/provenance_weight_training/output/models/\n- 数据：/root/autodl-tmp/provenance_weight_training/data/scored_data.jsonl (ρ=0.4 默认)\n- eval 数据：data/human/eval_holdout.jsonl\n\n**westd-30476:**\n- 工作目录：/root/autodl-tmp/provenance_weight_training/（部分脚本在 /root/provenance_weight_training/）\n- 模型输出：/root/autodl-tmp/output/models/（注意路径和 41312 不同）\n- 数据：同上结构\n\n**活跃进程 (8/8 GPU):**\n| 服务器 | GPU | exp_id | PID | tmux |\n|--------|-----|--------|-----|------|\n| 41312 | 0 | qwen06b_uniform_seed42 | 125995 | qwen06b_uniform_seed42 |\n| 41312 | 1 | ess_only_seed456_r2 | 115525 | ess_only_seed456 |\n| 41312 | 2 | ess_only_seed123_r2 | 115021 | ess_only_seed123 |\n| 41312 | 3 | random_reweight_seed456 | 125367 | random_reweight_seed456 |\n| 30476 | 0 | grid_b0_1_seed42 | 34716 | grid_b0_1_seed42 |\n| 30476 | 1 | grid_b0_3_seed123_r2 | 42432 | grid_b0_3_seed123_r2 |\n| 30476 | 2 | rho02_adaptive_tau08_seed42 | 41387 | rho02_adaptive_tau08_seed42 |\n| 30476 | 3 | batchsize16_nmin8_r3 | 48891 | batchsize16_nmin8_r2 |\n\n**Crons 已注册:** 全部 8 个实验（grid_b0_3_seed123_r2 原有 + 6 个新注册 + batchsize16_nmin8_r3）\n\n### 3. 📊 当前状态\n**刚做完：**\n- Task 1 Registry 修复完成（5 条：qwen06b_uniform_seed42→RUNNING、ess_only_seed456_r2/seed123_r2 新建→RUNNING、random_reweight_seed456 修正 server/gpu→RUNNING、rho02_adaptive_tau08_seed42→RUNNING）\n- batchsize16_nmin8_r3 新建替代被 killed 的 r2（PID 48891 正确配置版）\n- 7 crons 注册完成\n- 3 eval workers 派出，已返回 2 个，1 个仍在运行\n\n**正在等待的 Director 决策：**\n- 是否 kill 3 个有 inline eval 的实验（grid_b0_1_seed42、ess_only_seed123_r2、ess_only_seed456_r2）并从 checkpoint 重启去掉 --eval_data_path？节省 ~15h GPU 时间\n\n**RUNNING Worker:**\n- worker_ssh_eval_launch_41312_cuda1（ess_only_seed456 eval+launch，仍在运行中）\n\n**实际完成时间（修正后）：**\n- 无 inline eval：uniform_v2 ~22:00, rho02_tau08 ~22:30, random_seed456 ~23:20, bs16_nmin8 ~23:50\n- 有 inline eval（如不 kill）：ess_only_seed123/456 ~03:30+, grid_b0_1 ~06:30+, grid_b0_3_seed123_r2 ~07:00?\n\n### 4. 📋 待办（条件触发式）\n- Director 批准 kill inline eval 实验 → spawn 3 workers: kill PID → 从最新 checkpoint 重启去掉 --eval_data_path → 注册新 cron\n- qwen06b_uniform_seed42 完成 (~22:00 UTC) → eval_perplexity.py → 这是 lm-eval downstream baseline 的前置条件\n- rho02_adaptive_tau08_seed42 完成 (~22:30 UTC) → eval → 判断 Claim 3 (ρ=0.2 + τ=0.8)。如果 PPL < uniform(17.336)，Claim 3 安全\n- random_reweight_seed456 完成 → eval → 如果 PPL > uniform(~17.69)，Claim 1 升级为 3-seed 确认\n- grid_b0_1_seed42 完成 → eval → 启动 grid_b0_3_seed456（脚本已创建在 30476）\n- ess_only 完成 → eval → 41312:cuda:2 启动 lm-eval (uniform v2 checkpoint)；41312:cuda:1 启动 contamination_60_adaptive_seed123\n- 全部 eval 结束 → 汇总汇报 Director\n- grid_b0_1_seed42 已 DONE/success 在旧 registry（PPL=17.657），当前运行的是同 PID 继续训练。完成后需重新 eval 更新 metrics\n\n### 5. 🎯 战略上下文\n**投稿目标：EMNLP 2026 ARR May 25（8 天）**\n\n**三个 Claims:**\n- Claim 1 (dual > ESS-only): ★★★★★，3 seeds confirmed + random baseline（D064/D065）\n- Claim 2 (adaptive ≈ grid-best): ★★★☆☆，grid-best=b=0.3 confirmed，需要更多 seed\n- Claim 3 (proportion-robust): ★★☆☆☆，τ=0.9 at ρ=0.2 NEGATIVE（D068），τ=0.8 验证中\n\n**关键决策链：**\n- D062: coupling rule n_min=⌊B/2⌋（bs8 SUCCESS，bs16 验证中）\n- D063: batch-adaptive τ DEFER（ρ=0.4 和 ρ=0.6 均 NEGATIVE）\n- D065: Claim 1 叙事升级 \"both signal and principle\"\n- D067: 跨模型 Llama-3B 结论 \"neutral\"（非 negative）\n- D068: ρ=0.2 τ=0.8 验证中（τ=0.9 失败）\n- D069: MMLU +1.57pp 定位为 Discussion 观察\n\n**易错点：**\n- 第一轮 GPU check worker 给出的进度数字不可信（混淆了 train steps 和 total steps including eval）。始终用第二手确认\n- grid_b0_1_seed42 registry 状态 DONE 但实际仍在运行 — 不要以为它完成了\n- 30476 上 output 路径是 /root/autodl-tmp/output/models/（不是 /root/autodl-tmp/provenance_weight_training/output/models/）\n- random_reweight_seed456 原来注册在 30476 cuda:0（OOM），实际重提交到 41312 cuda:3\n- ess_only_seed456/123 旧 registry 条目有完整 metrics，不要覆盖 — 新条目是 _r2 后缀\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377"
+          },
+          "id": "event-001442"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ea987610eb1c216104f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit threshold q03 resume",
+  "task_key": "worker_submit_threshold_q03_resume_20260516T104056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_threshold_q03_resume_20260516T104056_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "4c7b865b1a2f0491eacce748095f3e178ea79ad717326874edc1397c15deb1c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，运行正常。\n\n**汇报：**\n- **PID**: 325196\n- **GPU**: cuda:3，已占用 46.5GB / 98% 利用率\n- **起始 step**: 0（从头开始，因所有 checkpoint 已丢失）\n- **总步数**: 6103\n- **速度**: ~2.13s/step\n- **预计完成时间**: ~3.6 小时（约 22:30 左右）\n- **日志**: `/root/autodl-tmp/threshold_q03_restart.log`\n\n**根分区空间修复**: 将 `models/meta-llama`(6.8G) 移到数据盘并建了软链接，根分区从 100% 降到 65%（11G 可用），避免再次因磁盘满崩溃。\n\n**注意**: GPU 0 也占用了 46.5GB，可能有其他实验刚启动，需要留意。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-threshold-q03-resume.md"
+}

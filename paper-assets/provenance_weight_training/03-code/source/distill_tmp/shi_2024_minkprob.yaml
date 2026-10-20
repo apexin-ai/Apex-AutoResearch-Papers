@@ -1,0 +1,18 @@
+paper_key: "shi_2024_minkprob"
+title: "Detecting Pretraining Data from Large Language Models"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["reference model methods", "zero-shot detection baselines"]
+  metrics:
+    - {name: "detection AUROC", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA (dynamic benchmark)", size: "pre/post training split"}
+  ablation_dimensions: ["detection threshold", "text domain"]
+  training_recipe: {method: "zero-shot detection using token probabilities"}
+  method_family: "membership inference via minimum k% probability"
+
+narrative: N/A
+figures: N/A
+tables: N/A

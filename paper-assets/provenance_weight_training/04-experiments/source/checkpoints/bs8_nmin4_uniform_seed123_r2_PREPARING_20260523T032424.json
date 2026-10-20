@@ -1,0 +1,23 @@
+{
+  "exp_id": "bs8_nmin4_uniform_seed123_r2",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:24:23.816Z",
+    "updated_at": "2026-05-23T03:24:23.816Z",
+    "spec": {
+      "hypothesis": "Cross-seed replicate (seed=123) uniform baseline at B=8. Retry from checkpoint-500 after disk-full crash. Provides second data point for B=8 batch-size amplification.",
+      "parent": "bs8_nmin4_uniform_seed42",
+      "model_name": "Qwen3-0.6B",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 235555,
+      "seed": 123,
+      "server": "westd-41312"
+    }
+  },
+  "timestamp": "2026-05-23T03:24:24.307708+00:00",
+  "trigger": "update_registry"
+}

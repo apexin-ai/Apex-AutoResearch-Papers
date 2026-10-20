@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a450d23ee58365d1ed7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix registry pid status",
+  "task_key": "worker_fix_registry_pid_status_20260518T031051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry_pid_status_20260518T031051_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "b05edf7f522ebc72d06e563fb8598b4901b5fbb42e42cbc8fe85d0396c1f7342"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。7 个实验均为 RUNNING 状态，registry 信息汇总：\n\n| 实验 | 服务器 | GPU | PID | 状态 |\n|---|---|---|---|---|\n| contamination_60_adaptive_seed456 | westd-41312 | cuda:0 | 158632 | RUNNING |\n| contamination_60_uniform_seed456 | westd-41312 | cuda:1 | 158709 | RUNNING |\n| grid_b0_1_seed123 | westd-41312 | cuda:2 | 158918 | RUNNING |\n| grid_b0_1_seed456 | **westd-41312** (已修正) | cuda:3 | 159304 | RUNNING |\n| grid_b0_2_seed456 | westd-30476 | cuda:0 | 76271 | RUNNING |\n| grid_b0_2_seed123 | westd-30476 | cuda:1 | 77244 | RUNNING |\n| contamination_60_uniform_seed123 | westd-30476 | cuda:3 | 66327 | RUNNING (已有) |\n\ngrid_b0_1_seed456 的 server 已从错误的 westd-30476 修正为 westd-41312。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-pid-status.md"
+}

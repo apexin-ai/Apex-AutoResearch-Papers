@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48d4a5cbf575c12eacb5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis bs8 auto nmin r5",
+  "task_key": "worker_analysis_bs8_auto_nmin_r5_20260517T173855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bs8_auto_nmin_r5_20260517T173855_result.json",
+    "occurrence": 1,
+    "bytes": 1544,
+    "sha256": "671910c4f0e917b0f3ec431cbca1b3bcf3ebcfcbe955d6bdf4ec3a2648cb7686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bs8_auto_nmin_r5 分析结果\n\n### 训练完成状态\n- **正常结束**（EXIT_CODE=0）\n- train_loss: 5.163\n- total_steps: 6103\n- runtime: 14064s (~3.9h), 4.07 GPU-hours\n\n### 评估指标\n- **eval_ppl_holdout: 17.66**\n- eval_loss_holdout: 2.8716\n- eval_holdout_tokens: 4,077,068\n\n### b* 分布\n- mean=1.0957, median=0.9000, std=0.7563\n- min=0.0, max=17.82\n- pct_zero (b<0.01): 0.11%\n- pct_below_0.5: 10.43%\n- ESS mean=4.49, median=4.04 (n_min=4 约束生效)\n- alpha_eff mean=0.70, median=0.76\n- alpha_eff 达到上限(0.8)比例: 38.88%\n\n### 对比分析\n| 实验 | PPL | vs bs8_auto_nmin |\n|------|-----|-----------------|\n| uniform_seed42 | 17.6939 | **-0.034** (本实验更好) |\n| adaptive_fix_seed42 (bs=16, n_min=2) | 17.6527 | +0.007 (几乎持平) |\n| bs8_nmin2_seed42_r2 (bs=8, n_min=2) | 17.73 | **-0.070** (大幅改善) |\n| nmin4_seed42 (bs=16, n_min=4) | 17.6947 | **-0.035** (本实验更好) |\n\n### 结论判断\n- **SUCCESS**\n- PPL=17.66 < 17.6939 (uniform)，reweighting 有效\n- 相比 bs8_nmin2 (17.73) 改善 0.07，证明 n_min=2 对 bs=8 确实太松\n- 与 adaptive_fix (bs=16, n_min=2) 的 17.6527 几乎持平（差 0.007），验证了 coupling rule n_min=max(2, bs//2) 的有效性\n- ESS median≈4.04 精确对应 n_min=4 约束，alpha_eff 非平凡（38.88% 在上限），说明自适应机制在积极调节权重而非退化为 uniform\n\n**Hypothesis 验证**: coupling rule `n_min=max(2, bs//2)` 成功恢复了 bs=8 的性能至与 bs=16 相当水平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bs8-auto-nmin-r5.md"
+}

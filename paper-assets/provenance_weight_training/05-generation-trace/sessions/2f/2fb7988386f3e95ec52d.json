@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fb7988386f3e95ec52d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis uniform 1 7b seed123",
+  "task_key": "worker_analysis_uniform_1_7b_seed123_20260519T040528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_uniform_1_7b_seed123_20260519T040528_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "057469777eaf013a16d48bf7696ee04238e7576bc3149e99f08ad2db478888fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n**uniform_1_7b_seed123**: eval PPL = **13.26**, loss = 2.5851, 6103 steps\n\n## 1.7B 两种子对比\n\n| Method | seed42 | seed123 | Mean±Std |\n|--------|--------|---------|----------|\n| Adaptive | 13.27 | 13.25 | 13.26±0.01 |\n| Uniform | 13.50* | **13.26** | 13.38±0.12 |\n| Δ (adaptive−uniform) | −0.23 | **−0.01** | −0.12±0.11 |\n\n\\* seed42 uniform 是 Plan B（resumed optimizer）\n\n## 结论：**negative**\n\nseed123 的公平对比（均为 from-scratch）显示 adaptive (13.25) 与 uniform (13.26) 几乎无差异（Δ = −0.01）。seed42 的大差距（Δ = −0.23）很可能是 Plan B optimizer confound 导致的伪信号。**1.7B 尺度的 adaptive 优势不成立。**\n\n对论文的影响：需要重新考虑 1.7B 结果的叙事角度。报告已写入 artifacts 并注册，registry 状态已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-uniform-1-7b-seed123.md"
+}

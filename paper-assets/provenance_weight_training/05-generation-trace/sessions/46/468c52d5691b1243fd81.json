@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "468c52d5691b1243fd81",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4219,
+    "sha256": "44550c92a03e02085077ae64b436a233a22ae232240d996a67fead8bf2b0a9a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:10:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0/1/2/3`（westd-47453），绝不用白名单外 GPU\n- GPU 预算极度紧张：已消耗 ~154h，剩余 ~26h，contamination_60 完成后仅 ~15h\n- **禁止 `WANDB_MODE=disabled`**——已导致 cron 误判 contamination_60_uniform_seed42 为 failed（实际完成），详见 memory.md 失败模式\n- contamination_60_ess_only_seed42 在 registry 中 provenance 全空（hypothesis/server/gpu/command 均 null），下一个\"你\"接手后**必须先补全 spec**\n- EMNLP 2026 ARR May 25 截稿，距今 **9 天**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96G\n- **工作目录**: `/root/provenance_weight_training`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（跳过基础环境搭建）\n- **模型**: `/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- **数据**: `data/scored_data.jsonl`（ρ=0.4）、`data/scored_data_60.jsonl`（ρ=0.6）\n- **活跃进程**:\n  - PID 257977 — contamination_60_seed42_r2（cuda:0，adaptive ρ=0.6）\n  - PID 255781 — contamination_60_grid_b0_5_seed42（cuda:3，grid b=0.5 ρ=0.6）\n  - PID 265012 — contamination_60_ess_only_seed42（GPU 未知，ESS-only ρ=0.6）\n- **Cron**: 3 条活跃，分别监控上述 3 个 PID\n- **Worker**: 4 个 running（paper:consistency-audit、diagnose+eval contamination_60_uniform_seed42 ×3）\n\n### 3. 📊 当前状态\n- **contamination_60_uniform_seed42** 刚完成（DONE/success，updated 01:05 UTC）。之前因 WANDB_MODE=disabled + EXIT_CODE=129 被 cron 误判 failed，已手动修正为 success。3 个 Worker 正在诊断/评估其结果，尚未回调\n- **contamination_60 其余 3 组** 仍在 RUNNING（ETA ~02:00-03:00 UTC）：adaptive(cuda:0)、grid_b0.5(cuda:3)、ess_only(GPU未知)\n- **cuda:1** 因 uniform 已完成而空闲，**cuda:2** 也空闲（等 Director 指示）\n- **Paper 初稿**: introduction/method/conclusion 草稿已有（artifacts/），experiments section 等 contamination_60 结果\n- **7 个 PREPARING 实验**（grid_b0.1/0.2/0.3、detect_remove_baseline、adaptive_v2 ×3）等待 GPU 和 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调（diagnose/eval uniform）到达 → 提取 uniform ρ=0.6 的 PPL 指标，更新 registry metrics\n- contamination_60_seed42_r2 cron 回调 → 提取 adaptive ρ=0.6 PPL，与 uniform 对比验证 Claim 3\n- contamination_60_grid_b0_5_seed42 cron 回调 → 提取 grid ρ=0.6 PPL，对比 adaptive 验证 Claim 2 在高 ρ 下是否成立\n- contamination_60_ess_only_seed42 cron 回调 → 提取 ESS-only ρ=0.6 PPL，对比验证 Claim 1 在高 ρ 下\n- **contamination_60 四组全部完成** → 汇报 Director Claim 3 结论 + 实验 Table 更新 + experiments section 可写\n- cuda:1/cuda:2 空闲 → 根据剩余 GPU 预算和 Director 指示，从 PREPARING 池中选实验（优先级：detect_remove_baseline > grid_b_low > adaptive_v2）\n- paper:consistency-audit Worker 回调 → 处理一致性审查结果，修正论文\n\n### 5. 🎯 战略上下文\n- **核心框架**: Dual-constraint adaptive b*（D023）— α_eff 质量下界 + ESS 稳定上界 → min-intervention\n- **三个 Claims**:\n  - Claim 1 (dual > ESS-only): ✅ ρ=0.4 完成，ρ=0.6 验证中\n  - Claim 2 (adaptive ≈ grid-best): ✅ ρ=0.4 完成，ρ=0.6 验证中\n  - Claim 3 (proportion-free): 🔄 contamination_60 四组结果决定成败\n- **关键决策链**: D023(dual框架) → D025(τ经验HP) → D036(τ sweep完成) → D038(paper启动) → D041(grid_b_low暂停) → D042(bs8 negative入limitation)\n- **易错点**:\n  - contamination_60_ess_only_seed42 没有 provenance，别漏补\n  - uniform 已完成但 report.md 可能仍显示旧状态（failed），需刷新\n  - GPU 预算 ~15h 不够跑全部 7 个 PREPARING，必须挑最关键的（detect_remove_baseline 对 reviewer 价值最高）\n  - bs8_nmin2 是 negative，D042 决策写入 limitation section 而非 drop\n  - τ=0.8 是硬选择（D036），不要重新 sweep\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-copy-2.md"
+}

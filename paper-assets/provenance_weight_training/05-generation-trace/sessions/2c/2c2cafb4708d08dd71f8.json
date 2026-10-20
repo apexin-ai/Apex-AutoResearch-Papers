@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "2c2cafb4708d08dd71f8",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analysis 1 7b seed456 pair",
+  "task_key": "worker_analysis_1_7b_seed456_pair_20260520T211227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_1_7b_seed456_pair_20260520T211227.log",
+    "occurrence": 1,
+    "bytes": 2084849,
+    "sha256": "f393f6e7adc01efacaa8446ac427ebf8395f138b719ebd55b72ae4147e04df2b"
+  },
+  "statistics": {
+    "messages": 1370,
+    "user_turns": 1,
+    "tool_calls": 587,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 176,
+      "tool_call": 587,
+      "tool_result": 587,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 671,
+      "chunks": [
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0004.json",
+          "message_count": 131
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 699,
+      "chunks": [
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0004.json",
+          "message_count": 49
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c2cafb4708d08dd71f8-part-0008.json",
+          "message_count": 110
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-1-7b-seed456-pair.md"
+}

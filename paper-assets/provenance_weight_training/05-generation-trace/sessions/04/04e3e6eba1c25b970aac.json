@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "04e3e6eba1c25b970aac",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "investigate 30476 sigkill",
+  "task_key": "worker_investigate_30476_sigkill_20260517T120238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_30476_sigkill_20260517T120238.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/investigate-30476-sigkill.md"
+}

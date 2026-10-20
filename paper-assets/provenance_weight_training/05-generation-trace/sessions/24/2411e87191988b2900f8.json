@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2411e87191988b2900f8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis training dynamics extraction",
+  "task_key": "worker_analysis_training-dynamics-extraction_20260518T194659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_training-dynamics-extraction_20260518T194659_result.json",
+    "occurrence": 1,
+    "bytes": 2199,
+    "sha256": "80032d35603da99a95037996ba0f9f2d7b45529bad02a757aa9a3964fd3640e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data extracted and saved. Here are the results:\n\n---\n\n## adaptive_fix_seed42 (Qwen3-0.6B, seed42)\n\n**Run was terminated at step 24 (SIGTERM).** Only 25 optimizer steps available (100 per-batch entries with grad_accum=4).\n\n### Per-step averages (25 steps):\n| Metric | Mean | Median | Std |\n|--------|------|--------|-----|\n| b* | 1.306 | 1.065 | 0.790 |\n| α_eff | 0.618 | 0.628 | 0.098 |\n| ESS | 2.285 | 2.259 | 0.202 |\n| mean_q | 0.637 | 0.634 | 0.079 |\n\n### Per-batch (raw) stats:\n- **α_eff at cap (>=0.8):** 29/100 = 29.0%\n- **ESS near n_min (<2.1):** 73/100 = 73.0%\n\n---\n\n## contamination_60_adaptive_seed456 (Qwen3-0.6B, full 6103 steps)\n\nThis is the closest completed adaptive run (same model, same method, contamination_ratio=0.6 vs 0.4).\n\n### Overall (6103 per-step averages):\n| Metric | Mean | Median | Std |\n|--------|------|--------|-----|\n| b* | 1.387 | 1.109 | 0.989 |\n| α_eff | 0.629 | 0.641 | 0.106 |\n| ESS | 2.295 | 2.243 | 0.258 |\n| loss (unweighted) | 1.925 | 1.915 | 0.257 |\n\n### Key findings:\n1. **Metrics are remarkably stable across training.** No convergence or phase transitions. b*, α_eff, and ESS show nearly identical distributions from Phase 1 to Phase 10.\n2. **Per-batch:** α_eff hits the 0.8 cap in **34.3%** of batches; ESS is near n_min (< 2.1) in **67.6%** of batches. The per-step averaging smooths this out.\n3. **b* is right-skewed:** median 0.86, mean 1.39, p99=10.22. Most batches use moderate b*, but occasional high-b* outliers pull the mean up.\n4. **Loss decreases modestly** from 1.97 (early) to 1.90 (late), confirming the model is learning.\n\n### Files saved:\n- `/root/autodl-tmp/provenance_weight_training/artifacts/training_dynamics_adaptive_fix_seed42.csv` (25 rows, per-step avg)\n- `/root/autodl-tmp/provenance_weight_training/artifacts/training_dynamics_adaptive_fix_seed42_per_batch.csv` (100 rows, raw)\n- `/root/autodl-tmp/provenance_weight_training/artifacts/training_dynamics_contamination60_adaptive_seed456.csv` (6103 rows, per-step avg)\n\n**For the paper figure,** the contamination_60_adaptive_seed456 data is the recommended source since adaptive_fix_seed42 only has 24 steps."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-training-dynamics-extraction.md"
+}

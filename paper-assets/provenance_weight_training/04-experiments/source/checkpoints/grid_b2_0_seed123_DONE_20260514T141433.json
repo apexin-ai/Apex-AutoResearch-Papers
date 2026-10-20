@@ -1,0 +1,50 @@
+{
+  "exp_id": "grid_b2_0_seed123",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:52:55.329Z",
+    "updated_at": "2026-05-14T14:14:33.471Z",
+    "spec": {
+      "command": "python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b2_0_seed123 --weighting_method grid --grid_b_value 2.0 --contamination_ratio 0.4 --seed 123",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "88022",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 123,
+      "log_path": "~/runs/provenance_weight_training/grid_b2_0_seed123.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_step": 6102,
+      "final_train_loss": 2.553,
+      "b": 2,
+      "seed": 123,
+      "max_steps": 6103
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T14:14:05.530Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T14:14:06.752002+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "output/models/grid_b2_0_seed123/final/",
+    "log_path": "~/runs/provenance_weight_training/grid_b2_0_seed123.log",
+    "completed_at": "2026-05-14T14:14:33.471Z"
+  },
+  "timestamp": "2026-05-14T14:14:33.648567+00:00",
+  "trigger": "update_registry"
+}

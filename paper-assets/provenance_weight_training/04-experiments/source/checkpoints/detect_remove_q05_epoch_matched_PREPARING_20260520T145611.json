@@ -1,0 +1,15 @@
+{
+  "exp_id": "detect_remove_q05_epoch_matched",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:48:49.887Z",
+    "updated_at": "2026-05-20T14:56:11.593Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-20T14:56:11.949937+00:00",
+  "trigger": "update_registry"
+}

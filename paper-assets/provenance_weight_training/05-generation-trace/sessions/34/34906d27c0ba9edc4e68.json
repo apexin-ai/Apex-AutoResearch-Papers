@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34906d27c0ba9edc4e68",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis prepare ess only comparison",
+  "task_key": "worker_analysis_prepare_ess_only_comparison_20260515T102001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prepare_ess_only_comparison_20260515T102001_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "7bd77698d212271a8bdb9977822100ab861d1bcdab80c50266ea5072a5e479ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模板已创建并注册。文件包含：\n\n1. **对比表格** — Uniform/Grid-best/Adaptive 已填入，ESS-only 留空待填\n2. **三种 outcome 的分析框架** — Case A（有害）、B（次优）、C（竞争），每个 case 附论文可用的解读段落。基于初始 loss 11.02 和 b*=5.36/2.95 的早期信号，Case A 概率较高\n3. **b* 分布对比** — ESS-only 集中高值 vs Adaptive 宽分布(0.54–1.52)的机制解读：粒度、信息利用、鲁棒性三个维度\n4. **待产出图表清单** — b* histogram overlay、loss curve、per-batch weight scatter"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prepare-ess-only-comparison.md"
+}

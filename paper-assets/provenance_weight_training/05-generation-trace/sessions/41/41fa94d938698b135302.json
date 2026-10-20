@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41fa94d938698b135302",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval bs16 both wait and eval",
+  "task_key": "worker_eval_bs16_both_wait_and_eval_20260521T174228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bs16_both_wait_and_eval_20260521T174228_result.json",
+    "occurrence": 1,
+    "bytes": 1354,
+    "sha256": "50eeb7c7aafc6dabf79c55137e481cfe20f161edf3945e6a2747bdba2ad25aea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments trained, evaluated, and registered. Here's the full summary:\n\n---\n\n## bs=16 Eval Results\n\n| Metric | bs16_adaptive | bs16_uniform | Δ(adaptive−uniform) |\n|--------|:---:|:---:|:---:|\n| **holdout_ppl** | 17.631 | 17.694 | **−0.063** |\n| holdout_loss | 2.8697 | 2.8732 | −0.0035 |\n| **owt_ppl** | 18.309 | 18.364 | **−0.055** |\n| owt_loss | 2.9074 | 2.9104 | −0.0030 |\n| **wiki_ppl** | 15.286 | 15.337 | **−0.051** |\n| wiki_loss | 2.7269 | 2.7302 | −0.0033 |\n\n## Δ(adaptive−uniform) comparison across batch sizes\n\n| Metric | bs=4 Δ | bs=16 Δ | Ratio |\n|--------|:---:|:---:|:---:|\n| **holdout_ppl** | −0.020 | **−0.063** | **3.2x** |\n\n## Key Findings\n\n1. **Adaptive advantage amplifies with larger batch size.** At bs=16, the holdout PPL gap is −0.063 vs −0.020 at bs=4 — a 3.2x amplification.\n\n2. **Consistent across all eval sets.** The adaptive advantage at bs=16 is −0.063 (holdout), −0.055 (OWT), −0.051 (wiki) — uniformly stronger than bs=4.\n\n3. **Both bs=16 models improve over their bs=4 counterparts.** adaptive: 17.631 vs 17.674 (−0.043), uniform: 17.694 vs 17.694 (flat). The larger batch benefits the adaptive method more.\n\n4. **No anomalies.** Both trainings completed successfully with EXIT_CODE=0, all eval sets produced consistent results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bs16-both-wait-and-eval.md"
+}

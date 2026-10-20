@@ -1,0 +1,24 @@
+{
+  "exp_id": "bs8_nmin4_adaptive_seed123_r2",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:24:19.527Z",
+    "updated_at": "2026-05-23T03:24:36.981Z",
+    "spec": {
+      "hypothesis": "Cross-seed replicate (seed=123) of bs8_nmin4_adaptive_seed42 (Δ=−0.044). Retry from checkpoint-500 after disk-full crash. B=8 n_min=4 adaptive should show consistent negative Δ vs uniform.",
+      "parent": "bs8_nmin4_adaptive_seed42",
+      "model_name": "Qwen3-0.6B",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 235555,
+      "seed": 123,
+      "server": "westd-41312"
+    },
+    "hypothesis": "Cross-seed replicate (seed=123) of bs8_nmin4_adaptive_seed42 (Δ=−0.044). Retry from checkpoint-500 after disk-full crash. B=8 n_min=4 adaptive should show consistent negative Δ vs uniform."
+  },
+  "timestamp": "2026-05-23T03:24:37.554351+00:00",
+  "trigger": "update_registry"
+}

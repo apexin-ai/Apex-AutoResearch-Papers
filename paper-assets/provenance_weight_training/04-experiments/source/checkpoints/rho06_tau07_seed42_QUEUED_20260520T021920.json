@@ -1,0 +1,15 @@
+{
+  "exp_id": "rho06_tau07_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:19:11.044Z",
+    "updated_at": "2026-05-20T02:19:19.781Z",
+    "hypothesis": "Adaptive at ρ=0.6 with τ=0.7 (seed=42). results.tex L97 claims τ=0.7 optimal at ρ=0.6 but lacks complete eval. If PPL < current ρ=0.6 τ=0.8 result (17.73 batch_adaptive or hybrid 17.53), validates τ=0.7 as universal default across contamination levels."
+  },
+  "timestamp": "2026-05-20T02:19:20.118111+00:00",
+  "trigger": "update_registry"
+}

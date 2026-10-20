@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f5da8fabf3c7de2be92",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix bs8 seed456 resubmit",
+  "task_key": "worker_fix_bs8_seed456_resubmit_20260523T124632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bs8_seed456_resubmit_20260523T124632_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "ea56951596ceaffedcf51c0c3669359f40cc5a01893ba681666d293bf35603e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **Kill**: PID 871448、871842 已终止\n2. **清理**: 两个错误 output 目录已删除\n3. **数据验证**: `data/scored_data.jsonl` 371499 行，ρ=0.4 数据\n4. **重启**:\n   - `bs8_nmin4_adaptive_seed456_r2` — PID 872464, cuda:0, 92GB 显存, 100% 利用率\n   - `bs8_nmin4_uniform_seed456_r2` — PID 872861, cuda:2, 92GB 显存, 100% 利用率\n5. **Registry**: 两个 _r2 实验已注册为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bs8-seed456-resubmit.md"
+}

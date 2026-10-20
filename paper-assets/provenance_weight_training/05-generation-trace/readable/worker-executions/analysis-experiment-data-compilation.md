@@ -1,0 +1,3854 @@
+# analysis experiment data compilation
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_analysis_experiment-data-compilation_20260516T051015.log`
+- **Structured JSON:** [`be84ce6111bf8aabb69a.json`](../../sessions/be/be84ce6111bf8aabb69a.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "be9f032f-70ef-4efa-b045-994880469365",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778925600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "df87e449-c9eb-42e2-bd84-ad2957baa057",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the registry to get all experiment data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "5019896b-c482-4ab3-9a89-6dd1539c9ae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwU4cUinXyJPVadC8M6P8p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12531,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12531
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PzFEH5odPUpWhEJCdPgWwF`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "e4fc35b8-6519-4f9d-8827-68b3c3285e93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwU4cUinXyJPVadC8M6P8p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12531,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12531
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T05:10:34.799Z_
+
+<details><summary>↩ Tool result · `toolu_01PzFEH5odPUpWhEJCdPgWwF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "5318455f-8429-4e90-8736-eba258a370c3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get all experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "14d1e6be-1642-4b3b-bdc8-7172a25da31b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Qz6HRPjjRqCWjnUESf2jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 23978,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FCLV2ptgTnUsrk45f8asE3`</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "e1b92459-0a41-4420-8cee-53c4898a2b3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Qz6HRPjjRqCWjnUESf2jz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 476,
+      "cache_read_input_tokens": 23978,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 476
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T05:10:40.689Z_
+
+<details><summary>↩ Tool result · `toolu_01FCLV2ptgTnUsrk45f8asE3`</summary>
+
+```text
+Error: result (123,726 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "f1557971-a6e7-4d53-92fa-ef74aea8915b",
+  "tool_use_result": {
+    "content": "Error: result (123,726 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"grid_b0_1_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:26:46.904Z\", \"updated_at\": \"2026-05-16T05:05:00.393Z\", \"hypothesis\": \"Grid-b sweep b=0.1 on ρ=0.4 data, seed42. Minimal reweighting — expect PPL close to uniform (~17.694). Establishes lower bound of useful b range.\", \"parent\": \"grid_b_seed42_batch\", \"notes\": \"GPU 队列: cuda:3 (detect_remove 完成后)。Low-b curve 数据点。\", \"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-16T05:04:42.502Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_grid_b0_1_seed42.sh\\\"\"}, \"spec\": {\"command\": \"bash scripts/run_grid_b0_1_seed42.sh\", \"server\": \"westd-47453\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"grid_b_value\": 0.1, \"contamination_ratio\": 0.4}, \"pid\": \"295096\", \"log_path\": \"~/runs/provenance_weight_training/grid_b0_1_seed42.log\"}, \"grid_b0_3_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:26:45.815Z\", \"updated_at\": \"2026-05-16T05:03:15.767Z\", \"hypothesis\": \"Grid-b sweep b=0.3 on ρ=0.4 data, seed42. Near suspected optimal region (grid-best b=0.5). Tests if b<0.5 improves PPL. Part of b* curve characterization for Claim 2.\", \"parent\": \"grid_b_seed42_batch\", \"spec\": {\"command\": \"python training/pretrain_weighted.py --weighting_method grid --grid_b_value 0.3 --seed 42\", \"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"pid\": 274304, \"log_path\": \"/root/runs/provenance_weight_training/grid_b0_3_seed42.log\", \"submitted_at\": \"2026-05-16T01:13:08.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"models/Qwen/Qwen3-0.6B\", \"eval_data\": \"data/human/eval_holdout.jsonl\", \"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b0_3_seed42/final\", \"wall_clock_seconds\": 13807.3, \"gpu_hours\": 3.84}, \"reproduce\": {\"finished_at\": \"2026-05-16T04:57:12.423Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T04:57:14.788065+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.64, \"eval_loss_holdout\": 2.8702, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"train_loss\": 9.1154, \"train_runtime_seconds\": 13365.79, \"train_samples_per_second\": 7.306, \"total_steps\": 6103, \"b_fixed\": 0.3, \"alpha_eff_typical_range\": \"0.07-0.88\", \"ess_typical_range\": \"2.3-4.0\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T05:03:15.767Z\"}, \"contamination_60_ess_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:29:38.654Z\", \"updated_at\": \"2026-05-16T03:31:13.933Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_ess_only_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"265012\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_ess_only_seed42.log\", \"submitted_at\": \"2026-05-15T23:29:46.475Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 14168.4, \"gpu_hours\": 3.94}, \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T23:29:46.475Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_ess_only_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-16T03:10:18.007Z\", \"training_hours\": 3.68}, \"pid\": \"265012\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_ess_only_seed42.log\", \"hypothesis\": \"ESS-only (max-intervention) on ρ=0.6 data: b* = max{b : ESS(b) ≥ n_min}. Tests if dual-constraint advantage over ESS-only holds at higher contamination (ρ=0.4→0.6). Paired with adaptive and grid_b0.5 for Claim 1+3 cross-validation.\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T03:10:20.449362+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.77, \"eval_loss_holdout\": 2.8775, \"eval_holdout_tokens\": 4077068, \"train_loss\": 9.842, \"total_steps\": 6103, \"train_runtime_seconds\": 13152}, \"checkpoint_path\": \"output/models/contamination_60_ess_only_seed42/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T03:25:54.836Z\", \"notes\": \"ρ=0.6 ESS-only PPL=17.77 ≈ uniform (17.766), max-intervention 在高 contamination 下完全失效。vs ρ=0.4 ESS-only avg 17.723 → ρ增加0.2导致+0.047退化。关键对比: dual(17.74) < ESS-only(17.77), Claim 1 在 ρ=0.6 下仍成立(gap=0.03, 小于 ρ=0.4 的 gap=0.07)。ESS-only 崩溃而 dual 仍有效 → 强化 \\\"dual-constraint 在高 contamination 下更重要\\\" 叙事。\"}, \"contamination_60_tau06_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:04:51.670Z\", \"updated_at\": \"2026-05-16T03:26:06.807Z\", \"spec\": {\"hypothesis\": \"ρ=0.6 τ=0.6 diagnostic: second data point for ρ=0.6 τ-PPL curve. Tests deeper τ downshift for higher contamination.\", \"parent\": \"contamination_60_seed42_r2\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_tau06_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.6 --tau 0.6 --n_min 2 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"287971\", \"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"log_path\": \"~/runs/provenance_weight_training/contamination_60_tau06_seed42.log\", \"account\": \"root\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\"}, \"hypothesis\": \"ρ=0.6 τ=0.6 diagnostic: second data point for ρ=0.6 τ-PPL curve. Tests deeper τ downshift for higher contamination.\", \"parent\": \"contamination_60_seed42_r2\", \"notes\": \"D045 第二数据点。GPU 队列: cuda:2 (ess_only 完成后)。脚本: scripts/run_contamination_60_tau06.sh。优先级最高。\"}, \"tau_095_nmin2_seed42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T01:22:54.457Z\", \"updated_at\": \"2026-05-16T03:05:15.616Z\", \"hypothesis\": \"τ=0.95 rerun with correct n_min=2 (original tau_095_seed42 used n_min=3 confound). Most strict α_eff threshold, may over-constrain b*.\", \"parent\": \"tau_095_seed42\", \"completed_at\": \"2026-05-16T02:45:16.182Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}}, \"notes\": \"D048: 原始 tau_095_seed42 已确认 n_min=2，数据干净。二次 killed，不重跑。\", \"conclusion\": \"killed\"}, \"tau_09_nmin2_seed42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T01:22:52.989Z\", \"updated_at\": \"2026-05-16T03:05:14.824Z\", \"hypothesis\": \"τ=0.9 rerun with correct n_min=2 (original tau_09_seed42 used n_min=3 confound). Tests if τ>0.8 still degrades with corrected n_min.\", \"parent\": \"tau_09_seed42\", \"completed_at\": \"2026-05-16T02:45:15.433Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}}, \"notes\": \"D048: 原始 tau_09_seed42 已确认 n_min=2，数据干净。二次 killed，不重跑。\", \"conclusion\": \"killed\"}, \"batchsize16_nmin8_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:04:54.440Z\", \"updated_at\": \"2026-05-16T03:04:54.440Z\", \"spec\": {\"hypothesis\": \"bs=16 + n_min=floor(B/2)=8: coupling rule positive confirmation. bs=8+n_min=2 failed because ESS range [2,8] too wide; bs=16+n_min=8 keeps ESS range [8,16] tight, should recover adaptive advantage.\", \"parent\": \"bs8_nmin2_seed42_r2\", \"batch_size\": 16, \"gradient_accumulation_steps\": 1, \"n_min\": 8, \"tau\": 0.8, \"seed\": 42, \"contamination_ratio\": 0.4, \"gradient_checkpointing\": true}}, \"nmin5_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:52:01.911Z\", \"updated_at\": \"2026-05-16T03:03:02.805Z\", \"spec\": {\"hypothesis\": \"n_min=5 > batch_size=4, code clamps to n_min=4, ESS(b=0)=4 is only feasible point → b*=0 always → degenerate uniform case. Validates theoretical prediction.\", \"parent\": \"adaptive_fix_seed42\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T03:03:02.017Z\", \"notes\": \"D047 砍掉，GPU 预算不够。\"}, \"grid_b5_0_seed456\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T06:59:39.050Z\", \"updated_at\": \"2026-05-16T03:01:26.368Z\", \"hypothesis\": \"Grid-b weighting with b=5.0, seed=456, for multi-seed validation of best-b baseline\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T00:52:41.923Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b5_0_seed456 --weighting_method grid --grid_b_value 5.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --eval_data_path data/human/eval_holdout.jsonl --eval_steps 500\\\"\", \"finished_at\": \"2026-05-15T09:31:34.604Z\", \"training_hours\": 8.65}, \"failure_reason\": \"\", \"notes\": \"checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。\", \"completed_at\": \"2026-05-15T07:46:15.281Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:46:16.570901+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:31:35.946616+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"方案 A 重跑：无 inline eval，从 checkpoint-3000 恢复（~3100 步剩余）。PID=183240, cuda:2, timeout=5h。训练完后 post-hoc eval。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b5_0_seed456 --weighting_method grid --grid_b_value 5.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --bf16 --resume_from_checkpoint output/models/grid_b5_0_seed456/checkpoint-3000\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"183240\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456, \"log_path\": \"~/runs/provenance_weight_training/grid_b5_0_seed456.log\"}, \"metrics\": {\"eval_ppl_holdout\": 17.993, \"eval_loss\": 2.89, \"eval_holdout_tokens\": 4077068, \"train_loss\": 5.488, \"total_steps\": 6103, \"train_runtime_s\": 6601, \"gpu_hours\": 1.83, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"checkpoint_path\": \"output/models/grid_b5_0_seed456/final\", \"conclusion\": \"success\"}, \"grid_b3_0_seed456\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T06:59:38.011Z\", \"updated_at\": \"2026-05-16T03:01:25.067Z\", \"hypothesis\": \"Grid-b weighting with b=3.0, seed=456, for multi-seed validation of best-b baseline\", \"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T00:52:41.254Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b3_0_seed456 --weighting_method grid --grid_b_value 3.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --eval_data_path data/human/eval_holdout.jsonl --eval_steps 500\\\"\", \"finished_at\": \"2026-05-15T09:31:37.181Z\", \"training_hours\": 8.65}, \"failure_reason\": \"\", \"notes\": \"checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。\", \"completed_at\": \"2026-05-15T07:46:09.092Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:46:12.926805+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:31:39.113223+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"方案 A 重跑：无 inline eval，从 checkpoint-3000 恢复（~3100 步剩余）。PID=183446, cuda:3, timeout=5h。训练完后 post-hoc eval。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b3_0_seed456 --weighting_method grid --grid_b_value 3.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --bf16 --resume_from_checkpoint output/models/grid_b3_0_seed456/checkpoint-3000\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"183446\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456, \"log_path\": \"~/runs/provenance_weight_training/grid_b3_0_seed456.log\"}, \"metrics\": {\"eval_ppl_holdout\": 17.921, \"eval_loss\": 2.886, \"eval_holdout_tokens\": 4077068, \"train_loss\": 5.435, \"total_steps\": 6103, \"train_runtime_s\": 6602, \"gpu_hours\": 1.83, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"checkpoint_path\": \"output/models/grid_b3_0_seed456/final\", \"conclusion\": \"success\"}, \"grid_b2_0_seed456\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T06:59:37.073Z\", \"updated_at\": \"2026-05-16T03:01:24.083Z\", \"hypothesis\": \"Grid-b weighting with b=2.0, seed=456, for multi-seed validation of best-b baseline\", \"server\": \"westd-47453\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T22:22:43.944Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b2_0_seed456 --weighting_method grid --grid_b_value 2.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --eval_data_path data/human/eval_holdout.jsonl --eval_steps 500\\\"\", \"finished_at\": \"2026-05-15T09:15:04.029Z\", \"training_hours\": 10.87}, \"failure_reason\": \"eval overhead timeout at 65.5% (checkpoint-3500 available). Eval dataset 8477 samples × every 500 steps caused ~40min per eval round, exceeding original timeout.\", \"completed_at\": \"2026-05-15T07:31:09.178Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:31:10.598336+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:15:05.368569+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"恢复自 checkpoint-3500（原超时于 65.5%）。timeout 增至 6h（原因：eval 8477 条 × 每 500 步 ≈ 40min/轮）。PID=182488, cuda:0。\"}}, \"notes\": \"checkpoint_artifact: true. D026 决策：seed456 b≥2.0 的 PPL 异常高（checkpoint 问题），论文只报 2-seed 数据。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b2_0_seed456 --weighting_method grid --grid_b_value 2.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --bf16 --resume_from_checkpoint output/models/grid_b2_0_seed456/checkpoint-3500\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"183161\", \"log_path\": \"~/runs/provenance_weight_training/grid_b2_0_seed456.log\", \"submitted_at\": \"2026-05-15T07:40:59.398Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6408.6, \"gpu_hours\": 1.78}, \"metrics\": {\"eval_ppl_holdout\": 17.989, \"eval_loss\": 2.8898, \"eval_holdout_tokens\": 4077068, \"train_loss\": 10.625, \"total_steps\": 6103, \"train_runtime_s\": 12969, \"gpu_hours\": 3.6, \"train_samples_per_second\": 7.53, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"checkpoint_path\": \"output/models/grid_b2_0_seed456/final\", \"conclusion\": \"success\"}, \"ess_only_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:04:39.611Z\", \"updated_at\": \"2026-05-16T03:01:03.888Z\", \"spec\": {\"n_min\": 2, \"weighting_method\": \"ess_only\"}, \"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"pid\": \"233952\", \"log_path\": \"~/runs/provenance_weight_training/ess_only_seed456.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"finished_at\": \"2026-05-15T21:41:17.276Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:41:21.343173+00:00\"}]}, \"metrics\": {\"eval_ppl\": 17.719, \"eval_loss\": 2.8746, \"eval_tokens\": 4077068, \"train_loss\": 10.174, \"vs_uniform_ppl_delta\": \"+0.018\", \"vs_adaptive_ppl_delta\": \"+0.077\", \"vs_adaptive_fix_ppl_delta\": \"+0.062\"}, \"checkpoint_path\": \"output/models/ess_only_seed456/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:51:54.328Z\", \"hypothesis\": \"ESS-only (max-intervention) seed456: b* = max{b : ESS(b) ≥ n_min} — proves dual-constraint adaptive (min-intervention) superior to ESS-only\"}, \"ess_only_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:51:52.911Z\", \"updated_at\": \"2026-05-16T03:01:03.366Z\", \"spec\": {\"n_min\": 2, \"weighting_method\": \"ess_only\"}, \"server\": \"westd-47453\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"233872\", \"log_path\": \"~/runs/provenance_weight_training/ess_only_seed123.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"finished_at\": \"2026-05-15T21:41:11.165Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:41:12.958200+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.72, \"eval_loss_holdout\": 2.8746, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"eval_note\": \"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\", \"train_loss\": 10.2159, \"train_steps\": 6103, \"train_runtime_seconds\": 12959.5, \"b_star_mean\": 3.55, \"b_star_median\": 1.5918, \"b_star_std\": 4.7209, \"b_star_min\": 0.2344, \"b_star_max\": 20, \"b_star_p25\": 0.8398, \"b_star_p75\": 3.8281, \"b_star_p90\": 9.5996, \"b_star_count\": 21971, \"vs_uniform_ppl_delta\": \"+0.034\", \"vs_adaptive_fix_ppl_delta\": \"+0.077\"}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/ess_only_seed123/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:51:53.436Z\"}, \"ess_only_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:20:13.656Z\", \"updated_at\": \"2026-05-16T03:01:02.547Z\", \"hypothesis\": \"ESS-only adaptive baseline (max-intervention): b* = max{b : ESS(b) ≥ n_min} — proves min-intervention (adaptive) superior to max-intervention (ESS-only)\", \"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T09:13:26.412Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/ess_only_seed42 --weighting_method ess_only --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\\\"\", \"finished_at\": \"2026-05-15T12:50:22.690Z\", \"training_hours\": 3.62}, \"spec\": {\"n_min\": 2, \"weighting_method\": \"ess_only\"}, \"pid\": \"189240\", \"log_path\": \"~/runs/provenance_weight_training/ess_only_seed42.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:50:24.148259+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.73, \"eval_loss\": 2.875, \"b_star_median\": 1.58, \"b_star_mean\": 3.51, \"vs_uniform_ppl_delta\": \"+0.038\", \"vs_adaptive_ppl_delta\": \"+0.08\"}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/ess_only_seed42\", \"completed_at\": \"2026-05-15T13:29:03.148Z\"}, \"adaptive_fix_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:32:31.409Z\", \"updated_at\": \"2026-05-16T03:01:01.153Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63, uniform PPL=17.69)\", \"parent\": \"adaptive_seed123\", \"notes\": \"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\", \"failure_reason\": \"\", \"conclusion\": \"success\", \"spec\": {\"contamination_ratio\": 0.4, \"tau\": 0.8, \"batch_size\": 4}, \"reproduce\": {\"finished_at\": \"2026-05-14T20:41:22.910Z\"}, \"completed_at\": \"\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:38:38.735034+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T20:41:26.828424+00:00\"}]}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/adaptive_fix_seed123/final\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_fix_seed123.log\", \"metrics\": {\"eval_ppl_holdout\": 17.6432, \"eval_loss_holdout\": 2.8704, \"eval_loss\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.643/4077068\", \"train_loss_weighted\": 7.517, \"train_runtime_s\": 10347, \"total_steps\": 6103, \"epoch\": 0.26, \"b_star_mean\": 1.431, \"b_star_median\": 0.88, \"b_star_std\": 2.029, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_2_to_5\": 6.3, \"b_star_pct_above_5\": 1.9, \"b_star_count\": 25906, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:32:31.779Z\", \"updated_at\": \"2026-05-16T03:01:00.018Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64, uniform PPL=17.70)\", \"parent\": \"adaptive_seed456\", \"notes\": \"最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\", \"spec\": {\"n_min\": 2, \"tau\": 0.8}, \"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"pid\": \"115066\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_fix_seed456.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-14T21:00:17.106Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:38:47.164099+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:00:18.079813+00:00\"}]}, \"metrics\": {\"train_loss\": 8.3124, \"train_runtime\": 11436.05, \"train_samples_per_second\": 8.539, \"train_steps_per_second\": 0.534, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6566, \"eval_loss_holdout\": 2.8711, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.66/4077068\", \"b_star_count\": 26396, \"b_star_mean\": 1.416, \"b_star_median\": 0.88, \"b_star_std\": 1.993, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}, \"checkpoint_path\": \"output/models/adaptive_fix_seed456/final\"}, \"adaptive_fix_seed42\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-14T13:32:30.463Z\", \"updated_at\": \"2026-05-16T03:00:59.134Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint achieves meaningful improvement over uniform baseline (PPL=17.69) for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)\", \"parent\": \"adaptive_seed42\", \"notes\": \"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\", \"failure_reason\": \"\", \"completed_at\": \"\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"D012 代码验证通过（n_min=max(2,batch_size//2), 无EMA, import OK）。等 GPU 释放后提交。\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:38:26.312269+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T20:39:45.953045+00:00\"}]}, \"spec\": {\"n_min\": 2, \"tau\": 0.8}, \"reproduce\": {\"finished_at\": \"2026-05-14T20:39:44.942Z\"}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.5167, \"train_runtime\": 10304.37, \"train_samples_per_second\": 9.476, \"train_steps_per_second\": 0.592, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6527, \"eval_loss_holdout\": 2.8709, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.65/4077068\", \"b_star_count\": 26458, \"b_star_mean\": 1.399, \"b_star_median\": 0.871, \"b_star_std\": 1.933, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.512, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}, \"checkpoint_path\": \"output/models/adaptive_fix_seed42/final\"}, \"detect_remove_baseline_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:26:48.402Z\", \"updated_at\": \"2026-05-16T02:55:28.085Z\", \"hypothesis\": \"Detect-and-remove baseline: hard-filter q&gt;0.5 samples then train uniformly on remaining data. Answers reviewer question \\\"why not just filter instead of reweight?\\\" Expected to underperform adaptive weighting due to information loss from discarded samples.\", \"parent\": \"uniform_seed42\", \"notes\": \"完成时 conclusion 指引: b=0 throughout; adaptive degenerates to uniform post-filtering. detect-and-remove alone sufficient — adaptive adds no value on already-clean data. 写论文时注意: filtered subset (~153K) 训练 200M tokens 重复 ~2.4x，而 adaptive 用全部 ~371K 只过 1 遍，effective epoch 不同需在 experiment section 说明。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir output/models/detect_remove_baseline_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"276739\", \"log_path\": \"~/runs/provenance_weight_training/detect_remove_baseline_seed42.log\", \"submitted_at\": \"2026-05-16T01:36:15.272Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_filtered_q05.jsonl\", \"data_count\": 153725, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\"}}, \"adaptive_v2_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:27:19.549Z\", \"updated_at\": \"2026-05-16T02:50:32.828Z\", \"hypothesis\": \"Adaptive v2 (n_min fix: 3→2, no EMA) maintains or improves seed456 performance (baseline adaptive PPL=17.64)\", \"conclusion\": \"killed\", \"notes\": \"D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\", \"completed_at\": \"2026-05-16T02:50:32.054Z\"}, \"adaptive_v2_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:27:19.157Z\", \"updated_at\": \"2026-05-16T02:50:31.386Z\", \"hypothesis\": \"Adaptive v2 (n_min fix: 3→2, no EMA) maintains or improves seed123 performance (baseline adaptive PPL=17.63)\", \"conclusion\": \"killed\", \"notes\": \"D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\", \"completed_at\": \"2026-05-16T02:50:30.507Z\"}, \"adaptive_v2_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:27:18.265Z\", \"updated_at\": \"2026-05-16T02:50:29.963Z\", \"hypothesis\": \"Adaptive v2 (n_min fix: 3→2, no EMA) fixes ESS clamping issue, achieves meaningful improvement over uniform baseline for seed=42\", \"conclusion\": \"killed\", \"notes\": \"D012 修正：取消 v2（含 EMA），改用 adaptive_fix（仅修 n_min=2，无 EMA）\", \"completed_at\": \"2026-05-16T02:50:29.147Z\"}, \"tau_07_nmin2_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:22:51.146Z\", \"updated_at\": \"2026-05-16T02:45:14.675Z\", \"spec\": {\"hypothesis\": \"τ=0.7 rerun with correct n_min=2 (original tau_07_seed42 used n_min=3 confound). Slightly below optimal τ=0.8.\", \"parent\": \"tau_07_seed42\"}, \"hypothesis\": \"τ=0.7 rerun with correct n_min=2 (original tau_07_seed42 used n_min=3 confound). Slightly below optimal τ=0.8.\", \"parent\": \"tau_07_seed42\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T02:45:14.675Z\"}, \"tau_06_nmin2_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:22:49.217Z\", \"updated_at\": \"2026-05-16T02:45:13.922Z\", \"spec\": {\"hypothesis\": \"τ=0.6 rerun with correct n_min=2 (original tau_06_seed42 used n_min=3 confound). Tests lower τ region with proper ESS constraint.\", \"parent\": \"tau_06_seed42\"}, \"hypothesis\": \"τ=0.6 rerun with correct n_min=2 (original tau_06_seed42 used n_min=3 confound). Tests lower τ region with proper ESS constraint.\", \"parent\": \"tau_06_seed42\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T02:45:13.922Z\"}, \"tau_05_nmin2_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:22:47.367Z\", \"updated_at\": \"2026-05-16T02:45:13.057Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/tau_05_nmin2_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.5 --n_min 2 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"281298\", \"log_path\": \"~/runs/provenance_weight_training/tau_05_nmin2_seed42.log\", \"submitted_at\": \"2026-05-16T01:58:41.186Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2791.9, \"gpu_hours\": 0.78}, \"hypothesis\": \"τ=0.5 rerun with correct n_min=2 (original tau_05_seed42 used n_min=3 confound). Most permissive α_eff threshold, expect b*≈0 for many batches.\", \"parent\": \"tau_05_seed42\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T02:45:13.057Z\"}, \"contamination_60_tau07_seed42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:04:49.597Z\", \"updated_at\": \"2026-05-16T02:45:06.980Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_tau07_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.6 --tau 0.7 --n_min 2 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"282223\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_tau07_seed42.log\", \"submitted_at\": \"2026-05-16T02:09:01.658Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\"}, \"hypothesis\": \"ρ=0.6 τ=0.7 diagnostic: Reviewer-suggested formula τ=1-ρ×0.5=0.7. Tests if τ downshift recovers adaptive to grid-best level (PPL≤17.71 target).\", \"parent\": \"contamination_60_seed42_r2\", \"notes\": \"D045 最高优先级。cuda:0, PID=282223, 速度 ~2.23s/it, 预计 ~3h46m。参数确认: tau=0.7, n_min=2, ρ=0.6, data=scored_data_60.jsonl (371499 samples)。\"}, \"contamination_60_seed42_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:53:48.975Z\", \"updated_at\": \"2026-05-16T01:57:12.472Z\", \"hypothesis\": \"Retry of contamination_60_seed42 (failed due to GPU conflict on cuda:2). ρ=0.6 adaptive weighting (τ=0.8, n_min=2) on higher contamination data. Tests graceful degradation as ρ increases from 0.4→0.6.\", \"parent\": \"contamination_60_seed42\", \"server\": \"westd-47453\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_seed42_r2 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"257977\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_seed42_r2.log\", \"submitted_at\": \"2026-05-15T21:54:22.934Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 14569.5, \"gpu_hours\": 4.05}, \"pid\": \"257977\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_seed42_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_seed42_r2 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-16T01:51:18.700Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:51:20.683620+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.74, \"eval_loss_holdout\": 2.8759, \"eval_tokens\": 4077068, \"eval_method\": \"sliding_window_2048_stride1024\", \"train_loss\": 9.6349, \"train_runtime_seconds\": 14092.25}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/contamination_60_seed42_r2/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:57:12.472Z\"}, \"contamination_60_grid_b0_5_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:19:25.407Z\", \"updated_at\": \"2026-05-16T01:47:52.701Z\", \"hypothesis\": \"ρ=0.6 grid-best (b=0.5) baseline: fixed b=0.5 on 60% contamination. Tests if grid-optimal b from ρ=0.4 transfers to higher contamination, or if adaptive b* adapts better.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_grid_b0_5_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method grid --grid_b_value 0.5 --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"255781\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_grid_b0_5_seed42.log\", \"submitted_at\": \"2026-05-15T21:49:22.242Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 13153.5, \"gpu_hours\": 3.65}, \"parent\": \"grid_b0_5_seed456\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"reproduce\": {\"finished_at\": \"2026-05-16T01:28:34.213Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:28:35.712Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:28:37.428483+00:00\"}]}, \"notes\": \"训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42 同一模式）。WANDB_MODE=disabled 导致 cron 误判为 failed。实际 success，等 eval PPL。\", \"metrics\": {\"eval_ppl\": 17.704, \"eval_loss\": 2.8738, \"eval_tokens\": 4077068, \"eval_docs\": 5000}, \"checkpoint_path\": \"output/models/contamination_60_grid_b0_5_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_grid_b0_5_seed42.log\"}, \"contamination_60_uniform_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:19:24.785Z\", \"updated_at\": \"2026-05-16T01:12:50.897Z\", \"hypothesis\": \"ρ=0.6 uniform baseline: no reweighting on 60% contamination data. Establishes baseline PPL degradation at higher contamination for comparison with adaptive and grid methods.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"250074\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\", \"submitted_at\": \"2026-05-15T21:26:23.538Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12988.3, \"gpu_hours\": 3.61, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/contamination_60_uniform_seed42/final\"}, \"parent\": \"uniform_seed42\", \"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T21:19:46.484Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-16T01:02:50.356Z\", \"training_hours\": 3.72}, \"pid\": \"250074\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\", \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:02:51.880Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:02:54.397978+00:00\"}]}, \"notes\": \"训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_runtime=12904s。需要 eval 获取 PPL。\", \"metrics\": {\"eval_ppl_holdout\": 17.766, \"eval_loss_holdout\": 2.8773, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\", \"train_loss\": 7.649, \"train_runtime_seconds\": 12904}, \"checkpoint_path\": \"output/models/contamination_60_uniform_seed42/final\"}, \"grid_b0_2_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:26:47.719Z\", \"updated_at\": \"2026-05-16T01:06:46.569Z\", \"hypothesis\": \"Grid-b sweep b=0.2 on ρ=0.4 data, seed42. Interpolation between b=0.1 and b=0.3 to characterize PPL curve shape in low-b region.\", \"parent\": \"grid_b_seed42_batch\", \"conclusion\": \"killed\", \"notes\": \"Director 预算修正砍掉：b=0.1 和 b=0.3 两点足够推断趋势，b=0.2 不再需要。→ D042 修正：grid_b0_2 重新加入，排在 grid_b0_1/b0_3 之后的下一个空 GPU。\"}, \"bs8_nmin2_seed42_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:48:45.682Z\", \"updated_at\": \"2026-05-16T00:26:45.368Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_nmin2_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"238714\", \"log_path\": \"~/runs/provenance_weight_training/bs8_nmin2_seed42_r2.log\", \"submitted_at\": \"2026-05-15T18:48:45.530Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 200000000, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training resubmit, not eval)\", \"eval_data\": \"N/A (training resubmit, not eval)\", \"wall_clock_seconds\": 14753.4, \"gpu_hours\": 4.1}, \"hypothesis\": \"batch_size=8 with n_min=2 (correct coupling: n_min=max(2,bs//2)=4→override to 2 for wider ESS dynamic range [2,8]). Resubmit after zombie cleanup on cuda:2. Parent: bs8_nmin2_seed42 (OOM due to zombie).\", \"parent\": \"bs8_nmin2_seed42\", \"plan_id\": \"p0_batchsize_8\", \"notes\": \"训练完成 6103/6103 steps, train_loss=5.4065. EXIT_CODE=129 (SIGHUP) 发生在训练完成后 W&B finalization 阶段，不影响结果。Checkpoint 验证通过。Eval PPL=17.73 > uniform avg 17.694 (+0.036), 与 ESS-only 水平相当(~17.72)。**NEGATIVE but informative**: B=8, n_min=2 (n_min/B=0.25) 导致 ESS range [2,8] 过宽，b* 无法有效约束。与 B=4,n_min=2 (n_min/B=0.5, works) 和 B=4,n_min=4 (n_min/B=1.0, degenerates to uniform) 共同支持 coupling rule n_min=⌊B/2⌋ 的必要性。Director 决策：写入 experiments n_min analysis，不放 limitation section。\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:54:37.472Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T22:54:38.917Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:54:40.392745+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.73, \"eval_loss_holdout\": 2.8752, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"train_loss\": 5.4065, \"train_steps\": 6103, \"train_runtime_seconds\": 14621.6}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/bs8_nmin2_seed42/final\"}, \"grid_b_low_serial_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:56:07.484Z\", \"updated_at\": \"2026-05-15T23:43:07.407Z\", \"hypothesis\": \"Grid-b low sweep (b=0.1, 0.2, 0.3 serial, hardcoded) on ρ=0.4 data, seed42. No shell variables — each b value hardcoded to avoid quoting issues. R3 of grid_b_low_seed42.\", \"parent\": \"grid_b_seed42_batch\", \"spec\": {\"command\": \"bash /root/provenance_weight_training/run_grid_b_low_serial.sh\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"265606\", \"log_path\": \"~/runs/provenance_weight_training/grid_b_low_serial_seed42.log\", \"submitted_at\": \"2026-05-15T23:33:20.929Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 351.2, \"gpu_hours\": 0.1}, \"conclusion\": \"killed\", \"notes\": \"R4 killed: cuda:2 GPU冲突，与contamination_60_ess_only_seed42双进程占满显存(93042/97887 MiB)，仅完成48/6103步。第3次因GPU冲突失败(R3=cuda:0撞contamination_60, R4=cuda:2撞ess_only)。PID 265617已确认死亡，cuda:2显存恢复至~46.5GB，ess_only速度从~4.5s/it恢复至2.12s/it。需在空卡上R5重启——cuda:1预计~1h21m后释放（contamination_60_uniform完成）。\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T23:33:18.725Z\", \"command\": \"bash /root/provenance_weight_training/run_grid_b_low_serial.sh\"}, \"pid\": \"265606\", \"log_path\": \"~/runs/provenance_weight_training/grid_b_low_serial_seed42.log\", \"completed_at\": \"2026-05-15T23:39:12.167Z\"}, \"grid_b_low_seed42_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:53:08.449Z\", \"updated_at\": \"2026-05-15T21:57:46.419Z\", \"hypothesis\": \"Low-b grid sweep (b=0.1, 0.2, 0.3) on ρ=0.4 data, seed42. R3: uses standalone shell script to avoid quoting issues. Confirms behavior in b<0.5 region.\", \"parent\": \"grid_b_low_seed42_r2\", \"spec\": {\"command\": \"bash /root/provenance_weight_training/scripts/run_grid_b_low_seed42.sh\", \"server\": \"westd-47453\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training, not eval)\", \"eval_data\": \"N/A (training, not eval)\"}, \"conclusion\": \"failed\", \"notes\": \"Worker 提交时未指定 GPU，导致与 cuda:0 上的 contamination_60_seed42_r2 冲突。PID 258500 在启动后秒级崩溃。grid_b_low 需在 GPU 释放后单独提交（每个 b 值独立实验或硬编码脚本 + 显式 CUDA_VISIBLE_DEVICES）。\", \"completed_at\": \"2026-05-15T21:57:46.419Z\"}, \"grid_b_low_seed42_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:19:36.129Z\", \"updated_at\": \"2026-05-15T21:55:52.896Z\", \"hypothesis\": \"Low-b grid sweep (b=0.1, 0.2, 0.3) on ρ=0.4 data, seed42. Confirms behavior in b<0.5 region — expect minimal reweighting effect and PPL close to uniform. Establishes that b=0.5 is already near the lower useful bound.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && for b in 0.1 0.2 0.3; do echo '=== Training grid b='$b' ===' && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b_low_b${b}_seed42 --weighting_method grid --grid_b_value $b --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --bf16 || exit 1; done\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"256582\", \"log_path\": \"~/runs/provenance_weight_training/grid_b_low_seed42_r2.log\", \"submitted_at\": \"2026-05-15T21:50:10.451Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 24.1, \"gpu_hours\": 0.01}, \"parent\": \"grid_b_seed42_batch\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"reproduce\": {\"finished_at\": \"2026-05-15T21:50:31.477Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T21:50:34.583Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:50:36.985471+00:00\"}]}, \"notes\": \"失败根因：bash -c \\\"...\\\" 双引号内的 $b 被外层 shell 提前展开为空字符串，导致 --grid_b_value 收到空参数，argparse 报错 \\\"expected one argument\\\" 立即退出。日志首行 \\\"Training grid b= ===\\\" 确认 $b 为空。修复方法：将 $b 转义为 \\\\$b（如 \\\\$b 和 \\\\${b}），或改用 bash -c '...'（需处理内部单引号），或拆成三条独立命令分别指定 b=0.1/0.2/0.3。\"}, \"baseline_qwen3_0.6b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:53:53.450Z\", \"updated_at\": \"2026-05-15T21:54:29.041Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval_perplexity.py --checkpoints models/Qwen/Qwen3-0.6B --data_path data/human/eval_holdout.jsonl --max_docs 5000\", \"server\": \"westd-47453\", \"data_path\": \"data/human/eval_holdout.jsonl\", \"data_count\": 5000, \"model_name\": \"Qwen3-0.6B\", \"seed\": 0, \"checkpoint_source\": \"models/Qwen/Qwen3-0.6B\", \"eval_data\": \"data/human/eval_holdout.jsonl\", \"checkpoint_path\": \"models/Qwen/Qwen3-0.6B\", \"log_path\": \"/root/runs/provenance_weight_training/qwen3_0.6b_baseline_eval.log\"}, \"checkpoint_path\": \"models/Qwen/Qwen3-0.6B\", \"log_path\": \"/root/runs/provenance_weight_training/qwen3_baseline_eval.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:54:15.419Z\", \"hypothesis\": \"Raw Qwen3-0.6B pretrained checkpoint baseline PPL (no continued pretraining). Reference point for quantifying absolute improvement from training.\", \"metrics\": {\"eval_ppl_holdout\": 22.97, \"eval_loss\": 3.134, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"sliding_window_stride1024_maxlen2048_fp16\"}, \"notes\": \"Baseline PPL=22.9654 (loss=3.1340), tokens=4,077,068, time=249s. Weight SHA256=f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b. Pretrained weights confirmed (std ~0.02-0.03, layernorm varies across layers). Compared to ess_only_seed456 PPL=17.72: continued pretraining reduces PPL by 22.8%.\"}, \"contamination_60_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:12:18.751Z\", \"updated_at\": \"2026-05-15T21:26:20.768Z\", \"spec\": {\"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"contamination_ratio\": 0.6, \"hyperparams\": {\"n_min\": 2, \"tau\": 0.8, \"batch_size\": 4, \"gradient_accumulation_steps\": 4, \"learning_rate\": 5e-05, \"max_length\": 2048}}, \"hypothesis\": \"ρ=0.6 contamination robustness test: adaptive weighting (τ=0.8, n_min=2) on higher contamination ratio data. Baseline adaptive_fix_seed42 (ρ=0.4) PPL=17.6527. Tests if adaptive method degrades gracefully as contamination increases from 0.4→0.6.\", \"parent\": \"adaptive_fix_seed42\", \"notes\": \"数据验证通过: scored_data_60.jsonl 371,499行/907MB, synthetic=222900/human=148599, actual ρ=0.6。q_score: mean=0.6243, std=0.3703, median=0.7753。字段: text/depth/source_model/prompt_tokens/generated_tokens/decoding/q_score。符号链接 scored_data_rho06.jsonl → scored_data_60.jsonl。配置基于 adaptive_fix_seed42，改 data_path + contamination_ratio=0.6。\\n\\n**失败诊断**: GPU 分配冲突——实验被分配到 cuda:2，但 bs8_nmin2_seed42_r2 (pid=238714) 已在 cuda:2 运行，占用 79.78 GiB 显存。启动 24 秒即 OOM。非代码问题，需在空闲 GPU 上重试。\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T21:23:32.567Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"finished_at\": \"2026-05-15T21:23:56.641Z\", \"training_hours\": 0.01}, \"pid\": \"249588\", \"log_path\": \"~/runs/provenance_weight_training/contamination_60_seed42.log\", \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 34.81 MiB is free. Process 238719 has 79.78 GiB memory in use. Including non-PyTorch memory, this process has 15.14 GiB memory in use. Of the allocated \", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T21:23:57.827Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:23:59.292519+00:00\"}]}}, \"nmin4_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:36:45.229Z\", \"updated_at\": \"2026-05-15T21:22:25.975Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/nmin4_seed42 --weighting_method adaptive --n_min 4 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"225265\", \"log_path\": \"~/runs/provenance_weight_training/nmin4_seed42.log\", \"submitted_at\": \"2026-05-15T16:44:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"wall_clock_seconds\": 16658.5, \"gpu_hours\": 4.63}, \"hypothesis\": \"n_min=4 (=batch_size) ablation: forces b*=0 always since ESS constraint cannot be satisfied with any b>0 when n_min=batch_size. Should degrade to uniform-equivalent PPL (~17.69). Key boundary condition for n_min sensitivity analysis.\", \"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T16:43:55.347Z\", \"finished_at\": \"2026-05-15T21:16:33.618Z\", \"training_hours\": 4.54}, \"notes\": \"Mid-training check @step 2036/6103: b=0.0, ess=4.0 (=n_min), weighted_loss==unweighted_loss — confirms b*=0 degenerates to uniform weighting as theoretically predicted. Eval commands prepared for post-training.\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:16:35.372420+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.6947, \"eval_loss\": 2.8733, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 7.989, \"total_steps\": 6103, \"train_runtime_s\": 16231, \"train_samples_per_second\": 6.016, \"b_star_count\": 24412, \"b_star_mean\": 0, \"b_star_median\": 0, \"b_star_std\": 0, \"b_star_min\": 0, \"b_star_max\": 0, \"b_star_pct_zero\": 100, \"ess_mean\": 4, \"ess_min\": 4, \"ess_max\": 4}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/nmin4_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/nmin4_seed42.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:22:25.975Z\"}, \"p0_contamination_60_datagen\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:37:10.827Z\", \"updated_at\": \"2026-05-15T20:08:12.383Z\", \"spec\": {\"command\": \"python scripts/prepare_rho06_data.py\", \"server\": \"westd-47453\", \"data_path\": \"/root/provenance_weight_training/data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B (TF-IDF scoring)\", \"seed\": 42, \"checkpoint_path\": \"/root/provenance_weight_training/data/scored_data_60.jsonl\", \"log_path\": \"/root/provenance_weight_training/scripts/prepare_rho06_data.py\"}, \"conclusion\": \"success\", \"metrics\": {\"total_lines\": 371499, \"synthetic_count\": 222900, \"human_count\": 148599, \"actual_contamination_ratio\": 0.6, \"q_score_mean\": 0.6243, \"q_score_std\": 0.3703, \"q_score_median\": 0.7753, \"file_size_mb\": 907}, \"completed_at\": \"2026-05-15T20:08:12.383Z\"}, \"bs8_nmin2_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:38:48.783Z\", \"updated_at\": \"2026-05-15T18:48:29.014Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_nmin2_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"237410\", \"log_path\": \"~/runs/provenance_weight_training/bs8_nmin2_seed42.log\", \"submitted_at\": \"2026-05-15T18:39:14.671Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 37.4, \"gpu_hours\": 0.01}, \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"pid\": \"237410\", \"log_path\": \"~/runs/provenance_weight_training/bs8_nmin2_seed42.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_nmin2_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"finished_at\": \"2026-05-15T18:39:50.935Z\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 128.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 116.81 MiB is free. Process 236702 has 79.78 GiB memory in use. Including non-PyTorch memory, this process has 15.06 GiB memory in use. Of the allocate\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T18:39:52.061Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:39:53.502042+00:00\"}]}, \"notes\": \"OOM failed: GPU 2 was occupied by zombie PID 236702 (old bs8_seed42). Superseded by bs8_nmin2_seed42_r2. Config: n_min=2, bs=8, grad_accum=2, tau=0.8, adaptive, seed=42.\"}, \"bs8_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:04:41.935Z\", \"updated_at\": \"2026-05-15T18:43:36.187Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 4 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"236697\", \"log_path\": \"~/runs/provenance_weight_training/bs8_seed42.log\", \"submitted_at\": \"2026-05-15T18:31:59.603Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 695.9, \"gpu_hours\": 0.19}, \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"pid\": \"236697\", \"log_path\": \"~/runs/provenance_weight_training/bs8_seed42.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 4 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\", \"finished_at\": \"2026-05-15T18:43:32.689Z\"}, \"conclusion\": \"failed\", \"notes\": \"Killed at 1% (71/6103 steps). Wrong config: n_min=4 matches same ESS/bs ratio as n_min=2/bs=4. Director instructed restart with n_min=2 + bs=8 for wider ESS dynamic range [2,8]. Replaced by bs8_nmin2_seed42.\", \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-15T18:43:35.489Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:43:39.292154+00:00\"}]}}, \"tau_095_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:03:32.419Z\", \"updated_at\": \"2026-05-15T18:29:07.389Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.95 (most strict α_eff threshold), testing upper bound — may over-constrain b* to near-zero. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"spec\": {\"checkpoint_path\": \"/root/provenance_weight_training/output/models/tau_095_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/tau_095_seed42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T18:21:58.713Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:22:00.219145+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.723, \"eval_loss\": 2.8749, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 10.198, \"total_steps\": 6103, \"train_runtime_s\": 13699, \"train_samples_per_second\": 7.128, \"b_star_count\": 24412, \"b_star_mean\": 3.0775, \"b_star_median\": 1.52, \"b_star_std\": 3.9923, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.8, \"b_star_p75\": 3.46, \"b_star_pct_zero\": 0, \"b_star_pct_below_0.5\": 8.5, \"b_star_pct_0.5_to_1\": 24.7, \"b_star_pct_1_to_2\": 26.4, \"b_star_pct_above_2\": 40.3}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T18:29:07.389Z\"}, \"tau_09_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:03:28.658Z\", \"updated_at\": \"2026-05-15T18:07:01.223Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.9 (stricter α_eff threshold), testing if higher quality threshold improves PPL. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"spec\": {\"checkpoint_path\": \"/root/provenance_weight_training/output/models/tau_0.9_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/tau_09_seed42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T17:48:21.169Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:48:25.502664+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"eval_ppl_holdout\": 17.712, \"eval_loss\": 2.8742, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 2.36, \"b_star_median\": 1.32, \"b_star_std\": 3.04, \"b_star_pct_above_2\": 33.7}, \"completed_at\": \"2026-05-15T18:07:01.223Z\"}, \"tau_07_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:03:27.838Z\", \"updated_at\": \"2026-05-15T17:57:12.394Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.7 (slightly below baseline), testing if moderate τ reduction improves or degrades PPL. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/tau_0.7_seed42 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.7 --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"209824\", \"log_path\": \"~/runs/provenance_weight_training/tau_07_seed42.log\", \"submitted_at\": \"2026-05-15T13:35:52.041Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 200000000, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\", \"wall_clock_seconds\": 15680.4, \"gpu_hours\": 4.36}, \"reproduce\": {\"finished_at\": \"2026-05-15T17:48:03.537Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:48:04.960427+00:00\"}]}, \"metrics\": {\"train_loss\": 9.6707, \"total_steps\": 6103, \"train_runtime_s\": 15065, \"train_samples_per_second\": 6.482, \"eval_ppl_holdout\": 17.6793, \"eval_loss\": 2.8724, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.8943, \"b_star_median\": 0.58, \"b_star_std\": 1.4007, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.3306, \"b_star_p75\": 0.9712, \"b_star_pct_zero\": 5.8, \"b_star_pct_below_0.5\": 36, \"b_star_pct_0.5_to_1\": 34.2, \"b_star_pct_1_to_2\": 16.2, \"b_star_pct_above_2\": 7.7}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/provenance_weight_training/output/models/tau_0.7_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/tau_07_seed42.log\", \"completed_at\": \"2026-05-15T17:57:12.394Z\"}, \"tau_06_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:01:37.442Z\", \"updated_at\": \"2026-05-15T17:09:55.541Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).\", \"parent\": \"adaptive_fix_seed42\", \"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T10:01:53.614Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/tau_0.6_seed42 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.6 --bf16\\\"\", \"finished_at\": \"2026-05-15T13:47:39.608Z\", \"training_hours\": 3.76}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/tau_0.6_seed42 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.6 --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"195746\", \"log_path\": \"~/runs/provenance_weight_training/tau_06_seed42.log\", \"submitted_at\": \"2026-05-15T10:01:55.290Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13972.6, \"gpu_hours\": 3.88, \"tau\": 0.6, \"seed\": 42, \"rho\": 0.4, \"model\": \"Qwen3-0.6B\", \"tokens\": \"200M\", \"method\": \"adaptive\", \"parent\": \"adaptive_fix_seed42\", \"checkpoint_path\": \"/root/provenance_weight_training/output/models/tau_0.6_seed42/final\", \"eval_results_path\": \"/root/provenance_weight_training/output/eval/posthoc_eval_tau_06_seed42.json\"}, \"pid\": \"195746\", \"log_path\": \"~/runs/provenance_weight_training/tau_06_seed42.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:47:40.932954+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.6805, \"eval_loss\": 2.8725, \"train_loss\": 9.275, \"total_steps\": 6103, \"train_runtime_s\": 13436.64, \"train_samples_per_second\": 7.267, \"b_star_mean\": 0.5899, \"b_star_median\": 0.3746, \"b_star_std\": 1.0693, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.1195, \"b_star_p75\": 0.66, \"b_star_zero_frac\": 0.156, \"b_star_nonzero_mean\": 0.699, \"b_star_nonzero_median\": 0.4473}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/provenance_weight_training/output/models/tau_0.6_seed42/final\", \"completed_at\": \"2026-05-15T13:54:47.892Z\", \"notes\": \"PPL=17.681 劣于 τ=0.8 baseline (17.650)，conclusion=negative。概念修正：τ 越低 → α_eff 下界越松 → b* 更小 → 降权力度更弱（非更激进）。正确因果链：τ 越高 → α_eff 下界越严 → min-intervention 需要更大 b* 才能满足约束 → 降权力度更强。\"}, \"tau_05_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:03:27.263Z\", \"updated_at\": \"2026-05-15T17:06:51.535Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.5 (most permissive α_eff threshold), testing lower bound of useful τ range. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/tau_0.5_seed42 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.5 --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"205652\", \"log_path\": \"~/runs/provenance_weight_training/tau_05_seed42.log\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 200000000, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\"}, \"gpu\": \"cuda:1\", \"server\": \"westd-47453\", \"reproduce\": {\"finished_at\": \"2026-05-15T16:40:01.070Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T16:40:02.552045+00:00\"}]}, \"metrics\": {\"train_loss\": 8.849, \"total_steps\": 6103, \"epoch\": 0.26, \"train_runtime_s\": 13431.4, \"train_samples_per_second\": 7.27, \"eval_ppl_holdout\": 17.688, \"eval_loss\": 2.8729, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.3923, \"b_star_median\": 0.1707, \"b_star_std\": 0.8821, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0, \"b_star_p75\": 0.4366, \"b_star_pct_zero\": 29.1, \"b_star_pct_below_0.5\": 78.4, \"b_star_pct_0.5_to_1\": 12.9, \"b_star_pct_1_to_2\": 5.7, \"b_star_pct_above_2\": 2.9}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T16:44:08.996Z\", \"checkpoint_path\": \"output/models/tau_0.5_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/tau_05_seed42.log\"}, \"adaptive_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:25:03.137Z\", \"updated_at\": \"2026-05-15T16:43:10.982Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=456\", \"spec\": {\"command\": \"python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_seed456 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"59058\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_seed456.log\", \"submitted_at\": \"2026-05-14T02:46:25.330Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456, \"checkpoint_path\": \"output/models/adaptive_seed456/final\", \"wall_clock_seconds\": 15161.8, \"gpu_hours\": 4.21}, \"metrics\": {\"train_loss\": 9.2354, \"train_runtime_s\": 13130.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.437, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.09-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6419, \"eval_loss_holdout\": 2.8703, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:59:07.123Z\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"adaptive_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:25:02.771Z\", \"updated_at\": \"2026-05-15T16:43:08.120Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=123\", \"spec\": {\"command\": \"python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_seed123 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"58978\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_seed123.log\", \"submitted_at\": \"2026-05-14T02:46:24.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 123, \"checkpoint_path\": \"output/models/adaptive_seed123/final\", \"wall_clock_seconds\": 15162.4, \"gpu_hours\": 4.21}, \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13197.18, \"total_steps\": 6103, \"train_samples_per_second\": 7.399, \"train_steps_per_second\": 0.462, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.04-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6308, \"eval_loss_holdout\": 2.8696, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:59:06.757Z\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"adaptive_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:25:01.824Z\", \"updated_at\": \"2026-05-15T16:43:05.333Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=42\", \"spec\": {\"command\": \"python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_seed42 --weighting_method adaptive --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"58888\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_seed42.log\", \"submitted_at\": \"2026-05-14T02:46:23.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_path\": \"output/models/adaptive_seed42/final\", \"wall_clock_seconds\": 15162.9, \"gpu_hours\": 4.21}, \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13115.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.445, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.03-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.644, \"eval_loss_holdout\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:59:05.861Z\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"uniform_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:17:55.165Z\", \"updated_at\": \"2026-05-15T16:42:59.635Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl --output_dir output/models/uniform_seed456 --weighting_method uniform --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint output/models/uniform_seed456/checkpoint-500\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"47890\", \"log_path\": \"~/runs/provenance_weight_training/uniform_seed456.log\", \"submitted_at\": \"2026-05-13T23:23:58.435Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/mixed_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/uniform_seed456/final/\", \"wall_clock_seconds\": 12349.2, \"gpu_hours\": 3.43}, \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.2895, \"total_steps\": 6103, \"train_duration_s\": 11974, \"eval_ppl_holdout\": 17.7015, \"eval_loss_holdout\": 2.8737, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\"}, \"completed_at\": \"2026-05-14T02:49:47.621Z\"}, \"uniform_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:17:53.217Z\", \"updated_at\": \"2026-05-15T16:42:57.800Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl --output_dir output/models/uniform_seed123 --weighting_method uniform --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint output/models/uniform_seed123/checkpoint-500\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"47749\", \"log_path\": \"~/runs/provenance_weight_training/uniform_seed123.log\", \"submitted_at\": \"2026-05-13T23:23:55.904Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/mixed_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 123, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/uniform_seed123/final/\", \"wall_clock_seconds\": 12350.8, \"gpu_hours\": 3.43}, \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3121, \"total_steps\": 6103, \"train_duration_s\": 11994, \"eval_ppl_holdout\": 17.6861, \"eval_loss_holdout\": 2.8728, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}, \"completed_at\": \"2026-05-14T02:49:46.681Z\"}, \"uniform_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:17:51.722Z\", \"updated_at\": \"2026-05-15T16:42:55.867Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl --output_dir output/models/uniform_seed42 --weighting_method uniform --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint output/models/uniform_seed42/checkpoint-500\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"47603\", \"log_path\": \"~/runs/provenance_weight_training/uniform_seed42.log\", \"submitted_at\": \"2026-05-13T23:23:53.026Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/mixed_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/uniform_seed42/final/\", \"wall_clock_seconds\": 12352.2, \"gpu_hours\": 3.43}, \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3104, \"total_steps\": 6103, \"train_duration_s\": 11946, \"eval_ppl_holdout\": 17.6939, \"eval_loss_holdout\": 2.8732, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}, \"completed_at\": \"2026-05-14T02:49:45.269Z\"}, \"detector_modernbert\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:40:06.106Z\", \"updated_at\": \"2026-05-15T15:51:50.219Z\", \"conclusion\": \"killed\", \"hypothesis\": \"ModernBERT-base can distinguish Qwen3-0.6B synthetic text from FineWeb human text with AUC>=0.95 and ECE<=0.05\", \"notes\": \"Superseded by TF-IDF detector (detector_tfidf_lr). Never ran — cancelled at QUEUED stage.\", \"completed_at\": \"2026-05-15T15:51:50.219Z\"}, \"nmin1_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:48:31.298Z\", \"updated_at\": \"2026-05-15T14:36:49.692Z\", \"hypothesis\": \"n_min=1 sensitivity: minimal ESS constraint allows more aggressive downweighting, testing if adaptive method degrades with overly permissive ESS bound\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T09:34:56.077Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/nmin1_seed42 --weighting_method adaptive --n_min 1 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\\\"\", \"finished_at\": \"2026-05-15T14:27:21.174Z\", \"training_hours\": 4.87}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/nmin1_seed42 --weighting_method adaptive --n_min 1 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"194005\", \"log_path\": \"~/runs/provenance_weight_training/nmin1_seed42.log\", \"submitted_at\": \"2026-05-15T09:36:06.479Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18033.6, \"gpu_hours\": 5.01}, \"pid\": \"194005\", \"log_path\": \"~/runs/provenance_weight_training/nmin1_seed42.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:27:22.547409+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.789, \"eval_loss\": 2.8786, \"eval_holdout_tokens\": 4077068, \"b_star_mean\": 7.197, \"b_star_median\": 1.746, \"b_star_std\": 8.374, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.803, \"b_star_p75\": 20, \"b_star_zero_frac\": 0.019, \"b_star_pct_below_0.5\": 13.1, \"b_star_pct_0.5_to_1\": 19.1, \"b_star_pct_1_to_2\": 21.1, \"b_star_pct_above_2\": 46.7, \"b_star_count\": 24412, \"alpha_eff_mean\": 0.714, \"alpha_eff_median\": 0.8}, \"notes\": \"训练完成(EXIT_CODE=0, 4h50m)。PPL=17.789，比 adaptive_fix(n_min=2, 17.650) 差 +0.139，比 uniform(17.690) 差 +0.099。n_min=1 导致极端 b* 分布：46.7% batch b*≥2，p75=20.0(上限)，mean=7.197。ESS 约束几乎失效，over-downweighting 明显。confirms n_min=2 是更优选择。\", \"checkpoint_path\": \"/root/provenance_weight_training/output/models/nmin1_seed42\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:36:40.056Z\"}, \"golden_ratio_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:20:12.943Z\", \"updated_at\": \"2026-05-15T13:33:31.162Z\", \"hypothesis\": \"Golden Ratio oracle baseline: w=1/φ≈0.618 for synthetic (q>0.5), w=1.0 for real — requires known proportion, serves as oracle upper bound for adaptive method\", \"server\": \"westd-47453\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T09:34:55.278Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/golden_ratio_seed42 --weighting_method golden_ratio --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\\\"\", \"finished_at\": \"2026-05-15T13:21:54.212Z\", \"training_hours\": 3.78}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/golden_ratio_seed42 --weighting_method golden_ratio --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"193921\", \"log_path\": \"~/runs/provenance_weight_training/golden_ratio_seed42.log\", \"submitted_at\": \"2026-05-15T09:36:04.200Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 14247.0, \"gpu_hours\": 3.96}, \"pid\": \"193921\", \"log_path\": \"/root/provenance_weight_training/output/models/golden_ratio_seed42/step_metrics.jsonl\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:21:55.558374+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.654, \"eval_loss\": 2.871, \"train_loss\": 2.1145, \"train_loss_last500\": 2.109, \"eval_holdout_tokens\": 4077068, \"total_steps\": 6103, \"train_runtime_s\": 13442, \"gpu_hours\": 3.73}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/golden_ratio_seed42/final\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:33:31.162Z\"}, \"tau_0.6_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:58:48.894Z\", \"updated_at\": \"2026-05-15T12:39:47.541Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).\", \"parent\": \"adaptive_fix_seed42\", \"conclusion\": \"killed\", \"notes\": \"废弃: exp_id 含点号不合法，已用 tau_06_seed42 替代\", \"completed_at\": \"2026-05-15T12:39:47.541Z\"}, \"grid_b_low_seed42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T01:18:54.793Z\", \"updated_at\": \"2026-05-15T09:33:21.503Z\", \"hypothesis\": \"Grid-b extension to b<0.5 (b=0.1/0.2/0.3 serial), seed42, confirming whether grid-best lies at b=0.5 or below\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-15T05:23:13.303Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:02:07.651872+00:00\"}]}, \"spec\": {\"command\": \"bash run_grid_b_low_seed42.sh\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"163662\", \"log_path\": \"~/runs/provenance_weight_training/grid_b_low_seed42.log\", \"submitted_at\": \"2026-05-15T09:20:20Z\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"wall_clock_seconds\": 774.2, \"gpu_hours\": 0.22}, \"notes\": \"cron框架误杀(infrastructure bug)。根因: WANDB_MODE=disabled + tmux wrapper PID 不匹配，reconcile_crons 判定进程死亡并发送 SIGTERM。训练实际曾完成 3 个 b 值(8477/8477×3)，但第二次重启后在 step 431 被杀，所有 checkpoint 目录丢失(grid_b0_1/0_2/0_3_seed42 不存在)。需在 cuda:2/3 释放后完全重跑。\", \"reproduce\": {\"finished_at\": \"2026-05-15T09:02:05.942Z\"}, \"conclusion\": \"failed\"}, \"grid_b1_5_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:59:35.658Z\", \"updated_at\": \"2026-05-15T01:03:24.328Z\", \"spec\": {\"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456}, \"hypothesis\": \"Grid-b weighting with b=1.5, seed=456, for multi-seed validation of best-b baseline\", \"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T21:10:45.479Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b1_5_seed456 --weighting_method grid --grid_b_value 1.5 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"finished_at\": \"2026-05-15T00:50:58.269Z\", \"training_hours\": 3.67}, \"pid\": \"142985\", \"log_path\": \"~/runs/provenance_weight_training/grid_b1_5_seed456.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T00:51:00.583331+00:00\"}]}, \"checkpoint_path\": \"output/models/grid_b1_5_seed456/final\", \"metrics\": {\"train_loss\": 10.435, \"total_steps\": 6103, \"train_runtime_s\": 12950.16, \"gpu_hours\": 3.67, \"train_samples_per_second\": 7.54, \"eval_loss\": 2.8741, \"eval_ppl_holdout\": 17.71, \"eval_holdout_tokens\": 4077068, \"eval_loss_holdout\": 2.875, \"eval_tokens\": 5004058}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T00:56:27.189Z\"}, \"grid_b1_0_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:59:34.733Z\", \"updated_at\": \"2026-05-15T01:03:23.307Z\", \"spec\": {\"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456}, \"hypothesis\": \"Grid-b weighting with b=1.0, seed=456, for multi-seed validation of best-b baseline\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-14T21:10:44.681Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b1_0_seed456 --weighting_method grid --grid_b_value 1.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"finished_at\": \"2026-05-15T00:50:55.540Z\", \"training_hours\": 3.67}, \"pid\": \"142902\", \"log_path\": \"~/runs/provenance_weight_training/grid_b1_0_seed456.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T00:50:56.660568+00:00\"}]}, \"checkpoint_path\": \"output/models/grid_b1_0_seed456/final\", \"metrics\": {\"train_loss\": 10.178, \"total_steps\": 6103, \"train_runtime_s\": 12963.87, \"gpu_hours\": 3.67, \"train_samples_per_second\": 7.532, \"eval_loss\": 2.8725, \"eval_ppl_holdout\": 17.68, \"eval_holdout_tokens\": 4077068, \"eval_loss_holdout\": 2.8734, \"eval_tokens\": 5004058}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T00:56:26.614Z\"}, \"grid_b0_5_seed456\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T06:58:17.956Z\", \"updated_at\": \"2026-05-15T01:03:04.640Z\", \"hypothesis\": \"Grid-b weighting with b=0.5, seed=456, for multi-seed validation of best-b baseline\", \"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T21:10:43.728Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"finished_at\": \"2026-05-15T00:57:32.591Z\", \"training_hours\": 3.78}, \"failure_reason\": \"\", \"completed_at\": \"2026-05-14T21:13:26.329Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:13:27.262433+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T00:57:33.835977+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: CUDA OOM at step 0 — GPU 0 被 3 个进程挤爆（PID 138525: 68.61GiB + PID 139132: 19.21GiB + 本进程 7.08GiB > 94.97GiB）。实验分配 cuda:1 但进程实际跑在 GPU 0 上，疑 CUDA_VISIBLE_DEVICES 未正确注入或有残留进程干扰。已有成果: 无（0% 进度）。建议: 清理 GPU 0 残留进程后在 cuda:1 上重新提交，补充 --eval_data_path 和 --eval_steps 参数。\"}}, \"notes\": \"重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step 56/6103, ETA ~3.5h。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b0_5_seed456 --weighting_method grid --grid_b_value 0.5 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 456 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"144400\", \"log_path\": \"~/runs/provenance_weight_training/grid_b0_5_seed456.log\", \"submitted_at\": \"2026-05-14T21:20:21.115Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 456, \"wall_clock_seconds\": 13363.5, \"gpu_hours\": 3.71}, \"pid\": 145062, \"log_path\": \"~/runs/provenance_weight_training/grid_b0_5_seed456.log\", \"metrics\": {\"train_loss\": 9.5622, \"total_steps\": 6103, \"train_runtime_s\": 12953.96, \"gpu_hours\": 3.6, \"train_samples_per_second\": 7.538, \"eval_loss\": 2.8705, \"eval_ppl_holdout\": 17.65, \"eval_holdout_tokens\": 4077068}, \"checkpoint_path\": \"output/models/grid_b0_5_seed456/final\", \"conclusion\": \"success\"}, \"grid_b_seed42_batch\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:50:09.001Z\", \"updated_at\": \"2026-05-14T22:21:47.253Z\", \"spec\": {\"command\": \"bash run_grid_b_seed42.sh (6 b values serial: 0.5, 1.0, 1.5, 2.0, 3.0, 5.0)\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"50134\", \"log_path\": \"~/runs/provenance_weight_training/grid_b_seed42_batch.log\", \"submitted_at\": \"2026-05-13T23:50:08.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"wall_clock_seconds\": 81098.3, \"gpu_hours\": 22.53}, \"hypothesis\": \"Grid-b weighting with 6 b values (0.5, 1.0, 1.5, 2.0, 3.0, 5.0) for seed=42, establishes best-b baseline for comparison with adaptive b*\", \"metrics\": {\"b_values\": [0.5, 1, 1.5, 2, 3, 5], \"b0_5_train_loss\": 9.598, \"b0_5_completed\": true, \"b1_0_completed\": true, \"b1_5_completed\": true, \"b2_0_current_step\": 5149, \"b2_0_total_steps\": 6103, \"completed_b_values\": [0.5, 1, 1.5, 2, 3], \"current_b\": 5, \"total_steps\": 6103, \"current_step\": 3422, \"b5_0_progress_pct\": 56, \"eta_minutes\": 95, \"b2_0_completed\": true, \"b2_0_train_loss\": 10.621, \"b2_0_train_runtime_s\": 13034, \"b3_0_completed\": true, \"b3_0_train_loss\": 10.754, \"b3_0_train_runtime_s\": 13036, \"all_completed\": true, \"b1_0_train_loss\": 10.223, \"b1_5_train_loss\": 10.485, \"b5_0_train_loss\": 10.858, \"b0_5_runtime_s\": 13036, \"b1_0_runtime_s\": 12968, \"b1_5_runtime_s\": 14789, \"b2_0_runtime_s\": 13034, \"b3_0_runtime_s\": 13036, \"b5_0_runtime_s\": 13115, \"note\": \"eval_ppl missing - no --eval_data_path in batch script, post-hoc eval pending\", \"b0_5_eval_ppl\": 17.651, \"b1_0_eval_ppl\": 17.692, \"b1_5_eval_ppl\": 17.718, \"b2_0_eval_ppl\": 17.741, \"b3_0_eval_ppl\": 17.774, \"b5_0_eval_ppl\": 17.818, \"eval_holdout_tokens\": 4077068, \"best_b\": 0.5, \"best_eval_ppl\": 17.651}, \"reproduce\": {\"finished_at\": \"2026-05-14T22:05:39.706Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:05:40.772794+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"output/models/grid_b{0.5,1.0,1.5,2.0,3.0,5.0}_seed42/final/\", \"log_path\": \"~/runs/provenance_weight_training/grid_b_seed42_batch.log\", \"completed_at\": \"2026-05-14T22:21:47.253Z\"}, \"grid_b5_0_seed123\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-14T02:52:56.873Z\", \"updated_at\": \"2026-05-14T15:34:56.261Z\", \"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-47453\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T11:22:30Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b5_0_seed123 --weighting_method grid --grid_b_value 5.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"finished_at\": \"2026-05-14T15:09:25.359Z\", \"training_hours\": 3.78}, \"completed_at\": \"2026-05-14T11:20:36.319Z\", \"notes\": \"PID 94717 已确认存活（SSH 验证 2026-05-14T11:39）。旧 PID 92798 已 kill，cron 重新注册。\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"前次提交 (PID 92793) 未实际启动训练，标记 killed。等 eval PID 92274 完成后重新提交。\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T11:36:18.619551+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T15:09:26.285900+00:00\"}]}, \"failure_reason\": \"\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b5_0_seed123 --weighting_method grid --grid_b_value 5.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"94717\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 123, \"log_path\": \"~/runs/provenance_weight_training/grid_b5_0_seed123.log\"}, \"metrics\": {\"train_loss\": 10.8468, \"total_steps\": 6103, \"train_runtime_s\": 14434, \"gpu_hours\": 4.01, \"eval_ppl_holdout\": 17.8039, \"eval_loss\": 2.8794, \"eval_holdout_tokens\": 4077068}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b5_0_seed123/final/\", \"log_path\": \"~/runs/provenance_weight_training/grid_b5_0_seed123.log\"}, \"grid_b2_0_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:52:55.329Z\", \"updated_at\": \"2026-05-14T14:43:39.107Z\", \"spec\": {\"command\": \"python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b2_0_seed123 --weighting_method grid --grid_b_value 2.0 --contamination_ratio 0.4 --seed 123\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"88022\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 123, \"log_path\": \"~/runs/provenance_weight_training/grid_b2_0_seed123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 10.61, \"total_steps\": 6103, \"train_runtime_s\": 13058.8, \"gpu_hours\": 3.63, \"train_samples_per_second\": 7.478, \"train_steps_per_second\": 0.467, \"eval_ppl_holdout\": 17.725, \"eval_loss\": 2.875, \"eval_holdout_tokens\": 4077068}, \"reproduce\": {\"finished_at\": \"2026-05-14T14:14:05.530Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:14:06.752002+00:00\"}]}, \"checkpoint_path\": \"output/models/grid_b2_0_seed123/final\", \"log_path\": \"~/runs/provenance_weight_training/grid_b2_0_seed123.log\", \"completed_at\": \"2026-05-14T14:14:33.471Z\"}, \"grid_b3_0_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:52:56.285Z\", \"updated_at\": \"2026-05-14T14:41:44.081Z\", \"spec\": {\"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b3_0_seed123/final/\", \"log_path\": \"/root/provenance_weight_training/output/models/grid_b3_0_seed123/\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T14:23:51.699Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:23:52.658692+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 10.7422, \"total_steps\": 6103, \"train_runtime_s\": 12955.83, \"gpu_hours\": 3.6, \"eval_ppl_holdout\": 17.76, \"eval_loss\": 2.877, \"eval_holdout_tokens\": 4077068}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b3_0_seed123/final/\", \"completed_at\": \"2026-05-14T14:24:22.860Z\", \"log_path\": \"~/runs/provenance_weight_training/grid_b3_0_seed123.log\", \"notes\": \"训练完成，eval 未执行（should_evaluate=false，缺少 --eval_data_path 和 --eval_steps）。Checkpoint: /root/provenance_weight_training/output/models/grid_b3_0_seed123/final/ (model.safetensors 1.19GB)。需补跑 eval。\"}, \"grid_b1_5_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:52:43.491Z\", \"updated_at\": \"2026-05-14T11:36:25.428Z\", \"spec\": {\"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b1_5_seed123/final/\", \"wall_clock_seconds\": 15053.1, \"gpu_hours\": 4.18}, \"reproduce\": {\"finished_at\": \"2026-05-14T11:06:15.864Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T11:06:16.350913+00:00\"}]}, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b1_5_seed123/final/\", \"metrics\": {\"train_loss\": 10.4776, \"total_steps\": 6103, \"train_runtime_s\": 15053.1, \"gpu_hours\": 4.18, \"eval_ppl_holdout\": 17.701, \"eval_loss\": 2.8736}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T11:18:32.771Z\"}, \"grid_b1_0_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:52:42.784Z\", \"updated_at\": \"2026-05-14T10:54:12.453Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b1_0_seed123 --weighting_method grid --grid_b_value 1.0 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"68306\", \"log_path\": \"~/runs/provenance_weight_training/grid_b1_0_seed123.log\", \"submitted_at\": \"2026-05-14T06:53:47.084Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 123, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b1_0_seed123/final/\", \"wall_clock_seconds\": 13950, \"gpu_hours\": 3.88}, \"reproduce\": {\"finished_at\": \"2026-05-14T10:46:17.839Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T10:46:18.691130+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.674, \"eval_loss\": 2.8721, \"eval_holdout_tokens\": 4077068, \"train_loss\": 10.218, \"total_steps\": 6103, \"train_runtime_s\": 13878, \"gpu_hours\": 3.88}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:53:00Z\"}, \"grid_b0_5_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:52:42.314Z\", \"updated_at\": \"2026-05-14T10:42:12.465Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/grid_b0_5_seed123 --weighting_method grid --grid_b_value 0.5 --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 123 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:1\"], \"pid\": \"68163\", \"log_path\": \"~/runs/provenance_weight_training/grid_b0_5_seed123.log\", \"submitted_at\": \"2026-05-14T06:53:43.648Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 123, \"checkpoint_path\": \"/root/provenance_weight_training/output/models/grid_b0_5_seed123/final/\", \"wall_clock_seconds\": 13678.0, \"gpu_hours\": 3.8}, \"reproduce\": {\"finished_at\": \"2026-05-14T10:33:23.511Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T10:33:24.806181+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.638, \"eval_loss\": 2.87, \"eval_holdout_tokens\": 4077068, \"train_loss\": 9.601, \"total_steps\": 6103, \"train_runtime_s\": 13104, \"gpu_hours\": 3.8}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T10:41:41.614Z\"}, \"diagnostic_contamination100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:14:09.555Z\", \"updated_at\": \"2026-05-14T08:48:08.828Z\", \"hypothesis\": \"Diagnostic: does 100% synthetic contamination significantly degrade held-out PPL vs 40%? If PPL ≈ 17.7, contamination sensitivity is too low for this scale.\", \"spec\": {\"command\": \"python training/pretrain_weighted.py --data_path data/synthetic_only.jsonl --output_dir output/models/diagnostic_contamination100_seed42 --weighting_method uniform --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 20000000 --seed 42\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"77187\", \"data_path\": \"data/synthetic_only.jsonl\", \"data_count\": 0, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T08:48:07.663Z\", \"notes\": \"Director 指令 kill：GPU 2/3 显存打满影响 grid-b seed123 训练速度。诊断实验等 grid-b round 1 完成后重跑。\"}, \"detector_tfidf_lr\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:28:08.894Z\", \"updated_at\": \"2026-05-13T23:28:28.425Z\", \"spec\": {\"command\": \"python train_tfidf_detector.py (combo_degrade: unigrams, max_features=10000, C=0.01, truncate 100 words)\", \"server\": \"westd-47453\", \"data_path\": \"/root/provenance_weight_training/data/detector.jsonl\", \"data_count\": 67960, \"model_name\": \"TF-IDF + LogisticRegression\", \"seed\": 42, \"checkpoint_path\": \"/root/provenance_weight_training/output/detector_tfidf/\", \"log_path\": \"/root/provenance_weight_training/output/detector_tfidf/calibration_results.json\"}, \"conclusion\": \"success\", \"hypothesis\": \"TF-IDF + LogisticRegression detector provides spread q-scores (AUC~0.94, not binarized) for provenance weighting, replacing over-accurate ModernBERT (D007)\", \"metrics\": {\"auc\": 0.939, \"accuracy\": 0.858, \"ece_raw\": 0.24, \"ece_calibrated\": 0.048, \"temperature_T\": 0.204, \"q_score_mean\": 0.6, \"q_score_std\": 0.374, \"q_score_median\": 0.707, \"mid_range_ratio\": 0.463}, \"completed_at\": \"2026-05-13T23:28:28.425Z\"}, \"datagen_synthetic_4gpu\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:12:11.474Z\", \"updated_at\": \"2026-05-13T21:50:46.682Z\", \"spec\": {\"command\": \"4x parallel generate_synthetic.py --depth 1 --num_tokens 33000000 --batch_size 128\", \"server\": \"westd-47453\", \"data_path\": \"/root/provenance_weight_training/data/synthetic/shard_{0,1,2,3}/\", \"data_count\": \"target 132M tokens across 4 shards\", \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": \"42/1042/2042/3042\", \"hypothesis\": \"4-GPU parallel generation produces 132M synthetic tokens in ~2.5h\", \"gpu\": \"cuda:0,1,2,3\", \"checkpoint_path\": \"/root/provenance_weight_training/data/synthetic/shard_{0,1,2,3}/\", \"log_path\": \"/root/provenance_weight_training/data/synthetic/gen_gpu{0,1,2,3}.log\", \"total_docs\": 340992, \"total_tokens\": 132033764}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:50:46.682Z\"}}, \"count\": 68, \"total\": 68, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1496}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Registry data is too large for direct context. I'll delegate to a subagent to parse the JSON and extract all metrics into structured tables.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "b073d7a6-8ed7-4e52-869d-4c65b0fef437",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqXY3Yz8sPyNLinQ9muqPW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 638,
+      "cache_read_input_tokens": 24454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 638
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Q1AKFNs6ghtiXxS2mjSY7F`</summary>
+
+```json
+{
+  "description": "Parse registry and build tables",
+  "prompt": "You have a JSON file at:\n/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt\n\nSchema: `{result: string}` where `result` is itself a JSON string containing the registry data (an array or object of experiments).\n\nYour task: extract metrics from all completed experiments and produce TWO output files:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md` — Markdown tables\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv` — machine-readable CSV\n\n## Steps\n\n1. First probe the file structure: `cat the file | python3 -c \"import json,sys; d=json.load(sys.stdin); r=json.loads(d['result']); print(type(r), len(r) if isinstance(r,list) else list(r.keys())[:10])\"`\n\n2. Parse all experiments. Filter for status=DONE and (conclusion=success OR conclusion=negative).\n\n3. Build the following tables using ONLY data found in the registry. PPL values should be rounded to 3 decimal places. If a value is missing, put \"N/A\".\n\n**Experiment ID mapping** (to find correct registry entries):\n- uniform: uniform_seed42, uniform_seed123, uniform_seed456\n- adaptive (n_min=3): adaptive_seed42, adaptive_seed123, adaptive_seed456\n- adaptive_fix (n_min=2): adaptive_fix_seed42, adaptive_fix_seed123, adaptive_fix_seed456\n- grid_b0.5: grid_b_seed42_batch (look for metrics field like b0_5_eval_ppl or eval_ppl_b0_5), grid_b0_5_seed123, grid_b0_5_seed456\n- grid_b1.0: grid_b_seed42_batch (b1_0_eval_ppl), grid_b1_0_seed123, grid_b1_0_seed456\n- grid_b1.5: grid_b_seed42_batch (b1_5_eval_ppl), grid_b1_5_seed123, grid_b1_5_seed456\n- grid_b2.0: grid_b_seed42_batch (b2_0_eval_ppl), grid_b2_0_seed123, grid_b2_0_seed456\n- grid_b3.0: grid_b_seed42_batch (b3_0_eval_ppl), grid_b3_0_seed123, grid_b3_0_seed456\n- grid_b5.0: grid_b_seed42_batch (b5_0_eval_ppl), grid_b5_0_seed123, grid_b5_0_seed456\n- ess_only: ess_only_seed42, ess_only_seed123, ess_only_seed456\n- golden_ratio: golden_ratio_seed42\n- τ sweep: tau_05_seed42, tau_06_seed42, tau_07_seed42, adaptive_fix_seed42(=τ=0.8), tau_09_seed42, tau_095_seed42\n- n_min: nmin1_seed42, adaptive_fix_seed42(=n_min=2), adaptive_seed42(=n_min=3), nmin4_seed42\n- ρ=0.6: contamination_60_uniform_seed42, contamination_60_seed42_r2(=adaptive τ=0.8), contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42\n- bs8: bs8_nmin2_seed42_r2\n- baseline: baseline_qwen3_0.6b\n\n**Table A: ρ=0.4 Main Results (3 seeds)**\nColumns: Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注\nMethods: uniform, adaptive (n_min=3), adaptive_fix (n_min=2), grid_b0.5, grid_b1.0, grid_b1.5, grid_b2.0, grid_b3.0, grid_b5.0, ess_only, golden_ratio\n- For golden_ratio, only seed42 exists.\n- For grid_b values from grid_b_seed42_batch, look in the metrics dict for keys containing the b value (e.g. b0_5_eval_ppl, b1_0_eval_ppl etc.)\n\n**Table B: τ Sweep (ρ=0.4, seed42)**\nColumns: τ | PPL | b*_mean | b*_median | b*_pct_above_2\nτ values: 0.5, 0.6, 0.7, 0.8(=adaptive_fix_seed42), 0.9, 0.95\nLook for metrics like eval_ppl, b_star_mean, b_star_median, b_star_pct_above_2 (or similar field names)\n\n**Table C: n_min Sensitivity (ρ=0.4, seed42)**\nColumns: n_min | PPL | b*_mean | 备注\nn_min values: 1(=nmin1_seed42), 2(=adaptive_fix_seed42), 3(=adaptive_seed42), 4(=nmin4_seed42)\n\n**Table D: ρ=0.6 Cross-contamination (seed42)**\nColumns: Method | PPL | vs ρ=0.4 PPL | Delta\nMethods: uniform, adaptive(τ=0.8), grid_b0.5, ess_only\n- ρ=0.6 entries: contamination_60_uniform_seed42, contamination_60_seed42_r2, contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42\n- ρ=0.4 counterparts: uniform_seed42, adaptive_fix_seed42, grid_b0.5 from grid_b_seed42_batch, ess_only_seed42\n- Delta = ρ=0.6 PPL - ρ=0.4 PPL\n\n**Table E: Batch Size (seed42)**\nColumns: batch_size | n_min | PPL | 备注\n- bs=4: adaptive_fix_seed42 (default bs=4, n_min=2)\n- bs=8: bs8_nmin2_seed42_r2 (bs=8, n_min=2)\n\nAlso include a **Table F: Baseline**\n- baseline_qwen3_0.6b PPL (no provenance training, just base model perplexity on the eval set)\n\n4. For the CSV file, create a flat format with columns: table, method, seed, ppl, b_star_mean, b_star_median, b_star_pct_above_2, notes\n\n5. Write both files. Use python3 to parse the data and generate the output files.\n\nIMPORTANT: Do not fabricate any numbers. Only use values found in the registry. If a metric is not available, use \"N/A\"."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "43ab67cd-1946-4e32-a942-5b02038a4483",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqXY3Yz8sPyNLinQ9muqPW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 638,
+      "cache_read_input_tokens": 24454,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 638
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 12_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Parse registry and build tables",
+  "task_type": "local_agent",
+  "prompt": "You have a JSON file at:\n/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt\n\nSchema: `{result: string}` where `result` is itself a JSON string containing the registry data (an array or object of experiments).\n\nYour task: extract metrics from all completed experiments and produce TWO output files:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md` — Markdown tables\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv` — machine-readable CSV\n\n## Steps\n\n1. First probe the file structure: `cat the file | python3 -c \"import json,sys; d=json.load(sys.stdin); r=json.loads(d['result']); print(type(r), len(r) if isinstance(r,list) else list(r.keys())[:10])\"`\n\n2. Parse all experiments. Filter for status=DONE and (conclusion=success OR conclusion=negative).\n\n3. Build the following tables using ONLY data found in the registry. PPL values should be rounded to 3 decimal places. If a value is missing, put \"N/A\".\n\n**Experiment ID mapping** (to find correct registry entries):\n- uniform: uniform_seed42, uniform_seed123, uniform_seed456\n- adaptive (n_min=3): adaptive_seed42, adaptive_seed123, adaptive_seed456\n- adaptive_fix (n_min=2): adaptive_fix_seed42, adaptive_fix_seed123, adaptive_fix_seed456\n- grid_b0.5: grid_b_seed42_batch (look for metrics field like b0_5_eval_ppl or eval_ppl_b0_5), grid_b0_5_seed123, grid_b0_5_seed456\n- grid_b1.0: grid_b_seed42_batch (b1_0_eval_ppl), grid_b1_0_seed123, grid_b1_0_seed456\n- grid_b1.5: grid_b_seed42_batch (b1_5_eval_ppl), grid_b1_5_seed123, grid_b1_5_seed456\n- grid_b2.0: grid_b_seed42_batch (b2_0_eval_ppl), grid_b2_0_seed123, grid_b2_0_seed456\n- grid_b3.0: grid_b_seed42_batch (b3_0_eval_ppl), grid_b3_0_seed123, grid_b3_0_seed456\n- grid_b5.0: grid_b_seed42_batch (b5_0_eval_ppl), grid_b5_0_seed123, grid_b5_0_seed456\n- ess_only: ess_only_seed42, ess_only_seed123, ess_only_seed456\n- golden_ratio: golden_ratio_seed42\n- τ sweep: tau_05_seed42, tau_06_seed42, tau_07_seed42, adaptive_fix_seed42(=τ=0.8), tau_09_seed42, tau_095_seed42\n- n_min: nmin1_seed42, adaptive_fix_seed42(=n_min=2), adaptive_seed42(=n_min=3), nmin4_seed42\n- ρ=0.6: contamination_60_uniform_seed42, contamination_60_seed42_r2(=adaptive τ=0.8), contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42\n- bs8: bs8_nmin2_seed42_r2\n- baseline: baseline_qwen3_0.6b\n\n**Table A: ρ=0.4 Main Results (3 seeds)**\nColumns: Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注\nMethods: uniform, adaptive (n_min=3), adaptive_fix (n_min=2), grid_b0.5, grid_b1.0, grid_b1.5, grid_b2.0, grid_b3.0, grid_b5.0, ess_only, golden_ratio\n- For golden_ratio, only seed42 exists.\n- For grid_b values from grid_b_seed42_batch, look in the metrics dict for keys containing the b value (e.g. b0_5_eval_ppl, b1_0_eval_ppl etc.)\n\n**Table B: τ Sweep (ρ=0.4, seed42)**\nColumns: τ | PPL | b*_mean | b*_median | b*_pct_above_2\nτ values: 0.5, 0.6, 0.7, 0.8(=adaptive_fix_seed42), 0.9, 0.95\nLook for metrics like eval_ppl, b_star_mean, b_star_median, b_star_pct_above_2 (or similar field names)\n\n**Table C: n_min Sensitivity (ρ=0.4, seed42)**\nColumns: n_min | PPL | b*_mean | 备注\nn_min values: 1(=nmin1_seed42), 2(=adaptive_fix_seed42), 3(=adaptive_seed42), 4(=nmin4_seed42)\n\n**Table D: ρ=0.6 Cross-contamination (seed42)**\nColumns: Method | PPL | vs ρ=0.4 PPL | Delta\nMethods: uniform, adaptive(τ=0.8), grid_b0.5, ess_only\n- ρ=0.6 entries: contamination_60_uniform_seed42, contamination_60_seed42_r2, contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42\n- ρ=0.4 counterparts: uniform_seed42, adaptive_fix_seed42, grid_b0.5 from grid_b_seed42_batch, ess_only_seed42\n- Delta = ρ=0.6 PPL - ρ=0.4 PPL\n\n**Table E: Batch Size (seed42)**\nColumns: batch_size | n_min | PPL | 备注\n- bs=4: adaptive_fix_seed42 (default bs=4, n_min=2)\n- bs=8: bs8_nmin2_seed42_r2 (bs=8, n_min=2)\n\nAlso include a **Table F: Baseline**\n- baseline_qwen3_0.6b PPL (no provenance training, just base model perplexity on the eval set)\n\n4. For the CSV file, create a flat format with columns: table, method, seed, ppl, b_star_mean, b_star_median, b_star_pct_above_2, notes\n\n5. Write both files. Use python3 to parse the data and generate the output files.\n\nIMPORTANT: Do not fabricate any numbers. Only use values found in the registry. If a metric is not available, use \"N/A\".",
+  "uuid": "504b6dee-c7a6-485e-9add-c8a1f90685c8",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+## Round 1
+
+65 recorded events
+
+### User
+
+_source line 13 · 2026-05-16T05:11:08.762Z_
+
+You have a JSON file at:
+/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt
+
+Schema: `{result: string}` where `result` is itself a JSON string containing the registry data (an array or object of experiments).
+
+Your task: extract metrics from all completed experiments and produce TWO output files:
+
+1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md` — Markdown tables
+2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv` — machine-readable CSV
+
+## Steps
+
+1. First probe the file structure: `cat the file | python3 -c "import json,sys; d=json.load(sys.stdin); r=json.loads(d['result']); print(type(r), len(r) if isinstance(r,list) else list(r.keys())[:10])"`
+
+2. Parse all experiments. Filter for status=DONE and (conclusion=success OR conclusion=negative).
+
+3. Build the following tables using ONLY data found in the registry. PPL values should be rounded to 3 decimal places. If a value is missing, put "N/A".
+
+**Experiment ID mapping** (to find correct registry entries):
+- uniform: uniform_seed42, uniform_seed123, uniform_seed456
+- adaptive (n_min=3): adaptive_seed42, adaptive_seed123, adaptive_seed456
+- adaptive_fix (n_min=2): adaptive_fix_seed42, adaptive_fix_seed123, adaptive_fix_seed456
+- grid_b0.5: grid_b_seed42_batch (look for metrics field like b0_5_eval_ppl or eval_ppl_b0_5), grid_b0_5_seed123, grid_b0_5_seed456
+- grid_b1.0: grid_b_seed42_batch (b1_0_eval_ppl), grid_b1_0_seed123, grid_b1_0_seed456
+- grid_b1.5: grid_b_seed42_batch (b1_5_eval_ppl), grid_b1_5_seed123, grid_b1_5_seed456
+- grid_b2.0: grid_b_seed42_batch (b2_0_eval_ppl), grid_b2_0_seed123, grid_b2_0_seed456
+- grid_b3.0: grid_b_seed42_batch (b3_0_eval_ppl), grid_b3_0_seed123, grid_b3_0_seed456
+- grid_b5.0: grid_b_seed42_batch (b5_0_eval_ppl), grid_b5_0_seed123, grid_b5_0_seed456
+- ess_only: ess_only_seed42, ess_only_seed123, ess_only_seed456
+- golden_ratio: golden_ratio_seed42
+- τ sweep: tau_05_seed42, tau_06_seed42, tau_07_seed42, adaptive_fix_seed42(=τ=0.8), tau_09_seed42, tau_095_seed42
+- n_min: nmin1_seed42, adaptive_fix_seed42(=n_min=2), adaptive_seed42(=n_min=3), nmin4_seed42
+- ρ=0.6: contamination_60_uniform_seed42, contamination_60_seed42_r2(=adaptive τ=0.8), contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42
+- bs8: bs8_nmin2_seed42_r2
+- baseline: baseline_qwen3_0.6b
+
+**Table A: ρ=0.4 Main Results (3 seeds)**
+Columns: Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注
+Methods: uniform, adaptive (n_min=3), adaptive_fix (n_min=2), grid_b0.5, grid_b1.0, grid_b1.5, grid_b2.0, grid_b3.0, grid_b5.0, ess_only, golden_ratio
+- For golden_ratio, only seed42 exists.
+- For grid_b values from grid_b_seed42_batch, look in the metrics dict for keys containing the b value (e.g. b0_5_eval_ppl, b1_0_eval_ppl etc.)
+
+**Table B: τ Sweep (ρ=0.4, seed42)**
+Columns: τ | PPL | b*_mean | b*_median | b*_pct_above_2
+τ values: 0.5, 0.6, 0.7, 0.8(=adaptive_fix_seed42), 0.9, 0.95
+Look for metrics like eval_ppl, b_star_mean, b_star_median, b_star_pct_above_2 (or similar field names)
+
+**Table C: n_min Sensitivity (ρ=0.4, seed42)**
+Columns: n_min | PPL | b*_mean | 备注
+n_min values: 1(=nmin1_seed42), 2(=adaptive_fix_seed42), 3(=adaptive_seed42), 4(=nmin4_seed42)
+
+**Table D: ρ=0.6 Cross-contamination (seed42)**
+Columns: Method | PPL | vs ρ=0.4 PPL | Delta
+Methods: uniform, adaptive(τ=0.8), grid_b0.5, ess_only
+- ρ=0.6 entries: contamination_60_uniform_seed42, contamination_60_seed42_r2, contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42
+- ρ=0.4 counterparts: uniform_seed42, adaptive_fix_seed42, grid_b0.5 from grid_b_seed42_batch, ess_only_seed42
+- Delta = ρ=0.6 PPL - ρ=0.4 PPL
+
+**Table E: Batch Size (seed42)**
+Columns: batch_size | n_min | PPL | 备注
+- bs=4: adaptive_fix_seed42 (default bs=4, n_min=2)
+- bs=8: bs8_nmin2_seed42_r2 (bs=8, n_min=2)
+
+Also include a **Table F: Baseline**
+- baseline_qwen3_0.6b PPL (no provenance training, just base model perplexity on the eval set)
+
+4. For the CSV file, create a flat format with columns: table, method, seed, ppl, b_star_mean, b_star_median, b_star_pct_above_2, notes
+
+5. Write both files. Use python3 to parse the data and generate the output files.
+
+IMPORTANT: Do not fabricate any numbers. Only use values found in the registry. If a metric is not available, use "N/A".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "0361483f-baee-47a6-8622-c7633f893023"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 14_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Probe the registry file structure",
+  "usage": {
+    "total_tokens": 15997,
+    "tool_uses": 1,
+    "duration_ms": 4107
+  },
+  "last_tool_name": "Bash",
+  "uuid": "ddd5d143-ed93-4de6-b4b4-0a6523111f7a",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QBNnHaJaaicFuBsbfXZCAL`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"import json,sys; d=json.load(sys.stdin); r=json.loads(d['result']); print(type(r), len(r) if isinstance(r,list) else list(r.keys())[:10])\"",
+  "description": "Probe the registry file structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "d516b4c0-6723-438c-a9c6-039f681c197c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRjXnfWQ9BAZXUwAyTxgAh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8266,
+      "cache_read_input_tokens": 7667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8266,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T05:11:13.401Z_
+
+<details><summary>↩ Tool result · `toolu_01QBNnHaJaaicFuBsbfXZCAL`</summary>
+
+```text
+&lt;class 'dict'> ['success', 'data', 'error', 'metadata']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "ff81e054-9c6f-4331-8122-abeb9e0fa0e3"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 17_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Explore the data structure inside registry",
+  "usage": {
+    "total_tokens": 17165,
+    "tool_uses": 2,
+    "duration_ms": 10584
+  },
+  "last_tool_name": "Bash",
+  "uuid": "830bb0a7-e3e5-42e5-b5ba-201c50018014",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019HwVnj3D7jtYqRbnTHudeQ`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\ndata = r['data']\nprint('data type:', type(data), 'len:', len(data) if isinstance(data, list) else 'N/A')\nif isinstance(data, list):\n    print('First entry keys:', list(data[0].keys()) if data else 'empty')\n    # Print first 3 entries briefly\n    for e in data[:3]:\n        print(f\\\"  id={e.get('id','?')} status={e.get('status','?')} conclusion={e.get('conclusion','?')}\\\")\nelif isinstance(data, dict):\n    print('Keys:', list(data.keys())[:20])\n\"",
+  "description": "Explore the data structure inside registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "0a894905-9f46-4f76-9e6a-b072915b4b4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYWEW3UHpceHcCay3jDqTq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 15933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1098,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T05:11:19.491Z_
+
+<details><summary>↩ Tool result · `toolu_019HwVnj3D7jtYqRbnTHudeQ`</summary>
+
+```text
+data type: &lt;class 'dict'> len: N/A
+Keys: ['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "c4d1a3e8-2dac-45dc-a373-15dcb8528f5c"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 20_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Explore experiments structure and first few entries",
+  "usage": {
+    "total_tokens": 17636,
+    "tool_uses": 3,
+    "duration_ms": 17144
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2c8e41e9-2068-4d75-9506-cd698e51698b",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PZigvh6MRNSdD7ZkppcKaL`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\ndata = r['data']\nexperiments = data['experiments']\nprint('experiments type:', type(experiments), 'count:', len(experiments) if isinstance(experiments, list) else len(experiments.keys()))\nif isinstance(experiments, dict):\n    for k in list(experiments.keys())[:5]:\n        e = experiments[k]\n        print(f'  key={k} status={e.get(\\\"status\\\",\\\"?\\\")} conclusion={e.get(\\\"conclusion\\\",\\\"?\\\")}')\n        print(f'    metrics keys: {list(e.get(\\\"metrics\\\",{}).keys())[:10]}')\nelif isinstance(experiments, list):\n    for e in experiments[:5]:\n        print(f'  id={e.get(\\\"id\\\",\\\"?\\\")} status={e.get(\\\"status\\\",\\\"?\\\")} conclusion={e.get(\\\"conclusion\\\",\\\"?\\\")}')\n        print(f'    metrics keys: {list(e.get(\\\"metrics\\\",{}).keys())[:10]}')\nprint()\nprint('baseline:', data.get('baseline'))\n\"",
+  "description": "Explore experiments structure and first few entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "f2de3828-83e0-4ea2-8184-5188aa3c387e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AfLeD1jPGC2jcQ4dkQDwts",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 399,
+      "cache_read_input_tokens": 17031,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 399,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T05:11:26.397Z_
+
+<details><summary>↩ Tool result · `toolu_01PZigvh6MRNSdD7ZkppcKaL`</summary>
+
+```text
+experiments type: &lt;class 'dict'> count: 68
+  key=grid_b0_1_seed42 status=RUNNING conclusion=?
+    metrics keys: []
+  key=grid_b0_3_seed42 status=DONE conclusion=success
+    metrics keys: ['eval_ppl_holdout', 'eval_loss_holdout', 'eval_holdout_tokens', 'eval_method', 'train_loss', 'train_runtime_seconds', 'train_samples_per_second', 'total_steps', 'b_fixed', 'alpha_eff_typical_range']
+  key=contamination_60_ess_only_seed42 status=DONE conclusion=success
+    metrics keys: ['eval_ppl_holdout', 'eval_loss_holdout', 'eval_holdout_tokens', 'train_loss', 'total_steps', 'train_runtime_seconds']
+  key=contamination_60_tau06_seed42 status=RUNNING conclusion=?
+    metrics keys: []
+  key=tau_095_nmin2_seed42 status=DONE conclusion=killed
+    metrics keys: []
+
+baseline: None
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "092e8d87-1633-45fe-92fd-b99f9fa5c674"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 23_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running List all experiments with status, conclusion, and PPL",
+  "usage": {
+    "total_tokens": 18460,
+    "tool_uses": 4,
+    "duration_ms": 23242
+  },
+  "last_tool_name": "Bash",
+  "uuid": "b2eaa0fc-c663-4246-80be-a17176ca9a71",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GDseE2fLtVJFCAqQP1wRxK`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\ndata = r['data']\nexperiments = data['experiments']\n\n# Print all experiment IDs with status and conclusion\nfor k, e in sorted(experiments.items()):\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','?')\n    metrics = e.get('metrics', {})\n    ppl = metrics.get('eval_ppl_holdout', metrics.get('eval_ppl', 'N/A'))\n    print(f'{k:45s} status={status:10s} conclusion={conclusion:12s} ppl={ppl}')\n\" 2>&1 | head -80",
+  "description": "List all experiments with status, conclusion, and PPL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "32e6d35e-dd43-43cf-be46-e3e75ba48be3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K1chcntEWfcRwnz5tzHtPi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 17430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 752,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T05:11:32.128Z_
+
+<details><summary>↩ Tool result · `toolu_01GDseE2fLtVJFCAqQP1wRxK`</summary>
+
+```text
+adaptive_fix_seed123                          status=DONE       conclusion=success      ppl=17.6432
+adaptive_fix_seed42                           status=DONE       conclusion=success      ppl=17.6527
+adaptive_fix_seed456                          status=DONE       conclusion=success      ppl=17.6566
+adaptive_seed123                              status=DONE       conclusion=success      ppl=17.6308
+adaptive_seed42                               status=DONE       conclusion=success      ppl=17.644
+adaptive_seed456                              status=DONE       conclusion=success      ppl=17.6419
+adaptive_v2_seed123                           status=DONE       conclusion=killed       ppl=N/A
+adaptive_v2_seed42                            status=DONE       conclusion=killed       ppl=N/A
+adaptive_v2_seed456                           status=DONE       conclusion=killed       ppl=N/A
+baseline_qwen3_0.6b                           status=DONE       conclusion=success      ppl=22.97
+batchsize16_nmin8_seed42                      status=PREPARING  conclusion=?            ppl=N/A
+bs8_nmin2_seed42                              status=DONE       conclusion=failed       ppl=N/A
+bs8_nmin2_seed42_r2                           status=DONE       conclusion=negative     ppl=17.73
+bs8_seed42                                    status=DONE       conclusion=failed       ppl=N/A
+contamination_60_ess_only_seed42              status=DONE       conclusion=success      ppl=17.77
+contamination_60_grid_b0_5_seed42             status=DONE       conclusion=success      ppl=17.704
+contamination_60_seed42                       status=DONE       conclusion=failed       ppl=N/A
+contamination_60_seed42_r2                    status=DONE       conclusion=success      ppl=17.74
+contamination_60_tau06_seed42                 status=RUNNING    conclusion=?            ppl=N/A
+contamination_60_tau07_seed42                 status=RUNNING    conclusion=?            ppl=N/A
+contamination_60_uniform_seed42               status=DONE       conclusion=success      ppl=17.766
+datagen_synthetic_4gpu                        status=DONE       conclusion=success      ppl=N/A
+detect_remove_baseline_seed42                 status=RUNNING    conclusion=?            ppl=N/A
+detector_modernbert                           status=DONE       conclusion=killed       ppl=N/A
+detector_tfidf_lr                             status=DONE       conclusion=success      ppl=N/A
+diagnostic_contamination100                   status=DONE       conclusion=killed       ppl=N/A
+ess_only_seed123                              status=DONE       conclusion=success      ppl=17.72
+ess_only_seed42                               status=DONE       conclusion=success      ppl=17.73
+ess_only_seed456                              status=DONE       conclusion=success      ppl=17.719
+golden_ratio_seed42                           status=DONE       conclusion=success      ppl=17.654
+grid_b0_1_seed42                              status=RUNNING    conclusion=?            ppl=N/A
+grid_b0_2_seed42                              status=PREPARING  conclusion=killed       ppl=N/A
+grid_b0_3_seed42                              status=DONE       conclusion=success      ppl=17.64
+grid_b0_5_seed123                             status=DONE       conclusion=success      ppl=17.638
+grid_b0_5_seed456                             status=DONE       conclusion=success      ppl=17.65
+grid_b1_0_seed123                             status=DONE       conclusion=success      ppl=17.674
+grid_b1_0_seed456                             status=DONE       conclusion=success      ppl=17.68
+grid_b1_5_seed123                             status=DONE       conclusion=success      ppl=17.701
+grid_b1_5_seed456                             status=DONE       conclusion=success      ppl=17.71
+grid_b2_0_seed123                             status=DONE       conclusion=success      ppl=17.725
+grid_b2_0_seed456                             status=DONE       conclusion=success      ppl=17.989
+grid_b3_0_seed123                             status=DONE       conclusion=success      ppl=17.76
+grid_b3_0_seed456                             status=DONE       conclusion=success      ppl=17.921
+grid_b5_0_seed123                             status=DONE       conclusion=success      ppl=17.8039
+grid_b5_0_seed456                             status=DONE       conclusion=success      ppl=17.993
+grid_b_low_seed42                             status=DONE       conclusion=failed       ppl=N/A
+grid_b_low_seed42_r2                          status=DONE       conclusion=failed       ppl=N/A
+grid_b_low_seed42_r3                          status=DONE       conclusion=failed       ppl=N/A
+grid_b_low_serial_seed42                      status=DONE       conclusion=killed       ppl=N/A
+grid_b_seed42_batch                           status=DONE       conclusion=success      ppl=N/A
+nmin1_seed42                                  status=DONE       conclusion=success      ppl=17.789
+nmin4_seed42                                  status=DONE       conclusion=success      ppl=17.6947
+nmin5_seed42                                  status=DONE       conclusion=killed       ppl=N/A
+p0_contamination_60_datagen                   status=DONE       conclusion=success      ppl=N/A
+tau_0.6_seed42                                status=DONE       conclusion=killed       ppl=N/A
+tau_05_nmin2_seed42                           status=DONE       conclusion=killed       ppl=N/A
+tau_05_seed42                                 status=DONE       conclusion=success      ppl=17.688
+tau_06_nmin2_seed42                           status=DONE       conclusion=killed       ppl=N/A
+tau_06_seed42                                 status=DONE       conclusion=success      ppl=17.6805
+tau_07_nmin2_seed42                           status=DONE       conclusion=killed       ppl=N/A
+tau_07_seed42                                 status=DONE       conclusion=success      ppl=17.6793
+tau_095_nmin2_seed42                          status=DONE       conclusion=killed       ppl=N/A
+tau_095_seed42                                status=DONE       conclusion=negative     ppl=17.723
+tau_09_nmin2_seed42                           status=DONE       conclusion=killed       ppl=N/A
+tau_09_seed42                                 status=DONE       conclusion=negative     ppl=17.712
+uniform_seed123                               status=DONE       conclusion=success      ppl=17.6861
+uniform_seed42                                status=DONE       conclusion=success      ppl=17.6939
+uniform_seed456                               status=DONE       conclusion=success      ppl=17.7015
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "27e27d1b-be49-47ad-b7e7-caa4a1ea7042"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 26_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Inspect grid_b_seed42_batch metrics for b-value PPL entries",
+  "usage": {
+    "total_tokens": 20675,
+    "tool_uses": 5,
+    "duration_ms": 28409
+  },
+  "last_tool_name": "Bash",
+  "uuid": "239e49a2-4393-4cb1-b0b0-c98ba250fdb6",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016FT6woGdMrWamHqmoGJwP2`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\nexperiments = r['data']['experiments']\n\n# Print full metrics for grid_b_seed42_batch\ne = experiments.get('grid_b_seed42_batch', {})\nprint('=== grid_b_seed42_batch ===')\nprint('status:', e.get('status'))\nprint('conclusion:', e.get('conclusion'))\nprint('metrics:', json.dumps(e.get('metrics', {}), indent=2))\n\"",
+  "description": "Inspect grid_b_seed42_batch metrics for b-value PPL entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "b280237d-6952-4cb9-9f6f-92f354e596ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E6zpbBizDAFUMw435v6t3D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2143,
+      "cache_read_input_tokens": 18182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2143,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T05:11:37.306Z_
+
+<details><summary>↩ Tool result · `toolu_016FT6woGdMrWamHqmoGJwP2`</summary>
+
+```text
+=== grid_b_seed42_batch ===
+status: DONE
+conclusion: success
+metrics: {
+  "b_values": [
+    0.5,
+    1,
+    1.5,
+    2,
+    3,
+    5
+  ],
+  "b0_5_train_loss": 9.598,
+  "b0_5_completed": true,
+  "b1_0_completed": true,
+  "b1_5_completed": true,
+  "b2_0_current_step": 5149,
+  "b2_0_total_steps": 6103,
+  "completed_b_values": [
+    0.5,
+    1,
+    1.5,
+    2,
+    3
+  ],
+  "current_b": 5,
+  "total_steps": 6103,
+  "current_step": 3422,
+  "b5_0_progress_pct": 56,
+  "eta_minutes": 95,
+  "b2_0_completed": true,
+  "b2_0_train_loss": 10.621,
+  "b2_0_train_runtime_s": 13034,
+  "b3_0_completed": true,
+  "b3_0_train_loss": 10.754,
+  "b3_0_train_runtime_s": 13036,
+  "all_completed": true,
+  "b1_0_train_loss": 10.223,
+  "b1_5_train_loss": 10.485,
+  "b5_0_train_loss": 10.858,
+  "b0_5_runtime_s": 13036,
+  "b1_0_runtime_s": 12968,
+  "b1_5_runtime_s": 14789,
+  "b2_0_runtime_s": 13034,
+  "b3_0_runtime_s": 13036,
+  "b5_0_runtime_s": 13115,
+  "note": "eval_ppl missing - no --eval_data_path in batch script, post-hoc eval pending",
+  "b0_5_eval_ppl": 17.651,
+  "b1_0_eval_ppl": 17.692,
+  "b1_5_eval_ppl": 17.718,
+  "b2_0_eval_ppl": 17.741,
+  "b3_0_eval_ppl": 17.774,
+  "b5_0_eval_ppl": 17.818,
+  "eval_holdout_tokens": 4077068,
+  "best_b": 0.5,
+  "best_eval_ppl": 17.651
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "270f23c3-cdc4-40db-9415-9280b36bd5e6"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 29_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Inspect tau sweep and adaptive_fix metrics for b_star values",
+  "usage": {
+    "total_tokens": 21742,
+    "tool_uses": 6,
+    "duration_ms": 34490
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8da31bd2-f3ec-4a0a-862f-91981f0b3a6d",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016ueLC3mTvRimfk6xfbW1L9`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\nexperiments = r['data']['experiments']\n\n# Print metrics for tau experiments and adaptive_fix_seed42\nfor key in ['tau_05_seed42', 'tau_06_seed42', 'tau_07_seed42', 'adaptive_fix_seed42', 'tau_09_seed42', 'tau_095_seed42']:\n    e = experiments.get(key, {})\n    print(f'=== {key} ===')\n    print('  metrics:', json.dumps(e.get('metrics', {}), indent=4))\n    print()\n\"",
+  "description": "Inspect tau sweep and adaptive_fix metrics for b_star values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "1d80a58a-b2cd-489f-a53d-e1a87052139d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YV2DRhm8fbphXw9qbJUnbj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 995,
+      "cache_read_input_tokens": 20325,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 995,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T05:11:43.389Z_
+
+<details><summary>↩ Tool result · `toolu_016ueLC3mTvRimfk6xfbW1L9`</summary>
+
+```text
+=== tau_05_seed42 ===
+  metrics: {
+    "train_loss": 8.849,
+    "total_steps": 6103,
+    "epoch": 0.26,
+    "train_runtime_s": 13431.4,
+    "train_samples_per_second": 7.27,
+    "eval_ppl_holdout": 17.688,
+    "eval_loss": 2.8729,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)",
+    "eval_note": "unified post-hoc eval 2026-05-15",
+    "b_star_count": 24412,
+    "b_star_mean": 0.3923,
+    "b_star_median": 0.1707,
+    "b_star_std": 0.8821,
+    "b_star_min": 0,
+    "b_star_max": 20,
+    "b_star_p25": 0,
+    "b_star_p75": 0.4366,
+    "b_star_pct_zero": 29.1,
+    "b_star_pct_below_0.5": 78.4,
+    "b_star_pct_0.5_to_1": 12.9,
+    "b_star_pct_1_to_2": 5.7,
+    "b_star_pct_above_2": 2.9
+}
+
+=== tau_06_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.6805,
+    "eval_loss": 2.8725,
+    "train_loss": 9.275,
+    "total_steps": 6103,
+    "train_runtime_s": 13436.64,
+    "train_samples_per_second": 7.267,
+    "b_star_mean": 0.5899,
+    "b_star_median": 0.3746,
+    "b_star_std": 1.0693,
+    "b_star_min": 0,
+    "b_star_max": 20,
+    "b_star_p25": 0.1195,
+    "b_star_p75": 0.66,
+    "b_star_zero_frac": 0.156,
+    "b_star_nonzero_mean": 0.699,
+    "b_star_nonzero_median": 0.4473
+}
+
+=== tau_07_seed42 ===
+  metrics: {
+    "train_loss": 9.6707,
+    "total_steps": 6103,
+    "train_runtime_s": 15065,
+    "train_samples_per_second": 6.482,
+    "eval_ppl_holdout": 17.6793,
+    "eval_loss": 2.8724,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)",
+    "eval_note": "unified post-hoc eval 2026-05-15",
+    "b_star_count": 24412,
+    "b_star_mean": 0.8943,
+    "b_star_median": 0.58,
+    "b_star_std": 1.4007,
+    "b_star_min": 0,
+    "b_star_max": 20,
+    "b_star_p25": 0.3306,
+    "b_star_p75": 0.9712,
+    "b_star_pct_zero": 5.8,
+    "b_star_pct_below_0.5": 36,
+    "b_star_pct_0.5_to_1": 34.2,
+    "b_star_pct_1_to_2": 16.2,
+    "b_star_pct_above_2": 7.7
+}
+
+=== adaptive_fix_seed42 ===
+  metrics: {
+    "train_loss": 7.5167,
+    "train_runtime": 10304.37,
+    "train_samples_per_second": 9.476,
+    "train_steps_per_second": 0.592,
+    "total_steps": 6103,
+    "eval_ppl_holdout": 17.6527,
+    "eval_loss_holdout": 2.8709,
+    "eval_holdout_tokens": 4077068,
+    "eval_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)",
+    "eval_note": "unified post-hoc eval 2026-05-15; was 17.65/4077068",
+    "b_star_count": 26458,
+    "b_star_mean": 1.399,
+    "b_star_median": 0.871,
+    "b_star_std": 1.933,
+    "b_star_min": 0,
+    "b_star_max": 20,
+    "b_star_p25": 0.54,
+    "b_star_p75": 1.512,
+    "b_star_pct_below_0.5": 20.9,
+    "b_star_pct_0.5_to_1": 35.7,
+    "b_star_pct_1_to_2": 27.3,
+    "b_star_pct_above_2": 16.1,
+    "b_star_note": "Training-only records (eval checkpoint records with b*=0 excluded)"
+}
+
+=== tau_09_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.712,
+    "eval_loss": 2.8742,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)",
+    "eval_note": "unified post-hoc eval 2026-05-15",
+    "b_star_count": 24412,
+    "b_star_mean": 2.36,
+    "b_star_median": 1.32,
+    "b_star_std": 3.04,
+    "b_star_pct_above_2": 33.7
+}
+
+=== tau_095_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.723,
+    "eval_loss": 2.8749,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)",
+    "train_loss": 10.198,
+    "total_steps": 6103,
+    "train_runtime_s": 13699,
+    "train_samples_per_second": 7.128,
+    "b_star_count": 24412,
+    "b_star_mean": 3.0775,
+    "b_star_median": 1.52,
+    "b_star_std": 3.9923,
+    "b_star_min": 0,
+    "b_star_max": 20,
+    "b_star_p25": 0.8,
+    "b_star_p75": 3.46,
+    "b_star_pct_zero": 0,
+    "b_star_pct_below_0.5": 8.5,
+    "b_star_pct_0.5_to_1": 24.7,
+    "b_star_pct_1_to_2": 26.4,
+    "b_star_pct_above_2": 40.3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "aaedf058-a763-462b-9dfe-12eddd5d20b9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 32_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Inspect remaining key experiments: nmin, contamination, bs8, baseline, golden_ratio",
+  "usage": {
+    "total_tokens": 24194,
+    "tool_uses": 7,
+    "duration_ms": 41038
+  },
+  "last_tool_name": "Bash",
+  "uuid": "e7d97c6f-a813-423a-afcc-4822a170b45e",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RUzDZ3UvmFz6Zhugm9xgyN`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\nexperiments = r['data']['experiments']\n\n# Print metrics for nmin experiments, contamination, bs8, baseline, golden_ratio\nfor key in ['nmin1_seed42', 'nmin4_seed42', 'contamination_60_uniform_seed42', 'contamination_60_seed42_r2', 'contamination_60_grid_b0_5_seed42', 'contamination_60_ess_only_seed42', 'bs8_nmin2_seed42_r2', 'baseline_qwen3_0.6b', 'golden_ratio_seed42']:\n    e = experiments.get(key, {})\n    print(f'=== {key} ===')\n    print('  metrics:', json.dumps(e.get('metrics', {}), indent=4))\n    print()\n\"",
+  "description": "Inspect remaining key experiments: nmin, contamination, bs8, baseline, golden_ratio"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "7577e4f7-4acc-47c9-a1d8-d6e555610362",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWLeC32hFnyjwea9eDaoBp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2380,
+      "cache_read_input_tokens": 21320,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2380,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T05:11:49.916Z_
+
+<details><summary>↩ Tool result · `toolu_01RUzDZ3UvmFz6Zhugm9xgyN`</summary>
+
+```text
+=== nmin1_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.789,
+    "eval_loss": 2.8786,
+    "eval_holdout_tokens": 4077068,
+    "b_star_mean": 7.197,
+    "b_star_median": 1.746,
+    "b_star_std": 8.374,
+    "b_star_min": 0,
+    "b_star_max": 20,
+    "b_star_p25": 0.803,
+    "b_star_p75": 20,
+    "b_star_zero_frac": 0.019,
+    "b_star_pct_below_0.5": 13.1,
+    "b_star_pct_0.5_to_1": 19.1,
+    "b_star_pct_1_to_2": 21.1,
+    "b_star_pct_above_2": 46.7,
+    "b_star_count": 24412,
+    "alpha_eff_mean": 0.714,
+    "alpha_eff_median": 0.8
+}
+
+=== nmin4_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.6947,
+    "eval_loss": 2.8733,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)",
+    "train_loss": 7.989,
+    "total_steps": 6103,
+    "train_runtime_s": 16231,
+    "train_samples_per_second": 6.016,
+    "b_star_count": 24412,
+    "b_star_mean": 0,
+    "b_star_median": 0,
+    "b_star_std": 0,
+    "b_star_min": 0,
+    "b_star_max": 0,
+    "b_star_pct_zero": 100,
+    "ess_mean": 4,
+    "ess_min": 4,
+    "ess_max": 4
+}
+
+=== contamination_60_uniform_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.766,
+    "eval_loss_holdout": 2.8773,
+    "eval_tokens": 4077068,
+    "eval_method": "eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl",
+    "train_loss": 7.649,
+    "train_runtime_seconds": 12904
+}
+
+=== contamination_60_seed42_r2 ===
+  metrics: {
+    "eval_ppl_holdout": 17.74,
+    "eval_loss_holdout": 2.8759,
+    "eval_tokens": 4077068,
+    "eval_method": "sliding_window_2048_stride1024",
+    "train_loss": 9.6349,
+    "train_runtime_seconds": 14092.25
+}
+
+=== contamination_60_grid_b0_5_seed42 ===
+  metrics: {
+    "eval_ppl": 17.704,
+    "eval_loss": 2.8738,
+    "eval_tokens": 4077068,
+    "eval_docs": 5000
+}
+
+=== contamination_60_ess_only_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.77,
+    "eval_loss_holdout": 2.8775,
+    "eval_holdout_tokens": 4077068,
+    "train_loss": 9.842,
+    "total_steps": 6103,
+    "train_runtime_seconds": 13152
+}
+
+=== bs8_nmin2_seed42_r2 ===
+  metrics: {
+    "eval_ppl_holdout": 17.73,
+    "eval_loss_holdout": 2.8752,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16",
+    "train_loss": 5.4065,
+    "train_steps": 6103,
+    "train_runtime_seconds": 14621.6
+}
+
+=== baseline_qwen3_0.6b ===
+  metrics: {
+    "eval_ppl_holdout": 22.97,
+    "eval_loss": 3.134,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "sliding_window_stride1024_maxlen2048_fp16"
+}
+
+=== golden_ratio_seed42 ===
+  metrics: {
+    "eval_ppl_holdout": 17.654,
+    "eval_loss": 2.871,
+    "train_loss": 2.1145,
+    "train_loss_last500": 2.109,
+    "eval_holdout_tokens": 4077068,
+    "total_steps": 6103,
+    "train_runtime_s": 13442,
+    "gpu_hours": 3.73
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "1e826588-8525-4c66-9119-3f3580dbd05c"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 35_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Check tau_06 for pct_above_2 and adaptive_seed42 for b_star metrics",
+  "usage": {
+    "total_tokens": 26060,
+    "tool_uses": 8,
+    "duration_ms": 47066
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5a0617ad-d9d0-40d1-9032-64b7dfe4f9ad",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CeGaDH4Cc2t6j2bByyjHmw`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 -c \"\nimport json, sys\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\nexperiments = r['data']['experiments']\n\n# Check tau_06_seed42 for b_star_pct_above_2\ne = experiments.get('tau_06_seed42', {})\nmetrics = e.get('metrics', {})\nprint('tau_06 keys:', list(metrics.keys()))\n\n# Check adaptive_seed42 (n_min=3) for b_star\ne2 = experiments.get('adaptive_seed42', {})\nprint()\nprint('=== adaptive_seed42 ===')\nprint('  metrics:', json.dumps(e2.get('metrics', {}), indent=4))\n\"",
+  "description": "Check tau_06 for pct_above_2 and adaptive_seed42 for b_star metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "519214ea-6c59-4495-911c-c9678f959a85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017T9J7vq7ERmYoT3nbL7njk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1794,
+      "cache_read_input_tokens": 23700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1794,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T05:11:56.356Z_
+
+<details><summary>↩ Tool result · `toolu_01CeGaDH4Cc2t6j2bByyjHmw`</summary>
+
+```text
+tau_06 keys: ['eval_ppl_holdout', 'eval_loss', 'train_loss', 'total_steps', 'train_runtime_s', 'train_samples_per_second', 'b_star_mean', 'b_star_median', 'b_star_std', 'b_star_min', 'b_star_max', 'b_star_p25', 'b_star_p75', 'b_star_zero_frac', 'b_star_nonzero_mean', 'b_star_nonzero_median']
+
+=== adaptive_seed42 ===
+  metrics: {
+    "train_loss": 9.2665,
+    "train_runtime_s": 13115.09,
+    "total_steps": 6103,
+    "train_samples_per_second": 7.445,
+    "train_steps_per_second": 0.465,
+    "epoch": 0.26,
+    "weighting_method": "adaptive",
+    "tau": 0.8,
+    "n_min": 3,
+    "contamination_ratio": 0.4,
+    "b_star": "per-batch adaptive (0.0-3.8)",
+    "alpha_eff_range": "0.03-0.80 (capped at tau)",
+    "eval_ppl_holdout": 17.644,
+    "eval_loss_holdout": 2.8704,
+    "eval_holdout_tokens": 4077068,
+    "eval_method": "eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)",
+    "eval_note": "unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "467736fb-37f0-4dc7-9dce-fcab4e2c5c5f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 38_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Generate experiment tables (markdown) and CSV from registry data",
+  "usage": {
+    "total_tokens": 26892,
+    "tool_uses": 9,
+    "duration_ms": 93792
+  },
+  "last_tool_name": "Bash",
+  "uuid": "cc415627-1339-4886-8349-f1e7bdffc07d",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LVNYLr3oNZ1gDr8S4Q5tSB`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt | python3 << 'PYEOF'\nimport json, sys, csv, os\n\nd = json.load(sys.stdin)\nr = json.loads(d['result'])\nexperiments = r['data']['experiments']\n\ndef get_ppl(exp_id, metric_key=None):\n    \"\"\"Get PPL from an experiment. metric_key overrides default search.\"\"\"\n    e = experiments.get(exp_id, {})\n    m = e.get('metrics', {})\n    if metric_key:\n        v = m.get(metric_key)\n        return round(v, 3) if v is not None else None\n    # Try common keys\n    for k in ['eval_ppl_holdout', 'eval_ppl']:\n        if k in m:\n            return round(m[k], 3)\n    return None\n\ndef get_metric(exp_id, key):\n    e = experiments.get(exp_id, {})\n    m = e.get('metrics', {})\n    v = m.get(key)\n    if v is not None:\n        return round(v, 3) if isinstance(v, float) else v\n    return None\n\ndef fmt(v, decimals=3):\n    if v is None:\n        return \"N/A\"\n    if isinstance(v, float):\n        return f\"{v:.{decimals}f}\"\n    return str(v)\n\n# === TABLE A: rho=0.4 Main Results (3 seeds) ===\ntable_a_methods = [\n    (\"uniform\", \"uniform_seed42\", \"uniform_seed123\", \"uniform_seed456\", \"\"),\n    (\"adaptive (n_min=3)\", \"adaptive_seed42\", \"adaptive_seed123\", \"adaptive_seed456\", \"τ=0.8\"),\n    (\"adaptive_fix (n_min=2)\", \"adaptive_fix_seed42\", \"adaptive_fix_seed123\", \"adaptive_fix_seed456\", \"τ=0.8\"),\n    (\"grid_b0.5\", \"grid_b_seed42_batch:b0_5_eval_ppl\", \"grid_b0_5_seed123\", \"grid_b0_5_seed456\", \"fixed b=0.5\"),\n    (\"grid_b1.0\", \"grid_b_seed42_batch:b1_0_eval_ppl\", \"grid_b1_0_seed123\", \"grid_b1_0_seed456\", \"fixed b=1.0\"),\n    (\"grid_b1.5\", \"grid_b_seed42_batch:b1_5_eval_ppl\", \"grid_b1_5_seed123\", \"grid_b1_5_seed456\", \"fixed b=1.5\"),\n    (\"grid_b2.0\", \"grid_b_seed42_batch:b2_0_eval_ppl\", \"grid_b2_0_seed123\", \"grid_b2_0_seed456\", \"fixed b=2.0\"),\n    (\"grid_b3.0\", \"grid_b_seed42_batch:b3_0_eval_ppl\", \"grid_b3_0_seed123\", \"grid_b3_0_seed456\", \"fixed b=3.0\"),\n    (\"grid_b5.0\", \"grid_b_seed42_batch:b5_0_eval_ppl\", \"grid_b5_0_seed123\", \"grid_b5_0_seed456\", \"fixed b=5.0\"),\n    (\"ess_only\", \"ess_only_seed42\", \"ess_only_seed123\", \"ess_only_seed456\", \"\"),\n    (\"golden_ratio\", \"golden_ratio_seed42\", None, None, \"only seed42\"),\n]\n\ntable_a_rows = []\nfor method, s42, s123, s456, note in table_a_methods:\n    # Parse seed42\n    if ':' in s42:\n        exp_id, metric_key = s42.split(':')\n        ppl42 = get_ppl(exp_id, metric_key)\n    else:\n        ppl42 = get_ppl(s42)\n    \n    ppl123 = get_ppl(s123) if s123 else None\n    ppl456 = get_ppl(s456) if s456 else None\n    \n    vals = [v for v in [ppl42, ppl123, ppl456] if v is not None]\n    mean_ppl = round(sum(vals)/len(vals), 3) if vals else None\n    \n    table_a_rows.append((method, ppl42, ppl123, ppl456, mean_ppl, note))\n\n# === TABLE B: τ Sweep ===\ntau_entries = [\n    (0.5, \"tau_05_seed42\"),\n    (0.6, \"tau_06_seed42\"),\n    (0.7, \"tau_07_seed42\"),\n    (0.8, \"adaptive_fix_seed42\"),\n    (0.9, \"tau_09_seed42\"),\n    (0.95, \"tau_095_seed42\"),\n]\n\ntable_b_rows = []\nfor tau, exp_id in tau_entries:\n    ppl = get_ppl(exp_id)\n    b_mean = get_metric(exp_id, 'b_star_mean')\n    b_median = get_metric(exp_id, 'b_star_median')\n    b_pct2 = get_metric(exp_id, 'b_star_pct_above_2')\n    table_b_rows.append((tau, ppl, b_mean, b_median, b_pct2))\n\n# === TABLE C: n_min Sensitivity ===\nnmin_entries = [\n    (1, \"nmin1_seed42\", \"\"),\n    (2, \"adaptive_fix_seed42\", \"τ=0.8\"),\n    (3, \"adaptive_seed42\", \"τ=0.8\"),\n    (4, \"nmin4_seed42\", \"b*=0 for all (ESS always >= n_min)\"),\n]\n\ntable_c_rows = []\nfor nmin, exp_id, note in nmin_entries:\n    ppl = get_ppl(exp_id)\n    b_mean = get_metric(exp_id, 'b_star_mean')\n    table_c_rows.append((nmin, ppl, b_mean, note))\n\n# === TABLE D: ρ=0.6 Cross-contamination ===\ncontam_entries = [\n    (\"uniform\", \"contamination_60_uniform_seed42\", \"uniform_seed42\"),\n    (\"adaptive (τ=0.8)\", \"contamination_60_seed42_r2\", \"adaptive_fix_seed42\"),\n    (\"grid_b0.5\", \"contamination_60_grid_b0_5_seed42\", \"grid_b_seed42_batch:b0_5_eval_ppl\"),\n    (\"ess_only\", \"contamination_60_ess_only_seed42\", \"ess_only_seed42\"),\n]\n\ntable_d_rows = []\nfor method, exp60, exp40 in contam_entries:\n    ppl60 = get_ppl(exp60)\n    # Handle special grid case\n    if ':' in exp40:\n        eid, mk = exp40.split(':')\n        ppl40 = get_ppl(eid, mk)\n    else:\n        ppl40 = get_ppl(exp40)\n    delta = round(ppl60 - ppl40, 3) if (ppl60 is not None and ppl40 is not None) else None\n    table_d_rows.append((method, ppl60, ppl40, delta))\n\n# === TABLE E: Batch Size ===\ntable_e_rows = [\n    (4, 2, get_ppl(\"adaptive_fix_seed42\"), \"default\"),\n    (8, 2, get_ppl(\"bs8_nmin2_seed42_r2\"), \"\"),\n]\n\n# === TABLE F: Baseline ===\nbaseline_ppl = get_ppl(\"baseline_qwen3_0.6b\")\n\n# ============ GENERATE MARKDOWN ============\nmd_lines = []\nmd_lines.append(\"# Provenance Weight Training: Experiment Results\\n\")\nmd_lines.append(\"All PPL values measured on `eval_holdout.jsonl` (4,077,068 tokens) with sliding-window evaluation (stride=1024, max_length=2048, fp16).\\n\")\n\n# Table A\nmd_lines.append(\"## Table A: ρ=0.4 Main Results (3 seeds)\\n\")\nmd_lines.append(\"| Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注 |\")\nmd_lines.append(\"|--------|-----------|------------|------------|---------|------|\")\nfor method, p42, p123, p456, mean, note in table_a_rows:\n    md_lines.append(f\"| {method} | {fmt(p42)} | {fmt(p123)} | {fmt(p456)} | {fmt(mean)} | {note} |\")\n\n# Table B\nmd_lines.append(\"\\n## Table B: τ Sweep (ρ=0.4, n_min=2, seed42)\\n\")\nmd_lines.append(\"| τ | PPL | b*_mean | b*_median | b*_pct_above_2 |\")\nmd_lines.append(\"|---|-----|---------|-----------|----------------|\")\nfor tau, ppl, bm, bmed, bpct in table_b_rows:\n    md_lines.append(f\"| {tau} | {fmt(ppl)} | {fmt(bm)} | {fmt(bmed)} | {fmt(bpct)} |\")\n\n# Table C\nmd_lines.append(\"\\n## Table C: n_min Sensitivity (ρ=0.4, τ=0.8, seed42)\\n\")\nmd_lines.append(\"| n_min | PPL | b*_mean | 备注 |\")\nmd_lines.append(\"|-------|-----|---------|------|\")\nfor nmin, ppl, bm, note in table_c_rows:\n    md_lines.append(f\"| {nmin} | {fmt(ppl)} | {fmt(bm)} | {note} |\")\n\n# Table D\nmd_lines.append(\"\\n## Table D: ρ=0.6 Cross-contamination (seed42)\\n\")\nmd_lines.append(\"| Method | ρ=0.6 PPL | ρ=0.4 PPL | Δ PPL |\")\nmd_lines.append(\"|--------|-----------|-----------|-------|\")\nfor method, p60, p40, delta in table_d_rows:\n    md_lines.append(f\"| {method} | {fmt(p60)} | {fmt(p40)} | {fmt(delta)} |\")\n\n# Table E\nmd_lines.append(\"\\n## Table E: Batch Size (ρ=0.4, τ=0.8, n_min=2, seed42)\\n\")\nmd_lines.append(\"| batch_size | n_min | PPL | 备注 |\")\nmd_lines.append(\"|-----------|-------|-----|------|\")\nfor bs, nmin, ppl, note in table_e_rows:\n    md_lines.append(f\"| {bs} | {nmin} | {fmt(ppl)} | {note} |\")\n\n# Table F\nmd_lines.append(\"\\n## Table F: Baseline\\n\")\nmd_lines.append(\"| Model | PPL | 备注 |\")\nmd_lines.append(\"|-------|-----|------|\")\nmd_lines.append(f\"| Qwen3-0.6B (no training) | {fmt(baseline_ppl)} | base model eval on same holdout set |\")\n\nmd_content = \"\\n\".join(md_lines) + \"\\n\"\n\n# ============ GENERATE CSV ============\ncsv_rows = []\ncsv_header = [\"table\", \"method\", \"seed\", \"ppl\", \"b_star_mean\", \"b_star_median\", \"b_star_pct_above_2\", \"notes\"]\n\n# Table A\nfor method, p42, p123, p456, mean, note in table_a_rows:\n    csv_rows.append([\"A\", method, \"42\", fmt(p42), \"\", \"\", \"\", note])\n    csv_rows.append([\"A\", method, \"123\", fmt(p123), \"\", \"\", \"\", note])\n    csv_rows.append([\"A\", method, \"456\", fmt(p456), \"\", \"\", \"\", note])\n    csv_rows.append([\"A\", method, \"mean\", fmt(mean), \"\", \"\", \"\", note])\n\n# Table B\nfor tau, ppl, bm, bmed, bpct in table_b_rows:\n    csv_rows.append([\"B\", f\"tau={tau}\", \"42\", fmt(ppl), fmt(bm), fmt(bmed), fmt(bpct), \"\"])\n\n# Table C\nfor nmin, ppl, bm, note in table_c_rows:\n    csv_rows.append([\"C\", f\"n_min={nmin}\", \"42\", fmt(ppl), fmt(bm), \"\", \"\", note])\n\n# Table D\nfor method, p60, p40, delta in table_d_rows:\n    csv_rows.append([\"D\", method, \"42\", fmt(p60), \"\", \"\", \"\", f\"rho=0.6; rho=0.4_ppl={fmt(p40)}; delta={fmt(delta)}\"])\n\n# Table E\nfor bs, nmin, ppl, note in table_e_rows:\n    csv_rows.append([\"E\", f\"bs={bs}_nmin={nmin}\", \"42\", fmt(ppl), \"\", \"\", \"\", note])\n\n# Table F\ncsv_rows.append([\"F\", \"baseline_qwen3_0.6b\", \"\", fmt(baseline_ppl), \"\", \"\", \"\", \"no provenance training\"])\n\n# Write files\nout_dir = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/\"\nos.makedirs(out_dir, exist_ok=True)\n\nwith open(out_dir + \"experiment_tables.md\", \"w\") as f:\n    f.write(md_content)\n\nwith open(out_dir + \"experiment_data.csv\", \"w\", newline=\"\") as f:\n    writer = csv.writer(f)\n    writer.writerow(csv_header)\n    writer.writerows(csv_rows)\n\nprint(\"Done. Files written.\")\nprint(f\"  {out_dir}experiment_tables.md\")\nprint(f\"  {out_dir}experiment_data.csv\")\nPYEOF",
+  "description": "Generate experiment tables (markdown) and CSV from registry data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "46be97d7-43f5-4471-9391-677978e83a3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nz31NnGs2AZGL3icqiLhKe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 830,
+      "cache_read_input_tokens": 25494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 830,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T05:12:42.903Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LVNYLr3oNZ1gDr8S4Q5tSB`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;stdin>", line 3, in &lt;module>
+  File "/usr/lib/python3.14/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "71ce15f8-5d1d-4093-a48f-6852b35ecf50",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;stdin>\", line 3, in &lt;module>\n  File \"/usr/lib/python3.14/json/__init__.py\", line 298, in load\n    return loads(fp.read(),\n        cls=cls, object_hook=object_hook,\n        parse_float=parse_float, parse_int=parse_int,\n        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)\n  File \"/usr/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 363, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Read registry file directly with python3",
+  "usage": {
+    "total_tokens": 31184,
+    "tool_uses": 10,
+    "duration_ms": 101083
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2a9fe2a4-8d8f-4d63-85c5-04a4b5d75d9a",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SgKKysrsU3BggXGCJvs1cK`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt', 'r') as f:\n    d = json.load(f)\nr = json.loads(d['result'])\nprint(type(r), list(r.keys())[:10])\n\"",
+  "description": "Read registry file directly with python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "d9bc840d-9a26-4636-af8b-0b9af85dea69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HNDeJT2iSyoezGVqXEGgxJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4243,
+      "cache_read_input_tokens": 26324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4243,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T05:12:49.982Z_
+
+<details><summary>↩ Tool result · `toolu_01SgKKysrsU3BggXGCJvs1cK`</summary>
+
+```text
+&lt;class 'dict'> ['success', 'data', 'error', 'metadata']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "c6a6eebf-b986-41b5-94a1-cedcd48affe6"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Running Generate experiment tables and CSV from registry data",
+  "usage": {
+    "total_tokens": 31504,
+    "tool_uses": 11,
+    "duration_ms": 133702
+  },
+  "last_tool_name": "Bash",
+  "uuid": "6e877a49-a473-48e8-bce0-33cb8e8d2cee",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018hbChhHKk5MFN7Px8toEoC`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json, csv, os\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt', 'r') as f:\n    d = json.load(f)\n\nr = json.loads(d['result'])\nexperiments = r['data']['experiments']\n\ndef get_ppl(exp_id, metric_key=None):\n    \"\"\"Get PPL from an experiment. metric_key overrides default search.\"\"\"\n    e = experiments.get(exp_id, {})\n    m = e.get('metrics', {})\n    if metric_key:\n        v = m.get(metric_key)\n        return round(v, 3) if v is not None else None\n    for k in ['eval_ppl_holdout', 'eval_ppl']:\n        if k in m:\n            return round(m[k], 3)\n    return None\n\ndef get_metric(exp_id, key):\n    e = experiments.get(exp_id, {})\n    m = e.get('metrics', {})\n    v = m.get(key)\n    if v is not None:\n        return round(v, 3) if isinstance(v, float) else v\n    return None\n\ndef fmt(v, decimals=3):\n    if v is None:\n        return \"N/A\"\n    if isinstance(v, float):\n        return f\"{v:.{decimals}f}\"\n    return str(v)\n\n# === TABLE A: rho=0.4 Main Results (3 seeds) ===\ntable_a_methods = [\n    (\"uniform\", \"uniform_seed42\", \"uniform_seed123\", \"uniform_seed456\", \"\"),\n    (\"adaptive (n_min=3)\", \"adaptive_seed42\", \"adaptive_seed123\", \"adaptive_seed456\", \"τ=0.8\"),\n    (\"adaptive_fix (n_min=2)\", \"adaptive_fix_seed42\", \"adaptive_fix_seed123\", \"adaptive_fix_seed456\", \"τ=0.8\"),\n    (\"grid_b0.5\", \"grid_b_seed42_batch:b0_5_eval_ppl\", \"grid_b0_5_seed123\", \"grid_b0_5_seed456\", \"fixed b=0.5\"),\n    (\"grid_b1.0\", \"grid_b_seed42_batch:b1_0_eval_ppl\", \"grid_b1_0_seed123\", \"grid_b1_0_seed456\", \"fixed b=1.0\"),\n    (\"grid_b1.5\", \"grid_b_seed42_batch:b1_5_eval_ppl\", \"grid_b1_5_seed123\", \"grid_b1_5_seed456\", \"fixed b=1.5\"),\n    (\"grid_b2.0\", \"grid_b_seed42_batch:b2_0_eval_ppl\", \"grid_b2_0_seed123\", \"grid_b2_0_seed456\", \"fixed b=2.0\"),\n    (\"grid_b3.0\", \"grid_b_seed42_batch:b3_0_eval_ppl\", \"grid_b3_0_seed123\", \"grid_b3_0_seed456\", \"fixed b=3.0\"),\n    (\"grid_b5.0\", \"grid_b_seed42_batch:b5_0_eval_ppl\", \"grid_b5_0_seed123\", \"grid_b5_0_seed456\", \"fixed b=5.0\"),\n    (\"ess_only\", \"ess_only_seed42\", \"ess_only_seed123\", \"ess_only_seed456\", \"\"),\n    (\"golden_ratio\", \"golden_ratio_seed42\", None, None, \"only seed42\"),\n]\n\ntable_a_rows = []\nfor method, s42, s123, s456, note in table_a_methods:\n    if ':' in s42:\n        exp_id, metric_key = s42.split(':')\n        ppl42 = get_ppl(exp_id, metric_key)\n    else:\n        ppl42 = get_ppl(s42)\n    \n    ppl123 = get_ppl(s123) if s123 else None\n    ppl456 = get_ppl(s456) if s456 else None\n    \n    vals = [v for v in [ppl42, ppl123, ppl456] if v is not None]\n    mean_ppl = round(sum(vals)/len(vals), 3) if vals else None\n    \n    table_a_rows.append((method, ppl42, ppl123, ppl456, mean_ppl, note))\n\n# === TABLE B: τ Sweep ===\ntau_entries = [\n    (0.5, \"tau_05_seed42\"),\n    (0.6, \"tau_06_seed42\"),\n    (0.7, \"tau_07_seed42\"),\n    (0.8, \"adaptive_fix_seed42\"),\n    (0.9, \"tau_09_seed42\"),\n    (0.95, \"tau_095_seed42\"),\n]\n\ntable_b_rows = []\nfor tau, exp_id in tau_entries:\n    ppl = get_ppl(exp_id)\n    b_mean = get_metric(exp_id, 'b_star_mean')\n    b_median = get_metric(exp_id, 'b_star_median')\n    b_pct2 = get_metric(exp_id, 'b_star_pct_above_2')\n    table_b_rows.append((tau, ppl, b_mean, b_median, b_pct2))\n\n# === TABLE C: n_min Sensitivity ===\nnmin_entries = [\n    (1, \"nmin1_seed42\", \"\"),\n    (2, \"adaptive_fix_seed42\", \"τ=0.8\"),\n    (3, \"adaptive_seed42\", \"τ=0.8\"),\n    (4, \"nmin4_seed42\", \"b*=0 for all (ESS always >= n_min)\"),\n]\n\ntable_c_rows = []\nfor nmin, exp_id, note in nmin_entries:\n    ppl = get_ppl(exp_id)\n    b_mean = get_metric(exp_id, 'b_star_mean')\n    table_c_rows.append((nmin, ppl, b_mean, note))\n\n# === TABLE D: ρ=0.6 Cross-contamination ===\ncontam_entries = [\n    (\"uniform\", \"contamination_60_uniform_seed42\", \"uniform_seed42\"),\n    (\"adaptive (τ=0.8)\", \"contamination_60_seed42_r2\", \"adaptive_fix_seed42\"),\n    (\"grid_b0.5\", \"contamination_60_grid_b0_5_seed42\", \"grid_b_seed42_batch:b0_5_eval_ppl\"),\n    (\"ess_only\", \"contamination_60_ess_only_seed42\", \"ess_only_seed42\"),\n]\n\ntable_d_rows = []\nfor method, exp60, exp40 in contam_entries:\n    ppl60 = get_ppl(exp60)\n    if ':' in exp40:\n        eid, mk = exp40.split(':')\n        ppl40 = get_ppl(eid, mk)\n    else:\n        ppl40 = get_ppl(exp40)\n    delta = round(ppl60 - ppl40, 3) if (ppl60 is not None and ppl40 is not None) else None\n    table_d_rows.append((method, ppl60, ppl40, delta))\n\n# === TABLE E: Batch Size ===\ntable_e_rows = [\n    (4, 2, get_ppl(\"adaptive_fix_seed42\"), \"default\"),\n    (8, 2, get_ppl(\"bs8_nmin2_seed42_r2\"), \"\"),\n]\n\n# === TABLE F: Baseline ===\nbaseline_ppl = get_ppl(\"baseline_qwen3_0.6b\")\n\n# ============ GENERATE MARKDOWN ============\nmd_lines = []\nmd_lines.append(\"# Provenance Weight Training: Experiment Results\\n\")\nmd_lines.append(\"All PPL values measured on `eval_holdout.jsonl` (4,077,068 tokens) with sliding-window evaluation (stride=1024, max_length=2048, fp16).\\n\")\n\n# Table A\nmd_lines.append(\"## Table A: ρ=0.4 Main Results (3 seeds)\\n\")\nmd_lines.append(\"| Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注 |\")\nmd_lines.append(\"|--------|-----------|------------|------------|---------|------|\")\nfor method, p42, p123, p456, mean, note in table_a_rows:\n    md_lines.append(f\"| {method} | {fmt(p42)} | {fmt(p123)} | {fmt(p456)} | {fmt(mean)} | {note} |\")\n\n# Table B\nmd_lines.append(\"\\n## Table B: τ Sweep (ρ=0.4, n_min=2, seed42)\\n\")\nmd_lines.append(\"| τ | PPL | b*_mean | b*_median | b*_pct_above_2 |\")\nmd_lines.append(\"|---|-----|---------|-----------|----------------|\")\nfor tau, ppl, bm, bmed, bpct in table_b_rows:\n    md_lines.append(f\"| {tau} | {fmt(ppl)} | {fmt(bm)} | {fmt(bmed)} | {fmt(bpct)} |\")\n\n# Table C\nmd_lines.append(\"\\n## Table C: n_min Sensitivity (ρ=0.4, τ=0.8, seed42)\\n\")\nmd_lines.append(\"| n_min | PPL | b*_mean | 备注 |\")\nmd_lines.append(\"|-------|-----|---------|------|\")\nfor nmin, ppl, bm, note in table_c_rows:\n    md_lines.append(f\"| {nmin} | {fmt(ppl)} | {fmt(bm)} | {note} |\")\n\n# Table D\nmd_lines.append(\"\\n## Table D: ρ=0.6 Cross-contamination (seed42)\\n\")\nmd_lines.append(\"| Method | ρ=0.6 PPL | ρ=0.4 PPL | Δ PPL |\")\nmd_lines.append(\"|--------|-----------|-----------|-------|\")\nfor method, p60, p40, delta in table_d_rows:\n    md_lines.append(f\"| {method} | {fmt(p60)} | {fmt(p40)} | {fmt(delta)} |\")\n\n# Table E\nmd_lines.append(\"\\n## Table E: Batch Size (ρ=0.4, τ=0.8, n_min=2, seed42)\\n\")\nmd_lines.append(\"| batch_size | n_min | PPL | 备注 |\")\nmd_lines.append(\"|-----------|-------|-----|------|\")\nfor bs, nmin, ppl, note in table_e_rows:\n    md_lines.append(f\"| {bs} | {nmin} | {fmt(ppl)} | {note} |\")\n\n# Table F\nmd_lines.append(\"\\n## Table F: Baseline\\n\")\nmd_lines.append(\"| Model | PPL | 备注 |\")\nmd_lines.append(\"|-------|-----|------|\")\nmd_lines.append(f\"| Qwen3-0.6B (no training) | {fmt(baseline_ppl)} | base model eval on same holdout set |\")\n\nmd_content = \"\\n\".join(md_lines) + \"\\n\"\n\n# ============ GENERATE CSV ============\ncsv_rows = []\ncsv_header = [\"table\", \"method\", \"seed\", \"ppl\", \"b_star_mean\", \"b_star_median\", \"b_star_pct_above_2\", \"notes\"]\n\n# Table A\nfor method, p42, p123, p456, mean, note in table_a_rows:\n    csv_rows.append([\"A\", method, \"42\", fmt(p42), \"\", \"\", \"\", note])\n    csv_rows.append([\"A\", method, \"123\", fmt(p123), \"\", \"\", \"\", note])\n    csv_rows.append([\"A\", method, \"456\", fmt(p456), \"\", \"\", \"\", note])\n    csv_rows.append([\"A\", method, \"mean\", fmt(mean), \"\", \"\", \"\", note])\n\n# Table B\nfor tau, ppl, bm, bmed, bpct in table_b_rows:\n    csv_rows.append([\"B\", f\"tau={tau}\", \"42\", fmt(ppl), fmt(bm), fmt(bmed), fmt(bpct), \"\"])\n\n# Table C\nfor nmin, ppl, bm, note in table_c_rows:\n    csv_rows.append([\"C\", f\"n_min={nmin}\", \"42\", fmt(ppl), fmt(bm), \"\", \"\", note])\n\n# Table D\nfor method, p60, p40, delta in table_d_rows:\n    csv_rows.append([\"D\", method, \"42\", fmt(p60), \"\", \"\", \"\", f\"rho=0.6; rho=0.4_ppl={fmt(p40)}; delta={fmt(delta)}\"])\n\n# Table E\nfor bs, nmin, ppl, note in table_e_rows:\n    csv_rows.append([\"E\", f\"bs={bs}_nmin={nmin}\", \"42\", fmt(ppl), \"\", \"\", \"\", note])\n\n# Table F\ncsv_rows.append([\"F\", \"baseline_qwen3_0.6b\", \"\", fmt(baseline_ppl), \"\", \"\", \"\", \"no provenance training\"])\n\n# Write files\nout_dir = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/\"\nos.makedirs(out_dir, exist_ok=True)\n\nwith open(out_dir + \"experiment_tables.md\", \"w\") as f:\n    f.write(md_content)\n\nwith open(out_dir + \"experiment_data.csv\", \"w\", newline=\"\") as f:\n    writer = csv.writer(f)\n    writer.writerow(csv_header)\n    writer.writerows(csv_rows)\n\nprint(\"Done. Files written:\")\nprint(f\"  {out_dir}experiment_tables.md\")\nprint(f\"  {out_dir}experiment_data.csv\")\nPYEOF",
+  "description": "Generate experiment tables and CSV from registry data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "8ea1ee38-0580-45f1-8cc8-2dd68f413a94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vNuT7byLZdG8Xzox62Fg7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 30567,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 256,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T05:13:22.595Z_
+
+<details><summary>↩ Tool result · `toolu_018hbChhHKk5MFN7Px8toEoC`</summary>
+
+```text
+Done. Files written:
+  /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md
+  /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "ad885186-9f27-4201-92b0-eacccc33d2c8"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 47_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Reading artifacts/experiment_tables.md",
+  "usage": {
+    "total_tokens": 35383,
+    "tool_uses": 12,
+    "duration_ms": 136902
+  },
+  "last_tool_name": "Read",
+  "uuid": "df9e7505-9bea-4018-b6d7-8eb082ce484c",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013deRMHhxdBcZCcfCmxEdoX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "10f28d34-3df3-4239-a3de-3f7f2324b775",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDGtMcef21kf5aP28oruEy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 30823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3877,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T05:13:25.681Z_
+
+<details><summary>↩ Tool result · `toolu_013deRMHhxdBcZCcfCmxEdoX`</summary>
+
+```text
+1	# Provenance Weight Training: Experiment Results
+2	
+3	All PPL values measured on `eval_holdout.jsonl` (4,077,068 tokens) with sliding-window evaluation (stride=1024, max_length=2048, fp16).
+4	
+5	## Table A: ρ=0.4 Main Results (3 seeds)
+6	
+7	| Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注 |
+8	|--------|-----------|------------|------------|---------|------|
+9	| uniform | 17.694 | 17.686 | 17.701 | 17.694 |  |
+10	| adaptive (n_min=3) | 17.644 | 17.631 | 17.642 | 17.639 | τ=0.8 |
+11	| adaptive_fix (n_min=2) | 17.653 | 17.643 | 17.657 | 17.651 | τ=0.8 |
+12	| grid_b0.5 | 17.651 | 17.638 | 17.650 | 17.646 | fixed b=0.5 |
+13	| grid_b1.0 | 17.692 | 17.674 | 17.680 | 17.682 | fixed b=1.0 |
+14	| grid_b1.5 | 17.718 | 17.701 | 17.710 | 17.710 | fixed b=1.5 |
+15	| grid_b2.0 | 17.741 | 17.725 | 17.989 | 17.818 | fixed b=2.0 |
+16	| grid_b3.0 | 17.774 | 17.760 | 17.921 | 17.818 | fixed b=3.0 |
+17	| grid_b5.0 | 17.818 | 17.804 | 17.993 | 17.872 | fixed b=5.0 |
+18	| ess_only | 17.730 | 17.720 | 17.719 | 17.723 |  |
+19	| golden_ratio | 17.654 | N/A | N/A | 17.654 | only seed42 |
+20	
+21	## Table B: τ Sweep (ρ=0.4, n_min=2, seed42)
+22	
+23	| τ | PPL | b*_mean | b*_median | b*_pct_above_2 |
+24	|---|-----|---------|-----------|----------------|
+25	| 0.5 | 17.688 | 0.392 | 0.171 | 2.900 |
+26	| 0.6 | 17.680 | 0.590 | 0.375 | N/A |
+27	| 0.7 | 17.679 | 0.894 | 0.580 | 7.700 |
+28	| 0.8 | 17.653 | 1.399 | 0.871 | 16.100 |
+29	| 0.9 | 17.712 | 2.360 | 1.320 | 33.700 |
+30	| 0.95 | 17.723 | 3.078 | 1.520 | 40.300 |
+31	
+32	## Table C: n_min Sensitivity (ρ=0.4, τ=0.8, seed42)
+33	
+34	| n_min | PPL | b*_mean | 备注 |
+35	|-------|-----|---------|------|
+36	| 1 | 17.789 | 7.197 |  |
+37	| 2 | 17.653 | 1.399 | τ=0.8 |
+38	| 3 | 17.644 | N/A | τ=0.8 |
+39	| 4 | 17.695 | 0 | b*=0 for all (ESS always >= n_min) |
+40	
+41	## Table D: ρ=0.6 Cross-contamination (seed42)
+42	
+43	| Method | ρ=0.6 PPL | ρ=0.4 PPL | Δ PPL |
+44	|--------|-----------|-----------|-------|
+45	| uniform | 17.766 | 17.694 | 0.072 |
+46	| adaptive (τ=0.8) | 17.740 | 17.653 | 0.087 |
+47	| grid_b0.5 | 17.704 | 17.651 | 0.053 |
+48	| ess_only | 17.770 | 17.730 | 0.040 |
+49	
+50	## Table E: Batch Size (ρ=0.4, τ=0.8, n_min=2, seed42)
+51	
+52	| batch_size | n_min | PPL | 备注 |
+53	|-----------|-------|-----|------|
+54	| 4 | 2 | 17.653 | default |
+55	| 8 | 2 | 17.730 |  |
+56	
+57	## Table F: Baseline
+58	
+59	| Model | PPL | 备注 |
+60	|-------|-----|------|
+61	| Qwen3-0.6B (no training) | 22.970 | base model eval on same holdout set |
+62	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "d196a2a9-eb13-46e8-bf49-d8fd4325a25e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Reading artifacts/experiment_data.csv",
+  "usage": {
+    "total_tokens": 35384,
+    "tool_uses": 13,
+    "duration_ms": 137197
+  },
+  "last_tool_name": "Read",
+  "uuid": "1375ebe2-a223-4ea2-af7b-201d6c55f13c",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0125m9w2SnRwDg9JRGxgksH3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "14d6305b-1ffc-472a-96c5-235ee988cbaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDGtMcef21kf5aP28oruEy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3877,
+      "cache_read_input_tokens": 30823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3877,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T05:13:25.989Z_
+
+<details><summary>↩ Tool result · `toolu_0125m9w2SnRwDg9JRGxgksH3`</summary>
+
+```text
+1	table,method,seed,ppl,b_star_mean,b_star_median,b_star_pct_above_2,notes
+2	A,uniform,42,17.694,,,,
+3	A,uniform,123,17.686,,,,
+4	A,uniform,456,17.701,,,,
+5	A,uniform,mean,17.694,,,,
+6	A,adaptive (n_min=3),42,17.644,,,,τ=0.8
+7	A,adaptive (n_min=3),123,17.631,,,,τ=0.8
+8	A,adaptive (n_min=3),456,17.642,,,,τ=0.8
+9	A,adaptive (n_min=3),mean,17.639,,,,τ=0.8
+10	A,adaptive_fix (n_min=2),42,17.653,,,,τ=0.8
+11	A,adaptive_fix (n_min=2),123,17.643,,,,τ=0.8
+12	A,adaptive_fix (n_min=2),456,17.657,,,,τ=0.8
+13	A,adaptive_fix (n_min=2),mean,17.651,,,,τ=0.8
+14	A,grid_b0.5,42,17.651,,,,fixed b=0.5
+15	A,grid_b0.5,123,17.638,,,,fixed b=0.5
+16	A,grid_b0.5,456,17.650,,,,fixed b=0.5
+17	A,grid_b0.5,mean,17.646,,,,fixed b=0.5
+18	A,grid_b1.0,42,17.692,,,,fixed b=1.0
+19	A,grid_b1.0,123,17.674,,,,fixed b=1.0
+20	A,grid_b1.0,456,17.680,,,,fixed b=1.0
+21	A,grid_b1.0,mean,17.682,,,,fixed b=1.0
+22	A,grid_b1.5,42,17.718,,,,fixed b=1.5
+23	A,grid_b1.5,123,17.701,,,,fixed b=1.5
+24	A,grid_b1.5,456,17.710,,,,fixed b=1.5
+25	A,grid_b1.5,mean,17.710,,,,fixed b=1.5
+26	A,grid_b2.0,42,17.741,,,,fixed b=2.0
+27	A,grid_b2.0,123,17.725,,,,fixed b=2.0
+28	A,grid_b2.0,456,17.989,,,,fixed b=2.0
+29	A,grid_b2.0,mean,17.818,,,,fixed b=2.0
+30	A,grid_b3.0,42,17.774,,,,fixed b=3.0
+31	A,grid_b3.0,123,17.760,,,,fixed b=3.0
+32	A,grid_b3.0,456,17.921,,,,fixed b=3.0
+33	A,grid_b3.0,mean,17.818,,,,fixed b=3.0
+34	A,grid_b5.0,42,17.818,,,,fixed b=5.0
+35	A,grid_b5.0,123,17.804,,,,fixed b=5.0
+36	A,grid_b5.0,456,17.993,,,,fixed b=5.0
+37	A,grid_b5.0,mean,17.872,,,,fixed b=5.0
+38	A,ess_only,42,17.730,,,,
+39	A,ess_only,123,17.720,,,,
+40	A,ess_only,456,17.719,,,,
+41	A,ess_only,mean,17.723,,,,
+42	A,golden_ratio,42,17.654,,,,only seed42
+43	A,golden_ratio,123,N/A,,,,only seed42
+44	A,golden_ratio,456,N/A,,,,only seed42
+45	A,golden_ratio,mean,17.654,,,,only seed42
+46	B,tau=0.5,42,17.688,0.392,0.171,2.900,
+47	B,tau=0.6,42,17.680,0.590,0.375,N/A,
+48	B,tau=0.7,42,17.679,0.894,0.580,7.700,
+49	B,tau=0.8,42,17.653,1.399,0.871,16.100,
+50	B,tau=0.9,42,17.712,2.360,1.320,33.700,
+51	B,tau=0.95,42,17.723,3.078,1.520,40.300,
+52	C,n_min=1,42,17.789,7.197,,,
+53	C,n_min=2,42,17.653,1.399,,,τ=0.8
+54	C,n_min=3,42,17.644,N/A,,,τ=0.8
+55	C,n_min=4,42,17.695,0,,,b*=0 for all (ESS always >= n_min)
+56	D,uniform,42,17.766,,,,rho=0.6; rho=0.4_ppl=17.694; delta=0.072
+57	D,adaptive (τ=0.8),42,17.740,,,,rho=0.6; rho=0.4_ppl=17.653; delta=0.087
+58	D,grid_b0.5,42,17.704,,,,rho=0.6; rho=0.4_ppl=17.651; delta=0.053
+59	D,ess_only,42,17.770,,,,rho=0.6; rho=0.4_ppl=17.730; delta=0.040
+60	E,bs=4_nmin=2,42,17.653,,,,default
+61	E,bs=8_nmin=2,42,17.730,,,,
+62	F,baseline_qwen3_0.6b,,22.970,,,,no provenance training
+63	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "fe68b90d-9b74-4456-b0eb-675e902d2c4f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Parse registry and build tables",
+  "usage": {
+    "total_tokens": 38631,
+    "tool_uses": 14,
+    "duration_ms": 141182
+  },
+  "last_tool_name": "ToolSearch",
+  "uuid": "08262749-2b12-4ecf-aa91-9838fcc9ec2d",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Kn6BQ8t7Yz5psYbCsgaJBw`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "0ba99d90-b1b3-4dbe-bb42-188c4ee67ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1ghsbqqRuKRY2WP43SotH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3245,
+      "cache_read_input_tokens": 34700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3245,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T05:13:29.948Z_
+
+<details><summary>↩ Tool result · `toolu_01Kn6BQ8t7Yz5psYbCsgaJBw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "d61cc50c-5962-4810-8d6b-beda2f17211a"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 56_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Parse registry and build tables",
+  "usage": {
+    "total_tokens": 39419,
+    "tool_uses": 15,
+    "duration_ms": 146546
+  },
+  "last_tool_name": "mcp__agent-ml-research__register_artifact",
+  "uuid": "61f60650-f0ad-4a8c-87ae-bd1ec507cbf3",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_018nY4wM7ardJomxweu4X6Ny`</summary>
+
+```json
+{
+  "name": "experiment_tables",
+  "type": "report",
+  "description": "Markdown tables summarizing all completed experiment metrics (Tables A-F): main results across 3 seeds, τ sweep, n_min sensitivity, ρ=0.6 contamination, batch size, and baseline.",
+  "project": "provenance_weight_training",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md",
+  "tags": [
+    "metrics",
+    "results",
+    "tables"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "c0996eb8-8a9f-477a-b60a-276f69b01f0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012emjWgTjscmBFAwP5gM2k9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 726,
+      "cache_read_input_tokens": 37945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 726,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T05:13:35.511Z_
+
+<details><summary>↩ Tool result · `toolu_018nY4wM7ardJomxweu4X6Ny`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_4e267c\", \"name\": \"experiment_tables\", \"type\": \"report\", \"description\": \"Markdown tables summarizing all completed experiment metrics (Tables A-F): main results across 3 seeds, τ sweep, n_min sensitivity, ρ=0.6 contamination, batch size, and baseline.\", \"path\": \"projects/provenance_weight_training/artifacts/_project/report/experiment_tables.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:13:35.320562+00:00\", \"tags\": [\"metrics\", \"results\", \"tables\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "433749f0-5f37-4d33-a04e-03d1a3d7398c"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 59_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "description": "Parse registry and build tables",
+  "usage": {
+    "total_tokens": 39479,
+    "tool_uses": 16,
+    "duration_ms": 148092
+  },
+  "last_tool_name": "mcp__agent-ml-research__register_artifact",
+  "uuid": "876792e0-8f49-4ec2-88c9-6b39adeb0940",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Dre5XVQGUf4GuxFwFtXG3Z`</summary>
+
+```json
+{
+  "name": "experiment_data",
+  "type": "data",
+  "description": "Machine-readable CSV of all experiment metrics: table, method, seed, ppl, b_star_mean, b_star_median, b_star_pct_above_2, notes.",
+  "project": "provenance_weight_training",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv",
+  "tags": [
+    "metrics",
+    "results",
+    "csv"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "4bfbb5ad-e47f-46ab-9cce-68c0eca65fa8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012emjWgTjscmBFAwP5gM2k9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 726,
+      "cache_read_input_tokens": 37945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 726,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 60,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T05:13:37.054Z_
+
+<details><summary>↩ Tool result · `toolu_01Dre5XVQGUf4GuxFwFtXG3Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_a50388\", \"name\": \"experiment_data\", \"type\": \"data\", \"description\": \"Machine-readable CSV of all experiment metrics: table, method, seed, ppl, b_star_mean, b_star_median, b_star_pct_above_2, notes.\", \"path\": \"projects/provenance_weight_training/artifacts/_project/data/experiment_data.csv\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:13:36.860301+00:00\", \"tags\": [\"metrics\", \"results\", \"csv\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "2673f2ce-8883-479f-bc65-c98de6cf3b83"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "ae72da20b112cef4a",
+  "tool_use_id": "toolu_01Q1AKFNs6ghtiXxS2mjSY7F",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Parse registry and build tables",
+  "usage": {
+    "total_tokens": 40566,
+    "tool_uses": 16,
+    "duration_ms": 161021
+  },
+  "uuid": "2892311e-a5a9-48c5-b750-a88ad5ddb251",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451"
+}
+```
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T05:13:49.788Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1AKFNs6ghtiXxS2mjSY7F`</summary>
+
+```text
+Both files generated and registered successfully.
+
+**Output files:**
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv`
+
+**Summary of extracted results (68 registry entries, ~40 with DONE+success/negative):**
+
+- **Table A** (11 methods, 3 seeds): Best mean PPL = adaptive n_min=3 (17.639), followed by grid_b0.5 (17.646) and adaptive_fix n_min=2 (17.651). Uniform baseline = 17.694. Higher b values degrade monotonically.
+- **Table B** (τ sweep): Optimal τ=0.8 (PPL 17.653). Lower τ under-weights contaminated data (b*_mean too low), higher τ over-weights (b*_pct_above_2 reaches 40% at τ=0.95, PPL degrades to 17.723).
+- **Table C** (n_min): n_min=3 best (17.644), n_min=1 too aggressive (PPL 17.789, b*_mean=7.2), n_min=4 collapses to uniform (b*=0 everywhere).
+- **Table D** (ρ=0.6): All methods degrade by +0.04 to +0.09 PPL vs ρ=0.4. grid_b0.5 most robust (Δ=0.053).
+- **Table E** (batch size): bs=4 (17.653) outperforms bs=8 (17.730).
+- **Table F** (baseline): Qwen3-0.6B without training = 22.970, confirming all trained models improve substantially.
+
+One missing value: `tau_06_seed42` lacks `b_star_pct_above_2` (marked N/A).
+
+agentId: ae72da20b112cef4a (use SendMessage with to: 'ae72da20b112cef4a' to continue this agent)
+&lt;usage>total_tokens: 40263
+tool_uses: 16
+duration_ms: 161024&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "d873bd3e-a985-4fd7-b999-712632514297",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "You have a JSON file at:\n/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/1b26466e-61d8-478e-8738-e09fac0c9451/tool-results/mcp-agent-ml-research-read_registry-1778908240655.txt\n\nSchema: `{result: string}` where `result` is itself a JSON string containing the registry data (an array or object of experiments).\n\nYour task: extract metrics from all completed experiments and produce TWO output files:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md` — Markdown tables\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv` — machine-readable CSV\n\n## Steps\n\n1. First probe the file structure: `cat the file | python3 -c \"import json,sys; d=json.load(sys.stdin); r=json.loads(d['result']); print(type(r), len(r) if isinstance(r,list) else list(r.keys())[:10])\"`\n\n2. Parse all experiments. Filter for status=DONE and (conclusion=success OR conclusion=negative).\n\n3. Build the following tables using ONLY data found in the registry. PPL values should be rounded to 3 decimal places. If a value is missing, put \"N/A\".\n\n**Experiment ID mapping** (to find correct registry entries):\n- uniform: uniform_seed42, uniform_seed123, uniform_seed456\n- adaptive (n_min=3): adaptive_seed42, adaptive_seed123, adaptive_seed456\n- adaptive_fix (n_min=2): adaptive_fix_seed42, adaptive_fix_seed123, adaptive_fix_seed456\n- grid_b0.5: grid_b_seed42_batch (look for metrics field like b0_5_eval_ppl or eval_ppl_b0_5), grid_b0_5_seed123, grid_b0_5_seed456\n- grid_b1.0: grid_b_seed42_batch (b1_0_eval_ppl), grid_b1_0_seed123, grid_b1_0_seed456\n- grid_b1.5: grid_b_seed42_batch (b1_5_eval_ppl), grid_b1_5_seed123, grid_b1_5_seed456\n- grid_b2.0: grid_b_seed42_batch (b2_0_eval_ppl), grid_b2_0_seed123, grid_b2_0_seed456\n- grid_b3.0: grid_b_seed42_batch (b3_0_eval_ppl), grid_b3_0_seed123, grid_b3_0_seed456\n- grid_b5.0: grid_b_seed42_batch (b5_0_eval_ppl), grid_b5_0_seed123, grid_b5_0_seed456\n- ess_only: ess_only_seed42, ess_only_seed123, ess_only_seed456\n- golden_ratio: golden_ratio_seed42\n- τ sweep: tau_05_seed42, tau_06_seed42, tau_07_seed42, adaptive_fix_seed42(=τ=0.8), tau_09_seed42, tau_095_seed42\n- n_min: nmin1_seed42, adaptive_fix_seed42(=n_min=2), adaptive_seed42(=n_min=3), nmin4_seed42\n- ρ=0.6: contamination_60_uniform_seed42, contamination_60_seed42_r2(=adaptive τ=0.8), contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42\n- bs8: bs8_nmin2_seed42_r2\n- baseline: baseline_qwen3_0.6b\n\n**Table A: ρ=0.4 Main Results (3 seeds)**\nColumns: Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注\nMethods: uniform, adaptive (n_min=3), adaptive_fix (n_min=2), grid_b0.5, grid_b1.0, grid_b1.5, grid_b2.0, grid_b3.0, grid_b5.0, ess_only, golden_ratio\n- For golden_ratio, only seed42 exists.\n- For grid_b values from grid_b_seed42_batch, look in the metrics dict for keys containing the b value (e.g. b0_5_eval_ppl, b1_0_eval_ppl etc.)\n\n**Table B: τ Sweep (ρ=0.4, seed42)**\nColumns: τ | PPL | b*_mean | b*_median | b*_pct_above_2\nτ values: 0.5, 0.6, 0.7, 0.8(=adaptive_fix_seed42), 0.9, 0.95\nLook for metrics like eval_ppl, b_star_mean, b_star_median, b_star_pct_above_2 (or similar field names)\n\n**Table C: n_min Sensitivity (ρ=0.4, seed42)**\nColumns: n_min | PPL | b*_mean | 备注\nn_min values: 1(=nmin1_seed42), 2(=adaptive_fix_seed42), 3(=adaptive_seed42), 4(=nmin4_seed42)\n\n**Table D: ρ=0.6 Cross-contamination (seed42)**\nColumns: Method | PPL | vs ρ=0.4 PPL | Delta\nMethods: uniform, adaptive(τ=0.8), grid_b0.5, ess_only\n- ρ=0.6 entries: contamination_60_uniform_seed42, contamination_60_seed42_r2, contamination_60_grid_b0_5_seed42, contamination_60_ess_only_seed42\n- ρ=0.4 counterparts: uniform_seed42, adaptive_fix_seed42, grid_b0.5 from grid_b_seed42_batch, ess_only_seed42\n- Delta = ρ=0.6 PPL - ρ=0.4 PPL\n\n**Table E: Batch Size (seed42)**\nColumns: batch_size | n_min | PPL | 备注\n- bs=4: adaptive_fix_seed42 (default bs=4, n_min=2)\n- bs=8: bs8_nmin2_seed42_r2 (bs=8, n_min=2)\n\nAlso include a **Table F: Baseline**\n- baseline_qwen3_0.6b PPL (no provenance training, just base model perplexity on the eval set)\n\n4. For the CSV file, create a flat format with columns: table, method, seed, ppl, b_star_mean, b_star_median, b_star_pct_above_2, notes\n\n5. Write both files. Use python3 to parse the data and generate the output files.\n\nIMPORTANT: Do not fabricate any numbers. Only use values found in the registry. If a metric is not available, use \"N/A\".",
+    "agentId": "ae72da20b112cef4a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Both files generated and registered successfully.\n\n**Output files:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv`\n\n**Summary of extracted results (68 registry entries, ~40 with DONE+success/negative):**\n\n- **Table A** (11 methods, 3 seeds): Best mean PPL = adaptive n_min=3 (17.639), followed by grid_b0.5 (17.646) and adaptive_fix n_min=2 (17.651). Uniform baseline = 17.694. Higher b values degrade monotonically.\n- **Table B** (τ sweep): Optimal τ=0.8 (PPL 17.653). Lower τ under-weights contaminated data (b*_mean too low), higher τ over-weights (b*_pct_above_2 reaches 40% at τ=0.95, PPL degrades to 17.723).\n- **Table C** (n_min): n_min=3 best (17.644), n_min=1 too aggressive (PPL 17.789, b*_mean=7.2), n_min=4 collapses to uniform (b*=0 everywhere).\n- **Table D** (ρ=0.6): All methods degrade by +0.04 to +0.09 PPL vs ρ=0.4. grid_b0.5 most robust (Δ=0.053).\n- **Table E** (batch size): bs=4 (17.653) outperforms bs=8 (17.730).\n- **Table F** (baseline): Qwen3-0.6B without training = 22.970, confirming all trained models improve substantially.\n\nOne missing value: `tau_06_seed42` lacks `b_star_pct_above_2` (marked N/A)."
+      }
+    ],
+    "totalDurationMs": 161024,
+    "totalTokens": 40263,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 38671,
+      "output_tokens": 505,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1086
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 505,
+          "cache_read_input_tokens": 38671,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1086,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 0,
+      "bashCount": 11,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 3
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+Let me verify the generated files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "607672c5-a34e-4f2f-8555-0c0e0f5cd7db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRN22mx38RontjyaZouQcA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 25092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2525
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Xm2Dd1Mwb7r31RAgx3BVWw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "65184759-d5d5-4b16-9e60-c11402c0725b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRN22mx38RontjyaZouQcA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 25092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2525
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T05:13:53.420Z_
+
+<details><summary>↩ Tool result · `toolu_01Xm2Dd1Mwb7r31RAgx3BVWw`</summary>
+
+```text
+1	# Provenance Weight Training: Experiment Results
+2	
+3	All PPL values measured on `eval_holdout.jsonl` (4,077,068 tokens) with sliding-window evaluation (stride=1024, max_length=2048, fp16).
+4	
+5	## Table A: ρ=0.4 Main Results (3 seeds)
+6	
+7	| Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注 |
+8	|--------|-----------|------------|------------|---------|------|
+9	| uniform | 17.694 | 17.686 | 17.701 | 17.694 |  |
+10	| adaptive (n_min=3) | 17.644 | 17.631 | 17.642 | 17.639 | τ=0.8 |
+11	| adaptive_fix (n_min=2) | 17.653 | 17.643 | 17.657 | 17.651 | τ=0.8 |
+12	| grid_b0.5 | 17.651 | 17.638 | 17.650 | 17.646 | fixed b=0.5 |
+13	| grid_b1.0 | 17.692 | 17.674 | 17.680 | 17.682 | fixed b=1.0 |
+14	| grid_b1.5 | 17.718 | 17.701 | 17.710 | 17.710 | fixed b=1.5 |
+15	| grid_b2.0 | 17.741 | 17.725 | 17.989 | 17.818 | fixed b=2.0 |
+16	| grid_b3.0 | 17.774 | 17.760 | 17.921 | 17.818 | fixed b=3.0 |
+17	| grid_b5.0 | 17.818 | 17.804 | 17.993 | 17.872 | fixed b=5.0 |
+18	| ess_only | 17.730 | 17.720 | 17.719 | 17.723 |  |
+19	| golden_ratio | 17.654 | N/A | N/A | 17.654 | only seed42 |
+20	
+21	## Table B: τ Sweep (ρ=0.4, n_min=2, seed42)
+22	
+23	| τ | PPL | b*_mean | b*_median | b*_pct_above_2 |
+24	|---|-----|---------|-----------|----------------|
+25	| 0.5 | 17.688 | 0.392 | 0.171 | 2.900 |
+26	| 0.6 | 17.680 | 0.590 | 0.375 | N/A |
+27	| 0.7 | 17.679 | 0.894 | 0.580 | 7.700 |
+28	| 0.8 | 17.653 | 1.399 | 0.871 | 16.100 |
+29	| 0.9 | 17.712 | 2.360 | 1.320 | 33.700 |
+30	| 0.95 | 17.723 | 3.078 | 1.520 | 40.300 |
+31	
+32	## Table C: n_min Sensitivity (ρ=0.4, τ=0.8, seed42)
+33	
+34	| n_min | PPL | b*_mean | 备注 |
+35	|-------|-----|---------|------|
+36	| 1 | 17.789 | 7.197 |  |
+37	| 2 | 17.653 | 1.399 | τ=0.8 |
+38	| 3 | 17.644 | N/A | τ=0.8 |
+39	| 4 | 17.695 | 0 | b*=0 for all (ESS always >= n_min) |
+40	
+41	## Table D: ρ=0.6 Cross-contamination (seed42)
+42	
+43	| Method | ρ=0.6 PPL | ρ=0.4 PPL | Δ PPL |
+44	|--------|-----------|-----------|-------|
+45	| uniform | 17.766 | 17.694 | 0.072 |
+46	| adaptive (τ=0.8) | 17.740 | 17.653 | 0.087 |
+47	| grid_b0.5 | 17.704 | 17.651 | 0.053 |
+48	| ess_only | 17.770 | 17.730 | 0.040 |
+49	
+50	## Table E: Batch Size (ρ=0.4, τ=0.8, n_min=2, seed42)
+51	
+52	| batch_size | n_min | PPL | 备注 |
+53	|-----------|-------|-----|------|
+54	| 4 | 2 | 17.653 | default |
+55	| 8 | 2 | 17.730 |  |
+56	
+57	## Table F: Baseline
+58	
+59	| Model | PPL | 备注 |
+60	|-------|-----|------|
+61	| Qwen3-0.6B (no training) | 22.970 | base model eval on same holdout set |
+62	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "32592fbc-5616-4166-90d4-7adea99ec282",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md",
+      "content": "# Provenance Weight Training: Experiment Results\n\nAll PPL values measured on `eval_holdout.jsonl` (4,077,068 tokens) with sliding-window evaluation (stride=1024, max_length=2048, fp16).\n\n## Table A: ρ=0.4 Main Results (3 seeds)\n\n| Method | seed42 PPL | seed123 PPL | seed456 PPL | Mean PPL | 备注 |\n|--------|-----------|------------|------------|---------|------|\n| uniform | 17.694 | 17.686 | 17.701 | 17.694 |  |\n| adaptive (n_min=3) | 17.644 | 17.631 | 17.642 | 17.639 | τ=0.8 |\n| adaptive_fix (n_min=2) | 17.653 | 17.643 | 17.657 | 17.651 | τ=0.8 |\n| grid_b0.5 | 17.651 | 17.638 | 17.650 | 17.646 | fixed b=0.5 |\n| grid_b1.0 | 17.692 | 17.674 | 17.680 | 17.682 | fixed b=1.0 |\n| grid_b1.5 | 17.718 | 17.701 | 17.710 | 17.710 | fixed b=1.5 |\n| grid_b2.0 | 17.741 | 17.725 | 17.989 | 17.818 | fixed b=2.0 |\n| grid_b3.0 | 17.774 | 17.760 | 17.921 | 17.818 | fixed b=3.0 |\n| grid_b5.0 | 17.818 | 17.804 | 17.993 | 17.872 | fixed b=5.0 |\n| ess_only | 17.730 | 17.720 | 17.719 | 17.723 |  |\n| golden_ratio | 17.654 | N/A | N/A | 17.654 | only seed42 |\n\n## Table B: τ Sweep (ρ=0.4, n_min=2, seed42)\n\n| τ | PPL | b*_mean | b*_median | b*_pct_above_2 |\n|---|-----|---------|-----------|----------------|\n| 0.5 | 17.688 | 0.392 | 0.171 | 2.900 |\n| 0.6 | 17.680 | 0.590 | 0.375 | N/A |\n| 0.7 | 17.679 | 0.894 | 0.580 | 7.700 |\n| 0.8 | 17.653 | 1.399 | 0.871 | 16.100 |\n| 0.9 | 17.712 | 2.360 | 1.320 | 33.700 |\n| 0.95 | 17.723 | 3.078 | 1.520 | 40.300 |\n\n## Table C: n_min Sensitivity (ρ=0.4, τ=0.8, seed42)\n\n| n_min | PPL | b*_mean | 备注 |\n|-------|-----|---------|------|\n| 1 | 17.789 | 7.197 |  |\n| 2 | 17.653 | 1.399 | τ=0.8 |\n| 3 | 17.644 | N/A | τ=0.8 |\n| 4 | 17.695 | 0 | b*=0 for all (ESS always >= n_min) |\n\n## Table D: ρ=0.6 Cross-contamination (seed42)\n\n| Method | ρ=0.6 PPL | ρ=0.4 PPL | Δ PPL |\n|--------|-----------|-----------|-------|\n| uniform | 17.766 | 17.694 | 0.072 |\n| adaptive (τ=0.8) | 17.740 | 17.653 | 0.087 |\n| grid_b0.5 | 17.704 | 17.651 | 0.053 |\n| ess_only | 17.770 | 17.730 | 0.040 |\n\n## Table E: Batch Size (ρ=0.4, τ=0.8, n_min=2, seed42)\n\n| batch_size | n_min | PPL | 备注 |\n|-----------|-------|-----|------|\n| 4 | 2 | 17.653 | default |\n| 8 | 2 | 17.730 |  |\n\n## Table F: Baseline\n\n| Model | PPL | 备注 |\n|-------|-----|------|\n| Qwen3-0.6B (no training) | 22.970 | base model eval on same holdout set |\n",
+      "numLines": 62,
+      "startLine": 1,
+      "totalLines": 62
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PB29PvnjsWDhikRxu1vmqn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "974bf92b-858c-46f1-a131-8f162623b7e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRN22mx38RontjyaZouQcA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 25092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2525
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T05:13:53.848Z_
+
+<details><summary>↩ Tool result · `toolu_01PB29PvnjsWDhikRxu1vmqn`</summary>
+
+```text
+1	table,method,seed,ppl,b_star_mean,b_star_median,b_star_pct_above_2,notes
+2	A,uniform,42,17.694,,,,
+3	A,uniform,123,17.686,,,,
+4	A,uniform,456,17.701,,,,
+5	A,uniform,mean,17.694,,,,
+6	A,adaptive (n_min=3),42,17.644,,,,τ=0.8
+7	A,adaptive (n_min=3),123,17.631,,,,τ=0.8
+8	A,adaptive (n_min=3),456,17.642,,,,τ=0.8
+9	A,adaptive (n_min=3),mean,17.639,,,,τ=0.8
+10	A,adaptive_fix (n_min=2),42,17.653,,,,τ=0.8
+11	A,adaptive_fix (n_min=2),123,17.643,,,,τ=0.8
+12	A,adaptive_fix (n_min=2),456,17.657,,,,τ=0.8
+13	A,adaptive_fix (n_min=2),mean,17.651,,,,τ=0.8
+14	A,grid_b0.5,42,17.651,,,,fixed b=0.5
+15	A,grid_b0.5,123,17.638,,,,fixed b=0.5
+16	A,grid_b0.5,456,17.650,,,,fixed b=0.5
+17	A,grid_b0.5,mean,17.646,,,,fixed b=0.5
+18	A,grid_b1.0,42,17.692,,,,fixed b=1.0
+19	A,grid_b1.0,123,17.674,,,,fixed b=1.0
+20	A,grid_b1.0,456,17.680,,,,fixed b=1.0
+21	A,grid_b1.0,mean,17.682,,,,fixed b=1.0
+22	A,grid_b1.5,42,17.718,,,,fixed b=1.5
+23	A,grid_b1.5,123,17.701,,,,fixed b=1.5
+24	A,grid_b1.5,456,17.710,,,,fixed b=1.5
+25	A,grid_b1.5,mean,17.710,,,,fixed b=1.5
+26	A,grid_b2.0,42,17.741,,,,fixed b=2.0
+27	A,grid_b2.0,123,17.725,,,,fixed b=2.0
+28	A,grid_b2.0,456,17.989,,,,fixed b=2.0
+29	A,grid_b2.0,mean,17.818,,,,fixed b=2.0
+30	A,grid_b3.0,42,17.774,,,,fixed b=3.0
+31	A,grid_b3.0,123,17.760,,,,fixed b=3.0
+32	A,grid_b3.0,456,17.921,,,,fixed b=3.0
+33	A,grid_b3.0,mean,17.818,,,,fixed b=3.0
+34	A,grid_b5.0,42,17.818,,,,fixed b=5.0
+35	A,grid_b5.0,123,17.804,,,,fixed b=5.0
+36	A,grid_b5.0,456,17.993,,,,fixed b=5.0
+37	A,grid_b5.0,mean,17.872,,,,fixed b=5.0
+38	A,ess_only,42,17.730,,,,
+39	A,ess_only,123,17.720,,,,
+40	A,ess_only,456,17.719,,,,
+41	A,ess_only,mean,17.723,,,,
+42	A,golden_ratio,42,17.654,,,,only seed42
+43	A,golden_ratio,123,N/A,,,,only seed42
+44	A,golden_ratio,456,N/A,,,,only seed42
+45	A,golden_ratio,mean,17.654,,,,only seed42
+46	B,tau=0.5,42,17.688,0.392,0.171,2.900,
+47	B,tau=0.6,42,17.680,0.590,0.375,N/A,
+48	B,tau=0.7,42,17.679,0.894,0.580,7.700,
+49	B,tau=0.8,42,17.653,1.399,0.871,16.100,
+50	B,tau=0.9,42,17.712,2.360,1.320,33.700,
+51	B,tau=0.95,42,17.723,3.078,1.520,40.300,
+52	C,n_min=1,42,17.789,7.197,,,
+53	C,n_min=2,42,17.653,1.399,,,τ=0.8
+54	C,n_min=3,42,17.644,N/A,,,τ=0.8
+55	C,n_min=4,42,17.695,0,,,b*=0 for all (ESS always >= n_min)
+56	D,uniform,42,17.766,,,,rho=0.6; rho=0.4_ppl=17.694; delta=0.072
+57	D,adaptive (τ=0.8),42,17.740,,,,rho=0.6; rho=0.4_ppl=17.653; delta=0.087
+58	D,grid_b0.5,42,17.704,,,,rho=0.6; rho=0.4_ppl=17.651; delta=0.053
+59	D,ess_only,42,17.770,,,,rho=0.6; rho=0.4_ppl=17.730; delta=0.040
+60	E,bs=4_nmin=2,42,17.653,,,,default
+61	E,bs=8_nmin=2,42,17.730,,,,
+62	F,baseline_qwen3_0.6b,,22.970,,,,no provenance training
+63	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "de8f579d-26b5-4501-878f-7b85366c7ca5",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv",
+      "content": "table,method,seed,ppl,b_star_mean,b_star_median,b_star_pct_above_2,notes\nA,uniform,42,17.694,,,,\nA,uniform,123,17.686,,,,\nA,uniform,456,17.701,,,,\nA,uniform,mean,17.694,,,,\nA,adaptive (n_min=3),42,17.644,,,,τ=0.8\nA,adaptive (n_min=3),123,17.631,,,,τ=0.8\nA,adaptive (n_min=3),456,17.642,,,,τ=0.8\nA,adaptive (n_min=3),mean,17.639,,,,τ=0.8\nA,adaptive_fix (n_min=2),42,17.653,,,,τ=0.8\nA,adaptive_fix (n_min=2),123,17.643,,,,τ=0.8\nA,adaptive_fix (n_min=2),456,17.657,,,,τ=0.8\nA,adaptive_fix (n_min=2),mean,17.651,,,,τ=0.8\nA,grid_b0.5,42,17.651,,,,fixed b=0.5\nA,grid_b0.5,123,17.638,,,,fixed b=0.5\nA,grid_b0.5,456,17.650,,,,fixed b=0.5\nA,grid_b0.5,mean,17.646,,,,fixed b=0.5\nA,grid_b1.0,42,17.692,,,,fixed b=1.0\nA,grid_b1.0,123,17.674,,,,fixed b=1.0\nA,grid_b1.0,456,17.680,,,,fixed b=1.0\nA,grid_b1.0,mean,17.682,,,,fixed b=1.0\nA,grid_b1.5,42,17.718,,,,fixed b=1.5\nA,grid_b1.5,123,17.701,,,,fixed b=1.5\nA,grid_b1.5,456,17.710,,,,fixed b=1.5\nA,grid_b1.5,mean,17.710,,,,fixed b=1.5\nA,grid_b2.0,42,17.741,,,,fixed b=2.0\nA,grid_b2.0,123,17.725,,,,fixed b=2.0\nA,grid_b2.0,456,17.989,,,,fixed b=2.0\nA,grid_b2.0,mean,17.818,,,,fixed b=2.0\nA,grid_b3.0,42,17.774,,,,fixed b=3.0\nA,grid_b3.0,123,17.760,,,,fixed b=3.0\nA,grid_b3.0,456,17.921,,,,fixed b=3.0\nA,grid_b3.0,mean,17.818,,,,fixed b=3.0\nA,grid_b5.0,42,17.818,,,,fixed b=5.0\nA,grid_b5.0,123,17.804,,,,fixed b=5.0\nA,grid_b5.0,456,17.993,,,,fixed b=5.0\nA,grid_b5.0,mean,17.872,,,,fixed b=5.0\nA,ess_only,42,17.730,,,,\nA,ess_only,123,17.720,,,,\nA,ess_only,456,17.719,,,,\nA,ess_only,mean,17.723,,,,\nA,golden_ratio,42,17.654,,,,only seed42\nA,golden_ratio,123,N/A,,,,only seed42\nA,golden_ratio,456,N/A,,,,only seed42\nA,golden_ratio,mean,17.654,,,,only seed42\nB,tau=0.5,42,17.688,0.392,0.171,2.900,\nB,tau=0.6,42,17.680,0.590,0.375,N/A,\nB,tau=0.7,42,17.679,0.894,0.580,7.700,\nB,tau=0.8,42,17.653,1.399,0.871,16.100,\nB,tau=0.9,42,17.712,2.360,1.320,33.700,\nB,tau=0.95,42,17.723,3.078,1.520,40.300,\nC,n_min=1,42,17.789,7.197,,,\nC,n_min=2,42,17.653,1.399,,,τ=0.8\nC,n_min=3,42,17.644,N/A,,,τ=0.8\nC,n_min=4,42,17.695,0,,,b*=0 for all (ESS always >= n_min)\nD,uniform,42,17.766,,,,rho=0.6; rho=0.4_ppl=17.694; delta=0.072\nD,adaptive (τ=0.8),42,17.740,,,,rho=0.6; rho=0.4_ppl=17.653; delta=0.087\nD,grid_b0.5,42,17.704,,,,rho=0.6; rho=0.4_ppl=17.651; delta=0.053\nD,ess_only,42,17.770,,,,rho=0.6; rho=0.4_ppl=17.730; delta=0.040\nE,bs=4_nmin=2,42,17.653,,,,default\nE,bs=8_nmin=2,42,17.730,,,,\nF,baseline_qwen3_0.6b,,22.970,,,,no provenance training\n",
+      "numLines": 63,
+      "startLine": 1,
+      "totalLines": 63
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+Now let me register both artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "55758071-6e20-42d3-a21a-3eacceb30cb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaciTd9kLuXxsHfdbqbpgh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3245,
+      "cache_read_input_tokens": 27617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3245
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HPEXDUGZFuZVzGYh9LMZ7i`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "43ad73a7-abea-492a-8f1e-e45a0dd76fdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaciTd9kLuXxsHfdbqbpgh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3245,
+      "cache_read_input_tokens": 27617,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3245
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T05:13:58.026Z_
+
+<details><summary>↩ Tool result · `toolu_01HPEXDUGZFuZVzGYh9LMZ7i`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "60f8328c-acea-4e38-ad27-c243f085f2ea",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01KcjQTxiiboq5q61z8svodn`</summary>
+
+```json
+{
+  "name": "experiment_tables",
+  "type": "report",
+  "description": "All completed experiment metrics in Markdown tables (Tables A-F): main results, τ sweep, n_min sensitivity, ρ=0.6 cross-contamination, batch size, baseline",
+  "project": "provenance_weight_training",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_tables.md",
+  "tags": [
+    "metrics",
+    "paper",
+    "tables"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "dd57f218-daf5-4bee-824d-481b6a1f4a11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qnm3AwSzC9qpzUrBMUdG1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 720,
+      "cache_read_input_tokens": 30862,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 720
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T05:14:03.660Z_
+
+<details><summary>↩ Tool result · `toolu_01KcjQTxiiboq5q61z8svodn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_5dd037\", \"name\": \"experiment_tables\", \"type\": \"report\", \"description\": \"All completed experiment metrics in Markdown tables (Tables A-F): main results, τ sweep, n_min sensitivity, ρ=0.6 cross-contamination, batch size, baseline\", \"path\": \"projects/provenance_weight_training/artifacts/_project/report/experiment_tables_5dd037.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:14:03.228546+00:00\", \"tags\": [\"metrics\", \"paper\", \"tables\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "43c53713-163c-4fb3-8fbf-da51ff2e1788",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_5dd037\\\", \\\"name\\\": \\\"experiment_tables\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"All completed experiment metrics in Markdown tables (Tables A-F): main results, τ sweep, n_min sensitivity, ρ=0.6 cross-contamination, batch size, baseline\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/report/experiment_tables_5dd037.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:14:03.228546+00:00\\\", \\\"tags\\\": [\\\"metrics\\\", \\\"paper\\\", \\\"tables\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_5dd037\", \"name\": \"experiment_tables\", \"type\": \"report\", \"description\": \"All completed experiment metrics in Markdown tables (Tables A-F): main results, τ sweep, n_min sensitivity, ρ=0.6 cross-contamination, batch size, baseline\", \"path\": \"projects/provenance_weight_training/artifacts/_project/report/experiment_tables_5dd037.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:14:03.228546+00:00\", \"tags\": [\"metrics\", \"paper\", \"tables\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01H2koQw4C5utZpQqzEH2qVG`</summary>
+
+```json
+{
+  "name": "experiment_data",
+  "type": "data",
+  "description": "Machine-readable CSV of all experiment metrics across Tables A-F",
+  "project": "provenance_weight_training",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/experiment_data.csv",
+  "tags": [
+    "metrics",
+    "data",
+    "csv"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "934a4895-e96a-477b-82d4-3e102bf07c10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qnm3AwSzC9qpzUrBMUdG1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 720,
+      "cache_read_input_tokens": 30862,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 720
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-16T05:14:05.378Z_
+
+<details><summary>↩ Tool result · `toolu_01H2koQw4C5utZpQqzEH2qVG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_29ee33\", \"name\": \"experiment_data\", \"type\": \"data\", \"description\": \"Machine-readable CSV of all experiment metrics across Tables A-F\", \"path\": \"projects/provenance_weight_training/artifacts/_project/data/experiment_data_29ee33.csv\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:14:04.995056+00:00\", \"tags\": [\"metrics\", \"data\", \"csv\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "c9a8dcb8-2a56-4144-9c44-f089b2676b52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_29ee33\\\", \\\"name\\\": \\\"experiment_data\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Machine-readable CSV of all experiment metrics across Tables A-F\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/data/experiment_data_29ee33.csv\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:14:04.995056+00:00\\\", \\\"tags\\\": [\\\"metrics\\\", \\\"data\\\", \\\"csv\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_29ee33\", \"name\": \"experiment_data\", \"type\": \"data\", \"description\": \"Machine-readable CSV of all experiment metrics across Tables A-F\", \"path\": \"projects/provenance_weight_training/artifacts/_project/data/experiment_data_29ee33.csv\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:14:04.995056+00:00\", \"tags\": [\"metrics\", \"data\", \"csv\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+完成。两个文件已生成并注册：
+
+- `artifacts/experiment_tables.md` — 6 张 Markdown 表格（Tables A-F）
+- `artifacts/experiment_data.csv` — 62 行机器可读 CSV
+
+关键发现：
+- **最优方法**: adaptive n_min=3 (Mean PPL 17.639)，其次 grid_b0.5 (17.646)、adaptive_fix n_min=2 (17.651)
+- **最优 τ**: 0.8（PPL 17.653），过低/过高均降低性能
+- **n_min**: 3 最佳，1 过于激进（b*_mean=7.2），4 退化为 uniform
+- **ρ=0.6**: 所有方法 PPL 增加 0.04-0.09，grid_b0.5 最鲁棒（Δ=0.053）
+- **Batch size**: bs=4 优于 bs=8
+- **Baseline**: Qwen3-0.6B 未训练 PPL=22.970，训练后所有方法均显著提升
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "uuid": "55d4561c-3a30-4ce8-be81-5c948c89d76e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qkvfg7mAYH7mRyd1H2Rk3c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 31582,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1129
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 77_
+
+完成。两个文件已生成并注册：
+
+- `artifacts/experiment_tables.md` — 6 张 Markdown 表格（Tables A-F）
+- `artifacts/experiment_data.csv` — 62 行机器可读 CSV
+
+关键发现：
+- **最优方法**: adaptive n_min=3 (Mean PPL 17.639)，其次 grid_b0.5 (17.646)、adaptive_fix n_min=2 (17.651)
+- **最优 τ**: 0.8（PPL 17.653），过低/过高均降低性能
+- **n_min**: 3 最佳，1 过于激进（b*_mean=7.2），4 退化为 uniform
+- **ρ=0.6**: 所有方法 PPL 增加 0.04-0.09，grid_b0.5 最鲁棒（Δ=0.053）
+- **Batch size**: bs=4 优于 bs=8
+- **Baseline**: Qwen3-0.6B 未训练 PPL=22.970，训练后所有方法均显著提升
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 225969,
+  "duration_api_ms": 222631,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "1b26466e-61d8-478e-8738-e09fac0c9451",
+  "total_cost_usd": 0.9830455000000001,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 21264,
+    "cache_read_input_tokens": 175032,
+    "output_tokens": 3186,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 21264,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 305,
+        "cache_read_input_tokens": 31582,
+        "cache_creation_input_tokens": 1129,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1129
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1951,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002026,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 32,
+      "outputTokens": 15073,
+      "cacheReadInputTokens": 541144,
+      "cacheCreationInputTokens": 53354,
+      "webSearchRequests": 0,
+      "costUSD": 0.9810195,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e291af74-0c4d-495d-9fd6-73fc556b08b6"
+}
+```
+
+</details>
+
+---

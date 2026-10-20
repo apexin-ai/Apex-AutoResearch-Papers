@@ -1,0 +1,70 @@
+experiments:
+  # === Phase 0: 属性正交性验证 ===
+  - plan_id: phase0_ortho
+    claim: [C2]
+    priority: P0
+    description: "4属性(LC, SN, Quality, Confidence)正交性检查: LoRA fine-tune Qwen2.5-1.5B + 5K合成样本 + pairwise correlation"
+    registry_id: phase0_ortho_v2
+    depends_on: []
+
+  # === Phase 1: 三代过滤对比 (MVP Gate Check) ===
+  - plan_id: phase1_gate_check
+    claim: [C1, C2]
+    priority: P0
+    description: "5条件(NoFilter/Random/Conf-only/PGPF-S/PGPF-W) × 3代 × seed=42, Qwen2.5-1.5B + OpenHermes-2.5, degradation对比"
+    registry_id: phase1_gate_check
+    depends_on: [phase0_ortho]
+    pass_criteria:
+      - "deg(NoFilter) >= 5%"
+      - "(deg(Conf) - deg(PGPF-S)) / deg(Conf) >= 0.05"
+      - "deg(PGPF-S) < deg(Random)"
+
+  # === Phase 2: 扩展验证 ===
+  - plan_id: phase2_extended_10gen
+    claim: [C1, C3]
+    priority: P1
+    description: "10代递归训练: NoFilter/Conf-only/PGPF-S/PGPF-L, 验证长期collapse缓解效果 + 阈值轨迹分析"
+    depends_on: [phase1_gate_check]
+
+  - plan_id: phase2_threshold_trajectory
+    claim: [C3]
+    priority: P1
+    description: "PGPF-L阈值轨迹分析: 记录每代最优阈值变化, 验证LC早期主导/SN后期主导的动态转移"
+    depends_on: [phase1_gate_check]
+
+  - plan_id: phase2_counterfactual_ablation
+    claim: [C3]
+    priority: P1
+    description: "反事实消融: 每代禁用一个属性, 验证属性重要性随代数变化"
+    depends_on: [phase1_gate_check]
+
+  # === Phase 3: Robustness & Baselines ===
+  - plan_id: phase3_oracle_scalar
+    claim: [C2]
+    priority: P2
+    description: "Oracle单标量baseline: 用Kovac回归系数将3属性加权为1个分数, 与PGPF-S对比, 验证多维优势"
+    depends_on: [phase1_gate_check]
+
+  - plan_id: phase3_k_sensitivity
+    claim: [C1]
+    priority: P2
+    description: "k-sensitivity消融: k∈{10,25,50,100}对SN计算的影响, 锚定gen-0质心"
+    depends_on: [phase1_gate_check]
+
+  - plan_id: phase3_facility_location
+    claim: [C1]
+    priority: P2
+    description: "Facility Location coreset baseline: 结构化子集选择 vs 属性过滤"
+    depends_on: [phase1_gate_check]
+
+  - plan_id: phase3_kovac_single_best
+    claim: [C2]
+    priority: P2
+    description: "Kovac单最佳属性baseline: 回归中最强单属性 vs PGPF多属性"
+    depends_on: [phase1_gate_check]
+
+  - plan_id: phase3_wallclock_flops
+    claim: [C1]
+    priority: P2
+    description: "计算开销对比: 各方法wall-clock time + FLOPs, 验证PGPF-S开销可忽略"
+    depends_on: [phase1_gate_check]

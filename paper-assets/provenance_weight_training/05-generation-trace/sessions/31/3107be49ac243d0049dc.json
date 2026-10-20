@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3107be49ac243d0049dc",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_3_1778770714.md",
+  "task_key": "loop_3_1778770714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778770714.md",
+    "occurrence": 1,
+    "bytes": 4772,
+    "sha256": "e7f78618053a10739dbd64e5bbf2dc4fe4744b77a9d4cfcf2e42498abcca1a92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T14:11:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（全在 westd-47453）。不得用白名单外的 GPU，即使 Director 指令也要 push back\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash，不包裹 source/conda activate 会 EXIT_CODE=127）\n- 数据/模型/输出全在 `/root/provenance_weight_training/`，不要写到根分区其他地方\n- grid_b_seed42_batch 是串行跑 6 个 b 值的批量脚本（cuda:0），不要在 cuda:0 上提交新任务直到它完成\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，账户 root\n- 工作目录：`/root/provenance_weight_training/`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据路径：`/root/provenance_weight_training/data/scored_data.jsonl`（371499 条，含 q-score）\n- 日志目录：`~/runs/provenance_weight_training/`\n- 输出目录：`/root/provenance_weight_training/output/models/<exp_id>/`\n- 活跃进程：\n  - grid_b_seed42_batch: PID 50134, tmux=grid_b_seed42_batch, cuda:0（串行跑 b=0.5,1.0,1.5,2.0,3.0,5.0 seed=42）\n  - grid_b2_0_seed123: PID 88022, tmux=grid_b2_0_seed123, cuda:1\n  - grid_b3_0_seed123: PID 90129, tmux=grid_b3_0_seed123, cuda:2\n  - grid_b5_0_seed123: PID 92793, tmux=grid_b5_0_seed123, cuda:3（刚提交）\n\n### 3. 📊 当前状态\n**刚做完**：收到 grid_b1_5_seed123 完成回调，派了 Worker（worker_analysis_grid_b1_5_seed123_20260514T110803）SSH 读日志提取 metrics。Worker 正在运行中（turn 7，日志中没找到 eval 指标，正在查 trainer_state.json）。同时将 grid_b5_0_seed123 提交到了空出的 cuda:3。\n\n**Registry 状态**：\n- RUNNING(4): grid_b_seed42_batch(cuda:0), grid_b2_0_seed123(cuda:1), grid_b3_0_seed123(cuda:2), grid_b5_0_seed123(cuda:3)\n- ANALYZING(1): grid_b1_5_seed123 — 等 Worker 回调拿 metrics\n- DONE/success(10): uniform×3seeds, adaptive×3seeds, grid_b0.5_seed123, grid_b1.0_seed123, detector_tfidf_lr, datagen\n- QUEUED(7): grid_b{0.5,1.0,1.5,2.0,3.0,5.0}_seed456 + detector_modernbert\n\n**等待中**：\n- Worker worker_analysis_grid_b1_5_seed123 回调 → 拿到 metrics 后更新 registry → 转 DONE → 汇报 Director\n- grid_b2_0/b3_0/b5_0_seed123 各自 cron 回调\n- grid_b_seed42_batch cron 回调（串行 6 个，预计还要数小时）\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis 回调 → 用返回的 metrics 更新 grid_b1_5_seed123 registry（conclusion/metrics/checkpoint_path）→ 转 DONE → 更新 report.md → 汇报 Director\n- grid_b2_0_seed123 完成 → 分析 → 转 DONE → cuda:1 空出 → 提交 QUEUED 中一个 seed456 实验\n- grid_b3_0_seed123 完成 → 同上 → cuda:2 空出 → 提交下一个 QUEUED\n- grid_b5_0_seed123 完成 → 同上 → cuda:3 空出 → 提交下一个 QUEUED\n- grid_b_seed42_batch 完成 → 提取 6 个 b 值的 metrics → 对比 seed123 结果 → cuda:0 空出 → 提交 QUEUED\n- seed123 全部 6 个 b 值 DONE → 汇总 grid-b 曲线 → 确定 best-b → 与 adaptive 对比 → 这是 MVP pass/fail 判定的关键数据\n- seed42 batch + seed456 系列全部 DONE → 三 seeds 聚合统计 → MVP 最终 pass/fail 判定 → 汇报 Director\n\n### 5. 🎯 战略上下文\n- **核心假设**：adaptive b*（从 α_eff 理论推导）无需网格搜索即可匹配/超越 grid-searched best-b\n- **MVP Pass 标准**：adaptive b* 均值 ≥ 90% grid-search 最优 perplexity 改善量（跨 3 seeds）\n- **已有数据**（seed123）：uniform PPL=17.69, adaptive PPL=17.63, grid_b0.5=17.638, grid_b1.0=17.674, grid_b1.5=待分析（Worker 在跑）。**趋势：adaptive 已经很接近甚至优于目前已知的 grid best（b=0.5 的 17.638）**，但还差 b=2.0/3.0/5.0 才能确定 grid best\n- **Detector gate**：TF-IDF+LR detector AUC=0.939, ECE_calibrated=0.048（D009 已将 AUC 阈值从 0.95 降至 0.90，gate 通过）\n- **投稿目标**：EMNLP 2026 ARR May 25（还剩 11 天）\n- **易错点**：\n  - grid_b_seed42_batch 是一个串行脚本跑 6 个 b 值，不是 6 个独立实验。它完成后需要拆解出 6 个 b 值各自的 metrics\n  - 分析 Worker 报告\"日志中没找到 eval 指标\"——可能 eval metrics 在 trainer_state.json 或输出目录下而非 log 文件中，下一个 session 如果 Worker 失败需要派新 Worker 查 `output/models/grid_b1_5_seed123/` 下的 trainer_state.json\n  - uniform 用的数据文件是 `mixed_data.jsonl`，grid/adaptive 用的是 `scored_data.jsonl`（含 q-score），两者行数相同但文件不同\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778770714.md"
+}

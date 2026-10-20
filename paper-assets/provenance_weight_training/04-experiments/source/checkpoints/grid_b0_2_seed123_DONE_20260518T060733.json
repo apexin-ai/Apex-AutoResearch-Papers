@@ -1,0 +1,59 @@
+{
+  "exp_id": "grid_b0_2_seed123",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-18T01:38:09.495Z",
+    "updated_at": "2026-05-18T06:07:32.863Z",
+    "hypothesis": "Cross-seed replication (seed123) of grid b=0.2: if PPL ≈ grid_b0_2_seed42 (17.64) and within plateau [0.2,0.3], confirms grid-best region is not seed-specific, strengthening Claim 2.",
+    "parent": "grid_b0_2_seed42",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-18T05:20:30.898Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T05:20:39.515822+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T05:59:17.253325+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python training/pretrain_weighted.py --resume_from_checkpoint checkpoint-5500 --weighting_method grid --grid_b_value 0.2 --seed 123",
+      "server": "westd-30476",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 200000000,
+      "model_name": "Qwen3-0.6B",
+      "seed": 123,
+      "checkpoint_source": "grid_b0_2_seed123/checkpoint-5500",
+      "eval_data": "N/A (training, not eval)"
+    },
+    "metrics": {
+      "eval_ppl_holdout": 17.64,
+      "eval_loss_holdout": 2.87,
+      "eval_holdout_tokens": 4077068,
+      "eval_method": "eval_perplexity.py --max_docs 5000 --max_length 2048",
+      "eval_checkpoint": "checkpoint-5500",
+      "note": "eval at step 5500/6103 (90%); resume caused optimizer state corruption in final 603 steps"
+    },
+    "checkpoint_path": "/root/autodl-tmp/output/models/grid_b0_2_seed123/checkpoint-5500",
+    "log_path": "/root/autodl-tmp/output/models/grid_b0_2_seed123/step_metrics.jsonl",
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-18T05:59:08.599Z"
+    }
+  },
+  "timestamp": "2026-05-18T06:07:33.087761+00:00",
+  "trigger": "update_registry"
+}

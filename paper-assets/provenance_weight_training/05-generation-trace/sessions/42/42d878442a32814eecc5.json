@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42d878442a32814eecc5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis detect remove q02 seed42",
+  "task_key": "worker_analysis_detect_remove_q02_seed42_20260518T232524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_q02_seed42_20260518T232524_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "32ada0182f4e3e586aca6ef9b2ee03ade79cccc7ad4d5d06d51701f25e00c1ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结：\n\n**detect_remove_q02_seed42 结果**\n| 指标 | 值 |\n|---|---|\n| eval_ppl_holdout | **17.27** |\n| eval_loss_holdout | 2.8491 |\n| train_loss | 11.348 |\n| train_steps | 6103 |\n| data_count | 91,654 samples |\n| checkpoint | `/root/autodl-tmp/output/models/detect_remove_q02_seed42/final` |\n\n**U-curve 完整数据点：**\n| threshold | data retained | eval_ppl |\n|---|---|---|\n| q01 | ~9% | 17.40 |\n| **q02** | **~23%** | **17.27** |\n| q03 | ~36% | 17.25 |\n| q04 | ~49% | 17.26 |\n| q05 | ~61% | 17.28 |\n| q06 | ~72% | 17.30 |\n| q07 | ~81% | 17.32 |\n| q09 | ~95% | 17.42 |\n\n**结论**：q02=17.27 非常接近 q03=17.25（仅差 0.02），远低于 q01=17.40（差 0.13）。左侧陡升仅在极端过滤（q01, 仅保留 9% 数据）时发生，q02-q04 区间基本平坦。U-curve 最低点在 q03-q04 附近，曲线整体呈不对称形状：左侧 q01→q02 有一个陡降，然后 q02-q04 几乎平坦，右侧从 q05 开始缓慢上升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detect-remove-q02-seed42.md"
+}

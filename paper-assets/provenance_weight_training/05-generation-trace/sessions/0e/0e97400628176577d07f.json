@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e97400628176577d07f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh eval 30476 grid pair",
+  "task_key": "worker_ssh_eval_30476_grid_pair_20260518T005703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_30476_grid_pair_20260518T005703_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "2c626557d84c20912c4475831dd1b7340099c3efcb18bdc83f500884a6d3a690"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已在 westd-30476 上并行运行（GPU 0: seed456_r2, GPU 1: seed123），约 2-3 分钟后回来查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-30476-grid-pair.md"
+}

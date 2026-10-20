@@ -1,0 +1,20 @@
+{
+  "exp_id": "bs8_nmin4_uniform_seed456",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:40:18.458Z",
+    "updated_at": "2026-05-23T12:40:56.993Z",
+    "hypothesis": "seed456 uniform baseline at B=8 for paired comparison with bs8_nmin4_adaptive_seed456. Completes 3-seed set for batch-size amplification statistical analysis.",
+    "parent": "bs8_nmin4_uniform_seed42",
+    "spec": {
+      "gpu": "cuda:2",
+      "server": "westd-41312"
+    }
+  },
+  "timestamp": "2026-05-23T12:40:57.452545+00:00",
+  "trigger": "update_registry"
+}

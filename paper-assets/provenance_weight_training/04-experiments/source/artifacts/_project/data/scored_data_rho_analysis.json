@@ -1,0 +1,20 @@
+{
+  "scored_data.jsonl": {
+    "n_lines": 371499,
+    "n_real": 164889, "n_synthetic": 206610,
+    "real_doc_ratio": 0.4438, "synthetic_doc_ratio": 0.5562,
+    "real_avg_words": 560.2, "synthetic_avg_words": 304.1,
+    "synthetic_TOKEN_ratio": 0.4048,
+    "q_score_mean": 0.5987, "q_score_median": 0.7049
+  },
+  "scored_data_60.jsonl": {
+    "n_lines": 371499,
+    "n_real": 148599, "n_synthetic": 222900,
+    "real_doc_ratio": 0.4000, "synthetic_doc_ratio": 0.6000,
+    "real_avg_words": 562.4, "synthetic_avg_words": 304.0,
+    "synthetic_TOKEN_ratio": 0.4478,
+    "q_score_mean": 0.6243, "q_score_median": 0.7753
+  },
+  "contamination_ratio_definition": "run_mvp.sh: ρ=0.4 is TOKEN-level (80M synthetic + 120M human tokens, then concatenate all docs). prepare_rho06_data.py: ρ=0.6 is DOCUMENT-level (ceil(371499*0.6) docs sampled). pretrain_weighted.py --contamination_ratio is metadata only.",
+  "conclusion": "No data error. ρ=0.4 is correct at TOKEN level (40.48% synthetic tokens). Doc-level synthetic ratio is 55.62% because synthetic docs are shorter (304 vs 560 words, 1.84x). The α_eff analysis was on the correct file."
+}

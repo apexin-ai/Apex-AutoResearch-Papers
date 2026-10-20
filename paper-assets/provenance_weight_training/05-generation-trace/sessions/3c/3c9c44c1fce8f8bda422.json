@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c9c44c1fce8f8bda422",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778893853.md",
+  "task_key": "loop_10_1778893853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778893853.md",
+    "occurrence": 1,
+    "bytes": 5584,
+    "sha256": "446f111cd5eb6957945a31153bdc2f00b92cc933a28cb9221a2bcd3a61601605"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T01:10:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（westd-47453），不得使用白名单外 GPU，即使 Director 指令也要 push back\n- GPU 预算极度紧张：已消耗 ~154h，剩余 ~26h。contamination_60 三组 (~10.8h) 完成后仅剩 ~15h，每个实验必须精打细算\n- 投稿 deadline：EMNLP 2026 ARR May 25（距今 9 天），所有工作服务于这个 deadline\n- contamination_60_uniform_seed42 训练实际已完成但 cron 误判 failed（EXIT_CODE=129 + WANDB_MODE=disabled）。registry 已更新为 DONE/success，但需要 eval 拿 PPL。**后续实验禁止 WANDB_MODE=disabled**\n- submit_training_job 不支持 shell builtin（source 等），命令需自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train.py`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96G\n- **工作目录**: /root/provenance_weight_training\n- **Python**: /root/miniconda3/bin/python（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（跳过基础环境搭建）\n- **模型**: Qwen3-0.6B（continued pretraining）\n- **数据**: FineWeb subset, ρ=0.4 数据（~371K 行）+ ρ=0.6 数据（~371K 行）\n- **活跃进程**:\n  - contamination_60_seed42_r2: PID 257977, cuda:0（ρ=0.6 adaptive）\n  - contamination_60_ess_only_seed42: PID 265012, cuda:2（ρ=0.6 ESS-only）\n  - contamination_60_grid_b0_5_seed42: PID 255781, cuda:3（ρ=0.6 grid b=0.5）\n- **Cron 监控**: 3 个活跃 cron 对应上述 3 个 RUNNING 实验\n- **contamination_60_uniform_seed42**: 已完成训练（6103/6103 steps），模型已保存，cuda:1 已空闲。需 eval 拿 PPL\n\n### 3. 📊 当前状态\n**刚做完**: Session 11 全面状态刷新；bs8_nmin2 negative 确认并写入 limitation（D042）；contamination_60_uniform_seed42 误判修复（WANDB_MODE=disabled 导致 cron 误判 failed，实际训练完成）\n\n**RUNNING（3 个，全在 westd-47453）**:\n- `contamination_60_seed42_r2` (cuda:0) — ρ=0.6 adaptive (τ=0.8, n_min=2)，Claim 3 关键验证\n- `contamination_60_ess_only_seed42` (cuda:2) — ρ=0.6 ESS-only baseline\n- `contamination_60_grid_b0_5_seed42` (cuda:3) — ρ=0.6 grid b=0.5 baseline\n\n**ETA**: ~02:00-03:00 UTC（可能已接近完成）\n\n**PREPARING（7 个，按优先级）**:\n- detect_remove_baseline_seed42（数据已准备：kept=153725, removed=217774）\n- grid_b0_1/0.2/0.3_seed42（grid-b low sweep 三个点）\n- adaptive_v2_seed42/123/456（被 D012 killed 但仍在 PREPARING，可能已废弃）\n\n**活跃 Workers（4 个）**:\n- worker_paper_consistency-audit — 论文一致性审查\n- worker_diagnose_contamination_60_uniform_seed42 — 诊断 uniform 实验\n- worker_eval_contamination_60_uniform_seed42 — uniform 实验 eval\n- worker_eval_contamination_60_uniform — uniform eval（可能重复）\n\n**cuda:1 空闲**，contamination_60_uniform 完成后释放\n\n### 4. 📋 待办（条件触发式）\n- contamination_60 三组 cron 回调到达 → on-experiment-done 全流程：spawn worker 分析结果、对比 adaptive vs uniform vs grid vs ESS-only、更新 registry、刷新 report.md、向 Director 汇报 Claim 3 验证结论\n- contamination_60 全部完成且 Claim 3 verified → Paper experiments section 可以写了，派 Worker 写 experiments + results\n- contamination_60 adaptive PPL < uniform PPL → Claim 3 (proportion-free) ✅，story 巩固\n- contamination_60 adaptive PPL ≥ uniform PPL → **NEGATIVE**，必须走 red-section 产 Framing 提案，禁止默默继续\n- cuda:1 空闲 + 预算允许 → 优先跑 detect_remove_baseline_seed42（reviewer 问题 \"why not just filter?\"，数据已就绪）\n- Worker eval 回调（contamination_60_uniform PPL 出来）→ 记录 PPL 到 registry，作为 ρ=0.6 baseline\n- 论文图表待生成：τ sweep 图、b* 分布图、Table 1 完整版（依赖 contamination_60 结果）\n- 全部实验完成 → 全文一致性审查（framing-reaudit）\n\n### 5. 🎯 战略上下文\n**核心 story**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则），替代 Drayson 的 validation-based grid search。三个 Claims：\n1. ✅ Dual > ESS-only（3 seeds 验证完毕）\n2. ✅ Adaptive ≈ grid-best（MVP PASS, D019）\n3. 🔄 Proportion-free（contamination_60 验证中，最关键的待确认 claim）\n\n**易错点**:\n- adaptive_v2_seed* 三个实验是 D012 时期产物，被 killed 但 status 仍 PREPARING——**不要重新提交它们**，它们的 hypothesis 已被后续实验覆盖\n- contamination_60_uniform_seed42 已完成但 registry 记录的是 cron 修复后的状态，需要确认 eval Worker 是否成功拿到 PPL\n- bs8_nmin2 是 **negative**（PPL > uniform），D042 决策写入 n_min analysis 作为 limitation，**不要试图修复它**\n- τ=0.9/0.95 也是 **negative**，已纳入 τ sweep narrative（safe range [0.5, 0.8]），不需要额外处理\n- 预算只剩 ~15-26h，contamination_60 后最多再跑 1-2 个实验。detect_remove_baseline 是最高 ROI（回答 reviewer 问题）\n- Paper 初稿 introduction/method/conclusion 草稿已在 artifacts/，experiments section 依赖 contamination_60 结果\n- 关键决策链：D023(dual-constraint) → D025(τ empirical HP) → D029(ESS-only resolved) → D035(τ sweep) → D036(complete) → D038(paper draft) → D042(bs8 limitation)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778893853.md"
+}

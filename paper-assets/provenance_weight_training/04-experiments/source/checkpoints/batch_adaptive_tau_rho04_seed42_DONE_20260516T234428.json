@@ -1,0 +1,37 @@
+{
+  "exp_id": "batch_adaptive_tau_rho04_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:16:32.221Z",
+    "updated_at": "2026-05-16T23:44:28.133Z",
+    "spec": {
+      "hypothesis": "Batch-adaptive τ: τ_batch = clamp(α_eff_natural + 0.3, 0.5, τ). Reduces over-intervention on clean batches. Expected PPL ≤ fixed-τ adaptive (17.653).",
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "contamination_ratio": 0.4,
+      "command": "bash scripts/run_batch_adaptive_tau_rho04_seed42.sh",
+      "server": "westd-47453",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "gpu": "cuda:2",
+      "pid": 326274
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "eval_loss_holdout": 2.8725,
+      "eval_ppl_holdout": 17.681,
+      "train_loss": 9.8206,
+      "train_runtime_sec": 45402.86
+    },
+    "checkpoint_path": "/root/provenance_weight_training/output/models/batch_adaptive_tau_rho04_seed42/checkpoint-6103",
+    "log_path": "/root/provenance_weight_training/output/logs/batch_adaptive_tau_rho04_seed42.log",
+    "hypothesis": "Batch-adaptive τ (τ_batch = clamp(α_eff_natural + 0.3, 0.5, τ)) reduces over-intervention on clean batches by lowering τ when the batch already has low contamination, yielding lower holdout PPL than fixed τ=0.8.",
+    "completed_at": "2026-05-16T23:44:28.133Z"
+  },
+  "timestamp": "2026-05-16T23:44:28.280196+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,924 @@
+# submit rho02 uniform seed42
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_submit_rho02_uniform_seed42_20260516T090456.jsonl`
+- **Structured JSON:** [`af10c764627a8190b611.json`](../../sessions/af/af10c764627a8190b611.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T09:07:01.319620+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T09:07:01.319961+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T09:07:01.320159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "wc -l /root/provenance_weight_training/data/scored_data_rho02.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "wc -l /root/provenance_weight_training/data/scored_data_rho02.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T09:07:01.320293+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls /root/provenance_weight_training/scripts/run_uniform* /root/provenance_weight_training/scripts/run_rho*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls /root/provenance_weight_training/scripts/run_uniform* /root/provenance_weight_training/scripts/run_rho*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T09:07:01.320427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"206111 /root/provenance_weight_training/data/scored_data_rho02.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T09:07:01.320557+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/provenance_weight_training/scripts/run_rho02_adaptive_tau09_seed42.sh\\n/root/provenance_weight_training/scripts/run_rho06_adaptive.sh\\n/root/provenance_weight_training/scripts/run_rho06_grid_b05.sh\\n/root/provenance_weight_training/scripts/run_rho06_uniform.sh\\n\", \"stderr\": \"ls: cannot access '/root/provenance_weight_training/scripts/run_uniform*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T09:07:01.320695+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/provenance_weight_training/scripts/run_rho06_uniform.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/provenance_weight_training/scripts/run_rho06_uniform.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T09:07:01.320834+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# p0_contamination_60_uniform: rho=0.6 uniform baseline\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\ncd /root/provenance_weight_training\\n\\npython training/pretrain_weighted.py \\\\\\n    --data_path data/scored_data_rho06.jsonl \\\\\\n    --eval_data_path data/human/eval_holdout.jsonl \\\\\\n    --output_dir output/models/rho06_uniform_seed42 \\\\\\n    --model_name models/Qwen/Qwen3-0.6B \\\\\\n    --weighting_method uniform \\\\\\n    --contamination_ratio 0.6 \\\\\\n    --num_train_tokens 200000000 \\\\\\n    --batch_size 4 \\\\\\n    --gradient_accumulation_steps 4 \\\\\\n    --learning_rate 5e-5 \\\\\\n    --max_length 2048 \\\\\\n    --seed 42 \\\\\\n    --use_wandb \\\\\\n    --wandb_project provenance-weight-training \\\\\\n    --wandb_run_name rho06_uniform_seed42 \\\\\\n    --eval_steps 500 \\\\\\n    --save_steps 500 \\\\\\n    --logging_steps 10 \\\\\\n    --bf16 \\\\\\n    --save_total_limit 3 \\\\\\n    --save_only_model\\n\\necho \\\"DONE: rho06_uniform seed42\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T09:07:01.321036+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/provenance_weight_training/scripts/run_rho02_adaptive_tau09_seed42.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/provenance_weight_training/scripts/run_rho02_adaptive_tau09_seed42.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T09:07:01.321186+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# rho=0.2 adaptive tau=0.9 n_min=2\\nset -e\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport CUDA_VISIBLE_DEVICES=1\\n\\ncd /root/provenance_weight_training\\n\\npython training/pretrain_weighted.py \\\\\\n    --data_path data/scored_data_rho02.jsonl \\\\\\n    --eval_data_path data/human/eval_holdout.jsonl \\\\\\n    --output_dir output/models/rho02_adaptive_tau09_seed42 \\\\\\n    --model_name models/Qwen/Qwen3-0.6B \\\\\\n    --weighting_method adaptive \\\\\\n    --tau 0.9 \\\\\\n    --n_min 2 \\\\\\n    --contamination_ratio 0.2 \\\\\\n    --num_train_tokens 200000000 \\\\\\n    --batch_size 4 \\\\\\n    --gradient_accumulation_steps 4 \\\\\\n    --learning_rate 5e-5 \\\\\\n    --max_length 2048 \\\\\\n    --seed 42 \\\\\\n    --use_wandb \\\\\\n    --wandb_project provenance-weight-training \\\\\\n    --wandb_run_name rho02_adaptive_tau09_seed42 \\\\\\n    --eval_steps 500 \\\\\\n    --save_steps 500 \\\\\\n    --logging_steps 10 \\\\\\n    --bf16 \\\\\\n    --save_total_limit 3 \\\\\\n    --save_only_model\\n\\necho \\\"DONE: rho02_adaptive_tau09 seed42\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T09:07:01.321355+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat > /root/provenance_weight_training/scripts/run_rho02_uniform_seed42.sh << 'EOF'\n#!/bin/bash\n# rho=0.2 uniform baseline\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport CUDA_VISIBLE_DEVICES=1\nexport WANDB_MODE=offline\n\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data_rho02.jsonl \\\n    --eval_data_path data/human/eval_holdout.jsonl \\\n    --output_dir output/models/rho02_uniform_seed42 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method uniform \\\n    --contamination_ratio 0.2 \\\n    --num_train_tokens 200000000 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 42 \\\n    --use_wandb \\\n    --wandb_project provenance-weight-training \\\n    --wandb_run_name rho02_uniform_seed42 \\\n    --eval_steps 500 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n\necho \"DONE: rho02_uniform seed42\"\nEOF\nchmod +x /root/provenance_weight_training/scripts/run_rho02_uniform_seed42.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat > /root/provenance_weight_training/scripts/run_rho02_uniform_seed42.sh << 'EOF'\n#!/bin/bash\n# rho=0.2 uniform baseline\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport CUDA_VISIBLE_DEVICES=1\nexport WANDB_MODE=offline\n\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data_rho02.jsonl \\\n    --eval_data_path data/human/eval_holdout.jsonl \\\n    --output_dir output/models/rho02_uniform_seed42 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method uniform \\\n    --contamination_ratio 0.2 \\\n    --num_train_tokens 200000000 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 42 \\\n    --use_wandb \\\n    --wandb_project provenance-weight-training \\\n    --wandb_run_name rho02_uniform_seed42 \\\n    --eval_steps 500 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n\necho \"DONE: rho02_uniform seed42\"\nEOF\nchmod +x /root/provenance_weight_training/scripts/run_rho02_uniform_seed42.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T09:07:01.321498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T09:07:01.321635+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup bash scripts/run_rho02_uniform_seed42.sh > output/logs/rho02_uniform_seed42.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup bash scripts/run_rho02_uniform_seed42.sh > output/logs/rho02_uniform_seed42.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T09:07:01.321796+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup bash scripts/run_rho02_uniform_seed42.sh > output/logs/rho02_uniform_seed42.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=316980\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T09:07:01.321975+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ps -p 316980 -o pid,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ps -p 316980 -o pid,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T09:07:01.322144+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "tail -20 /root/provenance_weight_training/output/logs/rho02_uniform_seed42.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "tail -20 /root/provenance_weight_training/output/logs/rho02_uniform_seed42.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T09:07:01.322279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID CMD\\n316980 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup bash scripts/run_rho02_uniform_seed42.sh > output/logs/rho02_uniform_seed42.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T09:07:01.322439+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'weighting/b': 0.0, 'weighting/alpha_eff': 0.9687719836365432, 'weighting/ess': 4.0, 'weighting/mean_q': 0.031228017061948776, 'weighting/unweighted_loss': 3.501141309738159, 'weighting/weighted_loss': 3.501141309738159, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.36025161668658257, 'weighting/ess': 4.0, 'weighting/mean_q': 0.6397483944892883, 'weighting/unweighted_loss': 2.3721981048583984, 'weighting/weighted_loss': 2.3721981048583984, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.40366384759545326, 'weighting/ess': 4.0, 'weighting/mean_q': 0.5963361263275146, 'weighting/unweighted_loss': 2.5151801109313965, 'weighting/weighted_loss': 2.5151801109313965, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.5262072123587132, 'weighting/ess': 4.0, 'weighting/mean_q': 0.47379279136657715, 'weighting/unweighted_loss': 2.708395481109619, 'weighting/weighted_loss': 2.708395481109619, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.3986906325444579, 'weighting/ess': 4.0, 'weighting/mean_q': 0.6013094186782837, 'weighting/unweighted_loss': 2.220287799835205, 'weighting/weighted_loss': 2.220287799835205, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.5583889074623585, 'weighting/ess': 4.0, 'weighting/mean_q': 0.441611111164093, 'weighting/unweighted_loss': 2.859668254852295, 'weighting/weighted_loss': 2.859668254852295, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.7979332404211164, 'weighting/ess': 4.0, 'weighting/mean_q': 0.20206674933433533, 'weighting/unweighted_loss': 3.92637300491333, 'weighting/weighted_loss': 3.92637300491333, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.5309683885425329, 'weighting/ess': 4.0, 'weighting/mean_q': 0.4690316319465637, 'weighting/unweighted_loss': 2.60998272895813, 'weighting/weighted_loss': 2.60998272895813, 'epoch': 0.0}\\n{'weighting/b': 0.0, 'weighting/alpha_eff': 0.22899
+…[truncated 3103 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T09:07:01.322621+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "rho02_uniform_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "provenance_weight_training",
+  "spec": "{'command': 'bash scripts/run_rho02_uniform_seed42.sh', 'server': 'westd-47453', 'data_path': 'data/scored_data_rho02.jsonl', 'data_count': 206111, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42, 'gpu': 'cuda:1', 'pid': 316980, 'weighting_method': 'uniform', 'contamination_ratio': 0.2, 'num_train_tokens': 200000000, 'max_steps': 6103, 'log_path': 'output/logs/rho02_uniform_seed42.log', 'checkpoint_path': 'output/models/rho02_uniform_seed42'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "rho02_uniform_seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "provenance_weight_training",
+    "spec": "{'command': 'bash scripts/run_rho02_uniform_seed42.sh', 'server': 'westd-47453', 'data_path': 'data/scored_data_rho02.jsonl', 'data_count': 206111, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42, 'gpu': 'cuda:1', 'pid': 316980, 'weighting_method': 'uniform', 'contamination_ratio': 0.2, 'num_train_tokens': 200000000, 'max_steps': 6103, 'log_path': 'output/logs/rho02_uniform_seed42.log', 'checkpoint_path': 'output/models/rho02_uniform_seed42'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T09:07:01.322771+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2218}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T09:07:01.323078+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T09:07:01.323240+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T09:07:01.323483+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'rho02_uniform_seed42'}",
+  "project": "provenance_weight_training",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'rho02_uniform_seed42'}",
+    "project": "provenance_weight_training",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T09:07:01.323614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1916}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T09:07:01.323759+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "fields": "['*']",
+  "filters": "{'status': 'PREPARING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "provenance_weight_training",
+    "fields": "['*']",
+    "filters": "{'status': 'PREPARING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T09:07:01.323960+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"rho02_uniform_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:02:18.437Z\", \"updated_at\": \"2026-05-16T09:02:18.437Z\", \"spec\": {\"hypothesis\": \"ρ=0.2 uniform baseline. Reference for comparing adaptive reweighting effectiveness at low contamination.\", \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"data_count\": 206111, \"contamination_ratio\": 0.2}}, \"rho02_adaptive_tau09_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:02:16.962Z\", \"updated_at\": \"2026-05-16T09:02:16.962Z\", \"spec\": {\"hypothesis\": \"ρ=0.2 adaptive τ=0.9 training. Third ρ verification point for Claim 3 (proportion-agnostic). τ=1-ρ/2=0.9. If PPL improves over uniform at ρ=0.2, confirms adaptive works across contamination levels.\", \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"data_count\": 206111, \"contamination_ratio\": 0.2}}, \"batchsize16_nmin8_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:04:54.440Z\", \"updated_at\": \"2026-05-16T03:04:54.440Z\", \"spec\": {\"hypothesis\": \"bs=16 + n_min=floor(B/2)=8: coupling rule positive confirmation. bs=8+n_min=2 failed because ESS range [2,8] too wide; bs=16+n_min=8 keeps ESS range [8,16] tight, should recover adaptive advantage.\", \"parent\": \"bs8_nmin2_seed42_r2\", \"batch_size\": 16, \"gradient_accumulation_steps\": 1, \"n_min\": 8, \"tau\": 0.8, \"seed\": 42, \"contamination_ratio\": 0.4, \"gradient_checkpointing\": true}}, \"grid_b0_2_seed42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:26:47.719Z\", \"updated_at\": \"2026-05-16T01:06:46.569Z\", \"hypothesis\": \"Grid-b sweep b=0.2 on ρ=0.4 data, seed42. Interpolation between b=0.1 and b=0.3 to characterize PPL curve shape in low-b region.\", \"parent\": \"grid_b_seed42_batch\", \"conclusion\": \"killed\", \"notes\": \"Director 预算修正砍掉：b=0.1 和 b=0.3
+…[truncated 194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T09:07:01.324135+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "rho02_uniform_seed42",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "provenance_weight_training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "rho02_uniform_seed42",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "provenance_weight_training"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T09:07:01.324276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"rho02_uniform_seed42\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:02:18.437Z\", \"updated_at\": \"2026-05-16T09:06:49.546Z\", \"spec\": {\"hypothesis\": \"ρ=0.2 uniform baseline. Reference for comparing adaptive reweighting effectiveness at low contamination.\", \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"data_count\": 206111, \"contamination_ratio\": 0.2}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9298}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T09:07:01.324410+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "rho02_uniform_seed42",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "provenance_weight_training",
+  "spec": "{'command': 'bash scripts/run_rho02_uniform_seed42.sh', 'server': 'westd-47453', 'data_path': 'data/scored_data_rho02.jsonl', 'data_count': 206111, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42, 'gpu': 'cuda:1', 'pid': 316980, 'weighting_method': 'uniform', 'contamination_ratio': 0.2, 'num_train_tokens': 200000000, 'max_steps': 6103, 'log_path': 'output/logs/rho02_uniform_seed42.log', 'checkpoint_path': 'output/models/rho02_uniform_seed42'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "rho02_uniform_seed42",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "provenance_weight_training",
+    "spec": "{'command': 'bash scripts/run_rho02_uniform_seed42.sh', 'server': 'westd-47453', 'data_path': 'data/scored_data_rho02.jsonl', 'data_count': 206111, 'model_name': 'Qwen/Qwen3-0.6B', 'seed': 42, 'gpu': 'cuda:1', 'pid': 316980, 'weighting_method': 'uniform', 'contamination_ratio': 0.2, 'num_train_tokens': 200000000, 'max_steps': 6103, 'log_path': 'output/logs/rho02_uniform_seed42.log', 'checkpoint_path': 'output/models/rho02_uniform_seed42'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T09:07:01.324574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"rho02_uniform_seed42\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:02:18.437Z\", \"updated_at\": \"2026-05-16T09:06:54.691Z\", \"spec\": {\"hypothesis\": \"ρ=0.2 uniform baseline. Reference for comparing adaptive reweighting effectiveness at low contamination.\", \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"data_count\": 206111, \"contamination_ratio\": 0.2, \"command\": \"bash scripts/run_rho02_uniform_seed42.sh\", \"server\": \"westd-47453\", \"data_path\": \"data/scored_data_rho02.jsonl\", \"gpu\": \"cuda:1\", \"pid\": 316980, \"weighting_method\": \"uniform\", \"num_train_tokens\": 200000000, \"max_steps\": 6103, \"log_path\": \"output/logs/rho02_uniform_seed42.log\", \"checkpoint_path\": \"output/models/rho02_uniform_seed42\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8896}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-16T09:07:01.324737+00:00_
+
+完成。
+
+**rho02_uniform_seed42** 已在 westd-47453 cuda:1 上启动：
+- PID: 316980
+- 进度: step 10/6103, ~2.13s/step（预计 ~3.6h 完成）
+- 日志: `output/logs/rho02_uniform_seed42.log`
+- Registry 状态已更新为 RUNNING
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_submit_rho02_uniform_seed42_20260516T090456"
+}
+```
+
+</details>
+
+---

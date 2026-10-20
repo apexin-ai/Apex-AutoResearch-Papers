@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "192e21d61c688e07a30f",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "critical check and eval all 4",
+  "task_key": "worker_critical_check_and_eval_all_4_20260521T094128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_check_and_eval_all_4_20260521T094128.log",
+    "occurrence": 1,
+    "bytes": 676502,
+    "sha256": "fad5a3b5b6b915c87626f340e97468aba7b8ad2eeb28c84f238a3ac694bedba7"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 0,
+    "tool_calls": 246,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 246,
+      "tool_result": 246,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 547,
+      "chunks": [
+        {
+          "path": "192e21d61c688e07a30f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "192e21d61c688e07a30f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "192e21d61c688e07a30f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "192e21d61c688e07a30f-part-0004.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/critical-check-and-eval-all-4.md"
+}

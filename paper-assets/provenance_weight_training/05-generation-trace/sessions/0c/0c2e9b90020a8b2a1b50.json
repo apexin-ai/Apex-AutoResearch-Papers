@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c2e9b90020a8b2a1b50",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval detect remove q03 seed456",
+  "task_key": "worker_eval_detect_remove_q03_seed456_20260519T015401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detect_remove_q03_seed456_20260519T015401_result.json",
+    "occurrence": 1,
+    "bytes": 194,
+    "sha256": "30a865a9383932621da1d389d081000e13e15d3893c4c70ad59a7acb9cf48ebd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。\n\n**结果：**\n- **eval_loss_holdout**: 2.8479\n- **eval_ppl_holdout**: 17.25\n\n三个 seed 的 PPL 完全一致：seed42=17.25, seed123=17.25, seed456=17.25。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-detect-remove-q03-seed456.md"
+}

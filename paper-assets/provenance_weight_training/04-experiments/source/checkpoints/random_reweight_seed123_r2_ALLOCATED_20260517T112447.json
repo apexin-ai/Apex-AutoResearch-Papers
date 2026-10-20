@@ -1,0 +1,19 @@
+{
+  "exp_id": "random_reweight_seed123_r2",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:24:38.169Z",
+    "updated_at": "2026-05-17T11:24:47.341Z",
+    "spec": {
+      "server": "westd-30476",
+      "gpu": "cuda:0",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T11:24:47.514677+00:00",
+  "trigger": "update_registry"
+}

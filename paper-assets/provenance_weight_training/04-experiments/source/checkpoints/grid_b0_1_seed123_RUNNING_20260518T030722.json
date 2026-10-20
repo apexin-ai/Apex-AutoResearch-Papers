@@ -1,0 +1,35 @@
+{
+  "exp_id": "grid_b0_1_seed123",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:41:20.961Z",
+    "updated_at": "2026-05-18T03:07:22.027Z",
+    "hypothesis": "Cross-seed replication (seed123) of grid b=0.1: completes grid curve cross-seed at the low-b end. If PPL ≈ grid_b0_1_seed42 (17.657), confirms b=0.1 performance is stable across seeds for Claim 2 grid stability.",
+    "parent": "grid_b0_1_seed42",
+    "spec": {
+      "command": "python training/pretrain_weighted.py --weighting_method grid --grid_b_value 0.1 --seed 123",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "158913",
+      "log_path": "~/runs/provenance_weight_training/grid_b0_1_seed123.log",
+      "submitted_at": "2026-05-18T01:45:00.689Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 200000000,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 123,
+      "checkpoint_source": "grid_b0_1_seed42",
+      "eval_data": "data/scored_data.jsonl"
+    }
+  },
+  "timestamp": "2026-05-18T03:07:22.240351+00:00",
+  "trigger": "update_registry"
+}

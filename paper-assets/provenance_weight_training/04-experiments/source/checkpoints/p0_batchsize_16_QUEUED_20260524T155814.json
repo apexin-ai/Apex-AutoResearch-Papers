@@ -1,0 +1,15 @@
+{
+  "exp_id": "p0_batchsize_16",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:56:36.323Z",
+    "updated_at": "2026-05-24T15:58:13.894Z",
+    "hypothesis": "Batch size amplification at B=16: adaptive τ=0.7 with n_min=8 (auto-compute: 16//2=8). Validates n_min coupling rule at B=16 and completes batch-size amplification series (B=4→8→16). Expected Δ≈-0.068 based on monotonic amplification trend from B=4 (Δ=-0.020) and B=8 (Δ=-0.052)."
+  },
+  "timestamp": "2026-05-24T15:58:14.402810+00:00",
+  "trigger": "update_registry"
+}

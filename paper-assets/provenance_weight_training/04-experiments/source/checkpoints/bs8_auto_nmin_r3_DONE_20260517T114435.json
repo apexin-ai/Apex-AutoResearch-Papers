@@ -1,0 +1,41 @@
+{
+  "exp_id": "bs8_auto_nmin_r3",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:24:39.323Z",
+    "updated_at": "2026-05-17T11:44:35.233Z",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_bs8_auto_nmin_seed42.sh\"",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "10119",
+      "log_path": "~/runs/provenance_weight_training/bs8_auto_nmin_r3.log",
+      "submitted_at": "2026-05-17T11:26:19.279Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1096.0,
+      "gpu_hours": 0.3
+    },
+    "server": "westd-30476",
+    "gpu": "cuda:1",
+    "account": "root",
+    "hypothesis": "bs=8 with auto n_min=4 (max(2,bs//2)). Previous bs8_nmin2 failed (PPL=17.73) because explicit n_min=2 was too loose for bs=8. Auto n_min=4 should recover performance, validating the coupling rule.",
+    "parent": "bs8_nmin2_seed42_r2",
+    "pid": "10119",
+    "log_path": "~/runs/provenance_weight_training/bs8_auto_nmin_r3.log",
+    "reproduce": {
+      "command": "bash -c \"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_bs8_auto_nmin_seed42.sh\""
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T11:44:35.233Z"
+  },
+  "timestamp": "2026-05-17T11:44:35.417979+00:00",
+  "trigger": "update_registry"
+}

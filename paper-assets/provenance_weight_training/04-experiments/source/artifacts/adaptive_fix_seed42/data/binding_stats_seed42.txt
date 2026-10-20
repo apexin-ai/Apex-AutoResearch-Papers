@@ -1,0 +1,6 @@
+total_batches: 24412
+regime_pct: clean=1.91%, alpha_eff_binding=38.3%, ess_binding=59.78%
+regime_counts: clean=467, alpha_eff_binding=9351, ess_binding=14594
+mean_b_star: clean=0.0, alpha_eff_binding=1.1111, ess_binding=1.6263
+mean_alpha_eff: clean=0.8598, alpha_eff_binding=0.7999, ess_binding=0.5513
+mean_ess: clean=4.0685, alpha_eff_binding=2.7961, ess_binding=2.0165

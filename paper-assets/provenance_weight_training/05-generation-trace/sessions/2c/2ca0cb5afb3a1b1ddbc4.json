@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ca0cb5afb3a1b1ddbc4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis nmin ablation prep",
+  "task_key": "worker_analysis_nmin_ablation_prep_20260515T155255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nmin_ablation_prep_20260515T155255_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "92431bd8514dcfeb58e9beb746cdb987447fcb742c98ba213a14f217744d2ef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n| 文件 | 说明 |\n|------|------|\n| `analysis/nmin_ablation_analysis.py` | 分析脚本 |\n| `analysis/nmin_ablation_curve.pdf` / `.png` | n_min vs PPL 图（含 uniform baseline 水平线） |\n| `analysis/nmin_ablation_summary.json` | 结构化 JSON 摘要 |\n\n**结果概要（3/4 数据点）**：\n\n| n_min | PPL | Δ vs uniform | 状态 |\n|-------|-----|-------------|------|\n| 1 | 17.789 | -0.095 (worse) | ✓ |\n| 2 | 17.650 | +0.044 (better) | ✓ |\n| 3 | 17.644 | +0.050 (better) | ✓ |\n| 4 | pending | — | NOT_STARTED |\n\n- n_min=2 与 n_min=3 基本持平（ΔPPL=0.006）\n- n_min=1 过于激进，反而比 uniform 差\n- n_min=4 待训练完成后重跑脚本即可自动纳入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nmin-ablation-prep.md"
+}

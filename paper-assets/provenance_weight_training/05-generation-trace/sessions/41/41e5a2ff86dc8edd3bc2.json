@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "41e5a2ff86dc8edd3bc2",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval uniform epoch matched final",
+  "task_key": "worker_eval_uniform_epoch_matched_final_20260521T134506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_uniform_epoch_matched_final_20260521T134506.log",
+    "occurrence": 1,
+    "bytes": 556727,
+    "sha256": "24b984a67d05dcd0b7967ba673b3b90390dac0ed98789f5e0ef6c5c984975905"
+  },
+  "statistics": {
+    "messages": 422,
+    "user_turns": 0,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 187,
+      "tool_result": 187,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 422,
+      "chunks": [
+        {
+          "path": "41e5a2ff86dc8edd3bc2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "41e5a2ff86dc8edd3bc2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "41e5a2ff86dc8edd3bc2-part-0003.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-uniform-epoch-matched-final.md"
+}

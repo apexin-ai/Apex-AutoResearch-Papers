@@ -1,0 +1,16 @@
+{
+  "exp_id": "bs8_nmin4_adaptive_seed456",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:40:14.696Z",
+    "updated_at": "2026-05-23T12:40:45.758Z",
+    "hypothesis": "B=8 第三 seed 补全 3-seed paired comparison。seed42 Δ=−0.044, seed123 Δ=−0.056。预期 Δ∈[−0.040, −0.060]。3-seed 均值将提供 batch-size amplification (B=4→B=8→B=16) 的完整统计支撑。",
+    "parent": "bs8_nmin4_adaptive_seed42"
+  },
+  "timestamp": "2026-05-23T12:40:46.257841+00:00",
+  "trigger": "update_registry"
+}

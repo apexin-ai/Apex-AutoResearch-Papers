@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d26c423e425311fa0a1",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4596,
+    "sha256": "37a5ce1914dd34b013f5f299cb9e623dbf5fe380b0f8070dafcfedfc5db395c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T06:53:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（westd-47453），不可用其他设备\n- output 必须走 symlink `/root/provenance_weight_training/output` → `/root/autodl-tmp/provenance_weight_training/output/`，绝对禁止直接写根分区（30GB，之前磁盘满崩溃过）\n- submit_training_job 的 command 必须 `bash -c \"...\"` 包裹（tmux 用 sh，不包裹 source/conda 会 EXIT_CODE=127）\n- Grid-b 单 b 值用 `--grid_b_value X`，不要用串行脚本（Director 已批准拆分并行）\n- save_total_limit=2 + save_only_model=True 是 Director 强制要求，不可省略\n- HF 下载必须 `HF_HUB_DISABLE_XET=1`，否则 401\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，账号 root，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- torch=2.10.0+cu128, transformers=4.57.6, lm_eval=0.4.11\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`data/mixed_data.jsonl`（371,499 docs, 60/40 human/synth），`data/scored_data.jsonl`（同上 + q_score 字段）\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 检测器：`output/detector_tfidf/`（TF-IDF+LR, AUC=0.939, ECE=0.048）\n- 活跃进程（待确认，handoff 时有 Worker 正在检查）：\n  - grid_b_seed42_batch: PID 50134, tmux=grid_b_seed42_batch, cuda:0（串行 6 b 值）\n  - adaptive_seed42: PID 58888, tmux=adaptive_seed42, cuda:1\n  - adaptive_seed123: PID 58978, tmux=adaptive_seed123, cuda:2\n  - adaptive_seed456: PID 59058, tmux=adaptive_seed456, cuda:3\n- **⚠️ 关键不确定性**：handoff 时 Director 报告 3 张 GPU 空闲，我已派 Worker `worker_ops_urgent-status-and-action_20260514T065244` 去检查并处理（如果 adaptive 已完成则自动提交 grid_b_seed123 round 1）。这个 Worker 的结果你需要第一时间处理。\n\n### 3. 📊 当前状态\n**刚做完**：uniform ×3 标记 DONE（train_loss 均值 7.304±0.012，各 3.43 GPU-hours），adaptive ×3 提交成功（02:46 UTC），grid_b 拆分方案已确认（原生支持 `--grid_b_value`），grid_b_seed123 × 6 b值 registry 条目已创建（QUEUED）。\n\n**Registry 状态**：\n- DONE: uniform_seed42/123/456, detector_tfidf_lr, datagen_synthetic_4gpu\n- RUNNING: grid_b_seed42_batch（cuda:0，串行 6 b 值，约 21h 总计），adaptive_seed42/123/456（cuda:1/2/3，各 ~3.6h）\n- QUEUED: grid_b0_5/1_0/1_5/2_0/3_0/5_0_seed123（等 adaptive 完成后按轮次提交）\n\n**等待中**：\n- Worker `worker_ops_urgent-status-and-action_20260514T065244` 回调——这是最关键的待处理项，它在检查 adaptive 是否完成并自动提交 grid_b round 1\n- 如果该 Worker 已提交 grid_b round 1，你需要更新 adaptive registry → DONE + 确认 grid_b RUNNING\n\n### 4. 📋 待办（条件触发式）\n- Worker `urgent-status-and-action` 回调 → 读结果：若 adaptive 已完成则更新 registry DONE + 记录 metrics + 确认 grid_b round 1 已启动；若 adaptive 异常则查日志决定重跑\n- adaptive 仍在跑（Worker 报告 PIDs alive）→ 等 cron 回调，完成后立即提交 grid_b_seed123 round 1（cuda:1→b=0.5, cuda:2→b=1.0, cuda:3→b=1.5）\n- grid_b_seed123 round 1 完成 → 立即提交 round 2（cuda:1→b=2.0, cuda:2→b=3.0, cuda:3→b=5.0），无需 Director 确认\n- grid_b_seed123 全部完成 → 同方式跑 seed456（需先注册 6 个 registry 条目）\n- 全部 MVP 实验完成 → 跑 eval_pipeline.py 对比 uniform vs grid-b vs adaptive，汇报 Director\n\n### 5. 🎯 战略上下文\n- **核心假设**：adaptive b*（从 α_eff 理论推导）无需网格搜索即可匹配/超越 grid-searched best-b\n- **Pass/Fail**：adaptive 均值 ≥ 90% grid-search 最优 perplexity 改善量（跨 3 seeds）\n- **投稿目标**：EMNLP 2026 ARR May 25（主攻，剩余 ~11 天），AAAI 2027 后备\n- **检测器教训**：Qwen3-0.6B 合成文本太容易被神经网络区分（AUC→1.0），必须用弱分类器 TF-IDF+LR 才能获得有梯度的 q-score。这个决策链是 D005→D006→D007→D008\n- **易踩的坑**：\n  - 不要试图用 ModernBERT 做检测器（已验证 AUC 极化无用）\n  - GPU 空闲就是失职——每轮切换间 < 2 分钟\n  - grid_b 串行脚本（run_grid_b_seed42.sh）是历史遗留，seed123/456 已改为单 b 值并行提交\n  - Worker 的 CPU dry-run 会卡死（模型加载太慢），不要在 CPU 上做任何 transformer 推理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

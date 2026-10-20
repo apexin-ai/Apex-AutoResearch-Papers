@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f7a12db3e6e46b812f4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code verify adaptive fix",
+  "task_key": "worker_code_verify_adaptive_fix_20260514T141417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_adaptive_fix_20260514T141417_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "3e539757c112e5960e8975288346741e909082eb9dc976af21363600ce8aa4a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码**已支持** `--n_min` 参数，无需修改。关键信息：\n\n| 项目 | 状态 |\n|------|------|\n| CLI 参数 | `--n_min`，第 237 行，`type=int, default=None` |\n| 默认逻辑 | 第 279-280 行：`args.n_min = max(2, args.batch_size // 2)` |\n| 使用位置 | 第 146 行：`find_optimal_b(q_scores, tau=self.tau, n_min=self.n_min)` |\n| 日志记录 | 第 366 行：`\"n_min\": args.n_min` 会打印到日志 |\n\n默认值取决于 batch_size：batch_size=4 时默认 n_min=2，batch_size=8 时默认 n_min=4。显式传 `--n_min 2` 可覆盖任何默认值。\n\n**adaptive_fix 实验提交命令模板**：\n\n```bash\npython training/pretrain_weighted.py \\\n  --data_path data/scored_data.jsonl \\\n  --output_dir outputs/adaptive_fix_seed42 \\\n  --weighting_method adaptive \\\n  --model_name models/Qwen/Qwen3-0.6B \\\n  --n_min 2 \\\n  --seed 42 \\\n  --use_wandb \\\n  --wandb_run_name adaptive_fix_seed42 \\\n  [其他参数...]\n```\n\n无需改代码，直接加 `--n_min 2` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-adaptive-fix-copy-2.md"
+}

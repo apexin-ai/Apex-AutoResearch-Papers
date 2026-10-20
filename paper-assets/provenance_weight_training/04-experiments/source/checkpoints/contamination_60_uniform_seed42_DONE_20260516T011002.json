@@ -1,0 +1,58 @@
+{
+  "exp_id": "contamination_60_uniform_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:19:24.785Z",
+    "updated_at": "2026-05-16T01:10:02.450Z",
+    "hypothesis": "ρ=0.6 uniform baseline: no reweighting on 60% contamination data. Establishes baseline PPL degradation at higher contamination for comparison with adaptive and grid methods.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "250074",
+      "log_path": "~/runs/provenance_weight_training/contamination_60_uniform_seed42.log",
+      "submitted_at": "2026-05-15T21:26:23.538Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 12988.3,
+      "gpu_hours": 3.61,
+      "checkpoint_path": "/root/provenance_weight_training/output/models/contamination_60_uniform_seed42/final"
+    },
+    "parent": "uniform_seed42",
+    "server": "westd-47453",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T21:19:46.484Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --contamination_ratio 0.6 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"",
+      "finished_at": "2026-05-16T01:02:50.356Z",
+      "training_hours": 3.72
+    },
+    "pid": "250074",
+    "log_path": "~/runs/provenance_weight_training/contamination_60_uniform_seed42.log",
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T01:02:51.880Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T01:02:54.397978+00:00"
+        }
+      ]
+    },
+    "notes": "训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_runtime=12904s。需要 eval 获取 PPL。"
+  },
+  "timestamp": "2026-05-16T01:10:02.588959+00:00",
+  "trigger": "update_registry"
+}

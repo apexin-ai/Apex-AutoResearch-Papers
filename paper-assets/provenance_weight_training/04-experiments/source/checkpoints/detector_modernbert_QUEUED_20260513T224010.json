@@ -1,0 +1,15 @@
+{
+  "exp_id": "detector_modernbert",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:40:06.106Z",
+    "updated_at": "2026-05-13T22:40:10.133Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T22:40:10.144197+00:00",
+  "trigger": "update_registry"
+}

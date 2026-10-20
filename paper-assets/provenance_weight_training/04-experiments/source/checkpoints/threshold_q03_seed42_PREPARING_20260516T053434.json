@@ -1,0 +1,14 @@
+{
+  "exp_id": "threshold_q03_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:34:34.545Z",
+    "updated_at": "2026-05-16T05:34:34.545Z"
+  },
+  "timestamp": "2026-05-16T05:34:34.693499+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,101 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic Data Contamination.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Detect-and-Reweight.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Golden Ratio Weighting.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Quality Optimization.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:weight}{{1}{2}{Problem Setup}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Dual Constraints}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Effective real-data fraction.}{3}{section*.5}\protected@file@percent }
+\newlabel{eq:alpha_eff}{{2}{3}{Effective real-data fraction}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Effective sample size (Kish's ESS).}{3}{section*.6}\protected@file@percent }
+\newlabel{eq:ess}{{3}{3}{Effective sample size (Kish's ESS)}{equation.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Adaptive $b^{*}$ Selection}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:bstar}{{3.3}{3}{Adaptive $\bstar $ Selection}{subsection.3.3}{}}
+\newlabel{eq:bstar}{{4}{3}{Adaptive $\bstar $ Selection}{equation.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Constraint interaction.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implementation.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameters.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.11}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Per-batch adaptive $b^{*}$ selection}}{4}{algorithm.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{alg:bstar}{{1}{4}{Per-batch adaptive $\bstar $ selection}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Detector.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Adaptive $b^{*}$ Matches Grid-Best}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_result}{{5.1}{4}{Adaptive $\bstar $ Matches Grid-Best}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Extended Grid Search: The Broad Optimum}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:grid_extended}{{5.2}{4}{Extended Grid Search: The Broad Optimum}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main result: Adaptive $b^{*}$ vs.\ grid-best ($b{=}0.5$) on Qwen3-0.6B, $\rho {=}0.4$. $\Delta $ is PPL improvement over uniform. Recovery = $\Delta _{\text  {adaptive}}/\Delta _{\text  {grid}}$.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:main}{{1}{5}{Main result: Adaptive $\bstar $ vs.\ grid-best ($b{=}0.5$) on Qwen3-0.6B, $\rho {=}0.4$. $\Delta $ is PPL improvement over uniform. Recovery = $\Delta _{\text {adaptive}}/\Delta _{\text {grid}}$}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Extended grid-$b$ PPL across seeds ($\rho {=}0.4$, Qwen3-0.6B). Cross-seed mean $\pm $ std. Paired $t$-test: $b{=}0.3$ vs $b{=}0.5$, $p = 0.42$.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:grid_extended}{{2}{5}{Extended grid-$b$ PPL across seeds ($\rho {=}0.4$, Qwen3-0.6B). Cross-seed mean $\pm $ std. Paired $t$-test: $b{=}0.3$ vs $b{=}0.5$, $p = 0.42$}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}ESS-Only Ablation: $\alpha _{\mathrm  {eff}}$ is Load-Bearing}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ess_only}{{5.3}{5}{ESS-Only Ablation: $\aeff $ is Load-Bearing}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}$\tau $ Sensitivity Sweep}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:tau_sweep}{{5.4}{5}{$\tau $ Sensitivity Sweep}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Golden Ratio Oracle Baseline}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:golden_ratio}{{5.5}{5}{Golden Ratio Oracle Baseline}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dual-constraint vs.\ ESS-only ($\rho {=}0.4$, seed42). ESS-only removes the $\alpha _{\mathrm  {eff}}$ quality floor, selecting maximum intervention.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:ess_only}{{3}{6}{Dual-constraint vs.\ ESS-only ($\rho {=}0.4$, seed42). ESS-only removes the $\aeff $ quality floor, selecting maximum intervention}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces $\tau $ sensitivity ($\rho {=}0.4$, seed42). PPL range = 0.023, std = 0.008. All values beat uniform (17.690) and ESS-only (17.685).}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:tau}{{4}{6}{$\tau $ sensitivity ($\rho {=}0.4$, seed42). PPL range = 0.023, std = 0.008. All values beat uniform (17.690) and ESS-only (17.685)}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}$n_{\min }$ Sensitivity and Batch Size Ablation}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:nmin_ablation}{{5.6}{6}{$\nmin $ Sensitivity and Batch Size Ablation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{$n_{\min }$ sensitivity.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Batch size ablation.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Contamination Scaling: $\rho = 0.6$}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:rho06}{{5.7}{6}{Contamination Scaling: $\rho = 0.6$}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $n_{\min }$ sensitivity ($\rho {=}0.4$, seed42, batch size 4). $n_{\min }= 2$ is the unique stable optimum at this batch size.}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:nmin}{{5}{7}{$\nmin $ sensitivity ($\rho {=}0.4$, seed42, batch size 4). $\nmin = 2$ is the unique stable optimum at this batch size}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Batch size ablation ($\rho {=}0.4$, seed42, $n_{\min }= 2$). Larger batches improve PPL and shift the binding constraint from ESS toward $\alpha _{\mathrm  {eff}}$.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:batchsize}{{6}{7}{Batch size ablation ($\rho {=}0.4$, seed42, $\nmin = 2$). Larger batches improve PPL and shift the binding constraint from ESS toward $\aeff $}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Model Scaling: Llama-3.2-3B}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:3b}{{5.8}{7}{Model Scaling: Llama-3.2-3B}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Baseline Comparisons}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:baselines}{{5.9}{7}{Baseline Comparisons}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Detector Quality Ablation}{7}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:detector}{{5.10}{7}{Detector Quality Ablation}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Cross-Generator Robustness}{7}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:cross_gen}{{5.11}{7}{Cross-Generator Robustness}{subsection.5.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Domain-Skewed Contamination}{7}{subsection.5.12}\protected@file@percent }
+\newlabel{sec:domain}{{5.12}{7}{Domain-Skewed Contamination}{subsection.5.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Contamination scaling ($\rho {=}0.4$ vs.\ $\rho {=}0.6$, Qwen3-0.6B, seed42). Effect amplification = $\Delta _{0.6} / \Delta _{0.4}$.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:rho06}{{7}{8}{Contamination scaling ($\rho {=}0.4$ vs.\ $\rho {=}0.6$, Qwen3-0.6B, seed42). Effect amplification = $\Delta _{0.6} / \Delta _{0.4}$}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model scaling ($\rho {=}0.4$, seed42). The 3B model shows 4$\times $ effect amplification over 0.6B.}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:3b}{{8}{8}{Cross-model scaling ($\rho {=}0.4$, seed42). The 3B model shows 4$\times $ effect amplification over 0.6B}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.13}Downstream Evaluation}{8}{subsection.5.13}\protected@file@percent }
+\newlabel{sec:downstream}{{5.13}{8}{Downstream Evaluation}{subsection.5.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{8}{section.6}\protected@file@percent }
+\newlabel{sec:analysis}{{6}{8}{Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why minimum intervention works.}{8}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constraint binding analysis.}{8}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$b^{*}$ tracks the optimum.}{8}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Comprehensive baseline comparison ($\rho {=}0.4$, Qwen3-0.6B, seed42).}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:baselines}{{9}{9}{Comprehensive baseline comparison ($\rho {=}0.4$, Qwen3-0.6B, seed42)}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Detector quality ablation ($\rho {=}0.4$, seed42). TF-IDF+LR captures 77\% of the reweighting value at ${\sim }100\times $ lower cost.}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:detector}{{10}{9}{Detector quality ablation ($\rho {=}0.4$, seed42). TF-IDF+LR captures 77\% of the reweighting value at ${\sim }100\times $ lower cost}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Downstream evaluation (Llama-3.2-3B, $\rho {=}0.4$, seed42).}}{10}{table.caption.28}\protected@file@percent }
+\newlabel{tab:downstream}{{11}{10}{Downstream evaluation (Llama-3.2-3B, $\rho {=}0.4$, seed42)}{table.caption.28}{}}
+\gdef \@abspage@last{10}

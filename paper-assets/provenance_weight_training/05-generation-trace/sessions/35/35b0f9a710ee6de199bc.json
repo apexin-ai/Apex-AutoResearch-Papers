@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35b0f9a710ee6de199bc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh check batchsize16 30476",
+  "task_key": "worker_ssh_check_batchsize16_30476_20260517T234517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_batchsize16_30476_20260517T234517_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "b31d6c1a8b04334549234abf4a0b44b8163559cf4bb4bca1b6f7fc1b58a98a09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval (PID 65732) 仍在运行。等几分钟后再查结果。先给出当前状态汇总：\n\n## 诊断结果\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | batchsize16_nmin8 进程已退出，无残留 |\n| **退出码** | `EXIT_CODE=0`（正常完成） |\n| **日志** | 训练到 6103/6103 steps (100%)，输出 `DONE: batchsize16_nmin8_r2` |\n| **最高 checkpoint** | `checkpoint-6103` + `final` 目录均存在 |\n| **训练时长** | 4h10m57s，train_loss = 2.6308 |\n| **输出路径** | `/root/autodl-tmp/provenance_weight_training/output/models/batchsize16_nmin8_r2/final` |\n| **GPU 3** | 空闲，0MiB 显存占用，30°C |\n\n**结论：batchsize16_nmin8_r2 正常完成（step 6103/6103）。**\n\nEval PPL 已在 GPU 3 上启动 (PID 65732)，预计几分钟后完成。结果将写入 `/root/autodl-tmp/provenance_weight_training/output/models/batchsize16_nmin8_r2/eval_result.json`。\n\n需要我稍后查看 eval 结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-batchsize16-30476.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4745e464b69deecdfbdd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh urgent check 3 experiments",
+  "task_key": "worker_ssh_urgent_check_3_experiments_20260517T040955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_check_3_experiments_20260517T040955_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "1a6fa4a0b71ff501eee88cc769e16d4aa7ea8262e075fc126085a5f51d3b90dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态\n\n| 实验 | 服务器 | 训练状态 | Eval PPL | GPU 状态 |\n|------|--------|---------|---------|---------|\n| random_reweight_v2 | 47453 | 进行中 (7305/8477, 86%) ETA ~6min | 待跑 | GPU0 占用 77% |\n| rho02_adaptive_tau09 | 47453 | 进行中 (4272/8477, 50%) ETA ~22min | 待跑 | GPU1 占用 93% |\n| batchsize16_nmin8 | 41312 | 进行中 (1499/6103, 25%) ETA ~9.5h | 待跑 | GPU2 占用 100% |\n\n## GPU 空闲情况\n- **westd-47453**: 4×RTX PRO 6000 Black 全部占用（GPU0: 77%, GPU1: 93%, GPU2: 99%, GPU3: 100%）\n- **westd-41312**: 4×RTX PRO 6000 Black 全部占用（GPU0: 83%, GPU1: 78%, GPU2: 100%, GPU3: 100%）\n\n**无空闲 GPU。**\n\n## 关键信息\n\n- **random_reweight_v2** 约 6 分钟后完成（3.25 it/s），输出在 `/root/autodl-tmp/output/models/random_reweight_v2_seed42/`\n- **rho02_adaptive_tau09** 约 22 分钟后完成\n- **batchsize16_nmin8** 还需约 9.5 小时（batch_size=16 导致 steps 更少但每 step 更慢）\n\n是否需要我等 random_reweight_v2 完成后自动跑 eval？它最快 6 分钟就能结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-check-3-experiments.md"
+}

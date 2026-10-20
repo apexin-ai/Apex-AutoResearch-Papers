@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ab655c1a2dc7116e1c1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "viz nmin table1 fix",
+  "task_key": "worker_viz_nmin_table1_fix_20260516T001113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_nmin_table1_fix_20260516T001113_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "430e3bb9014bffde711f7cd59bfceeafc45023ef9235847fd5f7e5b332541f80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表和表格都已更新完成。\n\n**P1-A 图表修改：**\n- 去掉了 \"Best: 17.639\" 标注\n- 添加了浅蓝色 shaded band 覆盖 n_min=2 和 n_min=3 的 effective range\n- 底部标注 *Recommended: n_min = ⌊B/2⌋*\n- 数据已与 3-seed 均值口径一致\n- 输出 `artifacts/figures/nmin_sensitivity.pdf` + `.png` (300dpi)\n\n**P1-B Table 1 脚注修改：**\n- 脚注更新为：*\"n_min=3 is the legacy implementation; n_min=2 is the recommended default via the coupling rule n_min = ⌊B/2⌋.\"*\n- PPL 加粗保持在 n_min=3（数值最优）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-nmin-table1-fix.md"
+}

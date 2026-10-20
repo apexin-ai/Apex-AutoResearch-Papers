@@ -1,0 +1,77 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:30.826651+00:00",
+  "completed_at": "2026-05-25T21:19:03.302021+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item（纯文本：Title + Abstract + Introduction 开头）。Figure 1 出现在 page 2 顶部，仍在前 2 页内，审稿人锚定效应尚可，但若能将 Figure 1 或一个精简版概念图提至首页底部效果更佳"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 三子图(a)(b)(c)的 legend 文字和 axis label 字号偏小（约正文 55-60%），尤其 subplot (a) 的 legend 与数据线有轻微视觉拥挤。建议放大 legend 字号至正文 70%+ 或移至图外"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2（架构概览图）仅占单栏宽度。作为传达核心方法的概览图，建议改用 figure*（全宽）以提升可读性和视觉冲击力"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Table 1 使用 booktabs 风格，最优结果加粗，格式规范。Figure 3 双子图 axis label 字号偏小但可读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 2 最优结果加粗标注，精度统一（小数点后 3 位）。Figure 4 清晰可读，caption 自包含"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figures 5 & 6 并排布局合理。Figure 5 legend 文字偏小（4 条 legend 项），建议适当放大。Figure 6 有 error bars + shaded region，统计信息呈现好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "本页 display items 密度最高（Table 3 + Table 4 + Figure 7），视觉上略拥挤但内容关联紧密，可接受。Figure 7 bar chart 使用颜色+斜线纹理区分类别，色盲友好性好"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 8 stacked bar chart 使用 5+ 种颜色类别，部分相邻色段（如浅蓝与浅绿）在灰度打印下可能难以区分。建议增加纹理填充或减少颜色类别数"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 5（决策摘要表）使用颜色背景行高亮不同条件，视觉效果好。主文正好 8 页（§1-§7），符合 EMNLP 2026 的 8 页限制"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 节简洁（3 个要点：Scope / Detector coverage / Evaluation scope），符合 EMNLP 要求。References 格式统一，无 [?] 未解析引用"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 11",
+      "message": "Algorithm 1 伪代码框排版整齐。Figure 9 轨迹图清晰。Tables 6-8 密度高但作为 Appendix 可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Figure 10 双子图 axis label 字号偏小（与正文比约 55%），建议放大"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 15",
+      "message": "末页内容填充约 95%，空间利用充分。包含 AI Assistants 声明，合规"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 12
+  }
+}

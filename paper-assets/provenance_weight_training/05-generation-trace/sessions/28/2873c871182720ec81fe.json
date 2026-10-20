@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2873c871182720ec81fe",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis detect remove baseline seed42",
+  "task_key": "worker_analysis_detect_remove_baseline_seed42_20260516T052102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_baseline_seed42_20260516T052102_result.json",
+    "occurrence": 1,
+    "bytes": 1349,
+    "sha256": "f8f7f2be29e5d60ea4e7f2f0a8901d2fe61cbfbfbf098dacb9c34d9c427680d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n---\n\n## detect_remove_baseline_seed42 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| train_loss | 11.003 |\n| total_steps | 6,103 |\n| train_runtime | 13,248s (~3h 41m) |\n| **eval_ppl_holdout** | **17.29** |\n| eval_loss_holdout | 2.8499 |\n| eval_holdout_tokens | 4,077,068 |\n| checkpoint | `output/models/detect_remove_baseline_seed42/final` |\n\n### Baseline 对比\n\n| 实验 | eval_ppl | Δ vs detect-remove |\n|------|----------|-------------------|\n| **detect_remove_baseline_seed42** | **17.29** | — |\n| grid_b0.3_seed42 | 17.640 | +0.35 |\n| grid_b0.5_seed42 | 17.651 | +0.36 |\n| adaptive_fix_seed42 | 17.653 | +0.36 |\n| golden_ratio_seed42 | 17.654 | +0.36 |\n| uniform_seed42 | 17.694 | +0.40 |\n\n### 分析\n\nDetect-and-remove (PPL=17.29) **大幅优于**所有 adaptive reweighting 方案。这对论文 claim 不利——简单过滤 q>0.5 后 uniform 训练就能达到最好效果，说明 adaptive reweighting 在已过滤数据上没有额外增益。\n\n但需注意一个关键混淆因素：filtered 数据集只有 153K 条，训练 200M tokens 意味着 ~0.64 epoch（数据没有重复），而 uniform_seed42 用全部 ~371K 条数据也跑 200M tokens。两者的 effective data diversity 不同，这个差异需要在论文 experiment section 中说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detect-remove-baseline-seed42.md"
+}

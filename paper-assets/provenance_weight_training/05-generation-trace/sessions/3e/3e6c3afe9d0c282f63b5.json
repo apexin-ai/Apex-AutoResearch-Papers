@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e6c3afe9d0c282f63b5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b0 3 ppl and cleanup",
+  "task_key": "worker_eval_grid_b0_3_ppl_and_cleanup_20260517T170830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid_b0_3_ppl_and_cleanup_20260517T170830_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "2adafd7488a1893fd8f45b77fc4cd00febccbc87e54b1d4cf12c9c7420642377"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。汇总结果：\n\n```\ngrid_b0_3_seed456 PPL = 17.64, loss = 2.8701, tokens = 4077068\n\nwestd-41312 GPU:\ncuda:0: uniform_seed42 retrain 运行中 (75014MiB, 83%)\ncuda:1: ess_only_seed456 运行中 (75014MiB, 91%)\ncuda:2: ess_only_seed123 运行中 (75014MiB, 100%)\ncuda:3: 空闲 (eval 已完成)\n\nwestd-30476 GPU:\ncuda:0: 空闲 (0MiB, 0%) — eval 进程 32393/32718 已自行结束，无需 kill\ncuda:1: 训练中 PID 22478 (81678MiB, 60%)\ncuda:2: 训练中 PID 22917 (46496MiB, 99%)\ncuda:3: 训练中 PID 22108 rho02_adaptive_tau09_seed42 (46496MiB, 99%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b0-3-ppl-and-cleanup.md"
+}

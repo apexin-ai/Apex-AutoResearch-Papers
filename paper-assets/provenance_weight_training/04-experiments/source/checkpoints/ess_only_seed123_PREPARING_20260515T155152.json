@@ -1,0 +1,18 @@
+{
+  "exp_id": "ess_only_seed123",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:51:52.911Z",
+    "updated_at": "2026-05-15T15:51:52.911Z",
+    "spec": {
+      "hypothesis": "ESS-only adaptive (max-intervention) with seed=123: replicates ess_only_seed42 (PPL 17.728) to confirm max-intervention degradation is consistent across seeds. Key evidence for Claim 1 (dual-constraint necessity).",
+      "parent": "ess_only_seed42"
+    }
+  },
+  "timestamp": "2026-05-15T15:51:52.992911+00:00",
+  "trigger": "update_registry"
+}

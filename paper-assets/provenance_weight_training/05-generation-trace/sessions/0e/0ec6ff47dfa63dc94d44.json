@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec6ff47dfa63dc94d44",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify adaptive fix seed456 alive",
+  "task_key": "worker_verify_adaptive_fix_seed456_alive_20260514T151727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_adaptive_fix_seed456_alive_20260514T151727_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "f445a9f20327ad55c7385e1453f6126cb5302525ed1a9be61e25149a862b868b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，验证结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| PID 115066 | 存活，状态 `Ss+`，已运行 33 秒 |\n| GPU cuda:3 | PID 115071（子进程）占用 46514 MiB 显存 |\n| 训练进度 | step 11/6103，速度 ~2.25s/it，预计 ~3h50m |\n| WANDB | 无错误（已设 `WANDB_MODE=disabled`） |\n| 日志 | adaptive weighting 指标正常输出，`alpha_eff` 在 0.04-0.8 范围波动，loss 在合理区间 |\n\n训练已成功启动并稳定运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-adaptive-fix-seed456-alive.md"
+}

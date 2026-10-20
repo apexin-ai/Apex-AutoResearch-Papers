@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e455f19e3399e799f85",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra install tmux",
+  "task_key": "worker_infra_install-tmux_20260513T221703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux_20260513T221703_result.json",
+    "occurrence": 1,
+    "bytes": 40,
+    "sha256": "83768bc5c9bc79aa4ed9d2281af979e8ee75253c15a467a0cab56e1dbddafc2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 3.2a 安装成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux.md"
+}

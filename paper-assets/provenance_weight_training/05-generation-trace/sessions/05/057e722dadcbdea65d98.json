@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "057e722dadcbdea65d98",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh download tau sweep combined",
+  "task_key": "worker_ssh_download_tau_sweep_combined_20260515T190002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_download_tau_sweep_combined_20260515T190002_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "075e616d8e1c8f3270dc8545f8810c1d64f9166edcbdf57a8c4cc790da78d6d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，服务器与本地文件大小完全一致。\n\n| 文件 | 服务器大小 | 本地大小 | 一致 |\n|------|-----------|---------|------|\n| `tau_sweep.pdf` | 21,159 bytes | 21,159 bytes | ✓ |\n| `tau_sweep.png` | 87,147 bytes | 87,147 bytes | ✓ |\n\n本地路径：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/tau_sweep.pdf`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/tau_sweep.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-download-tau-sweep-combined.md"
+}

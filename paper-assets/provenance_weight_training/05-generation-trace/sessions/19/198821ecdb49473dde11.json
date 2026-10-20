@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "198821ecdb49473dde11",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778892391.md",
+  "task_key": "loop_10_1778892391",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778892391.md",
+    "occurrence": 1,
+    "bytes": 4035,
+    "sha256": "152f25ae513672e0cfe20e3db939cae6d5b3a6c35d20893b309a35b0fee0a808"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T00:29:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-47453 的 cuda:0/1/2/3（4 张 RTX 6000 Pro 96G）。不得使用白名单外 GPU，即使 Director 指令也要 push back\n- `contamination_60_seed42` 上次因 GPU 分配冲突 OOM（被错误分配到已占用的 cuda:2）。重试时**必须先确认目标 GPU 无其他进程**\n- 数据盘路径：大文件（模型/数据）在 `/root/provenance_weight_training/`，不要放根分区\n- GPU 预算紧张：已消耗 ~140h，剩余 ~40h。每次提交前评估时间消耗\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`data/scored_data_60.jsonl`（ρ=0.6, 371K 行）、原始 ρ=0.4 数据也在 data/ 下\n- 活跃进程（4 个，全部有 cron 监控）：\n  - ess_only_seed123: PID 233872, cuda:0, tmux=ess_only_seed123\n  - contamination_60_uniform_seed42: PID 250074, cuda:1, tmux=contamination_60_uniform_seed42（刚提交）\n  - bs8_nmin2_seed42_r2: PID 238714, cuda:2, tmux=bs8_nmin2_seed42_r2\n  - ess_only_seed456: PID 233952, cuda:3, tmux=ess_only_seed456\n\n### 3. 📊 当前状态\n刚处理了 `contamination_60_seed42` 失败回调——诊断为 GPU 分配冲突（cuda:2 被双占），已更新 registry。顺便把闲置 cuda:1 上的 `contamination_60_uniform_seed42` 提交了，4/4 GPU 满载。已向 Director 汇报。\n\nRegistry 状态：\n- RUNNING (4): ess_only_seed123, ess_only_seed456, bs8_nmin2_seed42_r2, contamination_60_uniform_seed42\n- DONE/failed 待重试 (1): contamination_60_seed42（等 GPU 空出）\n- QUEUED (2): grid_b_low_seed42_r2, contamination_60_grid_b0_5_seed42\n- PREPARING (3): adaptive_v2_seed42/123/456（已标注 D012 修正：取消 EMA，改用 adaptive_fix）\n- 成功 32 / 负向 2 / 失败 4 / 共 50 个实验\n\n无等待中的 Worker 回调。Cron 监控 3 个（ess_only×2 + bs8_nmin2），contamination_60_uniform 刚注册 cron。\n\n### 4. 📋 待办（条件触发式）\n- ess_only_seed123/456 完成（预计 ~22:00 UTC）→ 分析 PPL，与 ess_only_seed42 (PPL=17.728) 对比，更新 Claim 1 多 seed 证据\n- 任一 GPU 空出 → 立即重新提交 `contamination_60_seed42`（adaptive ρ=0.6），命令在 registry reproduce 字段已有，**分配到空出的 GPU 编号**\n- bs8_nmin2_seed42_r2 完成 → 分析 batch_size=8 泛化性，填 Claim 覆盖矩阵\n- contamination_60_uniform_seed42 完成 → 拿到 ρ=0.6 uniform baseline PPL，为后续 adaptive vs uniform 对比做准备\n- 上述全部完成 + contamination_60_seed42 重试成功 → 评估论文初稿启动条件（ROADMAP 中的 dream_simulate 全文审查）\n- PREPARING 的 adaptive_v2 系列：已被 D012 废弃（改为 adaptive_fix），如果 GPU 有余量再决定是否清理或重新规划\n\n### 5. 🎯 战略上下文\n- **核心方向**：Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界），替代 Drayson 的 validation-based grid search\n- **投稿目标**：EMNLP 2026 ARR May 25（剩 10 天），时间紧\n- **关键决策链**：D023 dual-constraint 框架 → D029 ESS-only 退化确认 → D035 Claim 3 reframe（τ controls bias-variance） → D036 τ sweep 完成 → D037 bs8 配置修正 → D038 批准 writing_plan.yaml\n- **τ sweep 结论**：safe range [0.5,0.8]，τ=0.8 optimal，τ>0.8 退化（b* inflation）\n- **n_min 叙事**（D034）：从 variance 优势转为 robustness——n_min∈{2,3}均有效\n- **易错点**：\n  - n_min=4 时 b*=0（ESS 约束不可满足），退化为 uniform——这是正确预期行为，不是 bug\n  - PREPARING 的 adaptive_v2 系列已过时，不要直接提交\n  - GPU 预算只剩 ~40h，contamination_60 全系列（adaptive + uniform + grid）预计吃 ~14h，需要精打细算\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778892391.md"
+}

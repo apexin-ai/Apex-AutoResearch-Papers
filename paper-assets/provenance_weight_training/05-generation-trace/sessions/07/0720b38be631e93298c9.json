@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0720b38be631e93298c9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix figures critical",
+  "task_key": "worker_fix_figures_critical_20260524T044405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_figures_critical_20260524T044405_result.json",
+    "occurrence": 1,
+    "bytes": 1828,
+    "sha256": "977e16870cb61c2a5c5c626ba9b8813589f4b80da5b3d5f46e3f356a85226089"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8 个文件全部生成（4 figure × pdf/png）。\n\n---\n\n## 修改汇总\n\n### Fix 1: Fig 2 constraint_regime_decomposition — τ=0.8 → τ=0.7\n| 字段 | ρ=0.4 旧值 (τ=0.8) | ρ=0.4 新值 (τ=0.7) | ρ=0.6 旧值 | ρ=0.6 新值 |\n|------|-----|-----|-----|-----|\n| α_eff binding | 38.2% | **50.9%** | 33.4% | **46.8%** |\n| ESS binding | 59.8% | **43.3%** | 66.0% | **48.7%** |\n| Clean | 2.0% | **5.8%** | 0.6% | **4.5%** |\n\n数据来源：τ=0.7 3-seed (seed42/123/456) step_metrics.jsonl 实时提取\n\n### Fix 2: Fig 4 dr_dual_curve — adaptive 参考线\n- 旧值：**17.651**（实际是 grid b=0.5 seed42 的 PPL）\n- 新值：**17.674**（τ=0.7 3-seed adaptive mean = (17.680+17.666+17.677)/3）\n\n### Fix 3: Fig 3 τ=0.8 PPL — 保持 17.6527\n- 脚本值 17.6527 来自 `adaptive_fix_seed42`（n_min=2 修正版）\n- Registry 中 17.644 来自 `adaptive_seed42`（n_min=3 原始版，有 bug）\n- tau sweep 其他数据点均使用相同实验体系，**17.6527 是一致且正确的值**，不修改\n\n### 生成文件路径\n```\n/root/provenance_weight_training/output/figures/\n├── constraint_regime_decomposition.pdf  (22KB)\n├── constraint_regime_decomposition.png  (53KB)\n├── dr_dual_curve.pdf                    (29KB)\n├── dr_dual_curve.png                    (103KB)\n├── grid_b_trend_clean.pdf               (21KB)\n├── grid_b_trend_clean.png               (88KB)\n├── tau_rho_rank_preservation.pdf         (27KB)\n└── tau_rho_rank_preservation.png         (118KB)\n```\n\n### 验证清单\n- [x] Fig 2 柱状图数据 ≈ 50.9/43.3/5.8（ρ=0.4）\n- [x] Fig 4 adaptive 参考线 = 17.674\n- [x] Fig 3 τ=0.8 数据点 = 17.6527（与 adaptive_fix 一致，保持不变）\n- [x] 所有 figure 重新生成成功"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-figures-critical.md"
+}

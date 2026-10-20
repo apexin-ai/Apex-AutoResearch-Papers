@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0de00676ccfbafcb27d5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b0 3 seed123 urgent",
+  "task_key": "worker_eval_grid_b0_3_seed123_urgent_20260518T014025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid_b0_3_seed123_urgent_20260518T014025_result.json",
+    "occurrence": 1,
+    "bytes": 243,
+    "sha256": "31b675fb994936b2938674fb0aac90a230af94c2b6168d61ef4244ee7a6089b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：grid_b0_3_seed123 eval PPL = 17.58**\n\nClaim 2 三个 seed 汇总：\n| Seed | b=0.3 PPL |\n|------|-----------|\n| 42   | 17.640    |\n| 456  | 17.64     |\n| 123  | 17.58     |\n\nRegistry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b0-3-seed123-urgent.md"
+}

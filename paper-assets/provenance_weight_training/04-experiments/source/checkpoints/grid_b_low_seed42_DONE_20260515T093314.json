@@ -1,0 +1,52 @@
+{
+  "exp_id": "grid_b_low_seed42",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T01:18:54.793Z",
+    "updated_at": "2026-05-15T09:33:14.212Z",
+    "hypothesis": "Grid-b extension to b<0.5 (b=0.1/0.2/0.3 serial), seed42, confirming whether grid-best lies at b=0.5 or below",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-15T05:23:13.303Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T09:02:07.651872+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "bash run_grid_b_low_seed42.sh",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "163662",
+      "log_path": "~/runs/provenance_weight_training/grid_b_low_seed42.log",
+      "submitted_at": "2026-05-15T09:20:20Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/provenance_weight_training/data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "wall_clock_seconds": 774.2,
+      "gpu_hours": 0.22
+    },
+    "notes": "第2次失败。日志末尾显示 \"Terminated\"（SIGTERM），进程在 step 431/8477 (~5%) 被外部终止。无 OOM/CUDA error/Traceback。已派 Worker worker_diagnose_grid_b_low_seed42_20260515T090424 深查 SIGTERM 来源。",
+    "reproduce": {
+      "finished_at": "2026-05-15T09:02:05.942Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T09:33:14.291247+00:00",
+  "trigger": "update_registry"
+}

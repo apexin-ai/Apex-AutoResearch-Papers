@@ -1,0 +1,15 @@
+{
+  "exp_id": "tau07_downstream_eval",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:19:08.294Z",
+    "updated_at": "2026-05-20T03:01:09.862Z",
+    "hypothesis": "Downstream eval for τ=0.7 (3 seeds). Paper switched main results to τ=0.7; must confirm downstream benchmarks match or exceed τ=0.8 and uniform. Reviewer will ask for downstream under recommended setting."
+  },
+  "timestamp": "2026-05-20T03:01:10.257275+00:00",
+  "trigger": "update_registry"
+}

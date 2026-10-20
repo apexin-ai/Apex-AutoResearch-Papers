@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3a859023c65bf052ee43",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval fromscratch seed42 fix",
+  "task_key": "worker_eval_fromscratch_seed42_fix_20260519T233530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_fromscratch_seed42_fix_20260519T233530.log",
+    "occurrence": 1,
+    "bytes": 859521,
+    "sha256": "8c3301d2b409f3a10e10869fae6a42975f2f8819f2e8eacf932e8d55751c37de"
+  },
+  "statistics": {
+    "messages": 637,
+    "user_turns": 0,
+    "tool_calls": 267,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 99,
+      "record": 1,
+      "tool_call": 267,
+      "tool_result": 267,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 637,
+      "chunks": [
+        {
+          "path": "3a859023c65bf052ee43-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a859023c65bf052ee43-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a859023c65bf052ee43-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a859023c65bf052ee43-part-0004.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-fromscratch-seed42-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a1e2f1b4f9d6b75c435",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code fix server code and submit",
+  "task_key": "worker_code_fix_server_code_and_submit_20260514T133943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_server_code_and_submit_20260514T133943_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "51606a5c98acd3ee3cd1debe9d5b7c017face43b5d118dfc20bd3005040ee24e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| n_min 默认值 `max(2, batch_size // 2)` | line 280, 正确 |\n| 无 EMA 相关代码 | grep 返回空，确认无 ema |\n| unweighted_loss 日志 | line 130/158/191，存在 |\n| help 文本说 `batch_size // 2` | line 237-239，一致 |\n| alpha_eff.py 存在 | 6863 bytes，存在 |\n| Python 验证 n_min=2 | PASS |\n\n代码已修正，可以开始跑 adaptive_fix 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-server-code-and-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a80e754f1432e159d1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis dr epoch matched seed123",
+  "task_key": "worker_analysis_dr_epoch_matched_seed123_20260521T233436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dr_epoch_matched_seed123_20260521T233436_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "ce5efc882350c7e96625299d42006f7c5b2db8794b6e4860f76399a58e4df289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**两个实验训练均已完成**，但 eval 不完整：\n\n| 实验 | 训练状态 | train_loss | holdout_ppl | holdout_loss | owt_ppl | wiki_ppl |\n|------|---------|-----------|-------------|-------------|---------|---------|\n| dr_epoch_matched_seed123 | 2533/2533 完成 | 2.831 | 未评估 | 未评估 | 未评估 | 未评估 |\n| detect_remove_q05_v2_seed123 | 24414/24414 完成 | 2.760 | **17.366** | **2.854** | 未评估 | 未评估 |\n\n**Epoch confound gap 无法计算** — dr_epoch_matched_seed123 的 eval 完全缺失。\n\ndetect_remove_q05_v2_seed123 的 holdout_ppl=17.366 与 seed42 的 17.285 差 +0.081，seed 间变异合理。\n\n**需要补跑的 eval**：\n1. dr_epoch_matched_seed123：holdout + OOD (owt, wiki)\n2. detect_remove_q05_v2_seed123：OOD (owt, wiki)\n\n是否现在启动这些 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dr-epoch-matched-seed123.md"
+}

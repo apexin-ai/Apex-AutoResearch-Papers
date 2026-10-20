@@ -1,0 +1,847 @@
+issues:
+# === Round 10 issues (all resolved, retained for history) ===
+- id: "R10-C1"
+  summary: "Seed 42 checkpoint resume artifact 使主表核心比较可信度存疑"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "Appendix P 揭示 seed 42 resume artifact。R2 推算替换后 Δ 缩小到 ~0.002。要求 from-scratch 重跑。"
+  resolution: "tau07_seed42 确认是 2026-05-19 独立 from-scratch 训练，n_min=2（脚本默认值）。Resume artifact 仅影响早期 tau=0.8 实验。Paper 已澄清。"
+  resolution_round: 10
+
+- id: "R10-C2"
+  summary: "多重比较未校正，p=0.025 Bonferroni 校正后不显著"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "6 种方法 ≥5 检验，p 值未校正。BH 校正后 ρ=0.4 p=0.078 不显著。"
+  resolution: "BH 校正完成，corrected p 写入论文。ρ=0.4 用 'directionally consistent' + bootstrap CI；ρ=0.6 保留 'significant'。t/p 值统一为 3dp 精度。"
+  resolution_round: 10
+
+- id: "R10-C3"
+  summary: "方法新颖性不足，§3 仍占 ~1.5 页与 analysis 定位不匹配"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "w=(1-q)^b 完全沿用 Drayson et al.。§3 ~1.5 页偏重方法。应明确 analysis paper 定位。"
+  resolution: "§3 从 1.5→0.75 页。Contributions 重排：(1-3) 分析发现突出，(4) adaptive b* 标为 practical corollary。"
+  resolution_round: 10
+
+- id: "R10-C4"
+  summary: "Downstream task 零改善削弱实际意义"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "Table 3 所有 downstream |Δ| ≤ 0.01。§6 解释 ~4 行过短。需 7B+ 或更细粒度评估。"
+  resolution: "Downstream null 分析扩展到 ~6 行，加入量级论证（0.1% PPL → measurement noise 以下）+ Tay et al. citation。7B+ 不可行，acknowledged in Limitations。"
+  resolution_round: 10
+
+- id: "R10-M1"
+  summary: "实验规模和场景过于狭窄，ρ=0.3 缺失"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "仅 0.6B/1.7B，self-contamination，ρ=0.3 缺失。Claim 范围超过验证范围。"
+  resolution: "ρ=0.3 2-seed 完成。"
+  resolution_round: 10
+
+- id: "R10-M2"
+  summary: "论文定位仍存在模糊性"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "Abstract analysis + method 混合。"
+  resolution: "与 C3 合并完成。"
+  resolution_round: 10
+
+- id: "R10-M3"
+  summary: "α_eff proxy 质量偏弱（r=0.70, R²=0.49）"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "49% 未解释方差来源未分析。Soft label 替代方案未讨论。"
+  resolution: "定量方差分解完成。"
+  resolution_round: 10
+
+- id: "R10-M4"
+  summary: "Self-contamination 生态效度有限"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "Cross-model transfer mixed。PPL 比较被省略。"
+  resolution: "§4 末尾加 self-contamination controlled testbed 预告句 + cross-model reference。"
+  resolution_round: 10
+
+- id: "R10-m1"
+  summary: "B=4 dual constraint 统计可靠性存疑"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "α_eff(0) 仅 5 值。b* distribution 未报告。"
+  resolution: "B=8/16 改善 granularity 已在论文中。B=4 限制在 §6 已讨论。"
+  resolution_round: 10
+
+- id: "R10-m2"
+  summary: "关键证据仅在附录"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "Proxy validation, seed 42 artifact, ρ=0.2 失效影响 core claims。"
+  resolution: "正文已加引用句。"
+  resolution_round: 10
+
+- id: "R10-m3"
+  summary: "Responsible NLP Checklist 出现在 PDF 中"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [1, 2]
+      note: "EMNLP 2026 规定 checklist 在 OpenReview 表单。"
+  resolution: "Checklist 从 PDF 移除。"
+  resolution_round: 10
+
+- id: "R10-m4"
+  summary: "效应量极小需 cost-benefit 论证"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [2]
+      note: "Δ=-0.020 PPL ~0.11% relative。需检测器开销 vs 改善分析。"
+  resolution: "§6 Effect size 段落已包含 cost-benefit 讨论。"
+  resolution_round: 10
+
+- id: "R10-m5"
+  summary: "小格式问题（ρ 定义、Figure 2 灰度、Table 2 4σ）"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  mentions:
+    - round: 10
+      reviewers: [2]
+      note: "ρ token/doc 区分、Figure 2 marker、Table 2 4σ。"
+  resolution: "ρ 加 (token-level)，Figure 2 caption 加 marker 区分说明。"
+  resolution_round: 10
+
+# === Round 11+ recurring issues (updated with Round 14 fresh review) ===
+
+- id: "R11-C1"
+  summary: "N=3 seeds 统计检验力严重不足，2 自由度无法可靠支撑定量结论"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "R1 列为 must-fix，R2 列为 should-fix 但交叉回应时同意升级。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "Round 12 fresh review 再次独立发现。双方 AGREE。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "论文已升至 5 seeds + BH correction。统计检验力问题部分缓解但 Cohen's d=3.83 被 deterministic data ordering 人为放大。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "N=5 seeds 和 BH correction 已到位。原始 N=3 问题已解决。衍生出 R14-N1（ρ=0.6 p_BH=0.064 overclaim）。R2 交叉回应补充：Cohen's d caveat 应在 §5.1 主文而非仅 Appendix Q；建议补充 Wilcoxon signed-rank 作为 robustness check。"
+  resolution: "主实验升至 5 seeds + BH correction。原始统计检验力问题已解决。"
+  resolution_round: 14
+
+- id: "R11-C2"
+  summary: "α_eff proxy 可靠性存疑：R²≈0.63，Wang (2026) 理论保证不直接转移到 proxy"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "Pearson r=0.70 vs Spearman ρ=0.40 差距暗示极端值驱动。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "r(α_eff, mean_q)=0.80 被识别为 proxy-to-proxy 循环论证。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "R1-N2 标为 critical。圆桌共识：should-fix（修改 'guarantees' 措辞即可）。"
+    - round: 14
+      reviewers: [2]
+      note: "R2 补充：negative bias ≈-0.03 意味 α_eff 偏向 conservative intervention（多干预），在 safety 角度可取但解释了 b*≈0.9 系统偏高的问题。应报告 violation rate（α_eff ≥ τ 且 true fraction < τ 的 batch 比例），可从现有数据直接计算。"
+  action_items:
+    - round: 14
+      action: "将 §3 中 'guarantees' 改为 'targets/approximates'。报告 violation rate。考虑 bias correction（+0.03 offset）对 b* 的影响。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R11-C3"
+  summary: "下游任务零改善 + 效应量极小（Δ=-0.023 PPL, 0.13% relative），practitioner framing 自相矛盾"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "Table 4 全部 |Δ| ≤ 0.01。Abstract 'yielding a practical adaptive method' 构成 overclaim。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "B=128 幂律外推被一致认为不可靠。'practical' 表述仍残留。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "R1-N1 + R2-W2+W5 独立提出。核心矛盾仍在。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2-N3 + R1-N1 再次确认。R2 交叉回应补充：论文内部存在定位矛盾——§6 诚实承认影响有限('does not transfer to downstream accuracy')但 Table 5 仍以 'for practitioners' 包装。R2 建议：论文最有价值的贡献（D&R epoch-matching、calibration）本质是分析性的，不需要 practitioner framing 来体现价值。"
+  action_items:
+    - round: 14
+      action: "Abstract 限定 'improves held-out PPL' + 注明无下游改善。重新定位为 mechanism analysis paper。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R11-C4"
+  summary: "标题通用性远超实验 scope：仅 self-contamination + continued pretraining + 0.6B"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "仅 Qwen3-0.6B + FineWeb 132M + self-generated contamination。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "Cross-model transfer single seed + mixed + 无 PPL 比较。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "R2-W1 must-fix。建议标题加限定如 '...in Continued Pretraining'。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2-N2 + R1 AGREE。跨 4 轮持续存在。标题未改。"
+  action_items:
+    - round: 14
+      action: "修改标题增加限定词。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R11-W1"
+  summary: "Adaptive b* 方法新颖性不足，本质是 Drayson et al. 框架的参数选择启发式"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "w=(1-q)^b 100% 来自 Drayson et al.，Proposition 1-2 trivial。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "§3 压缩后仍给人独立方法贡献印象。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "圆桌共识：中偏低，不影响评分。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2-W2 指出 'three effectiveness conditions' framing 仍过度概括。Introduction 已改用 'illustrative application' 和 'three findings'（改善），但 Abstract/Conclusion/Figure 1 仍用 'conditions'（不一致）。"
+  action_items:
+    - round: 14
+      action: "统一使用 'three empirical findings' 或 'three observed requirements'。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R11-W3"
+  summary: "Related Work 遗漏近期 instance-level reweighting 工作和 detection benchmarks"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [2]
+      note: "缺失 4 篇参考文献。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "Round 11 缺失的 4 篇已补充。Round 12 新增建议。"
+    - round: 13
+      reviewers: [2]
+      note: "R2 新增：RAID benchmark (Dugan et al. 2024)、M4 shared task (Wang et al. 2024)。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "RAID 和 M4 仍缺失。"
+  action_items:
+    - round: 14
+      action: "补充 RAID 和 M4。考虑 MATES 和 Aioli。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R11-W4"
+  summary: "Epoch confound 讨论缺乏 uniform+multi-epoch baseline"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "需讨论 prior work 是否控制了 epoch。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "Epoch confound 适用范围需限定为 multi-epoch exposure 场景。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "R1-W2：缺 uniform × 3.2 epochs baseline。R2 AGREE。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "仍缺失。R2 交叉回应进一步论证：此 baseline 可区分两个假说——(a) filtering quality vs (b) 单纯 repetition。如果 uniform × 3.2 epochs 也大幅改善 PPL，D&R 的 'filtering' 叙事需修正。计算成本低（~1 次训练）。"
+  action_items:
+    - round: 14
+      action: "增加 uniform+multi-epoch baseline（全数据 ~3.2 epochs）。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R11-m2"
+  summary: "Figure 可读性和 display item 分布问题"
+  category: format
+  severity: info
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 14
+  mentions:
+    - round: 11
+      reviewers: [1, 2]
+      note: "Figure 2 偏小、灰度难区分。"
+    - round: 12
+      reviewers: [1, 2]
+      note: "ρ 符号冲突、Figure 1 黑白不可辨。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "视觉审查发现 page 6 密度过高。"
+    - round: 14
+      reviewers: []
+      note: "Round 14 reviewers 未独立提出。视觉审查发现 Figure 8 灰度问题（warning）。"
+  action_items:
+    - round: 14
+      action: "Figure 8 增加纹理填充。放大 axis label 字号。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# === Round 12 issues (updated with Round 14) ===
+
+- id: "R12-C1"
+  summary: "Abstract 超过 200 words 限制"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+    - round: 12
+      reviewers: [1, 2]
+      note: "LaTeX wc 确认 225 words。"
+    - round: 13
+      reviewers: [2]
+      note: "Round 13 确认 ~155 words，合规。"
+    - round: 14
+      reviewers: [2]
+      note: "R2 在交叉回应中 REBUT R1 的 'abstract 接近限制' concern：实际约 171 words，距 200 限制有 ~15% 余量。合规。"
+  resolution: "Abstract 已压缩至合规范围。"
+  resolution_round: 13
+
+- id: "R12-C2"
+  summary: "正文超出 8 页限制"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 13
+  mentions:
+    - round: 12
+      reviewers: [1, 2]
+      note: "§7 Conclusion 溢出至第 9 页。"
+    - round: 13
+      reviewers: [2]
+      note: "Round 13 确认 §1-§7 在 page 8 内。合规。"
+  resolution: "正文已压缩至 8 页内。"
+  resolution_round: 13
+
+- id: "R12-W1"
+  summary: "Detector 测试范围不足（仅 3 个），不足以支撑 AUC/ECE threshold 的通用性"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+    - round: 12
+      reviewers: [1, 2]
+      note: "仅 TF-IDF+LR / GPT-2 / N-gram。3 个数据点不足建立因果关系。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "缺少 neural detectors。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R1-W4 + R2-W4 再次确认。AUC=0.88/ECE=0.04 区间无 empirical support。"
+  action_items:
+    - round: 14
+      action: "扩展 detector coverage 或标注 threshold 为 observational。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R12-W2"
+  summary: "Batch-size scaling 趋势基于 3 个数据点，power law fitting 不可靠"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+    - round: 12
+      reviewers: [1, 2]
+      note: "B=4/8/16 仅 3 点，外推到 B=128 不可靠。"
+    - round: 13
+      reviewers: [1, 2]
+      note: "未再单独提及。"
+    - round: 14
+      reviewers: []
+      note: "Round 14 未作为独立问题提出。§5.3 现报告 monotonic trend 和 amplification factor，未见 power law 外推。可能已改善。"
+  action_items:
+    - round: 12
+      action: "确认是否已删除 power law fitting。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R12-m1"
+  summary: "ρ 符号冲突：同时表示 contamination ratio 和 Spearman 相关系数"
+  category: format
+  severity: info
+  status: in_progress
+  first_raised_round: 12
+  last_seen_round: 14
+  mentions:
+    - round: 12
+      reviewers: [1, 2]
+      note: "建议将 Spearman 改为 ρ_s。"
+    - round: 14
+      reviewers: []
+      note: "§6 使用 'Spearman ρ_s ≥ 0.86'，部分修正。需验证全文一致性。"
+  action_items:
+    - round: 12
+      action: "全文 Spearman ρ → ρ_s"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+# === Round 13 issues (updated with Round 14) ===
+
+- id: "R13-W1"
+  summary: "B=4 micro-batch 上 dual constraint 统计可靠性不足，主实验在次优设定运行"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [1, 2]
+      note: "B=4 MAE=0.114，advantage 最小（1.0×）。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2-Q3 + R1 AGREE。R2 交叉回应补充：B=4 选择有合理理由（memory constraints），且 B=8/16 结果已在 §5.3 补充，是 framing issue 而非 experimental flaw。但仍应讨论 B=64/128 预期行为。"
+  action_items:
+    - round: 14
+      action: "讨论 B=64/128 预期行为。可选：补 B=32 实验。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-W2"
+  summary: "Grid-best b=0.3 vs adaptive b*≈0.9 偏差：α_eff 负偏差导致过度干预"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [1, 2]
+      note: "因果链：α_eff 负偏差 → quality floor 过早绑定 → b_τ 推高 → b*≈0.9 远高于 grid-best b=0.3。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R1 AGREE，R2 partial REBUT。R2 论证：(1) 比较框架不对等——grid b=0.3 是全局固定值而 mean b*≈0.9 含 per-batch 波动（0~5 range, 5.8% clean batches b*=0）；(2) gap 部分来自 grid-search 的 post-hoc oracle advantage（cross-seed SD=0.035 是 adaptive 6×）；(3) 但核心 concern 成立——α_eff negative bias -0.03 确实系统推高 b*，是结构性缺陷。圆桌共识：观察有效，但'违背 minimum intervention'措辞过强，更准确为'未能完全实现 minimum intervention，有改进空间'。"
+  action_items:
+    - round: 14
+      action: "补充 per-batch b* 分布。探索 bias correction（+0.03 offset）对 b* 和 PPL 的影响。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-W3"
+  summary: "1.7B 规模效应递减 43% 且 scaling trend 未正式讨论"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [1, 2]
+      note: "0.6B→1.7B Δ 从 −0.023 缩至 −0.013（43% 递减），OOD 方向不一致。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2-W5 + R1 AGREE。R2 交叉回应补充：论文解释('larger models more robust to self-generated contamination')合理但暗示方法的结构性局限——效果依赖 generator-trainee mismatch，而 self-contamination 中 mismatch 随模型增大缩小，方法 inherently limited。§7 最后一句'whether these conditions hold at full scale...is the central open question'——但 0.6B→1.7B 已减半，full-scale 前景更存疑。"
+  action_items:
+    - round: 14
+      action: "正式讨论 scaling trend。在 Table 5/Conclusion 加 scale caveat。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-W4"
+  summary: "ρ≥0.4 实用门槛偏高，实际适用场景极窄"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [2]
+      note: "方法仅在多条件同时成立下有效。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "两位 reviewer 均确认。"
+  action_items:
+    - round: 14
+      action: "在 Table 5 或 Conclusion 明确标注适用范围限制。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-m1"
+  summary: "§6 Discussion 第一段与 §5.1 epoch confound 内容重复"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [1, 2]
+      note: "R2 提出，R1 AGREE。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "仍存在。建议精简。"
+  action_items:
+    - round: 14
+      action: "精简 §6 第一段为概括 + §5.1 交叉引用。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-m2"
+  summary: "Cohen's d 被 deterministic data ordering 人为放大，效应量不确定性未讨论"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [1, 2]
+      note: "d=3.83 但 σ=0.006 因 data ordering 固定。"
+    - round: 14
+      reviewers: [1, 2]
+      note: "R1-N2 + R2 AGREE。R2 补充：Appendix Q 透明度好（承认'low dispersion is a property of the experimental setting'），但 caveat 应在 §5.1 主文而非仅 appendix。Uniform baseline 也有类似低方差（σ=0.008），确认窄方差是实验设定属性。Paired t-test 高显著性不能推广到更广 data conditions。"
+  action_items:
+    - round: 14
+      action: "将 Appendix Q 的 Cohen's d caveat 移至/复制到 §5.1 主文。补充 Wilcoxon signed-rank test。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-m3"
+  summary: "PPL 改善与模型质量（下游任务能力）之间的关系未讨论"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [2]
+      note: "在 continued pretraining 中多大 PPL 改善才对应有意义的 capability 提升？"
+    - round: 14
+      reviewers: []
+      note: "Round 14 未独立提出。§6 引用 Tay et al. 和 Ye et al. 讨论 PPL-accuracy 非线性关系，部分改善。"
+  action_items:
+    - round: 13
+      action: "在 Discussion 简要讨论 PPL-capability 关系。"
+      assigned_to: director
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R13-m4"
+  summary: "Permuted q-scores ablation 仅 1 seed"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 13
+  last_seen_round: 14
+  mentions:
+    - round: 13
+      reviewers: [1]
+      note: "Table 1 确认仅 seed-42。"
+    - round: 14
+      reviewers: []
+      note: "Round 14 未独立提出。Table 1 仍显示 Permuted 仅 seed 42。"
+  action_items:
+    - round: 13
+      action: "补充 permuted 多 seed 或标注限制。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+# === Round 14 新发现 ===
+
+- id: "R14-N1"
+  summary: "Abstract 中 'ρ ≥ 0.4, reaching conventional significance' 对 ρ=0.6 构成 overclaim（p_BH=0.064）"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2 发现，R1 AGREE。§5.2 ρ=0.6 p_BH=0.064 > α=0.05。仅 ρ=0.4 p_BH=0.011 达标。"
+  action_items:
+    - round: 14
+      action: "修改 Abstract：改为 'at ρ=0.4' 或注明 ρ=0.6 仅 marginal。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-W1"
+  summary: "Temperature scaling T=0.204 需要 labeled data，限制实际部署性"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2-Q2 + R1 AGREE。Detector calibration 依赖 10K labeled validation split。"
+  action_items:
+    - round: 14
+      action: "在 Discussion 讨论 unsupervised calibration alternatives 或在 Limitations 加此限制。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-W2"
+  summary: "1.7B 实验选择 τ=0.8 而非推荐的 τ=0.7，构成 confound"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [2]
+      note: "R2 在交叉回应中新发现（Q5）。§5.2 报告 1.7B 使用 τ=0.8 但未解释理由。0.6B 主结果推荐 τ=0.7（§5.3 明确显示 τ=0.7 在 holdout 和 OOD 上均优）。1.7B 用 τ=0.8 导致无法区分效应减弱是因为 scale 还是因为 suboptimal τ。"
+  action_items:
+    - round: 14
+      action: "解释 1.7B 选择 τ=0.8 的理由，或补充 1.7B + τ=0.7 实验。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-M1"
+  summary: "Table 1 caption 声明 5-seed mean 但仅展示 3 个 seed 列"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "Seeds 789/234 不可见，可能引发选择性报告疑虑。"
+  action_items:
+    - round: 14
+      action: "Caption 注明 full results in Appendix 或增加 seed 列。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-M2"
+  summary: "§5.2 与 Appendix I 的 t 值不一致（t=-9.95 vs t=-15.4）"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "R2 发现，R1 AGREE。损害 reproducibility。"
+  action_items:
+    - round: 14
+      action: "核实并统一 t 值。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-M3"
+  summary: "'Three effectiveness conditions' vs 'three findings' 术语全文不一致"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "Abstract/Figure 1/Conclusion 使用 'conditions'，Introduction 使用 'findings'。"
+  action_items:
+    - round: 14
+      action: "全文统一术语。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-M4"
+  summary: "Appendix P Table 16 seed 456 缺 OOD 评估"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "数据完整性问题。"
+  action_items:
+    - round: 14
+      action: "补充或解释缺失原因。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R14-M5"
+  summary: "Sliding-window evaluation 未说明 window size 和 stride"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 14
+  last_seen_round: 14
+  mentions:
+    - round: 14
+      reviewers: [1, 2]
+      note: "Reproducibility 要求。"
+  action_items:
+    - round: 14
+      action: "在 §4 或 Appendix 注明。"
+      assigned_to: director
+      status: open
+  resolution: ""
+  resolution_round: null

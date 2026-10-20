@@ -1,0 +1,47 @@
+{
+  "description": "Mechanism analysis for rho=0.6 adaptive weighting. Full data at westd-30476:/root/provenance_weight_training/analysis/rho06_mechanism_data.json",
+  "runs_analyzed": {
+    "rho06_adaptive": {"rho": 0.6, "tau": 0.8, "adaptive_tau": false, "seed": 123, "n_records": 24412},
+    "rho06_adaptive_tau": {"rho": 0.6, "tau": 0.7, "adaptive_tau": true, "seed": 42, "n_records": 24412},
+    "rho02_adaptive": {"rho": 0.2, "tau": 0.8, "adaptive_tau": false, "seed": 42, "n_records": 24412}
+  },
+  "comparison": {
+    "rho06_adaptive": {
+      "rho": 0.6,
+      "b_star_mean": 1.368,
+      "b_star_std": 1.901,
+      "b_star_median": 0.860,
+      "b_star_p5": 0.280,
+      "b_star_p95": 3.860,
+      "alpha_eff_binding_rate": 0.334,
+      "alpha_eff_mean": 0.629,
+      "ess_over_B_mean": 0.576,
+      "ess_over_B_std": 0.130,
+      "mean_q_mean": 0.624
+    },
+    "rho06_adaptive_tau": {
+      "rho": 0.6,
+      "b_star_mean": 0.897,
+      "b_star_std": 1.473,
+      "b_star_median": 0.550,
+      "alpha_eff_binding_rate": 0.652,
+      "alpha_eff_mean": 0.579,
+      "ess_over_B_mean": 0.657,
+      "ess_over_B_std": 0.163,
+      "mean_q_mean": 0.624
+    },
+    "rho02_adaptive": {
+      "rho": 0.2,
+      "b_star_mean": 1.735,
+      "b_star_std": 2.743,
+      "b_star_median": 0.962,
+      "alpha_eff_binding_rate": 0.600,
+      "alpha_eff_mean": 0.775,
+      "ess_over_B_mean": 0.734,
+      "ess_over_B_std": 0.192,
+      "mean_q_mean": 0.393
+    }
+  },
+  "b_star_trend_stable": true,
+  "b_star_trend_note": "b* mean stays flat across training (1.375 at step 0-500, 1.301 at step 6000-6102), no drift"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39fc4196193f37d8955a",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778908041.md",
+  "task_key": "loop_11_1778908041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778908041.md",
+    "occurrence": 1,
+    "bytes": 4886,
+    "sha256": "1ca6099268bc771e68cfb39b43156ac356b82d4f20e41c42d54665a700b228e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T05:07:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **cuda:0/1/2/3 @ westd-47453**，禁止使用其他设备号\n- GPU 预算 **剩余 ~26h**（已消耗 ~154h），当前 4 个 RUNNING 约消耗 ~14h，剩余仅 ~12h（≈3 个实验）\n- **EMNLP 2026 ARR May 25 deadline**（距今 9 天）\n- ρ=0.6 数据文件是 `data/scored_data_60.jsonl`，ρ=0.4 是 `data/scored_data.jsonl`——**不要混用**\n- 训练命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **禁用 WANDB_MODE=disabled**——之前导致 cron 误判 failed（contamination_60_uniform 事故）\n- D048 已确认 τ sweep 原始数据无 n_min confound（已用 n_min=2），**不要再重跑 n_min=2 版本**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96GB\n- **工作目录**: `/root/provenance_weight_training`\n- **Python**: `/root/miniconda3/bin/python`（conda base，非 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train\n- **模型**: `models/Qwen/Qwen3-0.6B`（continued pretraining，基线 PPL=22.97）\n- **数据**: `scored_data.jsonl`(ρ=0.4, 371K), `scored_data_60.jsonl`(ρ=0.6, 371K), `scored_data_filtered_q05.jsonl`(过滤后 ~153K)\n- **W&B**: project=provenance_weight_training\n- **活跃进程**:\n  - `grid_b0_1_seed42`: PID 295096, cuda:1, cron 监控中\n  - `contamination_60_tau07_seed42`: PID 282223, cuda:0, cron 监控中\n  - `contamination_60_tau06_seed42`: PID 287971, cuda:2, cron 监控中\n  - `detect_remove_baseline_seed42`: PID 276739, cuda:3, cron 监控中\n\n### 3. 📊 当前状态\n4 个 GPU 全部在跑，无空闲。\n\n**刚完成（本 session）**:\n- `grid_b0_3_seed42` (DONE, ~05:03 UTC) — b=0.3 grid sweep 结果待提取（metrics 未在 registry 中看到）\n- `contamination_60_ess_only_seed42` (DONE) — PPL=17.77 ≈ uniform(17.766)，ESS-only 在 ρ=0.6 下彻底失效，已写入 memory.md\n\n**RUNNING (4)**:\n| exp_id | GPU | 目的 | 预估完成 |\n|--------|-----|------|----------|\n| contamination_60_tau07_seed42 | cuda:0 | D045 关键诊断：ρ=0.6 τ=0.7 能否恢复 grid-best 水平 | ~05:50-06:00 UTC |\n| grid_b0_1_seed42 | cuda:1 | b=0.1 grid sweep，b* 曲线最低端 | ~08:40 UTC |\n| contamination_60_tau06_seed42 | cuda:2 | ρ=0.6 τ=0.6 第二诊断点 | ~07:00 UTC |\n| detect_remove_baseline_seed42 | cuda:3 | reviewer baseline: \"为什么不直接过滤？\" | ~05:30 UTC |\n\n**PREPARING (2)**: grid_b0_2_seed42（killed by Director 但 D042 又恢复，状态不清），batchsize16_nmin8_seed42\n\n**等待中**: 4 个 RUNNING 的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- **contamination_60_tau07 完成** → PPL ≤ 17.71 → τ=1−ρ×0.5 公式成立，Claim 3 reframe 为 \"τ follows simple rule of ρ\"；PPL > 17.71 → 等 tau06 结果再判断\n- **contamination_60_tau06 完成** → 结合 tau07 绘制 ρ=0.6 下的 τ-PPL 曲线，找出 ρ=0.6 最优 τ\n- **detect_remove_baseline 完成** → 对比 adaptive PPL(17.65)：adaptive wins → 强化 \"reweight > filter\"；detect_remove wins → 需要 framing 调整提案\n- **grid_b0_1 完成** → 结合 b=0.3(刚完成)/0.5/1.0/2.0/3.0/5.0 画完整 b-PPL 曲线\n- **grid_b0_3 metrics 缺失** → 需要 spawn worker 提取 PPL（post-hoc eval 或 W&B 读取）\n- **全部 RUNNING 完成后** → 汇总所有证据，生成论文图表（τ sweep 图、b* 曲线、ρ=0.6 对比表），推进 experiments section\n\n### 5. 🎯 战略上下文\n**决策链**: D023(dual-constraint 框架) → D025(τ=empirical HP) → D029(ESS-only 退化确认) → D036(τ sweep 完成) → D045(**ρ=0.6 + τ=0.8 失效，τ 需随 ρ 调整**)\n\n**Claim 状态**:\n- Claim 1 (dual > ESS-only): ✅ 3 seeds 完成\n- Claim 2 (adaptive ≈ grid-best): ✅ MVP PASS\n- Claim 3 (proportion-free): ⚠️ **核心风险**——τ=0.8 在 ρ=0.6 下 PPL=17.74 劣于 grid-best 17.704\n\n**最容易判断错的事**:\n1. **Claim 3 尚未稳** — D045 证明 τ=0.8 在 ρ=0.6 下失效。tau07/tau06 结果决定 Claim 3 命运。如果两者都失败，Claim 3 需大幅 reframe 或降级\n2. **detect_remove 的 effective epoch 差异** — adaptive 用 371K 过 1 遍，detect_remove 用 153K 过 ~2.4 遍。**写论文必须说明**，否则 reviewer 会质疑公平性\n3. **contamination_60_ess_only PPL=17.77** — 叙事价值：ρ 越高 ESS-only 越崩溃（ρ=0.4 时 +0.03，ρ=0.6 时 ≈uniform），dual-constraint 的相对重要性随 contamination 递增\n4. **grid_b0_2 状态不清** — notes 说 Director 砍了又恢复（D042），但 conclusion=killed。需要 Director 确认是否真的要跑\n5. **bs8_nmin2 negative** — D042 决定写入 limitation section（n_min 应随 bs 缩放，建议 n_min≥bs//2），不需要再跑修复实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778908041.md"
+}

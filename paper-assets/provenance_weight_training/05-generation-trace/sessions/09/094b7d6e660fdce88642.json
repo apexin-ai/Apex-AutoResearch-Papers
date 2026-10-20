@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "094b7d6e660fdce88642",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval llama3b uniform lm eval",
+  "task_key": "worker_eval_llama3b_uniform_lm_eval_20260517T134622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama3b_uniform_lm_eval_20260517T134622.log",
+    "occurrence": 1,
+    "bytes": 1031156,
+    "sha256": "db96538dca027545061a31e65738eb54dabad8164abbd8e628af369462ea0883"
+  },
+  "statistics": {
+    "messages": 706,
+    "user_turns": 1,
+    "tool_calls": 318,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 318,
+      "tool_result": 318,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 687,
+      "chunks": [
+        {
+          "path": "094b7d6e660fdce88642-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "094b7d6e660fdce88642-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "094b7d6e660fdce88642-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "094b7d6e660fdce88642-part-0004.json",
+          "message_count": 147
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "094b7d6e660fdce88642-part-0004.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-llama3b-uniform-lm-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c29e54ce7e6c2404118",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh prepare grid b03 seed123",
+  "task_key": "worker_ssh_prepare_grid_b03_seed123_20260517T030843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare_grid_b03_seed123_20260517T030843_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "f8b96841d382b33a4ae34856add90eae2811a04743b1ceb4c3ba00dddff15e80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 确认 `--weighting_method` 和 `--grid_b_value` 参数均存在。\n\n**产出：**\n- 脚本路径：`/root/provenance_weight_training/scripts/run_grid_b0_3_seed123.sh`\n- Dry-run：`--weighting_method {uniform,grid,adaptive,golden_ratio,ess_only,random}` 和 `--grid_b_value GRID_B_VALUE` 均已确认可用\n- 脚本已 `chmod +x`，无 `CUDA_VISIBLE_DEVICES`，无 `--eval_data_path` / `--eval_steps`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-grid-b03-seed123.md"
+}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "detect_remove_q03_epoch_matched_seed42",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:18:10.019Z",
+    "updated_at": "2026-05-18T22:19:01.378Z",
+    "hypothesis": "Epoch-matched D&R q03: 1 epoch through q03 filtered data (116,935 samples, ~63M tokens, 1927 steps). If PPL ≈ 17.65 (same as epoch-matched q05), q03 vs q05 multi-epoch gap (17.25 vs 17.28) comes entirely from extra epochs (3.2x vs 2.4x), not data quality. If PPL significantly below 17.65, q03's stricter filtering genuinely yields higher quality data even at matched training budget.",
+    "parent": "",
+    "spec": {
+      "command": "WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_filtered_q03.jsonl --output_dir .../detect_remove_q03_epoch_matched_seed42 --model_name Qwen3-0.6B --weighting_method uniform --max_steps 1927 --seed 42",
+      "server": "westd-30476",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "78529",
+      "log_path": "~/runs/provenance_weight_training/detect_remove_q03_epoch_matched_seed42.log",
+      "submitted_at": "2026-05-18T22:18:34.216Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/scored_data_filtered_q03.jsonl",
+      "data_count": 116935,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-18T22:19:01.668049+00:00",
+  "trigger": "update_registry"
+}

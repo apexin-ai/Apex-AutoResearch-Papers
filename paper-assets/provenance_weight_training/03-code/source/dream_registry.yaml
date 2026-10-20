@@ -1,0 +1,49 @@
+dreams:
+  dream_20260515T011902:
+    dream_id: dream_20260515T011902
+    project: provenance_weight_training
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Path B framing: adaptive b* comparable to grid-best without tuning. Key
+      risks: (1) effect size small ~0.3% PPL, (2) b=0.5 at grid boundary, (3) aggregate
+      ratio 88.6% below original 90% threshold. Strengths: zero-tuning cost, cross-seed
+      consistency, principled derivation vs empirical selection.'
+    what_if: []
+    pid: 443758
+    chat_id: oc_2b6c9bea33a70c93bf4bf04ac36b8df9
+    card_message_id: om_x100b6f53064754b4c26775399e1942e
+    started_at: '2026-05-15T01:19:02+00:00'
+    updated_at: '2026-05-15T02:26:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 5faea5971e4bc5c5d2a9a775f812b4bccc22dfb7f737c5f0ae1ffbe9eae01f62
+  dream_20260515T102146:
+    dream_id: dream_20260515T102146
+    project: provenance_weight_training
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'D023 dual-constraint reframe: α_eff quality floor + ESS stability ceiling
+      → minimum intervention principle. Key risk: ESS-only baseline may match dual-constraint
+      performance, undermining α_eff''s value. τ sweep evidence for Claim 3 still
+      in progress.'
+    what_if: []
+    pid: 510350
+    chat_id: oc_2b6c9bea33a70c93bf4bf04ac36b8df9
+    card_message_id: om_x100b6f5b7560b0b0c42adaa9c075eb4
+    started_at: '2026-05-15T10:21:46+00:00'
+    updated_at: '2026-05-15T11:19:29+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 9755f6dae9a0c913234c6e6112d4dc77de0762cbab76b7a5e7b1e4fe797a1fa8

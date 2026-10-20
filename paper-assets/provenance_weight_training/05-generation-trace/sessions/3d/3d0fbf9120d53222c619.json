@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d0fbf9120d53222c619",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check grid b0 2 completion",
+  "task_key": "worker_check_grid_b0_2_completion_20260517T124128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_grid_b0_2_completion_20260517T124128_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "ff5f06e1023b2103517f31fd460274a73cca7e20ffadaabbef587470104746a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：grid_b0_2_seed42 已正常完成\n\n| 项目 | 状态 |\n|------|------|\n| **是否完成** | 是，全部 6103 steps 完成 |\n| **Final checkpoint** | `/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_2_seed42/checkpoint-6103` |\n| **Final model** | `/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_2_seed42/final/` (含 model.safetensors) |\n| **最终 loss** | ~1.91 - 2.86（step 6102 的多个 micro-batch），unweighted_loss ~1.51 - 2.66 |\n| **PPL / eval** | 无 eval_results 文件 |\n| **step_metrics** | `/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_2_seed42/step_metrics.jsonl` |\n| **cuda:3** | 已释放，0 MiB 显存占用，0% 利用率，空闲可用 |\n\n训练正常结束，产出了 final model 和 checkpoint-6103。没有找到单独的训练日志文件或 eval 结果。cron 报 \"no sentinel, no W&B\" 可能是因为训练脚本没有写 sentinel 文件或未对接 W&B，但从 checkpoint 和 metrics 看训练确实完整跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-grid-b0-2-completion.md"
+}

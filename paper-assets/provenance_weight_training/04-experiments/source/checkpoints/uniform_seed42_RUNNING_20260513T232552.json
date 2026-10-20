@@ -1,0 +1,32 @@
+{
+  "exp_id": "uniform_seed42",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:17:51.722Z",
+    "updated_at": "2026-05-13T23:25:52.170Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/mixed_data.jsonl --output_dir output/models/uniform_seed42 --weighting_method uniform --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --eval_steps 500 --save_total_limit 2 --save_only_model --resume_from_checkpoint output/models/uniform_seed42/checkpoint-500\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "47603",
+      "log_path": "~/runs/provenance_weight_training/uniform_seed42.log",
+      "submitted_at": "2026-05-13T23:23:53.026Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/provenance_weight_training/data/mixed_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42
+    },
+    "hypothesis": "Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods"
+  },
+  "timestamp": "2026-05-13T23:25:52.182607+00:00",
+  "trigger": "update_registry"
+}

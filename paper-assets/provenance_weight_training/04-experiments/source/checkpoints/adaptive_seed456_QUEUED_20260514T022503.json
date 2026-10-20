@@ -1,0 +1,14 @@
+{
+  "exp_id": "adaptive_seed456",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:25:03.137Z",
+    "updated_at": "2026-05-14T02:25:03.137Z"
+  },
+  "timestamp": "2026-05-14T02:25:03.152333+00:00",
+  "trigger": "update_registry"
+}

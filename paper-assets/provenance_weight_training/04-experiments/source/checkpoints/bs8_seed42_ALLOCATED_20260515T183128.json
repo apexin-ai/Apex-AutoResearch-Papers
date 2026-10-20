@@ -1,0 +1,23 @@
+{
+  "exp_id": "bs8_seed42",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:04:41.935Z",
+    "updated_at": "2026-05-15T18:31:28.017Z",
+    "spec": {
+      "hypothesis": "batch_size=8 generalization: adaptive method maintains advantage with larger batch size (n_min=4=bs//2). Tests Claim 1 robustness beyond bs=4.",
+      "planned_gpu": "cuda:3",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T18:31:28.118583+00:00",
+  "trigger": "update_registry"
+}

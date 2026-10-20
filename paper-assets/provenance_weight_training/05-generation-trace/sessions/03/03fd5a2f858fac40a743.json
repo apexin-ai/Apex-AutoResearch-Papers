@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03fd5a2f858fac40a743",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_7_1778848640.md",
+  "task_key": "loop_7_1778848640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778848640.md",
+    "occurrence": 1,
+    "bytes": 5323,
+    "sha256": "0ff27e26776211f4712ed674f8c5195b019c62585678e066da98f02df4588e63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T12:37:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on westd-47453，其他设备号禁止使用\n- 训练命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- WANDB_MODE=disabled（当前所有实验都禁用 W&B，eval 靠 post-hoc 脚本）\n- bf16 训练与 fp32 训练的 eval PPL 存在 ~0.25 偏差（grid_b2_0_seed456 bf16=17.989 vs seed42 fp32=17.741），对比时需标注精度\n- eval 脚本参数：`eval_perplexity.py --stride 1024 --max_docs 5000 --fp16`，eval_data = `data/human/eval_holdout.jsonl`\n- golden_ratio_seed42 脚本已由 Reviewer PASS（`training/pretrain_weighted.py --weighting_method golden_ratio`），但需要 Director 分配 GPU 才能提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，账号 root\n- 工作目录：/root/provenance_weight_training\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：/root/provenance_weight_training/models/Qwen/Qwen3-0.6B\n- 训练数据：/root/provenance_weight_training/data/scored_data.jsonl（371499 条，含 q-score）\n- Eval 数据：/root/provenance_weight_training/data/human/eval_holdout.jsonl（~8477 条，4077068 tokens）\n- 混合数据：/root/provenance_weight_training/data/mixed_data.jsonl（uniform baseline 用）\n- HF cache：未特别设置（非 AutoDL，无需 /root/autodl-tmp）\n- W&B：DISABLED\n- 活跃进程：ess_only_seed42 (PID 189240, cuda:1, tmux session)\n- 活跃 cron：ess_only_seed42 监控中\n\n### 3. 📊 当前状态\n**刚做完**：收到 grid_b5_0_seed456 cron 完成回调，确认 grid_b3_0_seed456 也已完成。已派 Worker `worker_eval_grid_b5_0_b3_0_seed456_posthoc_20260515T093323` 做两个实验的 post-hoc eval。已向 Director 汇报 GPU 空闲状态并请求分配。\n\n**Registry 状态**：\n- RUNNING：ess_only_seed42 (cuda:1) — ESS-only adaptive baseline，证明 min-intervention > max-intervention\n- ANALYZING：grid_b5_0_seed456 (cuda:2), grid_b3_0_seed456 (cuda:3) — eval Worker 正在跑\n- QUEUED：golden_ratio_seed42, nmin1_seed42, detector_modernbert\n- PREPARING：adaptive_v2_seed42/123/456（已 killed，D012 修正后用 adaptive_fix 替代，这三个是残留）\n- DONE(success)：22 个，DONE(failed)：1 (grid_b_low_seed42)，DONE(killed)：1 (diagnostic_contamination100)\n\n**等待中**：\n- Worker 回调：eval Worker 完成 → 更新 registry metrics → 标记 DONE → 触发 on-experiment-done 流程\n- Director 决策：cuda:0/2/3 分配（已请求 golden_ratio_seed42 → cuda:0，nmin1_seed42 → cuda:2）\n- Cron：ess_only_seed42 进程监控\n\n### 4. 📋 待办\n- eval Worker 回调到达 → 更新 grid_b5_0_seed456 和 grid_b3_0_seed456 的 metrics + conclusion=success + status=DONE → 更新 report.md → 汇总 seed456 全 grid 结果汇报 Director\n- Director 分配 cuda:0 给 golden_ratio_seed42 → submit_on_allocated 提交（命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/golden_ratio_seed42 --weighting_method golden_ratio --model_name models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio 0.4 --tau 0.8 --bf16`）\n- Director 分配 cuda:2 给 nmin1_seed42 → 同上提交\n- ess_only_seed42 完成 → post-hoc eval → 对比 adaptive_fix 验证 min-intervention > max-intervention\n- seed456 grid 全部 DONE 后 → 汇总三 seed 交叉验证表（b=0.5 best across all seeds 趋势是否稳定）\n\n### 5. 🎯 战略上下文\n- **核心方向**：Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则）。paper_framing = D023 恢复后的 dual-constraint narrative。\n- **投稿目标**：EMNLP 2026 ARR May 25（**剩 10 天**）\n- **关键结论链**：\n  - D019: MVP PASS（adaptive vs grid 对比可行）\n  - D021: α_eff 可能退化为 ESS 阈值化（Dream 全 Weak Reject）\n  - D023: 修正 D021 过度修正，α_eff 非 decorative，dual-constraint 框架恢复\n  - D024: GPU 预算 ~85h 剩余（180h 总），Llama-3B 降级 P1\n  - D025: τ 理论来源确认依赖已知比例，降级为 empirical hyperparameter\n- **Grid 趋势**：三 seed 一致显示 b=0.5 PPL 最优（seed42=17.651, seed123=17.638, seed456=17.65），PPL 随 b 单调递增。adaptive_fix PPL ≈ 17.65（三 seed），与 grid-best(b=0.5) 持平。\n- **易错点**：\n  - grid_b2_0_seed456 PPL=17.989 偏高是 bf16 精度差异（其他 seed 同 b 为 17.725-17.741），不要当作异常值排除\n  - grid_b_low_seed42 反复失败（SIGTERM），未诊断出根因，可能是系统进程干扰——如需重跑应分配不同 GPU\n  - adaptive_v2 系列（PREPARING）是历史残留，D012 修正后已用 adaptive_fix 替代，不要尝试提交\n  - ess_only_seed42 是新 weighting_method，如果脚本报错可能是 `--weighting_method ess_only` 参数未实现——检查 pretrain_weighted.py 是否已有该分支\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778848640.md"
+}

@@ -1,0 +1,2681 @@
+# paper figure prep
+
+**When Does Detect-and-Reweight Work for Synthetic Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_paper_figure-prep_20260516T025916.log`
+- **Structured JSON:** [`f8179218071ddb686a6f.json`](../../sessions/f8/f8179218071ddb686a6f.json)
+
+## Before a recorded user message
+
+54 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "58c12afe-66a1-4c81-97bc-5a58b0283671",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778905200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a8a03800-c35f-45c0-b64f-a4ff2e1f5c57",
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the registry to get all experiment metrics, then prepare the figure generation script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "940690f8-a73b-4112-98de-6e5427ecfd79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fPzbWCNG1d9sCZm49Xa3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11807,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11807
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VYheTbKsy9K1PEFD1NSkXb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "5c94a7f3-61fb-4763-b14e-be26e1495275",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fPzbWCNG1d9sCZm49Xa3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11807,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11807
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T02:59:26.765Z_
+
+<details><summary>↩ Tool result · `toolu_01VYheTbKsy9K1PEFD1NSkXb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "3b54fd71-ad42-4a86-b5c8-50e1d8cd3d85",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get all experiment data, and check matplotlib on the server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "fdf0564c-ec16-4c62-bb5e-200d9ad89644",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeh6uqmakSa1un5UZ1rPf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1240,
+      "cache_read_input_tokens": 23648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1240
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KqgPrvgLTPC2xvvp3ZbaSt`</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "filters": {
+    "status": "DONE",
+    "conclusion": "success"
+  },
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "040e3c9b-194b-4f8f-b12f-ddf1926d872d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeh6uqmakSa1un5UZ1rPf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1240,
+      "cache_read_input_tokens": 23648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1240
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T02:59:31.130Z_
+
+<details><summary>↩ Tool result · `toolu_01KqgPrvgLTPC2xvvp3ZbaSt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"contamination_60_seed42_r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:53:48.975Z\", \"updated_at\": \"2026-05-16T01:57:12.472Z\", \"hypothesis\": \"Retry of contamination_60_seed42 (failed due to GPU conflict on cuda:2). ρ=0.6 adaptive weighting (τ=0.8, n_min=2) on higher contamination data. Tests graceful degradation as ρ increases from 0.4→0.6.\", \"parent\": \"contamination_60_seed42\", \"metrics\": {\"eval_ppl_holdout\": 17.74, \"eval_loss_holdout\": 2.8759, \"eval_tokens\": 4077068, \"eval_method\": \"sliding_window_2048_stride1024\", \"train_loss\": 9.6349, \"train_runtime_seconds\": 14092.25}, \"conclusion\": \"success\"}, \"contamination_60_grid_b0_5_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T20:19:25.407Z\", \"updated_at\": \"2026-05-16T01:47:52.701Z\", \"hypothesis\": \"ρ=0.6 grid-best (b=0.5) baseline: fixed b=0.5 on 60% contamination. Tests if grid-optimal b from ρ=0.4 transfers to higher contamination, or if adaptive b* adapts better.\", \"parent\": \"grid_b0_5_seed456\", \"conclusion\": \"success\", \"notes\": \"训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42 同一模式）。WANDB_MODE=disabled 导致 cron 误判为 failed。实际 success，等 eval PPL。\", \"metrics\": {\"eval_ppl\": 17.704, \"eval_loss\": 2.8738, \"eval_tokens\": 4077068, \"eval_docs\": 5000}}, \"contamination_60_uniform_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T20:19:24.785Z\", \"updated_at\": \"2026-05-16T01:12:50.897Z\", \"hypothesis\": \"ρ=0.6 uniform baseline: no reweighting on 60% contamination data. Establishes baseline PPL degradation at higher contamination for comparison with adaptive and grid methods.\", \"parent\": \"uniform_seed42\", \"conclusion\": \"success\", \"notes\": \"训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_runtime=12904s。需要 eval 获取 PPL。\", \"metrics\": {\"eval_ppl_holdout\": 17.766, \"eval_loss_holdout\": 2.8773, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\", \"train_loss\": 7.649, \"train_runtime_seconds\": 12904}}, \"ess_only_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:51:52.911Z\", \"updated_at\": \"2026-05-15T22:04:28.158Z\", \"metrics\": {\"eval_ppl_holdout\": 17.72, \"eval_loss_holdout\": 2.8746, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"eval_note\": \"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\", \"train_loss\": 10.2159, \"train_steps\": 6103, \"train_runtime_seconds\": 12959.5, \"b_star_mean\": 3.55, \"b_star_median\": 1.5918, \"b_star_std\": 4.7209, \"b_star_min\": 0.2344, \"b_star_max\": 20, \"b_star_p25\": 0.8398, \"b_star_p75\": 3.8281, \"b_star_p90\": 9.5996, \"b_star_count\": 21971, \"vs_uniform_ppl_delta\": \"+0.034\", \"vs_adaptive_fix_ppl_delta\": \"+0.077\"}, \"conclusion\": \"success\"}, \"ess_only_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:04:39.611Z\", \"updated_at\": \"2026-05-15T22:02:57.653Z\", \"metrics\": {\"eval_ppl\": 17.719, \"eval_loss\": 2.8746, \"eval_tokens\": 4077068, \"train_loss\": 10.174, \"vs_uniform_ppl_delta\": \"+0.018\", \"vs_adaptive_ppl_delta\": \"+0.077\", \"vs_adaptive_fix_ppl_delta\": \"+0.062\"}, \"conclusion\": \"success\", \"hypothesis\": \"ESS-only (max-intervention) seed456: b* = max{b : ESS(b) ≥ n_min} — proves dual-constraint adaptive (min-intervention) superior to ESS-only\"}, \"baseline_qwen3_0.6b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:53:53.450Z\", \"updated_at\": \"2026-05-15T21:54:29.041Z\", \"conclusion\": \"success\", \"hypothesis\": \"Raw Qwen3-0.6B pretrained checkpoint baseline PPL (no continued pretraining). Reference point for quantifying absolute improvement from training.\", \"metrics\": {\"eval_ppl_holdout\": 22.97, \"eval_loss\": 3.134, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"sliding_window_stride1024_maxlen2048_fp16\"}, \"notes\": \"Baseline PPL=22.9654 (loss=3.1340), tokens=4,077,068, time=249s. Weight SHA256=f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b. Pretrained weights confirmed (std ~0.02-0.03, layernorm varies across layers). Compared to ess_only_seed456 PPL=17.72: continued pretraining reduces PPL by 22.8%.\"}, \"nmin4_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:36:45.229Z\", \"updated_at\": \"2026-05-15T21:22:25.975Z\", \"hypothesis\": \"n_min=4 (=batch_size) ablation: forces b*=0 always since ESS constraint cannot be satisfied with any b>0 when n_min=batch_size. Should degrade to uniform-equivalent PPL (~17.69). Key boundary condition for n_min sensitivity analysis.\", \"notes\": \"Mid-training check @step 2036/6103: b=0.0, ess=4.0 (=n_min), weighted_loss==unweighted_loss — confirms b*=0 degenerates to uniform weighting as theoretically predicted. Eval commands prepared for post-training.\", \"metrics\": {\"eval_ppl_holdout\": 17.6947, \"eval_loss\": 2.8733, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 7.989, \"total_steps\": 6103, \"train_runtime_s\": 16231, \"train_samples_per_second\": 6.016, \"b_star_count\": 24412, \"b_star_mean\": 0, \"b_star_median\": 0, \"b_star_std\": 0, \"b_star_min\": 0, \"b_star_max\": 0, \"b_star_pct_zero\": 100, \"ess_mean\": 4, \"ess_min\": 4, \"ess_max\": 4}, \"conclusion\": \"success\"}, \"p0_contamination_60_datagen\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:37:10.827Z\", \"updated_at\": \"2026-05-15T20:08:12.383Z\", \"conclusion\": \"success\", \"metrics\": {\"total_lines\": 371499, \"synthetic_count\": 222900, \"human_count\": 148599, \"actual_contamination_ratio\": 0.6, \"q_score_mean\": 0.6243, \"q_score_std\": 0.3703, \"q_score_median\": 0.7753, \"file_size_mb\": 907}}, \"tau_07_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:03:27.838Z\", \"updated_at\": \"2026-05-15T17:57:12.394Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.7 (slightly below baseline), testing if moderate τ reduction improves or degrades PPL. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"metrics\": {\"train_loss\": 9.6707, \"total_steps\": 6103, \"train_runtime_s\": 15065, \"train_samples_per_second\": 6.482, \"eval_ppl_holdout\": 17.6793, \"eval_loss\": 2.8724, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.8943, \"b_star_median\": 0.58, \"b_star_std\": 1.4007, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.3306, \"b_star_p75\": 0.9712, \"b_star_pct_zero\": 5.8, \"b_star_pct_below_0.5\": 36, \"b_star_pct_0.5_to_1\": 34.2, \"b_star_pct_1_to_2\": 16.2, \"b_star_pct_above_2\": 7.7}, \"conclusion\": \"success\"}, \"tau_06_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:01:37.442Z\", \"updated_at\": \"2026-05-15T17:09:55.541Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).\", \"parent\": \"adaptive_fix_seed42\", \"metrics\": {\"eval_ppl_holdout\": 17.6805, \"eval_loss\": 2.8725, \"train_loss\": 9.275, \"total_steps\": 6103, \"train_runtime_s\": 13436.64, \"train_samples_per_second\": 7.267, \"b_star_mean\": 0.5899, \"b_star_median\": 0.3746, \"b_star_std\": 1.0693, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.1195, \"b_star_p75\": 0.66, \"b_star_zero_frac\": 0.156, \"b_star_nonzero_mean\": 0.699, \"b_star_nonzero_median\": 0.4473}, \"conclusion\": \"success\", \"notes\": \"PPL=17.681 劣于 τ=0.8 baseline (17.650)，conclusion=negative。概念修正：τ 越低 → α_eff 下界越松 → b* 更小 → 降权力度更弱（非更激进）。正确因果链：τ 越高 → α_eff 下界越严 → min-intervention 需要更大 b* 才能满足约束 → 降权力度更强。\"}, \"tau_05_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:03:27.263Z\", \"updated_at\": \"2026-05-15T17:06:51.535Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.5 (most permissive α_eff threshold), testing lower bound of useful τ range. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"metrics\": {\"train_loss\": 8.849, \"total_steps\": 6103, \"epoch\": 0.26, \"train_runtime_s\": 13431.4, \"train_samples_per_second\": 7.27, \"eval_ppl_holdout\": 17.688, \"eval_loss\": 2.8729, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.3923, \"b_star_median\": 0.1707, \"b_star_std\": 0.8821, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0, \"b_star_p75\": 0.4366, \"b_star_pct_zero\": 29.1, \"b_star_pct_below_0.5\": 78.4, \"b_star_pct_0.5_to_1\": 12.9, \"b_star_pct_1_to_2\": 5.7, \"b_star_pct_above_2\": 2.9}, \"conclusion\": \"success\"}, \"adaptive_fix_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:32:31.779Z\", \"updated_at\": \"2026-05-15T16:43:25.930Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64, uniform PPL=17.70)\", \"parent\": \"adaptive_seed456\", \"notes\": \"最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 8.3124, \"train_runtime\": 11436.05, \"train_samples_per_second\": 8.539, \"train_steps_per_second\": 0.534, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6566, \"eval_loss_holdout\": 2.8711, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.66/4077068\", \"b_star_count\": 26396, \"b_star_mean\": 1.416, \"b_star_median\": 0.88, \"b_star_std\": 1.993, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:32:31.409Z\", \"updated_at\": \"2026-05-15T16:43:21.914Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63, uniform PPL=17.69)\", \"parent\": \"adaptive_seed123\", \"notes\": \"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.6432, \"eval_loss_holdout\": 2.8704, \"eval_loss\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.643/4077068\", \"train_loss_weighted\": 7.517, \"train_runtime_s\": 10347, \"total_steps\": 6103, \"epoch\": 0.26, \"b_star_mean\": 1.431, \"b_star_median\": 0.88, \"b_star_std\": 2.029, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_2_to_5\": 6.3, \"b_star_pct_above_5\": 1.9, \"b_star_count\": 25906, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:32:30.463Z\", \"updated_at\": \"2026-05-15T16:43:17.126Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint achieves meaningful improvement over uniform baseline (PPL=17.69) for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)\", \"parent\": \"adaptive_seed42\", \"notes\": \"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.5167, \"train_runtime\": 10304.37, \"train_samples_per_second\": 9.476, \"train_steps_per_second\": 0.592, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6527, \"eval_loss_holdout\": 2.8709, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.65/4077068\", \"b_star_count\": 26458, \"b_star_mean\": 1.399, \"b_star_median\": 0.871, \"b_star_std\": 1.933, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.512, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:25:03.137Z\", \"updated_at\": \"2026-05-15T16:43:10.982Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=456\", \"metrics\": {\"train_loss\": 9.2354, \"train_runtime_s\": 13130.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.437, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.09-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6419, \"eval_loss_holdout\": 2.8703, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\"}, \"conclusion\": \"success\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"adaptive_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:25:02.771Z\", \"updated_at\": \"2026-05-15T16:43:08.120Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=123\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13197.18, \"total_steps\": 6103, \"train_samples_per_second\": 7.399, \"train_steps_per_second\": 0.462, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.04-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6308, \"eval_loss_holdout\": 2.8696, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\"}, \"conclusion\": \"success\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"adaptive_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:25:01.824Z\", \"updated_at\": \"2026-05-15T16:43:05.333Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=42\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13115.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.445, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.03-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.644, \"eval_loss_holdout\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\"}, \"conclusion\": \"success\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"uniform_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:17:55.165Z\", \"updated_at\": \"2026-05-15T16:42:59.635Z\", \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.2895, \"total_steps\": 6103, \"train_duration_s\": 11974, \"eval_ppl_holdout\": 17.7015, \"eval_loss_holdout\": 2.8737, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\"}}, \"uniform_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:17:53.217Z\", \"updated_at\": \"2026-05-15T16:42:57.800Z\", \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3121, \"total_steps\": 6103, \"train_duration_s\": 11994, \"eval_ppl_holdout\": 17.6861, \"eval_loss_holdout\": 2.8728, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"uniform_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:17:51.722Z\", \"updated_at\": \"2026-05-15T16:42:55.867Z\", \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3104, \"total_steps\": 6103, \"train_duration_s\": 11946, \"eval_ppl_holdout\": 17.6939, \"eval_loss_holdout\": 2.8732, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"nmin1_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:48:31.298Z\", \"updated_at\": \"2026-05-15T14:36:49.692Z\", \"hypothesis\": \"n_min=1 sensitivity: minimal ESS constraint allows more aggressive downweighting, testing if adaptive method degrades with overly permissive ESS bound\", \"metrics\": {\"eval_ppl_holdout\": 17.789, \"eval_loss\": 2.8786, \"eval_holdout_tokens\": 4077068, \"b_star_mean\": 7.197, \"b_star_median\": 1.746, \"b_star_std\": 8.374, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.803, \"b_star_p75\": 20, \"b_star_zero_frac\": 0.019, \"b_star_pct_below_0.5\": 13.1, \"b_star_pct_0.5_to_1\": 19.1, \"b_star_pct_1_to_2\": 21.1, \"b_star_pct_above_2\": 46.7, \"b_star_count\": 24412, \"alpha_eff_mean\": 0.714, \"alpha_eff_median\": 0.8}, \"notes\": \"训练完成(EXIT_CODE=0, 4h50m)。PPL=17.789，比 adaptive_fix(n_min=2, 17.650) 差 +0.139，比 uniform(17.690) 差 +0.099。n_min=1 导致极端 b* 分布：46.7% batch b*≥2，p75=20.0(上限)，mean=7.197。ESS 约束几乎失效，over-downweighting 明显。confirms n_min=2 是更优选择。\", \"conclusion\": \"success\"}, \"ess_only_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:20:13.656Z\", \"updated_at\": \"2026-05-15T13:38:10.040Z\", \"hypothesis\": \"ESS-only adaptive baseline (max-intervention): b* = max{b : ESS(b) ≥ n_min} — proves min-intervention (adaptive) superior to max-intervention (ESS-only)\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.73, \"eval_loss\": 2.875, \"b_star_median\": 1.58, \"b_star_mean\": 3.51, \"vs_uniform_ppl_delta\": \"+0.038\", \"vs_adaptive_ppl_delta\": \"+0.08\"}}, \"golden_ratio_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:20:12.943Z\", \"updated_at\": \"2026-05-15T13:33:31.162Z\", \"hypothesis\": \"Golden Ratio oracle baseline: w=1/φ≈0.618 for synthetic (q>0.5), w=1.0 for real — requires known proportion, serves as oracle upper bound for adaptive method\", \"metrics\": {\"eval_ppl_holdout\": 17.654, \"eval_loss\": 2.871, \"train_loss\": 2.1145, \"train_loss_last500\": 2.109, \"eval_holdout_tokens\": 4077068, \"total_steps\": 6103, \"train_runtime_s\": 13442, \"gpu_hours\": 3.73}, \"conclusion\": \"success\"}, \"grid_b5_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:39.050Z\", \"updated_at\": \"2026-05-15T10:05:51.443Z\", \"hypothesis\": \"Grid-b weighting with b=5.0, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"⚠️ checkpoint resume artifact: PPL=17.993, 比 seed42(17.818)/seed123(17.804) 高 +0.18。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=5.0 行仅报 2 seeds (seed42+seed123)。\", \"metrics\": {\"eval_ppl_holdout\": 17.993, \"eval_loss\": 2.89, \"eval_holdout_tokens\": 4077068, \"train_loss\": 5.488, \"total_steps\": 6103, \"train_runtime_s\": 6601, \"gpu_hours\": 1.83, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"conclusion\": \"success\"}, \"grid_b3_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:38.011Z\", \"updated_at\": \"2026-05-15T10:05:50.357Z\", \"hypothesis\": \"Grid-b weighting with b=3.0, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"⚠️ checkpoint resume artifact: PPL=17.921, 比 seed42(17.774)/seed123(17.76) 高 +0.16。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=3.0 行仅报 2 seeds (seed42+seed123)。\", \"metrics\": {\"eval_ppl_holdout\": 17.921, \"eval_loss\": 2.886, \"eval_holdout_tokens\": 4077068, \"train_loss\": 5.435, \"total_steps\": 6103, \"train_runtime_s\": 6602, \"gpu_hours\": 1.83, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"conclusion\": \"success\"}, \"grid_b2_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:37.073Z\", \"updated_at\": \"2026-05-15T10:05:48.101Z\", \"hypothesis\": \"Grid-b weighting with b=2.0, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"⚠️ checkpoint resume artifact: PPL=17.989, 比 seed42(17.741)/seed123(17.725) 高 +0.25。训练中断后从 checkpoint-3500 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=2.0 行仅报 2 seeds (seed42+seed123)。\", \"metrics\": {\"eval_ppl_holdout\": 17.989, \"eval_loss\": 2.8898, \"eval_holdout_tokens\": 4077068, \"train_loss\": 10.625, \"total_steps\": 6103, \"train_runtime_s\": 12969, \"gpu_hours\": 3.6, \"train_samples_per_second\": 7.53, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"conclusion\": \"success\"}, \"grid_b1_5_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:35.658Z\", \"updated_at\": \"2026-05-15T01:03:24.328Z\", \"hypothesis\": \"Grid-b weighting with b=1.5, seed=456, for multi-seed validation of best-b baseline\", \"metrics\": {\"train_loss\": 10.435, \"total_steps\": 6103, \"train_runtime_s\": 12950.16, \"gpu_hours\": 3.67, \"train_samples_per_second\": 7.54, \"eval_loss\": 2.8741, \"eval_ppl_holdout\": 17.71, \"eval_holdout_tokens\": 4077068, \"eval_loss_holdout\": 2.875, \"eval_tokens\": 5004058}, \"conclusion\": \"success\"}, \"grid_b1_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:34.733Z\", \"updated_at\": \"2026-05-15T01:03:23.307Z\", \"hypothesis\": \"Grid-b weighting with b=1.0, seed=456, for multi-seed validation of best-b baseline\", \"metrics\": {\"train_loss\": 10.178, \"total_steps\": 6103, \"train_runtime_s\": 12963.87, \"gpu_hours\": 3.67, \"train_samples_per_second\": 7.532, \"eval_loss\": 2.8725, \"eval_ppl_holdout\": 17.68, \"eval_holdout_tokens\": 4077068, \"eval_loss_holdout\": 2.8734, \"eval_tokens\": 5004058}, \"conclusion\": \"success\"}, \"grid_b0_5_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:58:17.956Z\", \"updated_at\": \"2026-05-15T01:03:04.640Z\", \"hypothesis\": \"Grid-b weighting with b=0.5, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step 56/6103, ETA ~3.5h。\", \"metrics\": {\"train_loss\": 9.5622, \"total_steps\": 6103, \"train_runtime_s\": 12953.96, \"gpu_hours\": 3.6, \"train_samples_per_second\": 7.538, \"eval_loss\": 2.8705, \"eval_ppl_holdout\": 17.65, \"eval_holdout_tokens\": 4077068}, \"conclusion\": \"success\"}, \"grid_b_seed42_batch\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:50:09.001Z\", \"updated_at\": \"2026-05-14T22:21:47.253Z\", \"hypothesis\": \"Grid-b weighting with 6 b values (0.5, 1.0, 1.5, 2.0, 3.0, 5.0) for seed=42, establishes best-b baseline for comparison with adaptive b*\", \"metrics\": {\"b_values\": [0.5, 1, 1.5, 2, 3, 5], \"b0_5_train_loss\": 9.598, \"b0_5_completed\": true, \"b1_0_completed\": true, \"b1_5_completed\": true, \"b2_0_current_step\": 5149, \"b2_0_total_steps\": 6103, \"completed_b_values\": [0.5, 1, 1.5, 2, 3], \"current_b\": 5, \"total_steps\": 6103, \"current_step\": 3422, \"b5_0_progress_pct\": 56, \"eta_minutes\": 95, \"b2_0_completed\": true, \"b2_0_train_loss\": 10.621, \"b2_0_train_runtime_s\": 13034, \"b3_0_completed\": true, \"b3_0_train_loss\": 10.754, \"b3_0_train_runtime_s\": 13036, \"all_completed\": true, \"b1_0_train_loss\": 10.223, \"b1_5_train_loss\": 10.485, \"b5_0_train_loss\": 10.858, \"b0_5_runtime_s\": 13036, \"b1_0_runtime_s\": 12968, \"b1_5_runtime_s\": 14789, \"b2_0_runtime_s\": 13034, \"b3_0_runtime_s\": 13036, \"b5_0_runtime_s\": 13115, \"note\": \"eval_ppl missing - no --eval_data_path in batch script, post-hoc eval pending\", \"b0_5_eval_ppl\": 17.651, \"b1_0_eval_ppl\": 17.692, \"b1_5_eval_ppl\": 17.718, \"b2_0_eval_ppl\": 17.741, \"b3_0_eval_ppl\": 17.774, \"b5_0_eval_ppl\": 17.818, \"eval_holdout_tokens\": 4077068, \"best_b\": 0.5, \"best_eval_ppl\": 17.651}, \"conclusion\": \"success\"}, \"grid_b5_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:56.873Z\", \"updated_at\": \"2026-05-14T15:34:56.261Z\", \"notes\": \"PID 94717 已确认存活（SSH 验证 2026-05-14T11:39）。旧 PID 92798 已 kill，cron 重新注册。\", \"metrics\": {\"train_loss\": 10.8468, \"total_steps\": 6103, \"train_runtime_s\": 14434, \"gpu_hours\": 4.01, \"eval_ppl_holdout\": 17.8039, \"eval_loss\": 2.8794, \"eval_holdout_tokens\": 4077068}, \"conclusion\": \"success\"}, \"grid_b2_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:55.329Z\", \"updated_at\": \"2026-05-14T14:43:39.107Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 10.61, \"total_steps\": 6103, \"train_runtime_s\": 13058.8, \"gpu_hours\": 3.63, \"train_samples_per_second\": 7.478, \"train_steps_per_second\": 0.467, \"eval_ppl_holdout\": 17.725, \"eval_loss\": 2.875, \"eval_holdout_tokens\": 4077068}}, \"grid_b3_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:56.285Z\", \"updated_at\": \"2026-05-14T14:41:44.081Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 10.7422, \"total_steps\": 6103, \"train_runtime_s\": 12955.83, \"gpu_hours\": 3.6, \"eval_ppl_holdout\": 17.76, \"eval_loss\": 2.877, \"eval_holdout_tokens\": 4077068}, \"notes\": \"训练完成，eval 未执行（should_evaluate=false，缺少 --eval_data_path 和 --eval_steps）。Checkpoint: /root/provenance_weight_training/output/models/grid_b3_0_seed123/final/ (model.safetensors 1.19GB)。需补跑 eval。\"}, \"grid_b1_5_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:43.491Z\", \"updated_at\": \"2026-05-14T11:36:25.428Z\", \"metrics\": {\"train_loss\": 10.4776, \"total_steps\": 6103, \"train_runtime_s\": 15053.1, \"gpu_hours\": 4.18, \"eval_ppl_holdout\": 17.701, \"eval_loss\": 2.8736}, \"conclusion\": \"success\"}, \"grid_b1_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:42.784Z\", \"updated_at\": \"2026-05-14T10:54:12.453Z\", \"metrics\": {\"eval_ppl_holdout\": 17.674, \"eval_loss\": 2.8721, \"eval_holdout_tokens\": 4077068, \"train_loss\": 10.218, \"total_steps\": 6103, \"train_runtime_s\": 13878, \"gpu_hours\": 3.88}, \"conclusion\": \"success\"}, \"grid_b0_5_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:42.314Z\", \"updated_at\": \"2026-05-14T10:42:12.465Z\", \"metrics\": {\"eval_ppl_holdout\": 17.638, \"eval_loss\": 2.87, \"eval_holdout_tokens\": 4077068, \"train_loss\": 9.601, \"total_steps\": 6103, \"train_runtime_s\": 13104, \"gpu_hours\": 3.8}, \"conclusion\": \"success\"}, \"detector_tfidf_lr\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:28:08.894Z\", \"updated_at\": \"2026-05-13T23:28:28.425Z\", \"conclusion\": \"success\", \"hypothesis\": \"TF-IDF + LogisticRegression detector provides spread q-scores (AUC~0.94, not binarized) for provenance weighting, replacing over-accurate ModernBERT (D007)\", \"metrics\": {\"auc\": 0.939, \"accuracy\": 0.858, \"ece_raw\": 0.24, \"ece_calibrated\": 0.048, \"temperature_T\": 0.204, \"q_score_mean\": 0.6, \"q_score_std\": 0.374, \"q_score_median\": 0.707, \"mid_range_ratio\": 0.463}}, \"datagen_synthetic_4gpu\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:12:11.474Z\", \"updated_at\": \"2026-05-13T21:50:46.682Z\", \"conclusion\": \"success\"}}, \"count\": 38, \"total\": 38, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2325}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "79337d15-0574-41fb-aa7c-7290c0abc9fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"contamination_60_seed42_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T21:53:48.975Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:57:12.472Z\\\", \\\"hypothesis\\\": \\\"Retry of contamination_60_seed42 (failed due to GPU conflict on cuda:2). ρ=0.6 adaptive weighting (τ=0.8, n_min=2) on higher contamination data. Tests graceful degradation as ρ increases from 0.4→0.6.\\\", \\\"parent\\\": \\\"contamination_60_seed42\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.74, \\\"eval_loss_holdout\\\": 2.8759, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"sliding_window_2048_stride1024\\\", \\\"train_loss\\\": 9.6349, \\\"train_runtime_seconds\\\": 14092.25}, \\\"conclusion\\\": \\\"success\\\"}, \\\"contamination_60_grid_b0_5_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T20:19:25.407Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:47:52.701Z\\\", \\\"hypothesis\\\": \\\"ρ=0.6 grid-best (b=0.5) baseline: fixed b=0.5 on 60% contamination. Tests if grid-optimal b from ρ=0.4 transfers to higher contamination, or if adaptive b* adapts better.\\\", \\\"parent\\\": \\\"grid_b0_5_seed456\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42 同一模式）。WANDB_MODE=disabled 导致 cron 误判为 failed。实际 success，等 eval PPL。\\\", \\\"metrics\\\": {\\\"eval_ppl\\\": 17.704, \\\"eval_loss\\\": 2.8738, \\\"eval_tokens\\\": 4077068, \\\"eval_docs\\\": 5000}}, \\\"contamination_60_uniform_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T20:19:24.785Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:12:50.897Z\\\", \\\"hypothesis\\\": \\\"ρ=0.6 uniform baseline: no reweighting on 60% contamination data. Establishes baseline PPL degradation at higher contamination for comparison with adaptive and grid methods.\\\", \\\"parent\\\": \\\"uniform_seed42\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_runtime=12904s。需要 eval 获取 PPL。\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.766, \\\"eval_loss_holdout\\\": 2.8773, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\\\", \\\"train_loss\\\": 7.649, \\\"train_runtime_seconds\\\": 12904}}, \\\"ess_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T15:51:52.911Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:04:28.158Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.72, \\\"eval_loss_holdout\\\": 2.8746, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\\\", \\\"eval_note\\\": \\\"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\\\", \\\"train_loss\\\": 10.2159, \\\"train_steps\\\": 6103, \\\"train_runtime_seconds\\\": 12959.5, \\\"b_star_mean\\\": 3.55, \\\"b_star_median\\\": 1.5918, \\\"b_star_std\\\": 4.7209, \\\"b_star_min\\\": 0.2344, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.8398, \\\"b_star_p75\\\": 3.8281, \\\"b_star_p90\\\": 9.5996, \\\"b_star_count\\\": 21971, \\\"vs_uniform_ppl_delta\\\": \\\"+0.034\\\", \\\"vs_adaptive_fix_ppl_delta\\\": \\\"+0.077\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"ess_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:04:39.611Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:02:57.653Z\\\", \\\"metrics\\\": {\\\"eval_ppl\\\": 17.719, \\\"eval_loss\\\": 2.8746, \\\"eval_tokens\\\": 4077068, \\\"train_loss\\\": 10.174, \\\"vs_uniform_ppl_delta\\\": \\\"+0.018\\\", \\\"vs_adaptive_ppl_delta\\\": \\\"+0.077\\\", \\\"vs_adaptive_fix_ppl_delta\\\": \\\"+0.062\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"ESS-only (max-intervention) seed456: b* = max{b : ESS(b) ≥ n_min} — proves dual-constraint adaptive (min-intervention) superior to ESS-only\\\"}, \\\"baseline_qwen3_0.6b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T21:53:53.450Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:54:29.041Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"Raw Qwen3-0.6B pretrained checkpoint baseline PPL (no continued pretraining). Reference point for quantifying absolute improvement from training.\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 22.97, \\\"eval_loss\\\": 3.134, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"sliding_window_stride1024_maxlen2048_fp16\\\"}, \\\"notes\\\": \\\"Baseline PPL=22.9654 (loss=3.1340), tokens=4,077,068, time=249s. Weight SHA256=f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b. Pretrained weights confirmed (std ~0.02-0.03, layernorm varies across layers). Compared to ess_only_seed456 PPL=17.72: continued pretraining reduces PPL by 22.8%.\\\"}, \\\"nmin4_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T14:36:45.229Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:22:25.975Z\\\", \\\"hypothesis\\\": \\\"n_min=4 (=batch_size) ablation: forces b*=0 always since ESS constraint cannot be satisfied with any b>0 when n_min=batch_size. Should degrade to uniform-equivalent PPL (~17.69). Key boundary condition for n_min sensitivity analysis.\\\", \\\"notes\\\": \\\"Mid-training check @step 2036/6103: b=0.0, ess=4.0 (=n_min), weighted_loss==unweighted_loss — confirms b*=0 degenerates to uniform weighting as theoretically predicted. Eval commands prepared for post-training.\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.6947, \\\"eval_loss\\\": 2.8733, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"train_loss\\\": 7.989, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 16231, \\\"train_samples_per_second\\\": 6.016, \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 0, \\\"b_star_median\\\": 0, \\\"b_star_std\\\": 0, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 0, \\\"b_star_pct_zero\\\": 100, \\\"ess_mean\\\": 4, \\\"ess_min\\\": 4, \\\"ess_max\\\": 4}, \\\"conclusion\\\": \\\"success\\\"}, \\\"p0_contamination_60_datagen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T19:37:10.827Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:08:12.383Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_lines\\\": 371499, \\\"synthetic_count\\\": 222900, \\\"human_count\\\": 148599, \\\"actual_contamination_ratio\\\": 0.6, \\\"q_score_mean\\\": 0.6243, \\\"q_score_std\\\": 0.3703, \\\"q_score_median\\\": 0.7753, \\\"file_size_mb\\\": 907}}, \\\"tau_07_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:03:27.838Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:57:12.394Z\\\", \\\"hypothesis\\\": \\\"τ sensitivity sweep: τ=0.7 (slightly below baseline), testing if moderate τ reduction improves or degrades PPL. Baseline τ=0.8 PPL=17.65.\\\", \\\"parent\\\": \\\"adaptive_fix_seed42\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.6707, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 15065, \\\"train_samples_per_second\\\": 6.482, \\\"eval_ppl_holdout\\\": 17.6793, \\\"eval_loss\\\": 2.8724, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15\\\", \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 0.8943, \\\"b_star_median\\\": 0.58, \\\"b_star_std\\\": 1.4007, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.3306, \\\"b_star_p75\\\": 0.9712, \\\"b_star_pct_zero\\\": 5.8, \\\"b_star_pct_below_0.5\\\": 36, \\\"b_star_pct_0.5_to_1\\\": 34.2, \\\"b_star_pct_1_to_2\\\": 16.2, \\\"b_star_pct_above_2\\\": 7.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_06_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:01:37.442Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:09:55.541Z\\\", \\\"hypothesis\\\": \\\"τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).\\\", \\\"parent\\\": \\\"adaptive_fix_seed42\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.6805, \\\"eval_loss\\\": 2.8725, \\\"train_loss\\\": 9.275, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13436.64, \\\"train_samples_per_second\\\": 7.267, \\\"b_star_mean\\\": 0.5899, \\\"b_star_median\\\": 0.3746, \\\"b_star_std\\\": 1.0693, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.1195, \\\"b_star_p75\\\": 0.66, \\\"b_star_zero_frac\\\": 0.156, \\\"b_star_nonzero_mean\\\": 0.699, \\\"b_star_nonzero_median\\\": 0.4473}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"PPL=17.681 劣于 τ=0.8 baseline (17.650)，conclusion=negative。概念修正：τ 越低 → α_eff 下界越松 → b* 更小 → 降权力度更弱（非更激进）。正确因果链：τ 越高 → α_eff 下界越严 → min-intervention 需要更大 b* 才能满足约束 → 降权力度更强。\\\"}, \\\"tau_05_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:03:27.263Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:06:51.535Z\\\", \\\"hypothesis\\\": \\\"τ sensitivity sweep: τ=0.5 (most permissive α_eff threshold), testing lower bound of useful τ range. Baseline τ=0.8 PPL=17.65.\\\", \\\"parent\\\": \\\"adaptive_fix_seed42\\\", \\\"metrics\\\": {\\\"train_loss\\\": 8.849, \\\"total_steps\\\": 6103, \\\"epoch\\\": 0.26, \\\"train_runtime_s\\\": 13431.4, \\\"train_samples_per_second\\\": 7.27, \\\"eval_ppl_holdout\\\": 17.688, \\\"eval_loss\\\": 2.8729, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15\\\", \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 0.3923, \\\"b_star_median\\\": 0.1707, \\\"b_star_std\\\": 0.8821, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0, \\\"b_star_p75\\\": 0.4366, \\\"b_star_pct_zero\\\": 29.1, \\\"b_star_pct_below_0.5\\\": 78.4, \\\"b_star_pct_0.5_to_1\\\": 12.9, \\\"b_star_pct_1_to_2\\\": 5.7, \\\"b_star_pct_above_2\\\": 2.9}, \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_fix_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:32:31.779Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:43:25.930Z\\\", \\\"hypothesis\\\": \\\"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64, uniform PPL=17.70)\\\", \\\"parent\\\": \\\"adaptive_seed456\\\", \\\"notes\\\": \\\"最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 8.3124, \\\"train_runtime\\\": 11436.05, \\\"train_samples_per_second\\\": 8.539, \\\"train_steps_per_second\\\": 0.534, \\\"total_steps\\\": 6103, \\\"eval_ppl_holdout\\\": 17.6566, \\\"eval_loss_holdout\\\": 2.8711, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.66/4077068\\\", \\\"b_star_count\\\": 26396, \\\"b_star_mean\\\": 1.416, \\\"b_star_median\\\": 0.88, \\\"b_star_std\\\": 1.993, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.54, \\\"b_star_p75\\\": 1.52, \\\"b_star_pct_below_0.5\\\": 20.9, \\\"b_star_pct_0.5_to_1\\\": 35.7, \\\"b_star_pct_1_to_2\\\": 27.3, \\\"b_star_pct_above_2\\\": 16.1, \\\"b_star_note\\\": \\\"Training-only records (eval checkpoint records with b*=0 excluded)\\\"}}, \\\"adaptive_fix_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:32:31.409Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:43:21.914Z\\\", \\\"hypothesis\\\": \\\"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63, uniform PPL=17.69)\\\", \\\"parent\\\": \\\"adaptive_seed123\\\", \\\"notes\\\": \\\"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.6432, \\\"eval_loss_holdout\\\": 2.8704, \\\"eval_loss\\\": 2.8704, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.643/4077068\\\", \\\"train_loss_weighted\\\": 7.517, \\\"train_runtime_s\\\": 10347, \\\"total_steps\\\": 6103, \\\"epoch\\\": 0.26, \\\"b_star_mean\\\": 1.431, \\\"b_star_median\\\": 0.88, \\\"b_star_std\\\": 2.029, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_pct_below_0.5\\\": 20.9, \\\"b_star_pct_0.5_to_1\\\": 35.7, \\\"b_star_pct_1_to_2\\\": 27.3, \\\"b_star_pct_2_to_5\\\": 6.3, \\\"b_star_pct_above_5\\\": 1.9, \\\"b_star_count\\\": 25906, \\\"b_star_p25\\\": 0.54, \\\"b_star_p75\\\": 1.52, \\\"b_star_pct_above_2\\\": 16.1, \\\"b_star_note\\\": \\\"Training-only records (eval checkpoint records with b*=0 excluded)\\\"}}, \\\"adaptive_fix_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:32:30.463Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:43:17.126Z\\\", \\\"hypothesis\\\": \\\"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint achieves meaningful improvement over uniform baseline (PPL=17.69) for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)\\\", \\\"parent\\\": \\\"adaptive_seed42\\\", \\\"notes\\\": \\\"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.5167, \\\"train_runtime\\\": 10304.37, \\\"train_samples_per_second\\\": 9.476, \\\"train_steps_per_second\\\": 0.592, \\\"total_steps\\\": 6103, \\\"eval_ppl_holdout\\\": 17.6527, \\\"eval_loss_holdout\\\": 2.8709, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.65/4077068\\\", \\\"b_star_count\\\": 26458, \\\"b_star_mean\\\": 1.399, \\\"b_star_median\\\": 0.871, \\\"b_star_std\\\": 1.933, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.54, \\\"b_star_p75\\\": 1.512, \\\"b_star_pct_below_0.5\\\": 20.9, \\\"b_star_pct_0.5_to_1\\\": 35.7, \\\"b_star_pct_1_to_2\\\": 27.3, \\\"b_star_pct_above_2\\\": 16.1, \\\"b_star_note\\\": \\\"Training-only records (eval checkpoint records with b*=0 excluded)\\\"}}, \\\"adaptive_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:25:03.137Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:43:10.982Z\\\", \\\"hypothesis\\\": \\\"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=456\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.2354, \\\"train_runtime_s\\\": 13130.09, \\\"total_steps\\\": 6103, \\\"train_samples_per_second\\\": 7.437, \\\"train_steps_per_second\\\": 0.465, \\\"epoch\\\": 0.26, \\\"weighting_method\\\": \\\"adaptive\\\", \\\"tau\\\": 0.8, \\\"n_min\\\": 3, \\\"contamination_ratio\\\": 0.4, \\\"b_star\\\": \\\"per-batch adaptive (0.0-3.8)\\\", \\\"alpha_eff_range\\\": \\\"0.09-0.80 (capped at tau)\\\", \\\"eval_ppl_holdout\\\": 17.6419, \\\"eval_loss_holdout\\\": 2.8703, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\\\"}, \\\"adaptive_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:25:02.771Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:43:08.120Z\\\", \\\"hypothesis\\\": \\\"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=123\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.2665, \\\"train_runtime_s\\\": 13197.18, \\\"total_steps\\\": 6103, \\\"train_samples_per_second\\\": 7.399, \\\"train_steps_per_second\\\": 0.462, \\\"epoch\\\": 0.26, \\\"weighting_method\\\": \\\"adaptive\\\", \\\"tau\\\": 0.8, \\\"n_min\\\": 3, \\\"contamination_ratio\\\": 0.4, \\\"b_star\\\": \\\"per-batch adaptive (0.0-3.8)\\\", \\\"alpha_eff_range\\\": \\\"0.04-0.80 (capped at tau)\\\", \\\"eval_ppl_holdout\\\": 17.6308, \\\"eval_loss_holdout\\\": 2.8696, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\\\"}, \\\"adaptive_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:25:01.824Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:43:05.333Z\\\", \\\"hypothesis\\\": \\\"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=42\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.2665, \\\"train_runtime_s\\\": 13115.09, \\\"total_steps\\\": 6103, \\\"train_samples_per_second\\\": 7.445, \\\"train_steps_per_second\\\": 0.465, \\\"epoch\\\": 0.26, \\\"weighting_method\\\": \\\"adaptive\\\", \\\"tau\\\": 0.8, \\\"n_min\\\": 3, \\\"contamination_ratio\\\": 0.4, \\\"b_star\\\": \\\"per-batch adaptive (0.0-3.8)\\\", \\\"alpha_eff_range\\\": \\\"0.03-0.80 (capped at tau)\\\", \\\"eval_ppl_holdout\\\": 17.644, \\\"eval_loss_holdout\\\": 2.8704, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\\\"}, \\\"uniform_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:17:55.165Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:42:59.635Z\\\", \\\"hypothesis\\\": \\\"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.2895, \\\"total_steps\\\": 6103, \\\"train_duration_s\\\": 11974, \\\"eval_ppl_holdout\\\": 17.7015, \\\"eval_loss_holdout\\\": 2.8737, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\\\"}}, \\\"uniform_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:17:53.217Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:42:57.800Z\\\", \\\"hypothesis\\\": \\\"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.3121, \\\"total_steps\\\": 6103, \\\"train_duration_s\\\": 11994, \\\"eval_ppl_holdout\\\": 17.6861, \\\"eval_loss_holdout\\\": 2.8728, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\\\"}}, \\\"uniform_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:17:51.722Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:42:55.867Z\\\", \\\"hypothesis\\\": \\\"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.3104, \\\"total_steps\\\": 6103, \\\"train_duration_s\\\": 11946, \\\"eval_ppl_holdout\\\": 17.6939, \\\"eval_loss_holdout\\\": 2.8732, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\\\"}}, \\\"nmin1_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:48:31.298Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:36:49.692Z\\\", \\\"hypothesis\\\": \\\"n_min=1 sensitivity: minimal ESS constraint allows more aggressive downweighting, testing if adaptive method degrades with overly permissive ESS bound\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.789, \\\"eval_loss\\\": 2.8786, \\\"eval_holdout_tokens\\\": 4077068, \\\"b_star_mean\\\": 7.197, \\\"b_star_median\\\": 1.746, \\\"b_star_std\\\": 8.374, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.803, \\\"b_star_p75\\\": 20, \\\"b_star_zero_frac\\\": 0.019, \\\"b_star_pct_below_0.5\\\": 13.1, \\\"b_star_pct_0.5_to_1\\\": 19.1, \\\"b_star_pct_1_to_2\\\": 21.1, \\\"b_star_pct_above_2\\\": 46.7, \\\"b_star_count\\\": 24412, \\\"alpha_eff_mean\\\": 0.714, \\\"alpha_eff_median\\\": 0.8}, \\\"notes\\\": \\\"训练完成(EXIT_CODE=0, 4h50m)。PPL=17.789，比 adaptive_fix(n_min=2, 17.650) 差 +0.139，比 uniform(17.690) 差 +0.099。n_min=1 导致极端 b* 分布：46.7% batch b*≥2，p75=20.0(上限)，mean=7.197。ESS 约束几乎失效，over-downweighting 明显。confirms n_min=2 是更优选择。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"ess_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:20:13.656Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:38:10.040Z\\\", \\\"hypothesis\\\": \\\"ESS-only adaptive baseline (max-intervention): b* = max{b : ESS(b) ≥ n_min} — proves min-intervention (adaptive) superior to max-intervention (ESS-only)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl\\\": 17.73, \\\"eval_loss\\\": 2.875, \\\"b_star_median\\\": 1.58, \\\"b_star_mean\\\": 3.51, \\\"vs_uniform_ppl_delta\\\": \\\"+0.038\\\", \\\"vs_adaptive_ppl_delta\\\": \\\"+0.08\\\"}}, \\\"golden_ratio_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T07:20:12.943Z\\\", \\\"updated_at\\\": \\\"2026-05-15T13:33:31.162Z\\\", \\\"hypothesis\\\": \\\"Golden Ratio oracle baseline: w=1/φ≈0.618 for synthetic (q>0.5), w=1.0 for real — requires known proportion, serves as oracle upper bound for adaptive method\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.654, \\\"eval_loss\\\": 2.871, \\\"train_loss\\\": 2.1145, \\\"train_loss_last500\\\": 2.109, \\\"eval_holdout_tokens\\\": 4077068, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13442, \\\"gpu_hours\\\": 3.73}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b5_0_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:59:39.050Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:05:51.443Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with b=5.0, seed=456, for multi-seed validation of best-b baseline\\\", \\\"notes\\\": \\\"⚠️ checkpoint resume artifact: PPL=17.993, 比 seed42(17.818)/seed123(17.804) 高 +0.18。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=5.0 行仅报 2 seeds (seed42+seed123)。\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.993, \\\"eval_loss\\\": 2.89, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 5.488, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 6601, \\\"gpu_hours\\\": 1.83, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b3_0_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:59:38.011Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:05:50.357Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with b=3.0, seed=456, for multi-seed validation of best-b baseline\\\", \\\"notes\\\": \\\"⚠️ checkpoint resume artifact: PPL=17.921, 比 seed42(17.774)/seed123(17.76) 高 +0.16。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=3.0 行仅报 2 seeds (seed42+seed123)。\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.921, \\\"eval_loss\\\": 2.886, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 5.435, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 6602, \\\"gpu_hours\\\": 1.83, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b2_0_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:59:37.073Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:05:48.101Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with b=2.0, seed=456, for multi-seed validation of best-b baseline\\\", \\\"notes\\\": \\\"⚠️ checkpoint resume artifact: PPL=17.989, 比 seed42(17.741)/seed123(17.725) 高 +0.25。训练中断后从 checkpoint-3500 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=2.0 行仅报 2 seeds (seed42+seed123)。\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.989, \\\"eval_loss\\\": 2.8898, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 10.625, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 12969, \\\"gpu_hours\\\": 3.6, \\\"train_samples_per_second\\\": 7.53, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b1_5_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:59:35.658Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:03:24.328Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with b=1.5, seed=456, for multi-seed validation of best-b baseline\\\", \\\"metrics\\\": {\\\"train_loss\\\": 10.435, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 12950.16, \\\"gpu_hours\\\": 3.67, \\\"train_samples_per_second\\\": 7.54, \\\"eval_loss\\\": 2.8741, \\\"eval_ppl_holdout\\\": 17.71, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_loss_holdout\\\": 2.875, \\\"eval_tokens\\\": 5004058}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b1_0_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:59:34.733Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:03:23.307Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with b=1.0, seed=456, for multi-seed validation of best-b baseline\\\", \\\"metrics\\\": {\\\"train_loss\\\": 10.178, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 12963.87, \\\"gpu_hours\\\": 3.67, \\\"train_samples_per_second\\\": 7.532, \\\"eval_loss\\\": 2.8725, \\\"eval_ppl_holdout\\\": 17.68, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_loss_holdout\\\": 2.8734, \\\"eval_tokens\\\": 5004058}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b0_5_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:58:17.956Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:03:04.640Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with b=0.5, seed=456, for multi-seed validation of best-b baseline\\\", \\\"notes\\\": \\\"重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step 56/6103, ETA ~3.5h。\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.5622, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 12953.96, \\\"gpu_hours\\\": 3.6, \\\"train_samples_per_second\\\": 7.538, \\\"eval_loss\\\": 2.8705, \\\"eval_ppl_holdout\\\": 17.65, \\\"eval_holdout_tokens\\\": 4077068}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b_seed42_batch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T23:50:09.001Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:21:47.253Z\\\", \\\"hypothesis\\\": \\\"Grid-b weighting with 6 b values (0.5, 1.0, 1.5, 2.0, 3.0, 5.0) for seed=42, establishes best-b baseline for comparison with adaptive b*\\\", \\\"metrics\\\": {\\\"b_values\\\": [0.5, 1, 1.5, 2, 3, 5], \\\"b0_5_train_loss\\\": 9.598, \\\"b0_5_completed\\\": true, \\\"b1_0_completed\\\": true, \\\"b1_5_completed\\\": true, \\\"b2_0_current_step\\\": 5149, \\\"b2_0_total_steps\\\": 6103, \\\"completed_b_values\\\": [0.5, 1, 1.5, 2, 3], \\\"current_b\\\": 5, \\\"total_steps\\\": 6103, \\\"current_step\\\": 3422, \\\"b5_0_progress_pct\\\": 56, \\\"eta_minutes\\\": 95, \\\"b2_0_completed\\\": true, \\\"b2_0_train_loss\\\": 10.621, \\\"b2_0_train_runtime_s\\\": 13034, \\\"b3_0_completed\\\": true, \\\"b3_0_train_loss\\\": 10.754, \\\"b3_0_train_runtime_s\\\": 13036, \\\"all_completed\\\": true, \\\"b1_0_train_loss\\\": 10.223, \\\"b1_5_train_loss\\\": 10.485, \\\"b5_0_train_loss\\\": 10.858, \\\"b0_5_runtime_s\\\": 13036, \\\"b1_0_runtime_s\\\": 12968, \\\"b1_5_runtime_s\\\": 14789, \\\"b2_0_runtime_s\\\": 13034, \\\"b3_0_runtime_s\\\": 13036, \\\"b5_0_runtime_s\\\": 13115, \\\"note\\\": \\\"eval_ppl missing - no --eval_data_path in batch script, post-hoc eval pending\\\", \\\"b0_5_eval_ppl\\\": 17.651, \\\"b1_0_eval_ppl\\\": 17.692, \\\"b1_5_eval_ppl\\\": 17.718, \\\"b2_0_eval_ppl\\\": 17.741, \\\"b3_0_eval_ppl\\\": 17.774, \\\"b5_0_eval_ppl\\\": 17.818, \\\"eval_holdout_tokens\\\": 4077068, \\\"best_b\\\": 0.5, \\\"best_eval_ppl\\\": 17.651}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b5_0_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:52:56.873Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:34:56.261Z\\\", \\\"notes\\\": \\\"PID 94717 已确认存活（SSH 验证 2026-05-14T11:39）。旧 PID 92798 已 kill，cron 重新注册。\\\", \\\"metrics\\\": {\\\"train_loss\\\": 10.8468, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 14434, \\\"gpu_hours\\\": 4.01, \\\"eval_ppl_holdout\\\": 17.8039, \\\"eval_loss\\\": 2.8794, \\\"eval_holdout_tokens\\\": 4077068}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b2_0_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:52:55.329Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:43:39.107Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 10.61, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13058.8, \\\"gpu_hours\\\": 3.63, \\\"train_samples_per_second\\\": 7.478, \\\"train_steps_per_second\\\": 0.467, \\\"eval_ppl_holdout\\\": 17.725, \\\"eval_loss\\\": 2.875, \\\"eval_holdout_tokens\\\": 4077068}}, \\\"grid_b3_0_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:52:56.285Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:41:44.081Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 10.7422, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 12955.83, \\\"gpu_hours\\\": 3.6, \\\"eval_ppl_holdout\\\": 17.76, \\\"eval_loss\\\": 2.877, \\\"eval_holdout_tokens\\\": 4077068}, \\\"notes\\\": \\\"训练完成，eval 未执行（should_evaluate=false，缺少 --eval_data_path 和 --eval_steps）。Checkpoint: /root/provenance_weight_training/output/models/grid_b3_0_seed123/final/ (model.safetensors 1.19GB)。需补跑 eval。\\\"}, \\\"grid_b1_5_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:52:43.491Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:36:25.428Z\\\", \\\"metrics\\\": {\\\"train_loss\\\": 10.4776, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 15053.1, \\\"gpu_hours\\\": 4.18, \\\"eval_ppl_holdout\\\": 17.701, \\\"eval_loss\\\": 2.8736}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b1_0_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:52:42.784Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:12.453Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.674, \\\"eval_loss\\\": 2.8721, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 10.218, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13878, \\\"gpu_hours\\\": 3.88}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b0_5_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:52:42.314Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:42:12.465Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.638, \\\"eval_loss\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 9.601, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13104, \\\"gpu_hours\\\": 3.8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"detector_tfidf_lr\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T23:28:08.894Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:28:28.425Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"TF-IDF + LogisticRegression detector provides spread q-scores (AUC~0.94, not binarized) for provenance weighting, replacing over-accurate ModernBERT (D007)\\\", \\\"metrics\\\": {\\\"auc\\\": 0.939, \\\"accuracy\\\": 0.858, \\\"ece_raw\\\": 0.24, \\\"ece_calibrated\\\": 0.048, \\\"temperature_T\\\": 0.204, \\\"q_score_mean\\\": 0.6, \\\"q_score_std\\\": 0.374, \\\"q_score_median\\\": 0.707, \\\"mid_range_ratio\\\": 0.463}}, \\\"datagen_synthetic_4gpu\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T19:12:11.474Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:50:46.682Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 38, \\\"total\\\": 38, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2325}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"contamination_60_seed42_r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:53:48.975Z\", \"updated_at\": \"2026-05-16T01:57:12.472Z\", \"hypothesis\": \"Retry of contamination_60_seed42 (failed due to GPU conflict on cuda:2). ρ=0.6 adaptive weighting (τ=0.8, n_min=2) on higher contamination data. Tests graceful degradation as ρ increases from 0.4→0.6.\", \"parent\": \"contamination_60_seed42\", \"metrics\": {\"eval_ppl_holdout\": 17.74, \"eval_loss_holdout\": 2.8759, \"eval_tokens\": 4077068, \"eval_method\": \"sliding_window_2048_stride1024\", \"train_loss\": 9.6349, \"train_runtime_seconds\": 14092.25}, \"conclusion\": \"success\"}, \"contamination_60_grid_b0_5_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T20:19:25.407Z\", \"updated_at\": \"2026-05-16T01:47:52.701Z\", \"hypothesis\": \"ρ=0.6 grid-best (b=0.5) baseline: fixed b=0.5 on 60% contamination. Tests if grid-optimal b from ρ=0.4 transfers to higher contamination, or if adaptive b* adapts better.\", \"parent\": \"grid_b0_5_seed456\", \"conclusion\": \"success\", \"notes\": \"训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42 同一模式）。WANDB_MODE=disabled 导致 cron 误判为 failed。实际 success，等 eval PPL。\", \"metrics\": {\"eval_ppl\": 17.704, \"eval_loss\": 2.8738, \"eval_tokens\": 4077068, \"eval_docs\": 5000}}, \"contamination_60_uniform_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T20:19:24.785Z\", \"updated_at\": \"2026-05-16T01:12:50.897Z\", \"hypothesis\": \"ρ=0.6 uniform baseline: no reweighting on 60% contamination data. Establishes baseline PPL degradation at higher contamination for comparison with adaptive and grid methods.\", \"parent\": \"uniform_seed42\", \"conclusion\": \"success\", \"notes\": \"训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129 (SIGHUP) 发生在训练完成后。WANDB_MODE=disabled 导致 cron 误判为 failed。train_loss=7.649 (avg), train_runtime=12904s。需要 eval 获取 PPL。\", \"metrics\": {\"eval_ppl_holdout\": 17.766, \"eval_loss_holdout\": 2.8773, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\", \"train_loss\": 7.649, \"train_runtime_seconds\": 12904}}, \"ess_only_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T15:51:52.911Z\", \"updated_at\": \"2026-05-15T22:04:28.158Z\", \"metrics\": {\"eval_ppl_holdout\": 17.72, \"eval_loss_holdout\": 2.8746, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"eval_note\": \"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\", \"train_loss\": 10.2159, \"train_steps\": 6103, \"train_runtime_seconds\": 12959.5, \"b_star_mean\": 3.55, \"b_star_median\": 1.5918, \"b_star_std\": 4.7209, \"b_star_min\": 0.2344, \"b_star_max\": 20, \"b_star_p25\": 0.8398, \"b_star_p75\": 3.8281, \"b_star_p90\": 9.5996, \"b_star_count\": 21971, \"vs_uniform_ppl_delta\": \"+0.034\", \"vs_adaptive_fix_ppl_delta\": \"+0.077\"}, \"conclusion\": \"success\"}, \"ess_only_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:04:39.611Z\", \"updated_at\": \"2026-05-15T22:02:57.653Z\", \"metrics\": {\"eval_ppl\": 17.719, \"eval_loss\": 2.8746, \"eval_tokens\": 4077068, \"train_loss\": 10.174, \"vs_uniform_ppl_delta\": \"+0.018\", \"vs_adaptive_ppl_delta\": \"+0.077\", \"vs_adaptive_fix_ppl_delta\": \"+0.062\"}, \"conclusion\": \"success\", \"hypothesis\": \"ESS-only (max-intervention) seed456: b* = max{b : ESS(b) ≥ n_min} — proves dual-constraint adaptive (min-intervention) superior to ESS-only\"}, \"baseline_qwen3_0.6b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T21:53:53.450Z\", \"updated_at\": \"2026-05-15T21:54:29.041Z\", \"conclusion\": \"success\", \"hypothesis\": \"Raw Qwen3-0.6B pretrained checkpoint baseline PPL (no continued pretraining). Reference point for quantifying absolute improvement from training.\", \"metrics\": {\"eval_ppl_holdout\": 22.97, \"eval_loss\": 3.134, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"sliding_window_stride1024_maxlen2048_fp16\"}, \"notes\": \"Baseline PPL=22.9654 (loss=3.1340), tokens=4,077,068, time=249s. Weight SHA256=f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b. Pretrained weights confirmed (std ~0.02-0.03, layernorm varies across layers). Compared to ess_only_seed456 PPL=17.72: continued pretraining reduces PPL by 22.8%.\"}, \"nmin4_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:36:45.229Z\", \"updated_at\": \"2026-05-15T21:22:25.975Z\", \"hypothesis\": \"n_min=4 (=batch_size) ablation: forces b*=0 always since ESS constraint cannot be satisfied with any b>0 when n_min=batch_size. Should degrade to uniform-equivalent PPL (~17.69). Key boundary condition for n_min sensitivity analysis.\", \"notes\": \"Mid-training check @step 2036/6103: b=0.0, ess=4.0 (=n_min), weighted_loss==unweighted_loss — confirms b*=0 degenerates to uniform weighting as theoretically predicted. Eval commands prepared for post-training.\", \"metrics\": {\"eval_ppl_holdout\": 17.6947, \"eval_loss\": 2.8733, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 7.989, \"total_steps\": 6103, \"train_runtime_s\": 16231, \"train_samples_per_second\": 6.016, \"b_star_count\": 24412, \"b_star_mean\": 0, \"b_star_median\": 0, \"b_star_std\": 0, \"b_star_min\": 0, \"b_star_max\": 0, \"b_star_pct_zero\": 100, \"ess_mean\": 4, \"ess_min\": 4, \"ess_max\": 4}, \"conclusion\": \"success\"}, \"p0_contamination_60_datagen\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:37:10.827Z\", \"updated_at\": \"2026-05-15T20:08:12.383Z\", \"conclusion\": \"success\", \"metrics\": {\"total_lines\": 371499, \"synthetic_count\": 222900, \"human_count\": 148599, \"actual_contamination_ratio\": 0.6, \"q_score_mean\": 0.6243, \"q_score_std\": 0.3703, \"q_score_median\": 0.7753, \"file_size_mb\": 907}}, \"tau_07_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:03:27.838Z\", \"updated_at\": \"2026-05-15T17:57:12.394Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.7 (slightly below baseline), testing if moderate τ reduction improves or degrades PPL. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"metrics\": {\"train_loss\": 9.6707, \"total_steps\": 6103, \"train_runtime_s\": 15065, \"train_samples_per_second\": 6.482, \"eval_ppl_holdout\": 17.6793, \"eval_loss\": 2.8724, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.8943, \"b_star_median\": 0.58, \"b_star_std\": 1.4007, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.3306, \"b_star_p75\": 0.9712, \"b_star_pct_zero\": 5.8, \"b_star_pct_below_0.5\": 36, \"b_star_pct_0.5_to_1\": 34.2, \"b_star_pct_1_to_2\": 16.2, \"b_star_pct_above_2\": 7.7}, \"conclusion\": \"success\"}, \"tau_06_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:01:37.442Z\", \"updated_at\": \"2026-05-15T17:09:55.541Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.6 (lower α_eff threshold) may allow more aggressive downweighting, testing if PPL improves or degrades vs τ=0.8 baseline (adaptive_fix PPL=17.65). Key evidence for Claim 3 (τ as robust empirical hyperparameter).\", \"parent\": \"adaptive_fix_seed42\", \"metrics\": {\"eval_ppl_holdout\": 17.6805, \"eval_loss\": 2.8725, \"train_loss\": 9.275, \"total_steps\": 6103, \"train_runtime_s\": 13436.64, \"train_samples_per_second\": 7.267, \"b_star_mean\": 0.5899, \"b_star_median\": 0.3746, \"b_star_std\": 1.0693, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.1195, \"b_star_p75\": 0.66, \"b_star_zero_frac\": 0.156, \"b_star_nonzero_mean\": 0.699, \"b_star_nonzero_median\": 0.4473}, \"conclusion\": \"success\", \"notes\": \"PPL=17.681 劣于 τ=0.8 baseline (17.650)，conclusion=negative。概念修正：τ 越低 → α_eff 下界越松 → b* 更小 → 降权力度更弱（非更激进）。正确因果链：τ 越高 → α_eff 下界越严 → min-intervention 需要更大 b* 才能满足约束 → 降权力度更强。\"}, \"tau_05_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:03:27.263Z\", \"updated_at\": \"2026-05-15T17:06:51.535Z\", \"hypothesis\": \"τ sensitivity sweep: τ=0.5 (most permissive α_eff threshold), testing lower bound of useful τ range. Baseline τ=0.8 PPL=17.65.\", \"parent\": \"adaptive_fix_seed42\", \"metrics\": {\"train_loss\": 8.849, \"total_steps\": 6103, \"epoch\": 0.26, \"train_runtime_s\": 13431.4, \"train_samples_per_second\": 7.27, \"eval_ppl_holdout\": 17.688, \"eval_loss\": 2.8729, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.3923, \"b_star_median\": 0.1707, \"b_star_std\": 0.8821, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0, \"b_star_p75\": 0.4366, \"b_star_pct_zero\": 29.1, \"b_star_pct_below_0.5\": 78.4, \"b_star_pct_0.5_to_1\": 12.9, \"b_star_pct_1_to_2\": 5.7, \"b_star_pct_above_2\": 2.9}, \"conclusion\": \"success\"}, \"adaptive_fix_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:32:31.779Z\", \"updated_at\": \"2026-05-15T16:43:25.930Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64, uniform PPL=17.70)\", \"parent\": \"adaptive_seed456\", \"notes\": \"最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 8.3124, \"train_runtime\": 11436.05, \"train_samples_per_second\": 8.539, \"train_steps_per_second\": 0.534, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6566, \"eval_loss_holdout\": 2.8711, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.66/4077068\", \"b_star_count\": 26396, \"b_star_mean\": 1.416, \"b_star_median\": 0.88, \"b_star_std\": 1.993, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:32:31.409Z\", \"updated_at\": \"2026-05-15T16:43:21.914Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63, uniform PPL=17.69)\", \"parent\": \"adaptive_seed123\", \"notes\": \"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.6432, \"eval_loss_holdout\": 2.8704, \"eval_loss\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.643/4077068\", \"train_loss_weighted\": 7.517, \"train_runtime_s\": 10347, \"total_steps\": 6103, \"epoch\": 0.26, \"b_star_mean\": 1.431, \"b_star_median\": 0.88, \"b_star_std\": 2.029, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_2_to_5\": 6.3, \"b_star_pct_above_5\": 1.9, \"b_star_count\": 25906, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:32:30.463Z\", \"updated_at\": \"2026-05-15T16:43:17.126Z\", \"hypothesis\": \"D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint achieves meaningful improvement over uniform baseline (PPL=17.69) for seed=42. Parent: adaptive_seed42 (PPL=17.69, n_min=3 bug)\", \"parent\": \"adaptive_seed42\", \"notes\": \"最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126801\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.5167, \"train_runtime\": 10304.37, \"train_samples_per_second\": 9.476, \"train_steps_per_second\": 0.592, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6527, \"eval_loss_holdout\": 2.8709, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.65/4077068\", \"b_star_count\": 26458, \"b_star_mean\": 1.399, \"b_star_median\": 0.871, \"b_star_std\": 1.933, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.512, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:25:03.137Z\", \"updated_at\": \"2026-05-15T16:43:10.982Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=456\", \"metrics\": {\"train_loss\": 9.2354, \"train_runtime_s\": 13130.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.437, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.09-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6419, \"eval_loss_holdout\": 2.8703, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\"}, \"conclusion\": \"success\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"adaptive_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:25:02.771Z\", \"updated_at\": \"2026-05-15T16:43:08.120Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=123\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13197.18, \"total_steps\": 6103, \"train_samples_per_second\": 7.399, \"train_steps_per_second\": 0.462, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.04-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6308, \"eval_loss_holdout\": 2.8696, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\"}, \"conclusion\": \"success\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"adaptive_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:25:01.824Z\", \"updated_at\": \"2026-05-15T16:43:05.333Z\", \"hypothesis\": \"Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b without grid search, seed=42\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13115.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.445, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.03-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.644, \"eval_loss_holdout\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\"}, \"conclusion\": \"success\", \"notes\": \"⚠️ success 仅指训练完成无报错。MVP 假设验证待 held-out eval perplexity 结果。\"}, \"uniform_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:17:55.165Z\", \"updated_at\": \"2026-05-15T16:42:59.635Z\", \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.2895, \"total_steps\": 6103, \"train_duration_s\": 11974, \"eval_ppl_holdout\": 17.7015, \"eval_loss_holdout\": 2.8737, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\"}}, \"uniform_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:17:53.217Z\", \"updated_at\": \"2026-05-15T16:42:57.800Z\", \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3121, \"total_steps\": 6103, \"train_duration_s\": 11994, \"eval_ppl_holdout\": 17.6861, \"eval_loss_holdout\": 2.8728, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"uniform_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:17:51.722Z\", \"updated_at\": \"2026-05-15T16:42:55.867Z\", \"hypothesis\": \"Uniform weighting baseline (no provenance information) for comparison with grid-b and adaptive methods\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3104, \"total_steps\": 6103, \"train_duration_s\": 11946, \"eval_ppl_holdout\": 17.6939, \"eval_loss_holdout\": 2.8732, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"nmin1_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:48:31.298Z\", \"updated_at\": \"2026-05-15T14:36:49.692Z\", \"hypothesis\": \"n_min=1 sensitivity: minimal ESS constraint allows more aggressive downweighting, testing if adaptive method degrades with overly permissive ESS bound\", \"metrics\": {\"eval_ppl_holdout\": 17.789, \"eval_loss\": 2.8786, \"eval_holdout_tokens\": 4077068, \"b_star_mean\": 7.197, \"b_star_median\": 1.746, \"b_star_std\": 8.374, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.803, \"b_star_p75\": 20, \"b_star_zero_frac\": 0.019, \"b_star_pct_below_0.5\": 13.1, \"b_star_pct_0.5_to_1\": 19.1, \"b_star_pct_1_to_2\": 21.1, \"b_star_pct_above_2\": 46.7, \"b_star_count\": 24412, \"alpha_eff_mean\": 0.714, \"alpha_eff_median\": 0.8}, \"notes\": \"训练完成(EXIT_CODE=0, 4h50m)。PPL=17.789，比 adaptive_fix(n_min=2, 17.650) 差 +0.139，比 uniform(17.690) 差 +0.099。n_min=1 导致极端 b* 分布：46.7% batch b*≥2，p75=20.0(上限)，mean=7.197。ESS 约束几乎失效，over-downweighting 明显。confirms n_min=2 是更优选择。\", \"conclusion\": \"success\"}, \"ess_only_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:20:13.656Z\", \"updated_at\": \"2026-05-15T13:38:10.040Z\", \"hypothesis\": \"ESS-only adaptive baseline (max-intervention): b* = max{b : ESS(b) ≥ n_min} — proves min-intervention (adaptive) superior to max-intervention (ESS-only)\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.73, \"eval_loss\": 2.875, \"b_star_median\": 1.58, \"b_star_mean\": 3.51, \"vs_uniform_ppl_delta\": \"+0.038\", \"vs_adaptive_ppl_delta\": \"+0.08\"}}, \"golden_ratio_seed42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T07:20:12.943Z\", \"updated_at\": \"2026-05-15T13:33:31.162Z\", \"hypothesis\": \"Golden Ratio oracle baseline: w=1/φ≈0.618 for synthetic (q>0.5), w=1.0 for real — requires known proportion, serves as oracle upper bound for adaptive method\", \"metrics\": {\"eval_ppl_holdout\": 17.654, \"eval_loss\": 2.871, \"train_loss\": 2.1145, \"train_loss_last500\": 2.109, \"eval_holdout_tokens\": 4077068, \"total_steps\": 6103, \"train_runtime_s\": 13442, \"gpu_hours\": 3.73}, \"conclusion\": \"success\"}, \"grid_b5_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:39.050Z\", \"updated_at\": \"2026-05-15T10:05:51.443Z\", \"hypothesis\": \"Grid-b weighting with b=5.0, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"⚠️ checkpoint resume artifact: PPL=17.993, 比 seed42(17.818)/seed123(17.804) 高 +0.18。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=5.0 行仅报 2 seeds (seed42+seed123)。\", \"metrics\": {\"eval_ppl_holdout\": 17.993, \"eval_loss\": 2.89, \"eval_holdout_tokens\": 4077068, \"train_loss\": 5.488, \"total_steps\": 6103, \"train_runtime_s\": 6601, \"gpu_hours\": 1.83, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"conclusion\": \"success\"}, \"grid_b3_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:38.011Z\", \"updated_at\": \"2026-05-15T10:05:50.357Z\", \"hypothesis\": \"Grid-b weighting with b=3.0, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"⚠️ checkpoint resume artifact: PPL=17.921, 比 seed42(17.774)/seed123(17.76) 高 +0.16。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=3.0 行仅报 2 seeds (seed42+seed123)。\", \"metrics\": {\"eval_ppl_holdout\": 17.921, \"eval_loss\": 2.886, \"eval_holdout_tokens\": 4077068, \"train_loss\": 5.435, \"total_steps\": 6103, \"train_runtime_s\": 6602, \"gpu_hours\": 1.83, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"conclusion\": \"success\"}, \"grid_b2_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:37.073Z\", \"updated_at\": \"2026-05-15T10:05:48.101Z\", \"hypothesis\": \"Grid-b weighting with b=2.0, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"⚠️ checkpoint resume artifact: PPL=17.989, 比 seed42(17.741)/seed123(17.725) 高 +0.25。训练中断后从 checkpoint-3500 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=2.0 行仅报 2 seeds (seed42+seed123)。\", \"metrics\": {\"eval_ppl_holdout\": 17.989, \"eval_loss\": 2.8898, \"eval_holdout_tokens\": 4077068, \"train_loss\": 10.625, \"total_steps\": 6103, \"train_runtime_s\": 12969, \"gpu_hours\": 3.6, \"train_samples_per_second\": 7.53, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\"}, \"conclusion\": \"success\"}, \"grid_b1_5_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:35.658Z\", \"updated_at\": \"2026-05-15T01:03:24.328Z\", \"hypothesis\": \"Grid-b weighting with b=1.5, seed=456, for multi-seed validation of best-b baseline\", \"metrics\": {\"train_loss\": 10.435, \"total_steps\": 6103, \"train_runtime_s\": 12950.16, \"gpu_hours\": 3.67, \"train_samples_per_second\": 7.54, \"eval_loss\": 2.8741, \"eval_ppl_holdout\": 17.71, \"eval_holdout_tokens\": 4077068, \"eval_loss_holdout\": 2.875, \"eval_tokens\": 5004058}, \"conclusion\": \"success\"}, \"grid_b1_0_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:59:34.733Z\", \"updated_at\": \"2026-05-15T01:03:23.307Z\", \"hypothesis\": \"Grid-b weighting with b=1.0, seed=456, for multi-seed validation of best-b baseline\", \"metrics\": {\"train_loss\": 10.178, \"total_steps\": 6103, \"train_runtime_s\": 12963.87, \"gpu_hours\": 3.67, \"train_samples_per_second\": 7.532, \"eval_loss\": 2.8725, \"eval_ppl_holdout\": 17.68, \"eval_holdout_tokens\": 4077068, \"eval_loss_holdout\": 2.8734, \"eval_tokens\": 5004058}, \"conclusion\": \"success\"}, \"grid_b0_5_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:58:17.956Z\", \"updated_at\": \"2026-05-15T01:03:04.640Z\", \"hypothesis\": \"Grid-b weighting with b=0.5, seed=456, for multi-seed validation of best-b baseline\", \"notes\": \"重提交成功（retry_count=1）。原 OOM 因 cuda:1 残留 eval 进程。已清理 exit marker，日志重定向正常。step 56/6103, ETA ~3.5h。\", \"metrics\": {\"train_loss\": 9.5622, \"total_steps\": 6103, \"train_runtime_s\": 12953.96, \"gpu_hours\": 3.6, \"train_samples_per_second\": 7.538, \"eval_loss\": 2.8705, \"eval_ppl_holdout\": 17.65, \"eval_holdout_tokens\": 4077068}, \"conclusion\": \"success\"}, \"grid_b_seed42_batch\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:50:09.001Z\", \"updated_at\": \"2026-05-14T22:21:47.253Z\", \"hypothesis\": \"Grid-b weighting with 6 b values (0.5, 1.0, 1.5, 2.0, 3.0, 5.0) for seed=42, establishes best-b baseline for comparison with adaptive b*\", \"metrics\": {\"b_values\": [0.5, 1, 1.5, 2, 3, 5], \"b0_5_train_loss\": 9.598, \"b0_5_completed\": true, \"b1_0_completed\": true, \"b1_5_completed\": true, \"b2_0_current_step\": 5149, \"b2_0_total_steps\": 6103, \"completed_b_values\": [0.5, 1, 1.5, 2, 3], \"current_b\": 5, \"total_steps\": 6103, \"current_step\": 3422, \"b5_0_progress_pct\": 56, \"eta_minutes\": 95, \"b2_0_completed\": true, \"b2_0_train_loss\": 10.621, \"b2_0_train_runtime_s\": 13034, \"b3_0_completed\": true, \"b3_0_train_loss\": 10.754, \"b3_0_train_runtime_s\": 13036, \"all_completed\": true, \"b1_0_train_loss\": 10.223, \"b1_5_train_loss\": 10.485, \"b5_0_train_loss\": 10.858, \"b0_5_runtime_s\": 13036, \"b1_0_runtime_s\": 12968, \"b1_5_runtime_s\": 14789, \"b2_0_runtime_s\": 13034, \"b3_0_runtime_s\": 13036, \"b5_0_runtime_s\": 13115, \"note\": \"eval_ppl missing - no --eval_data_path in batch script, post-hoc eval pending\", \"b0_5_eval_ppl\": 17.651, \"b1_0_eval_ppl\": 17.692, \"b1_5_eval_ppl\": 17.718, \"b2_0_eval_ppl\": 17.741, \"b3_0_eval_ppl\": 17.774, \"b5_0_eval_ppl\": 17.818, \"eval_holdout_tokens\": 4077068, \"best_b\": 0.5, \"best_eval_ppl\": 17.651}, \"conclusion\": \"success\"}, \"grid_b5_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:56.873Z\", \"updated_at\": \"2026-05-14T15:34:56.261Z\", \"notes\": \"PID 94717 已确认存活（SSH 验证 2026-05-14T11:39）。旧 PID 92798 已 kill，cron 重新注册。\", \"metrics\": {\"train_loss\": 10.8468, \"total_steps\": 6103, \"train_runtime_s\": 14434, \"gpu_hours\": 4.01, \"eval_ppl_holdout\": 17.8039, \"eval_loss\": 2.8794, \"eval_holdout_tokens\": 4077068}, \"conclusion\": \"success\"}, \"grid_b2_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:55.329Z\", \"updated_at\": \"2026-05-14T14:43:39.107Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 10.61, \"total_steps\": 6103, \"train_runtime_s\": 13058.8, \"gpu_hours\": 3.63, \"train_samples_per_second\": 7.478, \"train_steps_per_second\": 0.467, \"eval_ppl_holdout\": 17.725, \"eval_loss\": 2.875, \"eval_holdout_tokens\": 4077068}}, \"grid_b3_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:56.285Z\", \"updated_at\": \"2026-05-14T14:41:44.081Z\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 10.7422, \"total_steps\": 6103, \"train_runtime_s\": 12955.83, \"gpu_hours\": 3.6, \"eval_ppl_holdout\": 17.76, \"eval_loss\": 2.877, \"eval_holdout_tokens\": 4077068}, \"notes\": \"训练完成，eval 未执行（should_evaluate=false，缺少 --eval_data_path 和 --eval_steps）。Checkpoint: /root/provenance_weight_training/output/models/grid_b3_0_seed123/final/ (model.safetensors 1.19GB)。需补跑 eval。\"}, \"grid_b1_5_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:43.491Z\", \"updated_at\": \"2026-05-14T11:36:25.428Z\", \"metrics\": {\"train_loss\": 10.4776, \"total_steps\": 6103, \"train_runtime_s\": 15053.1, \"gpu_hours\": 4.18, \"eval_ppl_holdout\": 17.701, \"eval_loss\": 2.8736}, \"conclusion\": \"success\"}, \"grid_b1_0_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:42.784Z\", \"updated_at\": \"2026-05-14T10:54:12.453Z\", \"metrics\": {\"eval_ppl_holdout\": 17.674, \"eval_loss\": 2.8721, \"eval_holdout_tokens\": 4077068, \"train_loss\": 10.218, \"total_steps\": 6103, \"train_runtime_s\": 13878, \"gpu_hours\": 3.88}, \"conclusion\": \"success\"}, \"grid_b0_5_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:52:42.314Z\", \"updated_at\": \"2026-05-14T10:42:12.465Z\", \"metrics\": {\"eval_ppl_holdout\": 17.638, \"eval_loss\": 2.87, \"eval_holdout_tokens\": 4077068, \"train_loss\": 9.601, \"total_steps\": 6103, \"train_runtime_s\": 13104, \"gpu_hours\": 3.8}, \"conclusion\": \"success\"}, \"detector_tfidf_lr\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:28:08.894Z\", \"updated_at\": \"2026-05-13T23:28:28.425Z\", \"conclusion\": \"success\", \"hypothesis\": \"TF-IDF + LogisticRegression detector provides spread q-scores (AUC~0.94, not binarized) for provenance weighting, replacing over-accurate ModernBERT (D007)\", \"metrics\": {\"auc\": 0.939, \"accuracy\": 0.858, \"ece_raw\": 0.24, \"ece_calibrated\": 0.048, \"temperature_T\": 0.204, \"q_score_mean\": 0.6, \"q_score_std\": 0.374, \"q_score_median\": 0.707, \"mid_range_ratio\": 0.463}}, \"datagen_synthetic_4gpu\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T19:12:11.474Z\", \"updated_at\": \"2026-05-13T21:50:46.682Z\", \"conclusion\": \"success\"}}, \"count\": 38, \"total\": 38, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2325}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GF2zbAemWi3vbekrhe9xfF`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "3d4f690c-d855-4d42-85cf-4be4dd41f7f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Qeh6uqmakSa1un5UZ1rPf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1240,
+      "cache_read_input_tokens": 23648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1240
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T02:59:31.431Z_
+
+<details><summary>↩ Tool result · `toolu_01GF2zbAemWi3vbekrhe9xfF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "e520b74a-8cc2-4db9-ac84-d41d5896ea71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only blocked the semicolon. Let me check matplotlib with a simple command. Also, I now have all the registry data. Let me extract the key metrics I need.
+
+Let me compile the data:
+
+**Tau sweep (ρ=0.4, seed42):**
+- tau=0.5: eval_ppl=17.688
+- tau=0.6: eval_ppl=17.6805
+- tau=0.7: eval_ppl=17.6793
+- tau=0.8 (adaptive_fix_seed42): eval_ppl=17.6527
+
+
+- tau=0.9 and tau=0.95 aren't showing up in the registry, even though they should be there. I'm filtering by status=DONE and conclusion=success, so maybe those runs didn't complete successfully or have a different status.
+
+Now looking at the grid-b results, I'm seeing b values of 0.5, 1.0, 1.5, 2.0, 3.0, and 5.0 with their corresponding perplexity scores, but the task mentions b=0.7 and b=0.9 which aren't in this grid at all. There's no b=0.7 or b=0.9 in the registry either, and I don't see b=0.3 or b=0.1 experiments anywhere. Looking back at the task description, it mentions these values should be from the registry, but the actual experiments I'm finding are the grid_b_seed42_batch with b=0.5, 1.0, 1.5, 2.0, 3.0, 5.0, plus separate seed123 and seed456 variants. It seems like there might be a mismatch between what the task expects and what's actually been run. I need to search the registry more broadly for experiments with those specific b values—b0_7, b0_9, b0_3, b0_1—since they might not be in the completed results. I should also look for tau_09 and tau_095 experiments while I'm at it. Let me query without filters to see what's actually available, and then check if matplotlib is accessible on the server since I'll need it for plotting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "efc677df-21a6-4a37-9921-6e6cc2d550b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuduzFU38YR9zUFvrm8BEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13518,
+      "cache_read_input_tokens": 24888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Got the registry data. The semicolon was blocked in read_only. Let me check matplotlib and look for the missing tau experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "e3440234-e1df-4a4e-bd88-4736bbe03c2e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuduzFU38YR9zUFvrm8BEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13518,
+      "cache_read_input_tokens": 24888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M3b2yc7X2jQstsMfqeiL7x`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "e8f932e0-0677-4a27-aae2-8c6324b43a5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuduzFU38YR9zUFvrm8BEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13518,
+      "cache_read_input_tokens": 24888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:00:00.813Z_
+
+<details><summary>↩ Tool result · `toolu_01M3b2yc7X2jQstsMfqeiL7x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "41fd3a97-9e36-4f0f-9892-41faa02bf4e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01WRGZZn582dMrLNyCdACV1A`</summary>
+
+```json
+{
+  "project": "provenance_weight_training",
+  "filters": {},
+  "fields": [
+    "status",
+    "conclusion",
+    "metrics"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "d0336d61-e845-4285-bae4-64b63ced3bc6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuduzFU38YR9zUFvrm8BEU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13518,
+      "cache_read_input_tokens": 24888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:00:01.676Z_
+
+<details><summary>↩ Tool result · `toolu_01WRGZZn582dMrLNyCdACV1A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"detect_remove_baseline_seed42\": {\"status\": \"RUNNING\"}, \"contamination_60_ess_only_seed42\": {\"status\": \"RUNNING\"}, \"nmin5_seed42\": {\"status\": \"PREPARING\"}, \"grid_b0_1_seed42\": {\"status\": \"PREPARING\"}, \"contamination_60_tau06_seed42\": {\"status\": \"PREPARING\"}, \"adaptive_v2_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"adaptive_v2_seed123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"adaptive_v2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_095_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_09_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_07_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_06_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_05_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"contamination_60_tau07_seed42\": {\"status\": \"RUNNING\"}, \"contamination_60_seed42_r2\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.74, \"eval_loss_holdout\": 2.8759, \"eval_tokens\": 4077068, \"eval_method\": \"sliding_window_2048_stride1024\", \"train_loss\": 9.6349, \"train_runtime_seconds\": 14092.25}, \"conclusion\": \"success\"}, \"contamination_60_grid_b0_5_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.704, \"eval_loss\": 2.8738, \"eval_tokens\": 4077068, \"eval_docs\": 5000}}, \"grid_b0_3_seed42\": {\"status\": \"RUNNING\"}, \"contamination_60_uniform_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.766, \"eval_loss_holdout\": 2.8773, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\", \"train_loss\": 7.649, \"train_runtime_seconds\": 12904}}, \"grid_b0_2_seed42\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"bs8_nmin2_seed42_r2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ppl_holdout\": 17.73, \"eval_loss_holdout\": 2.8752, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"train_loss\": 5.4065, \"train_steps\": 6103, \"train_runtime_seconds\": 14621.6}}, \"grid_b_low_serial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"ess_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.72, \"eval_loss_holdout\": 2.8746, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"eval_note\": \"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\", \"train_loss\": 10.2159, \"train_steps\": 6103, \"train_runtime_seconds\": 12959.5, \"b_star_mean\": 3.55, \"b_star_median\": 1.5918, \"b_star_std\": 4.7209, \"b_star_min\": 0.2344, \"b_star_max\": 20, \"b_star_p25\": 0.8398, \"b_star_p75\": 3.8281, \"b_star_p90\": 9.5996, \"b_star_count\": 21971, \"vs_uniform_ppl_delta\": \"+0.034\", \"vs_adaptive_fix_ppl_delta\": \"+0.077\"}, \"conclusion\": \"success\"}, \"ess_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl\": 17.719, \"eval_loss\": 2.8746, \"eval_tokens\": 4077068, \"train_loss\": 10.174, \"vs_uniform_ppl_delta\": \"+0.018\", \"vs_adaptive_ppl_delta\": \"+0.077\", \"vs_adaptive_fix_ppl_delta\": \"+0.062\"}, \"conclusion\": \"success\"}, \"grid_b_low_seed42_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"grid_b_low_seed42_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"baseline_qwen3_0.6b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 22.97, \"eval_loss\": 3.134, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"sliding_window_stride1024_maxlen2048_fp16\"}}, \"contamination_60_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"nmin4_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.6947, \"eval_loss\": 2.8733, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 7.989, \"total_steps\": 6103, \"train_runtime_s\": 16231, \"train_samples_per_second\": 6.016, \"b_star_count\": 24412, \"b_star_mean\": 0, \"b_star_median\": 0, \"b_star_std\": 0, \"b_star_min\": 0, \"b_star_max\": 0, \"b_star_pct_zero\": 100, \"ess_mean\": 4, \"ess_min\": 4, \"ess_max\": 4}, \"conclusion\": \"success\"}, \"p0_contamination_60_datagen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_lines\": 371499, \"synthetic_count\": 222900, \"human_count\": 148599, \"actual_contamination_ratio\": 0.6, \"q_score_mean\": 0.6243, \"q_score_std\": 0.3703, \"q_score_median\": 0.7753, \"file_size_mb\": 907}}, \"bs8_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"bs8_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"tau_095_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.723, \"eval_loss\": 2.8749, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 10.198, \"total_steps\": 6103, \"train_runtime_s\": 13699, \"train_samples_per_second\": 7.128, \"b_star_count\": 24412, \"b_star_mean\": 3.0775, \"b_star_median\": 1.52, \"b_star_std\": 3.9923, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.8, \"b_star_p75\": 3.46, \"b_star_pct_zero\": 0, \"b_star_pct_below_0.5\": 8.5, \"b_star_pct_0.5_to_1\": 24.7, \"b_star_pct_1_to_2\": 26.4, \"b_star_pct_above_2\": 40.3}, \"conclusion\": \"negative\"}, \"tau_09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ppl_holdout\": 17.712, \"eval_loss\": 2.8742, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 2.36, \"b_star_median\": 1.32, \"b_star_std\": 3.04, \"b_star_pct_above_2\": 33.7}}, \"tau_07_seed42\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.6707, \"total_steps\": 6103, \"train_runtime_s\": 15065, \"train_samples_per_second\": 6.482, \"eval_ppl_holdout\": 17.6793, \"eval_loss\": 2.8724, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.8943, \"b_star_median\": 0.58, \"b_star_std\": 1.4007, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.3306, \"b_star_p75\": 0.9712, \"b_star_pct_zero\": 5.8, \"b_star_pct_below_0.5\": 36, \"b_star_pct_0.5_to_1\": 34.2, \"b_star_pct_1_to_2\": 16.2, \"b_star_pct_above_2\": 7.7}, \"conclusion\": \"success\"}, \"tau_06_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.6805, \"eval_loss\": 2.8725, \"train_loss\": 9.275, \"total_steps\": 6103, \"train_runtime_s\": 13436.64, \"train_samples_per_second\": 7.267, \"b_star_mean\": 0.5899, \"b_star_median\": 0.3746, \"b_star_std\": 1.0693, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.1195, \"b_star_p75\": 0.66, \"b_star_zero_frac\": 0.156, \"b_star_nonzero_mean\": 0.699, \"b_star_nonzero_median\": 0.4473}, \"conclusion\": \"success\"}, \"tau_05_seed42\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 8.849, \"total_steps\": 6103, \"epoch\": 0.26, \"train_runtime_s\": 13431.4, \"train_samples_per_second\": 7.27, \"eval_ppl_holdout\": 17.688, \"eval_loss\": 2.8729, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.3923, \"b_star_median\": 0.1707, \"b_star_std\": 0.8821, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0, \"b_star_p75\": 0.4366, \"b_star_pct_zero\": 29.1, \"b_star_pct_below_0.5\": 78.4, \"b_star_pct_0.5_to_1\": 12.9, \"b_star_pct_1_to_2\": 5.7, \"b_star_pct_above_2\": 2.9}, \"conclusion\": \"success\"}, \"adaptive_fix_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 8.3124, \"train_runtime\": 11436.05, \"train_samples_per_second\": 8.539, \"train_steps_per_second\": 0.534, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6566, \"eval_loss_holdout\": 2.8711, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.66/4077068\", \"b_star_count\": 26396, \"b_star_mean\": 1.416, \"b_star_median\": 0.88, \"b_star_std\": 1.993, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.6432, \"eval_loss_holdout\": 2.8704, \"eval_loss\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.643/4077068\", \"train_loss_weighted\": 7.517, \"train_runtime_s\": 10347, \"total_steps\": 6103, \"epoch\": 0.26, \"b_star_mean\": 1.431, \"b_star_median\": 0.88, \"b_star_std\": 2.029, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_2_to_5\": 6.3, \"b_star_pct_above_5\": 1.9, \"b_star_count\": 25906, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.5167, \"train_runtime\": 10304.37, \"train_samples_per_second\": 9.476, \"train_steps_per_second\": 0.592, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6527, \"eval_loss_holdout\": 2.8709, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.65/4077068\", \"b_star_count\": 26458, \"b_star_mean\": 1.399, \"b_star_median\": 0.871, \"b_star_std\": 1.933, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.512, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_seed456\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.2354, \"train_runtime_s\": 13130.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.437, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.09-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6419, \"eval_loss_holdout\": 2.8703, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\"}, \"conclusion\": \"success\"}, \"adaptive_seed123\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13197.18, \"total_steps\": 6103, \"train_samples_per_second\": 7.399, \"train_steps_per_second\": 0.462, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.04-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6308, \"eval_loss_holdout\": 2.8696, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\"}, \"conclusion\": \"success\"}, \"adaptive_seed42\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13115.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.445, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.03-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.644, \"eval_loss_holdout\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\"}, \"conclusion\": \"success\"}, \"uniform_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.2895, \"total_steps\": 6103, \"train_duration_s\": 11974, \"eval_ppl_holdout\": 17.7015, \"eval_loss_holdout\": 2.8737, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\"}}, \"uniform_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3121, \"total_steps\": 6103, \"train_duration_s\": 11994, \"eval_ppl_holdout\": 17.6861, \"eval_loss_holdout\": 2.8728, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"uniform_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3104, \"total_steps\": 6103, \"train_duration_s\": 11946, \"eval_ppl_holdout\": 17.6939, \"eval_loss_holdout\": 2.8732, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"detector_modernbert\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"nmin1_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.789, \"eval_loss\": 2.8786, \"eval_holdout_tokens\": 4077068, \"b_star_mean\": 7.197, \"b_star_median\": 1.746, \"b_star_std\": 8.374, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.803, \"b_star_p75\": 20, \"b_star_zero_frac\": 0.019, \"b_star_pct_below_0.5\": 13.1, \"b_star_pct_0.5_to_1\": 19.1, \"b_star_pct_1_to_2\": 21.1, \"b_star_pct_above_2\": 46.7, \"b_star_count\": 24412, \"alpha_eff_mean\": 0.714, \"alpha_eff_median\": 0.8}, \"conclusion\": \"success\"}, \"ess_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.73, \"eval_loss\": 2.875, \"b_star_median\": 1.58, \"b_star_mean\": 3.51, \"vs_uniform_ppl_delta\": \"+0.038\", \"vs_adaptive_ppl_delta\": \"+0.08\"}}, \"golden_ratio_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.654, \"eval_loss\": 2.871, \"train_loss\": 2.1145, \"train_loss_last500\": 2.109, \"eval_holdout_tokens\": 4077068, \"total_steps\": 6103, \"train_runtime_s\": 13442, \"gpu_hours\": 3.73}, \"conclusion\": \"success\"}, \"tau_0.6_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}}, \"count\": 50, \"total\": 67, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2568}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "9c8c8dba-34fd-486c-b8bf-b14c22c83883",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"detect_remove_baseline_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"contamination_60_ess_only_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"nmin5_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"grid_b0_1_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"contamination_60_tau06_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"adaptive_v2_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"adaptive_v2_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"adaptive_v2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"tau_095_nmin2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"tau_09_nmin2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"tau_07_nmin2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"tau_06_nmin2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"tau_05_nmin2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"contamination_60_tau07_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"contamination_60_seed42_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.74, \\\"eval_loss_holdout\\\": 2.8759, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"sliding_window_2048_stride1024\\\", \\\"train_loss\\\": 9.6349, \\\"train_runtime_seconds\\\": 14092.25}, \\\"conclusion\\\": \\\"success\\\"}, \\\"contamination_60_grid_b0_5_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl\\\": 17.704, \\\"eval_loss\\\": 2.8738, \\\"eval_tokens\\\": 4077068, \\\"eval_docs\\\": 5000}}, \\\"grid_b0_3_seed42\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"contamination_60_uniform_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.766, \\\"eval_loss_holdout\\\": 2.8773, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\\\", \\\"train_loss\\\": 7.649, \\\"train_runtime_seconds\\\": 12904}}, \\\"grid_b0_2_seed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"bs8_nmin2_seed42_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.73, \\\"eval_loss_holdout\\\": 2.8752, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\\\", \\\"train_loss\\\": 5.4065, \\\"train_steps\\\": 6103, \\\"train_runtime_seconds\\\": 14621.6}}, \\\"grid_b_low_serial_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"ess_only_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.72, \\\"eval_loss_holdout\\\": 2.8746, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\\\", \\\"eval_note\\\": \\\"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\\\", \\\"train_loss\\\": 10.2159, \\\"train_steps\\\": 6103, \\\"train_runtime_seconds\\\": 12959.5, \\\"b_star_mean\\\": 3.55, \\\"b_star_median\\\": 1.5918, \\\"b_star_std\\\": 4.7209, \\\"b_star_min\\\": 0.2344, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.8398, \\\"b_star_p75\\\": 3.8281, \\\"b_star_p90\\\": 9.5996, \\\"b_star_count\\\": 21971, \\\"vs_uniform_ppl_delta\\\": \\\"+0.034\\\", \\\"vs_adaptive_fix_ppl_delta\\\": \\\"+0.077\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"ess_only_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl\\\": 17.719, \\\"eval_loss\\\": 2.8746, \\\"eval_tokens\\\": 4077068, \\\"train_loss\\\": 10.174, \\\"vs_uniform_ppl_delta\\\": \\\"+0.018\\\", \\\"vs_adaptive_ppl_delta\\\": \\\"+0.077\\\", \\\"vs_adaptive_fix_ppl_delta\\\": \\\"+0.062\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"grid_b_low_seed42_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"grid_b_low_seed42_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"baseline_qwen3_0.6b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 22.97, \\\"eval_loss\\\": 3.134, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"sliding_window_stride1024_maxlen2048_fp16\\\"}}, \\\"contamination_60_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"nmin4_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.6947, \\\"eval_loss\\\": 2.8733, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"train_loss\\\": 7.989, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 16231, \\\"train_samples_per_second\\\": 6.016, \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 0, \\\"b_star_median\\\": 0, \\\"b_star_std\\\": 0, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 0, \\\"b_star_pct_zero\\\": 100, \\\"ess_mean\\\": 4, \\\"ess_min\\\": 4, \\\"ess_max\\\": 4}, \\\"conclusion\\\": \\\"success\\\"}, \\\"p0_contamination_60_datagen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_lines\\\": 371499, \\\"synthetic_count\\\": 222900, \\\"human_count\\\": 148599, \\\"actual_contamination_ratio\\\": 0.6, \\\"q_score_mean\\\": 0.6243, \\\"q_score_std\\\": 0.3703, \\\"q_score_median\\\": 0.7753, \\\"file_size_mb\\\": 907}}, \\\"bs8_nmin2_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"bs8_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"tau_095_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.723, \\\"eval_loss\\\": 2.8749, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"train_loss\\\": 10.198, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13699, \\\"train_samples_per_second\\\": 7.128, \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 3.0775, \\\"b_star_median\\\": 1.52, \\\"b_star_std\\\": 3.9923, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.8, \\\"b_star_p75\\\": 3.46, \\\"b_star_pct_zero\\\": 0, \\\"b_star_pct_below_0.5\\\": 8.5, \\\"b_star_pct_0.5_to_1\\\": 24.7, \\\"b_star_pct_1_to_2\\\": 26.4, \\\"b_star_pct_above_2\\\": 40.3}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"tau_09_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.712, \\\"eval_loss\\\": 2.8742, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15\\\", \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 2.36, \\\"b_star_median\\\": 1.32, \\\"b_star_std\\\": 3.04, \\\"b_star_pct_above_2\\\": 33.7}}, \\\"tau_07_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.6707, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 15065, \\\"train_samples_per_second\\\": 6.482, \\\"eval_ppl_holdout\\\": 17.6793, \\\"eval_loss\\\": 2.8724, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15\\\", \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 0.8943, \\\"b_star_median\\\": 0.58, \\\"b_star_std\\\": 1.4007, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.3306, \\\"b_star_p75\\\": 0.9712, \\\"b_star_pct_zero\\\": 5.8, \\\"b_star_pct_below_0.5\\\": 36, \\\"b_star_pct_0.5_to_1\\\": 34.2, \\\"b_star_pct_1_to_2\\\": 16.2, \\\"b_star_pct_above_2\\\": 7.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_06_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.6805, \\\"eval_loss\\\": 2.8725, \\\"train_loss\\\": 9.275, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13436.64, \\\"train_samples_per_second\\\": 7.267, \\\"b_star_mean\\\": 0.5899, \\\"b_star_median\\\": 0.3746, \\\"b_star_std\\\": 1.0693, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.1195, \\\"b_star_p75\\\": 0.66, \\\"b_star_zero_frac\\\": 0.156, \\\"b_star_nonzero_mean\\\": 0.699, \\\"b_star_nonzero_median\\\": 0.4473}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_05_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 8.849, \\\"total_steps\\\": 6103, \\\"epoch\\\": 0.26, \\\"train_runtime_s\\\": 13431.4, \\\"train_samples_per_second\\\": 7.27, \\\"eval_ppl_holdout\\\": 17.688, \\\"eval_loss\\\": 2.8729, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15\\\", \\\"b_star_count\\\": 24412, \\\"b_star_mean\\\": 0.3923, \\\"b_star_median\\\": 0.1707, \\\"b_star_std\\\": 0.8821, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0, \\\"b_star_p75\\\": 0.4366, \\\"b_star_pct_zero\\\": 29.1, \\\"b_star_pct_below_0.5\\\": 78.4, \\\"b_star_pct_0.5_to_1\\\": 12.9, \\\"b_star_pct_1_to_2\\\": 5.7, \\\"b_star_pct_above_2\\\": 2.9}, \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_fix_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 8.3124, \\\"train_runtime\\\": 11436.05, \\\"train_samples_per_second\\\": 8.539, \\\"train_steps_per_second\\\": 0.534, \\\"total_steps\\\": 6103, \\\"eval_ppl_holdout\\\": 17.6566, \\\"eval_loss_holdout\\\": 2.8711, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.66/4077068\\\", \\\"b_star_count\\\": 26396, \\\"b_star_mean\\\": 1.416, \\\"b_star_median\\\": 0.88, \\\"b_star_std\\\": 1.993, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.54, \\\"b_star_p75\\\": 1.52, \\\"b_star_pct_below_0.5\\\": 20.9, \\\"b_star_pct_0.5_to_1\\\": 35.7, \\\"b_star_pct_1_to_2\\\": 27.3, \\\"b_star_pct_above_2\\\": 16.1, \\\"b_star_note\\\": \\\"Training-only records (eval checkpoint records with b*=0 excluded)\\\"}}, \\\"adaptive_fix_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.6432, \\\"eval_loss_holdout\\\": 2.8704, \\\"eval_loss\\\": 2.8704, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.643/4077068\\\", \\\"train_loss_weighted\\\": 7.517, \\\"train_runtime_s\\\": 10347, \\\"total_steps\\\": 6103, \\\"epoch\\\": 0.26, \\\"b_star_mean\\\": 1.431, \\\"b_star_median\\\": 0.88, \\\"b_star_std\\\": 2.029, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_pct_below_0.5\\\": 20.9, \\\"b_star_pct_0.5_to_1\\\": 35.7, \\\"b_star_pct_1_to_2\\\": 27.3, \\\"b_star_pct_2_to_5\\\": 6.3, \\\"b_star_pct_above_5\\\": 1.9, \\\"b_star_count\\\": 25906, \\\"b_star_p25\\\": 0.54, \\\"b_star_p75\\\": 1.52, \\\"b_star_pct_above_2\\\": 16.1, \\\"b_star_note\\\": \\\"Training-only records (eval checkpoint records with b*=0 excluded)\\\"}}, \\\"adaptive_fix_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.5167, \\\"train_runtime\\\": 10304.37, \\\"train_samples_per_second\\\": 9.476, \\\"train_steps_per_second\\\": 0.592, \\\"total_steps\\\": 6103, \\\"eval_ppl_holdout\\\": 17.6527, \\\"eval_loss_holdout\\\": 2.8709, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.65/4077068\\\", \\\"b_star_count\\\": 26458, \\\"b_star_mean\\\": 1.399, \\\"b_star_median\\\": 0.871, \\\"b_star_std\\\": 1.933, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.54, \\\"b_star_p75\\\": 1.512, \\\"b_star_pct_below_0.5\\\": 20.9, \\\"b_star_pct_0.5_to_1\\\": 35.7, \\\"b_star_pct_1_to_2\\\": 27.3, \\\"b_star_pct_above_2\\\": 16.1, \\\"b_star_note\\\": \\\"Training-only records (eval checkpoint records with b*=0 excluded)\\\"}}, \\\"adaptive_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.2354, \\\"train_runtime_s\\\": 13130.09, \\\"total_steps\\\": 6103, \\\"train_samples_per_second\\\": 7.437, \\\"train_steps_per_second\\\": 0.465, \\\"epoch\\\": 0.26, \\\"weighting_method\\\": \\\"adaptive\\\", \\\"tau\\\": 0.8, \\\"n_min\\\": 3, \\\"contamination_ratio\\\": 0.4, \\\"b_star\\\": \\\"per-batch adaptive (0.0-3.8)\\\", \\\"alpha_eff_range\\\": \\\"0.09-0.80 (capped at tau)\\\", \\\"eval_ppl_holdout\\\": 17.6419, \\\"eval_loss_holdout\\\": 2.8703, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.2665, \\\"train_runtime_s\\\": 13197.18, \\\"total_steps\\\": 6103, \\\"train_samples_per_second\\\": 7.399, \\\"train_steps_per_second\\\": 0.462, \\\"epoch\\\": 0.26, \\\"weighting_method\\\": \\\"adaptive\\\", \\\"tau\\\": 0.8, \\\"n_min\\\": 3, \\\"contamination_ratio\\\": 0.4, \\\"b_star\\\": \\\"per-batch adaptive (0.0-3.8)\\\", \\\"alpha_eff_range\\\": \\\"0.04-0.80 (capped at tau)\\\", \\\"eval_ppl_holdout\\\": 17.6308, \\\"eval_loss_holdout\\\": 2.8696, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.2665, \\\"train_runtime_s\\\": 13115.09, \\\"total_steps\\\": 6103, \\\"train_samples_per_second\\\": 7.445, \\\"train_steps_per_second\\\": 0.465, \\\"epoch\\\": 0.26, \\\"weighting_method\\\": \\\"adaptive\\\", \\\"tau\\\": 0.8, \\\"n_min\\\": 3, \\\"contamination_ratio\\\": 0.4, \\\"b_star\\\": \\\"per-batch adaptive (0.0-3.8)\\\", \\\"alpha_eff_range\\\": \\\"0.03-0.80 (capped at tau)\\\", \\\"eval_ppl_holdout\\\": 17.644, \\\"eval_loss_holdout\\\": 2.8704, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"uniform_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.2895, \\\"total_steps\\\": 6103, \\\"train_duration_s\\\": 11974, \\\"eval_ppl_holdout\\\": 17.7015, \\\"eval_loss_holdout\\\": 2.8737, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\\\"}}, \\\"uniform_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.3121, \\\"total_steps\\\": 6103, \\\"train_duration_s\\\": 11994, \\\"eval_ppl_holdout\\\": 17.6861, \\\"eval_loss_holdout\\\": 2.8728, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\\\"}}, \\\"uniform_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.3104, \\\"total_steps\\\": 6103, \\\"train_duration_s\\\": 11946, \\\"eval_ppl_holdout\\\": 17.6939, \\\"eval_loss_holdout\\\": 2.8732, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\\\", \\\"eval_note\\\": \\\"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\\\"}}, \\\"detector_modernbert\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"nmin1_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.789, \\\"eval_loss\\\": 2.8786, \\\"eval_holdout_tokens\\\": 4077068, \\\"b_star_mean\\\": 7.197, \\\"b_star_median\\\": 1.746, \\\"b_star_std\\\": 8.374, \\\"b_star_min\\\": 0, \\\"b_star_max\\\": 20, \\\"b_star_p25\\\": 0.803, \\\"b_star_p75\\\": 20, \\\"b_star_zero_frac\\\": 0.019, \\\"b_star_pct_below_0.5\\\": 13.1, \\\"b_star_pct_0.5_to_1\\\": 19.1, \\\"b_star_pct_1_to_2\\\": 21.1, \\\"b_star_pct_above_2\\\": 46.7, \\\"b_star_count\\\": 24412, \\\"alpha_eff_mean\\\": 0.714, \\\"alpha_eff_median\\\": 0.8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"ess_only_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl\\\": 17.73, \\\"eval_loss\\\": 2.875, \\\"b_star_median\\\": 1.58, \\\"b_star_mean\\\": 3.51, \\\"vs_uniform_ppl_delta\\\": \\\"+0.038\\\", \\\"vs_adaptive_ppl_delta\\\": \\\"+0.08\\\"}}, \\\"golden_ratio_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.654, \\\"eval_loss\\\": 2.871, \\\"train_loss\\\": 2.1145, \\\"train_loss_last500\\\": 2.109, \\\"eval_holdout_tokens\\\": 4077068, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 13442, \\\"gpu_hours\\\": 3.73}, \\\"conclusion\\\": \\\"success\\\"}, \\\"tau_0.6_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 50, \\\"total\\\": 67, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2568}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"detect_remove_baseline_seed42\": {\"status\": \"RUNNING\"}, \"contamination_60_ess_only_seed42\": {\"status\": \"RUNNING\"}, \"nmin5_seed42\": {\"status\": \"PREPARING\"}, \"grid_b0_1_seed42\": {\"status\": \"PREPARING\"}, \"contamination_60_tau06_seed42\": {\"status\": \"PREPARING\"}, \"adaptive_v2_seed456\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"adaptive_v2_seed123\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"adaptive_v2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_095_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_09_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_07_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_06_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"tau_05_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"contamination_60_tau07_seed42\": {\"status\": \"RUNNING\"}, \"contamination_60_seed42_r2\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.74, \"eval_loss_holdout\": 2.8759, \"eval_tokens\": 4077068, \"eval_method\": \"sliding_window_2048_stride1024\", \"train_loss\": 9.6349, \"train_runtime_seconds\": 14092.25}, \"conclusion\": \"success\"}, \"contamination_60_grid_b0_5_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.704, \"eval_loss\": 2.8738, \"eval_tokens\": 4077068, \"eval_docs\": 5000}}, \"grid_b0_3_seed42\": {\"status\": \"RUNNING\"}, \"contamination_60_uniform_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.766, \"eval_loss_holdout\": 2.8773, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py sliding-window (stride=1024, max_length=2048, fp16) on data/human/eval_holdout.jsonl\", \"train_loss\": 7.649, \"train_runtime_seconds\": 12904}}, \"grid_b0_2_seed42\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"bs8_nmin2_seed42_r2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ppl_holdout\": 17.73, \"eval_loss_holdout\": 2.8752, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"train_loss\": 5.4065, \"train_steps\": 6103, \"train_runtime_seconds\": 14621.6}}, \"grid_b_low_serial_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"ess_only_seed123\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.72, \"eval_loss_holdout\": 2.8746, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\", \"eval_note\": \"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\", \"train_loss\": 10.2159, \"train_steps\": 6103, \"train_runtime_seconds\": 12959.5, \"b_star_mean\": 3.55, \"b_star_median\": 1.5918, \"b_star_std\": 4.7209, \"b_star_min\": 0.2344, \"b_star_max\": 20, \"b_star_p25\": 0.8398, \"b_star_p75\": 3.8281, \"b_star_p90\": 9.5996, \"b_star_count\": 21971, \"vs_uniform_ppl_delta\": \"+0.034\", \"vs_adaptive_fix_ppl_delta\": \"+0.077\"}, \"conclusion\": \"success\"}, \"ess_only_seed456\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl\": 17.719, \"eval_loss\": 2.8746, \"eval_tokens\": 4077068, \"train_loss\": 10.174, \"vs_uniform_ppl_delta\": \"+0.018\", \"vs_adaptive_ppl_delta\": \"+0.077\", \"vs_adaptive_fix_ppl_delta\": \"+0.062\"}, \"conclusion\": \"success\"}, \"grid_b_low_seed42_r3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"grid_b_low_seed42_r2\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"baseline_qwen3_0.6b\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 22.97, \"eval_loss\": 3.134, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"sliding_window_stride1024_maxlen2048_fp16\"}}, \"contamination_60_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"nmin4_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.6947, \"eval_loss\": 2.8733, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 7.989, \"total_steps\": 6103, \"train_runtime_s\": 16231, \"train_samples_per_second\": 6.016, \"b_star_count\": 24412, \"b_star_mean\": 0, \"b_star_median\": 0, \"b_star_std\": 0, \"b_star_min\": 0, \"b_star_max\": 0, \"b_star_pct_zero\": 100, \"ess_mean\": 4, \"ess_min\": 4, \"ess_max\": 4}, \"conclusion\": \"success\"}, \"p0_contamination_60_datagen\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_lines\": 371499, \"synthetic_count\": 222900, \"human_count\": 148599, \"actual_contamination_ratio\": 0.6, \"q_score_mean\": 0.6243, \"q_score_std\": 0.3703, \"q_score_median\": 0.7753, \"file_size_mb\": 907}}, \"bs8_nmin2_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"bs8_seed42\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"tau_095_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.723, \"eval_loss\": 2.8749, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"train_loss\": 10.198, \"total_steps\": 6103, \"train_runtime_s\": 13699, \"train_samples_per_second\": 7.128, \"b_star_count\": 24412, \"b_star_mean\": 3.0775, \"b_star_median\": 1.52, \"b_star_std\": 3.9923, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.8, \"b_star_p75\": 3.46, \"b_star_pct_zero\": 0, \"b_star_pct_below_0.5\": 8.5, \"b_star_pct_0.5_to_1\": 24.7, \"b_star_pct_1_to_2\": 26.4, \"b_star_pct_above_2\": 40.3}, \"conclusion\": \"negative\"}, \"tau_09_seed42\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_ppl_holdout\": 17.712, \"eval_loss\": 2.8742, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 2.36, \"b_star_median\": 1.32, \"b_star_std\": 3.04, \"b_star_pct_above_2\": 33.7}}, \"tau_07_seed42\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.6707, \"total_steps\": 6103, \"train_runtime_s\": 15065, \"train_samples_per_second\": 6.482, \"eval_ppl_holdout\": 17.6793, \"eval_loss\": 2.8724, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.8943, \"b_star_median\": 0.58, \"b_star_std\": 1.4007, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.3306, \"b_star_p75\": 0.9712, \"b_star_pct_zero\": 5.8, \"b_star_pct_below_0.5\": 36, \"b_star_pct_0.5_to_1\": 34.2, \"b_star_pct_1_to_2\": 16.2, \"b_star_pct_above_2\": 7.7}, \"conclusion\": \"success\"}, \"tau_06_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.6805, \"eval_loss\": 2.8725, \"train_loss\": 9.275, \"total_steps\": 6103, \"train_runtime_s\": 13436.64, \"train_samples_per_second\": 7.267, \"b_star_mean\": 0.5899, \"b_star_median\": 0.3746, \"b_star_std\": 1.0693, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.1195, \"b_star_p75\": 0.66, \"b_star_zero_frac\": 0.156, \"b_star_nonzero_mean\": 0.699, \"b_star_nonzero_median\": 0.4473}, \"conclusion\": \"success\"}, \"tau_05_seed42\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 8.849, \"total_steps\": 6103, \"epoch\": 0.26, \"train_runtime_s\": 13431.4, \"train_samples_per_second\": 7.27, \"eval_ppl_holdout\": 17.688, \"eval_loss\": 2.8729, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, autocast fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15\", \"b_star_count\": 24412, \"b_star_mean\": 0.3923, \"b_star_median\": 0.1707, \"b_star_std\": 0.8821, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0, \"b_star_p75\": 0.4366, \"b_star_pct_zero\": 29.1, \"b_star_pct_below_0.5\": 78.4, \"b_star_pct_0.5_to_1\": 12.9, \"b_star_pct_1_to_2\": 5.7, \"b_star_pct_above_2\": 2.9}, \"conclusion\": \"success\"}, \"adaptive_fix_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 8.3124, \"train_runtime\": 11436.05, \"train_samples_per_second\": 8.539, \"train_steps_per_second\": 0.534, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6566, \"eval_loss_holdout\": 2.8711, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.66/4077068\", \"b_star_count\": 26396, \"b_star_mean\": 1.416, \"b_star_median\": 0.88, \"b_star_std\": 1.993, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.6432, \"eval_loss_holdout\": 2.8704, \"eval_loss\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.643/4077068\", \"train_loss_weighted\": 7.517, \"train_runtime_s\": 10347, \"total_steps\": 6103, \"epoch\": 0.26, \"b_star_mean\": 1.431, \"b_star_median\": 0.88, \"b_star_std\": 2.029, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_2_to_5\": 6.3, \"b_star_pct_above_5\": 1.9, \"b_star_count\": 25906, \"b_star_p25\": 0.54, \"b_star_p75\": 1.52, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_fix_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.5167, \"train_runtime\": 10304.37, \"train_samples_per_second\": 9.476, \"train_steps_per_second\": 0.592, \"total_steps\": 6103, \"eval_ppl_holdout\": 17.6527, \"eval_loss_holdout\": 2.8709, \"eval_holdout_tokens\": 4077068, \"eval_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.65/4077068\", \"b_star_count\": 26458, \"b_star_mean\": 1.399, \"b_star_median\": 0.871, \"b_star_std\": 1.933, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.54, \"b_star_p75\": 1.512, \"b_star_pct_below_0.5\": 20.9, \"b_star_pct_0.5_to_1\": 35.7, \"b_star_pct_1_to_2\": 27.3, \"b_star_pct_above_2\": 16.1, \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"}}, \"adaptive_seed456\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.2354, \"train_runtime_s\": 13130.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.437, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.09-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6419, \"eval_loss_holdout\": 2.8703, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.64/4080000 from inline eval\"}, \"conclusion\": \"success\"}, \"adaptive_seed123\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13197.18, \"total_steps\": 6103, \"train_samples_per_second\": 7.399, \"train_steps_per_second\": 0.462, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.04-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.6308, \"eval_loss_holdout\": 2.8696, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.63/4080000 from inline eval\"}, \"conclusion\": \"success\"}, \"adaptive_seed42\": {\"status\": \"DONE\", \"metrics\": {\"train_loss\": 9.2665, \"train_runtime_s\": 13115.09, \"total_steps\": 6103, \"train_samples_per_second\": 7.445, \"train_steps_per_second\": 0.465, \"epoch\": 0.26, \"weighting_method\": \"adaptive\", \"tau\": 0.8, \"n_min\": 3, \"contamination_ratio\": 0.4, \"b_star\": \"per-batch adaptive (0.0-3.8)\", \"alpha_eff_range\": \"0.03-0.80 (capped at tau)\", \"eval_ppl_holdout\": 17.644, \"eval_loss_holdout\": 2.8704, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; confirmed unchanged from prior post-hoc (was 17.644/4077068)\"}, \"conclusion\": \"success\"}, \"uniform_seed456\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.2895, \"total_steps\": 6103, \"train_duration_s\": 11974, \"eval_ppl_holdout\": 17.7015, \"eval_loss_holdout\": 2.8737, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.70/4080000 from inline eval\"}}, \"uniform_seed123\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3121, \"total_steps\": 6103, \"train_duration_s\": 11994, \"eval_ppl_holdout\": 17.6861, \"eval_loss_holdout\": 2.8728, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"uniform_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.3104, \"total_steps\": 6103, \"train_duration_s\": 11946, \"eval_ppl_holdout\": 17.6939, \"eval_loss_holdout\": 2.8732, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\", \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.69/4080000 from inline eval\"}}, \"detector_modernbert\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"nmin1_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.789, \"eval_loss\": 2.8786, \"eval_holdout_tokens\": 4077068, \"b_star_mean\": 7.197, \"b_star_median\": 1.746, \"b_star_std\": 8.374, \"b_star_min\": 0, \"b_star_max\": 20, \"b_star_p25\": 0.803, \"b_star_p75\": 20, \"b_star_zero_frac\": 0.019, \"b_star_pct_below_0.5\": 13.1, \"b_star_pct_0.5_to_1\": 19.1, \"b_star_pct_1_to_2\": 21.1, \"b_star_pct_above_2\": 46.7, \"b_star_count\": 24412, \"alpha_eff_mean\": 0.714, \"alpha_eff_median\": 0.8}, \"conclusion\": \"success\"}, \"ess_only_seed42\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_ppl\": 17.73, \"eval_loss\": 2.875, \"b_star_median\": 1.58, \"b_star_mean\": 3.51, \"vs_uniform_ppl_delta\": \"+0.038\", \"vs_adaptive_ppl_delta\": \"+0.08\"}}, \"golden_ratio_seed42\": {\"status\": \"DONE\", \"metrics\": {\"eval_ppl_holdout\": 17.654, \"eval_loss\": 2.871, \"train_loss\": 2.1145, \"train_loss_last500\": 2.109, \"eval_holdout_tokens\": 4077068, \"total_steps\": 6103, \"train_runtime_s\": 13442, \"gpu_hours\": 3.73}, \"conclusion\": \"success\"}, \"tau_0.6_seed42\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}}, \"count\": 50, \"total\": 67, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2568}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me compile all the data:
+
+**Tau sweep (ρ=0.4, seed42):**
+- tau=0.5: PPL=17.688
+- tau=0.6: PPL=17.6805
+- tau=0.7: PPL=17.6793
+- tau=0.8 (adaptive_fix_seed42): PPL=17.6527
+- tau=0.9: PPL=17.712
+- tau=0.95: PPL=17.723
+
+
+- Uniform baseline: PPL=17.6939
+
+**Grid-b sweep (seed42):**
+- b=0.5: PPL=17.651
+- b=1.0: PPL=17.692
+- b=1.5: PPL=17.718
+- b=2.0: PPL=17.741
+- b=3.0: PPL=17.774
+- b=5.0: PPL=17.818
+
+I'm also tracking some additional grid_b experiments that are still running or preparing.
+
+Looking at what I actually have available, the batch gives me six b values, and there's a b=0.3 run in progress. The task mentioned b=0.7 and b=0.9, but those don't exist in the actual experiment registry—the grid only contains the specific values I've measured. I'll need to work with what's actually been run rather than the originally planned values. I'm looking at the performance metrics across three different seeding strategies—uniform seeds show tight clustering around 17.69, ESS-only seeds perform slightly better at 17.72, and the adaptive dual-constraint approach yields lower values around 17.65. Now I need to write the matplotlib script to visualize these results, switching to a different execution method since the previous approach had syntax issues.
+
+For the b* curve figure, I should use the actual experimental data available rather than the task description, though I notice some runs are still in progress—b=0.3 is currently running and b=0.1 is queued.
+
+Now I'm preparing a comprehensive script to generate the figures, and I'm also checking the multi-seed grid-b results to see what additional data points I have available.
+
+I notice that seed456 has some contamination from checkpoint resume artifacts at higher b values, so I'll need to be careful about which data points to include in the analysis.
+
+Setting up the figure generation script...
+
+Configuring matplotlib styles...
+
+Now I'm defining a function to load experiment data from a JSON file, with fallback to hardcoded default values that include tau sweep results and grid parameter sweeps from a previous run. Looking at the experimental results across different seeds and methods, I'm comparing the perplexity scores for uniform baseline versus the adaptive approach with optimized b values, and also tracking how different sampling strategies perform relative to each other.
+
+Writing the visualization code... Writing the plot visualization... Writing the b* curve plot... Finishing up the plot by setting the y-axis label, title, and legend, then saving the figure as both PDF and PNG before moving on to create a method comparison bar chart.
+
+Now I'm setting up the comparison across three approaches—uniform sampling, ESS-only, and adaptive dual-constraint—by extracting their perplexity means and standard deviations, then building a bar chart with error bars using a red-to-blue color scheme.
+
+Adding value labels and axis formatting... Setting up the command-line interface to handle different figure generation options, loading the data, and then iterating through the requested figures to generate each one.
+
+Now I'm noticing an issue with how the b_curve handles pending data points that lack y-values, so I'll need to represent those differently—maybe as text annotations or vertical markers instead. I also need to reposition the "safe range" label in the first figure so it's calculated after the y-axis limits are set, and I should reconsider the overall structure of the b_curve to show the relationship between fixed b values and PPL with adaptive as a reference line. The τ sweep figure displays how perplexity changes as τ varies from 0.5 to 0.95, starting at 17.688 and decreasing slightly to 17.6527. I've confirmed the safe range where adaptive sampling beats uniform is τ=0.5 to 0.8. Now I need to write a script to implement this—I'll create it on the server using a heredoc approach, and I should first check if the scripts directory exists.
+
+Now I'm looking at the multi-seed data for the b_curve figure. I need to compute means and standard deviations for b values that have multiple seeds, so I can show the variability across runs. For the grid-b results, I'm seeing consistent patterns across seeds at each b value, with small standard deviations indicating stable performance.
+
+I realize the task description mentions specific b values (0.5, 0.7, 0.9, 0.3, 0.1), but my actual data covers a different range (0.5, 1.0, 1.5, 2.0, 3.0, 5.0). I should create a figure using the data I have rather than trying to force the original specification.
+
+Now I'm setting up a two-file approach: a JSON data file to store the results and a Python script to load it and generate the figure. This keeps things modular and makes it easy to update the data later.
+
+Writing the generation script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "19d13485-b843-4ba8-af01-f01a010ba5ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187UmJMq1CLQzF9btPmSHZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8937,
+      "cache_read_input_tokens": 38406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8937
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Found all data. `ssh_read_only` blocks semicolons in Python's `import;print`. Let me check matplotlib via ssh_execute and check existing scripts directory, then create the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "962c5d42-53f4-4452-91fd-f13c815f2260",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187UmJMq1CLQzF9btPmSHZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8937,
+      "cache_read_input_tokens": 38406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8937
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GEQ9cLbAruu6F6z4NPhvSE`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import matplotlib; print(matplotlib.__version__)\" && ls -la /root/provenance_weight_training/scripts/ 2>/dev/null && mkdir -p /root/provenance_weight_training/output/figures",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "d1bf0a82-6ea8-447c-923f-86af684e8648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0187UmJMq1CLQzF9btPmSHZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8937,
+      "cache_read_input_tokens": 38406,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8937
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:01:39.107Z_
+
+<details><summary>↩ Tool result · `toolu_01GEQ9cLbAruu6F6z4NPhvSE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3.10.5\\ntotal 112\\ndrwxr-xr-x  3 root root 4096 May 16 10:56 .\\ndrwxr-xr-x 16 root root 4096 May 16 09:47 ..\\ndrwxr-xr-x  2 root root   56 May 16 03:30 __pycache__\\n-rw-r--r--  1 root root 6051 May 16 06:28 extract_figure_data.py\\n-rw-r--r--  1 root root 1059 May 16 03:34 filter_high_qscore.py\\n-rw-r--r--  1 root root 2216 May 16 09:13 plot_tau_sweep.py\\n-rw-r--r--  1 root root 3289 May 16 03:33 prepare_rho06_data.py\\n-rwxr-xr-x  1 root root  959 May 14 21:39 run_adaptive_v2_seed123.sh\\n-rwxr-xr-x  1 root root  958 May 14 21:39 run_adaptive_v2_seed42.sh\\n-rwxr-xr-x  1 root root  959 May 14 21:39 run_adaptive_v2_seed456.sh\\n-rwxr-xr-x  1 root root 1078 May 16 10:56 run_batchsize16.sh\\n-rwxr-xr-x  1 root root 1029 May 16 10:42 run_contamination_60_tau06.sh\\n-rwxr-xr-x  1 root root 1302 May 16 03:35 run_detect_remove.sh\\n-rw-r--r--  1 root root 1809 May 14 20:30 run_eval_seed42.sh\\n-rwxr-xr-x  1 root root  858 May 16 05:53 run_grid_b_low_seed42.sh\\n-rwxr-xr-x  1 root root 1012 May 16 03:35 run_nmin5.sh\\n-rwxr-xr-x  1 root root  395 May 16 03:30 run_prepare_rho06.sh\\n-rwxr-xr-x  1 root root 1077 May 16 03:35 run_random_reweight.sh\\n-rwxr-xr-x  1 root root  996 May 16 03:35 run_rho06_adaptive.sh\\n-rwxr-xr-x  1 root root  988 May 16 03:35 run_rho06_grid_b05.sh\\n-rwxr-xr-x  1 root root  964 May 16 03:35 run_rho06_uniform.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_05_nmin2.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_06_nmin2.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_07_nmin2.sh\\n-rwxr-xr-x  1 root root  684 May 16 09:24 run_tau_095_nmin2.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_09_nmin2.sh\\n-rw-r--r--  1 root root 1815 May 14 21:36 submit_adaptive_v2.sh\\n-rw-r--r--  1 root root 2680 May 14 20:24 submit_grid_b_seed456.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "73cd71fb-ca0f-493b-8c4f-150e62fe7cde",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.10.5\\\\ntotal 112\\\\ndrwxr-xr-x  3 root root 4096 May 16 10:56 .\\\\ndrwxr-xr-x 16 root root 4096 May 16 09:47 ..\\\\ndrwxr-xr-x  2 root root   56 May 16 03:30 __pycache__\\\\n-rw-r--r--  1 root root 6051 May 16 06:28 extract_figure_data.py\\\\n-rw-r--r--  1 root root 1059 May 16 03:34 filter_high_qscore.py\\\\n-rw-r--r--  1 root root 2216 May 16 09:13 plot_tau_sweep.py\\\\n-rw-r--r--  1 root root 3289 May 16 03:33 prepare_rho06_data.py\\\\n-rwxr-xr-x  1 root root  959 May 14 21:39 run_adaptive_v2_seed123.sh\\\\n-rwxr-xr-x  1 root root  958 May 14 21:39 run_adaptive_v2_seed42.sh\\\\n-rwxr-xr-x  1 root root  959 May 14 21:39 run_adaptive_v2_seed456.sh\\\\n-rwxr-xr-x  1 root root 1078 May 16 10:56 run_batchsize16.sh\\\\n-rwxr-xr-x  1 root root 1029 May 16 10:42 run_contamination_60_tau06.sh\\\\n-rwxr-xr-x  1 root root 1302 May 16 03:35 run_detect_remove.sh\\\\n-rw-r--r--  1 root root 1809 May 14 20:30 run_eval_seed42.sh\\\\n-rwxr-xr-x  1 root root  858 May 16 05:53 run_grid_b_low_seed42.sh\\\\n-rwxr-xr-x  1 root root 1012 May 16 03:35 run_nmin5.sh\\\\n-rwxr-xr-x  1 root root  395 May 16 03:30 run_prepare_rho06.sh\\\\n-rwxr-xr-x  1 root root 1077 May 16 03:35 run_random_reweight.sh\\\\n-rwxr-xr-x  1 root root  996 May 16 03:35 run_rho06_adaptive.sh\\\\n-rwxr-xr-x  1 root root  988 May 16 03:35 run_rho06_grid_b05.sh\\\\n-rwxr-xr-x  1 root root  964 May 16 03:35 run_rho06_uniform.sh\\\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_05_nmin2.sh\\\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_06_nmin2.sh\\\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_07_nmin2.sh\\\\n-rwxr-xr-x  1 root root  684 May 16 09:24 run_tau_095_nmin2.sh\\\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_09_nmin2.sh\\\\n-rw-r--r--  1 root root 1815 May 14 21:36 submit_adaptive_v2.sh\\\\n-rw-r--r--  1 root root 2680 May 14 20:24 submit_grid_b_seed456.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3.10.5\\ntotal 112\\ndrwxr-xr-x  3 root root 4096 May 16 10:56 .\\ndrwxr-xr-x 16 root root 4096 May 16 09:47 ..\\ndrwxr-xr-x  2 root root   56 May 16 03:30 __pycache__\\n-rw-r--r--  1 root root 6051 May 16 06:28 extract_figure_data.py\\n-rw-r--r--  1 root root 1059 May 16 03:34 filter_high_qscore.py\\n-rw-r--r--  1 root root 2216 May 16 09:13 plot_tau_sweep.py\\n-rw-r--r--  1 root root 3289 May 16 03:33 prepare_rho06_data.py\\n-rwxr-xr-x  1 root root  959 May 14 21:39 run_adaptive_v2_seed123.sh\\n-rwxr-xr-x  1 root root  958 May 14 21:39 run_adaptive_v2_seed42.sh\\n-rwxr-xr-x  1 root root  959 May 14 21:39 run_adaptive_v2_seed456.sh\\n-rwxr-xr-x  1 root root 1078 May 16 10:56 run_batchsize16.sh\\n-rwxr-xr-x  1 root root 1029 May 16 10:42 run_contamination_60_tau06.sh\\n-rwxr-xr-x  1 root root 1302 May 16 03:35 run_detect_remove.sh\\n-rw-r--r--  1 root root 1809 May 14 20:30 run_eval_seed42.sh\\n-rwxr-xr-x  1 root root  858 May 16 05:53 run_grid_b_low_seed42.sh\\n-rwxr-xr-x  1 root root 1012 May 16 03:35 run_nmin5.sh\\n-rwxr-xr-x  1 root root  395 May 16 03:30 run_prepare_rho06.sh\\n-rwxr-xr-x  1 root root 1077 May 16 03:35 run_random_reweight.sh\\n-rwxr-xr-x  1 root root  996 May 16 03:35 run_rho06_adaptive.sh\\n-rwxr-xr-x  1 root root  988 May 16 03:35 run_rho06_grid_b05.sh\\n-rwxr-xr-x  1 root root  964 May 16 03:35 run_rho06_uniform.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_05_nmin2.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_06_nmin2.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_07_nmin2.sh\\n-rwxr-xr-x  1 root root  684 May 16 09:24 run_tau_095_nmin2.sh\\n-rwxr-xr-x  1 root root  682 May 16 09:24 run_tau_09_nmin2.sh\\n-rw-r--r--  1 root root 1815 May 14 21:36 submit_adaptive_v2.sh\\n-rw-r--r--  1 root root 2680 May 14 20:24 submit_grid_b_seed456.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+matplotlib 3.10.5 is available. Good. There's already a `plot_tau_sweep.py` script. Let me check it for reference, but I'll create a new comprehensive script.
+
+Now I need to:
+1. Create the data JSON file
+2. Create the comprehensive figure generation script
+3. Run it
+
+Let me write both files. I'll use ssh_execute with heredoc. But the script will be long - let me think about how to handle that.
+
+Actually, I should use `cat << 'EOF' > file` via ssh_execute. Let me make the script as clean as possible.
+
+
+Now I'm compiling the experimental results—the tau sweep shows τ=0.8 as optimal at 17.6527, with the uniform baseline at 17.6939, and I have the multi-seed grid-b data ready to visualize. Now I'm looking at the performance comparison across the three methods, and I can see the adaptive approach is performing better than uniform sampling. I'm going to write out the data and script files using heredoc to avoid any quoting issues, then execute everything on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "faec7b01-eac3-471e-b26f-622abaffc38a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ASa6tfrWfjkT8DFWc77Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7731,
+      "cache_read_input_tokens": 47343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+matplotlib 3.10.5 available. Creating the data JSON and figure generation script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "45c1dc2a-b411-41f8-ab32-d776303679dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ASa6tfrWfjkT8DFWc77Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7731,
+      "cache_read_input_tokens": 47343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018m9gG32jFjhmXXkFuVbLrV`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat << 'JSONEOF' > /root/provenance_weight_training/scripts/figure_data.json\n{\n  \"tau_sweep\": {\n    \"tau\": [0.5, 0.6, 0.7, 0.8, 0.9, 0.95],\n    \"ppl\": [17.688, 17.6805, 17.6793, 17.6527, 17.712, 17.723],\n    \"uniform_baseline\": 17.6939\n  },\n  \"grid_b_sweep\": {\n    \"b_values\": [0.5, 1.0, 1.5, 2.0, 3.0, 5.0],\n    \"seed42\": [17.651, 17.692, 17.718, 17.741, 17.774, 17.818],\n    \"seed123\": [17.638, 17.674, 17.701, 17.725, 17.76, 17.804],\n    \"seed456\": [17.65, 17.68, 17.71, null, null, null],\n    \"seed456_note\": \"b>=2.0 excluded: checkpoint resume artifact\",\n    \"pending_b\": [0.1, 0.3],\n    \"pending_status\": [\"PREPARING\", \"RUNNING\"],\n    \"uniform_mean\": 17.6938,\n    \"adaptive_mean\": 17.6508\n  },\n  \"method_comparison\": {\n    \"methods\": [\"Uniform\", \"ESS-only\", \"Adaptive (dual)\"],\n    \"uniform\": [17.6939, 17.6861, 17.7015],\n    \"ess_only\": [17.73, 17.72, 17.719],\n    \"adaptive_dual\": [17.6527, 17.6432, 17.6566],\n    \"seeds\": [42, 123, 456]\n  }\n}\nJSONEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "1f3aed51-5acb-4a97-a0d5-a1a724a4e6fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ASa6tfrWfjkT8DFWc77Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7731,
+      "cache_read_input_tokens": 47343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:02:00.216Z_
+
+<details><summary>↩ Tool result · `toolu_018m9gG32jFjhmXXkFuVbLrV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "811187e0-4009-45c2-bef2-3fc9105285f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KK8qvgpsqP7X6jsjhXU99s`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat << 'PYEOF' > /root/provenance_weight_training/scripts/generate_figures.py\n#!/usr/bin/env python3\n\"\"\"Generate publication-ready figures for Provenance Weight Training paper.\"\"\"\nimport json\nimport os\nimport sys\nimport argparse\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib import rcParams\n\nrcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Times New Roman'],\n    'font.size': 10,\n    'axes.labelsize': 11,\n    'axes.titlesize': 12,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.grid': True,\n    'grid.alpha': 0.3,\n    'grid.linestyle': '--',\n    'axes.linewidth': 0.8,\n})\n\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\nDEFAULT_DATA = os.path.join(SCRIPT_DIR, 'figure_data.json')\nDEFAULT_OUTPUT = '/root/provenance_weight_training/output/figures'\n\n\ndef load_data(path):\n    with open(path) as f:\n        return json.load(f)\n\n\ndef save_fig(fig, output_dir, name):\n    os.makedirs(output_dir, exist_ok=True)\n    for ext in ['pdf', 'png']:\n        p = os.path.join(output_dir, f'{name}.{ext}')\n        fig.savefig(p)\n        print(f'  -> {p}')\n    plt.close(fig)\n\n\ndef fig_tau_sweep(data, output_dir):\n    \"\"\"Figure 1: tau sensitivity sweep at rho=0.4.\"\"\"\n    d = data['tau_sweep']\n    tau = np.array(d['tau'])\n    ppl = np.array(d['ppl'])\n    baseline = d['uniform_baseline']\n\n    fig, ax = plt.subplots(figsize=(5, 3.5))\n\n    ax.plot(tau, ppl, 'o-', color='#2166AC', linewidth=1.5, markersize=6,\n            label='Adaptive (dual-constraint)', zorder=3)\n\n    ax.axhline(y=baseline, color='#B2182B', linestyle='--', linewidth=1.2,\n               label=f'Uniform baseline ({baseline:.4f})', zorder=2)\n\n    ymin = min(ppl.min(), baseline) - 0.02\n    ymax = max(ppl.max(), baseline) + 0.02\n    ax.set_ylim(ymin, ymax)\n\n    ax.axvspan(0.5, 0.8, alpha=0.07, color='#2166AC', zorder=1)\n    mid_y = ymin + (ymax - ymin) * 0.05\n    ax.text(0.65, mid_y, 'safe range', ha='center', va='bottom',\n            fontsize=8, color='#2166AC', fontstyle='italic', alpha=0.8)\n\n    opt_idx = int(np.argmin(ppl))\n    ax.annotate(\n        f'$\\\\tau^*={tau[opt_idx]}$\\nPPL={ppl[opt_idx]:.4f}',\n        xy=(tau[opt_idx], ppl[opt_idx]),\n        xytext=(tau[opt_idx] + 0.07, ppl[opt_idx] + 0.012),\n        fontsize=8,\n        arrowprops=dict(arrowstyle='->', color='#333', lw=0.8),\n        bbox=dict(boxstyle='round,pad=0.3', fc='white', ec='#999', alpha=0.9))\n\n    ax.set_xlabel(r'$\\tau$ ($\\alpha_{\\mathrm{eff}}$ lower bound)')\n    ax.set_ylabel('Eval Perplexity')\n    ax.set_xlim(0.45, 1.0)\n    ax.legend(loc='upper right', framealpha=0.9)\n    fig.tight_layout()\n\n    print('Fig 1: tau sweep')\n    save_fig(fig, output_dir, 'fig1_tau_sweep')\n\n\ndef fig_b_curve(data, output_dir):\n    \"\"\"Figure 2: grid-b sweep with multi-seed mean/std.\"\"\"\n    d = data['grid_b_sweep']\n    b_vals = np.array(d['b_values'])\n    s42 = np.array(d['seed42'], dtype=float)\n    s123 = np.array(d['seed123'], dtype=float)\n    s456_raw = d['seed456']\n\n    means = []\n    stds = []\n    for i in range(len(b_vals)):\n        vals = [s42[i], s123[i]]\n        if s456_raw[i] is not None:\n            vals.append(s456_raw[i])\n        means.append(np.mean(vals))\n        stds.append(np.std(vals, ddof=1) if len(vals) > 1 else 0)\n    means = np.array(means)\n    stds = np.array(stds)\n\n    fig, ax = plt.subplots(figsize=(5, 3.5))\n\n    ax.errorbar(b_vals, means, yerr=stds, fmt='o-', color='#2166AC',\n                linewidth=1.5, markersize=6, capsize=3, capthick=1,\n                label='Grid-b (mean ± std)', zorder=3)\n\n    for b_val in d.get('pending_b', []):\n        ax.axvline(x=b_val, color='#999', linestyle=':', linewidth=0.8,\n                   alpha=0.5, zorder=1)\n    if d.get('pending_b'):\n        ax.axvline(x=d['pending_b'][0], color='#999', linestyle=':',\n                   linewidth=0.8, alpha=0.5, label='Pending', zorder=1)\n\n    ub = d['uniform_mean']\n    ax.axhline(y=ub, color='#B2182B', linestyle='--', linewidth=1.2,\n               label=f'Uniform ({ub:.4f})', zorder=2)\n\n    ab = d['adaptive_mean']\n    ax.axhline(y=ab, color='#4DAF4A', linestyle='-.', linewidth=1.5,\n               label=f'Adaptive $b^*$ ({ab:.4f})', zorder=2)\n\n    ax.set_xlabel('$b$ (downweighting strength)')\n    ax.set_ylabel('Eval Perplexity')\n    ax.legend(loc='upper left', fontsize=8, framealpha=0.9)\n    ax.set_xlim(-0.2, 5.5)\n    fig.tight_layout()\n\n    print('Fig 2: b curve')\n    save_fig(fig, output_dir, 'fig2_b_curve')\n\n\ndef fig_method_comparison(data, output_dir):\n    \"\"\"Figure 3: method comparison bar chart with individual points.\"\"\"\n    d = data['method_comparison']\n    keys = ['uniform', 'ess_only', 'adaptive_dual']\n    labels = d['methods']\n\n    means = [np.mean(d[k]) for k in keys]\n    stds = [np.std(d[k], ddof=1) for k in keys]\n\n    colors = ['#B2182B', '#F4A582', '#2166AC']\n    fig, ax = plt.subplots(figsize=(4.5, 3.5))\n\n    x = np.arange(len(labels))\n    bars = ax.bar(x, means, width=0.5, color=colors, edgecolor='#333',\n                  linewidth=0.5, yerr=stds, capsize=4,\n                  error_kw={'linewidth': 1, 'color': '#333'}, zorder=3)\n\n    for i, k in enumerate(keys):\n        jitter = np.random.default_rng(0).uniform(-0.08, 0.08, len(d[k]))\n        ax.scatter(x[i] + jitter, d[k], color='white', edgecolor=colors[i],\n                   s=25, linewidth=1, zorder=4)\n\n    for bar, m, s in zip(bars, means, stds):\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + s + 0.003,\n                f'{m:.4f}', ha='center', va='bottom', fontsize=8, fontweight='bold')\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(labels, fontsize=9)\n    ax.set_ylabel('Eval Perplexity')\n\n    all_vals = [v for k in keys for v in d[k]]\n    ax.set_ylim(min(all_vals) - 0.03, max(all_vals) + 0.04)\n\n    delta_uni = means[0] - means[2]\n    delta_ess = means[1] - means[2]\n    ax.text(0.97, 0.95,\n            f'$\\\\Delta$ vs Uniform: {delta_uni:+.4f}\\n$\\\\Delta$ vs ESS-only: {delta_ess:+.4f}',\n            transform=ax.transAxes, fontsize=7.5, va='top', ha='right',\n            bbox=dict(boxstyle='round,pad=0.4', fc='#f0f0f0', ec='#ccc'))\n\n    fig.tight_layout()\n\n    print('Fig 3: method comparison')\n    save_fig(fig, output_dir, 'fig3_method_comparison')\n\n\nFIGURE_MAP = {\n    'tau': fig_tau_sweep,\n    'b_curve': fig_b_curve,\n    'comparison': fig_method_comparison,\n}\n\n\ndef main():\n    parser = argparse.ArgumentParser(description='Generate paper figures')\n    parser.add_argument('--data', default=DEFAULT_DATA,\n                        help='JSON data file')\n    parser.add_argument('--output', default=DEFAULT_OUTPUT,\n                        help='Output directory')\n    parser.add_argument('--figures', nargs='+', default=['all'],\n                        choices=['all'] + list(FIGURE_MAP.keys()),\n                        help='Which figures to generate')\n    args = parser.parse_args()\n\n    data = load_data(args.data)\n\n    figs = list(FIGURE_MAP.keys()) if 'all' in args.figures else args.figures\n    for name in figs:\n        FIGURE_MAP[name](data, args.output)\n\n    print(f'\\nDone. Output: {args.output}')\n\n\nif __name__ == '__main__':\n    main()\nPYEOF\nchmod +x /root/provenance_weight_training/scripts/generate_figures.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "24f5a39c-877d-4623-9573-f1ccb4d60306",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ASa6tfrWfjkT8DFWc77Lb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7731,
+      "cache_read_input_tokens": 47343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T03:02:33.690Z_
+
+<details><summary>↩ Tool result · `toolu_01KK8qvgpsqP7X6jsjhXU99s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "a1404cb2-0d46-44fe-8fa9-8579ba1182d6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both files created. Now let me run the script to generate figures 1 and 3 (the ones with full data). Figure 2 also has data, just some pending points.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "b3a2d99a-d257-4a24-a011-a8c11beff64c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5XLHJ4UD7hA1J27SYMSf7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4626,
+      "cache_read_input_tokens": 55074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Files created. Running the script to generate all three figures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "d5635adc-33ba-4f83-9aca-3b6088760f6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5XLHJ4UD7hA1J27SYMSf7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4626,
+      "cache_read_input_tokens": 55074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DV5He47Cjgcx5ozuaGHQdS`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python3 scripts/generate_figures.py --figures all 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "7c46bf39-abed-4c5f-816f-3bcd12d68248",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U5XLHJ4UD7hA1J27SYMSf7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4626,
+      "cache_read_input_tokens": 55074,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4626
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:02:41.698Z_
+
+<details><summary>↩ Tool result · `toolu_01DV5He47Cjgcx5ozuaGHQdS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fig 1: tau sweep\\n  -> /root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf\\n  -> /root/provenance_weight_training/output/figures/fig1_tau_sweep.png\\nFig 2: b curve\\n  -> /root/provenance_weight_training/output/figures/fig2_b_curve.pdf\\n  -> /root/provenance_weight_training/output/figures/fig2_b_curve.png\\nFig 3: method comparison\\n  -> /root/provenance_weight_training/output/figures/fig3_method_comparison.pdf\\n  -> /root/provenance_weight_training/output/figures/fig3_method_comparison.png\\n\\nDone. Output: /root/provenance_weight_training/output/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "6dde7b02-76ac-4e89-8035-e855dcb97640",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fig 1: tau sweep\\\\n  -> /root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf\\\\n  -> /root/provenance_weight_training/output/figures/fig1_tau_sweep.png\\\\nFig 2: b curve\\\\n  -> /root/provenance_weight_training/output/figures/fig2_b_curve.pdf\\\\n  -> /root/provenance_weight_training/output/figures/fig2_b_curve.png\\\\nFig 3: method comparison\\\\n  -> /root/provenance_weight_training/output/figures/fig3_method_comparison.pdf\\\\n  -> /root/provenance_weight_training/output/figures/fig3_method_comparison.png\\\\n\\\\nDone. Output: /root/provenance_weight_training/output/figures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fig 1: tau sweep\\n  -> /root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf\\n  -> /root/provenance_weight_training/output/figures/fig1_tau_sweep.png\\nFig 2: b curve\\n  -> /root/provenance_weight_training/output/figures/fig2_b_curve.pdf\\n  -> /root/provenance_weight_training/output/figures/fig2_b_curve.png\\nFig 3: method comparison\\n  -> /root/provenance_weight_training/output/figures/fig3_method_comparison.pdf\\n  -> /root/provenance_weight_training/output/figures/fig3_method_comparison.png\\n\\nDone. Output: /root/provenance_weight_training/output/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 3 figures generated successfully. Let me verify the output files and check their sizes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "02e43190-f993-4c15-96dd-314844379764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnVCuhk1wvQhKqSCuaqfQU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 59700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+All 3 figures generated. Let me verify the outputs and register artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "c434628c-2781-4d30-93e7-61635c84ed8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnVCuhk1wvQhKqSCuaqfQU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 59700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ey1jKg6T8X1jcBuQx1hAgh`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -lh /root/provenance_weight_training/output/figures/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "465bcd9f-dd0f-4906-baa8-41b83d20a5d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnVCuhk1wvQhKqSCuaqfQU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 59700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NBkdXbaxqjrNUrwFPFRBSK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "28a275d0-16c3-4883-b9f4-4aea390a1764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PnVCuhk1wvQhKqSCuaqfQU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 59700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T03:02:46.543Z_
+
+<details><summary>↩ Tool result · `toolu_01Ey1jKg6T8X1jcBuQx1hAgh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2.7M\\n-rw-r--r-- 1 root root  69K May 14 21:23 adaptive_diagnostic_distributions.png\\n-rw-r--r-- 1 root root 594K May 14 21:23 adaptive_seed_comparison.png\\n-rw-r--r-- 1 root root 328K May 14 21:23 convergence_comparison_seed42.png\\n-rw-r--r-- 1 root root  28K May 16 11:02 fig1_tau_sweep.pdf\\n-rw-r--r-- 1 root root 123K May 16 11:02 fig1_tau_sweep.png\\n-rw-r--r-- 1 root root  22K May 16 11:02 fig2_b_curve.pdf\\n-rw-r--r-- 1 root root 122K May 16 11:02 fig2_b_curve.png\\n-rw-r--r-- 1 root root  24K May 16 11:02 fig3_method_comparison.pdf\\n-rw-r--r-- 1 root root  84K May 16 11:02 fig3_method_comparison.png\\n-rw-r--r-- 1 root root  39K May 16 05:39 nmin_sensitivity.pdf\\n-rw-r--r-- 1 root root 243K May 16 05:39 nmin_sensitivity.png\\n-rw-r--r-- 1 root root 5.4K May 16 05:39 plot_nmin_sensitivity.py\\n-rw-r--r-- 1 root root 4.4K May 16 02:43 plot_tau_sensitivity.py\\n-rw-r--r-- 1 root root 2.9K May 16 04:09 plot_tau_sensitivity_v2.py\\n-rw-r--r-- 1 root root 2.6K May 16 03:26 plot_tau_sweep.py\\n-rw-r--r-- 1 root root  29K May 16 04:09 tau_sensitivity.pdf\\n-rw-r--r-- 1 root root 203K May 16 04:09 tau_sensitivity.png\\n-rw-r--r-- 1 root root  24K May 16 09:13 tau_sweep.pdf\\n-rw-r--r-- 1 root root 116K May 16 09:13 tau_sweep.png\\n-rw-r--r-- 1 root root  29K May 16 04:10 tau_sweep_analysis.pdf\\n-rw-r--r-- 1 root root 157K May 16 04:10 tau_sweep_analysis.png\\n-rw-r--r-- 1 root root  15K May 16 04:25 tau_sweep_bstar.pdf\\n-rw-r--r-- 1 root root 106K May 16 04:25 tau_sweep_bstar.png\\n-rw-r--r-- 1 root root  28K May 16 03:32 tau_sweep_dual_axis.pdf\\n-rw-r--r-- 1 root root 174K May 16 03:32 tau_sweep_dual_axis.png\\n-rw-r--r-- 1 root root  22K May 16 04:25 tau_sweep_ppl.pdf\\n-rw-r--r-- 1 root root 108K May 16 04:25 tau_sweep_ppl.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "89606b92-d18f-43f5-92b4-f4d29a4fc791",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2.7M\\\\n-rw-r--r-- 1 root root  69K May 14 21:23 adaptive_diagnostic_distributions.png\\\\n-rw-r--r-- 1 root root 594K May 14 21:23 adaptive_seed_comparison.png\\\\n-rw-r--r-- 1 root root 328K May 14 21:23 convergence_comparison_seed42.png\\\\n-rw-r--r-- 1 root root  28K May 16 11:02 fig1_tau_sweep.pdf\\\\n-rw-r--r-- 1 root root 123K May 16 11:02 fig1_tau_sweep.png\\\\n-rw-r--r-- 1 root root  22K May 16 11:02 fig2_b_curve.pdf\\\\n-rw-r--r-- 1 root root 122K May 16 11:02 fig2_b_curve.png\\\\n-rw-r--r-- 1 root root  24K May 16 11:02 fig3_method_comparison.pdf\\\\n-rw-r--r-- 1 root root  84K May 16 11:02 fig3_method_comparison.png\\\\n-rw-r--r-- 1 root root  39K May 16 05:39 nmin_sensitivity.pdf\\\\n-rw-r--r-- 1 root root 243K May 16 05:39 nmin_sensitivity.png\\\\n-rw-r--r-- 1 root root 5.4K May 16 05:39 plot_nmin_sensitivity.py\\\\n-rw-r--r-- 1 root root 4.4K May 16 02:43 plot_tau_sensitivity.py\\\\n-rw-r--r-- 1 root root 2.9K May 16 04:09 plot_tau_sensitivity_v2.py\\\\n-rw-r--r-- 1 root root 2.6K May 16 03:26 plot_tau_sweep.py\\\\n-rw-r--r-- 1 root root  29K May 16 04:09 tau_sensitivity.pdf\\\\n-rw-r--r-- 1 root root 203K May 16 04:09 tau_sensitivity.png\\\\n-rw-r--r-- 1 root root  24K May 16 09:13 tau_sweep.pdf\\\\n-rw-r--r-- 1 root root 116K May 16 09:13 tau_sweep.png\\\\n-rw-r--r-- 1 root root  29K May 16 04:10 tau_sweep_analysis.pdf\\\\n-rw-r--r-- 1 root root 157K May 16 04:10 tau_sweep_analysis.png\\\\n-rw-r--r-- 1 root root  15K May 16 04:25 tau_sweep_bstar.pdf\\\\n-rw-r--r-- 1 root root 106K May 16 04:25 tau_sweep_bstar.png\\\\n-rw-r--r-- 1 root root  28K May 16 03:32 tau_sweep_dual_axis.pdf\\\\n-rw-r--r-- 1 root root 174K May 16 03:32 tau_sweep_dual_axis.png\\\\n-rw-r--r-- 1 root root  22K May 16 04:25 tau_sweep_ppl.pdf\\\\n-rw-r--r-- 1 root root 108K May 16 04:25 tau_sweep_ppl.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 2.7M\\n-rw-r--r-- 1 root root  69K May 14 21:23 adaptive_diagnostic_distributions.png\\n-rw-r--r-- 1 root root 594K May 14 21:23 adaptive_seed_comparison.png\\n-rw-r--r-- 1 root root 328K May 14 21:23 convergence_comparison_seed42.png\\n-rw-r--r-- 1 root root  28K May 16 11:02 fig1_tau_sweep.pdf\\n-rw-r--r-- 1 root root 123K May 16 11:02 fig1_tau_sweep.png\\n-rw-r--r-- 1 root root  22K May 16 11:02 fig2_b_curve.pdf\\n-rw-r--r-- 1 root root 122K May 16 11:02 fig2_b_curve.png\\n-rw-r--r-- 1 root root  24K May 16 11:02 fig3_method_comparison.pdf\\n-rw-r--r-- 1 root root  84K May 16 11:02 fig3_method_comparison.png\\n-rw-r--r-- 1 root root  39K May 16 05:39 nmin_sensitivity.pdf\\n-rw-r--r-- 1 root root 243K May 16 05:39 nmin_sensitivity.png\\n-rw-r--r-- 1 root root 5.4K May 16 05:39 plot_nmin_sensitivity.py\\n-rw-r--r-- 1 root root 4.4K May 16 02:43 plot_tau_sensitivity.py\\n-rw-r--r-- 1 root root 2.9K May 16 04:09 plot_tau_sensitivity_v2.py\\n-rw-r--r-- 1 root root 2.6K May 16 03:26 plot_tau_sweep.py\\n-rw-r--r-- 1 root root  29K May 16 04:09 tau_sensitivity.pdf\\n-rw-r--r-- 1 root root 203K May 16 04:09 tau_sensitivity.png\\n-rw-r--r-- 1 root root  24K May 16 09:13 tau_sweep.pdf\\n-rw-r--r-- 1 root root 116K May 16 09:13 tau_sweep.png\\n-rw-r--r-- 1 root root  29K May 16 04:10 tau_sweep_analysis.pdf\\n-rw-r--r-- 1 root root 157K May 16 04:10 tau_sweep_analysis.png\\n-rw-r--r-- 1 root root  15K May 16 04:25 tau_sweep_bstar.pdf\\n-rw-r--r-- 1 root root 106K May 16 04:25 tau_sweep_bstar.png\\n-rw-r--r-- 1 root root  28K May 16 03:32 tau_sweep_dual_axis.pdf\\n-rw-r--r-- 1 root root 174K May 16 03:32 tau_sweep_dual_axis.png\\n-rw-r--r-- 1 root root  22K May 16 04:25 tau_sweep_ppl.pdf\\n-rw-r--r-- 1 root root 108K May 16 04:25 tau_sweep_ppl.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:02:46.547Z_
+
+<details><summary>↩ Tool result · `toolu_01NBkdXbaxqjrNUrwFPFRBSK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "79f1a1a6-aeca-4695-93be-de61cc756fbb",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+Files verified. Registering the artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "1509f1ef-f9c9-4ef9-9822-98331c6648ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzKQeTqUD6B8f5Hgyv18Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1897,
+      "cache_read_input_tokens": 60195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1897
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_011P6KzsmRiHN8pksFMC9iEH`</summary>
+
+```json
+{
+  "name": "fig1_tau_sweep",
+  "type": "chart",
+  "description": "Figure 1: τ sensitivity sweep (ρ=0.4, seed=42). Shows PPL vs τ∈[0.5,0.95], optimal τ*=0.8, safe range [0.5,0.8] all beat uniform baseline.",
+  "project": "provenance_weight_training",
+  "source_path": "/root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf",
+  "tags": [
+    "paper",
+    "figure",
+    "tau_sweep"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "4b7575ed-15f4-4913-8b42-a08937ffb52a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzKQeTqUD6B8f5Hgyv18Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1897,
+      "cache_read_input_tokens": 60195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1897
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T03:02:53.274Z_
+
+<details><summary>↩ Tool result · `toolu_011P6KzsmRiHN8pksFMC9iEH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "4c50c74a-939a-457c-9b21-330b69f8d055",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/output/figures/fig1_tau_sweep.pdf\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_019pse4Haxbmgge6QFtMt5sT`</summary>
+
+```json
+{
+  "name": "fig2_b_curve",
+  "type": "chart",
+  "description": "Figure 2: Grid-b sweep curve (multi-seed mean±std). b∈[0.5,5.0] with uniform and adaptive b* reference lines. Pending: b=0.1, 0.3.",
+  "project": "provenance_weight_training",
+  "source_path": "/root/provenance_weight_training/output/figures/fig2_b_curve.pdf",
+  "tags": [
+    "paper",
+    "figure",
+    "grid_b"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "c3ffec5e-1a0c-4413-8b9f-4978ac2ae10f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzKQeTqUD6B8f5Hgyv18Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1897,
+      "cache_read_input_tokens": 60195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1897
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T03:02:56.244Z_
+
+<details><summary>↩ Tool result · `toolu_019pse4Haxbmgge6QFtMt5sT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/output/figures/fig2_b_curve.pdf\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "c2ffc152-f626-442c-a0f6-944d9d632643",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/provenance_weight_training/output/figures/fig2_b_curve.pdf\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/output/figures/fig2_b_curve.pdf\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_015rRnUxm1vmUDFfMA9oEzfa`</summary>
+
+```json
+{
+  "name": "fig3_method_comparison",
+  "type": "chart",
+  "description": "Figure 3: Method comparison bar chart — Uniform vs ESS-only vs Adaptive (dual-constraint), 3 seeds with individual points and delta annotations.",
+  "project": "provenance_weight_training",
+  "source_path": "/root/provenance_weight_training/output/figures/fig3_method_comparison.pdf",
+  "tags": [
+    "paper",
+    "figure",
+    "method_comparison"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "d780fa7b-5b9e-4701-b12c-30fcf41158dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BzKQeTqUD6B8f5Hgyv18Ft",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1897,
+      "cache_read_input_tokens": 60195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1897
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T03:02:58.350Z_
+
+<details><summary>↩ Tool result · `toolu_015rRnUxm1vmUDFfMA9oEzfa`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/output/figures/fig3_method_comparison.pdf\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "18f6d2d5-fdc4-4b5a-8bab-c1521254dd02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/provenance_weight_training/output/figures/fig3_method_comparison.pdf\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/provenance_weight_training/output/figures/fig3_method_comparison.pdf\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The register_artifact tool expects the source_path to be a local path (on this machine), not a remote path on the server. Since the files are on the remote server, I need to either:
+1. Use `content` parameter instead
+2. Copy files to local artifacts directory first
+3. Just note the remote paths
+
+The artifacts directory is at `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/`. Let me download the files from the server first, then register.
+
+
+I'm realizing the `content` parameter is meant for proxy workers without local file access, so I could describe the file locations there instead. The simplest approach might be to just use `content` with a description of where the files are on the remote server, or I could scp them over to make them local first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "b898493c-c239-4946-85bd-b9b26008678b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Tim4tWN6T2dyqXQwmMAMm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 62092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Files are on the remote server, not local. Let me register with content noting the remote paths.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "2f4c211f-40d8-473f-939a-73334dc8f465",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Tim4tWN6T2dyqXQwmMAMm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 62092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01KXD8pUc1KKUFd5VfFMnYhZ`</summary>
+
+```json
+{
+  "name": "fig1_tau_sweep",
+  "type": "chart",
+  "description": "Figure 1: τ sensitivity sweep (ρ=0.4, seed=42). PPL vs τ∈[0.5,0.95], optimal τ*=0.8 (PPL=17.6527), safe range [0.5,0.8] all beat uniform baseline (17.6939).",
+  "project": "provenance_weight_training",
+  "content": "Remote: westd-47453:/root/provenance_weight_training/output/figures/fig1_tau_sweep.{pdf,png}\nScript: /root/provenance_weight_training/scripts/generate_figures.py --figures tau\nData: /root/provenance_weight_training/scripts/figure_data.json",
+  "content_filename": "fig1_tau_sweep.md",
+  "tags": [
+    "paper",
+    "figure",
+    "tau_sweep"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "47c7b59d-5698-48c7-b5e5-6ccad3e9a605",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Tim4tWN6T2dyqXQwmMAMm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 62092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T03:03:13.278Z_
+
+<details><summary>↩ Tool result · `toolu_01KXD8pUc1KKUFd5VfFMnYhZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_5babbd\", \"name\": \"fig1_tau_sweep\", \"type\": \"chart\", \"description\": \"Figure 1: τ sensitivity sweep (ρ=0.4, seed=42). PPL vs τ∈[0.5,0.95], optimal τ*=0.8 (PPL=17.6527), safe range [0.5,0.8] all beat uniform baseline (17.6939).\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/fig1_tau_sweep.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:03:13.129222+00:00\", \"tags\": [\"paper\", \"figure\", \"tau_sweep\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "c8385b4c-e787-404e-b685-5c2ab6c0044a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_5babbd\\\", \\\"name\\\": \\\"fig1_tau_sweep\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 1: τ sensitivity sweep (ρ=0.4, seed=42). PPL vs τ∈[0.5,0.95], optimal τ*=0.8 (PPL=17.6527), safe range [0.5,0.8] all beat uniform baseline (17.6939).\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/chart/fig1_tau_sweep.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:03:13.129222+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"tau_sweep\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_5babbd\", \"name\": \"fig1_tau_sweep\", \"type\": \"chart\", \"description\": \"Figure 1: τ sensitivity sweep (ρ=0.4, seed=42). PPL vs τ∈[0.5,0.95], optimal τ*=0.8 (PPL=17.6527), safe range [0.5,0.8] all beat uniform baseline (17.6939).\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/fig1_tau_sweep.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:03:13.129222+00:00\", \"tags\": [\"paper\", \"figure\", \"tau_sweep\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_015mKJpAYSdLAw21aYQWxRZR`</summary>
+
+```json
+{
+  "name": "fig2_b_curve",
+  "type": "chart",
+  "description": "Figure 2: Grid-b sweep curve (multi-seed mean±std). b∈[0.5,5.0], adaptive b* beats grid-best. Pending: b=0.1 (PREPARING), b=0.3 (RUNNING).",
+  "project": "provenance_weight_training",
+  "content": "Remote: westd-47453:/root/provenance_weight_training/output/figures/fig2_b_curve.{pdf,png}\nScript: /root/provenance_weight_training/scripts/generate_figures.py --figures b_curve\nData: /root/provenance_weight_training/scripts/figure_data.json",
+  "content_filename": "fig2_b_curve.md",
+  "tags": [
+    "paper",
+    "figure",
+    "grid_b"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "4aa3e68b-d99d-4e67-b505-4dd72c4d1b36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Tim4tWN6T2dyqXQwmMAMm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 62092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T03:03:15.093Z_
+
+<details><summary>↩ Tool result · `toolu_015mKJpAYSdLAw21aYQWxRZR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_14e1e6\", \"name\": \"fig2_b_curve\", \"type\": \"chart\", \"description\": \"Figure 2: Grid-b sweep curve (multi-seed mean±std). b∈[0.5,5.0], adaptive b* beats grid-best. Pending: b=0.1 (PREPARING), b=0.3 (RUNNING).\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/fig2_b_curve.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:03:14.944163+00:00\", \"tags\": [\"paper\", \"figure\", \"grid_b\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "d598ad4c-5b81-49c7-b24e-36b8a83a9d40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_14e1e6\\\", \\\"name\\\": \\\"fig2_b_curve\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 2: Grid-b sweep curve (multi-seed mean±std). b∈[0.5,5.0], adaptive b* beats grid-best. Pending: b=0.1 (PREPARING), b=0.3 (RUNNING).\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/chart/fig2_b_curve.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:03:14.944163+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"grid_b\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_14e1e6\", \"name\": \"fig2_b_curve\", \"type\": \"chart\", \"description\": \"Figure 2: Grid-b sweep curve (multi-seed mean±std). b∈[0.5,5.0], adaptive b* beats grid-best. Pending: b=0.1 (PREPARING), b=0.3 (RUNNING).\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/fig2_b_curve.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:03:14.944163+00:00\", \"tags\": [\"paper\", \"figure\", \"grid_b\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01JiAZiwu7X6DqgwgNUUjXw5`</summary>
+
+```json
+{
+  "name": "fig3_method_comparison",
+  "type": "chart",
+  "description": "Figure 3: Method comparison — Uniform (17.694) vs ESS-only (17.723) vs Adaptive dual (17.651), 3 seeds, bar chart with individual data points.",
+  "project": "provenance_weight_training",
+  "content": "Remote: westd-47453:/root/provenance_weight_training/output/figures/fig3_method_comparison.{pdf,png}\nScript: /root/provenance_weight_training/scripts/generate_figures.py --figures comparison\nData: /root/provenance_weight_training/scripts/figure_data.json",
+  "content_filename": "fig3_method_comparison.md",
+  "tags": [
+    "paper",
+    "figure",
+    "method_comparison"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "bbf81839-392e-42c1-a736-709327f0efac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Tim4tWN6T2dyqXQwmMAMm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 62092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T03:03:17.517Z_
+
+<details><summary>↩ Tool result · `toolu_01JiAZiwu7X6DqgwgNUUjXw5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_195145\", \"name\": \"fig3_method_comparison\", \"type\": \"chart\", \"description\": \"Figure 3: Method comparison — Uniform (17.694) vs ESS-only (17.723) vs Adaptive dual (17.651), 3 seeds, bar chart with individual data points.\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/fig3_method_comparison.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:03:17.362499+00:00\", \"tags\": [\"paper\", \"figure\", \"method_comparison\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "8866ba7b-746c-4b5d-856f-ad920eb5cfe6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_195145\\\", \\\"name\\\": \\\"fig3_method_comparison\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 3: Method comparison — Uniform (17.694) vs ESS-only (17.723) vs Adaptive dual (17.651), 3 seeds, bar chart with individual data points.\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/chart/fig3_method_comparison.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T03:03:17.362499+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"method_comparison\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_195145\", \"name\": \"fig3_method_comparison\", \"type\": \"chart\", \"description\": \"Figure 3: Method comparison — Uniform (17.694) vs ESS-only (17.723) vs Adaptive dual (17.651), 3 seeds, bar chart with individual data points.\", \"path\": \"projects/provenance_weight_training/artifacts/_project/chart/fig3_method_comparison.md\", \"url\": null, \"project\": \"provenance_weight_training\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T03:03:17.362499+00:00\", \"tags\": [\"paper\", \"figure\", \"method_comparison\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+完成。生成了 3 个论文图表：
+
+**服务器路径** `westd-47453:/root/provenance_weight_training/output/figures/`
+
+| 图表 | 文件 | 关键数据 |
+|------|------|----------|
+| Fig 1: τ sweep | `fig1_tau_sweep.{pdf,png}` (28K/123K) | τ*=0.8 (PPL=17.653), safe range [0.5,0.8] 全优于 uniform (17.694) |
+| Fig 2: b curve | `fig2_b_curve.{pdf,png}` (22K/122K) | Grid-b 多 seed 均值±std, adaptive b* (17.651) 参考线 |
+| Fig 3: 方法对比 | `fig3_method_comparison.{pdf,png}` (24K/84K) | Adaptive=17.651 vs Uniform=17.694 vs ESS-only=17.723 |
+
+**脚本 & 数据**：
+- `scripts/generate_figures.py` — 支持 `--figures tau/b_curve/comparison/all` 和 `--data` 参数
+- `scripts/figure_data.json` — 所有数据集中管理，b=0.1/0.3 完成后更新 JSON 重跑即可
+
+**注意**：registry 中 tau_09/tau_095 结论为 `negative`（非 `success`），已用其 eval_ppl 数据。seed456 的 b≥2.0 因 checkpoint resume artifact 被排除，仅用 2 seeds。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "uuid": "be71c482-9abe-4fdd-a3a1-6b6c9b7d85f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dh1pG2kLWuRi3Qyz2w7uU6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 63070,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2368
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 54_
+
+完成。生成了 3 个论文图表：
+
+**服务器路径** `westd-47453:/root/provenance_weight_training/output/figures/`
+
+| 图表 | 文件 | 关键数据 |
+|------|------|----------|
+| Fig 1: τ sweep | `fig1_tau_sweep.{pdf,png}` (28K/123K) | τ*=0.8 (PPL=17.653), safe range [0.5,0.8] 全优于 uniform (17.694) |
+| Fig 2: b curve | `fig2_b_curve.{pdf,png}` (22K/122K) | Grid-b 多 seed 均值±std, adaptive b* (17.651) 参考线 |
+| Fig 3: 方法对比 | `fig3_method_comparison.{pdf,png}` (24K/84K) | Adaptive=17.651 vs Uniform=17.694 vs ESS-only=17.723 |
+
+**脚本 & 数据**：
+- `scripts/generate_figures.py` — 支持 `--figures tau/b_curve/comparison/all` 和 `--data` 参数
+- `scripts/figure_data.json` — 所有数据集中管理，b=0.1/0.3 完成后更新 JSON 重跑即可
+
+**注意**：registry 中 tau_09/tau_095 结论为 `negative`（非 `success`），已用其 eval_ppl 数据。seed456 的 b≥2.0 因 checkpoint resume artifact 被排除，仅用 2 seeds。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 245950,
+  "duration_api_ms": 243490,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "4eb66bf5-2bfe-421f-9251-71ad2fd74101",
+  "total_cost_usd": 0.95666575,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 53597,
+    "cache_read_input_tokens": 446257,
+    "output_tokens": 15870,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 53597,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 434,
+        "cache_read_input_tokens": 63070,
+        "cache_creation_input_tokens": 2368,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2368
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1626,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001726,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 15870,
+      "cacheReadInputTokens": 446257,
+      "cacheCreationInputTokens": 53597,
+      "webSearchRequests": 0,
+      "costUSD": 0.95493975,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a202fbc6-fcb6-4e7b-a273-c3ea9a274319"
+}
+```
+
+</details>
+
+---

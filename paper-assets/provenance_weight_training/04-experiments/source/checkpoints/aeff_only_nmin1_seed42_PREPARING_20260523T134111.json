@@ -1,0 +1,14 @@
+{
+  "exp_id": "aeff_only_nmin1_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T13:41:10.968Z",
+    "updated_at": "2026-05-23T13:41:10.968Z"
+  },
+  "timestamp": "2026-05-23T13:41:11.438334+00:00",
+  "trigger": "update_registry"
+}

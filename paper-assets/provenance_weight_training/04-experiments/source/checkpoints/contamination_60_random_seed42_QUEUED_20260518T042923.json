@@ -1,0 +1,16 @@
+{
+  "exp_id": "contamination_60_random_seed42",
+  "project": "provenance_weight_training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:27:24.364Z",
+    "updated_at": "2026-05-18T04:29:23.711Z",
+    "hypothesis": "Random reweighting baseline at ρ=0.6: random weights ignore detector scores entirely. If PPL > ESS-only (17.77) and > uniform (17.766), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6, confirming Claim 1 structural argument holds cross-ρ.",
+    "parent": "random_reweight_v2_seed42"
+  },
+  "timestamp": "2026-05-18T04:29:23.964293+00:00",
+  "trigger": "update_registry"
+}

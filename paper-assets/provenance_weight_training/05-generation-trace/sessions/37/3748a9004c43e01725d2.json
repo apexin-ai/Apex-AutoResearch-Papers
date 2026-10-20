@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3748a9004c43e01725d2",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit bs16 uniform seed456",
+  "task_key": "worker_submit_bs16_uniform_seed456_20260522T033249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_bs16_uniform_seed456_20260522T033249_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "296f618d9ce935f90682a1d7f7cd3a0a1889600584ef64d7c27fda3fc9a1206a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- 磁盘：91GB 可用 ✅\n- Effective batch：16 × 1 = 16 ✅\n- 训练已启动：PID 697578，cuda:0，tmux session `bs16_uniform_seed456`\n- Registry：PREPARING → QUEUED → ALLOCATED → RUNNING ✅\n- 日志：模型加载正常，正在加载训练数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-bs16-uniform-seed456.md"
+}

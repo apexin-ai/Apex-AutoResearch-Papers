@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c81c50900d4325cd9aa",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra server status check",
+  "task_key": "worker_infra_server-status-check_20260514T135859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_server-status-check_20260514T135859_result.json",
+    "occurrence": 1,
+    "bytes": 1456,
+    "sha256": "05e654b00c1d479dfec18cd67fe8dbbcb784dd9e0bad628e06922efa9601a116"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 训练进度\n\n| GPU | 实验 | 进度 | 剩余时间 | 备注 |\n|-----|------|------|----------|------|\n| cuda:0 | grid_b_seed42_batch (b=2.0) | **4777/6103 (78%)** | ~47min | 之后还剩 b=3.0, b=5.0 两轮，每轮~3.6h，**总剩余~7.7h** |\n| cuda:1 | grid_b2_0_seed123 | **5721/6103 (94%)** | **~13min** | 即将完成 |\n| cuda:2 | grid_b3_0_seed123 | **5426/6103 (89%)** | ~24min | 正常 |\n| cuda:3 | grid_b5_0_seed123 | **552/6103 (9%)** | **~6.9h** | ⚠️ 速度从2.11s/it骤降到4.48s/it（step 547附近），ETA从3:15h飙到6:55h |\n\n**注意**: cuda:3 的 grid_b5_0_seed123 在 step ~547 处速度减半（2.11→4.48s/it），可能是 eval/save 触发或被其他进程抢占 GPU 资源。值得关注是否持续。\n\n### 2. auto_eval_watcher\n- 旧 PID 74145: **已死**\n- 新 PID **99508**: **存活**（20:37 启动），正常运行\n\n### 3. adaptive_fix D012\n**已部署确认。** `pretrain_weighted.py` 第279-280行:\n```python\nif args.n_min is None:\n    args.n_min = max(2, args.batch_size // 2)\n```\n\n### 4. 磁盘\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 23G | 7.7G | **75%** |\n| /root/autodl-tmp | 250G | 70G | 181G | 28% |\n| output/ 目录 | — | 56G | — | — |\n\n根分区 75% 偏高，output/ 占 56G 是大头。如果后续实验继续产出 checkpoint，可能需要清理旧的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-server-status-check.md"
+}

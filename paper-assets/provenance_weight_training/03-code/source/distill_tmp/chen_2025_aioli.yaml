@@ -1,0 +1,77 @@
+paper_key: "chen_2025_aioli"
+title: "Aioli: A Unified Optimization Framework for Language Model Data Mixing"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines: ["stratified sampling", "DoReMi", "DoGE", "Skill-It", "DML (Data Mixing Laws)"]
+  metrics:
+    - {name: "average test perplexity", direction: "lower_better"}
+    - {name: "perplexity improvement over stratified", direction: "higher_better"}
+    - {name: "mixing law MSE", direction: "lower_better"}
+    - {name: "mixing law R²", direction: "higher_better"}
+  datasets:
+    - {name: "SlimPajama (2-7 domain configs)", size: "6 configurations"}
+  ablation_dimensions: ["number of domains (2-7)", "parameterization (log-linear static vs linear dynamic)", "parameter estimation accuracy", "restricted vs unrestricted budget"]
+  training_recipe: {optimizer: "not specified", lr: "not specified", hardware: "not specified", model: "160M GPT-style decoder", steps: "5K-40K"}
+  method_family: "online mixing law parameter estimation"
+
+positioning:
+  core_claim: "Existing mixing methods share a common Linear Mixing Optimization (LMO) framework but have inaccurate parameters; Aioli estimates parameters directly from training history, consistently outperforming all baselines"
+  key_results: "Average 0.274 perplexity improvement over stratified; DoReMi ranges from -6.9 to +0.2 (inconsistent); Aioli consistent across all 6 settings"
+  limitations: ["restricted to 160M models", "requires sufficient group interactions for parameter estimation", "step-size and learning fraction need tuning"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "No existing method consistently outperforms simple stratified sampling in average test perplexity"
+  tension: "Multiple methods exist (DoReMi, DoGE, Skill-It, DML) but each works in some settings and fails in others"
+  key_insight: "Section 3 — unified LMO framework: all methods share same parameterization L = c + b·σ(−A·p) but differ only in how they set A; key insight is that A estimation is the bottleneck"
+  argument_chain: "inconsistency problem → unify under LMO → analyze fidelity (law works, parameters wrong) → Aioli estimates A directly → consistent gains"
+  contribution_framing: "3 contributions: unified framework, fidelity analysis, Aioli method"
+  intro_structure: "4 paragraphs: (1) data mixing importance, (2) existing methods inconsistent, (3) unified framework approach, (4) Aioli and contributions"
+  notable_technique: "Fidelity analysis decomposition (parameterization ok → parameters wrong → solving ok) is methodologically elegant and identifies the exact failure point"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "motivation"
+    description: "Three panels: (a) existing methods inconsistent, (b) mixing laws well-specified, (c) Aioli improves parameter estimation"
+    narrative_role: "Compactly motivates entire paper: problem → diagnosis → solution"
+    design_elements: ["three-panel layout", "scatter plots showing fits", "clear before/after"]
+    visual_style: "Multi-panel figure with consistent axes across panels for comparison"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter"
+      what_compared: "Mixing law fit quality (log-linear and linear parameterizations)"
+      how_gain_highlighted: "High R² values (0.991 average) show parameterization is well-specified"
+      design_note: "Validates that the problem is parameter estimation, not the functional form"
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "Parameter similarity score vs performance improvement"
+      how_gain_highlighted: "R²=0.491 positive correlation — better parameters → better performance"
+      design_note: "Links framework insight to empirical outcome"
+  ablation_figures: []
+  figure_narrative_role: "Fig1 (motivation triptych) → Fig2 (law validation) → Fig3 (parameter-performance link)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "datasets (6 SlimPajama configs)"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold_best + show range of performance"
+    statistical_reporting: "single run"
+    num_baselines: 5
+    design_note: "6-column dataset layout makes inconsistency of other methods visually obvious"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["method → LMO component mapping"]
+      variation_style: "checkmark_grid"
+      design_note: "Framework summary table — shows how each method fills the three LMO components"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "Compact paper focused on framework + one main experiment"

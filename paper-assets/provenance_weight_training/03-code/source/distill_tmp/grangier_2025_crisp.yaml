@@ -1,0 +1,20 @@
+paper_key: "grangier_2025_crisp"
+title: "Task-Adaptive Pretrained Language Models via Clustered-Importance Sampling"
+venue: "ICLR 2025"
+full_text_available: false
+
+research:
+  baselines: ["base LM (6.7B)", "standard pretraining", "continued pretraining"]
+  metrics:
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "multiple-choice accuracy (ARC)", direction: "higher_better"}
+  datasets:
+    - {name: "general-purpose pretraining corpus", size: "large"}
+    - {name: "specialist domain data", size: "small"}
+  ablation_dimensions: ["cluster granularity", "pretraining vs continued pretraining", "multi-task settings"]
+  training_recipe: {model: "1.3B CRISP", method: "cluster-based importance sampling"}
+  method_family: "clustered importance sampling for domain adaptation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

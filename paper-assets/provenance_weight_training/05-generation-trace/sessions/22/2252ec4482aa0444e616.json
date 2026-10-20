@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2252ec4482aa0444e616",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260524T165630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260524T165630_result.json",
+    "occurrence": 1,
+    "bytes": 249,
+    "sha256": "d5e1629595cbc200a60bc440db159bd72eff922b78bf8d0a5aee998b9e35a2cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PaperBanana 已安装。但 `GOOGLE_API_KEY` 未设置，且 `request_secret` / `poll_secret_request` 工具在当前环境不可用。\n\n需要你提供 GOOGLE_API_KEY 才能继续。请直接给我 key，或告诉我如何获取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

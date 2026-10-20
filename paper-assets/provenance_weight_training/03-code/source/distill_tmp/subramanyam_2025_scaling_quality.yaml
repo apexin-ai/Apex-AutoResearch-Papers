@@ -1,0 +1,85 @@
+paper_key: "subramanyam_2025_scaling_quality"
+title: "Scaling Laws Revisited: Modeling the Role of Data Quality in Language Model Pretraining"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: ["Chinchilla scaling law (quality-agnostic)", "least squares fit", "Huber loss fit"]
+  metrics:
+    - {name: "test loss (nats)", direction: "lower_better"}
+    - {name: "BLEU (NMT)", direction: "higher_better"}
+    - {name: "iso-loss contours", direction: "N/A"}
+  datasets:
+    - {name: "Paracrawl v8 EN→DE (NMT)", size: "500K-2M sentence pairs"}
+    - {name: "C4 (en) subset (CLM)", size: "100M-10B tokens"}
+  ablation_dimensions: ["quality level Q (0.5-1.0, 7 levels)", "dataset size (3 levels)", "noise type (token swap vs pad)", "learning rate"]
+  training_recipe: {optimizer: "AdamW", lr: "5e-4 (NMT) / 1e-3 (CLM)", hardware: "not specified", batch_size: "512-1024", warmup: "10-20%"}
+  method_family: "quality-aware scaling law"
+
+positioning:
+  core_claim: "Data quality can be captured by a single dimensionless parameter Q and integrated into Chinchilla-style scaling laws as L(N,D,Q) = A/N^α + B/(D^β · Q^γ) + E"
+  key_results: "γ = 0.173 (NMT), 0.401 (CLM) — sublinear quality decay; 20-30% quality improvement can offset substantial data reductions"
+  limitations: ["small models (~133M NMT, ~8M CLM)", "synthetic noise may not capture real-world degradation patterns", "γ is task-dependent", "single scalar quality dimension"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Scaling laws characterize model size and data volume, but remain agnostic to quality — despite 'cleaner data trains better models' being well-known"
+  tension: "Chinchilla framework gives no guidance on data quality investment; practitioners must guess quality-quantity tradeoffs"
+  key_insight: "Section 4 — effective sample size factorization: D_eff = D · g(Q), where g(Q) ≈ Q^γ; information-theoretic derivation in Proposition 1"
+  argument_chain: "gap in scaling laws → define Q → derive quality-aware law from ESS + info theory → validate on NMT + CLM → show sublinear decay (γ<1)"
+  contribution_framing: "3 contributions: quality parameter Q, quality-aware scaling law, two practical Q estimators"
+  intro_structure: "4 paragraphs: (1) scaling laws importance, (2) quality gap in existing laws, (3) proposed approach with Q, (4) experimental plan"
+  notable_technique: "Iso-loss contour plots (Figure 2) make quality-quantity tradeoff immediately actionable for practitioners"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Test loss vs quality Q from 0.5 to 1.0 for NMT and CLM across 3 dataset sizes"
+    narrative_role: "Shows monotonic quality-loss relationship across tasks, motivating formal modeling"
+    design_elements: ["dual panel (NMT vs CLM)", "3 curves per panel (dataset sizes)", "clear monotonic trend"]
+    visual_style: "Clean line plots with quality on x-axis, loss on y-axis"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      what_compared: "Iso-loss contours in D×Q space at fixed model capacity"
+      how_gain_highlighted: "Contour lines show how quality improvements substitute for data quantity"
+      design_note: "Extremely practical visualization — reader can read off quality-quantity tradeoffs directly"
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "ΔL(Q) vs Q^(-γ̂)-1 for both tasks"
+      how_gain_highlighted: "Near-linear relationship validates multiplicative Q^(-γ) structure"
+      design_note: "Validation plot that directly tests the scaling law's functional form"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["learning rate"]
+      design_note: "Shows γ stability across learning rates — robustness check"
+  figure_narrative_role: "Figure 1 (empirical trend) → Figure 2 (iso-loss application) → Figure 3 (law validation) → Figure 4 (noise validation) → Figure 5 (LR robustness)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (fitting methods)"
+    col_axis: "parameters (B, β, γ, E) × tasks"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "key finding: γ < 1 emphasized in text"
+    statistical_reporting: "63 runs per task (3 replicates × 7 quality × 3 sizes)"
+    num_baselines: 2
+    design_note: "Parameter table rather than performance table — fitting framework paper"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["train vs unseen validation"]
+      variation_style: "full_numbers"
+      design_note: "Out-of-sample validation showing parameter consistency"
+    - table_id: "Table 9"
+      what_varied: ["learning rate (5 values)"]
+      variation_style: "full_numbers"
+      design_note: "Robustness of γ across hyperparameters"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 7-8: complete 63-run results per task; Table 9: LR sensitivity"
+    reason: "Full experimental data in appendix; main tables focus on fitted parameters and validation"

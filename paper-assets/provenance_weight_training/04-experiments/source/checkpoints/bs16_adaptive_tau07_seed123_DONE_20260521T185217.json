@@ -1,0 +1,36 @@
+{
+  "exp_id": "bs16_adaptive_tau07_seed123",
+  "project": "provenance_weight_training",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:28:08.369Z",
+    "updated_at": "2026-05-21T18:52:17.099Z",
+    "hypothesis": "Batch size sensitivity replication seed123: adaptive weighting with bs=16 (n_min=8) vs bs=4. If Δ(adaptive−uniform) at bs=16 is comparable to seed42's −0.063, confirms the batch-size amplification effect is not seed-specific. Paired with bs16_uniform_seed123.",
+    "parent": "bs16_adaptive_tau07_seed42",
+    "spec": {
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen3-0.6B",
+      "seed": 123,
+      "checkpoint_source": "from_scratch",
+      "eval_data": "holdout_combined + owt_eval + wiki_eval",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/bs16_adaptive_tau07_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.7 --num_train_tokens 200000000 --batch_size 16 --n_min 8 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_total_limit 3 --gradient_checkpointing\"",
+      "server": "westd-41312",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "643108"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T18:52:13.181Z"
+    },
+    "failure_reason": "Traceback → packages/torch/serialization.py\", line 977, in save _save( File \"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\", line 1286, in _save zip_file.write_record(name, storage, num_bytes) RuntimeError: basic_ios::clear: iostream error",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T18:52:16.154Z"
+  },
+  "timestamp": "2026-05-21T18:52:17.816685+00:00",
+  "trigger": "update_registry"
+}

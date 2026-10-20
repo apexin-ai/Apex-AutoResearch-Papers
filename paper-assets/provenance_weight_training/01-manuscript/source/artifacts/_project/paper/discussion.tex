@@ -1,0 +1,20 @@
+\paragraph{Why minimum intervention works.}
+The central finding of our experiments is that restraint in downweighting outperforms aggressiveness.
+ESS-only reweighting---which maximizes $b$ subject only to $\mathrm{ESS} \geq \nmin$---degrades PPL to 17.723, \emph{worse} than the uniform baseline (17.694, Table~\ref{tab:main}).
+The dual-constraint adaptive $\bstar$, by contrast, achieves 17.651 by selecting the \emph{smallest} $b$ that meets the quality floor $\tau$.
+The mechanism is clear from the binding statistics: in the 40.1\% of reweighted batches where $\aeff$ binds, mean $\bstar = 1.67$ versus 4.15 under ESS-only---a 2.5$\times$ less aggressive exponent that retains ESS\,=\,2.60, well above the floor $\nmin = 2$.
+Over-downweighting discards gradient signal from borderline samples whose detector scores are intermediate (e.g., $q \approx 0.4$--$0.6$); these samples carry partial but non-negligible training value, and aggressively suppressing them impoverishes the effective training distribution.
+The $\aeff$ constraint prevents this by halting $b$ as soon as the quality target is met.
+
+\paragraph{$\tau$ as a practical dial.}
+The quality threshold $\tau$ controls the trade-off between decontamination strength and sample retention.
+Our sweep (Table~\ref{tab:tau}) reveals a wide safe operating range: all $\tau \in [0.5, 0.8]$ outperform uniform training, with PPL varying only 0.035 across this interval.
+The sensitivity is asymmetric---under-cleaning ($\tau < 0.8$) incurs mild degradation ($-$0.006 to $-$0.015 vs.\ uniform), while over-cleaning ($\tau > 0.8$) causes sharper regression as $\bstar$ inflates (mean $\bar{b}^* = 2.36$ at $\tau{=}0.9$, 3.08 at $\tau{=}0.95$).
+This asymmetry reinforces the minimum intervention intuition: the cost of doing too little is small, whereas the cost of doing too much is steep.
+We recommend $\tau = 0.8$ as a principled default; practitioners operating at different contamination rates can adjust within the safe range with low risk.
+
+\paragraph{Connection to convergence theory.}
+\citet{wang_2026_survive_contamination} prove that pretraining convergence rate scales with $\alpha$, the effective real data fraction.
+Our $\tau$ serves an analogous role---setting a floor on the weighted real proportion per batch---but an important distinction must be noted: their analysis assumes a known contamination proportion, whereas our method estimates quality from detector scores without access to the true $\alpha$.
+We therefore position $\tau$ as an empirical hyperparameter with theoretical motivation: convergence theory explains \emph{why} a quality threshold improves training, while the specific value of $\tau$ is determined empirically.
+Bridging this gap---deriving $\tau$ from first principles without known proportions---is an open theoretical question.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "075d8b0be189fea25cea",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code p0 contamination 60 datagen",
+  "task_key": "worker_code_p0_contamination_60_datagen_20260515T193111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_contamination_60_datagen_20260515T193111_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "c49c95eb37570558d47b02437ed015e33d4c67b720683c57e501e52e5299439d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出摘要：**\n\n| 项目 | 值 |\n|------|------|\n| 文件 | `/root/provenance_weight_training/data/scored_data_60.jsonl` (907MB) |\n| 行数 | 371,499（与 scored_data.jsonl 一致） |\n| Synthetic (depth=1) | 222,900 (60.00%) |\n| Human (depth=0) | 148,599 (40.00%) |\n| q_score | mean=0.6243, std=0.3703, median=0.7753 |\n| 对比原始 | 原始 mean=0.5987, median=0.7049（ρ=0.6 的 mean/median 更高，符合预期：更多 synthetic → 更高 q_score） |\n| 脚本 | `scripts/prepare_rho06_data.py`（已更新，支持固定总行数模式） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-contamination-60-datagen.md"
+}

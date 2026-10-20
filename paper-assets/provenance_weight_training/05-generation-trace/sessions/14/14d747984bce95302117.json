@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14d747984bce95302117",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops check contamination 60 grid b0 3",
+  "task_key": "worker_ops_check_contamination_60_grid_b0_3_20260518T040856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_contamination_60_grid_b0_3_20260518T040856_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "3cfd02a5280c71e2a8f6aba2096040f391425218bea004eaa9c86aab6d7cb950"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成：\n\n- **进程状态**: PID 87633 正常运行，tmux session 存在，当前 107/6103 steps (2%)，预计约 3.5 小时完成\n- **Registry**: PREPARING → QUEUED → RUNNING，补充了 data_path、data_count、model_name、seed 等字段\n- **Cron 监控**: 已注册，120 秒间隔轮询 PID 87633 和日志文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-contamination-60-grid-b0-3.md"
+}

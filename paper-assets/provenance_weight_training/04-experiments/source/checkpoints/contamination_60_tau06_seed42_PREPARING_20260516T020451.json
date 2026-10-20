@@ -1,0 +1,18 @@
+{
+  "exp_id": "contamination_60_tau06_seed42",
+  "project": "provenance_weight_training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:04:51.670Z",
+    "updated_at": "2026-05-16T02:04:51.671Z",
+    "spec": {
+      "hypothesis": "ρ=0.6 τ=0.6 diagnostic: second data point for ρ=0.6 τ-PPL curve. Tests deeper τ downshift for higher contamination.",
+      "parent": "contamination_60_seed42_r2"
+    }
+  },
+  "timestamp": "2026-05-16T02:04:51.848568+00:00",
+  "trigger": "update_registry"
+}

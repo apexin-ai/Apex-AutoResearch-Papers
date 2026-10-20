@@ -1,0 +1,15 @@
+{
+  "exp_id": "adaptive_1_7b_seed42_v3",
+  "project": "provenance_weight_training",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:49:58.165Z",
+    "updated_at": "2026-05-20T04:50:02.833Z",
+    "hypothesis": "Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). Paired with uniform_1_7b_seed42_v3 to test if adaptive advantage holds at larger model scale. Key for model scaling claim in paper."
+  },
+  "timestamp": "2026-05-20T04:50:03.430068+00:00",
+  "trigger": "update_registry"
+}

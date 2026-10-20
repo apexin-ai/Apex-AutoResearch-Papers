@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "243d312e57ffb95eee6a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper experiments",
+  "task_key": "worker_paper_experiments_20260515T233732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments_20260515T233732_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "e298e987450a3060c760e7c448107cbafd5639278c47241fd891a955e2831c19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section saved to `experiments.tex` with 8 provenance-tracked claims (coverage 21/22).\n\n**Summary**: Experiments section (4 subsections) written in ~750 words covering:\n- **Setup**: Qwen3-0.6B continued pretraining, 247K samples/132M+ tokens with 40% self-generated synthetic, balanced holdout eval\n- **Detector**: TF-IDF+LR (AUC=0.939), calibration prioritized over accuracy (ECE 0.24→0.048), 46.3% mid-range scores\n- **Baselines**: Uniform, Grid-b (6 values, 6× cost), ESS-only (max intervention), Golden Ratio (oracle)\n- **Protocol**: 4 experiment groups — main comparison (3 seeds), τ sweep (6 points), n_min sensitivity (4 points), batch size\n\nAll numbers traced to registry experiment IDs. Citation placeholders included."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments.md"
+}

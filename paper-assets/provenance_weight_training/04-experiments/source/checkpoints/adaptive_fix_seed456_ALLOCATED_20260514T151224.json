@@ -1,0 +1,30 @@
+{
+  "exp_id": "adaptive_fix_seed456",
+  "project": "provenance_weight_training",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:32:31.779Z",
+    "updated_at": "2026-05-14T15:12:24.470Z",
+    "hypothesis": "D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64, uniform PPL=17.70)",
+    "parent": "adaptive_seed456",
+    "notes": "D012 代码验证通过（n_min=max(2,batch_size//2), 无EMA, import OK）。等 GPU 释放后提交。",
+    "spec": {
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "account": "root",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 456,
+      "checkpoint_source": "from_scratch",
+      "eval_data": "data/human/eval_holdout.jsonl"
+    }
+  },
+  "timestamp": "2026-05-14T15:12:24.529401+00:00",
+  "trigger": "update_registry"
+}

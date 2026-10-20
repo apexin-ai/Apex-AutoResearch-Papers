@@ -1,0 +1,29 @@
+{
+  "exp_id": "random_reweight_v2_seed42",
+  "project": "provenance_weight_training",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:42:44.958Z",
+    "updated_at": "2026-05-17T07:31:34.999Z",
+    "spec": {
+      "command": "bash scripts/run_random_reweight_v2_seed42.sh",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "354002",
+      "data_path": "data/scored_data.jsonl",
+      "data_count": 371499,
+      "model_name": "Qwen/Qwen3-0.6B",
+      "seed": 42,
+      "weighting_method": "random",
+      "log_path": "/root/autodl-tmp/output/models/random_reweight_v2_seed42/train.log"
+    },
+    "hypothesis": "Random reweighting baseline v2: U(0,2) random weights (mean=1) replacing detector q-scores. Tests if detector signal is load-bearing — if random weights ≈ adaptive, detector is not contributing. Expected: adaptive > random → provenance signal matters."
+  },
+  "timestamp": "2026-05-17T07:31:35.174489+00:00",
+  "trigger": "update_registry"
+}

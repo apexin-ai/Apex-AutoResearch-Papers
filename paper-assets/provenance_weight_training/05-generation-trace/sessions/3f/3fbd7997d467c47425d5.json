@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fbd7997d467c47425d5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper method section",
+  "task_key": "worker_paper_method-section_20260515T221813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-section_20260515T221813_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "64c2c0e30bf299a31aa1fbc95230b13196730afe6b4f20b54067ea857f62e6c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已提交，14/14 claims 全部有 provenance 追踪。\n\n输出文件：\n- LaTeX: `docs/paper/method.tex`\n- Provenance: `paper_provenance.yaml` (v1)\n\n结构：4 小节 (~2.5 页)\n- **3.1 Problem Setup**: 加权公式 w=(1-q)^b，与 Drayson 共享；差异化：adaptive per-batch vs validation grid search\n- **3.2 Dual-Constraint Framework**: α_eff + ESS 定义，Proposition 1 (单调性 + 证明骨架 via covariance)，b_τ/b_ESS 约束，b* 三 regime 定义，40.1% α_eff binding 实证 (b*=1.67 vs ESS-only 4.15)\n- **3.3 Algorithm**: Algorithm 1 伪代码 (bisection)，loss reweighting vs SIR 对比，O(B log(b_max/ε)) 复杂度分析\n- **3.4 Hyperparameters**: τ sweep 6 点 ([0.5,0.8] safe range, 0.8 default)，n_min 分析 (n_min=1 退化确认，n_min≥B 退化为 uniform)\n\n所有定量数字均标注 exp_id，无 \"significantly\"/\"consistently\" 等未支撑强度词。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-section-copy-2.md"
+}

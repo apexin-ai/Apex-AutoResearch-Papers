@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c71f56e75331bec4d78",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260516T021905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260516T021905_result.json",
+    "occurrence": 1,
+    "bytes": 1685,
+    "sha256": "b1df7936f9be58211b8ae579d9994ad5a89d56fd6cb9a0ebf1cfdfffdf016a05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 全局状态（4× NVIDIA RTX PRO 6000 Blackwell, 98GB each）\n\n| GPU | 实验 | 显存占用 | GPU利用率 |\n|-----|------|----------|-----------|\n| **cuda:0** | contamination_60_tau07_seed42 (PID 282223) | 46514/97887 MiB | 99% |\n| **cuda:1** | grid_b0_3_seed42 (PID 274309) | 46514/97887 MiB | 99% |\n| **cuda:2** | contamination_60_ess_only_seed42 (PID 265017) | 46514/97887 MiB | 97% |\n| **cuda:3** | detect_remove_baseline_seed42 (PID 276739) | 46514/97887 MiB | 99% |\n\n### 训练进度\n\n| 实验 | GPU | Step | 进度 | 速度 | ETA |\n|------|-----|------|------|------|-----|\n| contamination_60_ess_only_seed42 | cuda:2 | 4705/6103 | **77%** | 2.12s/it | ~49min |\n| grid_b0_3_seed42 | cuda:1 | 1669/6103 | **27%** | 2.12s/it | ~2h36m |\n| detect_remove_baseline_seed42 | cuda:3 | 1075/6103 | **18%** | 2.11s/it | ~2h57m |\n| contamination_60_tau07_seed42 | cuda:0 | 283/6103 | **5%** | 2.20s/it | ~3h33m |\n\n### cuda:0 冲突结论\n\n- **contamination_60_tau07_seed42**：存活，正常运行（PID 282218 wrapper + 282223 python）\n- **tau_05_nmin2_seed42**：**已死**。日志显示跑到 step 258/6103 (4%) 后被 SIGHUP 终止（EXIT_CODE=129）。PID 281298 不存在。它被杀掉为 contamination_60_tau07_seed42 让路了。\n\n### detect_remove_baseline_seed42 状态\n\n正常运行。WANDB_MODE=disabled，日志可见。weighting/b=0.0, ess=4.0（uniform weighting 符合预期），unweighted_loss ≈ weighted_loss。当前 epoch 0.11，step 1075/6103。\n\n### 总结\n\n4 个 GPU 全部满载运行，各跑 1 个实验，无冲突。tau_05_nmin2_seed42 需要重新调度到有空闲 GPU 时再启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-check.md"
+}

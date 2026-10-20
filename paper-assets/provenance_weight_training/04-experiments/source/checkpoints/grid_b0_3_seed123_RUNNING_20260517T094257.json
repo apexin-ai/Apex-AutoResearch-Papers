@@ -1,0 +1,42 @@
+{
+  "exp_id": "grid_b0_3_seed123",
+  "project": "provenance_weight_training",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:08:31.061Z",
+    "updated_at": "2026-05-17T09:42:57.594Z",
+    "hypothesis": "b=0.3 is grid-optimal cross-seed (confirmed at seed42 PPL=17.640 < b=0.5 seed42 17.651). If seed123 also shows b=0.3 as best, confirms grid-best is not seed-specific and strengthens Claim 2 (adaptive ≈ grid-best).",
+    "parent": "grid_b0_5_seed123",
+    "server": "westd-47453",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T05:35:40.863Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_grid_b0_3_seed123.sh\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_grid_b0_3_seed123.sh\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "396682",
+      "log_path": "~/runs/provenance_weight_training/grid_b0_3_seed123.log",
+      "submitted_at": "2026-05-17T07:32:54.221Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "396682",
+    "log_path": "~/runs/provenance_weight_training/grid_b0_3_seed123.log",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 47453 on 36.103.198.204",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T09:42:57.753671+00:00",
+  "trigger": "update_registry"
+}
