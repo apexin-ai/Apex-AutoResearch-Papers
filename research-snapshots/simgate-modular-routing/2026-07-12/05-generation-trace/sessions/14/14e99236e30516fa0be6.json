@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "14e99236e30516fa0be6",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 这是第二次崩溃。上次诊断为\"残留进程占显存\"，kill 后重提交但又崩溃。需要找到真正的根因。GPU1 正在正常运行 plan-001b-gpu1，不要碰它。plan-001b-gpu0 registry 当",
+  "task_key": "7aa681ba-e1bc-4cd3-9c57-ac2bdd99466c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/7aa681ba-e1bc-4cd3-9c57-ac2bdd99466c.jsonl",
+    "occurrence": 1,
+    "bytes": 659552,
+    "sha256": "e99518980616adefead98452211e0c782b2875428e75eafeecc78f7e68b0eb4d"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "record": 38,
+      "user": 1,
+      "assistant": 33,
+      "tool_call": 40,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "14e99236e30516fa0be6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "14e99236e30516fa0be6-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "14e99236e30516fa0be6-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-kill-gpu1-plan-001b-gpu1-plan-001b-gpu0-registry.md"
+}

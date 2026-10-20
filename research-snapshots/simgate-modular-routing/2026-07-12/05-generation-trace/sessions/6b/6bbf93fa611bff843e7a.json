@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "6bbf93fa611bff843e7a",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目路径: /root/autodl-tmp/simgate-modular-routing/ 服务器: westb-13313 GPU: cuda:0 Conda: source /root/minicon",
+  "task_key": "a01e2210-44db-4f8d-8a8a-89d8ca4ef871",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/a01e2210-44db-4f8d-8a8a-89d8ca4ef871.jsonl",
+    "occurrence": 1,
+    "bytes": 1104274,
+    "sha256": "e7c633ded448ea9187e4095f69b5b0e3811bcb72510bd29fa068c979fd34da05"
+  },
+  "statistics": {
+    "messages": 572,
+    "user_turns": 1,
+    "tool_calls": 201,
+    "roles": {
+      "record": 93,
+      "user": 1,
+      "assistant": 76,
+      "tool_call": 201,
+      "tool_result": 201
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6bbf93fa611bff843e7a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 570,
+      "chunks": [
+        {
+          "path": "6bbf93fa611bff843e7a-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "6bbf93fa611bff843e7a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6bbf93fa611bff843e7a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6bbf93fa611bff843e7a-part-0004.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-root-autodl-tmp-simgate-modular-routing-westb-13313-gpu-cuda-0-c.md"
+}

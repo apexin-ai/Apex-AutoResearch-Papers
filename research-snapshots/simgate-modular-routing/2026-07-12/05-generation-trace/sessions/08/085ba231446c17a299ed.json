@@ -1,0 +1,989 @@
+{
+  "schema_version": "1.0",
+  "id": "085ba231446c17a299ed",
+  "project": "simgate-modular-routing--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: simgate-modular-routing ## 运行环境 - 服务器名: westb-13313 - SSH 账户: root（调用 ssh_execute / submit_train",
+  "task_key": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/28fb5286-f4e4-41db-a3a6-a0e14b7aae2f.jsonl",
+    "occurrence": 1,
+    "bytes": 39702,
+    "sha256": "2361aa98e4db91b33f71219a84a4929e551e2916f38f0e9ce15124dd2d00a095"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "record": 10,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T19:57:13.937Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-13T19:57:13.937Z",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+                "content": "<project_context>\n# 项目: simgate-modular-routing\n\n## 运行环境\n- 服务器名: westb-13313\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westb.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/simgate-modular-routing\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：更新 memory.md 记录 D011 关键发现\n\n读取当前 memory.md，然后追加以下非 metrics 性质的决策原因和经验教训：\n\n### 需写入的内容\n\n1. **Det 优势 = 纯 death avoidance 发现**（D011, 2026-05-13）\n   - MVP 5 个 task 全部 death-dominated（修正后 grow-plant 为 no-effect）\n   - 非 death 情况下 Δ(D-I) 为负（-0.4 到 -4.5）\n   - 结论：router 的核心价值是 death-risk detection，不是 general reasoning improvement\n   \n2. **1-step labeling 失败**（D008, 2026-05-13）\n   - 98.2% tie rate 使 per-step 标注无效\n   - Action divergence rate 73.1% 但 1-step score delta = 0\n   - 决策：采用 episode-level labeling（Plan C）\n   \n3. **Labeling 策略演进路径**\n   - 1-step → episode-terminal K=10（太贵，78h）→ Plan C episode-level（已采用）\n   - Plan C + death-aware labeling = 最终方案\n   \n4. **Class imbalance 风险**\n   - MVP SFT 数据 750/750 全标 deterministic（0 internal wins）\n   - 根因：death episodes 使 det 自动赢，non-death episodes 大部分 tie\n   - 解法：death-aware labeling + 混合 task 选择（internal ≥ 15%）\n\n5. **Signal_type 分类**\n   - death-dominated: det 优势完全来自 death avoidance\n   - genuine-det: 非 death 情况下 det 仍优于 internal\n   - internal-preferred: internal 优于 det\n   - no-effect: 两种模式无差异\n   - mixed: 混合信号\n   - 对论文价值：genuine-det 类型证明 router 不仅做 death detection\n\n### 格式\n追加到现有 memory.md 内容之后，用 `##` 标题分节。不要覆盖已有内容。\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T19:57:13.942Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-13T19:57:13.942Z",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T19:57:13.984Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: simgate-modular-routing\n\n## 运行环境\n- 服务器名: westb-13313\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westb.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/simgate-modular-routing\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：更新 memory.md 记录 D011 关键发现\n\n读取当前 memory.md，然后追加以下非 metrics 性质的决策原因和经验教训：\n\n### 需写入的内容\n\n1. **Det 优势 = 纯 death avoidance 发现**（D011, 2026-05-13）\n   - MVP 5 个 task 全部 death-dominated（修正后 grow-plant 为 no-effect）\n   - 非 death 情况下 Δ(D-I) 为负（-0.4 到 -4.5）\n   - 结论：router 的核心价值是 death-risk detection，不是 general reasoning improvement\n   \n2. **1-step labeling 失败**（D008, 2026-05-13）\n   - 98.2% tie rate 使 per-step 标注无效\n   - Action divergence rate 73.1% 但 1-step score delta = 0\n   - 决策：采用 episode-level labeling（Plan C）\n   \n3. **Labeling 策略演进路径**\n   - 1-step → episode-terminal K=10（太贵，78h）→ Plan C episode-level（已采用）\n   - Plan C + death-aware labeling = 最终方案\n   \n4. **Class imbalance 风险**\n   - MVP SFT 数据 750/750 全标 deterministic（0 internal wins）\n   - 根因：death episodes 使 det 自动赢，non-death episodes 大部分 tie\n   - 解法：death-aware labeling + 混合 task 选择（internal ≥ 15%）\n\n5. **Signal_type 分类**\n   - death-dominated: det 优势完全来自 death avoidance\n   - genuine-det: 非 death 情况下 det 仍优于 internal\n   - internal-preferred: internal 优于 det\n   - no-effect: 两种模式无差异\n   - mixed: 混合信号\n   - 对论文价值：genuine-det 类型证明 router 不仅做 death detection\n\n### 格式\n追加到现有 memory.md 内容之后，用 `##` 标题分节。不要覆盖已有内容。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "9c3afa91-45f0-4001-9ce5-75b9f1555f36",
+            "type": "user",
+            "uuid": "601f1c80-b312-4d14-85bf-b593c957b25b",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T19:57:13.983Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "601f1c80-b312-4d14-85bf-b593c957b25b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "75806abb-abb1-493a-9ead-a0a610ef270d",
+                "timestamp": "2026-05-13T19:57:13.983Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T19:57:13.983Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "75806abb-abb1-493a-9ead-a0a610ef270d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "cdcc5972-9af2-414d-888f-30b582da11ec",
+                "timestamp": "2026-05-13T19:57:13.983Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T19:57:13.983Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "cdcc5972-9af2-414d-888f-30b582da11ec",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "effa72a8-2b83-46fa-86fe-2c94756fdb52",
+                "timestamp": "2026-05-13T19:57:13.983Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update memory.md with D011 key findings",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T19:57:16.738Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current memory.md first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "effa72a8-2b83-46fa-86fe-2c94756fdb52",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8DdFZH7THQWcEU5G7",
+            "type": "assistant",
+            "uuid": "4aad9d58-b5ab-44ec-824a-05c03bc667e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XR2Yn7SGELsSaLASTRSbvM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11380,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11380,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11380,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11380
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T19:57:17.522Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U1UytjfiJFdHLpoNf8KQYp",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4aad9d58-b5ab-44ec-824a-05c03bc667e1",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8DdFZH7THQWcEU5G7",
+            "type": "assistant",
+            "uuid": "ed08a8ef-8431-46c4-bfbb-0cb5cac0e97d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XR2Yn7SGELsSaLASTRSbvM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11380,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11380,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11380,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11380
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T19:57:17.528Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01U1UytjfiJFdHLpoNf8KQYp",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed08a8ef-8431-46c4-bfbb-0cb5cac0e97d",
+            "isSidechain": false,
+            "promptId": "9c3afa91-45f0-4001-9ce5-75b9f1555f36",
+            "type": "user",
+            "uuid": "411345dc-c804-43d4-9e7d-f868a277f8b7",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 22
+            },
+            "sourceToolAssistantUUID": "ed08a8ef-8431-46c4-bfbb-0cb5cac0e97d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T19:57:20.152Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the current memory.md first.",
+              "signature": "EuMBClkIDRgCKkCp3lfiT0sVRGugwH2c9ssy1Wpt86dB1x/0aHwt3F4W6Ttgo7EBEGTDTRv5syMtzagJvKXu4wfg42Umjtd0eKuZMg9jbGF1ZGUtb3B1cy00LTY4ABIMi1wyhVi05aGpmsIHGgwssaEsCuinE/JVRikiMORVqC2HBdmTPlzygYgkcAacJRZUrZxTA7lRqVFrcoMTwzJ+BfCsJS20RzfjOQhrbyo4WjiMmp6plgeBXRnIT6tpZv59jQZreEXdvDbNeh5BjXr9TbWjGj+K3JSZh2jYQH+hCK/zh1NPT7oYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "411345dc-c804-43d4-9e7d-f868a277f8b7",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8V2D6A3F99oWnK8bx",
+            "type": "assistant",
+            "uuid": "9e2798b9-d0e0-4b02-93bc-c3605cb601bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BTqinPRrDqvzyveuVw77Uv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23221,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 23221,
+                    "cache_creation_input_tokens": 709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T19:57:20.890Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MPWizyvVVWkf4WVxnHVdQN",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "simgate-modular-routing",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e2798b9-d0e0-4b02-93bc-c3605cb601bc",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8V2D6A3F99oWnK8bx",
+            "type": "assistant",
+            "uuid": "b6d0c415-521c-4859-9cbc-7eed4ec2973d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BTqinPRrDqvzyveuVw77Uv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23221,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 23221,
+                    "cache_creation_input_tokens": 709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T19:57:20.905Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MPWizyvVVWkf4WVxnHVdQN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"content\\\": \\\"## Phase 1 MVP 最终结论 (2026-05-13)\\\\n\\\\n### Verdict: PASS (4/5 tasks 显著正向)\\\\n\\\\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\\\\n\\\\n### 关键设计决策与教训\\\\n\\\\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。\\\\n\\\\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal。\\\\n\\\\n3. **melt 与 change-state internal 分数巧合相同**: 共享 environment variations，不是数据重复。\\\\n\\\\n4. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 需注释 select_algorithm.py 1695/2164 行。\\\\n\\\\n5. **phase1_signal.py 不支持 --seed 参数**。\\\\n\\\\n### 竞品对标\\\\n- CogRouter (arXiv 2602.12662): Qwen2.5-7B, Score=84.6, SR=72.0%。路由 thinking depth（4 levels）。\\\\n- ITP-R (arXiv 2601.08955): Learned WM + K-head gating, SR=63.91%。WM 有 compounding error。\\\\n\\\\n## ⚠️ 核心发现：Det 优势几乎完全来自死亡回避 (2026-05-13)\\\\n\\\\n### Death rate 分析\\\\n\\\\n| 数据集 | I_death | D_death | Δ(D-I) | Δ_no_death |\\\\n|--------|---------|---------|--------|------------|\\\\n| Prescreening (8 tasks) | 48.6% | 5.4% | +43.9 | **-4.5** |\\\\n| MVP (5 tasks) | 41.0% | 12.0% | +29.2 | **-0.4** |\\\\n\\\\n**排除死亡 episode 后 det 反而略差于 internal。** Det 全部优势来自 death filter 阻止致命动作（\\\\\\\"focus on 错误对象\\\\\\\" → -100），不是推理质量更好。\\\\n\\\\n### 对 Paper Framing 的影响\\\\n- 原 framing \\\\\\\"det improves agent performance\\\\\\\" 需调整\\\\n- 实际机制：fork-based safety gate（检测并阻止致命动作）\\\\n- 更可防御的 claim：\\\\\\\"selective routing prevents catastrophic failures\\\\\\\"\\\\n- Router 应学到\\\\\\\"有风险时走 det，安全时走 internal\\\\\\\"\\\\n\\\\n### SFT 数据 class imbalance\\\\n- MVP 3 tasks 后处理：750 SFT triples，全标 \\\\\\\"deterministic\\\\\\\"（0 个 internal wins）\\\\n- 原因：包含 death 的 episode det 必赢；no-death episode 多为 tie\\\\n- 需要 step-level death risk features 而非 episode-level labels\\\\n\\\\n## Labeling 策略演进 (2026-05-13)\\\\n\\\\n### 1-step labeling → 不可行（tie rate 98.2%）\\\\n### Episode-terminal (K=10) → Director 取消（成本太高，78h 双卡）\\\\n### Plan C (episode-level) → 当前方案，但 class imbalance 严重\\\\n### Action divergence rate: 73.1%（几乎每步都不同，但 1-step score 无差异）\\\\n\\\", \\\"total_chars\\\": 1818, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6d0c415-521c-4859-9cbc-7eed4ec2973d",
+            "isSidechain": false,
+            "promptId": "9c3afa91-45f0-4001-9ce5-75b9f1555f36",
+            "type": "user",
+            "uuid": "b8f8e5cb-7f84-4405-91b3-3e7b83742f99",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"content\\\": \\\"## Phase 1 MVP 最终结论 (2026-05-13)\\\\n\\\\n### Verdict: PASS (4/5 tasks 显著正向)\\\\n\\\\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\\\\n\\\\n### 关键设计决策与教训\\\\n\\\\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。\\\\n\\\\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal。\\\\n\\\\n3. **melt 与 change-state internal 分数巧合相同**: 共享 environment variations，不是数据重复。\\\\n\\\\n4. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 需注释 select_algorithm.py 1695/2164 行。\\\\n\\\\n5. **phase1_signal.py 不支持 --seed 参数**。\\\\n\\\\n### 竞品对标\\\\n- CogRouter (arXiv 2602.12662): Qwen2.5-7B, Score=84.6, SR=72.0%。路由 thinking depth（4 levels）。\\\\n- ITP-R (arXiv 2601.08955): Learned WM + K-head gating, SR=63.91%。WM 有 compounding error。\\\\n\\\\n## ⚠️ 核心发现：Det 优势几乎完全来自死亡回避 (2026-05-13)\\\\n\\\\n### Death rate 分析\\\\n\\\\n| 数据集 | I_death | D_death | Δ(D-I) | Δ_no_death |\\\\n|--------|---------|---------|--------|------------|\\\\n| Prescreening (8 tasks) | 48.6% | 5.4% | +43.9 | **-4.5** |\\\\n| MVP (5 tasks) | 41.0% | 12.0% | +29.2 | **-0.4** |\\\\n\\\\n**排除死亡 episode 后 det 反而略差于 internal。** Det 全部优势来自 death filter 阻止致命动作（\\\\\\\"focus on 错误对象\\\\\\\" → -100），不是推理质量更好。\\\\n\\\\n### 对 Paper Framing 的影响\\\\n- 原 framing \\\\\\\"det improves agent performance\\\\\\\" 需调整\\\\n- 实际机制：fork-based safety gate（检测并阻止致命动作）\\\\n- 更可防御的 claim：\\\\\\\"selective routing prevents catastrophic failures\\\\\\\"\\\\n- Router 应学到\\\\\\\"有风险时走 det，安全时走 internal\\\\\\\"\\\\n\\\\n### SFT 数据 class imbalance\\\\n- MVP 3 tasks 后处理：750 SFT triples，全标 \\\\\\\"deterministic\\\\\\\"（0 个 internal wins）\\\\n- 原因：包含 death 的 episode det 必赢；no-death episode 多为 tie\\\\n- 需要 step-level death risk features 而非 episode-level labels\\\\n\\\\n## Labeling 策略演进 (2026-05-13)\\\\n\\\\n### 1-step labeling → 不可行（tie rate 98.2%）\\\\n### Episode-terminal (K=10) → Director 取消（成本太高，78h 双卡）\\\\n### Plan C (episode-level) → 当前方案，但 class imbalance 严重\\\\n### Action divergence rate: 73.1%（几乎每步都不同，但 1-step score 无差异）\\\\n\\\", \\\"total_chars\\\": 1818, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\", \"content\": \"## Phase 1 MVP 最终结论 (2026-05-13)\\n\\n### Verdict: PASS (4/5 tasks 显著正向)\\n\\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\\n\\n### 关键设计决策与教训\\n\\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。\\n\\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal。\\n\\n3. **melt 与 change-state internal 分数巧合相同**: 共享 environment variations，不是数据重复。\\n\\n4. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 需注释 select_algorithm.py 1695/2164 行。\\n\\n5. **phase1_signal.py 不支持 --seed 参数**。\\n\\n### 竞品对标\\n- CogRouter (arXiv 2602.12662): Qwen2.5-7B, Score=84.6, SR=72.0%。路由 thinking depth（4 levels）。\\n- ITP-R (arXiv 2601.08955): Learned WM + K-head gating, SR=63.91%。WM 有 compounding error。\\n\\n## ⚠️ 核心发现：Det 优势几乎完全来自死亡回避 (2026-05-13)\\n\\n### Death rate 分析\\n\\n| 数据集 | I_death | D_death | Δ(D-I) | Δ_no_death |\\n|--------|---------|---------|--------|------------|\\n| Prescreening (8 tasks) | 48.6% | 5.4% | +43.9 | **-4.5** |\\n| MVP (5 tasks) | 41.0% | 12.0% | +29.2 | **-0.4** |\\n\\n**排除死亡 episode 后 det 反而略差于 internal。** Det 全部优势来自 death filter 阻止致命动作（\\\"focus on 错误对象\\\" → -100），不是推理质量更好。\\n\\n### 对 Paper Framing 的影响\\n- 原 framing \\\"det improves agent performance\\\" 需调整\\n- 实际机制：fork-based safety gate（检测并阻止致命动作）\\n- 更可防御的 claim：\\\"selective routing prevents catastrophic failures\\\"\\n- Router 应学到\\\"有风险时走 det，安全时走 internal\\\"\\n\\n### SFT 数据 class imbalance\\n- MVP 3 tasks 后处理：750 SFT triples，全标 \\\"deterministic\\\"（0 个 internal wins）\\n- 原因：包含 death 的 episode det 必赢；no-death episode 多为 tie\\n- 需要 step-level death risk features 而非 episode-level labels\\n\\n## Labeling 策略演进 (2026-05-13)\\n\\n### 1-step labeling → 不可行（tie rate 98.2%）\\n### Episode-terminal (K=10) → Director 取消（成本太高，78h 双卡）\\n### Plan C (episode-level) → 当前方案，但 class imbalance 严重\\n### Action divergence rate: 73.1%（几乎每步都不同，但 1-step score 无差异）\\n\", \"total_chars\": 1818, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b6d0c415-521c-4859-9cbc-7eed4ec2973d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T19:57:33.390Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The current memory.md already has some content. I need to append the requested sections. Looking at the existing content, some of it overlaps with what's being asked to add. Let me carefully compare:\n\nExisting:\n1. Phase 1 MVP 最终结论 - covers tie-break, death filter, melt/change-state, vLLM, phase1_signal.py, 竞品对标\n2. 核心发现：Det 优势几乎完全来自死亡回避 - covers death rate analysis, paper framing impact, SFT class imbalance\n\n\n3. Labeling 策略演进 - brief notes on 1-step, episode-terminal, Plan C, action divergence\n\nThe user's requested content overlaps significantly with sections 2 and 3, but their version has more granular detail. I should focus on adding the new Signal_type 分类 section since that's genuinely new content, and I can enhance the existing sections with the additional details they're asking for rather than creating duplicates.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8f8e5cb-7f84-4405-91b3-3e7b83742f99",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8jLvc28ZoGcRC1d67",
+            "type": "assistant",
+            "uuid": "020c97d2-1f99-40bc-b5cb-37ed48246c8b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Um6raHDYeuKf5NMrUn7vj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1278,
+                "cache_read_input_tokens": 23930,
+                "output_tokens": 2223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1278,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2223,
+                    "cache_read_input_tokens": 23930,
+                    "cache_creation_input_tokens": 1278,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1278
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T19:57:33.404Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已有内容存在部分重叠，但按要求追加到末尾。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "020c97d2-1f99-40bc-b5cb-37ed48246c8b",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8jLvc28ZoGcRC1d67",
+            "type": "assistant",
+            "uuid": "e67402c4-d129-4f97-a7ab-7301553dda2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Um6raHDYeuKf5NMrUn7vj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1278,
+                "cache_read_input_tokens": 23930,
+                "output_tokens": 2223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1278,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2223,
+                    "cache_read_input_tokens": 23930,
+                    "cache_creation_input_tokens": 1278,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1278
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T19:57:47.051Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DPqqH9DQKfA6ZCuxyjxJm2",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "simgate-modular-routing",
+                "file": "memory.md",
+                "content": "## Phase 1 MVP 最终结论 (2026-05-13)\n\n### Verdict: PASS (4/5 tasks 显著正向)\n\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\n\n### 关键设计决策与教训\n\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。\n\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal。\n\n3. **melt 与 change-state internal 分数巧合相同**: 共享 environment variations，不是数据重复。\n\n4. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 需注释 select_algorithm.py 1695/2164 行。\n\n5. **phase1_signal.py 不支持 --seed 参数**。\n\n### 竞品对标\n- CogRouter (arXiv 2602.12662): Qwen2.5-7B, Score=84.6, SR=72.0%。路由 thinking depth（4 levels）。\n- ITP-R (arXiv 2601.08955): Learned WM + K-head gating, SR=63.91%。WM 有 compounding error。\n\n## ⚠️ 核心发现：Det 优势几乎完全来自死亡回避 (2026-05-13)\n\n### Death rate 分析\n\n| 数据集 | I_death | D_death | Δ(D-I) | Δ_no_death |\n|--------|---------|---------|--------|------------|\n| Prescreening (8 tasks) | 48.6% | 5.4% | +43.9 | **-4.5** |\n| MVP (5 tasks) | 41.0% | 12.0% | +29.2 | **-0.4** |\n\n**排除死亡 episode 后 det 反而略差于 internal。** Det 全部优势来自 death filter 阻止致命动作（\"focus on 错误对象\" → -100），不是推理质量更好。\n\n### 对 Paper Framing 的影响\n- 原 framing \"det improves agent performance\" 需调整\n- 实际机制：fork-based safety gate（检测并阻止致命动作）\n- 更可防御的 claim：\"selective routing prevents catastrophic failures\"\n- Router 应学到\"有风险时走 det，安全时走 internal\"\n\n### SFT 数据 class imbalance\n- MVP 3 tasks 后处理：750 SFT triples，全标 \"deterministic\"（0 个 internal wins）\n- 原因：包含 death 的 episode det 必赢；no-death episode 多为 tie\n- 需要 step-level death risk features 而非 episode-level labels\n\n## Labeling 策略演进 (2026-05-13)\n\n### 1-step labeling → 不可行（tie rate 98.2%）\n### Episode-terminal (K=10) → Director 取消（成本太高，78h 双卡）\n### Plan C (episode-level) → 当前方案，但 class imbalance 严重\n### Action divergence rate: 73.1%（几乎每步都不同，但 1-step score 无差异）\n\n## D011 关键发现：Det 优势 = 纯 Death Avoidance (2026-05-13)\n\nMVP 5 个 task 全部 death-dominated（修正后 grow-plant 为 no-effect）。非 death 情况下 Δ(D-I) 为负（-0.4 到 -4.5），det 不提供 general reasoning improvement。\n\n**结论：router 的核心价值是 death-risk detection，不是 general reasoning improvement。**\n\n## D011 关键发现：1-step Labeling 失败 (D008, 2026-05-13)\n\n- 98.2% tie rate 使 per-step 标注无效\n- Action divergence rate 73.1% 但 1-step score delta = 0（动作不同但即时分数无差异）\n- 决策：采用 episode-level labeling（Plan C）\n\n## Labeling 策略完整演进路径 (2026-05-13)\n\n1. **1-step labeling** → 失败（98.2% tie，稀疏奖励下无区分度）\n2. **Episode-terminal K=10** → 取消（78h 双卡，成本过高）\n3. **Plan C episode-level** → 已采用\n4. **Plan C + death-aware labeling** = 最终方案\n\n## Class Imbalance 风险与解法 (2026-05-13)\n\n- MVP SFT 数据 750/750 全标 deterministic（0 internal wins）\n- 根因：death episodes 使 det 自动赢，non-death episodes 大部分 tie\n- 解法：death-aware labeling + 混合 task 选择（确保 internal ≥ 15%）\n\n## Signal Type 分类框架 (2026-05-13)\n\n| 类型 | 定义 | 论文价值 |\n|------|------|----------|\n| death-dominated | det 优势完全来自 death avoidance | 证明 safety gate 有效 |\n| genuine-det | 非 death 情况下 det 仍优于 internal | **最有价值**：证明 router 不仅做 death detection |\n| internal-preferred | internal 优于 det | 证明需要 routing 而非 always-det |\n| no-effect | 两种模式无差异 | 排除噪声 task |\n| mixed | 混合信号 | 需进一步分析 |\n\ngenuine-det 类型对论文至关重要：证明 router 的价值不局限于 death detection，而是能识别 deterministic reasoning genuinely helps 的场景。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e67402c4-d129-4f97-a7ab-7301553dda2d",
+            "isSidechain": false,
+            "requestId": "req_011Cb1A8jLvc28ZoGcRC1d67",
+            "type": "assistant",
+            "uuid": "c8a557d2-d464-43af-99d5-8016ddde5827",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014Um6raHDYeuKf5NMrUn7vj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1278,
+                "cache_read_input_tokens": 23930,
+                "output_tokens": 2223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1278,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2223,
+                    "cache_read_input_tokens": 23930,
+                    "cache_creation_input_tokens": 1278,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1278
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T19:57:47.073Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DPqqH9DQKfA6ZCuxyjxJm2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8a557d2-d464-43af-99d5-8016ddde5827",
+            "isSidechain": false,
+            "promptId": "9c3afa91-45f0-4001-9ce5-75b9f1555f36",
+            "type": "user",
+            "uuid": "4b1f6339-ea41-4325-b71f-e00f84d0df70",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c8a557d2-d464-43af-99d5-8016ddde5827",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4b1f6339-ea41-4325-b71f-e00f84d0df70",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update memory.md with D011 key findings",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T19:57:49.818Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加 5 个新节到 memory.md：D011 death avoidance 发现、1-step labeling 失败、labeling 演进路径、class imbalance 风险、signal type 分类框架。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b1f6339-ea41-4325-b71f-e00f84d0df70",
+            "isSidechain": false,
+            "requestId": "req_011Cb1AAf1XqE7z7wedgHC1o",
+            "type": "assistant",
+            "uuid": "a6a79c7f-c50c-4941-beb0-0871ccba949a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+            "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DbvkrJe9ggosQhPpLA8c3P",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2306,
+                "cache_read_input_tokens": 25208,
+                "output_tokens": 62,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2306,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 62,
+                    "cache_read_input_tokens": 25208,
+                    "cache_creation_input_tokens": 2306,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2306
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "a6a79c7f-c50c-4941-beb0-0871ccba949a",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update memory.md with D011 key findings",
+                "sessionId": "28fb5286-f4e4-41db-a3a6-a0e14b7aae2f"
+              }
+            }
+          ],
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-simgate-modular-routing-westb-13313-ssh-root-ssh-execute-submi-copy-301.md"
+}

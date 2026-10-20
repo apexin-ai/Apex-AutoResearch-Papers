@@ -1,0 +1,23 @@
+# Research conversation: [系统通知 — worker_done:worker_code_plan-011-rule-based-baseline_20260514T041427]: Worker worker_code_plan-011-rule-based-ba
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 349
+- **Recorded user turns:** 17
+- **Tool calls:** 96
+- **Original source:** `logs/chats/exported-trajectories/account-1/0840cbce-6f9c-4542-99e2-2b0971e7914c.jsonl`
+- **Structured JSON:** [`50d01a873721af09c521.json`](../../sessions/50/50d01a873721af09c521.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](research-conversation-worker-done-worker-code-plan-011-rule-based-baseline-20260514t041427-worker-wo/part-001.md) · [Part 2](research-conversation-worker-done-worker-code-plan-011-rule-based-baseline-20260514t041427-worker-wo/part-002.md)
