@@ -1,1 +1,0 @@
-Bug: threshold_css used 1e-9 tolerance. 2/3=0.6667 < 0.67, so css_0.67 = css_1.00 = 44 edges. Fixed to 1e-2, now css_0.67 = 98 edges. Results saved at /root/min_necessary_circuit_css/sva_css067_fix_results.json

@@ -1,8 +1,0 @@
-Server: westd-39279
-PDF: /root/min_necessary_circuit_css/fig1_overview.pdf (36KB vector)
-PNG: /root/min_necessary_circuit_css/fig1_overview.png (229KB, 300 DPI)
-
-Content: CSS pipeline diagram showing Transformer → 3 parallel branches (EAP-IG, EP, ACDC) → threshold → binary circuits C₁C₂C₃ → intersection → CSS=1.0 → CPR Eval. Three failure modes annotated:
-- FM1 (red dashed box): ACDC isinf binarization, |C₃|=14 vs |C₁|=|C₂|=100
-- FM2: intersection step, J(C₁,C₂)=0.82 → K≈2
-- FM3: granularity mismatch block vs edge → J≈0

@@ -1,1 +1,0 @@
-KIVI-4bit-g32-r128: ppl=9.8976, k_bits=4, v_bits=4, group_size=32, residual_length=128, model=Qwen/Qwen2.5-7B. Server path: /root/ratekv/artifacts/kivi_baseline_qwen7b_v2_results.json

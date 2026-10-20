@@ -1,3 +1,0 @@
-2026-05-14 08:50:15,187 INFO    core.tools.feishu  create_chat: name='审稿-agent_progress_probe' → chat_id=oc_7067491b561c6407a368c69422be7f2b
-2026-05-14 08:50:15,189 INFO    core.tools.dream  [dream] auto-created Group C for project=agent_progress_probe: oc_7067491b561c6407a368c69422be7f2b
-2026-05-14 08:50:15,319 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0513/config/mcp_config_dream_review_director.json

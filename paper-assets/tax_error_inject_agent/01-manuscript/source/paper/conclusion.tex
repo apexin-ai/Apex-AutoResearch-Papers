@@ -1,8 +1,0 @@
-\section{Conclusion}
-\label{sec:conclusion}
-
-We tested whether taxonomy-guided error injection---effective for tool-use agents---transfers to embodied planning. On ALFWorld, TaxEI provides no improvement over clean training ($-8.6$pp, $p{=}0.054$) and directionally increases training instability. We identify three boundary conditions: a variance gradient (Vanilla $<$ Random $<$ TaxEI), a shared dose-response threshold at 10--25\% injection, and a per-operator local/global split where only local, observable errors are learnable.
-
-For practitioners considering error injection in new domains, we recommend checking three properties: (1)~are errors discrete and observable? (2)~can recovery be achieved locally? (3)~does the task provide immediate feedback? If not, error injection is likely to introduce noise rather than curriculum signal.
-
-Future work should test recovery-paired injection on ALFWorld (disentangling the PALADIN confound), replicate on a second environment (e.g., WebShop), and run multi-seed dose-response ablations.

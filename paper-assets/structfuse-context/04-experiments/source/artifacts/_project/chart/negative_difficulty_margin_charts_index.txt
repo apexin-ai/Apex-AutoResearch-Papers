@@ -1,6 +1,0 @@
-Charts saved on bjb1-42106:
-- /root/autodl-tmp/structfuse/artifacts/negative_difficulty_margin_distribution.{png,pdf}
-- /root/autodl-tmp/structfuse/artifacts/negative_difficulty_margin_bars.{png,pdf}
-- /root/autodl-tmp/structfuse/artifacts/negative_difficulty_margin_violin.{png,pdf}
-Full stats JSON: /root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats_v2.json
-Script: /root/structfuse/analysis/negative_difficulty_margin.py

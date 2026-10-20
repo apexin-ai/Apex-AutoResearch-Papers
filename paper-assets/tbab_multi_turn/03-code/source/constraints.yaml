@@ -1,7 +1,0 @@
-_next_id: 3
-constraints:
-- id: C002
-  added: 2026-05-18 07:40 UTC
-  summary: GPU 白名单：仅允许使用 westb-25721:cuda:0（1×RTX PRO 6000）。westd-29046 已被收回，禁止使用。
-  scope: all
-  reason: Manager 收回 westd-29046，项目仅保留 westb-25721 一台服务器

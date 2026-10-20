@@ -1,7 +1,0 @@
-Snorkel Label Model Results (v0.10.0)
-Config: cardinality=2, n_epochs=500, lr=0.01, seed=42, n_lfs=3
-Label Model: mv_agreement=0.4226, n_disagreements=31648, n_windows=54809
-  P(progress): mean=0.5128, std=0.2332
-  By confidence: conf1 agree=0.4493 (to_stag=15035, to_prog=6667), conf2 agree=0.3192 (to_stag=8170, to_prog=1776), conf3 agree=1.0
-Probe: self_f1=0.9068, mv_conf2_f1=0.2582, mv_all_f1=0.3768
-Conclusion: NEGATIVE - catastrophic failure with only 3 binary LFs

@@ -1,4 +1,0 @@
-Remote path: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/chart/neg_difficulty_margin_comparison.{pdf,png}
-Server: bjb1-42106
-Script: /root/structfuse/scripts/plot_neg_difficulty.py
-Data: 2048t margin — Random 2.6×, Embedding 3.9×, Dataflow 4.1× (StarCoder/Qwen ratio)

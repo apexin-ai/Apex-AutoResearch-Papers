@@ -1,9 +1,0 @@
-_next_id: 2
-decisions:
-- id: D001
-  date: 2026-05-14 09:38 UTC
-  summary: MVP 方案：两阶段验证——先验证修正跨度分离，再验证 ETADN 信号
-  rationale: KILL_triage 评审（19%）+ 11 天 DDL 约束下，需要快速验证核心假设。Phase A 验证修正跨度分离（ETADN 的经验基础），Phase
-    B 验证 ETADN 实际效果。任一阶段失败即 kill，避免在低概率项目上浪费资源。ALFWorld 作为 MVP 环境（ETO codebase 支持、文献最多、评估快）。
-  related_experiments: []
-  depends_on: []

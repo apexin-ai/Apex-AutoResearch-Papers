@@ -1,2 +1,0 @@
-Remote file: autodl-5090:/root/autodl-tmp/agent_progress_probe/annotation_materials/openhands_samples.jsonl
-50 records, 25 stagnation + 25 progress, all confidence=3

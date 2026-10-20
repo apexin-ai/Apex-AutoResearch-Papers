@@ -1,1 +1,0 @@
-Gate 2 Results Summary: 0/10 tasks passed. mean_IQR=0.0864, mean_AUROC_IQL=0.5055, mean_Cohen_d=0.012. IQL advantage scores are near random (AUROC~0.5) for distinguishing progress from no-op. TED baseline (mean_AUROC=0.619) outperforms IQL. Visualization files on server: gate2_advantage_dist.png, gate2_roc_curves.png

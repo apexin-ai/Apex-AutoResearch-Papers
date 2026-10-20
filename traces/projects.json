@@ -18,83 +18,6 @@
       }
     },
     {
-      "project": "action_cond_info_bottleneck",
-      "title": "action cond info bottleneck",
-      "catalog": "../paper-assets/action_cond_info_bottleneck/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 800,
-        "messages": 45967,
-        "user_turns": 1442,
-        "tool_calls": 17637,
-        "unparsed_lines": 316,
-        "worker": 365,
-        "result": 262,
-        "conversation": 150,
-        "history": 23
-      }
-    },
-    {
-      "project": "afford_invar",
-      "title": "afford invar",
-      "catalog": "../paper-assets/afford_invar/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 172,
-        "messages": 15216,
-        "user_turns": 356,
-        "tool_calls": 5796,
-        "unparsed_lines": 75,
-        "result": 72,
-        "worker": 77,
-        "conversation": 23
-      }
-    },
-    {
-      "project": "agent_progress_probe",
-      "title": "Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001",
-      "catalog": "../paper-assets/agent_progress_probe/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 767,
-        "messages": 85445,
-        "user_turns": 2030,
-        "tool_calls": 34690,
-        "unparsed_lines": 298,
-        "worker": 303,
-        "result": 274,
-        "conversation": 156,
-        "history": 34
-      }
-    },
-    {
-      "project": "be-idea-gen-0515",
-      "title": "be idea gen 0515",
-      "catalog": "../paper-assets/be-idea-gen-0515/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "be-idea-gen-0515-2",
-      "title": "be idea gen 0515 2",
-      "catalog": "../paper-assets/be-idea-gen-0515-2/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "be-idea-gen-0515-3",
-      "title": "be idea gen 0515 3",
-      "catalog": "../paper-assets/be-idea-gen-0515-3/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "be-idea-gen-0519-3",
-      "title": "be idea gen 0519 3",
-      "catalog": "../paper-assets/be-idea-gen-0519-3/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "be-idea-gen-0519-4",
-      "title": "be idea gen 0519 4",
-      "catalog": "../paper-assets/be-idea-gen-0519-4/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
       "project": "causal_annot_error_attrib",
       "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction",
       "catalog": "../paper-assets/causal_annot_error_attrib/05-generation-trace/catalog.json",
@@ -211,38 +134,6 @@
       }
     },
     {
-      "project": "collapse-aware-mixing",
-      "title": "collapse aware mixing",
-      "catalog": "../paper-assets/collapse-aware-mixing/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 232,
-        "messages": 17588,
-        "user_turns": 609,
-        "tool_calls": 7019,
-        "unparsed_lines": 81,
-        "result": 77,
-        "worker": 81,
-        "conversation": 54,
-        "history": 20
-      }
-    },
-    {
-      "project": "collapse_aware_reward_rebalancing",
-      "title": "Does Reward Curation Kill Diversity? Systematic Evidence of Surprising Resilience in Iterative Self-Training",
-      "catalog": "../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 214,
-        "messages": 14906,
-        "user_turns": 529,
-        "tool_calls": 5994,
-        "unparsed_lines": 86,
-        "worker": 85,
-        "result": 80,
-        "conversation": 44,
-        "history": 5
-      }
-    },
-    {
       "project": "contamcal-irt-calibration",
       "title": "Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families",
       "catalog": "../paper-assets/contamcal-irt-calibration/05-generation-trace/catalog.json",
@@ -298,21 +189,6 @@
         "tool_calls": 43848,
         "unparsed_lines": 10,
         "conversation": 1216
-      }
-    },
-    {
-      "project": "contrastive_graph_jailbreak_detect",
-      "title": "contrastive graph jailbreak detect",
-      "catalog": "../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 28,
-        "messages": 3080,
-        "user_turns": 61,
-        "tool_calls": 1262,
-        "unparsed_lines": 10,
-        "result": 9,
-        "worker": 10,
-        "conversation": 9
       }
     },
     {
@@ -374,68 +250,6 @@
       }
     },
     {
-      "project": "cross_representation_disagreement_diagno",
-      "title": "Cross-Representation Disagreement as a Diagnostic Signal for LLM Reasoning Errors",
-      "catalog": "../paper-assets/cross_representation_disagreement_diagno/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 213,
-        "messages": 15459,
-        "user_turns": 515,
-        "tool_calls": 5902,
-        "unparsed_lines": 80,
-        "worker": 82,
-        "result": 77,
-        "conversation": 41,
-        "history": 13
-      }
-    },
-    {
-      "project": "crosscoder-behavioral-circuit-transplant",
-      "title": "crosscoder behavioral circuit transplant",
-      "catalog": "../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 20,
-        "messages": 1393,
-        "user_turns": 64,
-        "tool_calls": 541,
-        "unparsed_lines": 9,
-        "result": 6,
-        "worker": 9,
-        "conversation": 5
-      }
-    },
-    {
-      "project": "demo_calibrated_sim",
-      "title": "Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation",
-      "catalog": "../paper-assets/demo_calibrated_sim/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 203,
-        "messages": 18086,
-        "user_turns": 459,
-        "tool_calls": 7249,
-        "unparsed_lines": 82,
-        "worker": 84,
-        "result": 76,
-        "conversation": 37,
-        "history": 6
-      }
-    },
-    {
-      "project": "diagprm-stage-reasoning",
-      "title": "diagprm stage reasoning",
-      "catalog": "../paper-assets/diagprm-stage-reasoning/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 18,
-        "messages": 851,
-        "user_turns": 52,
-        "tool_calls": 317,
-        "unparsed_lines": 6,
-        "result": 8,
-        "worker": 6,
-        "conversation": 4
-      }
-    },
-    {
       "project": "diff_collision_sdf",
       "title": "How Action Collapse Creates Illusory Safety in Diffusion-Based VLA Collision Avoidance Evaluation",
       "catalog": "../paper-assets/diff_collision_sdf/05-generation-trace/catalog.json",
@@ -449,21 +263,6 @@
         "result": 746,
         "conversation": 292,
         "history": 36
-      }
-    },
-    {
-      "project": "distill_kv_rag_cache",
-      "title": "distill kv rag cache",
-      "catalog": "../paper-assets/distill_kv_rag_cache/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 65,
-        "messages": 6102,
-        "user_turns": 153,
-        "tool_calls": 2279,
-        "unparsed_lines": 31,
-        "result": 24,
-        "worker": 32,
-        "conversation": 9
       }
     },
     {
@@ -525,63 +324,6 @@
       }
     },
     {
-      "project": "div_cal_verify",
-      "title": "The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training",
-      "catalog": "../paper-assets/div_cal_verify/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 336,
-        "messages": 19867,
-        "user_turns": 855,
-        "tool_calls": 7798,
-        "unparsed_lines": 133,
-        "worker": 137,
-        "result": 136,
-        "conversation": 53,
-        "history": 10
-      }
-    },
-    {
-      "project": "ec_hte_codex_a",
-      "title": "ec hte codex a",
-      "catalog": "../paper-assets/ec_hte_codex_a/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 30,
-        "messages": 3330,
-        "user_turns": 85,
-        "tool_calls": 1013,
-        "unparsed_lines": 22,
-        "worker": 17,
-        "result": 9,
-        "conversation": 4
-      }
-    },
-    {
-      "project": "ec_hte_codex_b",
-      "title": "ec hte codex b",
-      "catalog": "../paper-assets/ec_hte_codex_b/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 9,
-        "messages": 2848,
-        "user_turns": 60,
-        "tool_calls": 1367,
-        "unparsed_lines": 0,
-        "conversation": 9
-      }
-    },
-    {
-      "project": "ec_hte_codex_c",
-      "title": "ec hte codex c",
-      "catalog": "../paper-assets/ec_hte_codex_c/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 4,
-        "messages": 3851,
-        "user_turns": 156,
-        "tool_calls": 1772,
-        "unparsed_lines": 0,
-        "conversation": 4
-      }
-    },
-    {
       "project": "ec_hte_llm_annotation",
       "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
       "catalog": "../paper-assets/ec_hte_llm_annotation/05-generation-trace/catalog.json",
@@ -611,21 +353,6 @@
       }
     },
     {
-      "project": "eco_alpha_beta_diversity",
-      "title": "eco alpha beta diversity",
-      "catalog": "../paper-assets/eco_alpha_beta_diversity/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 20,
-        "messages": 1818,
-        "user_turns": 70,
-        "tool_calls": 691,
-        "unparsed_lines": 9,
-        "worker": 9,
-        "result": 7,
-        "conversation": 4
-      }
-    },
-    {
       "project": "entrainment_gated_ft",
       "title": "Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models",
       "catalog": "../paper-assets/entrainment_gated_ft/05-generation-trace/catalog.json",
@@ -652,37 +379,6 @@
         "tool_calls": 55695,
         "unparsed_lines": 4,
         "conversation": 1538
-      }
-    },
-    {
-      "project": "error_diag_dpo_recovery",
-      "title": "error diag dpo recovery",
-      "catalog": "../paper-assets/error_diag_dpo_recovery/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 323,
-        "messages": 25149,
-        "user_turns": 670,
-        "tool_calls": 9694,
-        "unparsed_lines": 140,
-        "worker": 141,
-        "result": 130,
-        "conversation": 47,
-        "history": 5
-      }
-    },
-    {
-      "project": "error_type_pref_optim",
-      "title": "error type pref optim",
-      "catalog": "../paper-assets/error_type_pref_optim/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 11,
-        "messages": 1643,
-        "user_turns": 11,
-        "tool_calls": 643,
-        "unparsed_lines": 5,
-        "worker": 5,
-        "result": 3,
-        "conversation": 3
       }
     },
     {
@@ -921,38 +617,6 @@
       }
     },
     {
-      "project": "meta_brain_lora_routing",
-      "title": "Meta-Brain: Perturbation-Diagnostic Routing of LoRA Experts for Parameter-E cient VLA Robustness",
-      "catalog": "../paper-assets/meta_brain_lora_routing/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 556,
-        "messages": 55779,
-        "user_turns": 956,
-        "tool_calls": 21937,
-        "unparsed_lines": 238,
-        "result": 176,
-        "worker": 277,
-        "conversation": 96,
-        "history": 7
-      }
-    },
-    {
-      "project": "min_necessary_circuit_css",
-      "title": "Transformer Model EAP-IG",
-      "catalog": "../paper-assets/min_necessary_circuit_css/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 313,
-        "messages": 24655,
-        "user_turns": 685,
-        "tool_calls": 9484,
-        "unparsed_lines": 130,
-        "worker": 131,
-        "result": 124,
-        "conversation": 54,
-        "history": 4
-      }
-    },
-    {
       "project": "nlp_variance_gtheory",
       "title": "Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models",
       "catalog": "../paper-assets/nlp_variance_gtheory/05-generation-trace/catalog.json",
@@ -1027,37 +691,6 @@
       }
     },
     {
-      "project": "pgpf-collapse-filter",
-      "title": "pgpf collapse filter",
-      "catalog": "../paper-assets/pgpf-collapse-filter/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 29,
-        "messages": 3992,
-        "user_turns": 94,
-        "tool_calls": 1705,
-        "unparsed_lines": 11,
-        "worker": 11,
-        "result": 10,
-        "conversation": 8
-      }
-    },
-    {
-      "project": "phase-gated-compound-sparse",
-      "title": "Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models",
-      "catalog": "../paper-assets/phase-gated-compound-sparse/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 2272,
-        "messages": 147551,
-        "user_turns": 4492,
-        "tool_calls": 60087,
-        "unparsed_lines": 723,
-        "result": 687,
-        "worker": 724,
-        "conversation": 591,
-        "history": 270
-      }
-    },
-    {
       "project": "policy_ambiguity_safety",
       "title": "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety",
       "catalog": "../paper-assets/policy_ambiguity_safety/05-generation-trace/catalog.json",
@@ -1087,56 +720,6 @@
       }
     },
     {
-      "project": "prism_collapse_mixing",
-      "title": "prism collapse mixing",
-      "catalog": "../paper-assets/prism_collapse_mixing/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 104,
-        "messages": 6679,
-        "user_turns": 217,
-        "tool_calls": 2596,
-        "unparsed_lines": 38,
-        "result": 38,
-        "worker": 38,
-        "conversation": 25,
-        "history": 3
-      }
-    },
-    {
-      "project": "prod42",
-      "title": "prod42",
-      "catalog": "../paper-assets/prod42/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "prod43",
-      "title": "prod43",
-      "catalog": "../paper-assets/prod43/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "prod_0510",
-      "title": "prod 0510",
-      "catalog": "../paper-assets/prod_0510/05-generation-trace/catalog.json",
-      "statistics": {}
-    },
-    {
-      "project": "prov_grounded_uie",
-      "title": "prov grounded uie",
-      "catalog": "../paper-assets/prov_grounded_uie/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 221,
-        "messages": 18264,
-        "user_turns": 520,
-        "tool_calls": 7356,
-        "unparsed_lines": 94,
-        "worker": 94,
-        "result": 86,
-        "conversation": 38,
-        "history": 3
-      }
-    },
-    {
       "project": "provenance_weight_training",
       "title": "When Does Detect-and-Reweight Work for Synthetic Contamination?",
       "catalog": "../paper-assets/provenance_weight_training/05-generation-trace/catalog.json",
@@ -1163,22 +746,6 @@
         "tool_calls": 33783,
         "unparsed_lines": 0,
         "conversation": 1009
-      }
-    },
-    {
-      "project": "ratekv",
-      "title": "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic",
-      "catalog": "../paper-assets/ratekv/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 1250,
-        "messages": 87631,
-        "user_turns": 2530,
-        "tool_calls": 35146,
-        "unparsed_lines": 475,
-        "result": 419,
-        "worker": 513,
-        "conversation": 260,
-        "history": 58
       }
     },
     {
@@ -1237,82 +804,6 @@
         "tool_calls": 76174,
         "unparsed_lines": 0,
         "conversation": 1502
-      }
-    },
-    {
-      "project": "redundancy-compound-sparsity",
-      "title": "When Does KV Redundancy Predict MLP Sparsity? Architecture Dependence of Cross-Axis Signals in Reasoning Inference",
-      "catalog": "../paper-assets/redundancy-compound-sparsity/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 70,
-        "messages": 6671,
-        "user_turns": 169,
-        "tool_calls": 2499,
-        "unparsed_lines": 28,
-        "worker": 28,
-        "result": 27,
-        "conversation": 15
-      }
-    },
-    {
-      "project": "redundancy-compound-sparsity-2",
-      "title": "redundancy compound sparsity 2",
-      "catalog": "../paper-assets/redundancy-compound-sparsity-2/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 190,
-        "messages": 12837,
-        "user_turns": 377,
-        "tool_calls": 4989,
-        "unparsed_lines": 75,
-        "worker": 75,
-        "result": 72,
-        "conversation": 35,
-        "history": 8
-      }
-    },
-    {
-      "project": "rl-active-probe-fl",
-      "title": "rl active probe fl",
-      "catalog": "../paper-assets/rl-active-probe-fl/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 110,
-        "messages": 7227,
-        "user_turns": 226,
-        "tool_calls": 2737,
-        "unparsed_lines": 42,
-        "worker": 42,
-        "result": 41,
-        "conversation": 27
-      }
-    },
-    {
-      "project": "robust_circuit_editing",
-      "title": "robust circuit editing",
-      "catalog": "../paper-assets/robust_circuit_editing/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 5,
-        "messages": 287,
-        "user_turns": 10,
-        "tool_calls": 121,
-        "unparsed_lines": 2,
-        "worker": 2,
-        "conversation": 3
-      }
-    },
-    {
-      "project": "schema-conform-ie-training",
-      "title": "schema conform ie training",
-      "catalog": "../paper-assets/schema-conform-ie-training/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 110,
-        "messages": 9882,
-        "user_turns": 370,
-        "tool_calls": 3890,
-        "unparsed_lines": 47,
-        "result": 42,
-        "worker": 47,
-        "conversation": 18,
-        "history": 3
       }
     },
     {
@@ -1490,38 +981,6 @@
       }
     },
     {
-      "project": "structfuse-context",
-      "title": "StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval",
-      "catalog": "../paper-assets/structfuse-context/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 1232,
-        "messages": 90756,
-        "user_turns": 2484,
-        "tool_calls": 36106,
-        "unparsed_lines": 512,
-        "result": 496,
-        "worker": 510,
-        "conversation": 183,
-        "history": 43
-      }
-    },
-    {
-      "project": "svs_formal_verification",
-      "title": "svs formal verification",
-      "catalog": "../paper-assets/svs_formal_verification/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 205,
-        "messages": 21001,
-        "user_turns": 432,
-        "tool_calls": 8269,
-        "unparsed_lines": 92,
-        "worker": 91,
-        "result": 81,
-        "conversation": 32,
-        "history": 1
-      }
-    },
-    {
       "project": "symb_invariant_consensus",
       "title": "Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction",
       "catalog": "../paper-assets/symb_invariant_consensus/05-generation-trace/catalog.json",
@@ -1548,52 +1007,6 @@
         "tool_calls": 139007,
         "unparsed_lines": 0,
         "conversation": 2012
-      }
-    },
-    {
-      "project": "tax_error_inject_agent",
-      "title": "When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning",
-      "catalog": "../paper-assets/tax_error_inject_agent/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 1168,
-        "messages": 68008,
-        "user_turns": 2216,
-        "tool_calls": 26732,
-        "unparsed_lines": 443,
-        "result": 427,
-        "worker": 440,
-        "conversation": 260,
-        "history": 41
-      }
-    },
-    {
-      "project": "tbab_multi_turn",
-      "title": "tbab multi turn",
-      "catalog": "../paper-assets/tbab_multi_turn/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 116,
-        "messages": 10572,
-        "user_turns": 296,
-        "tool_calls": 4116,
-        "unparsed_lines": 48,
-        "worker": 48,
-        "result": 44,
-        "conversation": 24
-      }
-    },
-    {
-      "project": "temp-adv-distill-vla",
-      "title": "temp adv distill vla",
-      "catalog": "../paper-assets/temp-adv-distill-vla/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 52,
-        "messages": 9052,
-        "user_turns": 120,
-        "tool_calls": 3722,
-        "unparsed_lines": 24,
-        "result": 19,
-        "worker": 25,
-        "conversation": 8
       }
     },
     {
@@ -1626,37 +1039,6 @@
       }
     },
     {
-      "project": "trace_distill_repair",
-      "title": "trace distill repair",
-      "catalog": "../paper-assets/trace_distill_repair/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 410,
-        "messages": 31538,
-        "user_turns": 848,
-        "tool_calls": 12504,
-        "unparsed_lines": 171,
-        "result": 154,
-        "worker": 166,
-        "conversation": 76,
-        "history": 14
-      }
-    },
-    {
-      "project": "turn-hier-kv-compress",
-      "title": "turn hier kv compress",
-      "catalog": "../paper-assets/turn-hier-kv-compress/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 45,
-        "messages": 4510,
-        "user_turns": 118,
-        "tool_calls": 1764,
-        "unparsed_lines": 23,
-        "worker": 23,
-        "result": 16,
-        "conversation": 6
-      }
-    },
-    {
       "project": "turn_residual_gating",
       "title": "Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue",
       "catalog": "../paper-assets/turn_residual_gating/05-generation-trace/catalog.json",
@@ -1686,36 +1068,6 @@
       }
     },
     {
-      "project": "verification_triggered_retrieval",
-      "title": "verification triggered retrieval",
-      "catalog": "../paper-assets/verification_triggered_retrieval/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 13,
-        "messages": 4203,
-        "user_turns": 45,
-        "tool_calls": 1829,
-        "unparsed_lines": 5,
-        "result": 4,
-        "worker": 5,
-        "conversation": 4
-      }
-    },
-    {
-      "project": "verifier-tts-struct-ie",
-      "title": "verifier tts struct ie",
-      "catalog": "../paper-assets/verifier-tts-struct-ie/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 29,
-        "messages": 4573,
-        "user_turns": 89,
-        "tool_calls": 1867,
-        "unparsed_lines": 13,
-        "result": 11,
-        "worker": 13,
-        "conversation": 5
-      }
-    },
-    {
       "project": "vla-ssd",
       "title": "Instruction Routing in Fine-Tuned Vision-Language-Action Models: A Cross-Architecture Analysis",
       "catalog": "../paper-assets/vla-ssd/05-generation-trace/catalog.json",
@@ -1729,35 +1081,6 @@
         "worker": 743,
         "conversation": 326,
         "history": 89
-      }
-    },
-    {
-      "project": "xling_calab_direction",
-      "title": "xling calab direction",
-      "catalog": "../paper-assets/xling_calab_direction/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 2,
-        "messages": 404,
-        "user_turns": 0,
-        "tool_calls": 116,
-        "unparsed_lines": 1,
-        "worker": 1,
-        "result": 1
-      }
-    },
-    {
-      "project": "xling_calib_direction",
-      "title": "Shifting the Cross-Lingual Calibration Pareto Frontier: Probe-Based Calibration Transfer via CaCLR",
-      "catalog": "../paper-assets/xling_calib_direction/05-generation-trace/catalog.json",
-      "statistics": {
-        "files": 290,
-        "messages": 27260,
-        "user_turns": 696,
-        "tool_calls": 11335,
-        "unparsed_lines": 121,
-        "worker": 123,
-        "result": 119,
-        "conversation": 48
       }
     }
   ]

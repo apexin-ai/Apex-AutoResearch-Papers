@@ -1,1 +1,0 @@
-See server: /root/autodl-tmp/pacs/analyze_n500_unified.py

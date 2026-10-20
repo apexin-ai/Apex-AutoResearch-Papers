@@ -1,1 +1,0 @@
-Full JSON on server: /root/min_necessary_circuit_css/results/Qwen_Qwen2.5_0.5B_ioi/proportional_binarize_ablation.json

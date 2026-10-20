@@ -1,5 +1,0 @@
-Remote path: westd-16980:/root/carc/results/heatmap_reasoning_data.pt
-Script: westd-16980:/root/carc/analysis_heatmap_reasoning.py
-Heatmaps: westd-16980:/root/carc/results/ema_heatmap_reasoning_gamma{05,07,09}.pdf
-Comparison: westd-16980:/root/carc/results/ema_heatmap_reasoning_comparison.pdf
-WikiText vs Reasoning: westd-16980:/root/carc/results/ema_heatmap_wikitext_vs_reasoning.pdf

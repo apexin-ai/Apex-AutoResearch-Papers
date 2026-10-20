@@ -1,1 +1,0 @@
-CORRECTED from pooled d to true paired d_z. DS: 0.376/0.442/0.520/0.683/0.803/0.815. QW: -0.049/0.281/0.549/0.889/1.022/1.102. QW s015 marginal (CI incl 0). QW s010 d<0.

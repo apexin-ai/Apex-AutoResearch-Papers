@@ -1,1 +1,0 @@
-Server path: /root/temp-adv-distill-vla/artifacts/phase0_vip_results.json (22KB JSON with per-trajectory details). Summary: model=VIP ResNet50 (1024-dim), n=50, cos_sim rho mean=0.7197 median=0.7272, neg_L2 rho mean=0.7102 median=0.7155, best_metric=cos, rho>0.8=8%, rho>0.5=100%, gate1c_passed=true, time=4.7s

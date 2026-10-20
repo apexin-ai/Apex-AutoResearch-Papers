@@ -1,1 +1,0 @@
-conf1: n=39408, disagree=23.61%, probe_stag_lf_prog=19.99%, probe_prog_lf_stag=3.63%\nconf2: n=14609, disagree=3.82%, probe_stag_lf_prog=2.24%, probe_prog_lf_stag=1.58%\nconf3: n=792, disagree=0.88%, probe_stag_lf_prog=0.63%, probe_prog_lf_stag=0.25%

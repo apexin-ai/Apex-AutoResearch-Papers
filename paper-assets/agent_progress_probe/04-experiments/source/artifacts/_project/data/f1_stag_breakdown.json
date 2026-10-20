@@ -1,8 +1,0 @@
-See server: /root/autodl-tmp/agent_progress_probe/f1_stag_breakdown.json
-
-Summary:
-- outcome-bp-3seed mean f1_stag = 0.6409 ± 0.0337 (seed42=0.6003, seed123=0.6396, seed456=0.6828)
-- train-without-ob own test: f1_stag=0.9159; on 3-LF full test: f1_stag=0.5667
-- Full baseline: f1_stag=0.7772
-- OB removal effect: -13.6pp f1_stag (0.7772 → 0.6409)
-- f1_stag=0.000 was never computed; closest actual value on OB-only subset is 0.5109

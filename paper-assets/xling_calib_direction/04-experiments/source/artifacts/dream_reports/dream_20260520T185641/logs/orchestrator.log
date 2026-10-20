@@ -1,3 +1,0 @@
-2026-05-20 19:37:10,637 INFO    core.tools.feishu  create_chat: name='审稿-xling_calib_direction' → chat_id=oc_03a4b60e63b9658b3528f3d9a729f2e8
-2026-05-20 19:37:10,640 INFO    core.tools.dream  [dream] auto-created Group C for project=xling_calib_direction: oc_03a4b60e63b9658b3528f3d9a729f2e8
-2026-05-20 19:37:10,792 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0519_2/config/mcp_config_dream_review_director.json

@@ -1,4 +1,0 @@
-fig4_bootstrap.pdf (19.1 KB) — Forest plot, difference statistic 95% CI, Bonferroni p annotations
-fig5_crossmodel.pdf (18.5 KB) — Cross-model comparison, DS solid/QW dashed, symlog Y
-Script: /root/autodl-tmp/pacs/analysis/generate_paper_figures.py
-Style: serif, 9pt, hidden top/right spines, 300 dpi

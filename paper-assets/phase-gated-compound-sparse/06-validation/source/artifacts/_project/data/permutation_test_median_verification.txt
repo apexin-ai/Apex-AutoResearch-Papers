@@ -1,1 +1,0 @@
-D029 median fix verification. Original verdict: PASS (mean CI distorted by outlier). New verdict: FAIL (median CI robust). All phases positive median II: high=2.503 [1.329,4.120], mid=2.592 [1.840,3.789], low=4.041 [2.269,6.358]. No sign reversal, no CI non-overlap. Fix confirmed. Full results at /root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json

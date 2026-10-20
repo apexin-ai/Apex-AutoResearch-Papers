@@ -1,1 +1,0 @@
-{"ts": "2026-05-31T15:27:06+00:00", "role": "agent", "loop_id": "agent_loop_1", "event": "BOOT_COMPLETE", "details": {"new_session_id": null, "loop_count": 1, "boot_kind": "first_boot_agent_skip", "restart_recovery": false}}

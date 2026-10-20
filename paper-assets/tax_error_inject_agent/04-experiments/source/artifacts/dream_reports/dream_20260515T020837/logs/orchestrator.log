@@ -1,3 +1,0 @@
-2026-05-15 02:45:31,307 INFO    core.tools.feishu  create_chat: name='审稿-tax_error_inject_agent' → chat_id=oc_8acbea284219b548bfc4c50949ea43a8
-2026-05-15 02:45:31,309 INFO    core.tools.dream  [dream] auto-created Group C for project=tax_error_inject_agent: oc_8acbea284219b548bfc4c50949ea43a8
-2026-05-15 02:45:31,413 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0514_2/config/mcp_config_dream_review_director.json

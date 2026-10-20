@@ -1,1 +1,0 @@
-{"experiment":"d073-cycle-oh","results":{"3gram":{"oh_all_f1":0.530,"oh_conf2_f1":0.592},"2gram":{"oh_all_f1":0.520},"structural_gb":{"oh_all_f1":0.967,"oh_conf2_f1":0.992},"llm_judge":{"oh_f1":0.470}},"conclusion":"cross-agent transfer is genuine contribution"}

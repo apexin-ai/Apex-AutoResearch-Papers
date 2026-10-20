@@ -1,8 +1,0 @@
-cross_domain_bootstrap results:
-n_windows = 20807
-n_label_disagreement = 3110 (14.95%)
-
-[emb_labels] gb_macro_f1=0.6212, probe_macro_f1=0.7512, delta=-0.13, 95CI=[-0.1406, -0.1194], p=0.0, stag=1417, prog=19390
-[wl_labels] gb_macro_f1=0.9021, probe_macro_f1=0.6443, delta=+0.2578, 95CI=[0.248, 0.2676], p=0.0, stag=4449, prog=16358
-
-n_resamples = 10000 for both

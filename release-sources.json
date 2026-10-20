@@ -628,16 +628,25 @@
   ],
   "decompressed_mirror_audit": {
     "prefixes_inspected": 40,
-    "candidate_files": 164916,
-    "status": "Candidate objects matched to original archive source or exclusion records by project, path, and byte size; separate mirror supplement checked by S3 metadata",
+    "status": "Initial full-source coverage verified before curation; current mirror listing contains retained project rows only.",
     "candidate_index": "release-source-mirrors.csv.gz",
     "method": "List object metadata without downloading mirrored file bodies. Environment, account, cache, and internal shared subtrees are excluded. Original per-project source and exclusion manifests will be used to check coverage.",
     "not_a_content_checksum_comparison": true,
-    "excluded_cache_candidate_objects": 3410,
-    "excluded_cache_candidate_bytes": 6016777325,
     "cache_exclusion_rule": "Unpacked mirror paths containing .hf_cache are model and dataset cache copies, excluded from the research release; their individual object metadata remains in release-source-mirrors.csv.gz.",
     "supplemental_source_index": "release-source-mirror-supplements.json",
-    "matched_objects": 161505,
-    "supplemental_objects": 1
+    "pre_curation_audit": {
+      "candidate_files": 164916,
+      "excluded_cache_candidate_objects": 3410,
+      "excluded_cache_candidate_bytes": 6016777325,
+      "matched_objects": 161505,
+      "supplemental_objects": 1
+    },
+    "curated_candidate_files": 145005,
+    "curated_project_scope": "Only the 40 original workspace task slugs; extra project rows removed from the candidate index."
+  },
+  "curation": {
+    "retained_projects": 40,
+    "removed_additional_project_directories": 49,
+    "candidate_index_filtered_to_retained_projects": true
   }
 }

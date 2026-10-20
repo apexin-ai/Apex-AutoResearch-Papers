@@ -1,4 +1,0 @@
-k=3: test_macro_f1=0.8721, f1_prog=0.9659, f1_stag=0.7784
-k=5: test_macro_f1=0.9309, f1_prog=0.9701, f1_stag=0.8917
-k=7: test_macro_f1=0.9133, f1_prog=0.9475, f1_stag=0.8791
-Server: checkpoints_ablation_wsize/ablation_summary.json

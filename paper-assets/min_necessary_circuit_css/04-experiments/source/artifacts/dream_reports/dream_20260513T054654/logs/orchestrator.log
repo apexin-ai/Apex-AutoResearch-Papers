@@ -1,3 +1,0 @@
-2026-05-13 06:21:06,291 INFO    core.tools.feishu  create_chat: name='structfuse-context-审稿群' → chat_id=oc_d8021365b8be0b280e079852c1307938
-2026-05-13 06:21:06,294 INFO    core.tools.dream  [dream] auto-created Group C for project=structfuse-context: oc_d8021365b8be0b280e079852c1307938
-2026-05-13 06:21:06,412 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_3/config/mcp_config_dream_review_director.json

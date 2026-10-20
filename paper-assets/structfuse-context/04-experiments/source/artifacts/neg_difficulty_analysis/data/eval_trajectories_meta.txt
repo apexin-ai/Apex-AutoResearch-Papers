@@ -1,4 +1,0 @@
-Path: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv
-Records: 42 eval points, 10 subruns
-Coverage: Qwen random(3 seeds) + embed(2) + dataflow(1), StarCoder random(3) + embed(1)
-Missing: Qwen embed_s42, Qwen dataflow s42/s44, StarCoder dataflow all, StarCoder embed s43/s44

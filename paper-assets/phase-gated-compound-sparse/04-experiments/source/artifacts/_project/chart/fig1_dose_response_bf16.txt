@@ -1,1 +1,0 @@
-Generated from bf16 canonical data. G values: imp=[5.6, 69.2, 103.1, 222.4, 274.2, 273.6], rand=[1.1, 0.95, 1.67, 1.61]. Bootstrap B=10000 CI in log space.

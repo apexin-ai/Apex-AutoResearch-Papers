@@ -1,1 +1,0 @@
-k=10: PPL=11.5025, bit_dist={2:10, 4:98, 8:4}, mem=0.2478\nk=12: PPL=11.4203, bit_dist={2:12, 4:96, 8:3, 16:1}, mem=0.2500\n\nFull curve: k=0->15.45, k=4->11.77, k=8->11.23, k=10->11.50, k=12->11.42, k=16->11.81\nk=8 confirmed as U-curve minimum.

@@ -1,7 +1,0 @@
-Remote path: /root/autodl-tmp/pacs/figures/fig2_cohens_d.pdf
-Server: westd-22162
-
-Cohen's d values (per-problem paired, B=10000 bootstrap):
-DeepSeek: s015=0.607 [0.479,1.040], s020=0.725 [0.597,1.236], s025=0.953 [0.774,1.206], s030=1.126 [0.931,1.418]
-Qwen:     s015=0.371 [-0.028,0.778]*, s020=0.722 [0.279,1.341], s025=1.233 [0.957,1.650], s030=1.439 [1.217,1.867]
-* QW s015 marginal: Cohen's d CI includes 0, median_diff CI [-0.005, 0.110] includes 0

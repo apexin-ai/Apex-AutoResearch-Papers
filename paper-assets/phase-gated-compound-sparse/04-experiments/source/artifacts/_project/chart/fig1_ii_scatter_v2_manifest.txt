@@ -1,1 +1,0 @@
-Figure 1 generated on westd-22162. Files: /root/autodl-tmp/pacs/figures/fig1_ii_scatter.pdf (17.7KB), /root/autodl-tmp/pacs/figures/fig1_ii_scatter.png (125KB). 2-panel scatter with error bars, importance (blue) vs random (grey dashed), bootstrap 95% CI.

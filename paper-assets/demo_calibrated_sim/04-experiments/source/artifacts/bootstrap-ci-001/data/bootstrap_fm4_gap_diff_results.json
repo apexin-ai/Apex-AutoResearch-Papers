@@ -1,1 +1,0 @@
-AAVE: diff=0.155, 95%CI [-0.065, 0.360], p=0.081, not significant. Indian: diff=0.161, 95%CI [-0.052, 0.366], p=0.069, not significant. Script: /root/democalib/scripts/bootstrap_fm4_gap_diff.py. Full results: /root/democalib/results/bootstrap_fm4_gap_diff_results.json

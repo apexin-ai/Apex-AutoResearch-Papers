@@ -1,1 +1,0 @@
-See remote: /root/autodl-tmp/carr/analysis/quality_scores_summary.json (bjb2-23165). Key finding: 7/8 configs quality declines across gens (delta -0.0003 to -0.0015), only lora_k4_curated increases (+0.0009). Curated configs generally higher than matched no-curation baselines.

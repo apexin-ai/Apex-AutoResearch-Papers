@@ -1,5 +1,0 @@
-PDF: /root/autodl-tmp/pacs/paper_figures/fig5_crossmodel.pdf
-Server: westd-22162
-Content: DeepSeek vs Qwen dual-model Δ comparison, Spearman ρ=1.0 annotated
-DeepSeek Δ: 0.39, 1.48, 7.16, 14.59
-Qwen Δ: 0.04, 0.23, 1.27, 2.94

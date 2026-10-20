@@ -1,8 +1,0 @@
-_next_id: 2
-constraints:
-- id: C001
-  added: 2026-05-14 05:30 UTC
-  summary: GPU 白名单：仅允许使用 gpu-6000pro-1 的 cuda:0 和 cuda:1（RTX PRO 6000 Blackwell 94GB
-    × 2）
-  scope: all
-  reason: 'L1 红线 #4 要求声明 gpu_ids 白名单。本项目分配 2 张 RTX PRO 6000，禁止使用其他 GPU。'

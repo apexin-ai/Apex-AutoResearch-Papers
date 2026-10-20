@@ -1,3 +1,0 @@
-Remote file: westd-29046:/root/tbab_multi_turn/data/training_data.json (22MB, 2500 samples)
-Format: JSON array of {"messages": [...], "source": "sharegpt"|"ultrachat"}
-Each messages list contains alternating user/assistant role dicts.

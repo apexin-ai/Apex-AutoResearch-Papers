@@ -1,3 +1,0 @@
-Remote path: /root/temp-adv-distill-vla/artifacts/gate1b_mlp_multitask.pt (2.3MB)
-Architecture: Linear(1024->512)->ReLU->Linear(512->128)->ReLU->Linear(128->1)->Sigmoid
-Best epoch: 11, Overall R²: 0.9653

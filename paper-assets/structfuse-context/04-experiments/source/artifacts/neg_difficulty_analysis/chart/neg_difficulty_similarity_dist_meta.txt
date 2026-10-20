@@ -1,3 +1,0 @@
-Remote path: /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/chart/neg_difficulty_similarity_dist.{pdf,png}
-Server: bjb1-42106
-Script: /root/structfuse/scripts/plot_neg_difficulty.py

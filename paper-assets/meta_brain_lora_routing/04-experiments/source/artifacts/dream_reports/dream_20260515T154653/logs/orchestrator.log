@@ -1,3 +1,0 @@
-2026-05-15 16:26:29,737 INFO    core.tools.feishu  create_chat: name='审稿-meta_brain_lora_routing' → chat_id=oc_c0d02f6abd1b2108197b7a93490af541
-2026-05-15 16:26:29,739 INFO    core.tools.dream  [dream] auto-created Group C for project=meta_brain_lora_routing: oc_c0d02f6abd1b2108197b7a93490af541
-2026-05-15 16:26:29,877 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-be-idea-gen-0515/config/mcp_config_dream_review_director.json

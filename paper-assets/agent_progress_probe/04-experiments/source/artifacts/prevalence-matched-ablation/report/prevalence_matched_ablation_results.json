@@ -1,1 +1,0 @@
-See server: /root/autodl-tmp/agent_progress_probe/prevalence_matched_ablation_results.json. Key results: Method B natural prevalence (19.3%): 3LF=0.9763, 2LF=0.6822, delta=-0.2941, McNemar p=0. Method C (N=4017, 96% stag): 3LF model=0.9509, 2LF model=0.9707. Removing cmd_rep shrinks usable training data 10x (43K->4K), which is the main confound.

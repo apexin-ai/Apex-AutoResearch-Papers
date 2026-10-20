@@ -1,9 +1,0 @@
-See server artifact at /root/autodl-tmp/agent_progress_probe/artifacts/6lf-tlm/6lf_tlm_results.json
-
-Summary:
-- 6-LF MV gold F1: 0.7192
-- Best TLM (HMM): gold F1 0.7838 (+6.46pp)
-- Lag-HMM: gold F1 0.7643 (+4.51pp)  
-- TWV σ=5: gold F1 0.7435 (+2.43pp)
-- TWV σ=2: gold F1 0.7342 (+1.50pp)
-- Verdict: C3 claim needs revision — TLM beats MV when LF diversity sufficient (6 LFs, 42% conflict)

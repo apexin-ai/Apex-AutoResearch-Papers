@@ -1,3 +1,0 @@
-Remote path: /root/autodl-tmp/pacs/figures/fig2_cohens_d_segment_level.pdf
-Server: westd-22162
-Old segment-level values: DS 0.44→0.52→0.68→0.80, QW 0.28→0.55→0.89→1.02

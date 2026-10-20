@@ -1,3 +1,0 @@
-Remote path: westd-13176:/root/xling_calib_direction/artifacts/figures/selectivity_heatmap_pilot.pdf (31KB)
-Script: scripts/plot_figures.py
-Data source: plan_013 registry metrics (EN selectivity L0-L27)
