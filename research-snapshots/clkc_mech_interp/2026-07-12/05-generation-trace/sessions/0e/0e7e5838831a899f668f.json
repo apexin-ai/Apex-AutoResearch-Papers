@@ -1,0 +1,1321 @@
+{
+  "schema_version": "1.0",
+  "id": "0e7e5838831a899f668f",
+  "project": "clkc_mech_interp--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to read the current paper LaTeX files for the clkc_mech_interp project. The paper is located at /home/ubuntu/.age",
+  "task_key": "agent-aaf1b6ed15acad458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aaf1b6ed15acad458.jsonl",
+    "occurrence": 1,
+    "bytes": 73246,
+    "sha256": "b8c036853f0bc1aa9bf17c5a0806cbf56cd075baf0818b9212545be99074840d"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T21:17:48.081Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to read the current paper LaTeX files for the clkc_mech_interp project. The paper is located at /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/\n\nFind all .tex files in that directory and read the main content — especially:\n1. The abstract and introduction (look for claim wording around \"general cross-lingual property\" or asymmetry)\n2. The experiments/results section (check if DE/German results are included in any table or text)\n3. The discussion section (check for limitations and steering discussion)\n4. Any tables (Table 1, 2, 3) to see what data is presented\n\nSearch breadth: medium"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "5742884d-1518-42eb-a0bc-cb5ea6a64953",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T21:17:49.562Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for and read the LaTeX files in the paper directory, focusing on the content you specified."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5742884d-1518-42eb-a0bc-cb5ea6a64953",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMiS2h84LYCBJXgH4R",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "09e27f6f-c064-4b0f-b795-79b88c6950d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017h1S6ehqvJ4X1zwX8XPi9z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18827,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18827,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T21:17:49.651Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W5NxkJnDBYEMUmRWBsPKjV",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09e27f6f-c064-4b0f-b795-79b88c6950d8",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMiS2h84LYCBJXgH4R",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "775fcec4-1229-41c0-bc5a-598d2a5d2fc6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017h1S6ehqvJ4X1zwX8XPi9z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18827,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18827,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T21:17:49.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W5NxkJnDBYEMUmRWBsPKjV",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/acl_latex.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/discussion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "775fcec4-1229-41c0-bc5a-598d2a5d2fc6",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "0834fdcd-73d3-435b-89e4-466bf774f709",
+            "sourceToolAssistantUUID": "775fcec4-1229-41c0-bc5a-598d2a5d2fc6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T21:17:51.062Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the main files that are most relevant to your inquiry, starting with the abstract, introduction, experiments, and discussion sections:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0834fdcd-73d3-435b-89e4-466bf774f709",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMqBLDUrEPjcHSTSHd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e00771e1-f6e2-47bb-8a8f-1adf0336e69d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0161pBrufis3LuQ4mTZcKqtt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1585,
+                "cache_read_input_tokens": 18827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1585,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T21:17:51.286Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Do3KSyXJJSDWyorybMon2C",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e00771e1-f6e2-47bb-8a8f-1adf0336e69d",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMqBLDUrEPjcHSTSHd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bf6394c6-f7fb-42db-bcc4-34209ff9d7a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0161pBrufis3LuQ4mTZcKqtt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1585,
+                "cache_read_input_tokens": 18827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1585,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T21:17:51.301Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Do3KSyXJJSDWyorybMon2C",
+              "type": "tool_result",
+              "content": "1\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, the language of presentation can determine the model's answer. Behavioral studies attribute this to linguistic affinity, but the internal mechanism remains unknown: how is the conflict signal encoded, does it share structure with general cross-lingual representations, and does detectability imply causal influence on resolution?\n2\t\n3\tWe probe residual stream representations in Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT. Our analysis combines cross-lingual transfer, a non-conflict baseline on XNLI, confound exclusion for translation quality and token overlap, and representation steering. Conflict signals are linearly detectable across languages, and cross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English ${\\sim}$7 percentage points more accurately than the reverse. This asymmetry matches the XNLI non-conflict baseline in both magnitude and direction, with overlapping confidence intervals; it inherits from the model's general multilingual structure rather than conflict-specific encoding. A dissociation emerges between detection and decision: in Llama, the probe signal peaks at late layers (88\\% depth), but representation steering achieves causal influence only at a mid-layer (41\\% depth); analogous Qwen and Gemma steering yields no significant effect. These findings demonstrate that linear detectability does not imply causal relevance, with direct implications for probe-based intervention research.\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf6394c6-f7fb-42db-bcc4-34209ff9d7a3",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "43f44e88-97c6-4987-9b35-06a8ef705a3b",
+            "sourceToolAssistantUUID": "bf6394c6-f7fb-42db-bcc4-34209ff9d7a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T21:17:51.489Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013muxyK8AeXqy6Snfyxu6y7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43f44e88-97c6-4987-9b35-06a8ef705a3b",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMqBLDUrEPjcHSTSHd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3df0e4e7-79d5-4909-a4e2-c57592f9ff65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0161pBrufis3LuQ4mTZcKqtt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1585,
+                "cache_read_input_tokens": 18827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1585,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T21:17:51.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013muxyK8AeXqy6Snfyxu6y7",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen multilingual large language models (LLMs) encounter conflicting information across languages, the language of presentation can determine which answer the model produces.\n5\t\\citet{zhao2026when} showed that linguistic affinity dominates conflict resolution in entity-centric factual conflicts, with models preferring answers from linguistically closer sources.\n6\tYet the internal mechanism behind this behavior remains opaque: how does the model encode the conflict signal?\n7\tCan it be detected from internal representations?\n8\tAnd if detectable, does the detected signal causally influence the model's resolution strategy?\n9\tThese questions sit at the intersection of mechanistic interpretability and multilingual NLP, and answering them requires moving beyond behavioral observations to probe model internals directly.\n10\t\n11\tExisting work on probing knowledge conflict signals has been limited to monolingual settings.\n12\t\\citet{zhao2024analysing} showed that residual stream representations carry linearly detectable conflict signals in English, and \\citet{brink2026probing} performed knowledge attribution probing to localize factual associations within model parameters.\n13\tExtending these approaches cross-lingually introduces additional challenges.\n14\tTranslation quality may confound probe transfer: a poor translation could alter conflict detection for reasons unrelated to the conflict signal itself.\n15\tToken overlap between languages, even when minimal, could provide a shortcut for cross-lingual probes.\n16\tObserved asymmetries in transfer accuracy may reflect general cross-lingual properties rather than conflict-specific phenomena, and disentangling these sources requires careful baseline comparisons.\n17\tBeyond detectability, a fundamental limitation of probing is that it establishes correlation, not causation \\citep{hewitt2019designing}.\n18\t\\citet{basu2026interpretability} demonstrated that even near-perfect probe accuracy does not guarantee that the detected direction can steer model behavior.\n19\t\n20\tWe address these questions through a pipeline that combines residual stream probing with representation steering across three models of distinct architectures: Llama-3.1-8B-Instruct, Qwen3-8B, and Gemma-2-9B-IT.\n21\tProbes achieve 77.6\\%, 75.0\\%, and 76.2\\% balanced accuracy on English within-language conflict detection, respectively, and all cross-lingual transfer directions exceed chance (binomial $p < 0.001$).\n22\tCross-lingual transfer exhibits a directional asymmetry: probes trained on Chinese transfer to English approximately 7 percentage points (pp) more accurately than the reverse in all three models.\n23\tThis asymmetry, however, is not conflict-specific.\n24\tXNLI entailment-versus-contradiction probes \\citep{conneau2018xnli} show the same directional pattern at comparable magnitude (+6.0, +6.7, and +7.8 pp), with substantially overlapping confidence intervals.\n25\tThe conflict asymmetry thus inherits from a general property of English-dominant models, where Chinese representations project more readily onto English representational space than the reverse.\n26\tOur causal analysis reveals a dissociation between detection and decision in Llama: the probe signal peaks at late layers (L28, 88\\% depth), but representation steering succeeds only at a mid-layer (L13, 41\\% depth; Fisher $p = 0.002$), with all late-layer interventions producing no significant behavioral change.\n27\tTo ensure these findings are robust, we apply a confound exclusion pipeline that includes COMET-based translation quality stratification, token overlap analysis, and non-conflict baseline comparison.\n28\t\n29\tThese results carry two methodological implications.\n30\tThe layer dissociation between probing peak and causal influence demonstrates that the layer with highest probe accuracy is not necessarily where the model resolves the conflict.\n31\tThis challenges the common practice of intervening at the probing peak layer, consistent with the warning from \\citet{basu2026interpretability} that detectability and causal relevance can diverge.\n32\tThe directional asymmetry in cross-lingual transfer reflects a structural property of English-dominant multilingual models, not a conflict-specific phenomenon.\n33\tAny cross-lingual probing study must account for this baseline asymmetry to correctly interpret transfer differences.\n34\t\n35\tOur contributions are as follows:\n36\t\\begin{itemize}\n37\t    \\item \\textbf{Cross-lingual conflict detectability and asymmetry characterization.} We provide the first evidence that knowledge conflict signals are linearly detectable across languages in residual stream representations. The transfer asymmetry (ZH$\\to$EN $>$ EN$\\to$ZH by ${\\sim}$7 pp) matches the XNLI non-conflict baseline in both magnitude and direction, establishing that it reflects the model's general cross-lingual structure rather than conflict-specific encoding.\n38\t    \\item \\textbf{Detection-decision layer dissociation.} In Llama-3.1-8B-Instruct, representation steering at the mid-layer (L13, 41\\% depth) causally shifts conflict resolution (Fisher $p = 0.002$), while steering at the late-layer probing peak (L28, 88\\% depth) produces no significant effect. This dissociation shows that linear detectability does not imply causal relevance, and that conflict resolution occurs upstream of where the outcome becomes linearly readable.\n39\t    \\item \\textbf{Confound exclusion pipeline for cross-lingual probing.} We design and validate a systematic pipeline of COMET translation quality ablation, token overlap analysis, and non-conflict task baseline comparison that excludes common confounds in cross-lingual probing studies.\n40\t\\end{itemize}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3df0e4e7-79d5-4909-a4e2-c57592f9ff65",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "af5e6292-8b7e-41e5-9977-89f0362334c0",
+            "sourceToolAssistantUUID": "3df0e4e7-79d5-4909-a4e2-c57592f9ff65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T21:17:51.702Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0136ViC4uQDX27XjfmMAzafs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af5e6292-8b7e-41e5-9977-89f0362334c0",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMqBLDUrEPjcHSTSHd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "df4c62db-2918-4ba5-b93f-67cd83c3831e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0161pBrufis3LuQ4mTZcKqtt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1585,
+                "cache_read_input_tokens": 18827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1585,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T21:17:51.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0136ViC4uQDX27XjfmMAzafs",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Models.}\n8\tWe probe three instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama}, Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2024qwen25}, and Gemma-2-9B-IT (42 layers, hidden dimension 3584) \\citep{team2024gemma}.\n9\t\n10\t\\paragraph{Dataset.}\n11\tWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\n12\tAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test), 966 for Qwen (773 train / 193 test), and 1{,}590 for Gemma (1{,}274 train / 316 test), split 80/20 with stratification.\n13\t\n14\t\\paragraph{Translation.}\n15\tWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET \\citep{rei2020comet} back-translation scores.\n16\t\n17\t\\paragraph{Probing.}\n18\tFor each layer $l$, we train a logistic regression probe on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\n19\tWe report balanced accuracy to account for class imbalance.\n20\tAll confidence intervals (CIs) are computed via bootstrap resampling with paired differences for asymmetry estimation.\n21\t\n22\t\\paragraph{Non-conflict baseline.}\n23\tTo test whether cross-lingual transfer patterns are specific to knowledge conflicts, we run the same probing pipeline on XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\n24\t\n25\t\\subsection{Within-Language Conflict Detection}\n26\t\\label{sec:within_lang}\n27\t\n28\tTable~\\ref{tab:main_results} reports balanced accuracy for all probe transfer directions.\n29\tAll three models encode linearly detectable conflict signals in their residual streams.\n30\tLlama achieves 77.6\\% on EN$\\to$EN (peak at layer 28, 88\\% depth) and 72.1\\% on ZH$\\to$ZH.\n31\tQwen reaches 75.0\\% on EN$\\to$EN (peak at layer 24, 67\\% depth) and 72.6\\% on ZH$\\to$ZH.\n32\tGemma attains 76.2\\% on EN$\\to$EN (peak at layer 24, 57\\% depth) and 71.0\\% on ZH$\\to$ZH.\n33\tAll within-language accuracies are significantly above chance (binomial $p < 0.001$).\n34\tFigure~\\ref{fig:layer_probe} shows the layer-wise probe accuracy curves for all three models.\n35\tThese results confirm that knowledge conflict signals are linearly separable in the residual stream across all three architectures and both languages.\n36\t\n37\t%% Figure 2: Layer-wise probe accuracy\n38\t\\begin{figure}[t]\n39\t\\centering\n40\t\\includegraphics[width=\\columnwidth]{fig2_layerwise_probes.pdf}\n41\t\\caption{Layer-wise probe balanced accuracy for Llama-3.1-8B (left), Qwen3-8B (center), and Gemma-2-9B-IT (right). Solid lines: residual stream probes; dashed lines (Llama and Qwen only): MLP sublayer probes. Stars mark peak layers. In the Llama panel, the vertical annotation at L13 marks the layer where steering produces significant causal influence (Fisher $p = 0.002$), coinciding with the ZH$\\to$ZH probe peak but not the EN$\\to$EN peak (L28). In the Gemma panel, L17 and L21 are annotated as steering-negative layers.}\n42\t\\label{fig:layer_probe}\n43\t\\end{figure}\n44\t\n45\t\\subsection{Cross-Lingual Transfer and Asymmetry}\n46\t\\label{sec:cross_lingual}\n47\t\n48\tAll four cross-lingual transfer directions achieve balanced accuracy above chance (binomial $p < 0.001$; Table~\\ref{tab:main_results}), confirming that conflict representations partially overlap across languages.\n49\tAll three models show a consistent directional trend: probes trained on Chinese representations transfer to English (ZH$\\to$EN) more accurately than the reverse direction (EN$\\to$ZH).\n50\tFor Llama, $\\Delta_{\\text{asym}} = +7.3$ percentage points (pp) with a 95\\% bootstrap CI of [0.4, 14.0] ($p = 0.038$); for Qwen, $\\Delta_{\\text{asym}} = +7.2$ pp with CI [$-$0.6, 13.7]; for Gemma, $\\Delta_{\\text{asym}} = +6.6$ pp with CI [1.9, 11.1] ($p = 0.006$).\n51\tWhile the Qwen CI marginally includes zero, the direction is consistent across all three architectures.\n52\tThe magnitude of this asymmetry closely matches the XNLI non-conflict baseline across all three architectures (\\S\\ref{sec:xnli_baseline}), and the consistent direction across all three models suggests a shared structural property rather than a model-specific artifact (Figure~\\ref{fig:asymmetry_forest}).\n53\t\n54\t\\begin{table}[t]\n55\t\\centering\n56\t\\caption{Single-seed balanced accuracy (\\%) at each direction's optimal layer. $\\Delta_{\\text{asym}}$ and 95\\% CIs from paired bootstrap ($n = 2{,}000$ resamples). Bold: best per-task direction.}\n57\t\\label{tab:main_results}\n58\t\\small\n59\t\\resizebox{\\columnwidth}{!}{%\n60\t\\begin{tabular}{lccc}\n61\t\\toprule\n62\tDirection & Llama-3.1-8B & Qwen3-8B & Gemma-2-9B \\\\\n63\t\\midrule\n64\t\\multicolumn{4}{l}{\\textit{Conflict Task}} \\\\\n65\tEN $\\to$ EN & \\textbf{77.6} & \\textbf{75.0} & \\textbf{76.2} \\\\\n66\tZH $\\to$ ZH & 72.1 & 72.6 & 71.0 \\\\\n67\tEN $\\to$ ZH & 59.6 & 67.3 & 62.9 \\\\\n68\tZH $\\to$ EN & 70.6 & 73.2 & 70.2 \\\\\n69\t$\\Delta_{\\text{asym}}$ & +7.3 [0.4, 14.0] & +7.2 [$-$0.6, 13.7] & +6.6 [1.9, 11.1] \\\\\n70\t\\midrule\n71\t\\multicolumn{4}{l}{\\textit{XNLI Baseline}} \\\\\n72\tEN $\\to$ EN & 94.0 & 96.6 & 95.6 \\\\\n73\tZH $\\to$ ZH & 87.5 & 89.5 & 89.0 \\\\\n74\tEN $\\to$ ZH & 89.0 & 90.5 & 89.4 \\\\\n75\tZH $\\to$ EN & \\textbf{94.9} & \\textbf{97.2} & \\textbf{97.5} \\\\\n76\t$\\Delta_{\\text{asym}}$ & +6.0 [0.9, 11.3] & +6.7 [2.4, 11.7] & +7.8 [5.7, 10.0] \\\\\n77\t\\bottomrule\n78\t\\end{tabular}%\n79\t}\n80\t\\begin{flushleft}\n81\t\\footnotesize Note: $\\Delta_{\\text{asym}}$ is the mean of paired bootstrap differences, not the arithmetic difference of the reported single-seed accuracies.\n82\t\\end{flushleft}\n83\t\\end{table}\n84\t\n85\t\\subsection{Non-Conflict Baseline Comparison}\n86\t\\label{sec:xnli_baseline}\n87\t\n88\tIf the ZH$\\to$EN transfer advantage were specific to knowledge conflicts, it should be absent or substantially reduced in a non-conflict semantic task.\n89\tWe test this prediction using XNLI entailment-versus-contradiction probes.\n90\tAll three models achieve high within-language accuracy on XNLI (Llama 94.0\\% EN, 87.5\\% ZH; Qwen 96.6\\% EN, 89.5\\% ZH; Gemma 95.6\\% EN, 89.0\\% ZH), confirming that the probing pipeline captures semantic distinctions beyond knowledge conflicts.\n91\tThe XNLI probes exhibit the same directional asymmetry: Llama $\\Delta_{\\text{asym}} = +6.0$ pp, CI [0.9, 11.3]; Qwen $\\Delta_{\\text{asym}} = +6.7$ pp, CI [2.4, 11.7]; Gemma $\\Delta_{\\text{asym}} = +7.8$ pp, CI [5.7, 10.0] ($p < 0.001$).\n92\tAll three XNLI CIs exclude zero and overlap substantially with the corresponding conflict-task CIs (Figure~\\ref{fig:asymmetry_forest}).\n93\tThe close match in asymmetry magnitude between conflict probes (Llama +7.3, Qwen +7.2, Gemma +6.6 pp) and XNLI probes (Llama +6.0, Qwen +6.7, Gemma +7.8 pp) indicates that the ZH$\\to$EN transfer advantage is not specific to knowledge conflict representations.\n94\tInstead, it reflects a general cross-lingual property: Chinese-trained probes transfer to English more readily than the reverse, regardless of the downstream task.\n95\t\n96\t%% Figure 3: Asymmetry forest plot\n97\t\\begin{figure}[t]\n98\t\\centering\n99\t\\includegraphics[width=\\columnwidth]{fig3_asymmetry_forest.pdf}\n100\t\\caption{Transfer asymmetry ($\\Delta_{\\text{asym}}$) with bootstrap 95\\% CIs ($n = 2{,}000$) for conflict and XNLI tasks across all three architectures (six data points). Conflict and XNLI CIs overlap substantially within each model, indicating that the ZH$\\to$EN advantage is a general cross-lingual property rather than conflict-specific. Grey band: $\\pm$2~pp equivalence zone.}\n101\t\\label{fig:asymmetry_forest}\n102\t\\end{figure}\n103\t\n104\t\\subsection{Confound Exclusion}\n105\t\\label{sec:confounds}\n106\t\n107\tTwo potential confounds could inflate cross-lingual probe accuracy: translation quality and lexical overlap between English and Chinese inputs.\n108\t\n109\t\\paragraph{Translation quality.}\n110\tWe stratify test samples by COMET score into terciles (high, medium, low) and compare EN$\\to$ZH probe accuracy across strata.\n111\tIf translation quality drove probe transfer, high-COMET samples would yield higher accuracy.\n112\tTable~\\ref{tab:confound} shows no such pattern: Qwen exhibits a reversed direction ($\\Delta = -5.6$ pp, Fisher $p = 0.695$), and Llama shows a negligible effect ($\\Delta = +1.7$ pp, Fisher $p = 0.761$).\n113\tTranslation quality does not confound the cross-lingual transfer results.\n114\t\n115\t\\paragraph{Token overlap.}\n116\tPer-sample Jaccard similarity between English and Chinese tokenized inputs averages 3--4\\%, consistent with the minimal lexical overlap between the two languages.\n117\tNeither model shows a positive correlation between token overlap and probe accuracy: Qwen yields no significant correlation ($p > 0.4$), and Llama shows a weak negative correlation ($r = -0.15$, $p = 0.012$), where higher overlap is associated with \\emph{lower} accuracy.\n118\tShared tokens do not drive cross-lingual transfer.\n119\t\n120\t\\begin{table}[t]\n121\t\\centering\n122\t\\caption{Confound exclusion analysis. COMET tercile: $\\Delta$ = balanced accuracy difference between high and low COMET score terciles for EN$\\to$ZH probes (Fisher's exact test). Token overlap: Pearson correlation between per-sample Jaccard similarity and EN$\\to$ZH probe accuracy.}\n123\t\\label{tab:confound}\n124\t\\begin{tabular}{llrl}\n125\t\\toprule\n126\tConfound & Model & Result & $p$ \\\\\n127\t\\midrule\n128\tCOMET tercile & Qwen & $\\Delta = -5.6$ pp & 0.695 \\\\\n129\tCOMET tercile & Llama & $\\Delta = +1.7$ pp & 0.761 \\\\\n130\t\\midrule\n131\tToken overlap & Qwen & n.s. & $>$0.4 \\\\\n132\tToken overlap & Llama & $r = -0.15$ & 0.012 \\\\\n133\t\\bottomrule\n134\t\\end{tabular}\n135\t\\end{table}\n136\t\n137\t\\subsection{Causal Evidence via Representation Steering}\n138\t\\label{sec:steering}\n139\t\n140\tThe probing results establish that conflict signals are detectable, but detection does not imply causal relevance.\n141\tWe test whether the probe weight direction $\\mathbf{w}_{\\text{probe}}$ causally influences conflict resolution by injecting $\\alpha \\cdot \\mathbf{w}_{\\text{probe}}$ into the last-token residual stream at a target layer during inference.\n142\tWe measure the flip rate (fraction of samples that switch answer category) and compare against a random-direction control of equal magnitude via Fisher's exact test.\n143\t\n144\t\\paragraph{L13 (mid-layer, 41\\% depth).}\n145\tSteering at layer 13 produces bidirectional causal effects (Table~\\ref{tab:steering}).\n146\tPositive steering ($\\alpha = +5$) yields a flip rate of 19.9\\% versus 6.6\\% for the random control (Fisher $p = 0.002$; 4 p$\\to$c flips), while negative steering ($\\alpha = -20$) yields 36.0\\% versus 17.6\\% ($p < 0.001$; 5 c$\\to$p flips); both survive Bonferroni correction.\n147\tAll-position injection at L13 produces identical results, confirming that the causal signal is concentrated at the final token.\n148\t\n149\t\\paragraph{Negative layers and coherence collapse.}\n150\tSteering at L28 (probe peak, 88\\% depth) produces no significant effect with either last-token or all-position injection (all $p > 0.3$); L18 (MLP peak, 56\\%) is similarly negative ($p > 0.44$).\n151\tAt extreme magnitude ($\\alpha = +20$), the control flip rate exceeds steering ($p = 0.053$), indicating coherence collapse.\n152\t\n153\t\\paragraph{Detection $\\neq$ Decision.}\n154\tThe detectable conflict signal peaks at L28 (88\\% depth), but causal influence is localized to L13 (41\\% depth): late layers encode the outcome in a linearly readable form, while mid-layers host the computation that determines it.\n155\t\n156\t\\paragraph{Cross-model steering.}\n157\tQwen steering at L14 (39\\%) and L23 (64\\%) produced no significant effect (best $p = 0.682$), but was underpowered (9.5\\% parametric baseline, $n = 8$).\n158\tGemma-2-9B-IT L17 (40\\% depth) provides a stronger test: with adequate power (16.5\\% parametric, $n = 26$) and 75.3\\% probe accuracy, steering produced no significant change at any $\\alpha$ (best $p = 0.104$) and zero directional flips ($n_{\\text{test}} = 158$).\n159\tGemma's high ``neither'' baseline (34.8\\% of test samples produced answers matching neither the parametric nor contextual option, versus 20.6\\% for Llama) reduces the observable flip space, but does not explain the null result: the parametric and contextual classes remain large enough ($n = 26$ and $n = 45$) for directional shifts to be detectable.\n160\tA second Gemma layer (L21, 50\\% depth; probe accuracy 76.3\\%) also yielded no significant effect ($p \\geq 0.623$).\n161\tThis informative negative establishes that causal influence of the probe direction is architecture-specific.\n162\t\n163\t\\begin{table}[t]\n164\t\\centering\n165\t\\caption{Representation steering results. Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Significant results ($p < 0.05$) in bold.$^{\\dagger}$}\n166\t\\label{tab:steering}\n167\t\\small\n168\t\\resizebox{\\columnwidth}{!}{%\n169\t\\begin{tabular}{lcrrrrl}\n170\t\\toprule\n171\tLayer & Depth & $\\alpha$ & Steer (\\%) & Ctrl (\\%) & Fisher $p$ & Dir. \\\\\n172\t\\midrule\n173\t\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{+5}$ & \\textbf{19.9} & \\textbf{6.6} & $\\mathbf{0.002}$ & \\textbf{4 p$\\to$c} \\\\\n174\t\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{-20}$ & \\textbf{36.0} & \\textbf{17.6} & $\\mathbf{<0.001}$ & \\textbf{5 c$\\to$p} \\\\\n175\tL18 & 56\\% & $+2$ & 3.7 & 1.5 & 0.447 & \\\\\n176\tL28 & 88\\% & $-20$ & 14.7 & 16.9 & 0.740 & \\\\\n177\tL28 (all) & 88\\% & $-20$ & 11.8 & 11.8 & 1.000 & \\\\\n178\t\\midrule\n179\t\\multicolumn{7}{l}{\\textit{Qwen3-8B ($n_{\\text{test}} = 84$; 9.5\\% param.\\ baseline)}} \\\\\n180\tL14 & 39\\% & $-10$ & \\multicolumn{2}{c}{n.s.} & 0.682 & 0 dir. \\\\\n181\tL23 & 64\\% & best & \\multicolumn{2}{c}{n.s.} & 1.000 & 0 dir. \\\\\n182\t\\midrule\n183\t\\multicolumn{7}{l}{\\textit{Gemma-2-9B-IT ($n_{\\text{test}} = 158$; 16.5\\% param.\\ baseline)}} \\\\\n184\tL17 & 40\\% & $-20$ & 1.3 & 5.1 & 0.104 & 0 dir. \\\\\n185\tL21 & 50\\% & best & \\multicolumn{2}{c}{n.s.} & $\\geq$0.623 & 0 dir. \\\\\n186\t\\bottomrule\n187\t\\end{tabular}%\n188\t}\n189\t\\begin{flushleft}\n190\t\\footnotesize $^{\\dagger}$ At $\\alpha = +20$, the control flip rate exceeds steering ($p = 0.053$), indicating coherence collapse at extreme perturbation magnitudes.\n191\t\\end{flushleft}\n192\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df4c62db-2918-4ba5-b93f-67cd83c3831e",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "3f2d1d4d-4422-4b55-9c86-0ee661957c7a",
+            "sourceToolAssistantUUID": "df4c62db-2918-4ba5-b93f-67cd83c3831e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T21:17:51.911Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qo26FxAhvHBEBSqHtErEx9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f2d1d4d-4422-4b55-9c86-0ee661957c7a",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMqBLDUrEPjcHSTSHd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d5e2e29e-1de4-4c2e-bed3-5212f9f2f7e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0161pBrufis3LuQ4mTZcKqtt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1585,
+                "cache_read_input_tokens": 18827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1585,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T21:17:51.918Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qo26FxAhvHBEBSqHtErEx9",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Detection and decision occur at different layers.}\n5\tOur central mechanistic finding is a dissociation between where conflict signals become linearly readable and where they exert causal influence on model behavior.\n6\tIn Llama, probe accuracy on EN$\\to$EN peaks at layer~28 (88\\% depth), yet representation steering succeeds only at layer~13 (41\\% depth; Fisher $p = 0.002$), and all late-layer interventions produce no significant behavioral change ($p > 0.3$).\n7\tThis dissociation has a cross-lingual counterpart: the Llama ZH$\\to$ZH probe peaks at L13, the same layer where steering succeeds.\n8\tMid-layers thus serve a dual role as the site of cross-lingual alignment \\citep{muller2021first, wendler2024llamas} and the locus where conflict signals acquire causal force.\n9\tThe EN$\\to$EN peak at L28 is best understood as a diagnostic readout, a linearly readable trace of a decision that has already been made upstream.\n10\tA practical implication follows: the probe peak layer is not the causal layer, and intervention experiments that target only the highest-accuracy layer risk missing the computationally relevant site.\n11\tCross-layer sweeps, as conducted here, are necessary to locate the true decision point.\n12\tSteering failed in both Qwen (L14, L23) and Gemma (L17).\n13\tThe Qwen p$\\to$c direction was underpowered (9.5\\% parametric baseline, $n = 8$), but the c$\\to$p direction had adequate power ($n = 76$ non-parametric samples) and also yielded zero directional flips; the Gemma L17 test had adequate power in both directions (16.5\\% parametric, $n = 26$; 28.5\\% contextual, $n = 45$) and 75.3\\% probe accuracy at the same relative depth (40\\%) yet produced zero directional flips.\n14\tThis informative negative establishes that the causal influence of the probe direction is architecture-specific, not a general property of mid-layer computation.\n15\t\n16\t\\paragraph{Conflict signals are encoded in a general cross-lingual space.}\n17\tThe ZH$\\to$EN transfer advantage is consistent across all three architectures ($+7.3$, $+7.2$, and $+6.6$~pp for Llama, Qwen, and Gemma respectively), and the XNLI baseline comparison ($+6.0$, $+6.7$, and $+7.8$~pp) closely matches the conflict task asymmetry across all three models.\n18\tThe asymmetry is therefore not conflict-specific; conflict detection piggybacks on the model's pre-existing cross-lingual alignment structure.\n19\tThis interpretation connects to the linguistic affinity effects reported by \\citet{zhao2026when}: the CLEAR benchmark found that conflict resolution preferences vary by language pair, a pattern that may inherit from the quality of underlying representational alignment documented by \\citet{kargaran2024mexa} and \\citet{wendler2024llamas}.\n20\tAny cross-lingual probing study must account for this baseline asymmetry before attributing transfer differences to task-specific phenomena.\n21\t\n22\t\\paragraph{Direct evidence for a shared cross-lingual subspace.}\n23\tThe matching asymmetry magnitudes between conflict and XNLI tasks provide indirect evidence for a shared subspace; we test this directly via cross-task language probe transfer.\n24\tA language identity probe (EN vs.\\ ZH) trained on conflict task activations and evaluated on XNLI activations achieves $\\geq 0.96$ accuracy at most layers across all three models, with the reverse direction (XNLI$\\to$conflict) reaching $\\geq 0.98$, confirming that both tasks encode language identity in a common representational subspace.\n25\tAt Llama L13---the layer where steering succeeds---conflict$\\to$XNLI transfer is 0.998 [0.993, 1.000].\n26\tIn Gemma, however, mid-layer transfer accuracy is reduced but not absent at layers 20--22, reaching a minimum of 0.730 [0.653, 0.828] at L21---still well above chance (0.5) but notably lower than surrounding layers.\n27\tThis dip coincides with steering-negative layer L21 but notably does not extend to L17, where cross-task transfer remains near-perfect (0.994) despite steering failure---suggesting that cross-lingual subspace disruption is not the sole factor behind negative steering outcomes.\n28\t\n29\t\\paragraph{Typological distance and asymmetry magnitude.}\n30\tThe near-zero asymmetry for EN-DE ($\\Delta = +1.2$~pp, CI [$-4.8$, $+8.1$], n.s.) contrasts with the consistent $+$6--8~pp for EN-ZH across all three models, consistent with the hypothesis that asymmetry magnitude reflects the degree of representational alignment between the source and target languages.\n31\tWith only two language pairs, we report this as an observation rather than a tested claim.\n32\tNotably, EN-DE token overlap (per-sample Jaccard 14.8\\%) is approximately $4\\times$ higher than EN-ZH (3.8\\%), yet the EN$\\leftrightarrow$DE transfer is near-symmetric, further ruling out shared tokens as a driver of the observed EN-ZH asymmetry.\n33\t\n34\t\\paragraph{Relation to interpretability without actionability.}\n35\t\\citet{basu2026interpretability} reported that steering failed in clinical NLP tasks despite near-perfect probe accuracy (98.2\\% AUROC).\n36\tOur results present a partial contrast: mid-layer steering in knowledge conflict tasks succeeds with a weaker probe signal.\n37\tA key difference is layer selection.\n38\t\\citeauthor{basu2026interpretability} evaluated steering at layers selected for probe accuracy; our analysis shows that the layer with highest probe accuracy (L28) also fails to steer, and causal influence is found only at L13.\n39\tTask characteristics may also contribute: knowledge conflict resolution involves a discrete choice between two competing answer sources, which may concentrate causal structure at a single computational stage.\n40\tWe frame this as a difference in causal influence rather than full causal control, since steering shifts resolution probabilities without fully determining the outcome.\n41\t\n42\t\\paragraph{A suggestive MLP trend.}\n43\tMLP sublayer probes for EN$\\to$ZH show positive conflict-task gains (Qwen $+3.84$~pp, Llama $+5.21$~pp) while the XNLI baseline yields negative or zero gains, but bootstrap CIs include zero---a suggestive trend awaiting confirmation.\n44\t\n45\t\\paragraph{Scope and forward look.}\n46\tOur analysis covers one language pair (EN-ZH), three architectures for steering, and confirmed causal effects in Llama only (see \\S\\ref{sec:limitations}).\n47\tFuture work should explore diverse language pairs and alternative steering methods that may capture non-linear causal structure missed by single-direction perturbation.\n48\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5e2e29e-1de4-4c2e-bed3-5212f9f2f7e2",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "de4b0ba7-e731-4f7c-8828-2dc212e16d61",
+            "sourceToolAssistantUUID": "d5e2e29e-1de4-4c2e-bed3-5212f9f2f7e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T21:17:52.167Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Li3NVxAeob1QkrLyTmCxo3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de4b0ba7-e731-4f7c-8828-2dc212e16d61",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCMqBLDUrEPjcHSTSHd",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f121a8dd-6cc2-48ba-83d5-9ba868f02302",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0161pBrufis3LuQ4mTZcKqtt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1585,
+                "cache_read_input_tokens": 18827,
+                "output_tokens": 396,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1585
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 396,
+                    "cache_read_input_tokens": 18827,
+                    "cache_creation_input_tokens": 1585,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1585,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T21:17:52.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Li3NVxAeob1QkrLyTmCxo3",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur study has three main limitations.\n5\tFirst, we evaluate only one language pair (English-Chinese).\n6\tWhile the consistent patterns across three architecturally distinct models are encouraging, typologically diverse language pairs (e.g., English-German, English-Japanese) are needed to assess the generality of our findings.\n7\tSecond, causal steering succeeded only in Llama at L13.\n8\tGemma L17 steering failed despite adequate statistical power (16.5\\% parametric baseline, $n = 26$) and comparable probe accuracy (75.3\\%), constituting an informative negative that confirms the architecture-specificity of the effect.\n9\tQwen L14/L23 steering was additionally negative; the p$\\to$c direction was underpowered (9.5\\% parametric baseline, $n = 8$), leaving it uninformative, but the c$\\to$p direction had adequate power ($n = 76$ non-parametric samples) and also yielded zero directional flips.\n10\tThird, the effective dataset size (966 to 1,590 samples per model after parametric knowledge verification) is constrained by the requirement that each model must correctly answer the question without context.\n11\tThis verification step is necessary to ensure genuine knowledge conflicts, but it limits the statistical power of our analyses, particularly for stratified comparisons such as the COMET tercile ablation.\n12\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f121a8dd-6cc2-48ba-83d5-9ba868f02302",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "594f45bc-c0cc-4e65-bdc4-d1dcff44e485",
+            "sourceToolAssistantUUID": "f121a8dd-6cc2-48ba-83d5-9ba868f02302",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T21:17:54.186Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the main.tex file to see how these sections are organized, and also search for any mention of German/DE results to verify what the current paper contains:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "594f45bc-c0cc-4e65-bdc4-d1dcff44e485",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCN1wycNBX3AyFAZGx8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "09dee410-5441-4846-bace-1916551a71c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Jd5dbUohZy4an9WcVC6oNZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9577,
+                "cache_read_input_tokens": 20412,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9577,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T21:17:55.050Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DJBztRdw6dy8K1GMMD3uv6",
+              "name": "Grep",
+              "input": {
+                "pattern": "EN.*DE|DE.*EN|German|english-german|en-de|english-\\s*german",
+                "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09dee410-5441-4846-bace-1916551a71c8",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCN1wycNBX3AyFAZGx8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "29b5e850-1882-4e40-9784-6792cba57f1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Jd5dbUohZy4an9WcVC6oNZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9577,
+                "cache_read_input_tokens": 20412,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9577,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T21:17:55.090Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DJBztRdw6dy8K1GMMD3uv6",
+              "type": "tool_result",
+              "content": "Found 5 files\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/discussion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29b5e850-1882-4e40-9784-6792cba57f1c",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "2d0d78bd-47ac-4ec7-8754-ab1ebbdd9e06",
+            "sourceToolAssistantUUID": "29b5e850-1882-4e40-9784-6792cba57f1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T21:17:55.264Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bawxg79EM48o3vdHbwz7nx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d0d78bd-47ac-4ec7-8754-ab1ebbdd9e06",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCN1wycNBX3AyFAZGx8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d19c9764-9fce-4904-be3d-2ca3ad49864c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Jd5dbUohZy4an9WcVC6oNZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 9577,
+                "cache_read_input_tokens": 20412,
+                "output_tokens": 225,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9577
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 225,
+                    "cache_read_input_tokens": 20412,
+                    "cache_creation_input_tokens": 9577,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9577,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T21:17:55.270Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bawxg79EM48o3vdHbwz7nx",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{multirow}\n15\t\\usepackage{xcolor}\n16\t\\usepackage{subcaption}\n17\t\n18\t\\title{Cross-Lingual Knowledge Conflict Signals Inherit Directional Asymmetries from General Multilingual Representations}\n19\t\n20\t\\author{Anonymous ACL submission}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\begin{abstract}\n26\t\\input{abstract}\n27\t\\end{abstract}\n28\t\n29\t\\input{introduction}\n30\t\n31\t\\input{related_work}\n32\t\n33\t\\input{method}\n34\t\n35\t\\input{experiments}\n36\t\n37\t\\input{discussion}\n38\t\n39\t\\input{conclusion}\n40\t\n41\t\\input{limitations}\n42\t\n43\t\\appendix\n44\t\n45\t\\section{Use of AI Assistants}\n46\t\\label{app:ai-assistants}\n47\t\n48\tWe used Claude (Anthropic) as an AI coding and writing assistant\n49\tthroughout this work. Specifically:\n50\t\\begin{itemize}\n51\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n52\t    pipelines, and analysis utilities; debugging and refactoring.\n53\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n54\t    polishing prose, and reformatting \\LaTeX{}.\n55\t    \\item \\textbf{Literature:} summarizing related papers to inform\n56\t    related-work section.\n57\t\\end{itemize}\n58\t\n59\t\\bibliography{references}\n60\t\n61\t\\end{document}\n62\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d19c9764-9fce-4904-be3d-2ca3ad49864c",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "790bd016-151c-4601-93a9-52b0d6316682",
+            "sourceToolAssistantUUID": "d19c9764-9fce-4904-be3d-2ca3ad49864c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T21:17:56.424Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me also read the method section to understand the complete methodology:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "790bd016-151c-4601-93a9-52b0d6316682",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCNFBTbPKjJ9vwSqFtJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "68234bd8-799e-40a4-9137-a303be26e5c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H9ontoheTyGMqBjW41kLaG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 1032,
+                "cache_read_input_tokens": 29989,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1032
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 29989,
+                    "cache_creation_input_tokens": 1032,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1032,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T21:17:56.499Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KmPECVh3ZP2LKtncf48VkC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68234bd8-799e-40a4-9137-a303be26e5c3",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCNFBTbPKjJ9vwSqFtJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "12972d2d-0e0a-4bf7-a2c1-bb469110b795",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H9ontoheTyGMqBjW41kLaG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 1032,
+                "cache_read_input_tokens": 29989,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1032
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 29989,
+                    "cache_creation_input_tokens": 1032,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1032,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T21:17:56.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KmPECVh3ZP2LKtncf48VkC",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tOur pipeline proceeds from data construction through probing and steering, formalized below.\n5\t\n6\t\\subsection{Task Formulation}\n7\t\\label{sec:task}\n8\t\n9\tGiven a context passage $c$ and question $q$, the model produces an answer that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (from pre-trained knowledge).\n10\tWhen $c$ contradicts parametric knowledge, the choice constitutes a knowledge conflict.\n11\tWe train a logistic regression probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ on the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at layer $l$ to predict a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$.\n12\t\n13\t\\subsection{Data Construction}\n14\t\\label{sec:data}\n15\t\n16\tWe build on ConflictQA \\citep{xie2024adaptive}, which pairs questions with context passages contradicting the model's parametric knowledge.\n17\tWe filter samples by querying each model without context and retaining only those answered correctly, yielding 1{,}368 samples for Llama \\citep{grattafiori2024llama}, 966 for Qwen \\citep{yang2024qwen25}, and 1{,}590 for Gemma \\citep{team2024gemma} (80/20 train/test split with stratification).\n18\tFor cross-lingual transfer, we translate all inputs into Chinese using a Qwen3-8B pipeline, with quality validated by COMET \\citep{rei2020comet} back-translation scores used in confound analysis (\\S\\ref{sec:confound_method}).\n19\t\n20\t\\subsection{Activation Extraction and Probing}\n21\t\\label{sec:extraction}\n22\t\n23\tFor each input, we construct English and Chinese versions and extract the last-token residual stream $\\mathbf{h}_l \\in \\mathbb{R}^d$ at every layer $l$ ($L = 32$ for Llama, $36$ for Qwen, $42$ for Gemma; $d = 4096$ for Llama/Qwen, $3584$ for Gemma), following the last-token aggregation principle \\citep{belinkov2022probing}.\n24\tWe record the model's answer and assign binary labels (contextual vs.\\ parametric).\n25\t\n26\t\\label{sec:probing}\n27\tAt each layer, we train an $L_2$-regularized logistic regression probe \\citep{belinkov2022probing, hewitt2019designing} and evaluate with balanced accuracy.\n28\tWe report peak-layer accuracy (maximum across layers) as the primary metric.\n29\tConfidence intervals are estimated via bootstrap resampling ($n = 2{,}000$) \\citep{ulmer2022deep}.\n30\t\n31\t\\subsection{Cross-Lingual Transfer Protocol}\n32\t\\label{sec:transfer}\n33\t\n34\tWe evaluate probes in four directions: EN$\\to$EN, ZH$\\to$ZH (within-language upper bounds), EN$\\to$ZH, and ZH$\\to$EN (cross-lingual transfer).\n35\tWe quantify directional asymmetry as $\\Delta_{\\text{asym}} = \\text{acc}(\\text{ZH}{\\to}\\text{EN}) - \\text{acc}(\\text{EN}{\\to}\\text{ZH})$, computed via paired bootstrap (same resampled indices for both directions).\n36\t\n37\t\\subsection{Confound Exclusion}\n38\t\\label{sec:confound_method}\n39\t\n40\tWe exclude two artifacts: (1)~\\emph{translation quality}---we stratify test samples by COMET score into terciles and compare probe accuracy (Fisher's exact test); (2)~\\emph{token overlap}---we compute per-sample Jaccard similarity between English and Chinese token sets and test for correlation with accuracy (Pearson's $r$).\n41\tAs a \\emph{non-conflict baseline}, we apply the same pipeline to XNLI entailment-versus-contradiction \\citep{conneau2018xnli}; if $\\Delta_{\\text{asym}} > 0$ also appears there, the asymmetry reflects a general cross-lingual property.\n42\t\n43\t\\subsection{Representation Steering}\n44\t\\label{sec:steering_method}\n45\t\n46\tTo test whether the probe direction is causally relevant \\citep{hewitt2019designing}, we inject $\\alpha \\cdot \\mathbf{w}_{\\text{probe}}$ into the last-token residual stream at layer $l$ during inference \\citep{li2023iti, zou2023representation}:\n47\t$\\mathbf{h}'_l = \\mathbf{h}_l + \\alpha \\cdot \\mathbf{w}_{\\text{probe}}$,\n48\twhere positive $\\alpha$ pushes toward the contextual direction and negative toward the parametric.\n49\tAs control, we inject a random vector of equal norm.\n50\tWe measure the flip rate (fraction of samples switching answer category) and compare via Fisher's exact test with Bonferroni correction applied per model as an independent family; for Llama, $k = 10$ $\\alpha$ values tested at L13 (the layer showing causal effects) yield a corrected threshold of $0.05/10 = 0.005$.\n51\tFor last-token injection, we sweep $\\alpha \\in \\{\\pm 20, \\pm 10, \\pm 5, \\pm 2, \\pm 1\\}$ ($k = 10$) at three Llama layers (L13, L18, L28) spanning 41--88\\% depth; all-position and cross-model experiments use a reduced 6-value grid ($\\alpha \\in \\{\\pm 20, \\pm 10, \\pm 5\\}$).\n52\tSteering evaluation uses only the conflict-condition subset of the English test data, yielding $n_{\\text{test}}$ smaller than the full probe test set (e.g., 136 vs.\\ 272 for Llama)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12972d2d-0e0a-4bf7-a2c1-bb469110b795",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "e6fd881b-1ff6-4427-852e-8f1d6df81e22",
+            "sourceToolAssistantUUID": "12972d2d-0e0a-4bf7-a2c1-bb469110b795",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T21:17:57.894Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now let me check the exact location of the EN-DE result mentioned in the discussion to get the full context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6fd881b-1ff6-4427-852e-8f1d6df81e22",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCNLPk2t4ow2djZiZ97",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "831e72f1-0053-470c-b427-5d4d27a031a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NpS51ZWqEcy2Q9sUwNje79",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1684,
+                "cache_read_input_tokens": 31021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1684,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T21:17:58.918Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016rjggCyn7Pyk2ttKJJ5t8g",
+              "name": "Grep",
+              "input": {
+                "pattern": "near-zero|EN-DE|1\\.2",
+                "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/discussion.tex",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "831e72f1-0053-470c-b427-5d4d27a031a5",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCNLPk2t4ow2djZiZ97",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4f2a7474-ffda-479c-8ace-348dd5b1427d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NpS51ZWqEcy2Q9sUwNje79",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1684,
+                "cache_read_input_tokens": 31021,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1684
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 31021,
+                    "cache_creation_input_tokens": 1684,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1684,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T21:17:58.939Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016rjggCyn7Pyk2ttKJJ5t8g",
+              "type": "tool_result",
+              "content": "27-This dip coincides with steering-negative layer L21 but notably does not extend to L17, where cross-task transfer remains near-perfect (0.994) despite steering failure---suggesting that cross-lingual subspace disruption is not the sole factor behind negative steering outcomes.\n28-\n29-\\paragraph{Typological distance and asymmetry magnitude.}\n30:The near-zero asymmetry for EN-DE ($\\Delta = +1.2$~pp, CI [$-4.8$, $+8.1$], n.s.) contrasts with the consistent $+$6--8~pp for EN-ZH across all three models, consistent with the hypothesis that asymmetry magnitude reflects the degree of representational alignment between the source and target languages.\n31-With only two language pairs, we report this as an observation rather than a tested claim.\n32:Notably, EN-DE token overlap (per-sample Jaccard 14.8\\%) is approximately $4\\times$ higher than EN-ZH (3.8\\%), yet the EN$\\leftrightarrow$DE transfer is near-symmetric, further ruling out shared tokens as a driver of the observed EN-ZH asymmetry.\n33-\n34-\\paragraph{Relation to interpretability without actionability.}\n35-\\citet{basu2026interpretability} reported that steering failed in clinical NLP tasks despite near-perfect probe accuracy (98.2\\% AUROC)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f2a7474-ffda-479c-8ace-348dd5b1427d",
+            "isSidechain": true,
+            "promptId": "24af2116-26a8-4ad8-8f9a-3e42600cacf7",
+            "agentId": "aaf1b6ed15acad458",
+            "type": "user",
+            "uuid": "f79a6437-fdca-4f8c-9a6d-5743923597f8",
+            "sourceToolAssistantUUID": "4f2a7474-ffda-479c-8ace-348dd5b1427d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T21:18:11.355Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a comprehensive view of the paper. Let me compile my findings:\n\n## Summary of Paper Content Analysis\n\nI've read the current LaTeX files for the clkc_mech_interp paper. Here are my findings across the key sections you requested:\n\n### 1. **Abstract and Introduction - Claims about Cross-Lingual Properties**\n\nThe paper makes explicit claims about \"general cross-lingual properties\":\n- **Abstract** (line 3): States the asymmetry \"inherits from the model's general multilingual structure rather than conflict-specific encoding\"\n- **Introduction** (lines 23-26): Directly states: \"This asymmetry, however, is not conflict-specific... The conflict asymmetry thus inherits from a general property of English-dominant models\"\n\nThe asymmetry being discussed is directional: Chinese→English probes transfer ~7 percentage points more accurately than English→Chinese across all three models tested.\n\n### 2. **Experiments/Results Section - Language Coverage**\n\n**Current language pairs in the paper:**\n- **Primary**: English-Chinese (EN-ZH) - extensively evaluated\n- **Secondary**: English-German (EN-DE) - mentioned ONLY in the Discussion section\n\n**German/DE Results Location:**\nThe only mention of German results is in the Discussion section, \"Typological distance and asymmetry magnitude\" subsection:\n- EN-DE shows near-zero asymmetry: Δ = +1.2 pp, CI [-4.8, +8.1], not significant\n- This is presented as an **observation rather than a tested claim** (\"With only two language pairs, we report this as an observation\")\n- NO German results appear in any tables or main experiments\n- No German results in the experiments section itself\n\n**What's actually in the tables:**\n- Table 1 (tab:main_results): Shows ConflictQA task results for Llama-3.1-8B, Qwen3-8B, and Gemma-2-9B across EN↔EN, ZH↔ZH, EN↔ZH, ZH↔EN\n- Table 1 also includes XNLI baseline for the same language pairs\n- Table 2 (tab:confound): Confound exclusion analysis (COMET terciles, token overlap) - EN-ZH only\n- Table 3 (tab:steering): Representation steering results - primarily Llama L13, with some Qwen and Gemma layers\n\n### 3. **Discussion Section - Limitations and Steering Discussion**\n\nKey limitations explicitly stated in the Discussion:\n- **Line 29-33**: The EN-DE result is introduced as a \"typological distance\" observation that is under-powered (\"With only two language pairs\")\n- **Steering architecture-specificity** (lines 12-14): Causal effects (steering) succeeded only in Llama at L13; failed in both Qwen and Gemma despite adequate power\n- **Cross-task language probe** (lines 22-27): Discussion of whether language identity encodes in a shared subspace - finds near-perfect transfer for conflict↔XNLI except a dip at Gemma L21\n\n### 4. **Limitations Section - Formal Statement**\n\nThree main limitations explicitly documented:\n1. **Single language pair**: \"We evaluate only one language pair (English-Chinese)\" - describes EN-ZH as the primary study\n2. **Steering architecture-specificity**: Causal effects only confirmed in Llama; failures in Qwen (underpowered p→c direction) and Gemma (adequate power, zero flips)\n3. **Dataset size constraints**: 966-1,590 samples per model limit statistical power for stratified comparisons\n\n### Key Finding for Reviewers\n\n**The EN-DE result is parenthetical, not central to the paper's claims:**\n- It appears only in Discussion (not Experiments)\n- Authors explicitly label it as an \"observation rather than a tested claim\"\n- It's not in any main table\n- The paper's core evidence is EN-ZH only\n- This actually strengthens the paper's caution about generalization - they acknowledge the limitation directly\n\nThe paper's main contribution about asymmetry inheriting from \"general cross-lingual structure\" is supported primarily by the EN-ZH→XNLI baseline comparison, which shows matching asymmetry patterns across tasks, rather than cross-linguistic evidence."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f79a6437-fdca-4f8c-9a6d-5743923597f8",
+            "isSidechain": true,
+            "agentId": "aaf1b6ed15acad458",
+            "requestId": "req_011CbLCNWqntBejUW3HFjLob",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d9dee210-83b4-42a7-990b-aeff5106b870",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+            "sessionId": "cade2b8d-6973-474b-bb66-65fbfa4ea818",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MPLMP4UXFdQCb6w9w7xo4T",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 521,
+                "cache_read_input_tokens": 32705,
+                "output_tokens": 1002,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 521
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1002,
+                    "cache_read_input_tokens": 32705,
+                    "cache_creation_input_tokens": 521,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 521,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-read-the-current-paper-latex-files-for-the-clkc-mech-interp-project.md"
+}

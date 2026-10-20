@@ -1,0 +1,1292 @@
+{
+  "schema_version": "1.0",
+  "id": "97a537b66c119776d03f",
+  "project": "clkc_mech_interp--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: clkc_mech_interp ## 运行环境 - 服务器名: westd-41302 - SSH 账户: root（调用 ssh_execute / submit_training_job",
+  "task_key": "201c2127-a685-428e-910f-3aa056f7beac",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/201c2127-a685-428e-910f-3aa056f7beac.jsonl",
+    "occurrence": 1,
+    "bytes": 135667,
+    "sha256": "cd986d61289448feb8402bd0e7d3f327a8ead20b89ce24d91d86721ac41c9065"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:56:50.457Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-22T14:56:50.457Z",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+                "content": "<project_context>\n# 项目: clkc_mech_interp\n\n## 运行环境\n- 服务器名: westd-41302\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/clkc_mech_interp\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务\n撰写论文 Method 章节（\\section{Method}），输出到 `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex`。\n\n## 写作前必读\n1. `Read /home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`\n2. `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n\n## Outline（word budget ~1200 words）\n\n### 3.1 Task Formulation\n- 形式化定义：给定输入 x（包含 context c 和 question q），模型回答 a ∈ {contextual, parametric}\n- 残差流 h_l 是 layer l 的 last-token hidden state\n- 目标：训练 logistic regression probe f_θ(h_l) 预测二分类标签\n\n### 3.2 Data Construction\n- ConflictQA (Xie et al. 2024)：context-parametric knowledge conflict benchmark\n- Parametric knowledge verification：先无 context 测试模型能否正确回答 parametric question，只保留 verified samples\n- Translation：Qwen3-8B pipeline EN→ZH\n- COMET back-translation 质量验证 (Rei et al. 2020)\n- 数据量：Llama 1368 (1096 train / 272 test), Qwen 966 (773 train / 193 test), 80/20 stratified split\n\n### 3.3 Activation Extraction\n- 对每层 l ∈ {0, ..., L-1}，提取 last-token residual stream representation h_l ∈ R^d\n- 4 语言配置：EN context + EN question, ZH context + ZH question, EN context + ZH question (不用), ZH context + EN question (不用)\n- 实际上我们有 EN 和 ZH 两个语言版本，分别收集 activations\n\n### 3.4 Probing Framework\n- Per-layer logistic regression (sklearn LogisticRegression, L2 regularization)\n- Label: contextual (model chose context answer) vs parametric (model chose parametric answer)\n- Balanced accuracy (macro-average of per-class recall)\n- Bootstrap resampling with paired differences for CI estimation\n- Report peak-layer accuracy as the primary metric\n\n### 3.5 Cross-Lingual Transfer Protocol\n- 4 transfer directions: EN→EN, ZH→ZH, EN→ZH, ZH→EN\n- Train on one language's activations, test on the other\n- Asymmetry quantification: Δ_asym = acc(ZH→EN) - acc(EN→ZH)\n- Bootstrap paired differences for asymmetry CI\n\n### 3.6 Confound Exclusion\n- COMET tercile ablation: stratify by translation quality, test if probe transfer correlates\n- Token overlap analysis: per-sample Jaccard similarity between EN and ZH tokenized inputs\n- Non-conflict baseline (XNLI): same pipeline on entailment vs contradiction, to test if asymmetry is conflict-specific\n\n### 3.7 Representation Steering\n- Direction: probe weight vector w_probe (from logistic regression weights at target layer)\n- Intervention: inject α · w_probe into the last-token residual stream at layer l during inference\n  - h'_l = h_l + α · w_probe\n- Control: inject α · w_random (random unit vector, same magnitude)\n- Metric: flip rate = fraction of samples switching answer category (parametric ↔ contextual)\n- Statistical test: Fisher's exact test comparing steering vs control flip rates\n- Tested at 3 layers: L13 (41% depth), L18 (56% depth), L28 (88% depth, probing peak)\n- α sweep: {-20, -10, -5, +2, +5, +10, +20}\n- Bonferroni correction for multiple comparisons\n\n## 符号表（必须在 Method 中定义）\n- h_l: layer-l residual stream representation (last token)\n- f_θ: logistic regression probe\n- w_probe: probe weight vector (steering direction)\n- Δ_asym: transfer asymmetry = acc(ZH→EN) - acc(EN→ZH)\n- α: steering magnitude\n\n## 引用（必须使用 \\citep{} 格式，bib key 如下）\n- ConflictQA: \\citep{xie2024adaptive}\n- COMET: \\citep{rei2020comet}\n- XNLI: \\citep{conneau2018xnli}\n- Llama: \\citep{grattafiori2024llama}\n- Qwen: \\citep{yang2024qwen25}\n- ITI (inference-time intervention): \\citep{li2023iti}\n- RepE: \\citep{zou2023representation}\n- Belinkov probing survey: \\citep{belinkov2022probing}\n- Hewitt control tasks: \\citep{hewitt2019designing}\n- Bootstrap: \\citep{ulmer2022deep}\n\n## 已完成的 Experiments 章节（保持一致性）\nExperiments section 在 `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex`。\n请 Read 此文件以确保 Method 中的符号、术语和实验描述与 Experiments 章节一致。\n\n## 图片引用\n- Fig 1 (pipeline 概念图): \\ref{fig:pipeline}，描述完整方法论闭环\n\n## 写作规范要点\n- 禁止 em-dash（—）和解释性 en-dash（–）\n- 禁止 -ing 短语结尾（如 \"..., highlighting the...\"）\n- 禁止过度分段（5-8 句一段是正常的）\n- 不要 \"Furthermore/Moreover/Additionally\" 连续使用\n- 避免 \"delve into/leverage/utilize/facilitate\"\n- 用 booktabs（\\toprule/\\midrule/\\bottomrule），禁止 \\hline\n- 公式和符号在首次出现时定义\n- 段落之间有逻辑过渡\n\n## 输出\n单个 .tex 文件，只包含 \\section{Method} 到章节结束。不包含 \\documentclass 或 preamble。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:56:50.461Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-22T14:56:50.461Z",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:56:50.523Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: clkc_mech_interp\n\n## 运行环境\n- 服务器名: westd-41302\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/clkc_mech_interp\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务\n撰写论文 Method 章节（\\section{Method}），输出到 `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex`。\n\n## 写作前必读\n1. `Read /home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md`\n2. `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n\n## Outline（word budget ~1200 words）\n\n### 3.1 Task Formulation\n- 形式化定义：给定输入 x（包含 context c 和 question q），模型回答 a ∈ {contextual, parametric}\n- 残差流 h_l 是 layer l 的 last-token hidden state\n- 目标：训练 logistic regression probe f_θ(h_l) 预测二分类标签\n\n### 3.2 Data Construction\n- ConflictQA (Xie et al. 2024)：context-parametric knowledge conflict benchmark\n- Parametric knowledge verification：先无 context 测试模型能否正确回答 parametric question，只保留 verified samples\n- Translation：Qwen3-8B pipeline EN→ZH\n- COMET back-translation 质量验证 (Rei et al. 2020)\n- 数据量：Llama 1368 (1096 train / 272 test), Qwen 966 (773 train / 193 test), 80/20 stratified split\n\n### 3.3 Activation Extraction\n- 对每层 l ∈ {0, ..., L-1}，提取 last-token residual stream representation h_l ∈ R^d\n- 4 语言配置：EN context + EN question, ZH context + ZH question, EN context + ZH question (不用), ZH context + EN question (不用)\n- 实际上我们有 EN 和 ZH 两个语言版本，分别收集 activations\n\n### 3.4 Probing Framework\n- Per-layer logistic regression (sklearn LogisticRegression, L2 regularization)\n- Label: contextual (model chose context answer) vs parametric (model chose parametric answer)\n- Balanced accuracy (macro-average of per-class recall)\n- Bootstrap resampling with paired differences for CI estimation\n- Report peak-layer accuracy as the primary metric\n\n### 3.5 Cross-Lingual Transfer Protocol\n- 4 transfer directions: EN→EN, ZH→ZH, EN→ZH, ZH→EN\n- Train on one language's activations, test on the other\n- Asymmetry quantification: Δ_asym = acc(ZH→EN) - acc(EN→ZH)\n- Bootstrap paired differences for asymmetry CI\n\n### 3.6 Confound Exclusion\n- COMET tercile ablation: stratify by translation quality, test if probe transfer correlates\n- Token overlap analysis: per-sample Jaccard similarity between EN and ZH tokenized inputs\n- Non-conflict baseline (XNLI): same pipeline on entailment vs contradiction, to test if asymmetry is conflict-specific\n\n### 3.7 Representation Steering\n- Direction: probe weight vector w_probe (from logistic regression weights at target layer)\n- Intervention: inject α · w_probe into the last-token residual stream at layer l during inference\n  - h'_l = h_l + α · w_probe\n- Control: inject α · w_random (random unit vector, same magnitude)\n- Metric: flip rate = fraction of samples switching answer category (parametric ↔ contextual)\n- Statistical test: Fisher's exact test comparing steering vs control flip rates\n- Tested at 3 layers: L13 (41% depth), L18 (56% depth), L28 (88% depth, probing peak)\n- α sweep: {-20, -10, -5, +2, +5, +10, +20}\n- Bonferroni correction for multiple comparisons\n\n## 符号表（必须在 Method 中定义）\n- h_l: layer-l residual stream representation (last token)\n- f_θ: logistic regression probe\n- w_probe: probe weight vector (steering direction)\n- Δ_asym: transfer asymmetry = acc(ZH→EN) - acc(EN→ZH)\n- α: steering magnitude\n\n## 引用（必须使用 \\citep{} 格式，bib key 如下）\n- ConflictQA: \\citep{xie2024adaptive}\n- COMET: \\citep{rei2020comet}\n- XNLI: \\citep{conneau2018xnli}\n- Llama: \\citep{grattafiori2024llama}\n- Qwen: \\citep{yang2024qwen25}\n- ITI (inference-time intervention): \\citep{li2023iti}\n- RepE: \\citep{zou2023representation}\n- Belinkov probing survey: \\citep{belinkov2022probing}\n- Hewitt control tasks: \\citep{hewitt2019designing}\n- Bootstrap: \\citep{ulmer2022deep}\n\n## 已完成的 Experiments 章节（保持一致性）\nExperiments section 在 `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex`。\n请 Read 此文件以确保 Method 中的符号、术语和实验描述与 Experiments 章节一致。\n\n## 图片引用\n- Fig 1 (pipeline 概念图): \\ref{fig:pipeline}，描述完整方法论闭环\n\n## 写作规范要点\n- 禁止 em-dash（—）和解释性 en-dash（–）\n- 禁止 -ing 短语结尾（如 \"..., highlighting the...\"）\n- 禁止过度分段（5-8 句一段是正常的）\n- 不要 \"Furthermore/Moreover/Additionally\" 连续使用\n- 避免 \"delve into/leverage/utilize/facilitate\"\n- 用 booktabs（\\toprule/\\midrule/\\bottomrule），禁止 \\hline\n- 公式和符号在首次出现时定义\n- 段落之间有逻辑过渡\n\n## 输出\n单个 .tex 文件，只包含 \\section{Method} 到章节结束。不包含 \\documentclass 或 preamble。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "ebe07a7c-4629-448c-9925-70a2c3bdfcaf",
+            "type": "user",
+            "uuid": "e0aed6ad-b215-450e-8814-f4cb8695e417",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:56:50.522Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e0aed6ad-b215-450e-8814-f4cb8695e417",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "6cb0ad60-dbb4-42fd-9e7f-8d05fd67de30",
+                "timestamp": "2026-05-22T14:56:50.522Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:56:50.522Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6cb0ad60-dbb4-42fd-9e7f-8d05fd67de30",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c2f93280-8f46-4ec7-8e77-040b77693ab4",
+                "timestamp": "2026-05-22T14:56:50.522Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:56:50.522Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c2f93280-8f46-4ec7-8e77-040b77693ab4",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "b4cb907c-0578-4a8e-8eec-7b7af1eda14c",
+                "timestamp": "2026-05-22T14:56:50.522Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Method section for mechanistic interpretation paper",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:56:54.731Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the required skill files and the experiments section for consistency."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4cb907c-0578-4a8e-8eec-7b7af1eda14c",
+            "isSidechain": false,
+            "requestId": "req_011CbHoVsdTMtMLqT6Cof1dh",
+            "type": "assistant",
+            "uuid": "d8d08018-c251-4e5e-b6d5-5b32a1ad6a3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011fcvZp4SJHVB2rkK1i4uYP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 25271,
+                "output_tokens": 222,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 222,
+                    "cache_read_input_tokens": 25271,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:56:54.957Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Rn85C4u2VeNiTFASqxEac",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8d08018-c251-4e5e-b6d5-5b32a1ad6a3d",
+            "isSidechain": false,
+            "requestId": "req_011CbHoVsdTMtMLqT6Cof1dh",
+            "type": "assistant",
+            "uuid": "25176870-a133-4168-a821-ed6d56b9743c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011fcvZp4SJHVB2rkK1i4uYP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 25271,
+                "output_tokens": 222,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 222,
+                    "cache_read_input_tokens": 25271,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:56:54.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Rn85C4u2VeNiTFASqxEac",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25176870-a133-4168-a821-ed6d56b9743c",
+            "isSidechain": false,
+            "promptId": "ebe07a7c-4629-448c-9925-70a2c3bdfcaf",
+            "type": "user",
+            "uuid": "9ad26285-947d-47fb-b3b0-c2166556ec8e",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            },
+            "sourceToolAssistantUUID": "25176870-a133-4168-a821-ed6d56b9743c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:56:55.926Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FuowMWFMUqHoGqi2Gg5XU2",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Models.}\n8\tWe probe two instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama} and Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2024qwen25}.\n9\t\n10\t\\paragraph{Dataset.}\n11\tWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\n12\tAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test) and 966 samples for Qwen (773 train / 193 test), split 80/20 with stratification.\n13\t\n14\t\\paragraph{Translation.}\n15\tWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET \\citep{rei2020comet} back-translation scores.\n16\t\n17\t\\paragraph{Probing.}\n18\tFor each layer $l$, we train a logistic regression probe on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\n19\tWe report balanced accuracy to account for class imbalance.\n20\tAll confidence intervals (CIs) are computed via bootstrap resampling with paired differences for asymmetry estimation.\n21\t\n22\t\\paragraph{Non-conflict baseline.}\n23\tTo test whether cross-lingual transfer patterns are specific to knowledge conflicts, we run the same probing pipeline on XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\n24\t\n25\t\\subsection{Within-Language Conflict Detection}\n26\t\\label{sec:within_lang}\n27\t\n28\tTable~\\ref{tab:main_results} reports balanced accuracy for all probe transfer directions.\n29\tBoth models encode linearly detectable conflict signals in their residual streams.\n30\tLlama achieves 77.1\\% on EN$\\to$EN (peak at layer 28, 88\\% depth) and 71.2\\% on ZH$\\to$ZH.\n31\tQwen reaches 75.3\\% on EN$\\to$EN (peak at layer 22, 61\\% depth) and 71.6\\% on ZH$\\to$ZH.\n32\tAll within-language accuracies are significantly above chance (binomial $p < 0.001$).\n33\tFigure~\\ref{fig:layer_probe} shows the layer-wise probe accuracy curves for both models.\n34\tThese results confirm that knowledge conflict signals are linearly separable in the residual stream across both architectures and both languages.\n35\t\n36\t\\subsection{Cross-Lingual Transfer and Asymmetry}\n37\t\\label{sec:cross_lingual}\n38\t\n39\tAll four cross-lingual transfer directions achieve balanced accuracy above chance (binomial $p < 0.001$; Table~\\ref{tab:main_results}), confirming that conflict representations partially overlap across languages.\n40\tBoth models show a consistent directional trend: probes trained on Chinese representations transfer to English (ZH$\\to$EN) more accurately than the reverse direction (EN$\\to$ZH).\n41\tFor Llama, $\\Delta_{\\text{asym}} = +7.2$ percentage points (pp) with a 95\\% bootstrap CI of [1.1, 13.6]; for Qwen, $\\Delta_{\\text{asym}} = +7.2$ pp with CI [$-$0.6, 13.7].\n42\tThe magnitude of this asymmetry closely matches the XNLI non-conflict baseline (\\S\\ref{sec:xnli_baseline}), and the consistent direction across architectures suggests a shared structural property rather than a model-specific artifact (Figure~\\ref{fig:asymmetry_forest}).\n43\t\n44\t%% Table 1: Main cross-lingual probe results\n45\t\\begin{table}[t]\n46\t\\centering\n47\t\\caption{Cross-lingual probe balanced accuracy (\\%) with bootstrap 95\\% CIs ($n \\geq 100$). $\\Delta_{\\text{asym}}$ = acc(ZH$\\to$EN) $-$ acc(EN$\\to$ZH), computed as the mean of paired bootstrap differences. Bold: best per-task direction.}\n48\t\\label{tab:main_results}\n49\t\\begin{tabular}{lcc}\n50\t\\toprule\n51\tDirection & Llama-3.1-8B & Qwen3-8B \\\\\n52\t\\midrule\n53\t\\multicolumn{3}{l}{\\textit{Conflict Task}} \\\\\n54\tEN $\\to$ EN & \\textbf{77.1} & \\textbf{75.3} \\\\\n55\tZH $\\to$ ZH & 71.2 & 71.6 \\\\\n56\tEN $\\to$ ZH & 64.1 & 65.0 \\\\\n57\tZH $\\to$ EN & 71.3 & 72.2 \\\\\n58\t$\\Delta_{\\text{asym}}$ & +7.2 [1.1, 13.6] & +7.2 [$-$0.6, 13.7] \\\\\n59\t\\midrule\n60\t\\multicolumn{3}{l}{\\textit{XNLI Baseline}} \\\\\n61\tEN $\\to$ EN & 94.0 & 96.6 \\\\\n62\tZH $\\to$ ZH & 87.5 & 89.5 \\\\\n63\tEN $\\to$ ZH & 89.0 & 90.5 \\\\\n64\tZH $\\to$ EN & \\textbf{94.9} & \\textbf{97.2} \\\\\n65\t$\\Delta_{\\text{asym}}$ & +6.0 [0.9, 11.3] & +6.7 [2.4, 11.7] \\\\\n66\t\\bottomrule\n67\t\\end{tabular}\n68\t\\end{table}\n69\t\n70\t\\subsection{Non-Conflict Baseline Comparison}\n71\t\\label{sec:xnli_baseline}\n72\t\n73\tIf the ZH$\\to$EN transfer advantage were specific to knowledge conflicts, it should be absent or substantially reduced in a non-conflict semantic task.\n74\tWe test this prediction using XNLI entailment-versus-contradiction probes.\n75\tBoth models achieve high within-language accuracy on XNLI (Llama 94.0\\% EN, 87.5\\% ZH; Qwen 96.6\\% EN, 89.5\\% ZH), confirming that the probing pipeline captures semantic distinctions beyond knowledge conflicts.\n76\tThe XNLI probes exhibit the same directional asymmetry: Llama $\\Delta_{\\text{asym}} = +6.0$ pp, CI [0.9, 11.3]; Qwen $\\Delta_{\\text{asym}} = +6.7$ pp, CI [2.4, 11.7].\n77\tBoth XNLI CIs exclude zero, and both overlap substantially with the corresponding conflict-task CIs (Figure~\\ref{fig:asymmetry_forest}).\n78\tThe close match in asymmetry magnitude between conflict probes (Llama +7.2, Qwen +7.2 pp) and XNLI probes (Llama +6.0, Qwen +6.7 pp) indicates that the ZH$\\to$EN transfer advantage is not specific to knowledge conflict representations.\n79\tInstead, it reflects a general cross-lingual property: Chinese-trained probes transfer to English more readily than the reverse, regardless of the downstream task.\n80\t\n81\t\\subsection{Confound Exclusion}\n82\t\\label{sec:confounds}\n83\t\n84\tTwo potential confounds could inflate cross-lingual probe accuracy: translation quality and lexical overlap between English and Chinese inputs.\n85\t\n86\t\\paragraph{Translation quality.}\n87\tWe stratify test samples by COMET score into terciles (high, medium, low) and compare EN$\\to$ZH probe accuracy across strata.\n88\tIf translation quality drove probe transfer, high-COMET samples would yield higher accuracy.\n89\tTable~\\ref{tab:confound} shows no such pattern: Qwen exhibits a reversed direction ($\\Delta = -5.6$ pp, Fisher $p = 0.695$), and Llama shows a negligible effect ($\\Delta = +1.7$ pp, Fisher $p = 0.761$).\n90\tTranslation quality does not confound the cross-lingual transfer results.\n91\t\n92\t\\paragraph{Token overlap.}\n93\tPer-sample Jaccard similarity between English and Chinese tokenized inputs averages 3--4\\%, consistent with the minimal lexical overlap between the two languages.\n94\tNeither model shows a positive correlation between token overlap and probe accuracy: Qwen yields no significant correlation ($p > 0.4$), and Llama shows a weak negative correlation ($r = -0.15$, $p = 0.012$), where higher overlap is associated with \\emph{lower} accuracy.\n95\tShared tokens do not drive cross-lingual transfer.\n96\t\n97\t%% Table 2: Confound exclusion\n98\t\\begin{table}[t]\n99\t\\centering\n100\t\\caption{Confound exclusion analysis. COMET tercile: $\\Delta$ = balanced accuracy difference between high and low COMET score terciles for EN$\\to$ZH probes (Fisher's exact test). Token overlap: Pearson correlation between per-sample Jaccard similarity and EN$\\to$ZH probe accuracy.}\n101\t\\label{tab:confound}\n102\t\\begin{tabular}{llrl}\n103\t\\toprule\n104\tConfound & Model & Result & $p$ \\\\\n105\t\\midrule\n106\tCOMET tercile & Qwen & $\\Delta = -5.6$ pp & 0.695 \\\\\n107\tCOMET tercile & Llama & $\\Delta = +1.7$ pp & 0.761 \\\\\n108\t\\midrule\n109\tToken overlap & Qwen & n.s. & $>$0.4 \\\\\n110\tToken overlap & Llama & $r = -0.15$ & 0.012 \\\\\n111\t\\bottomrule\n112\t\\end{tabular}\n113\t\\end{table}\n114\t\n115\t\\subsection{Causal Evidence via Representation Steering}\n116\t\\label{sec:steering}\n117\t\n118\tThe probing results establish that conflict signals are detectable, but detection does not imply causal relevance.\n119\tWe test whether the probe weight direction $\\mathbf{w}_{\\text{probe}}$ causally influences conflict resolution by injecting $\\alpha \\cdot \\mathbf{w}_{\\text{probe}}$ into the last-token residual stream at a target layer during inference.\n120\tWe measure the flip rate (fraction of samples that switch answer category) and compare against a random-direction control of equal magnitude via Fisher's exact test.\n121\t\n122\t\\paragraph{L13 (mid-layer, 41\\% depth).}\n123\tSteering at layer 13 produces significantly more behavioral change than random controls in both directions (Table~\\ref{tab:steering}).\n124\tPositive steering ($\\alpha = +5$) yields a flip rate of 19.9\\% versus 6.6\\% for the random control (Fisher $p = 0.002$), with all 4 directional flips moving from parametric to contextual answers.\n125\tNegative steering ($\\alpha = -20$) yields 36.0\\% versus 17.6\\% (Fisher $p < 0.001$), with 5 of 6 directional flips moving from contextual to parametric.\n126\tBoth results survive Bonferroni correction for multiple comparisons.\n127\tThe bidirectionality confirms that the probe weight vector encodes a meaningful axis of conflict resolution: positive perturbations push toward contextual answers, and negative perturbations push toward parametric answers.\n128\t\n129\t\\paragraph{Negative layers.}\n130\tSteering at L28 (the probing peak layer, 88\\% depth) produces no significant effect with either last-token or all-position injection (all Fisher $p > 0.3$; Table~\\ref{tab:steering}).\n131\tL18 (the MLP probe peak, 56\\% depth) also shows no causal influence (all Fisher $p > 0.44$).\n132\t\n133\t\\paragraph{$\\alpha = +20$ reversal.}\n134\tAt extreme perturbation magnitude ($\\alpha = +20$), the control condition produces more flips than the steering condition ($p = 0.053$).\n135\tThis indicates coherence collapse at large perturbation magnitudes, constraining the effective steering range.\n136\t\n137\t\\paragraph{Detection $\\neq$ Decision.}\n138\tThe detectable conflict signal peaks at late layers (L28, 88\\% depth), but causal influence on conflict resolution is localized to the mid-layer (L13, 41\\% depth).\n139\tProbing accuracy and causal relevance thus identify different computational stages: late layers encode the outcome of conflict resolution in a linearly readable form, while mid-layers host the computation that determines the outcome.\n140\t\\textbf{[PLACEHOLDER]} Qwen L13 steering results will provide cross-model validation of this dissociation.\n141\t\n142\t%% Table 3: Steering results\n143\t\\begin{table}[t]\n144\t\\centering\n145\t\\caption{Representation steering results (Llama-3.1-8B). Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Significant results ($p < 0.05$) in bold.$^{\\dagger}$}\n146\t\\label{tab:steering}\n147\t\\small\n148\t\\begin{tabular}{lcrrrrl}\n149\t\\toprule\n150\tLayer & Depth & $\\alpha$ & Steer (\\%) & Ctrl (\\%) & Fisher $p$ & Dir. \\\\\n151\t\\midrule\n152\t\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{+5}$ & \\textbf{19.9} & \\textbf{6.6} & $\\mathbf{0.002}$ & \\textbf{4 p$\\to$c} \\\\\n153\t\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{-20}$ & \\textbf{36.0} & \\textbf{17.6} & $\\mathbf{<0.001}$ & \\textbf{5 c$\\to$p} \\\\\n154\tL18 & 56\\% & $+2$ & 3.7 & 1.5 & 0.447 & \\\\\n155\tL28 & 88\\% & $-20$ & 14.7 & 16.9 & 0.740 & \\\\\n156\tL28 (all) & 88\\% & $-20$ & 11.8 & 11.8 & 0.370 & \\\\\n157\t\\midrule\n158\t\\multicolumn{7}{l}{\\textit{Qwen3-8B L13: \\textbf{[PLACEHOLDER]}}} \\\\\n159\t\\bottomrule\n160\t\\end{tabular}\n161\t\\begin{flushleft}\n162\t\\footnotesize $^{\\dagger}$ At $\\alpha = +20$, the control flip rate exceeds steering ($p = 0.053$), indicating coherence collapse at extreme perturbation magnitudes.\n163\t\\end{flushleft}\n164\t\\end{table}\n165\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d4f08c6-2fe9-4482-a526-3bb35c35ab5d",
+            "isSidechain": false,
+            "promptId": "ebe07a7c-4629-448c-9925-70a2c3bdfcaf",
+            "type": "user",
+            "uuid": "81883d8d-b161-40e5-a47c-05081eba7e52",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Models.}\nWe probe two instruction-tuned models with comparable parameter counts but distinct architectures: Llama-3.1-8B-Instruct (32 layers, hidden dimension 4096) \\citep{grattafiori2024llama} and Qwen3-8B (36 layers, hidden dimension 4096) \\citep{yang2024qwen25}.\n\n\\paragraph{Dataset.}\nWe use ConflictQA \\citep{xie2024adaptive}, a benchmark of context-parametric knowledge conflicts where a provided context contradicts the model's parametric knowledge.\nAfter verifying that each model can correctly answer the parametric-knowledge question without context, we retain 1{,}368 samples for Llama (1{,}096 train / 272 test) and 966 samples for Qwen (773 train / 193 test), split 80/20 with stratification.\n\n\\paragraph{Translation.}\nWe translate all English contexts and questions into Chinese using a Qwen3-8B translation pipeline (EN$\\to$ZH), with quality validated by COMET \\citep{rei2020comet} back-translation scores.\n\n\\paragraph{Probing.}\nFor each layer $l$, we train a logistic regression probe on the last-token residual stream representation $\\mathbf{h}_l$, with binary labels indicating whether the model chose the contextual or parametric answer.\nWe report balanced accuracy to account for class imbalance.\nAll confidence intervals (CIs) are computed via bootstrap resampling with paired differences for asymmetry estimation.\n\n\\paragraph{Non-conflict baseline.}\nTo test whether cross-lingual transfer patterns are specific to knowledge conflicts, we run the same probing pipeline on XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\n\n\\subsection{Within-Language Conflict Detection}\n\\label{sec:within_lang}\n\nTable~\\ref{tab:main_results} reports balanced accuracy for all probe transfer directions.\nBoth models encode linearly detectable conflict signals in their residual streams.\nLlama achieves 77.1\\% on EN$\\to$EN (peak at layer 28, 88\\% depth) and 71.2\\% on ZH$\\to$ZH.\nQwen reaches 75.3\\% on EN$\\to$EN (peak at layer 22, 61\\% depth) and 71.6\\% on ZH$\\to$ZH.\nAll within-language accuracies are significantly above chance (binomial $p < 0.001$).\nFigure~\\ref{fig:layer_probe} shows the layer-wise probe accuracy curves for both models.\nThese results confirm that knowledge conflict signals are linearly separable in the residual stream across both architectures and both languages.\n\n\\subsection{Cross-Lingual Transfer and Asymmetry}\n\\label{sec:cross_lingual}\n\nAll four cross-lingual transfer directions achieve balanced accuracy above chance (binomial $p < 0.001$; Table~\\ref{tab:main_results}), confirming that conflict representations partially overlap across languages.\nBoth models show a consistent directional trend: probes trained on Chinese representations transfer to English (ZH$\\to$EN) more accurately than the reverse direction (EN$\\to$ZH).\nFor Llama, $\\Delta_{\\text{asym}} = +7.2$ percentage points (pp) with a 95\\% bootstrap CI of [1.1, 13.6]; for Qwen, $\\Delta_{\\text{asym}} = +7.2$ pp with CI [$-$0.6, 13.7].\nThe magnitude of this asymmetry closely matches the XNLI non-conflict baseline (\\S\\ref{sec:xnli_baseline}), and the consistent direction across architectures suggests a shared structural property rather than a model-specific artifact (Figure~\\ref{fig:asymmetry_forest}).\n\n%% Table 1: Main cross-lingual probe results\n\\begin{table}[t]\n\\centering\n\\caption{Cross-lingual probe balanced accuracy (\\%) with bootstrap 95\\% CIs ($n \\geq 100$). $\\Delta_{\\text{asym}}$ = acc(ZH$\\to$EN) $-$ acc(EN$\\to$ZH), computed as the mean of paired bootstrap differences. Bold: best per-task direction.}\n\\label{tab:main_results}\n\\begin{tabular}{lcc}\n\\toprule\nDirection & Llama-3.1-8B & Qwen3-8B \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{Conflict Task}} \\\\\nEN $\\to$ EN & \\textbf{77.1} & \\textbf{75.3} \\\\\nZH $\\to$ ZH & 71.2 & 71.6 \\\\\nEN $\\to$ ZH & 64.1 & 65.0 \\\\\nZH $\\to$ EN & 71.3 & 72.2 \\\\\n$\\Delta_{\\text{asym}}$ & +7.2 [1.1, 13.6] & +7.2 [$-$0.6, 13.7] \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{XNLI Baseline}} \\\\\nEN $\\to$ EN & 94.0 & 96.6 \\\\\nZH $\\to$ ZH & 87.5 & 89.5 \\\\\nEN $\\to$ ZH & 89.0 & 90.5 \\\\\nZH $\\to$ EN & \\textbf{94.9} & \\textbf{97.2} \\\\\n$\\Delta_{\\text{asym}}$ & +6.0 [0.9, 11.3] & +6.7 [2.4, 11.7] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Non-Conflict Baseline Comparison}\n\\label{sec:xnli_baseline}\n\nIf the ZH$\\to$EN transfer advantage were specific to knowledge conflicts, it should be absent or substantially reduced in a non-conflict semantic task.\nWe test this prediction using XNLI entailment-versus-contradiction probes.\nBoth models achieve high within-language accuracy on XNLI (Llama 94.0\\% EN, 87.5\\% ZH; Qwen 96.6\\% EN, 89.5\\% ZH), confirming that the probing pipeline captures semantic distinctions beyond knowledge conflicts.\nThe XNLI probes exhibit the same directional asymmetry: Llama $\\Delta_{\\text{asym}} = +6.0$ pp, CI [0.9, 11.3]; Qwen $\\Delta_{\\text{asym}} = +6.7$ pp, CI [2.4, 11.7].\nBoth XNLI CIs exclude zero, and both overlap substantially with the corresponding conflict-task CIs (Figure~\\ref{fig:asymmetry_forest}).\nThe close match in asymmetry magnitude between conflict probes (Llama +7.2, Qwen +7.2 pp) and XNLI probes (Llama +6.0, Qwen +6.7 pp) indicates that the ZH$\\to$EN transfer advantage is not specific to knowledge conflict representations.\nInstead, it reflects a general cross-lingual property: Chinese-trained probes transfer to English more readily than the reverse, regardless of the downstream task.\n\n\\subsection{Confound Exclusion}\n\\label{sec:confounds}\n\nTwo potential confounds could inflate cross-lingual probe accuracy: translation quality and lexical overlap between English and Chinese inputs.\n\n\\paragraph{Translation quality.}\nWe stratify test samples by COMET score into terciles (high, medium, low) and compare EN$\\to$ZH probe accuracy across strata.\nIf translation quality drove probe transfer, high-COMET samples would yield higher accuracy.\nTable~\\ref{tab:confound} shows no such pattern: Qwen exhibits a reversed direction ($\\Delta = -5.6$ pp, Fisher $p = 0.695$), and Llama shows a negligible effect ($\\Delta = +1.7$ pp, Fisher $p = 0.761$).\nTranslation quality does not confound the cross-lingual transfer results.\n\n\\paragraph{Token overlap.}\nPer-sample Jaccard similarity between English and Chinese tokenized inputs averages 3--4\\%, consistent with the minimal lexical overlap between the two languages.\nNeither model shows a positive correlation between token overlap and probe accuracy: Qwen yields no significant correlation ($p > 0.4$), and Llama shows a weak negative correlation ($r = -0.15$, $p = 0.012$), where higher overlap is associated with \\emph{lower} accuracy.\nShared tokens do not drive cross-lingual transfer.\n\n%% Table 2: Confound exclusion\n\\begin{table}[t]\n\\centering\n\\caption{Confound exclusion analysis. COMET tercile: $\\Delta$ = balanced accuracy difference between high and low COMET score terciles for EN$\\to$ZH probes (Fisher's exact test). Token overlap: Pearson correlation between per-sample Jaccard similarity and EN$\\to$ZH probe accuracy.}\n\\label{tab:confound}\n\\begin{tabular}{llrl}\n\\toprule\nConfound & Model & Result & $p$ \\\\\n\\midrule\nCOMET tercile & Qwen & $\\Delta = -5.6$ pp & 0.695 \\\\\nCOMET tercile & Llama & $\\Delta = +1.7$ pp & 0.761 \\\\\n\\midrule\nToken overlap & Qwen & n.s. & $>$0.4 \\\\\nToken overlap & Llama & $r = -0.15$ & 0.012 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Causal Evidence via Representation Steering}\n\\label{sec:steering}\n\nThe probing results establish that conflict signals are detectable, but detection does not imply causal relevance.\nWe test whether the probe weight direction $\\mathbf{w}_{\\text{probe}}$ causally influences conflict resolution by injecting $\\alpha \\cdot \\mathbf{w}_{\\text{probe}}$ into the last-token residual stream at a target layer during inference.\nWe measure the flip rate (fraction of samples that switch answer category) and compare against a random-direction control of equal magnitude via Fisher's exact test.\n\n\\paragraph{L13 (mid-layer, 41\\% depth).}\nSteering at layer 13 produces significantly more behavioral change than random controls in both directions (Table~\\ref{tab:steering}).\nPositive steering ($\\alpha = +5$) yields a flip rate of 19.9\\% versus 6.6\\% for the random control (Fisher $p = 0.002$), with all 4 directional flips moving from parametric to contextual answers.\nNegative steering ($\\alpha = -20$) yields 36.0\\% versus 17.6\\% (Fisher $p < 0.001$), with 5 of 6 directional flips moving from contextual to parametric.\nBoth results survive Bonferroni correction for multiple comparisons.\nThe bidirectionality confirms that the probe weight vector encodes a meaningful axis of conflict resolution: positive perturbations push toward contextual answers, and negative perturbations push toward parametric answers.\n\n\\paragraph{Negative layers.}\nSteering at L28 (the probing peak layer, 88\\% depth) produces no significant effect with either last-token or all-position injection (all Fisher $p > 0.3$; Table~\\ref{tab:steering}).\nL18 (the MLP probe peak, 56\\% depth) also shows no causal influence (all Fisher $p > 0.44$).\n\n\\paragraph{$\\alpha = +20$ reversal.}\nAt extreme perturbation magnitude ($\\alpha = +20$), the control condition produces more flips than the steering condition ($p = 0.053$).\nThis indicates coherence collapse at large perturbation magnitudes, constraining the effective steering range.\n\n\\paragraph{Detection $\\neq$ Decision.}\nThe detectable conflict signal peaks at late layers (L28, 88\\% depth), but causal influence on conflict resolution is localized to the mid-layer (L13, 41\\% depth).\nProbing accuracy and causal relevance thus identify different computational stages: late layers encode the outcome of conflict resolution in a linearly readable form, while mid-layers host the computation that determines the outcome.\n\\textbf{[PLACEHOLDER]} Qwen L13 steering results will provide cross-model validation of this dissociation.\n\n%% Table 3: Steering results\n\\begin{table}[t]\n\\centering\n\\caption{Representation steering results (Llama-3.1-8B). Flip rate: fraction of test samples switching answer category. Control: random-direction perturbation of equal magnitude. Significant results ($p < 0.05$) in bold.$^{\\dagger}$}\n\\label{tab:steering}\n\\small\n\\begin{tabular}{lcrrrrl}\n\\toprule\nLayer & Depth & $\\alpha$ & Steer (\\%) & Ctrl (\\%) & Fisher $p$ & Dir. \\\\\n\\midrule\n\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{+5}$ & \\textbf{19.9} & \\textbf{6.6} & $\\mathbf{0.002}$ & \\textbf{4 p$\\to$c} \\\\\n\\textbf{L13} & \\textbf{41\\%} & $\\mathbf{-20}$ & \\textbf{36.0} & \\textbf{17.6} & $\\mathbf{<0.001}$ & \\textbf{5 c$\\to$p} \\\\\nL18 & 56\\% & $+2$ & 3.7 & 1.5 & 0.447 & \\\\\nL28 & 88\\% & $-20$ & 14.7 & 16.9 & 0.740 & \\\\\nL28 (all) & 88\\% & $-20$ & 11.8 & 11.8 & 0.370 & \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Qwen3-8B L13: \\textbf{[PLACEHOLDER]}}} \\\\\n\\bottomrule\n\\end{tabular}\n\\begin{flushleft}\n\\footnotesize $^{\\dagger}$ At $\\alpha = +20$, the control flip rate exceeds steering ($p = 0.053$), indicating coherence collapse at extreme perturbation magnitudes.\n\\end{flushleft}\n\\end{table}\n",
+                "numLines": 165,
+                "startLine": 1,
+                "totalLines": 165
+              }
+            },
+            "sourceToolAssistantUUID": "2d4f08c6-2fe9-4482-a526-3bb35c35ab5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:56:55.373Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EARCH1eyynTuXDWN2oEZH2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ad26285-947d-47fb-b3b0-c2166556ec8e",
+            "isSidechain": false,
+            "requestId": "req_011CbHoVsdTMtMLqT6Cof1dh",
+            "type": "assistant",
+            "uuid": "4251bd98-da63-49f4-bb07-429d0c5a4882",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011fcvZp4SJHVB2rkK1i4uYP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 25271,
+                "output_tokens": 222,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 222,
+                    "cache_read_input_tokens": 25271,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:56:55.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EARCH1eyynTuXDWN2oEZH2",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4251bd98-da63-49f4-bb07-429d0c5a4882",
+            "isSidechain": false,
+            "promptId": "ebe07a7c-4629-448c-9925-70a2c3bdfcaf",
+            "type": "user",
+            "uuid": "0a8c948b-ea69-4bdb-98df-9ff5105d92b1",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            },
+            "sourceToolAssistantUUID": "4251bd98-da63-49f4-bb07-429d0c5a4882",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:56:55.920Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FuowMWFMUqHoGqi2Gg5XU2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a8c948b-ea69-4bdb-98df-9ff5105d92b1",
+            "isSidechain": false,
+            "requestId": "req_011CbHoVsdTMtMLqT6Cof1dh",
+            "type": "assistant",
+            "uuid": "2d4f08c6-2fe9-4482-a526-3bb35c35ab5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011fcvZp4SJHVB2rkK1i4uYP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 25271,
+                "output_tokens": 222,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 222,
+                    "cache_read_input_tokens": 25271,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "81883d8d-b161-40e5-a47c-05081eba7e52",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Method section for mechanistic interpretation paper",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T14:57:13.509Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the context I need. Let me also check if there's an existing method.tex file and if there are any other sections I should be aware of for consistency.\n\nLet me now write the Method section based on:\n1. The outline provided\n2. The experiments section for consistency\n3. The writing norms\n\nKey observations from the experiments section:\n- Uses $\\mathbf{h}_l$ for residual stream representation\n- Uses $\\Delta_{\\text{asym}}$ for asymmetry\n\n\n- Uses $\\mathbf{w}_{\\text{probe}}$ for probe weight vectors and balanced accuracy as the evaluation metric\n- Employs bootstrap resampling with paired differences for statistical testing\n- The ConflictQA benchmark with Llama-3.1-8B-Instruct and Qwen3-8B models, where Llama has 1,368 samples split into 1,096 training and 272 test samples\n- References a range of prior work including adaptive methods, evaluation frameworks, multilingual datasets, and recent large language models\n- Qwen dataset contains 966 samples (773 train / 193 test) with EN→ZH translation validated using COMET\n- Extracts representations from the last-token position in the residual stream, then trains a logistic regression probe with L2 regularization\n- Tests steering effects at three depths: L13 (41%), L18 (56%), and L28 (88%), using Fisher's exact test with Bonferroni correction to assess significance\n- Examines steering with α values of +5, -20, +2, and +20, measuring flip rate as the primary outcome metric\n- Includes XNLI as a baseline for cross-lingual transfer evaluation\n\nNow I'm planning the methods section structure across seven subsections with a 1200-word budget, being careful to avoid em-dashes, -ing phrase endings, and verbose connectors like \"Furthermore\" or \"Moreover\". I'll define all symbols on first use, use proper citation formatting, and reference figures correctly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81883d8d-b161-40e5-a47c-05081eba7e52",
+            "isSidechain": false,
+            "requestId": "req_011CbHoWGztb8qsZ5jaMyZjX",
+            "type": "assistant",
+            "uuid": "764fc8bd-145f-404a-b7f1-35b8439e1601",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhPPqiR52UqnrRJ5mtsTjf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 28677,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 756,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 28677,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 756,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 28677,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 28677
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T14:57:13.525Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the output directory exists."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "764fc8bd-145f-404a-b7f1-35b8439e1601",
+            "isSidechain": false,
+            "requestId": "req_011CbHoWGztb8qsZ5jaMyZjX",
+            "type": "assistant",
+            "uuid": "6eae1abe-85a3-4eee-a4a9-6308f008db8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhPPqiR52UqnrRJ5mtsTjf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 28677,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 756,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 28677,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 756,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 28677,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 28677
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T14:57:13.565Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MZahG7xa3VQLWtoDSsPzCD",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/",
+                "description": "List paper sections directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6eae1abe-85a3-4eee-a4a9-6308f008db8e",
+            "isSidechain": false,
+            "requestId": "req_011CbHoWGztb8qsZ5jaMyZjX",
+            "type": "assistant",
+            "uuid": "d430c961-7b21-412f-a937-ec3e0675143d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhPPqiR52UqnrRJ5mtsTjf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 28677,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 756,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 28677,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 756,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 28677,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 28677
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T14:57:13.748Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MZahG7xa3VQLWtoDSsPzCD",
+              "type": "tool_result",
+              "content": "experiments.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d430c961-7b21-412f-a937-ec3e0675143d",
+            "isSidechain": false,
+            "promptId": "ebe07a7c-4629-448c-9925-70a2c3bdfcaf",
+            "type": "user",
+            "uuid": "ec7cea43-c09c-4f91-8a02-a6c89341d9a2",
+            "toolUseResult": {
+              "stdout": "experiments.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "d430c961-7b21-412f-a937-ec3e0675143d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T14:57:16.508Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now writing the Method section."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec7cea43-c09c-4f91-8a02-a6c89341d9a2",
+            "isSidechain": false,
+            "requestId": "req_011CbHoXbrUwLLc5J5kg8hse",
+            "type": "assistant",
+            "uuid": "224b4dde-d601-49f8-8ab5-4584bbeb297b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SEdQwLK3hdFcxB1SDEj2Tq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 766,
+                "cache_read_input_tokens": 40518,
+                "output_tokens": 2698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 766,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2698,
+                    "cache_read_input_tokens": 40518,
+                    "cache_creation_input_tokens": 766,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 766
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T14:58:07.199Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GzDYxw8TX8WZ79AkCG9HpQ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex",
+                "content": "\\section{Method}\n\\label{sec:method}\n\nFigure~\\ref{fig:pipeline} illustrates the complete pipeline, from data construction through probing and steering.\nWe first formalize the task (\\S\\ref{sec:task}), then describe data construction (\\S\\ref{sec:data}), activation extraction (\\S\\ref{sec:extraction}), the probing framework (\\S\\ref{sec:probing}), cross-lingual transfer protocol (\\S\\ref{sec:transfer}), confound exclusion (\\S\\ref{sec:confound_method}), and representation steering (\\S\\ref{sec:steering_method}).\n\n\\subsection{Task Formulation}\n\\label{sec:task}\n\nGiven an input $x = (c, q)$ consisting of a context passage $c$ and a question $q$, the model produces an answer $a$ that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (derived from the model's pre-trained knowledge).\nWhen $c$ contradicts the model's parametric knowledge, the choice between these two answer sources constitutes a knowledge conflict.\nLet $\\mathbf{h}_l \\in \\mathbb{R}^d$ denote the residual stream representation at layer $l$ for the last input token.\nOur goal is to train a logistic regression probe $f_\\theta(\\mathbf{h}_l)$ that predicts a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$ from $\\mathbf{h}_l$, and to examine whether the learned probe direction transfers across languages and causally influences model behavior.\n\n\\subsection{Data Construction}\n\\label{sec:data}\n\n\\paragraph{Source dataset.}\nWe build on ConflictQA \\citep{xie2024adaptive}, a benchmark that pairs each question with a context passage that contradicts the model's parametric knowledge.\nEach sample contains a question, a parametric answer (ground truth from the model's training data), and a context-based answer (the contradicting information in the passage).\n\n\\paragraph{Parametric knowledge verification.}\nNot all samples in ConflictQA produce genuine conflicts for a given model: if the model cannot answer the question correctly without context, there is no parametric knowledge to conflict with.\nWe filter samples by first querying each model without context and retaining only those where the model produces the correct parametric answer.\nThis verification step yields 1{,}368 samples for Llama-3.1-8B-Instruct \\citep{grattafiori2024llama} and 966 for Qwen3-8B \\citep{yang2024qwen25}.\nWe split each set 80/20 with stratification by label, producing 1{,}096 train / 272 test for Llama and 773 train / 193 test for Qwen.\n\n\\paragraph{Translation.}\nTo study cross-lingual transfer, we translate all English contexts and questions into Chinese (EN$\\to$ZH) using a Qwen3-8B translation pipeline.\nWe validate translation quality with COMET \\citep{rei2020comet} back-translation scores: each Chinese translation is back-translated to English, and the COMET score between the original and back-translated English text serves as a quality measure.\nThis score is later used for confound analysis (\\S\\ref{sec:confound_method}).\n\n\\subsection{Activation Extraction}\n\\label{sec:extraction}\n\nFor each model, we construct two language versions of every input: an English version (EN context + EN question) and a Chinese version (ZH context + ZH question).\nWe pass each version through the model and extract the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at every layer $l \\in \\{0, \\ldots, L-1\\}$, where $L$ is the total number of layers (32 for Llama, 36 for Qwen) and $d = 4096$ for both models.\nThe last token is chosen because autoregressive models aggregate information into the final position before generating the next token \\citep{belinkov2022probing}.\nWe then record the model's predicted answer for each input and assign the binary label $y$: contextual if the model chose the context-based answer, parametric otherwise.\n\n\\subsection{Probing Framework}\n\\label{sec:probing}\n\nAt each layer $l$, we train a logistic regression classifier with $L_2$ regularization on the extracted representations $\\{\\mathbf{h}_l^{(i)}, y^{(i)}\\}_{i=1}^{N_\\text{train}}$ \\citep{belinkov2022probing, hewitt2019designing}.\nThe probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ outputs the probability of the contextual class, where $\\mathbf{w}_l \\in \\mathbb{R}^d$ is the weight vector and $b_l$ is the bias.\nWe evaluate with balanced accuracy (the macro-average of per-class recall) to account for class imbalance.\nWe report the peak-layer accuracy, defined as the maximum balanced accuracy across all layers, as the primary metric for each probe transfer direction.\n\nConfidence intervals (CIs) are estimated via bootstrap resampling \\citep{ulmer2022deep}.\nFor each bootstrap iteration, we resample the test set with replacement, compute balanced accuracy, and derive 95\\% CIs from the empirical distribution.\nFor asymmetry estimation, we use paired bootstrap differences (described in \\S\\ref{sec:transfer}).\n\n\\subsection{Cross-Lingual Transfer Protocol}\n\\label{sec:transfer}\n\nWe evaluate probes in four transfer directions: EN$\\to$EN (train and test on English activations), ZH$\\to$ZH (train and test on Chinese), EN$\\to$ZH (train on English, test on Chinese), and ZH$\\to$EN (train on Chinese, test on English).\nThe within-language directions (EN$\\to$EN, ZH$\\to$ZH) establish upper bounds, while the cross-lingual directions test whether conflict representations share structure across languages.\n\nTo quantify the directional asymmetry between the two cross-lingual directions, we define:\n\\begin{equation}\n\\Delta_{\\text{asym}} = \\text{acc}(\\text{ZH}{\\to}\\text{EN}) - \\text{acc}(\\text{EN}{\\to}\\text{ZH})\n\\label{eq:asymmetry}\n\\end{equation}\nA positive $\\Delta_{\\text{asym}}$ indicates that Chinese-trained probes transfer to English more readily than the reverse.\nWe compute $\\Delta_{\\text{asym}}$ via paired bootstrap: in each iteration, the same resampled test indices are used for both directions, and the paired difference eliminates sample-level variance.\nWe report the mean and 95\\% CI of the bootstrap distribution.\n\n\\subsection{Confound Exclusion}\n\\label{sec:confound_method}\n\nCross-lingual probe transfer could reflect artifacts of translation quality or lexical overlap rather than shared representations.\nWe design two controls to exclude these confounds.\n\n\\paragraph{COMET tercile ablation.}\nWe stratify test samples into terciles by their COMET back-translation score (high, medium, low quality) and compare probe accuracy across strata.\nIf translation quality drove transfer, high-quality translations would yield higher probe accuracy.\nWe test this with Fisher's exact test on the accuracy difference between the top and bottom terciles.\n\n\\paragraph{Token overlap analysis.}\nDespite the large typographic distance between English and Chinese, some tokens (numbers, proper nouns, punctuation) may be shared after subword tokenization.\nWe compute the per-sample Jaccard similarity between the English and Chinese token sets and test for correlation with probe accuracy via Pearson's $r$.\nA positive correlation would suggest that shared tokens, rather than shared representations, drive transfer.\n\n\\paragraph{Non-conflict baseline.}\nTo test whether cross-lingual transfer asymmetry is specific to knowledge conflicts, we apply the same probing pipeline to XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\nIf the asymmetry pattern ($\\Delta_{\\text{asym}} > 0$) also appears in a non-conflict task, it reflects a general cross-lingual property rather than a conflict-specific phenomenon.\n\n\\subsection{Representation Steering}\n\\label{sec:steering_method}\n\nProbing establishes that conflict signals are linearly detectable, but detection does not imply causal relevance \\citep{hewitt2019designing}.\nWe test the causal role of the probe direction by injecting it into the model's forward pass during inference, following the inference-time intervention framework of \\citet{li2023iti} and \\citet{zou2023representation}.\n\n\\paragraph{Intervention procedure.}\nLet $\\mathbf{w}_{\\text{probe}}$ denote the weight vector of the logistic regression probe trained at a target layer $l$.\nDuring inference, we modify the last-token residual stream at layer $l$:\n\\begin{equation}\n\\mathbf{h}'_l = \\mathbf{h}_l + \\alpha \\cdot \\mathbf{w}_{\\text{probe}}\n\\label{eq:steering}\n\\end{equation}\nwhere $\\alpha \\in \\mathbb{R}$ is the steering magnitude.\nPositive $\\alpha$ pushes the representation toward the contextual direction; negative $\\alpha$ pushes toward the parametric direction.\n\n\\paragraph{Control condition.}\nWe replace $\\mathbf{w}_{\\text{probe}}$ with a random unit vector $\\mathbf{w}_{\\text{random}}$ of equal norm, injected with the same $\\alpha$.\nThis controls for the possibility that any perturbation of sufficient magnitude could alter model behavior.\n\n\\paragraph{Evaluation.}\nWe measure the flip rate: the fraction of test samples that switch answer category (parametric $\\leftrightarrow$ contextual) after intervention.\nWe compare steering and control flip rates with Fisher's exact test, applying Bonferroni correction for multiple comparisons across layers and $\\alpha$ values.\nWe test at three layers spanning different depths: L13 (41\\% depth), L18 (56\\% depth), and L28 (88\\% depth, the probing accuracy peak).\nThe steering magnitude $\\alpha$ is swept over $\\{-20, -10, -5, +2, +5, +10, +20\\}$ to characterize the effective range.\nIf the probe direction is causally relevant, the steering flip rate should significantly exceed the control, and the direction of flips (parametric-to-contextual vs.\\ contextual-to-parametric) should be consistent with the sign of $\\alpha$.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "224b4dde-d601-49f8-8ab5-4584bbeb297b",
+            "isSidechain": false,
+            "requestId": "req_011CbHoXbrUwLLc5J5kg8hse",
+            "type": "assistant",
+            "uuid": "88525079-2111-46a8-b060-c96c62cad2e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SEdQwLK3hdFcxB1SDEj2Tq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 766,
+                "cache_read_input_tokens": 40518,
+                "output_tokens": 2698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 766,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2698,
+                    "cache_read_input_tokens": 40518,
+                    "cache_creation_input_tokens": 766,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 766
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T14:58:07.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GzDYxw8TX8WZ79AkCG9HpQ",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88525079-2111-46a8-b060-c96c62cad2e1",
+            "isSidechain": false,
+            "promptId": "ebe07a7c-4629-448c-9925-70a2c3bdfcaf",
+            "type": "user",
+            "uuid": "b7eb7772-6349-4b81-af98-1056c904903c",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/sections/method.tex",
+              "content": "\\section{Method}\n\\label{sec:method}\n\nFigure~\\ref{fig:pipeline} illustrates the complete pipeline, from data construction through probing and steering.\nWe first formalize the task (\\S\\ref{sec:task}), then describe data construction (\\S\\ref{sec:data}), activation extraction (\\S\\ref{sec:extraction}), the probing framework (\\S\\ref{sec:probing}), cross-lingual transfer protocol (\\S\\ref{sec:transfer}), confound exclusion (\\S\\ref{sec:confound_method}), and representation steering (\\S\\ref{sec:steering_method}).\n\n\\subsection{Task Formulation}\n\\label{sec:task}\n\nGiven an input $x = (c, q)$ consisting of a context passage $c$ and a question $q$, the model produces an answer $a$ that is either \\emph{contextual} (derived from $c$) or \\emph{parametric} (derived from the model's pre-trained knowledge).\nWhen $c$ contradicts the model's parametric knowledge, the choice between these two answer sources constitutes a knowledge conflict.\nLet $\\mathbf{h}_l \\in \\mathbb{R}^d$ denote the residual stream representation at layer $l$ for the last input token.\nOur goal is to train a logistic regression probe $f_\\theta(\\mathbf{h}_l)$ that predicts a binary label $y \\in \\{\\text{contextual}, \\text{parametric}\\}$ from $\\mathbf{h}_l$, and to examine whether the learned probe direction transfers across languages and causally influences model behavior.\n\n\\subsection{Data Construction}\n\\label{sec:data}\n\n\\paragraph{Source dataset.}\nWe build on ConflictQA \\citep{xie2024adaptive}, a benchmark that pairs each question with a context passage that contradicts the model's parametric knowledge.\nEach sample contains a question, a parametric answer (ground truth from the model's training data), and a context-based answer (the contradicting information in the passage).\n\n\\paragraph{Parametric knowledge verification.}\nNot all samples in ConflictQA produce genuine conflicts for a given model: if the model cannot answer the question correctly without context, there is no parametric knowledge to conflict with.\nWe filter samples by first querying each model without context and retaining only those where the model produces the correct parametric answer.\nThis verification step yields 1{,}368 samples for Llama-3.1-8B-Instruct \\citep{grattafiori2024llama} and 966 for Qwen3-8B \\citep{yang2024qwen25}.\nWe split each set 80/20 with stratification by label, producing 1{,}096 train / 272 test for Llama and 773 train / 193 test for Qwen.\n\n\\paragraph{Translation.}\nTo study cross-lingual transfer, we translate all English contexts and questions into Chinese (EN$\\to$ZH) using a Qwen3-8B translation pipeline.\nWe validate translation quality with COMET \\citep{rei2020comet} back-translation scores: each Chinese translation is back-translated to English, and the COMET score between the original and back-translated English text serves as a quality measure.\nThis score is later used for confound analysis (\\S\\ref{sec:confound_method}).\n\n\\subsection{Activation Extraction}\n\\label{sec:extraction}\n\nFor each model, we construct two language versions of every input: an English version (EN context + EN question) and a Chinese version (ZH context + ZH question).\nWe pass each version through the model and extract the last-token residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at every layer $l \\in \\{0, \\ldots, L-1\\}$, where $L$ is the total number of layers (32 for Llama, 36 for Qwen) and $d = 4096$ for both models.\nThe last token is chosen because autoregressive models aggregate information into the final position before generating the next token \\citep{belinkov2022probing}.\nWe then record the model's predicted answer for each input and assign the binary label $y$: contextual if the model chose the context-based answer, parametric otherwise.\n\n\\subsection{Probing Framework}\n\\label{sec:probing}\n\nAt each layer $l$, we train a logistic regression classifier with $L_2$ regularization on the extracted representations $\\{\\mathbf{h}_l^{(i)}, y^{(i)}\\}_{i=1}^{N_\\text{train}}$ \\citep{belinkov2022probing, hewitt2019designing}.\nThe probe $f_\\theta(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)$ outputs the probability of the contextual class, where $\\mathbf{w}_l \\in \\mathbb{R}^d$ is the weight vector and $b_l$ is the bias.\nWe evaluate with balanced accuracy (the macro-average of per-class recall) to account for class imbalance.\nWe report the peak-layer accuracy, defined as the maximum balanced accuracy across all layers, as the primary metric for each probe transfer direction.\n\nConfidence intervals (CIs) are estimated via bootstrap resampling \\citep{ulmer2022deep}.\nFor each bootstrap iteration, we resample the test set with replacement, compute balanced accuracy, and derive 95\\% CIs from the empirical distribution.\nFor asymmetry estimation, we use paired bootstrap differences (described in \\S\\ref{sec:transfer}).\n\n\\subsection{Cross-Lingual Transfer Protocol}\n\\label{sec:transfer}\n\nWe evaluate probes in four transfer directions: EN$\\to$EN (train and test on English activations), ZH$\\to$ZH (train and test on Chinese), EN$\\to$ZH (train on English, test on Chinese), and ZH$\\to$EN (train on Chinese, test on English).\nThe within-language directions (EN$\\to$EN, ZH$\\to$ZH) establish upper bounds, while the cross-lingual directions test whether conflict representations share structure across languages.\n\nTo quantify the directional asymmetry between the two cross-lingual directions, we define:\n\\begin{equation}\n\\Delta_{\\text{asym}} = \\text{acc}(\\text{ZH}{\\to}\\text{EN}) - \\text{acc}(\\text{EN}{\\to}\\text{ZH})\n\\label{eq:asymmetry}\n\\end{equation}\nA positive $\\Delta_{\\text{asym}}$ indicates that Chinese-trained probes transfer to English more readily than the reverse.\nWe compute $\\Delta_{\\text{asym}}$ via paired bootstrap: in each iteration, the same resampled test indices are used for both directions, and the paired difference eliminates sample-level variance.\nWe report the mean and 95\\% CI of the bootstrap distribution.\n\n\\subsection{Confound Exclusion}\n\\label{sec:confound_method}\n\nCross-lingual probe transfer could reflect artifacts of translation quality or lexical overlap rather than shared representations.\nWe design two controls to exclude these confounds.\n\n\\paragraph{COMET tercile ablation.}\nWe stratify test samples into terciles by their COMET back-translation score (high, medium, low quality) and compare probe accuracy across strata.\nIf translation quality drove transfer, high-quality translations would yield higher probe accuracy.\nWe test this with Fisher's exact test on the accuracy difference between the top and bottom terciles.\n\n\\paragraph{Token overlap analysis.}\nDespite the large typographic distance between English and Chinese, some tokens (numbers, proper nouns, punctuation) may be shared after subword tokenization.\nWe compute the per-sample Jaccard similarity between the English and Chinese token sets and test for correlation with probe accuracy via Pearson's $r$.\nA positive correlation would suggest that shared tokens, rather than shared representations, drive transfer.\n\n\\paragraph{Non-conflict baseline.}\nTo test whether cross-lingual transfer asymmetry is specific to knowledge conflicts, we apply the same probing pipeline to XNLI \\citep{conneau2018xnli}, classifying entailment versus contradiction.\nIf the asymmetry pattern ($\\Delta_{\\text{asym}} > 0$) also appears in a non-conflict task, it reflects a general cross-lingual property rather than a conflict-specific phenomenon.\n\n\\subsection{Representation Steering}\n\\label{sec:steering_method}\n\nProbing establishes that conflict signals are linearly detectable, but detection does not imply causal relevance \\citep{hewitt2019designing}.\nWe test the causal role of the probe direction by injecting it into the model's forward pass during inference, following the inference-time intervention framework of \\citet{li2023iti} and \\citet{zou2023representation}.\n\n\\paragraph{Intervention procedure.}\nLet $\\mathbf{w}_{\\text{probe}}$ denote the weight vector of the logistic regression probe trained at a target layer $l$.\nDuring inference, we modify the last-token residual stream at layer $l$:\n\\begin{equation}\n\\mathbf{h}'_l = \\mathbf{h}_l + \\alpha \\cdot \\mathbf{w}_{\\text{probe}}\n\\label{eq:steering}\n\\end{equation}\nwhere $\\alpha \\in \\mathbb{R}$ is the steering magnitude.\nPositive $\\alpha$ pushes the representation toward the contextual direction; negative $\\alpha$ pushes toward the parametric direction.\n\n\\paragraph{Control condition.}\nWe replace $\\mathbf{w}_{\\text{probe}}$ with a random unit vector $\\mathbf{w}_{\\text{random}}$ of equal norm, injected with the same $\\alpha$.\nThis controls for the possibility that any perturbation of sufficient magnitude could alter model behavior.\n\n\\paragraph{Evaluation.}\nWe measure the flip rate: the fraction of test samples that switch answer category (parametric $\\leftrightarrow$ contextual) after intervention.\nWe compare steering and control flip rates with Fisher's exact test, applying Bonferroni correction for multiple comparisons across layers and $\\alpha$ values.\nWe test at three layers spanning different depths: L13 (41\\% depth), L18 (56\\% depth), and L28 (88\\% depth, the probing accuracy peak).\nThe steering magnitude $\\alpha$ is swept over $\\{-20, -10, -5, +2, +5, +10, +20\\}$ to characterize the effective range.\nIf the probe direction is causally relevant, the steering flip rate should significantly exceed the control, and the direction of flips (parametric-to-contextual vs.\\ contextual-to-parametric) should be consistent with the sign of $\\alpha$.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "88525079-2111-46a8-b060-c96c62cad2e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T14:58:15.412Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section written to `method.tex`. Key design choices:\n\n- All symbols ($\\mathbf{h}_l$, $f_\\theta$, $\\mathbf{w}_{\\text{probe}}$, $\\Delta_{\\text{asym}}$, $\\alpha$) defined at first use, consistent with Experiments section notation\n- Citations use `\\citep{}` with the specified bib keys; `\\citet{}` only for inline author references (Li et al., Zou et al.)\n- No em-dash, no -ing phrase endings, no banned transition words\n- ~1200 words, 7 subsections matching the outline\n- Figure~\\ref{fig:pipeline} referenced in the opening sentence\n- Equations numbered for cross-referencing (Eq.~\\ref{eq:asymmetry}, Eq.~\\ref{eq:steering})\n- Layer/depth conventions match Experiments (L13/41%, L18/56%, L28/88%)\n- Data splits match exactly (1,368/966, 80/20 stratified)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7eb7772-6349-4b81-af98-1056c904903c",
+            "isSidechain": false,
+            "requestId": "req_011CbHobXVuvvAzW1BBK6tjs",
+            "type": "assistant",
+            "uuid": "30a21193-5da8-461f-8db0-95b65fb34909",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "201c2127-a685-428e-910f-3aa056f7beac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J1PNEA8dBzxDSniGtXhARu",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2750,
+                "cache_read_input_tokens": 41284,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2750,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 41284,
+                    "cache_creation_input_tokens": 2750,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2750
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "30a21193-5da8-461f-8db0-95b65fb34909",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Method section for mechanistic interpretation paper",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "30a21193-5da8-461f-8db0-95b65fb34909",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Method section for mechanistic interpretation paper",
+                "sessionId": "201c2127-a685-428e-910f-3aa056f7beac"
+              }
+            }
+          ],
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-clkc-mech-interp-westd-41302-ssh-root-ssh-execute-submit-train-copy-80.md"
+}

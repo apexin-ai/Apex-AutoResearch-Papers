@@ -1,0 +1,25 @@
+{
+  "exports": {
+    "uploads/projects-export-20260712.tar.gz": {
+      "projects": {
+        "clkc_mech_interp": {
+          "status": "uploaded",
+          "project": "clkc_mech_interp",
+          "collection": "clkc_mech_interp--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "949456d7dbb137f1fa1853df4392da7a546d28f8ba9804cc1e02075a7aac4900",
+          "indexed_members": 292,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 287
+        }
+      },
+      "status": "in_progress",
+      "source": {
+        "bytes": 13559962075,
+        "etag": "\"3dcc2f4881a84062865a76eb74e07c31-1617\"",
+        "modified": "2026-07-12T04:33:47+00:00"
+      }
+    }
+  }
+}

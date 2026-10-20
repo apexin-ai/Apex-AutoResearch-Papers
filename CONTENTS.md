@@ -98,4 +98,6 @@ This catalogue covers **53 projects with manuscript PDFs** and **36 additional p
 
 Counts describe archived files and recorded events, including overlapping snapshots. Code presence does not establish reproduction. Internal reviews and manuscript labels do not establish external acceptance. Source documents preserve their original language.
 
+[Additional dated research snapshots](research-snapshots/README.md) retain later exports and conversations alongside the initial releases.
+
 [Supplementary research materials](supplementary/README.md) include benchmark code, results, revisions, and rebuttals.

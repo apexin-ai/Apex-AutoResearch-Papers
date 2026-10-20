@@ -1,0 +1,4746 @@
+# Research conversation: [系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-2/d0fa44a5-9760-4850-be9e-340618167017.jsonl`
+- **Structured JSON:** [`f54bddac3e2753286a42.json`](../../sessions/f5/f54bddac3e2753286a42.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-26T09:34:15.786Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-26T09:34:15.786Z",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "content": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-26T09:34:15.789Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-26T09:34:15.789Z",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+## Round 1
+
+87 recorded events
+
+### User
+
+_source line 3 · 2026-05-26T09:34:15.822Z_
+
+[系统通知 — roadmap_updated]:
+[系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "0682c4b2-401e-4be5-b260-40ab6308a6ba",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-26T09:34:15.822Z_
+
+```json
+{
+  "parentUuid": "0682c4b2-401e-4be5-b260-40ab6308a6ba",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ba3a8a1b-daf3-48a6-b932-aa861f0b13be",
+  "timestamp": "2026-05-26T09:34:15.822Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-26T09:34:15.822Z_
+
+```json
+{
+  "parentUuid": "ba3a8a1b-daf3-48a6-b932-aa861f0b13be",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1db56d50-878c-4bfa-a869-7ddff7b62dcd",
+  "timestamp": "2026-05-26T09:34:15.822Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-26T09:34:15.822Z_
+
+```json
+{
+  "parentUuid": "1db56d50-878c-4bfa-a869-7ddff7b62dcd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5e541903-5674-4ce3-8c24-7aa2f3079cc8",
+  "timestamp": "2026-05-26T09:34:15.822Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-26T09:34:20.079Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Director通知我ROADMAP.md已更新，原因是Paper Agent完成了6项修复和Figure重设计，一致性检查通过。我需要审查更新后的ROADMAP.md，同时检查相关的registry和report来评估当前状态。
+
+Let me start by reading the ROADMAP, registry, and report in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e541903-5674-4ce3-8c24-7aa2f3079cc8",
+  "isSidechain": false,
+  "requestId": "req_011CbQx8pJXEoCEXfdCdmcSR",
+  "type": "assistant",
+  "uuid": "8192556f-b220-490a-9773-bad151072652",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLrr8Jw3qZvtpKGWc7Pk7o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21590,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-26T09:34:20.718Z_
+
+收到ROADMAP更新通知，开始审查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8192556f-b220-490a-9773-bad151072652",
+  "isSidechain": false,
+  "requestId": "req_011CbQx8pJXEoCEXfdCdmcSR",
+  "type": "assistant",
+  "uuid": "85394b93-f18b-4bfc-bc16-fd8b4549b988",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLrr8Jw3qZvtpKGWc7Pk7o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21590,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-26T09:34:22.281Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Cta44GCWFWw9rx5hnKpMwC`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85394b93-f18b-4bfc-bc16-fd8b4549b988",
+  "isSidechain": false,
+  "requestId": "req_011CbQx8pJXEoCEXfdCdmcSR",
+  "type": "assistant",
+  "uuid": "148d5443-e316-4c80-93e9-0f675f7f4df3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLrr8Jw3qZvtpKGWc7Pk7o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21590,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21590,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21590,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21590
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T09:34:22.288Z_
+
+<details><summary>↩ Tool result · `toolu_01Cta44GCWFWw9rx5hnKpMwC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "148d5443-e316-4c80-93e9-0f675f7f4df3",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "f16dc58f-1315-42ca-b88e-07d6f1ba9a24",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__reviewer_post_to_director",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "148d5443-e316-4c80-93e9-0f675f7f4df3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-26T09:34:25.238Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01MS15dD7VtNfKB7S1P37LaQ`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f16dc58f-1315-42ca-b88e-07d6f1ba9a24",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9JDoKrSxo28NG4XSn",
+  "type": "assistant",
+  "uuid": "d8591174-e880-47ba-a468-58672df6854b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FH3nqqmVanxr91FeSYbS6n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 33431,
+      "output_tokens": 271,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 271,
+          "cache_read_input_tokens": 33431,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-26T09:34:25.252Z_
+
+<details><summary>↩ Tool result · `toolu_01MS15dD7VtNfKB7S1P37LaQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/ROADMAP.md\", \"content\": \"# clkc_mech_interp — Research Dashboard\\n\\n> 最后更新: 2026-05-26 09:34 UTC | 更新原因: Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过\\n\\n> 最后更新: 2026-05-26 | 更新原因: Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过\\n\\n## 核心方向\\n跨语言知识冲突的机制可解释性：residual stream probing 检测冲突、不对称性分析、因果 steering。详见 paper_framing.md。\\n\\n## 当前进展\\n**EMNLP 2026 ARR — 论文修复全部完成，待 Round 4 审稿**。评分目标 3.5+（Findings 线以上）。\\nR3 全部 14 项修复 + 额外 6 项数据一致性修复（3 CRITICAL + 3 WARNING）全部完成。\\nFigure 1 (Hero) + Figure 2 (Pipeline) PaperBanana 重设计已部署。\\ncheck_paper_consistency: 0 critical, 0 warning, 1 info。\\nRound 4 审稿已提交（apr_20260525T161136_iqqg），等待用户批准审稿模式。\\n\\n### 策略\\n- **Claim 收缩**: Mirror→Consistent With; Contribution 3 限定 Llama-specific; COMET tercile 降为辅助\\n- **Evidence addition**: MLP probe 数据验证非线性假说；selectivity control + AUROC 补充完毕\\n- **数据一致性**: Abstract/Conclusion/Appendix D-F 全部与实验数据对齐\\n- **匿名代码仓库**: Worker 准备中\\n- **Figure 1 + Figure 2 重设计**: ✅ 已完成并部署\\n\\n### Contribution 状态（对应论文 4 点 Contribution）\\n- **C1 detectability** ✅ 三模型 matched-condition：Llama 90.0% (L13, N=201), Gemma 88.0-89.5% (L16-L18, N=171), Qwen 71.0-72.9% (L13-L15, N=131)\\n- **C2 asymmetry consistent with XNLI** ✅ 三模型 ~7pp（Consistent With 措辞）\\n- **C3 detection-decision dissociation (Llama-specific)** ✅ L13 唯一因果节点，6层梯度单调衰减\\n- **C4 cross-task transfer + preliminary hypothesis validation** ✅ 合并后的贡献点\\n\\n## 近期任务\\n- [x] Paper Agent 6 项修复（数据一致性 + 模板清理 + Figure 重设计）\\n- [x] check_paper_consistency 全部通过\\n- [ ] Round 4 审稿批准（等待用户批准模式）\\n- [ ] 匿名代码仓库完成（Worker 进行中，提交前确认 URL 与 abstract footnote 一致）\\n- [ ] Round 4 通过后 → OpenReview ARR 表单提交（待用户确认）\\n\\n## GPU 预算\\n- westd-14391: 1× RTX PRO 6000 Blackwell (96GB)，当前空闲\\n- 所有 GPU 实验已完成，无活跃 GPU 需求\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D020 | 2026-05-24 | Detection≠Decision 叙事从 \\\"L28 peak vs L13 causal = 大 | multi_seed_probing |\\n| D019 | 2026-05-23 | 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemm | steering-qwen-L18-122, steering-llama-L16-123, steering-gemma-L24-121 |\\n| D018 | 2026-05-23 | 推翻 D016 中 cross-task transfer \\\"不加入\\\"的决定：用户批准加入论文，bo | cross-task-transfer-116, cross-task-bootstrap-119 |\\n| D017 | 2026-05-23 | Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering  | steering_107_gemma_L17, steering_107_gemma_L21, steering_107_qwen_L14, cross-task-transfer-116 |\\n| D016 | 2026-05-23 | 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提 | cross-task-transfer-116, probe-cosine-sim-117, tost-equivalence-118 |\\n| D015 | 2026-05-22 | C6 steering 确认为 Llama-specific；Gemma L17 informati | steering_107_gemma_L17, steering_107_L13, steering_107_qwen_L14 |\\n| D014 | 2026-05-22 | Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-l | steering_107_L13, steering_107, steering_107_L18, steering_107_L28_all |\\n| D013 | 2026-05-22 | DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作 | mvp_probe_llama_v1, mvp_probe_v1, xnli_baseline_110, steering_107 |\\n| D012 | 2026-05-22 | D009 撤回：C3 non-linearity 降为 \\\"trend only\\\"，双模型 boots | xnli_baseline_110, mvp_002 |\\n| D011 | 2026-05-22 | Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3  | steering_107 |\\n\\n\\n\\n\\n\\n\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8591174-e880-47ba-a468-58672df6854b",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "e5676d4d-123a-441c-9066-47a9f1f3a746",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/ROADMAP.md\\\", \\\"content\\\": \\\"# clkc_mech_interp — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-26 09:34 UTC | 更新原因: Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过\\\\n\\\\n> 最后更新: 2026-05-26 | 更新原因: Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过\\\\n\\\\n## 核心方向\\\\n跨语言知识冲突的机制可解释性：residual stream probing 检测冲突、不对称性分析、因果 steering。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**EMNLP 2026 ARR — 论文修复全部完成，待 Round 4 审稿**。评分目标 3.5+（Findings 线以上）。\\\\nR3 全部 14 项修复 + 额外 6 项数据一致性修复（3 CRITICAL + 3 WARNING）全部完成。\\\\nFigure 1 (Hero) + Figure 2 (Pipeline) PaperBanana 重设计已部署。\\\\ncheck_paper_consistency: 0 critical, 0 warning, 1 info。\\\\nRound 4 审稿已提交（apr_20260525T161136_iqqg），等待用户批准审稿模式。\\\\n\\\\n### 策略\\\\n- **Claim 收缩**: Mirror→Consistent With; Contribution 3 限定 Llama-specific; COMET tercile 降为辅助\\\\n- **Evidence addition**: MLP probe 数据验证非线性假说；selectivity control + AUROC 补充完毕\\\\n- **数据一致性**: Abstract/Conclusion/Appendix D-F 全部与实验数据对齐\\\\n- **匿名代码仓库**: Worker 准备中\\\\n- **Figure 1 + Figure 2 重设计**: ✅ 已完成并部署\\\\n\\\\n### Contribution 状态（对应论文 4 点 Contribution）\\\\n- **C1 detectability** ✅ 三模型 matched-condition：Llama 90.0% (L13, N=201), Gemma 88.0-89.5% (L16-L18, N=171), Qwen 71.0-72.9% (L13-L15, N=131)\\\\n- **C2 asymmetry consistent with XNLI** ✅ 三模型 ~7pp（Consistent With 措辞）\\\\n- **C3 detection-decision dissociation (Llama-specific)** ✅ L13 唯一因果节点，6层梯度单调衰减\\\\n- **C4 cross-task transfer + preliminary hypothesis validation** ✅ 合并后的贡献点\\\\n\\\\n## 近期任务\\\\n- [x] Paper Agent 6 项修复（数据一致性 + 模板清理 + Figure 重设计）\\\\n- [x] check_paper_consistency 全部通过\\\\n- [ ] Round 4 审稿批准（等待用户批准模式）\\\\n- [ ] 匿名代码仓库完成（Worker 进行中，提交前确认 URL 与 abstract footnote 一致）\\\\n- [ ] Round 4 通过后 → OpenReview ARR 表单提交（待用户确认）\\\\n\\\\n## GPU 预算\\\\n- westd-14391: 1× RTX PRO 6000 Blackwell (96GB)，当前空闲\\\\n- 所有 GPU 实验已完成，无活跃 GPU 需求\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D020 | 2026-05-24 | Detection≠Decision 叙事从 \\\\\\\"L28 peak vs L13 causal = 大 | multi_seed_probing |\\\\n| D019 | 2026-05-23 | 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemm | steering-qwen-L18-122, steering-llama-L16-123, steering-gemma-L24-121 |\\\\n| D018 | 2026-05-23 | 推翻 D016 中 cross-task transfer \\\\\\\"不加入\\\\\\\"的决定：用户批准加入论文，bo | cross-task-transfer-116, cross-task-bootstrap-119 |\\\\n| D017 | 2026-05-23 | Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering  | steering_107_gemma_L17, steering_107_gemma_L21, steering_107_qwen_L14, cross-task-transfer-116 |\\\\n| D016 | 2026-05-23 | 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提 | cross-task-transfer-116, probe-cosine-sim-117, tost-equivalence-118 |\\\\n| D015 | 2026-05-22 | C6 steering 确认为 Llama-specific；Gemma L17 informati | steering_107_gemma_L17, steering_107_L13, steering_107_qwen_L14 |\\\\n| D014 | 2026-05-22 | Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-l | steering_107_L13, steering_107, steering_107_L18, steering_107_L28_all |\\\\n| D013 | 2026-05-22 | DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作 | mvp_probe_llama_v1, mvp_probe_v1, xnli_baseline_110, steering_107 |\\\\n| D012 | 2026-05-22 | D009 撤回：C3 non-linearity 降为 \\\\\\\"trend only\\\\\\\"，双模型 boots | xnli_baseline_110, mvp_002 |\\\\n| D011 | 2026-05-22 | Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3  | steering_107 |\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 62}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/ROADMAP.md\", \"content\": \"# clkc_mech_interp — Research Dashboard\\n\\n> 最后更新: 2026-05-26 09:34 UTC | 更新原因: Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过\\n\\n> 最后更新: 2026-05-26 | 更新原因: Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过\\n\\n## 核心方向\\n跨语言知识冲突的机制可解释性：residual stream probing 检测冲突、不对称性分析、因果 steering。详见 paper_framing.md。\\n\\n## 当前进展\\n**EMNLP 2026 ARR — 论文修复全部完成，待 Round 4 审稿**。评分目标 3.5+（Findings 线以上）。\\nR3 全部 14 项修复 + 额外 6 项数据一致性修复（3 CRITICAL + 3 WARNING）全部完成。\\nFigure 1 (Hero) + Figure 2 (Pipeline) PaperBanana 重设计已部署。\\ncheck_paper_consistency: 0 critical, 0 warning, 1 info。\\nRound 4 审稿已提交（apr_20260525T161136_iqqg），等待用户批准审稿模式。\\n\\n### 策略\\n- **Claim 收缩**: Mirror→Consistent With; Contribution 3 限定 Llama-specific; COMET tercile 降为辅助\\n- **Evidence addition**: MLP probe 数据验证非线性假说；selectivity control + AUROC 补充完毕\\n- **数据一致性**: Abstract/Conclusion/Appendix D-F 全部与实验数据对齐\\n- **匿名代码仓库**: Worker 准备中\\n- **Figure 1 + Figure 2 重设计**: ✅ 已完成并部署\\n\\n### Contribution 状态（对应论文 4 点 Contribution）\\n- **C1 detectability** ✅ 三模型 matched-condition：Llama 90.0% (L13, N=201), Gemma 88.0-89.5% (L16-L18, N=171), Qwen 71.0-72.9% (L13-L15, N=131)\\n- **C2 asymmetry consistent with XNLI** ✅ 三模型 ~7pp（Consistent With 措辞）\\n- **C3 detection-decision dissociation (Llama-specific)** ✅ L13 唯一因果节点，6层梯度单调衰减\\n- **C4 cross-task transfer + preliminary hypothesis validation** ✅ 合并后的贡献点\\n\\n## 近期任务\\n- [x] Paper Agent 6 项修复（数据一致性 + 模板清理 + Figure 重设计）\\n- [x] check_paper_consistency 全部通过\\n- [ ] Round 4 审稿批准（等待用户批准模式）\\n- [ ] 匿名代码仓库完成（Worker 进行中，提交前确认 URL 与 abstract footnote 一致）\\n- [ ] Round 4 通过后 → OpenReview ARR 表单提交（待用户确认）\\n\\n## GPU 预算\\n- westd-14391: 1× RTX PRO 6000 Blackwell (96GB)，当前空闲\\n- 所有 GPU 实验已完成，无活跃 GPU 需求\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D020 | 2026-05-24 | Detection≠Decision 叙事从 \\\"L28 peak vs L13 causal = 大 | multi_seed_probing |\\n| D019 | 2026-05-23 | 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemm | steering-qwen-L18-122, steering-llama-L16-123, steering-gemma-L24-121 |\\n| D018 | 2026-05-23 | 推翻 D016 中 cross-task transfer \\\"不加入\\\"的决定：用户批准加入论文，bo | cross-task-transfer-116, cross-task-bootstrap-119 |\\n| D017 | 2026-05-23 | Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering  | steering_107_gemma_L17, steering_107_gemma_L21, steering_107_qwen_L14, cross-task-transfer-116 |\\n| D016 | 2026-05-23 | 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提 | cross-task-transfer-116, probe-cosine-sim-117, tost-equivalence-118 |\\n| D015 | 2026-05-22 | C6 steering 确认为 Llama-specific；Gemma L17 informati | steering_107_gemma_L17, steering_107_L13, steering_107_qwen_L14 |\\n| D014 | 2026-05-22 | Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-l | steering_107_L13, steering_107, steering_107_L18, steering_107_L28_all |\\n| D013 | 2026-05-22 | DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作 | mvp_probe_llama_v1, mvp_probe_v1, xnli_baseline_110, steering_107 |\\n| D012 | 2026-05-22 | D009 撤回：C3 non-linearity 降为 \\\"trend only\\\"，双模型 boots | xnli_baseline_110, mvp_002 |\\n| D011 | 2026-05-22 | Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3  | steering_107 |\\n\\n\\n\\n\\n\\n\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d8591174-e880-47ba-a468-58672df6854b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-26T09:34:25.717Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GbxGKMXHhGMTtYBB6d2FEk`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5676d4d-123a-441c-9066-47a9f1f3a746",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9JDoKrSxo28NG4XSn",
+  "type": "assistant",
+  "uuid": "3b528297-fe67-48c0-a7cd-f1f1f8d641e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FH3nqqmVanxr91FeSYbS6n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 33431,
+      "output_tokens": 271,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 271,
+          "cache_read_input_tokens": 33431,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T09:34:26.165Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__compute_coverage_matrix · `toolu_01ADE1hbB25Z4PgKefF1seaF`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b528297-fe67-48c0-a7cd-f1f1f8d641e0",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9JDoKrSxo28NG4XSn",
+  "type": "assistant",
+  "uuid": "cfd0deb2-af28-4d70-9327-eba8671e7a0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FH3nqqmVanxr91FeSYbS6n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 33431,
+      "output_tokens": 271,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 271,
+          "cache_read_input_tokens": 33431,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T09:34:26.330Z_
+
+<details><summary>↩ Tool result · `toolu_01GbxGKMXHhGMTtYBB6d2FEk`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (49.2KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/toolu_01GbxGKMXHhGMTtYBB6d2FEk.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:59:57.338Z\", \"updated_at\": \"2026-05-26T09:27:53.838Z\", \"hypothesis\": \"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\", \"parent\": \"steering_107_gemma_L21\", \"notes\": \"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\", \"conclusion\": \"negative\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:12.928Z\", \"updated_at\": \"2026-05-24T13:58:00.265Z\", \"hypothesis\": \"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\", \"parent\": \"steering_107_qwen_L14\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"notes\": \"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\", \"conclusion\": \"negative\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:11.100Z\", \"updated_at\": \"2026-05-24T13:57:59.678Z\", \"hypothesis\
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b528297-fe67-48c0-a7cd-f1f1f8d641e0",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "c5621a63-8e07-4629-a558-489eefabdce7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"steering_gemma_v2_L21_139\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T08:59:57.338Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:27:53.838Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\\\", \\\"parent\\\": \\\"steering_107_gemma_L21\\\", \\\"notes\\\": \\\"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L15_135\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T07:01:12.928Z\\\", \\\"updated_at\\\": \\\"2026-05-24T13:58:00.265Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\\\", \\\"parent\\\": \\\"steering_107_qwen_L14\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 72.9, \\\"best_fisher_p\\\": 0.6172, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20], \\\"note_directional\\\": \\\"1 c→p at L15 α=+20 only\\\"}, \\\"notes\\\": \\\"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L14_134\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T07:01:11.100Z\\\", \\\"updated_at\\\": \\\"2026-05-24T13:57:59.678Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.\\\", \\\"parent\\\": \\\"steering_107_qwen_L14\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 70.99, \\\"best_fisher_p\\\": 0.7847, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"Qwen3-8B matched-condition steering at depth-matched layer (39% ≈ Llama L13 41%). N=131, probe acc 70.99%. 0/6 alphas significant. 0 directional flips. Confirms original paper result (N=84, best p=0.682) with 56% more samples.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L13_133\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T07:01:08.705Z\\\", \\\"updated_at\\\": \\\"2026-05-24T13:57:58.905Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.\\\", \\\"parent\\\": \\\"steering_107_qwen_L14\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 71.76, \\\"best_fisher_p\\\": 0.1677, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L18_138\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T11:22:28.018Z\\\", \\\"updated_at\\\": \\\"2026-05-24T11:27:23.186Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.\\\", \\\"parent\\\": \\\"steering_gemma_L18_132\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 89.5, \\\"best_fisher_p\\\": 0.219, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L17_137\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T11:22:27.406Z\\\", \\\"updated_at\\\": \\\"2026-05-24T11:27:22.654Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L17 (40% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171.\\\", \\\"parent\\\": \\\"steering_gemma_L17_131\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 88.9, \\\"best_fisher_p\\\": 0.448, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 88.9% validates data quality. Best p=0.448, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L16_136\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T11:22:26.566Z\\\", \\\"updated_at\\\": \\\"2026-05-24T11:27:21.552Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L16 (38% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~88% and N=171.\\\", \\\"parent\\\": \\\"steering_gemma_L16_130\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 88, \\\"best_fisher_p\\\": 0.067, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 88.0% validates data quality. Best p=0.067 (uncorrected), 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"gemma-steering-pickup\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-24T11:19:50.790Z\\\", \\\"updated_at\\\": \\\"2026-05-24T11:19:50.790Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"steering_gemma_L17_131\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T07:01:06.445Z\\\", \\\"updated_at\\\": \\\"2026-05-24T09:15:12.895Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L17 (40% depth) steering 匹配条件复现：原始 L17 在低 probe acc (75%, N=158) 下 best p=0.104，是所有 Gemma 层中最接近显著的。Llama L16 从 p=0.12 翻转为 p=0.005 after probe quality 提升。用匹配条件重跑 L17，验证是否也翻转。\\\", \\\"parent\\\": \\\"steering_107_gemma_L17\\\", \\\"metrics\\\": {\\\"N\\\": 88, \\\"probe_acc\\\": 0.6648, \\\"best_alpha\\\": \\\"none\\\", \\\"best_fisher_p\\\": 1, \\\"bonferroni_significant\\\": false, \\\"all_p_values\\\": {\\\"alpha_neg20\\\": 1, \\\"alpha_neg10\\\": 1, \\\"alpha_neg5\\\": 1, \\\"alpha_pos5\\\": 1, \\\"alpha_pos10\\\": 1, \\\"alpha_pos20\\\": 1}, \\\"total_flips\\\": 0}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"condition_mismatch: true — probe acc 66.5% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线 prepare_gemma_data.py relabel bug 导致 68% conflict 样本 parametric_answer==contextual_answer。\\\"}, \\\"steering_gemma_L18_132\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T07:01:06.974Z\\\", \\\"updated_at\\\": \\\"2026-05-24T09:07:12.065Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L18 (43% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc 下 best p=0.104。用匹配条件重跑 L18（L17 peak+1），确认 causal window 上界。与 Llama L14 (44% depth) 深度匹配。\\\", \\\"parent\\\": \\\"steering_107_gemma_L17\\\", \\\"metrics\\\": {\\\"N\\\": 88, \\\"probe_acc\\\": 0.6193, \\\"best_alpha\\\": \\\"-20\\\", \\\"best_fisher_p\\\": 0.4971, \\\"bonferroni_significant\\\": false, \\\"all_p_values\\\": {\\\"alpha_neg20\\\": 0.4971, \\\"alpha_neg10\\\": 0.4971, \\\"alpha_neg5\\\": 1, \\\"alpha_pos5\\\": 1, \\\"alpha_pos10\\\": 1, \\\"alpha_pos20\\\": 1}, \\\"max_steer_flip_pct\\\": 2.3, \\\"max_ctrl_flip_pct\\\": 0}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"condition_mismatch: true — probe acc 61.9% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线对 Gemma 适配问题导致数据质量崩塌。\\\"}, \\\"steering_gemma_L16_130\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T07:01:05.466Z\\\", \\\"updated_at\\\": \\\"2026-05-24T09:07:09.457Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L16 (38% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc (75%) 下 best p=0.104，接近 marginal。用匹配 Llama 的高质量条件（N≈200, 高 probe acc）重跑 L16（L17 peak-1），确认 causal window 下界。\\\", \\\"parent\\\": \\\"steering_107_gemma_L17\\\", \\\"metrics\\\": {\\\"N\\\": 88, \\\"probe_acc\\\": 0.5966, \\\"best_alpha\\\": \\\"+5\\\", \\\"best_fisher_p\\\": 1, \\\"bonferroni_significant\\\": false, \\\"all_p_values\\\": {\\\"alpha_neg20\\\": 1, \\\"alpha_neg10\\\": 1, \\\"alpha_neg5\\\": 1, \\\"alpha_pos5\\\": 1, \\\"alpha_pos10\\\": 1, \\\"alpha_pos20\\\": 1}, \\\"max_steer_flip_pct\\\": 1.1, \\\"max_ctrl_flip_pct\\\": 1.1}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"condition_mismatch: true — probe acc 59.7% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线对 Gemma 适配问题导致数据质量崩塌。\\\"}, \\\"steering_llama_L28_129\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T01:01:02.744Z\\\", \\\"updated_at\\\": \\\"2026-05-24T01:36:44.245Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L28 (88% depth) steering 同条件复现：原始 L28 (N=136, probe acc 77%) 为 negative (p=0.31)。L16 翻转证明 probe quality confound。L28 是 detection peak 层——若 L28 也翻转为 significant，则 Detection ≠ Decision 解离 claim 不成立；若仍 negative，则解离在高质量 probe 条件下依然稳健。\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L28\\\": 0.8525, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.284, \\\"alpha_neg20_steer\\\": \\\"12/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"11/201\\\", \\\"alpha_neg20_p\\\": 1, \\\"alpha_neg10_steer\\\": \\\"5/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"8/201\\\", \\\"alpha_neg10_p\\\": 0.575, \\\"alpha_neg5_steer\\\": \\\"3/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"5/201\\\", \\\"alpha_neg5_p\\\": 0.724, \\\"alpha_pos5_steer\\\": \\\"4/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"2/201\\\", \\\"alpha_pos5_p\\\": 0.685, \\\"alpha_pos10_steer\\\": \\\"6/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"2/201\\\", \\\"alpha_pos10_p\\\": 0.284, \\\"alpha_pos20_steer\\\": \\\"16/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"15/201\\\", \\\"alpha_pos20_p\\\": 1, \\\"bonferroni_significant\\\": \\\"none\\\"}}, \\\"steering_llama_L18_128\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T01:00:59.605Z\\\", \\\"updated_at\\\": \\\"2026-05-24T01:36:43.317Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L18 (56% depth) steering 同条件复现：原始 L18 (N=136, probe acc 77%) 为 negative (p=0.45)。L16 从 negative 翻转为 success (p=0.005) 证明 probe quality confound。用同条件高质量 probe (N=201, acc ~91%) 重跑 L18，确认 causal window 上界是否延伸到 L18。\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L18\\\": 0.9075, \\\"best_alpha\\\": \\\"+5\\\", \\\"best_fisher_p\\\": 0.0099, \\\"alpha_neg20_steer\\\": \\\"28/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"30/201\\\", \\\"alpha_neg20_p\\\": 0.887, \\\"alpha_neg10_steer\\\": \\\"15/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"12/201\\\", \\\"alpha_neg10_p\\\": 0.691, \\\"alpha_neg5_steer\\\": \\\"10/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"9/201\\\", \\\"alpha_neg5_p\\\": 1, \\\"alpha_pos5_steer\\\": \\\"16/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"4/201\\\", \\\"alpha_pos5_p\\\": 0.0099, \\\"alpha_pos10_steer\\\": \\\"26/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"15/201\\\", \\\"alpha_pos10_p\\\": 0.098, \\\"alpha_pos20_steer\\\": \\\"64/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"45/201\\\", \\\"alpha_pos20_p\\\": 0.043, \\\"bonferroni_significant\\\": \\\"none (best p=0.0099 > 0.0083)\\\", \\\"note\\\": \\\"marginal - just above Bonferroni threshold\\\"}}, \\\"steering_llama_L16_127\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-24T00:41:39.262Z\\\", \\\"updated_at\\\": \\\"2026-05-24T00:59:10.452Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L16 (50% depth) steering 同条件复现：原始 L16 (N=136, probe acc 77%) 为 negative (p=0.12)。用与 L12/L13/L14 相同的数据和 probe（N=201, probe acc ~91%）重跑 L16，消除 probe quality confound。若仍 negative 则确认 causal window 上界在 L14-L16 之间。\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"probe_accuracy_L16\\\": 0.915, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.005, \\\"alpha_neg20_steer\\\": \\\"49/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"47/201\\\", \\\"alpha_neg20_p\\\": 0.907, \\\"alpha_neg10_steer\\\": \\\"29/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"23/201\\\", \\\"alpha_neg10_p\\\": 0.458, \\\"alpha_neg5_steer\\\": \\\"15/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"12/201\\\", \\\"alpha_neg5_p\\\": 0.691, \\\"alpha_pos5_steer\\\": \\\"10/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"9/201\\\", \\\"alpha_pos5_p\\\": 1, \\\"alpha_pos10_steer\\\": \\\"37/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"17/201\\\", \\\"alpha_pos10_p\\\": 0.005, \\\"alpha_pos20_steer\\\": \\\"56/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"57/201\\\", \\\"alpha_pos20_p\\\": 1, \\\"bonferroni_significant\\\": \\\"alpha_pos10 (p=0.005)\\\"}}, \\\"steering_llama_L13_repl_126\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T23:04:17.974Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:05:04.173Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L13 steering 复现：在 westd-14391 上用新采样的 ConflictQA 数据（N=201）复现原始 L13 steering 结果（原 p=0.0009 on westd-41302, N=136）。验证结果对数据采样的鲁棒性。\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"probe_accuracy_L13\\\": 0.9, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.0003, \\\"alpha_neg20_steer\\\": \\\"47/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"49/201\\\", \\\"alpha_neg20_p\\\": 0.9043, \\\"alpha_neg10_steer\\\": \\\"26/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"34/201\\\", \\\"alpha_neg10_p\\\": 0.3332, \\\"alpha_neg5_steer\\\": \\\"20/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"18/201\\\", \\\"alpha_neg5_p\\\": 0.8634, \\\"alpha_pos5_steer\\\": \\\"38/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"18/201\\\", \\\"alpha_pos5_p\\\": 0.0034, \\\"alpha_pos10_steer\\\": \\\"66/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"30/201\\\", \\\"alpha_pos10_p\\\": 0.0003, \\\"alpha_pos20_steer\\\": \\\"70/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"67/201\\\", \\\"alpha_pos20_p\\\": 0.8141, \\\"bonferroni_significant\\\": \\\"alpha_pos5 (p=0.0034), alpha_pos10 (p=0.0003)\\\"}}, \\\"steering_llama_L14_125\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T21:54:23.641Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:04:14.368Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L14 (44% depth) steering：L13 (41%) 成功 (p=0.0009)，L14 仅差 1 层。若 L14 也 negative（配合 L16 negative）则 causal window 上界精确到 L13；若显著则 causal window 至少跨 L13-L14。\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"probe_accuracy_L14\\\": 0.9175, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.0022, \\\"alpha_neg20_steer\\\": \\\"51/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"43/201\\\", \\\"alpha_neg20_p\\\": 0.4095, \\\"alpha_neg10_steer\\\": \\\"28/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"33/201\\\", \\\"alpha_neg10_p\\\": 0.5784, \\\"alpha_neg5_steer\\\": \\\"20/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"12/201\\\", \\\"alpha_neg5_p\\\": 0.1965, \\\"alpha_pos5_steer\\\": \\\"24/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"18/201\\\", \\\"alpha_pos5_p\\\": 0.4152, \\\"alpha_pos10_steer\\\": \\\"56/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"30/201\\\", \\\"alpha_pos10_p\\\": 0.0022, \\\"alpha_pos20_steer\\\": \\\"67/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"68/201\\\", \\\"alpha_pos20_p\\\": 1, \\\"bonferroni_significant\\\": \\\"alpha_pos10 (p=0.0022)\\\"}}, \\\"steering_llama_L12_124\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T21:54:21.084Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:04:13.558Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L12 (38% depth) steering：L13 (41%) 成功 (p=0.0009)，L12 仅差 1 层。若 L12 也 negative 则 causal node 下界精确到 L13；若 L12 也 significant 则 causal window 向浅层延伸至少 1 层。±1 层分辨率定位。\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L12\\\": 0.9175, \\\"best_alpha\\\": \\\"+20\\\", \\\"best_fisher_p\\\": 0.0853, \\\"alpha_neg20_steer\\\": \\\"54/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"50/201\\\", \\\"alpha_neg20_p\\\": 0.7327, \\\"alpha_neg10_steer\\\": \\\"36/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"29/201\\\", \\\"alpha_neg10_p\\\": 0.4165, \\\"alpha_neg5_steer\\\": \\\"17/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"19/201\\\", \\\"alpha_neg5_p\\\": 0.8616, \\\"alpha_pos5_steer\\\": \\\"21/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"14/201\\\", \\\"alpha_pos5_p\\\": 0.2884, \\\"alpha_pos10_steer\\\": \\\"38/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"30/201\\\", \\\"alpha_pos10_p\\\": 0.3518, \\\"alpha_pos20_steer\\\": \\\"43/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"59/201\\\", \\\"alpha_pos20_p\\\": 0.0853, \\\"bonferroni_significant\\\": \\\"none\\\"}}, \\\"steering_gemma_L10_120\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T10:01:18.511Z\\\", \\\"updated_at\\\": \\\"2026-05-23T12:03:20.769Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B L10 (~24% depth) steering：之前 L17/L21 (40-50% depth) negative。若更浅层（接近 early processing）能产生因果效应，则 Gemma 的 causal node 可能在比 Llama L13 (41%) 更浅的相对位置。parent=steering_107_gemma_L17\\\", \\\"parent\\\": \\\"steering_107_gemma_L17\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L10\\\": 0.706, \\\"alpha_5_flips\\\": \\\"3/158\\\", \\\"alpha_5_fisher_p\\\": 1, \\\"alpha_10_flips\\\": \\\"1/158\\\", \\\"alpha_10_fisher_p\\\": 1, \\\"alpha_20_flips\\\": \\\"5/158\\\", \\\"alpha_20_fisher_p\\\": 0.2143, \\\"bonferroni_significant\\\": \\\"none\\\", \\\"directional_flips_p2c\\\": 0, \\\"directional_flips_c2p\\\": 0}}, \\\"steering_gemma_L24_121\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T10:01:20.736Z\\\", \\\"updated_at\\\": \\\"2026-05-23T10:57:22.106Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B L24 (~57% depth) steering：L17/L21 negative, 试更深层。若 L24 也 negative 则 Gemma 确实不存在 single-layer causal node（支持 Llama-specific 结论）。parent=steering_107_gemma_L17\\\", \\\"parent\\\": \\\"steering_107_gemma_L17\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L24\\\": 0.7627, \\\"alpha_5_flips\\\": \\\"1/158\\\", \\\"alpha_5_fisher_p\\\": 1, \\\"alpha_10_flips\\\": \\\"3/158\\\", \\\"alpha_10_fisher_p\\\": 1, \\\"alpha_20_flips\\\": \\\"5/158\\\", \\\"alpha_20_fisher_p\\\": 1, \\\"bonferroni_significant\\\": \\\"none\\\", \\\"directional_flips_p2c\\\": 0, \\\"directional_flips_c2p\\\": 0}}, \\\"steering_llama_L16_123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T10:01:26.264Z\\\", \\\"updated_at\\\": \\\"2026-05-23T10:56:10.928Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B L16 (~50% depth) steering：L13 (41%) 成功 (p=0.0009)。L16 紧邻 L13 但更深，验证 causal window 宽度。若 L16 也显著则 causal node 是一个区间而非单点；若 negative 则 L13 是精确 causal layer。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L16\\\": 0.7684, \\\"alpha_5_flips\\\": \\\"12/136\\\", \\\"alpha_5_control\\\": \\\"11/136\\\", \\\"alpha_5_fisher_p\\\": 1, \\\"alpha_10_flips\\\": \\\"25/136\\\", \\\"alpha_10_control\\\": \\\"15/136\\\", \\\"alpha_10_fisher_p\\\": 0.1226, \\\"alpha_20_flips\\\": \\\"31/136\\\", \\\"alpha_20_control\\\": \\\"33/136\\\", \\\"alpha_20_fisher_p\\\": 0.8864, \\\"bonferroni_significant\\\": \\\"none\\\", \\\"note\\\": \\\"only positive alphas tested\\\"}}, \\\"steering_qwen_L18_122\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T10:01:23.666Z\\\", \\\"updated_at\\\": \\\"2026-05-23T10:42:57.409Z\\\", \\\"hypothesis\\\": \\\"Qwen3-8B L18 (~50% depth) steering：L14 (39%) 和 L23 (64%) 均 negative。L18 是 probe accuracy 另一个局部峰值，若 mid-layer 也 negative 则 Qwen 确认无 single-layer causal node。parent=steering_107_qwen_L14\\\", \\\"parent\\\": \\\"steering_107_qwen_L14\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L18\\\": 0.738, \\\"alpha_5_flips\\\": \\\"3/84\\\", \\\"alpha_5_fisher_p\\\": 0.6205, \\\"alpha_10_flips\\\": \\\"3/84\\\", \\\"alpha_10_fisher_p\\\": 0.6205, \\\"alpha_20_flips\\\": \\\"3/84\\\", \\\"alpha_20_fisher_p\\\": 1, \\\"bonferroni_significant\\\": \\\"none\\\"}}, \\\"cross_task_bootstrap_119\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T09:27:46.635Z\\\", \\\"updated_at\\\": \\\"2026-05-23T09:28:45.659Z\\\", \\\"hypothesis\\\": \\\"Cross-task probe transfer bootstrap n=1000：为 cross_task_transfer_116 的单种子结果提供 95% CI。验证所有层的跨任务迁移准确率是否统计上显著高于 chance (0.5)。parent=cross_task_transfer_116\\\", \\\"parent\\\": \\\"cross_task_transfer_116\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"key_layers\\\": {\\\"llama_L13_c2x\\\": {\\\"mean\\\": 0.9984, \\\"ci\\\": [0.9925, 1]}, \\\"llama_L13_x2c\\\": {\\\"mean\\\": 1, \\\"ci\\\": [1, 1]}, \\\"qwen_L23_c2x\\\": {\\\"mean\\\": 0.9647, \\\"ci\\\": [0.895, 0.995]}, \\\"gemma_L15_c2x\\\": {\\\"mean\\\": 0.9682, \\\"ci\\\": [0.93, 0.99]}, \\\"gemma_L21_c2x\\\": {\\\"mean\\\": 0.7303, \\\"ci\\\": [0.6525, 0.8275]}}, \\\"all_ci_above_chance\\\": true, \\\"weakest\\\": \\\"Gemma L21 C→X: 0.73 [0.65, 0.83]\\\", \\\"runtime_min\\\": 86}}, \\\"probe_cosine_sim_117\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T07:45:46.903Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:46:52.529Z\\\", \\\"hypothesis\\\": \\\"Probe weight cosine similarity：如果 conflict 和 XNLI 探针权重向量高度对齐（cos > 0.5），则 piggyback 假说在方向级别成立。3 模型 × 全层。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"llama\\\": {\\\"peak_cos_en\\\": 0.0497, \\\"peak_layer_en\\\": 13, \\\"peak_cos_zh\\\": 0.0462, \\\"peak_layer_zh\\\": 8}, \\\"qwen\\\": {\\\"peak_cos_en\\\": 0.0236, \\\"peak_layer_en\\\": 4, \\\"peak_cos_zh\\\": 0.0407, \\\"peak_layer_zh\\\": 9}, \\\"gemma\\\": {\\\"peak_cos_en\\\": 0.0415, \\\"peak_layer_en\\\": 19, \\\"peak_cos_zh\\\": 0.0356, \\\"peak_layer_zh\\\": 20}, \\\"random_baseline\\\": 0.001, \\\"summary\\\": \\\"Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions.\\\"}}, \\\"cross_task_transfer_116\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T07:42:11.538Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:42:58.768Z\\\", \\\"hypothesis\\\": \\\"Cross-task probe transfer 验证 piggyback 假说：用 XNLI 探针评估 conflict 激活（反之亦然），如果跨任务准确率 >> 50% 则说明两个任务共享相同的跨语言子空间。3 模型 × 全层 × 2 方向。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"llama\\\": {\\\"c_to_xnli_min\\\": 0.8725, \\\"c_to_xnli_min_layer\\\": 11, \\\"x_to_conf_min\\\": 0.9945, \\\"x_to_conf_min_layer\\\": 24, \\\"transfer_stable\\\": true}, \\\"qwen\\\": {\\\"c_to_xnli_min\\\": 0.5625, \\\"c_to_xnli_min_layer\\\": 23, \\\"x_to_conf_min\\\": 1, \\\"x_to_conf_min_layer\\\": \\\"none\\\", \\\"transfer_dip_layers\\\": \\\"18-24\\\"}, \\\"gemma\\\": {\\\"c_to_xnli_min\\\": 0.5325, \\\"c_to_xnli_min_layer\\\": 15, \\\"x_to_conf_min\\\": 0.8145, \\\"x_to_conf_min_layer\\\": 13, \\\"transfer_dip_layers\\\": \\\"14-22\\\"}, \\\"summary\\\": \\\"Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs.\\\"}}, \\\"tost_equivalence_118\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T07:40:09.343Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:41:04.343Z\\\", \\\"hypothesis\\\": \\\"TOST 等价性检验：conflict Δ_asym 和 XNLI Δ_asym 在 ±2pp 边界内是否统计等价。如果等价，则 piggyback 假说成立——冲突信号搭载在通用跨语言子空间上。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"llama\\\": {\\\"delta_conflict\\\": 7.27, \\\"delta_xnli\\\": 6, \\\"diff\\\": 1.27, \\\"se_diff\\\": 4.37, \\\"p_tost\\\": 0.434, \\\"equivalent\\\": false}, \\\"qwen\\\": {\\\"delta_conflict\\\": 7.23, \\\"delta_xnli\\\": 6.72, \\\"diff\\\": 0.51, \\\"se_diff\\\": 4.36, \\\"p_tost\\\": 0.366, \\\"equivalent\\\": false}, \\\"gemma\\\": {\\\"delta_conflict\\\": 6.62, \\\"delta_xnli\\\": 7.81, \\\"diff\\\": -1.19, \\\"se_diff\\\": 2.58, \\\"p_tost\\\": 0.377, \\\"equivalent\\\": false}, \\\"note\\\": \\\"Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero.\\\"}}, \\\"de_bootstrap_parallel_114_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:51:54.227Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:05:24.710Z\\\", \\\"hypothesis\\\": \\\"DE bootstrap n=2000 v2: OMP_NUM_THREADS=1 修复 BLAS 线程爆炸。4 方向 EN↔DE，64 workers 并行。parent=de_activations_112\\\", \\\"parent\\\": \\\"de_activations_112\\\", \\\"metrics\\\": {\\\"en_en\\\": {\\\"mean\\\": 0.7709, \\\"ci\\\": [0.7463, 0.7978]}, \\\"de_de\\\": {\\\"mean\\\": 0.7626, \\\"ci\\\": [0.739, 0.7868]}, \\\"en_de\\\": {\\\"mean\\\": 0.6923, \\\"ci\\\": [0.6324, 0.739]}, \\\"de_en\\\": {\\\"mean\\\": 0.7047, \\\"ci\\\": [0.6654, 0.7426]}, \\\"asymmetry_delta\\\": 0.0124, \\\"asymmetry_ci\\\": [-0.0478, 0.0809], \\\"asymmetry_p\\\": 0.4045}, \\\"conclusion\\\": \\\"success\\\"}, \\\"gemma_xnli_bootstrap_115\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:45:28.200Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:52:25.994Z\\\", \\\"hypothesis\\\": \\\"Gemma XNLI bootstrap n=2000 并行版。基础 probe 显示 ZH→EN (97.5%) >> EN→ZH (89.4%)，Δ≈+8.1pp。Bootstrap 确认 CI 和 p-value。parent=gemma_xnli_113\\\", \\\"parent\\\": \\\"gemma_xnli_113\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"en_en\\\": {\\\"mean\\\": 0.9635, \\\"ci\\\": [0.9492, 0.9799]}, \\\"zh_zh\\\": {\\\"mean\\\": 0.8941, \\\"ci\\\": [0.8796, 0.9097]}, \\\"en_zh\\\": {\\\"mean\\\": 0.894, \\\"ci\\\": [0.8795, 0.9097]}, \\\"zh_en\\\": {\\\"mean\\\": 0.9721, \\\"ci\\\": [0.9575, 0.9852]}, \\\"asymmetry_delta\\\": 0.0781, \\\"asymmetry_ci\\\": [0.0571, 0.0999], \\\"asymmetry_p\\\": 0}}, \\\"de_bootstrap_parallel_114\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:03:13.084Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:55:58.841Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct EN↔DE 跨语言探针迁移 bootstrap n=2000（64 workers 并行）。4 方向：EN→EN, DE→DE, EN→DE, DE→EN。测试 Δ_asym = (DE→EN - EN→DE) 是否显著为正，与 ZH 的 +7pp 不对称性方向一致，验证 C2 跨语言属性 claim。parent=de_activations_112\\\", \\\"parent\\\": \\\"de_activations_112\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_xnli_113\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T18:25:55.128Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:04:30.621Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT 在 XNLI entailment/contradiction 任务上的跨语言探针迁移不对称性（ZH→EN > EN→ZH）与冲突任务一致（~6-7pp），证明该不对称性是英语主导模型的通用跨语言属性而非冲突特有。若成立，C2 从两模型扩展到三模型跨架构验证，显著增强论文 significance。parent=xnli_baseline_110\\\", \\\"parent\\\": \\\"xnli_baseline_110\\\", \\\"notes\\\": \\\"基础 probe 结果完好 (probe_basic_results.json): EN→EN=0.9563@L20, ZH→ZH=0.8896@L24, EN→ZH=0.8944@L28, ZH→EN=0.9752@L21。n=2000 bootstrap (bootstrap_n2000.py) 的 64 个 orphaned worker 进程被 kill（父进程 507589 已死但子进程仍在跑，导致 load=852）。需重新启动 n=2000 bootstrap（用并行版本）。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"de_probe_n2000_112\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T03:59:12.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T03:59:56.738Z\\\", \\\"hypothesis\\\": \\\"串行 3-lang (EN/ZH/DE) bootstrap n=2000 探针训练。因串行实现导致预估 120h 无法在 DDL 前完成，被 Director 指令 kill，替换为并行版本 (bootstrap_de_parallel.py, 64 workers, 只跑 EN↔DE 4 方向)。parent=de_activations_112\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_probe_n2000_106\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T18:27:24.006Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:28:39.242Z\\\", \\\"hypothesis\\\": \\\"升级 Gemma-2-9B-IT 冲突任务探针 bootstrap 至 n=2000，获得稳定 CI endpoints。预期 EN→EN ~76%，迁移不对称性 +6-7pp 与 Llama/Qwen 一致，p<0.01。parent=gemma_full_pipeline_102\\\", \\\"parent\\\": \\\"gemma_full_pipeline_102\\\", \\\"metrics\\\": {\\\"en_en_bal_acc\\\": 76.2, \\\"en_en_peak_layer\\\": 24, \\\"zh_zh_bal_acc\\\": 71, \\\"zh_zh_peak_layer\\\": 24, \\\"en_zh_bal_acc\\\": 62.9, \\\"en_zh_peak_layer\\\": 22, \\\"zh_en_bal_acc\\\": 70.2, \\\"zh_en_peak_layer\\\": 24, \\\"asymmetry_pp\\\": 6.62, \\\"asymmetry_ci_lo\\\": 1.9, \\\"asymmetry_ci_hi\\\": 11.08, \\\"asymmetry_p\\\": 0.006, \\\"bootstrap_n\\\": 2000}, \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_gemma_L21\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T15:54:17.099Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:28:33.495Z\\\", \\\"hypothesis\\\": \\\"Gemma L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配但可能 negative。L21 (50% depth) 作为对照——如果 L17 negative 但 L21 positive，说明 Gemma 因果节点在不同相对深度；两者都 negative 则确认 Gemma steering 失败（与 Qwen 一致，steering 是 Llama-specific）。parent=steering_107_gemma_L17\\\", \\\"parent\\\": \\\"steering_107_gemma_L17\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.763, \\\"n_samples\\\": 158, \\\"baseline\\\": {\\\"both\\\": 32, \\\"neither\\\": 55, \\\"parametric\\\": 26, \\\"contextual\\\": 45}, \\\"best_fisher_p\\\": 0.623, \\\"directional_flips\\\": 0, \\\"max_steering_flip_rate\\\": 0.0316, \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"L21 (50% depth) steering NEGATIVE. All 6 alphas: Fisher p ≥ 0.62, directional flips (p2c/c2p) = 0 at every alpha. Probe accuracy 0.763 (adequate). Combined with L17 negative result, confirms Gemma steering fails at both 40% and 50% depth — consistent with Qwen pattern, steering appears Llama-specific.\\\"}, \\\"steering_107_gemma_L17\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T16:31:22.416Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:32:04.369Z\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配。若 steering 在此层有因果效应（Fisher p<0.05 + 方向性 flip），则证明 probe-weight steering 跨模型泛化；否则 steering 可能是 Llama-specific。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7532, \\\"n_test\\\": 158, \\\"layer\\\": 17, \\\"position\\\": \\\"last\\\", \\\"baseline\\\": {\\\"parametric\\\": 26, \\\"contextual\\\": 45, \\\"both\\\": 32, \\\"neither\\\": 55}, \\\"alpha_neg20\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 8, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0506, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.103795}, \\\"alpha_neg10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 2, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0127, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_neg5\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 1, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0063, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 3, \\\"steering_flip_rate\\\": 0.0063, \\\"control_flip_rate\\\": 0.019, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.622608}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 2, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0127, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 4, \\\"steering_flip_rate\\\": 0.0063, \\\"control_flip_rate\\\": 0.0253, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.371013}, \\\"significant_alphas\\\": [], \\\"best_fisher_p\\\": 0.103795, \\\"best_alpha\\\": -20, \\\"all_p2c\\\": 0, \\\"all_c2p\\\": 0}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"Gemma L17 steering 完全失败：所有 6 个 alpha 的 Fisher p > 0.1，最好的是 alpha=-20 (p=0.104)。零方向性 flip（所有 p2c=0, c2p=0）。Flip rate 极低（1-2/158），与 random control 无差异。结合 Qwen L14 (negative) 和 Qwen L23 (negative)，steering 因果效应仅在 Llama L13 观察到（1/3 模型）。这意味着 probe 权重方向的因果意义是 Llama-specific，不是跨模型普遍现象。论文中 steering 实验应定位为 Llama-specific positive + 两模型 negative 的对比结果。\\\"}, \\\"de_activations_112\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T13:30:11.654Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:30:37.823Z\\\", \\\"hypothesis\\\": \\\"收集 Llama-3.1-8B-Instruct 在 DE conflict 数据上的 hidden state activations，用于训练 DE 单语 probe 和 EN↔DE 跨语言迁移 probe。预期 EN→DE 迁移准确率高于 EN→ZH（因印欧语系相似性），验证 C2 跨语言属性 claim 的语言族维度。parent=en_de_translate_112\\\", \\\"parent\\\": \\\"en_de_translate_112\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_qwen_L23\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T13:01:30.907Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:30:32.790Z\\\", \\\"hypothesis\\\": \\\"Linear probe 在 Qwen3-8B L23 的冲突检测 accuracy ~75%。若 L23 probe weight 方向的 steering 能产生因果效应（flip rate > control），将证明 probe 捕获的方向在 Qwen 中具有因果意义。与 Llama 的 4 个 NEGATIVE 变体对比，可判断 steering 失败是 Llama 特有还是跨模型普遍现象。parent=steering_107\\\", \\\"parent\\\": \\\"steering_107\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"all_fisher_p\\\": 1, \\\"probe_accuracy\\\": 0.732, \\\"note\\\": \\\"L23 at 64% depth - wrong layer. ZH→ZH peak is L14 at 39% depth\\\"}}, \\\"steering_107_L13_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T15:19:16.120Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:19:54.389Z\\\", \\\"hypothesis\\\": \\\"L13 last-token steering 显著 (p<0.001)。如果 all-position steering（对所有 token 位置施加干预）产生更强或不同模式的因果效应，则说明冲突信号分布在多个 token 位置；如果结果一致，则说明因果信号集中在 last token。parent=steering_107_L13\\\", \\\"parent\\\": \\\"steering_107_L13\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.761, \\\"n_samples\\\": 136, \\\"layer\\\": 13, \\\"position\\\": \\\"all\\\", \\\"baseline\\\": {\\\"parametric\\\": 32, \\\"contextual\\\": 41, \\\"both\\\": 35, \\\"neither\\\": 28}, \\\"alpha_neg20\\\": {\\\"steering_flips\\\": 49, \\\"control_flips\\\": 24, \\\"steering_flip_rate\\\": 0.3603, \\\"control_flip_rate\\\": 0.1765, \\\"p2c\\\": 1, \\\"c2p\\\": 5, \\\"fisher_p\\\": 0.000948}, \\\"alpha_neg10\\\": {\\\"steering_flips\\\": 31, \\\"control_flips\\\": 25, \\\"steering_flip_rate\\\": 0.2279, \\\"control_flip_rate\\\": 0.1838, \\\"p2c\\\": 2, \\\"c2p\\\": 1, \\\"fisher_p\\\": 0.453592}, \\\"alpha_neg5\\\": {\\\"steering_flips\\\": 22, \\\"control_flips\\\": 17, \\\"steering_flip_rate\\\": 0.1618, \\\"control_flip_rate\\\": 0.125, \\\"p2c\\\": 2, \\\"c2p\\\": 1, \\\"fisher_p\\\": 0.489298}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 27, \\\"control_flips\\\": 9, \\\"steering_flip_rate\\\": 0.1985, \\\"control_flip_rate\\\": 0.0662, \\\"p2c\\\": 4, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.002005}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 31, \\\"control_flips\\\": 20, \\\"steering_flip_rate\\\": 0.2279, \\\"control_flip_rate\\\": 0.1471, \\\"p2c\\\": 2, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.119745}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 28, \\\"control_flips\\\": 43, \\\"steering_flip_rate\\\": 0.2059, \\\"control_flip_rate\\\": 0.3162, \\\"p2c\\\": 2, \\\"c2p\\\": 2, \\\"fisher_p\\\": 0.052826}, \\\"significant_alphas\\\": [-20, 5], \\\"bidirectional_confirmed\\\": true, \\\"identical_to_last_token\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"All-position steering at L13 produces IDENTICAL results to last-token steering (same flip counts, same Fisher p-values for every alpha). This means: (1) the causal signal is entirely concentrated at the last token position, (2) steering non-last tokens has zero additional effect. This is informative — it rules out distributed encoding of the conflict signal across token positions at L13. The causal mechanism operates through the last token's residual stream.\\\"}, \\\"steering_107_qwen_L14\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T14:38:53.449Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:12:13.613Z\\\", \\\"hypothesis\\\": \\\"Steering Qwen3-8B at layer 14 (the ZH→ZH peak layer with 72.6% probe accuracy) will causally shift language-knowledge routing, analogous to Llama L13 steering, confirming cross-model depth-ratio consistency (~40%) for the cultural-linguistic knowledge conflict mechanism.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7024, \\\"n_test\\\": 84, \\\"baseline_contextual\\\": 35, \\\"baseline_parametric\\\": 8, \\\"baseline_both\\\": 20, \\\"baseline_neither\\\": 21, \\\"best_fisher_p\\\": 0.6818, \\\"best_alpha\\\": -10, \\\"significant_alphas\\\": [], \\\"all_p2c\\\": 0, \\\"all_c2p\\\": 0}, \\\"notes\\\": \\\"False positive failure — process completed normally, output JSON exists at data/qwen3/steering_results/steering_results_qwen_L14.json. Marked failed by cron because no W&B metrics were written. Result is clearly negative: no alpha achieved Fisher p < 0.05, and all directional flip counts (p2c, c2p) are zero. Steering at Qwen3-8B layer 14 does not causally shift answer routing despite 70.2% probe accuracy.\\\"}, \\\"bootstrap_n2000_111\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T04:18:39.374Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:11:46.737Z\\\", \\\"hypothesis\\\": \\\"Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。\\\", \\\"metrics\\\": {\\\"llama_asymmetry_peak_mean_diff\\\": 0.0727, \\\"llama_asymmetry_p_value\\\": 0.038, \\\"llama_asymmetry_ci\\\": [0.0037, 0.1397], \\\"llama_n_seeds\\\": 2000, \\\"llama_en_en_peak_layer\\\": \\\"18-19\\\", \\\"llama_status\\\": \\\"completed\\\", \\\"qwen_status\\\": \\\"completed\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_L13\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T11:32:16.358Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:30:51.752Z\\\", \\\"hypothesis\\\": \\\"Steering v1 在 L28(最后层)失败。L13(mid-layer)可能包含更强的跨语言共享冲突信号方向,因为 mid-layer 是跨语言对齐发生的典型位置(Conneau et al. 2020),steering 在此层更可能产生因果效应。parent=steering_107\\\", \\\"parent\\\": \\\"steering_107\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_samples\\\": 136, \\\"layer\\\": 13, \\\"position\\\": \\\"last\\\", \\\"alpha_neg20\\\": {\\\"steering_flip_rate\\\": 0.3603, \\\"control_flip_rate\\\": 0.1765, \\\"fisher_p\\\": 0.000948, \\\"p2c\\\": 1, \\\"c2p\\\": 5}, \\\"alpha_5\\\": {\\\"steering_flip_rate\\\": 0.1985, \\\"control_flip_rate\\\": 0.0662, \\\"fisher_p\\\": 0.002005, \\\"p2c\\\": 4, \\\"c2p\\\": 0}, \\\"alpha_2\\\": {\\\"steering_flip_rate\\\": 0.1176, \\\"control_flip_rate\\\": 0.0515, \\\"fisher_p\\\": 0.079357, \\\"p2c\\\": 3, \\\"c2p\\\": 0}, \\\"significant_alphas\\\": [-20, 5], \\\"marginal_alphas\\\": [2], \\\"bidirectional_confirmed\\\": true, \\\"conclusion_detail\\\": \\\"L13 (mid-layer) steering 有显著双向因果效应！负α推向parametric (c→p=5 at α=-20, p<0.001), 正α推向contextual (p→c=4 at α=5, p=0.002)。因果节点在 mid-layer 而非 final/MLP-peak layer，与跨语言对齐文献一致。\\\"}, \\\"notes\\\": \\\"Cron 误判 (false positive): 进程正常完成并输出结果 JSON，但未写 W&B metrics 被 cron 标记 failed。实际结论: SUCCESS。这是项目突破性结果——首次证明 probe weight 方向具有因果意义（p<0.001），且因果节点在 mid-layer (L13) 符合跨语言对齐理论预期。\\\"}, \\\"steering_107_L18\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T11:32:16.683Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:30:49.492Z\\\", \\\"hypothesis\\\": \\\"L18 是 MLP probe 的 peak layer(68.75% vs Linear 59.56%),表明该层存在非线性编码的冲突信号。若 steering 在此层成功,将同时证明: (1) 探针方向具有因果性 (2) 非线性信号的物理位置与因果位置一致。parent=steering_107\\\", \\\"parent\\\": \\\"steering_107\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n_samples\\\": 136, \\\"layer\\\": 18, \\\"position\\\": \\\"last\\\", \\\"all_fisher_p_gt_0.05\\\": true, \\\"min_fisher_p\\\": 0.447, \\\"min_p_alpha\\\": 2, \\\"best_steering_flip_rate\\\": 0.0368, \\\"best_control_flip_rate\\\": 0.0147, \\\"alpha_neg20\\\": {\\\"steering_flips\\\": 28, \\\"control_flips\\\": 25, \\\"fisher_p\\\": 0.76, \\\"c2p\\\": 4, \\\"p2c\\\": 0}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 9, \\\"control_flips\\\": 7, \\\"fisher_p\\\": 0.798, \\\"p2c\\\": 1, \\\"c2p\\\": 0}, \\\"conclusion_detail\\\": \\\"L18 (MLP peak layer) steering 无显著因果效应。所有 alpha 的 Fisher p > 0.44。MLP 非线性编码的 peak layer 不具有因果意义——探针方向在此层是相关性而非因果性。\\\"}, \\\"notes\\\": \\\"Cron 误判 (false positive): 进程正常完成并输出结果 JSON，但未写 W&B metrics 被 cron 标记 failed。实际结论: NEGATIVE。结合 L28/L28-all/L18 三个 NEGATIVE + L13 SUCCESS，因果节点明确在 mid-layer (L13) 而非后层。\\\"}, \\\"en_de_translate_112\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T07:16:17.050Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:28:53.223Z\\\", \\\"hypothesis\\\": \\\"跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_count\\\": 1096, \\\"test_count\\\": 272, \\\"total\\\": 1368}}, \\\"steering_107_L28_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T11:33:06.652Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:45:16.362Z\\\", \\\"hypothesis\\\": \\\"Steering v1 在 L28/last-token 失败。可能原因是 last-token 注入过窄——冲突信号可能分布在多个 token 位置（如 entity tokens, context tokens）。all-position steering 覆盖所有 token，如果成功则说明因果信号分布式编码。parent=steering_107\\\", \\\"parent\\\": \\\"steering_107\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7757, \\\"n_samples\\\": 136, \\\"alphas\\\": [-20, -10, -5, 5, 10, 20], \\\"position\\\": \\\"all\\\", \\\"peak_layer\\\": 28, \\\"best_fisher_p\\\": 0.37, \\\"all_fisher_p_gt_0.05\\\": true, \\\"max_steering_flip_pct\\\": 11.8, \\\"max_control_flip_pct\\\": 11.8, \\\"total_directional_flips\\\": 7, \\\"conclusion_detail\\\": \\\"L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。\\\"}}, \\\"steering_107\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T08:08:08.511Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:26:09.937Z\\\", \\\"hypothesis\\\": \\\"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\\\", \\\"parent\\\": \\\"mvp_probe_v1\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7757, \\\"peak_layer\\\": 28, \\\"n_test\\\": 136, \\\"baseline_distribution\\\": {\\\"parametric\\\": 32, \\\"contextual\\\": 41, \\\"both\\\": 35, \\\"neither\\\": 28}, \\\"best_steering_alpha\\\": -20, \\\"best_steering_flip_rate\\\": 0.1471, \\\"best_steering_control_flip_rate\\\": 0.1691, \\\"best_steering_fisher_p\\\": 0.7399, \\\"max_directional_p2c\\\": 2, \\\"max_directional_c2p\\\": 2, \\\"all_fisher_p_min\\\": 0.3093, \\\"hypothesis_met\\\": false, \\\"steering_vs_random_summary\\\": \\\"steering flip rates statistically indistinguishable from random at all alphas\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"gemma_full_pipeline_102\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T03:55:53.223Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:45:34.455Z\\\", \\\"hypothesis\\\": \\\"跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\\\", \\\"metrics\\\": {\\\"gemma_probe_training_status\\\": \\\"running\\\", \\\"probe_pid\\\": 476334, \\\"probe_script\\\": \\\"train_probe_fast.py\\\", \\\"probe_n_seeds\\\": 2000, \\\"probe_n_jobs\\\": 32, \\\"probe_start_time\\\": \\\"2026-05-22T18:30\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \\\\\\\"Done.\\\\\\\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）\\\"}, \\\"llama31_en_activations\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:05:41.632Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:42.810Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen3_translate_zh\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:26:57.715Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:42.229Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_activations_qwen3_8b\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:32:54.926Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:41.277Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_activations_llama_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:33:12.172Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:40.312Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"translate_zh_llama_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:33:14.895Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:38.953Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"translate_zh_qwen\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:52:34.661Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:38.021Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_act_llama_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:28:39.737Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:37.513Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_act_qwen_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:28:41.942Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:36.595Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"verify_qwen3_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:58:04.070Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:35.182Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen_en_act_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T18:58:51.315Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:34.202Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"llama_zh_act\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T18:58:53.614Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:33.267Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen_zh_act\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T18:58:55.608Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:32.309Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"translate_zh_qwen_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:03:25.199Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:31.369Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"probe_qwen_full\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:53:27.131Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:30.422Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen_zh_act_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T20:09:01.308Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:29.476Z\\\", \\\"hypothesis\\\": \\\"用 v2 re-verified 数据（966条，enable_thinking=False）重采 Qwen3-8B ZH 激活，替换 v1 污染数据（1116条）\\\", \\\"parent\\\": \\\"qwen_zh_act\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_verify_en\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T04:25:03.216Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:28.574Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_translate_zh\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T04:37:46.610Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:27.531Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_zh_act_103\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T10:12:32.474Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:19:08.822Z\\\", \\\"hypothesis\\\": \\\"收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练\\\", \\\"parent\\\": \\\"gemma_full_pipeline_102\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"cka_svcca_104\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T07:16:25.262Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:16:28.383Z\\\", \\\"hypothesis\\\": \\\"冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"qwen_conflict_aligned_cka_mean\\\": 0.652, \\\"qwen_xnli_aligned_cka_mean\\\": 0.094, \\\"llama_conflict_aligned_cka_mean\\\": 0.778, \\\"llama_xnli_aligned_cka_mean\\\": 0.151, \\\"qwen_conflict_shuffled_cka_mean\\\": 0.124, \\\"qwen_xnli_shuffled_cka_mean\\\": 0.096, \\\"llama_conflict_shuffled_cka_mean\\\": 0.08, \\\"llama_xnli_shuffled_cka_mean\\\": 0.165, \\\"qwen_shuffled_diff\\\": 0.028, \\\"llama_shuffled_diff\\\": -0.085, \\\"conclusion_detail\\\": \\\"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\\\"}}, \\\"comet_llama_v6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T02:35:29.651Z\\\", \\\"updated_at\\\": \\\"2026-05-22T07:48:20.081Z\\\", \\\"hypothesis\\\": \\\"COMET back-translation 质量验证 Llama ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T02:35:28.893Z\\\", \\\"updated_at\\\": \\\"2026-05-22T07:48:19.163Z\\\", \\\"hypothesis\\\": \\\"COMET back-translation 质量验证 Qwen ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_en_act_102\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T06:53:33.602Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:59:03.002Z\\\", \\\"hypothesis\\\": \\\"Collecting EN residual stream activations from Gemma-2-9B-IT for cross-lingual knowledge conflict analysis\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"xnli_baseline_110\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T03:55:49.066Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:48:45.784Z\\\", \\\"hypothesis\\\": \\\"跨语言探针迁移不对称性（ZH→EN > EN→ZH ~7pp）是知识冲突信号特有的，而非一般性跨语言属性。在非冲突语义任务（XNLI entailment vs contradiction）上，同pipeline的残差流线性探针不应展现类似幅度的迁移不对称性（预期 <2pp）。若非冲突任务也展现 ≥5pp 不对称性，则 C2 需 reframe 为 general cross-lingual property。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"qwen_xnli_asymmetry_pp\\\": 6.72, \\\"qwen_xnli_ci\\\": \\\"[2.36, 11.73]\\\", \\\"qwen_xnli_significant\\\": true, \\\"qwen_conflict_asymmetry_pp\\\": 5.95, \\\"qwen_conflict_ci\\\": \\\"[-3.67, 14.81]\\\", \\\"llama_xnli_asymmetry_pp\\\": 5.97, \\\"llama_xnli_ci\\\": \\\"[0.92, 11.33]\\\", \\\"llama_xnli_significant\\\": true, \\\"llama_conflict_asymmetry_pp\\\": 11.76, \\\"llama_conflict_ci\\\": \\\"[4.29, 19.57]\\\", \\\"qwen_xnli_en_en\\\": 96.58, \\\"qwen_xnli_zh_zh\\\": 89.49, \\\"qwen_xnli_en_zh\\\": 90.45, \\\"qwen_xnli_zh_en\\\": 97.17, \\\"llama_xnli_en_en\\\": 93.98, \\\"llama_xnli_zh_zh\\\": 87.47, \\\"llama_xnli_en_zh\\\": 88.95, \\\"llama_xnli_zh_en\\\": 94.92, \\\"conclusion_detail\\\": \\\"XNLI asymmetry >=5pp, C2 reframed - asymmetry is general cross-lingual property, not conflict-specific (D008)\\\", \\\"mlp_contrast\\\": {\\\"c3_confirmed\\\": true, \\\"qwen_xnli_en_zh_mlp_delta\\\": -2, \\\"qwen_conflict_en_zh_mlp_delta\\\": 2.4, \\\"llama_xnli_en_zh_mlp_delta\\\": -0.5, \\\"llama_conflict_en_zh_mlp_delta\\\": 9.2, \\\"interpretation\\\": \\\"MLP gains absent in XNLI but present in conflict task → non-linear encoding is conflict-specific (C3 validated)\\\"}}}, \\\"comet_llama_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T20:03:13.250Z\\\", \\\"updated_at\\\": \\\"2026-05-22T05:25:23.000Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T20:03:10.943Z\\\", \\\"updated_at\\\": \\\"2026-05-22T05:06:03.839Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_probe_llama_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T13:36:20.794Z\\\", \\\"updated_at\\\": \\\"2026-05-22T03:02:27.650Z\\\", \\\"hypothesis\\\": \\\"跨语言知识冲突信号可在 Llama-3.1-8B-Instruct 残差流中被线性探针检测（EN acc ≥ 80%），且展现跨语言迁移（EN→ZH binomial p < 0.01, point > 60%）——与 Qwen3-8B 形成跨模型验证\\\", \\\"parent\\\": \\\"mvp_probe_v1\\\", \\\"metrics\\\": {\\\"bootstrap_asymmetry_diff_corrected\\\": 0.0722, \\\"bootstrap_asymmetry_ci_corrected\\\": \\\"[0.0110, 0.1361]\\\", \\\"bootstrap_asymmetry_significant_corrected\\\": true, \\\"bootstrap_asymmetry_method\\\": \\\"per_iteration_paired_diff_from_training_bootstrap_n100\\\", \\\"bootstrap_asymmetry_diff_old\\\": 0.1176, \\\"bootstrap_asymmetry_ci_old\\\": \\\"[0.0429, 0.1957]\\\", \\\"comet_tertile_ablation\\\": {\\\"conclusion\\\": \\\"not_confounder\\\", \\\"delta_high_low_pp\\\": 1.65, \\\"fisher_p\\\": 0.761301, \\\"high_bal_acc\\\": 0.6165, \\\"med_bal_acc\\\": 0.5624, \\\"low_bal_acc\\\": 0.6, \\\"best_layer\\\": 13, \\\"full_balanced_acc\\\": 0.5919, \\\"n_samples\\\": 272, \\\"detail\\\": \\\"Minimal delta (+1.65pp), p=0.76. Translation quality is NOT a confounder for probe transfer.\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_probe_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-21T13:16:30.420Z\\\", \\\"updated_at\\\": \\\"2026-05-22T02:22:12.626Z\\\", \\\"hypothesis\\\": \\\"跨语言知识冲突信号可在 Qwen3-8B-Instruct 残差流中被线性探针检测（EN acc ≥ 80%），且展现有意义的跨语言迁移（EN→ZH binomial p < 0.01, point > 60%）\\\", \\\"metrics\\\": {\\\"bootstrap_asymmetry_diff_corrected\\\": 0.0718, \\\"bootstrap_asymmetry_ci_corrected\\\": \\\"[-0.0119, 0.1341]\\\", \\\"bootstrap_asymmetry_significant_corrected\\\": false, \\\"bootstrap_asymmetry_method\\\": \\\"per_iteration_paired_diff_from_training_bootstrap_n100\\\", \\\"bootstrap_asymmetry_diff_old\\\": 0.0595, \\\"bootstrap_asymmetry_ci_old\\\": \\\"[-0.0367, 0.1481]\\\", \\\"comet_tertile_ablation\\\": {\\\"conclusion\\\": \\\"not_confounder\\\", \\\"delta_high_low_pp\\\": -5.64, \\\"fisher_p\\\": 0.695, \\\"high_bal_acc\\\": 0.6071, \\\"med_bal_acc\\\": 0.6769, \\\"low_bal_acc\\\": 0.6635, \\\"best_layer\\\": 22, \\\"detail\\\": \\\"Reversed direction (High COMET → lower probe acc). COMET gate can be relaxed.\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"comet_llama_v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:59:05.160Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:37.575Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_llama_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:57:35.138Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:37.101Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_llama_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:55:09.474Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:36.136Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_llama\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:54:31.949Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:35.112Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:59:02.341Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:34.689Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:57:32.856Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:33.744Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:55:07.372Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:32.775Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T19:54:29.451Z\\\", \\\"updated_at\\\": \\\"2026-05-22T01:49:31.858Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 79, \\\"total\\\": 79, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2312}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T08:59:57.338Z\", \"updated_at\": \"2026-05-26T09:27:53.838Z\", \"hypothesis\": \"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\", \"parent\": \"steering_107_gemma_L21\", \"notes\": \"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\", \"conclusion\": \"negative\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:12.928Z\", \"updated_at\": \"2026-05-24T13:58:00.265Z\", \"hypothesis\": \"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\", \"parent\": \"steering_107_qwen_L14\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"notes\": \"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\", \"conclusion\": \"negative\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:11.100Z\", \"updated_at\": \"2026-05-24T13:57:59.678Z\", \"hypothesis\": \"Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.\", \"parent\": \"steering_107_qwen_L14\", \"metrics\": {\"probe_balanced_acc\": 70.99, \"best_fisher_p\": 0.7847, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering at depth-matched layer (39% ≈ Llama L13 41%). N=131, probe acc 70.99%. 0/6 alphas significant. 0 directional flips. Confirms original paper result (N=84, best p=0.682) with 56% more samples.\", \"conclusion\": \"negative\"}, \"steering_qwen_L13_133\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:08.705Z\", \"updated_at\": \"2026-05-24T13:57:58.905Z\", \"hypothesis\": \"Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.\", \"parent\": \"steering_107_qwen_L14\", \"metrics\": {\"probe_balanced_acc\": 71.76, \"best_fisher_p\": 0.1677, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).\", \"conclusion\": \"negative\"}, \"steering_gemma_v2_L18_138\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T11:22:28.018Z\", \"updated_at\": \"2026-05-24T11:27:23.186Z\", \"hypothesis\": \"Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.\", \"parent\": \"steering_gemma_L18_132\", \"metrics\": {\"probe_balanced_acc\": 89.5, \"best_fisher_p\": 0.219, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\"}, \"steering_gemma_v2_L17_137\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T11:22:27.406Z\", \"updated_at\": \"2026-05-24T11:27:22.654Z\", \"hypothesis\": \"Gemma-2-9B-IT L17 (40% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171.\", \"parent\": \"steering_gemma_L17_131\", \"metrics\": {\"probe_balanced_acc\": 88.9, \"best_fisher_p\": 0.448, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 88.9% validates data quality. Best p=0.448, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\"}, \"steering_gemma_v2_L16_136\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T11:22:26.566Z\", \"updated_at\": \"2026-05-24T11:27:21.552Z\", \"hypothesis\": \"Gemma-2-9B-IT L16 (38% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~88% and N=171.\", \"parent\": \"steering_gemma_L16_130\", \"metrics\": {\"probe_balanced_acc\": 88, \"best_fisher_p\": 0.067, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 88.0% validates data quality. Best p=0.067 (uncorrected), 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\"}, \"gemma-steering-pickup\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-24T11:19:50.790Z\", \"updated_at\": \"2026-05-24T11:19:50.790Z\", \"conclusion\": \"failed\"}, \"steering_gemma_L17_131\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:06.445Z\", \"updated_at\": \"2026-05-24T09:15:12.895Z\", \"hypothesis\": \"Gemma-2-9B-IT L17 (40% depth) steering 匹配条件复现：原始 L17 在低 probe acc (75%, N=158) 下 best p=0.104，是所有 Gemma 层中最接近显著的。Llama L16 从 p=0.12 翻转为 p=0.005 after probe quality 提升。用匹配条件重跑 L17，验证是否也翻转。\", \"parent\": \"steering_107_gemma_L17\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.6648, \"best_alpha\": \"none\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"total_flips\": 0}, \"conclusion\": \"killed\", \"notes\": \"condition_mismatch: true — probe acc 66.5% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线 prepare_gemma_data.py relabel bug 导致 68% conflict 样本 parametric_answer==contextual_answer。\"}, \"steering_gemma_L18_132\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:06.974Z\", \"updated_at\": \"2026-05-24T09:07:12.065Z\", \"hypothesis\": \"Gemma-2-9B-IT L18 (43% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc 下 best p=0.104。用匹配条件重跑 L18（L17 peak+1），确认 causal window 上界。与 Llama L14 (44% depth) 深度匹配。\", \"parent\": \"steering_107_gemma_L17\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.6193, \"best_alpha\": \"-20\", \"best_fisher_p\": 0.4971, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 0.4971, \"alpha_neg10\": 0.4971, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 2.3, \"max_ctrl_flip_pct\": 0}, \"conclusion\": \"killed\", \"notes\": \"condition_mismatch: true — probe acc 61.9% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线对 Gemma 适配问题导致数据质量崩塌。\"}, \"steering_gemma_L16_130\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T07:01:05.466Z\", \"updated_at\": \"2026-05-24T09:07:09.457Z\", \"hypothesis\": \"Gemma-2-9B-IT L16 (38% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc (75%) 下 best p=0.104，接近 marginal。用匹配 Llama 的高质量条件（N≈200, 高 probe acc）重跑 L16（L17 peak-1），确认 causal window 下界。\", \"parent\": \"steering_107_gemma_L17\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.5966, \"best_alpha\": \"+5\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 1.1, \"max_ctrl_flip_pct\": 1.1}, \"conclusion\": \"killed\", \"notes\": \"condition_mismatch: true — probe acc 59.7% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线对 Gemma 适配问题导致数据质量崩塌。\"}, \"steering_llama_L28_129\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T01:01:02.744Z\", \"updated_at\": \"2026-05-24T01:36:44.245Z\", \"hypothesis\": \"Llama-3.1-8B L28 (88% depth) steering 同条件复现：原始 L28 (N=136, probe acc 77%) 为 negative (p=0.31)。L16 翻转证明 probe quality confound。L28 是 detection peak 层——若 L28 也翻转为 significant，则 Detection ≠ Decision 解离 claim 不成立；若仍 negative，则解离在高质量 probe 条件下依然稳健。\", \"parent\": \"steering_107_L13\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L28\": 0.8525, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.284, \"alpha_neg20_steer\": \"12/201\", \"alpha_neg20_ctrl\": \"11/201\", \"alpha_neg20_p\": 1, \"alpha_neg10_steer\": \"5/201\", \"alpha_neg10_ctrl\": \"8/201\", \"alpha_neg10_p\": 0.575, \"alpha_neg5_steer\": \"3/201\", \"alpha_neg5_ctrl\": \"5/201\", \"alpha_neg5_p\": 0.724, \"alpha_pos5_steer\": \"4/201\", \"alpha_pos5_ctrl\": \"2/201\", \"alpha_pos5_p\": 0.685, \"alpha_pos10_steer\": \"6/201\", \"alpha_pos10_ctrl\": \"2/201\", \"alpha_pos10_p\": 0.284, \"alpha_pos20_steer\": \"16/201\", \"alpha_pos20_ctrl\": \"15/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"none\"}}, \"steering_llama_L18_128\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T01:00:59.605Z\", \"updated_at\": \"2026-05-24T01:36:43.317Z\", \"hypothesis\": \"Llama-3.1-8B L18 (56% depth) steering 同条件复现：原始 L18 (N=136, probe acc 77%) 为 negative (p=0.45)。L16 从 negative 翻转为 success (p=0.005) 证明 probe quality confound。用同条件高质量 probe (N=201, acc ~91%) 重跑 L18，确认 causal window 上界是否延伸到 L18。\", \"parent\": \"steering_107_L13\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.9075, \"best_alpha\": \"+5\", \"best_fisher_p\": 0.0099, \"alpha_neg20_steer\": \"28/201\", \"alpha_neg20_ctrl\": \"30/201\", \"alpha_neg20_p\": 0.887, \"alpha_neg10_steer\": \"15/201\", \"alpha_neg10_ctrl\": \"12/201\", \"alpha_neg10_p\": 0.691, \"alpha_neg5_steer\": \"10/201\", \"alpha_neg5_ctrl\": \"9/201\", \"alpha_neg5_p\": 1, \"alpha_pos5_steer\": \"16/201\", \"alpha_pos5_ctrl\": \"4/201\", \"alpha_pos5_p\": 0.0099, \"alpha_pos10_steer\": \"26/201\", \"alpha_pos10_ctrl\": \"15/201\", \"alpha_pos10_p\": 0.098, \"alpha_pos20_steer\": \"64/201\", \"alpha_pos20_ctrl\": \"45/201\", \"alpha_pos20_p\": 0.043, \"bonferroni_significant\": \"none (best p=0.0099 > 0.0083)\", \"note\": \"marginal - just above Bonferroni threshold\"}}, \"steering_llama_L16_127\": {\"status\": \"DONE\", \"created_at\": \"2026-05-24T00:41:39.262Z\", \"updated_at\": \"2026-05-24T00:59:10.452Z\", \"hypothesis\": \"Llama-3.1-8B L16 (50% depth) steering 同条件复现：原始 L16 (N=136, probe acc 77%) 为 negative (p=0.12)。用与 L12/L13/L14 相同的数据和 probe（N=201, probe acc ~91%）重跑 L16，消除 probe quality confound。若仍 negative 则确认 causal window 上界在 L14-L16 之间。\", \"parent\": \"steering_107_L13\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L16\": 0.915, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.005, \"alpha_neg20_steer\": \"49/201\", \"alpha_neg20_ctrl\": \"47/201\", \"alpha_neg20_p\": 0.907, \"alpha_neg10_steer\": \"29/201\", \"alpha_neg10_ctrl\": \"23/201\", \"alpha_neg10_p\": 0.458, \"alpha_neg5_steer\": \"15/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.691, \"alpha_pos5_steer\": \"10/201\", \"alpha_pos5_ctrl\": \"9/201\", \"alpha_pos5_p\": 1, \"alpha_pos10_steer\": \"37/201\", \"alpha_pos10_ctrl\": \"17/201\", \"alpha_pos10_p\": 0.005, \"alpha_pos20_steer\": \"56/201\", \"alpha_pos20_ctrl\": \"57/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.005)\"}}, \"steering_llama_L13_repl_126\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T23:04:17.974Z\", \"updated_at\": \"2026-05-23T23:05:04.173Z\", \"hypothesis\": \"Llama-3.1-8B L13 steering 复现：在 westd-14391 上用新采样的 ConflictQA 数据（N=201）复现原始 L13 steering 结果（原 p=0.0009 on westd-41302, N=136）。验证结果对数据采样的鲁棒性。\", \"parent\": \"steering_107_L13\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L13\": 0.9, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0003, \"alpha_neg20_steer\": \"47/201\", \"alpha_neg20_ctrl\": \"49/201\", \"alpha_neg20_p\": 0.9043, \"alpha_neg10_steer\": \"26/201\", \"alpha_neg10_ctrl\": \"34/201\", \"alpha_neg10_p\": 0.3332, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"18/201\", \"alpha_neg5_p\": 0.8634, \"alpha_pos5_steer\": \"38/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.0034, \"alpha_pos10_steer\": \"66/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0003, \"alpha_pos20_steer\": \"70/201\", \"alpha_pos20_ctrl\": \"67/201\", \"alpha_pos20_p\": 0.8141, \"bonferroni_significant\": \"alpha_pos5 (p=0.0034), alpha_pos10 (p=0.0003)\"}}, \"steering_llama_L14_125\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:54:23.641Z\", \"updated_at\": \"2026-05-23T23:04:14.368Z\", \"hypothesis\": \"Llama-3.1-8B L14 (44% depth) steering：L13 (41%) 成功 (p=0.0009)，L14 仅差 1 层。若 L14 也 negative（配合 L16 negative）则 causal window 上界精确到 L13；若显著则 causal window 至少跨 L13-L14。\", \"parent\": \"steering_107_L13\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L14\": 0.9175, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0022, \"alpha_neg20_steer\": \"51/201\", \"alpha_neg20_ctrl\": \"43/201\", \"alpha_neg20_p\": 0.4095, \"alpha_neg10_steer\": \"28/201\", \"alpha_neg10_ctrl\": \"33/201\", \"alpha_neg10_p\": 0.5784, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.1965, \"alpha_pos5_steer\": \"24/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.4152, \"alpha_pos10_steer\": \"56/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0022, \"alpha_pos20_steer\": \"67/201\", \"alpha_pos20_ctrl\": \"68/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.0022)\"}}, \"steering_llama_L12_124\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T21:54:21.084Z\", \"updated_at\": \"2026-05-23T23:04:13.558Z\", \"hypothesis\": \"Llama-3.1-8B L12 (38% depth) steering：L13 (41%) 成功 (p=0.0009)，L12 仅差 1 层。若 L12 也 negative 则 causal node 下界精确到 L13；若 L12 也 significant 则 causal window 向浅层延伸至少 1 层。±1 层分辨率定位。\", \"parent\": \"steering_107_L13\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L12\": 0.9175, \"best_alpha\": \"+20\", \"best_fisher_p\": 0.0853, \"alpha_neg20_steer\": \"54/201\", \"alpha_neg20_ctrl\": \"50/201\", \"alpha_neg20_p\": 0.7327, \"alpha_neg10_steer\": \"36/201\", \"alpha_neg10_ctrl\": \"29/201\", \"alpha_neg10_p\": 0.4165, \"alpha_neg5_steer\": \"17/201\", \"alpha_neg5_ctrl\": \"19/201\", \"alpha_neg5_p\": 0.8616, \"alpha_pos5_steer\": \"21/201\", \"alpha_pos5_ctrl\": \"14/201\", \"alpha_pos5_p\": 0.2884, \"alpha_pos10_steer\": \"38/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.3518, \"alpha_pos20_steer\": \"43/201\", \"alpha_pos20_ctrl\": \"59/201\", \"alpha_pos20_p\": 0.0853, \"bonferroni_significant\": \"none\"}}, \"steering_gemma_L10_120\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T10:01:18.511Z\", \"updated_at\": \"2026-05-23T12:03:20.769Z\", \"hypothesis\": \"Gemma-2-9B L10 (~24% depth) steering：之前 L17/L21 (40-50% depth) negative。若更浅层（接近 early processing）能产生因果效应，则 Gemma 的 causal node 可能在比 Llama L13 (41%) 更浅的相对位置。parent=steering_107_gemma_L17\", \"parent\": \"steering_107_gemma_L17\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L10\": 0.706, \"alpha_5_flips\": \"3/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"1/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 0.2143, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}}, \"steering_gemma_L24_121\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T10:01:20.736Z\", \"updated_at\": \"2026-05-23T10:57:22.106Z\", \"hypothesis\": \"Gemma-2-9B L24 (~57% depth) steering：L17/L21 negative, 试更深层。若 L24 也 negative 则 Gemma 确实不存在 single-layer causal node（支持 Llama-specific 结论）。parent=steering_107_gemma_L17\", \"parent\": \"steering_107_gemma_L17\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L24\": 0.7627, \"alpha_5_flips\": \"1/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"3/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}}, \"steering_llama_L16_123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T10:01:26.264Z\", \"updated_at\": \"2026-05-23T10:56:10.928Z\", \"hypothesis\": \"Llama-3.1-8B L16 (~50% depth) steering：L13 (41%) 成功 (p=0.0009)。L16 紧邻 L13 但更深，验证 causal window 宽度。若 L16 也显著则 causal node 是一个区间而非单点；若 negative 则 L13 是精确 causal layer。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L16\": 0.7684, \"alpha_5_flips\": \"12/136\", \"alpha_5_control\": \"11/136\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"25/136\", \"alpha_10_control\": \"15/136\", \"alpha_10_fisher_p\": 0.1226, \"alpha_20_flips\": \"31/136\", \"alpha_20_control\": \"33/136\", \"alpha_20_fisher_p\": 0.8864, \"bonferroni_significant\": \"none\", \"note\": \"only positive alphas tested\"}}, \"steering_qwen_L18_122\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T10:01:23.666Z\", \"updated_at\": \"2026-05-23T10:42:57.409Z\", \"hypothesis\": \"Qwen3-8B L18 (~50% depth) steering：L14 (39%) 和 L23 (64%) 均 negative。L18 是 probe accuracy 另一个局部峰值，若 mid-layer 也 negative 则 Qwen 确认无 single-layer causal node。parent=steering_107_qwen_L14\", \"parent\": \"steering_107_qwen_L14\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.738, \"alpha_5_flips\": \"3/84\", \"alpha_5_fisher_p\": 0.6205, \"alpha_10_flips\": \"3/84\", \"alpha_10_fisher_p\": 0.6205, \"alpha_20_flips\": \"3/84\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\"}}, \"cross_task_bootstrap_119\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T09:27:46.635Z\", \"updated_at\": \"2026-05-23T09:28:45.659Z\", \"hypothesis\": \"Cross-task probe transfer bootstrap n=1000：为 cross_task_transfer_116 的单种子结果提供 95% CI。验证所有层的跨任务迁移准确率是否统计上显著高于 chance (0.5)。parent=cross_task_transfer_116\", \"parent\": \"cross_task_transfer_116\", \"conclusion\": \"success\", \"metrics\": {\"key_layers\": {\"llama_L13_c2x\": {\"mean\": 0.9984, \"ci\": [0.9925, 1]}, \"llama_L13_x2c\": {\"mean\": 1, \"ci\": [1, 1]}, \"qwen_L23_c2x\": {\"mean\": 0.9647, \"ci\": [0.895, 0.995]}, \"gemma_L15_c2x\": {\"mean\": 0.9682, \"ci\": [0.93, 0.99]}, \"gemma_L21_c2x\": {\"mean\": 0.7303, \"ci\": [0.6525, 0.8275]}}, \"all_ci_above_chance\": true, \"weakest\": \"Gemma L21 C→X: 0.73 [0.65, 0.83]\", \"runtime_min\": 86}}, \"probe_cosine_sim_117\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:45:46.903Z\", \"updated_at\": \"2026-05-23T07:46:52.529Z\", \"hypothesis\": \"Probe weight cosine similarity：如果 conflict 和 XNLI 探针权重向量高度对齐（cos > 0.5），则 piggyback 假说在方向级别成立。3 模型 × 全层。\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"peak_cos_en\": 0.0497, \"peak_layer_en\": 13, \"peak_cos_zh\": 0.0462, \"peak_layer_zh\": 8}, \"qwen\": {\"peak_cos_en\": 0.0236, \"peak_layer_en\": 4, \"peak_cos_zh\": 0.0407, \"peak_layer_zh\": 9}, \"gemma\": {\"peak_cos_en\": 0.0415, \"peak_layer_en\": 19, \"peak_cos_zh\": 0.0356, \"peak_layer_zh\": 20}, \"random_baseline\": 0.001, \"summary\": \"Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions.\"}}, \"cross_task_transfer_116\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:42:11.538Z\", \"updated_at\": \"2026-05-23T07:42:58.768Z\", \"hypothesis\": \"Cross-task probe transfer 验证 piggyback 假说：用 XNLI 探针评估 conflict 激活（反之亦然），如果跨任务准确率 >> 50% 则说明两个任务共享相同的跨语言子空间。3 模型 × 全层 × 2 方向。\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"c_to_xnli_min\": 0.8725, \"c_to_xnli_min_layer\": 11, \"x_to_conf_min\": 0.9945, \"x_to_conf_min_layer\": 24, \"transfer_stable\": true}, \"qwen\": {\"c_to_xnli_min\": 0.5625, \"c_to_xnli_min_layer\": 23, \"x_to_conf_min\": 1, \"x_to_conf_min_layer\": \"none\", \"transfer_dip_layers\": \"18-24\"}, \"gemma\": {\"c_to_xnli_min\": 0.5325, \"c_to_xnli_min_layer\": 15, \"x_to_conf_min\": 0.8145, \"x_to_conf_min_layer\": 13, \"transfer_dip_layers\": \"14-22\"}, \"summary\": \"Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs.\"}}, \"tost_equivalence_118\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T07:40:09.343Z\", \"updated_at\": \"2026-05-23T07:41:04.343Z\", \"hypothesis\": \"TOST 等价性检验：conflict Δ_asym 和 XNLI Δ_asym 在 ±2pp 边界内是否统计等价。如果等价，则 piggyback 假说成立——冲突信号搭载在通用跨语言子空间上。\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"delta_conflict\": 7.27, \"delta_xnli\": 6, \"diff\": 1.27, \"se_diff\": 4.37, \"p_tost\": 0.434, \"equivalent\": false}, \"qwen\": {\"delta_conflict\": 7.23, \"delta_xnli\": 6.72, \"diff\": 0.51, \"se_diff\": 4.36, \"p_tost\": 0.366, \"equivalent\": false}, \"gemma\": {\"delta_conflict\": 6.62, \"delta_xnli\": 7.81, \"diff\": -1.19, \"se_diff\": 2.58, \"p_tost\": 0.377, \"equivalent\": false}, \"note\": \"Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero.\"}}, \"de_bootstrap_parallel_114_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T04:51:54.227Z\", \"updated_at\": \"2026-05-23T07:05:24.710Z\", \"hypothesis\": \"DE bootstrap n=2000 v2: OMP_NUM_THREADS=1 修复 BLAS 线程爆炸。4 方向 EN↔DE，64 workers 并行。parent=de_activations_112\", \"parent\": \"de_activations_112\", \"metrics\": {\"en_en\": {\"mean\": 0.7709, \"ci\": [0.7463, 0.7978]}, \"de_de\": {\"mean\": 0.7626, \"ci\": [0.739, 0.7868]}, \"en_de\": {\"mean\": 0.6923, \"ci\": [0.6324, 0.739]}, \"de_en\": {\"mean\": 0.7047, \"ci\": [0.6654, 0.7426]}, \"asymmetry_delta\": 0.0124, \"asymmetry_ci\": [-0.0478, 0.0809], \"asymmetry_p\": 0.4045}, \"conclusion\": \"success\"}, \"gemma_xnli_bootstrap_115\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T04:45:28.200Z\", \"updated_at\": \"2026-05-23T06:52:25.994Z\", \"hypothesis\": \"Gemma XNLI bootstrap n=2000 并行版。基础 probe 显示 ZH→EN (97.5%) >> EN→ZH (89.4%)，Δ≈+8.1pp。Bootstrap 确认 CI 和 p-value。parent=gemma_xnli_113\", \"parent\": \"gemma_xnli_113\", \"conclusion\": \"success\", \"metrics\": {\"en_en\": {\"mean\": 0.9635, \"ci\": [0.9492, 0.9799]}, \"zh_zh\": {\"mean\": 0.8941, \"ci\": [0.8796, 0.9097]}, \"en_zh\": {\"mean\": 0.894, \"ci\": [0.8795, 0.9097]}, \"zh_en\": {\"mean\": 0.9721, \"ci\": [0.9575, 0.9852]}, \"asymmetry_delta\": 0.0781, \"asymmetry_ci\": [0.0571, 0.0999], \"asymmetry_p\": 0}}, \"de_bootstrap_parallel_114\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T04:03:13.084Z\", \"updated_at\": \"2026-05-23T04:55:58.841Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct EN↔DE 跨语言探针迁移 bootstrap n=2000（64 workers 并行）。4 方向：EN→EN, DE→DE, EN→DE, DE→EN。测试 Δ_asym = (DE→EN - EN→DE) 是否显著为正，与 ZH 的 +7pp 不对称性方向一致，验证 C2 跨语言属性 claim。parent=de_activations_112\", \"parent\": \"de_activations_112\", \"conclusion\": \"killed\"}, \"gemma_xnli_113\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:25:55.128Z\", \"updated_at\": \"2026-05-23T04:04:30.621Z\", \"hypothesis\": \"Gemma-2-9B-IT 在 XNLI entailment/contradiction 任务上的跨语言探针迁移不对称性（ZH→EN > EN→ZH）与冲突任务一致（~6-7pp），证明该不对称性是英语主导模型的通用跨语言属性而非冲突特有。若成立，C2 从两模型扩展到三模型跨架构验证，显著增强论文 significance。parent=xnli_baseline_110\", \"parent\": \"xnli_baseline_110\", \"notes\": \"基础 probe 结果完好 (probe_basic_results.json): EN→EN=0.9563@L20, ZH→ZH=0.8896@L24, EN→ZH=0.8944@L28, ZH→EN=0.9752@L21。n=2000 bootstrap (bootstrap_n2000.py) 的 64 个 orphaned worker 进程被 kill（父进程 507589 已死但子进程仍在跑，导致 load=852）。需重新启动 n=2000 bootstrap（用并行版本）。\", \"conclusion\": \"killed\"}, \"de_probe_n2000_112\": {\"status\": \"DONE\", \"created_at\": \"2026-05-23T03:59:12.387Z\", \"updated_at\": \"2026-05-23T03:59:56.738Z\", \"hypothesis\": \"串行 3-lang (EN/ZH/DE) bootstrap n=2000 探针训练。因串行实现导致预估 120h 无法在 DDL 前完成，被 Director 指令 kill，替换为并行版本 (bootstrap_de_parallel.py, 64 workers, 只跑 EN↔DE 4 方向)。parent=de_activations_112\", \"conclusion\": \"killed\"}, \"gemma_probe_n2000_106\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:27:24.006Z\", \"updated_at\": \"2026-05-22T18:28:39.242Z\", \"hypothesis\": \"升级 Gemma-2-9B-IT 冲突任务探针 bootstrap 至 n=2000，获得稳定 CI endpoints。预期 EN→EN ~76%，迁移不对称性 +6-7pp 与 Llama/Qwen 一致，p<0.01。parent=gemma_full_pipeline_102\", \"parent\": \"gemma_full_pipeline_102\", \"metrics\": {\"en_en_bal_acc\": 76.2, \"en_en_peak_layer\": 24, \"zh_zh_bal_acc\": 71, \"zh_zh_peak_layer\": 24, \"en_zh_bal_acc\": 62.9, \"en_zh_peak_layer\": 22, \"zh_en_bal_acc\": 70.2, \"zh_en_peak_layer\": 24, \"asymmetry_pp\": 6.62, \"asymmetry_ci_lo\": 1.9, \"asymmetry_ci_hi\": 11.08, \"asymmetry_p\": 0.006, \"bootstrap_n\": 2000}, \"conclusion\": \"success\"}, \"steering_107_gemma_L21\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:54:17.099Z\", \"updated_at\": \"2026-05-22T17:28:33.495Z\", \"hypothesis\": \"Gemma L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配但可能 negative。L21 (50% depth) 作为对照——如果 L17 negative 但 L21 positive，说明 Gemma 因果节点在不同相对深度；两者都 negative 则确认 Gemma steering 失败（与 Qwen 一致，steering 是 Llama-specific）。parent=steering_107_gemma_L17\", \"parent\": \"steering_107_gemma_L17\", \"metrics\": {\"probe_accuracy\": 0.763, \"n_samples\": 158, \"baseline\": {\"both\": 32, \"neither\": 55, \"parametric\": 26, \"contextual\": 45}, \"best_fisher_p\": 0.623, \"directional_flips\": 0, \"max_steering_flip_rate\": 0.0316, \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\", \"notes\": \"L21 (50% depth) steering NEGATIVE. All 6 alphas: Fisher p ≥ 0.62, directional flips (p2c/c2p) = 0 at every alpha. Probe accuracy 0.763 (adequate). Combined with L17 negative result, confirms Gemma steering fails at both 40% and 50% depth — consistent with Qwen pattern, steering appears Llama-specific.\"}, \"steering_107_gemma_L17\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T16:31:22.416Z\", \"updated_at\": \"2026-05-22T16:32:04.369Z\", \"hypothesis\": \"Gemma-2-9B-IT L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配。若 steering 在此层有因果效应（Fisher p<0.05 + 方向性 flip），则证明 probe-weight steering 跨模型泛化；否则 steering 可能是 Llama-specific。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"metrics\": {\"probe_accuracy\": 0.7532, \"n_test\": 158, \"layer\": 17, \"position\": \"last\", \"baseline\": {\"parametric\": 26, \"contextual\": 45, \"both\": 32, \"neither\": 55}, \"alpha_neg20\": {\"steering_flips\": 2, \"control_flips\": 8, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0506, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.103795}, \"alpha_neg10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_neg5\": {\"steering_flips\": 2, \"control_flips\": 1, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0063, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_5\": {\"steering_flips\": 1, \"control_flips\": 3, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.019, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.622608}, \"alpha_10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_20\": {\"steering_flips\": 1, \"control_flips\": 4, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.0253, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.371013}, \"significant_alphas\": [], \"best_fisher_p\": 0.103795, \"best_alpha\": -20, \"all_p2c\": 0, \"all_c2p\": 0}, \"conclusion\": \"negative\", \"notes\": \"Gemma L17 steering 完全失败：所有 6 个 alpha 的 Fisher p > 0.1，最好的是 alpha=-20 (p=0.104)。零方向性 flip（所有 p2c=0, c2p=0）。Flip rate 极低（1-2/158），与 random control 无差异。结合 Qwen L14 (negative) 和 Qwen L23 (negative)，steering 因果效应仅在 Llama L13 观察到（1/3 模型）。这意味着 probe 权重方向的因果意义是 Llama-specific，不是跨模型普遍现象。论文中 steering 实验应定位为 Llama-specific positive + 两模型 negative 的对比结果。\"}, \"de_activations_112\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:30:11.654Z\", \"updated_at\": \"2026-05-22T15:30:37.823Z\", \"hypothesis\": \"收集 Llama-3.1-8B-Instruct 在 DE conflict 数据上的 hidden state activations，用于训练 DE 单语 probe 和 EN↔DE 跨语言迁移 probe。预期 EN→DE 迁移准确率高于 EN→ZH（因印欧语系相似性），验证 C2 跨语言属性 claim 的语言族维度。parent=en_de_translate_112\", \"parent\": \"en_de_translate_112\", \"conclusion\": \"success\"}, \"steering_107_qwen_L23\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:01:30.907Z\", \"updated_at\": \"2026-05-22T15:30:32.790Z\", \"hypothesis\": \"Linear probe 在 Qwen3-8B L23 的冲突检测 accuracy ~75%。若 L23 probe weight 方向的 steering 能产生因果效应（flip rate > control），将证明 probe 捕获的方向在 Qwen 中具有因果意义。与 Llama 的 4 个 NEGATIVE 变体对比，可判断 steering 失败是 Llama 特有还是跨模型普遍现象。parent=steering_107\", \"parent\": \"steering_107\", \"conclusion\": \"negative\", \"metrics\": {\"all_fisher_p\": 1, \"probe_accuracy\": 0.732, \"note\": \"L23 at 64% depth - wrong layer. ZH→ZH peak is L14 at 39% depth\"}}, \"steering_107_L13_all\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T15:19:16.120Z\", \"updated_at\": \"2026-05-22T15:19:54.389Z\", \"hypothesis\": \"L13 last-token steering 显著 (p<0.001)。如果 all-position steering（对所有 token 位置施加干预）产生更强或不同模式的因果效应，则说明冲突信号分布在多个 token 位置；如果结果一致，则说明因果信号集中在 last token。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"metrics\": {\"probe_accuracy\": 0.761, \"n_samples\": 136, \"layer\": 13, \"position\": \"all\", \"baseline\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"alpha_neg20\": {\"steering_flips\": 49, \"control_flips\": 24, \"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"p2c\": 1, \"c2p\": 5, \"fisher_p\": 0.000948}, \"alpha_neg10\": {\"steering_flips\": 31, \"control_flips\": 25, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1838, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.453592}, \"alpha_neg5\": {\"steering_flips\": 22, \"control_flips\": 17, \"steering_flip_rate\": 0.1618, \"control_flip_rate\": 0.125, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.489298}, \"alpha_5\": {\"steering_flips\": 27, \"control_flips\": 9, \"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"p2c\": 4, \"c2p\": 0, \"fisher_p\": 0.002005}, \"alpha_10\": {\"steering_flips\": 31, \"control_flips\": 20, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1471, \"p2c\": 2, \"c2p\": 0, \"fisher_p\": 0.119745}, \"alpha_20\": {\"steering_flips\": 28, \"control_flips\": 43, \"steering_flip_rate\": 0.2059, \"control_flip_rate\": 0.3162, \"p2c\": 2, \"c2p\": 2, \"fisher_p\": 0.052826}, \"significant_alphas\": [-20, 5], \"bidirectional_confirmed\": true, \"identical_to_last_token\": true}, \"conclusion\": \"success\", \"notes\": \"All-position steering at L13 produces IDENTICAL results to last-token steering (same flip counts, same Fisher p-values for every alpha). This means: (1) the causal signal is entirely concentrated at the last token position, (2) steering non-last tokens has zero additional effect. This is informative — it rules out distributed encoding of the conflict signal across token positions at L13. The causal mechanism operates through the last token's residual stream.\"}, \"steering_107_qwen_L14\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T14:38:53.449Z\", \"updated_at\": \"2026-05-22T15:12:13.613Z\", \"hypothesis\": \"Steering Qwen3-8B at layer 14 (the ZH→ZH peak layer with 72.6% probe accuracy) will causally shift language-knowledge routing, analogous to Llama L13 steering, confirming cross-model depth-ratio consistency (~40%) for the cultural-linguistic knowledge conflict mechanism.\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7024, \"n_test\": 84, \"baseline_contextual\": 35, \"baseline_parametric\": 8, \"baseline_both\": 20, \"baseline_neither\": 21, \"best_fisher_p\": 0.6818, \"best_alpha\": -10, \"significant_alphas\": [], \"all_p2c\": 0, \"all_c2p\": 0}, \"notes\": \"False positive failure — process completed normally, output JSON exists at data/qwen3/steering_results/steering_results_qwen_L14.json. Marked failed by cron because no W&B metrics were written. Result is clearly negative: no alpha achieved Fisher p < 0.05, and all directional flip counts (p2c, c2p) are zero. Steering at Qwen3-8B layer 14 does not causally shift answer routing despite 70.2% probe accuracy.\"}, \"bootstrap_n2000_111\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:18:39.374Z\", \"updated_at\": \"2026-05-22T15:11:46.737Z\", \"hypothesis\": \"Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。\", \"metrics\": {\"llama_asymmetry_peak_mean_diff\": 0.0727, \"llama_asymmetry_p_value\": 0.038, \"llama_asymmetry_ci\": [0.0037, 0.1397], \"llama_n_seeds\": 2000, \"llama_en_en_peak_layer\": \"18-19\", \"llama_status\": \"completed\", \"qwen_status\": \"completed\"}, \"conclusion\": \"success\"}, \"steering_107_L13\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:32:16.358Z\", \"updated_at\": \"2026-05-22T13:30:51.752Z\", \"hypothesis\": \"Steering v1 在 L28(最后层)失败。L13(mid-layer)可能包含更强的跨语言共享冲突信号方向,因为 mid-layer 是跨语言对齐发生的典型位置(Conneau et al. 2020),steering 在此层更可能产生因果效应。parent=steering_107\", \"parent\": \"steering_107\", \"conclusion\": \"success\", \"metrics\": {\"n_samples\": 136, \"layer\": 13, \"position\": \"last\", \"alpha_neg20\": {\"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"fisher_p\": 0.000948, \"p2c\": 1, \"c2p\": 5}, \"alpha_5\": {\"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"fisher_p\": 0.002005, \"p2c\": 4, \"c2p\": 0}, \"alpha_2\": {\"steering_flip_rate\": 0.1176, \"control_flip_rate\": 0.0515, \"fisher_p\": 0.079357, \"p2c\": 3, \"c2p\": 0}, \"significant_alphas\": [-20, 5], \"marginal_alphas\": [2], \"bidirectional_confirmed\": true, \"conclusion_detail\": \"L13 (mid-layer) steering 有显著双向因果效应！负α推向parametric (c→p=5 at α=-20, p<0.001), 正α推向contextual (p→c=4 at α=5, p=0.002)。因果节点在 mid-layer 而非 final/MLP-peak layer，与跨语言对齐文献一致。\"}, \"notes\": \"Cron 误判 (false positive): 进程正常完成并输出结果 JSON，但未写 W&B metrics 被 cron 标记 failed。实际结论: SUCCESS。这是项目突破性结果——首次证明 probe weight 方向具有因果意义（p<0.001），且因果节点在 mid-layer (L13) 符合跨语言对齐理论预期。\"}, \"steering_107_L18\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:32:16.683Z\", \"updated_at\": \"2026-05-22T13:30:49.492Z\", \"hypothesis\": \"L18 是 MLP probe 的 peak layer(68.75% vs Linear 59.56%),表明该层存在非线性编码的冲突信号。若 steering 在此层成功,将同时证明: (1) 探针方向具有因果性 (2) 非线性信号的物理位置与因果位置一致。parent=steering_107\", \"parent\": \"steering_107\", \"conclusion\": \"negative\", \"metrics\": {\"n_samples\": 136, \"layer\": 18, \"position\": \"last\", \"all_fisher_p_gt_0.05\": true, \"min_fisher_p\": 0.447, \"min_p_alpha\": 2, \"best_steering_flip_rate\": 0.0368, \"best_control_flip_rate\": 0.0147, \"alpha_neg20\": {\"steering_flips\": 28, \"control_flips\": 25, \"fisher_p\": 0.76, \"c2p\": 4, \"p2c\": 0}, \"alpha_5\": {\"steering_flips\": 9, \"control_flips\": 7, \"fisher_p\": 0.798, \"p2c\": 1, \"c2p\": 0}, \"conclusion_detail\": \"L18 (MLP peak layer) steering 无显著因果效应。所有 alpha 的 Fisher p > 0.44。MLP 非线性编码的 peak layer 不具有因果意义——探针方向在此层是相关性而非因果性。\"}, \"notes\": \"Cron 误判 (false positive): 进程正常完成并输出结果 JSON，但未写 W&B metrics 被 cron 标记 failed。实际结论: NEGATIVE。结合 L28/L28-all/L18 三个 NEGATIVE + L13 SUCCESS，因果节点明确在 mid-layer (L13) 而非后层。\"}, \"en_de_translate_112\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T07:16:17.050Z\", \"updated_at\": \"2026-05-22T13:28:53.223Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。\", \"conclusion\": \"success\", \"metrics\": {\"train_count\": 1096, \"test_count\": 272, \"total\": 1368}}, \"steering_107_L28_all\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:33:06.652Z\", \"updated_at\": \"2026-05-22T12:45:16.362Z\", \"hypothesis\": \"Steering v1 在 L28/last-token 失败。可能原因是 last-token 注入过窄——冲突信号可能分布在多个 token 位置（如 entity tokens, context tokens）。all-position steering 覆盖所有 token，如果成功则说明因果信号分布式编码。parent=steering_107\", \"parent\": \"steering_107\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7757, \"n_samples\": 136, \"alphas\": [-20, -10, -5, 5, 10, 20], \"position\": \"all\", \"peak_layer\": 28, \"best_fisher_p\": 0.37, \"all_fisher_p_gt_0.05\": true, \"max_steering_flip_pct\": 11.8, \"max_control_flip_pct\": 11.8, \"total_directional_flips\": 7, \"conclusion_detail\": \"L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。\"}}, \"steering_107\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:08:08.511Z\", \"updated_at\": \"2026-05-22T11:26:09.937Z\", \"hypothesis\": \"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\", \"parent\": \"mvp_probe_v1\", \"metrics\": {\"probe_accuracy\": 0.7757, \"peak_layer\": 28, \"n_test\": 136, \"baseline_distribution\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"best_steering_alpha\": -20, \"best_steering_flip_rate\": 0.1471, \"best_steering_control_flip_rate\": 0.1691, \"best_steering_fisher_p\": 0.7399, \"max_directional_p2c\": 2, \"max_directional_c2p\": 2, \"all_fisher_p_min\": 0.3093, \"hypothesis_met\": false, \"steering_vs_random_summary\": \"steering flip rates statistically indistinguishable from random at all alphas\"}, \"conclusion\": \"negative\"}, \"gemma_full_pipeline_102\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:55:53.223Z\", \"updated_at\": \"2026-05-22T10:45:34.455Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\", \"metrics\": {\"gemma_probe_training_status\": \"running\", \"probe_pid\": 476334, \"probe_script\": \"train_probe_fast.py\", \"probe_n_seeds\": 2000, \"probe_n_jobs\": 32, \"probe_start_time\": \"2026-05-22T18:30\"}, \"conclusion\": \"failed\", \"notes\": \"失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \\\"Done.\\\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）\"}, \"llama31_en_activations\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:05:41.632Z\", \"updated_at\": \"2026-05-22T10:41:42.810Z\", \"conclusion\": \"killed\"}, \"qwen3_translate_zh\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:26:57.715Z\", \"updated_at\": \"2026-05-22T10:41:42.229Z\", \"conclusion\": \"killed\"}, \"collect_en_activations_qwen3_8b\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:32:54.926Z\", \"updated_at\": \"2026-05-22T10:41:41.277Z\", \"conclusion\": \"killed\"}, \"collect_en_activations_llama_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:33:12.172Z\", \"updated_at\": \"2026-05-22T10:41:40.312Z\", \"conclusion\": \"killed\"}, \"translate_zh_llama_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:33:14.895Z\", \"updated_at\": \"2026-05-22T10:41:38.953Z\", \"conclusion\": \"killed\"}, \"translate_zh_qwen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T16:52:34.661Z\", \"updated_at\": \"2026-05-22T10:41:38.021Z\", \"conclusion\": \"killed\"}, \"collect_en_act_llama_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T17:28:39.737Z\", \"updated_at\": \"2026-05-22T10:41:37.513Z\", \"conclusion\": \"killed\"}, \"collect_en_act_qwen_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T17:28:41.942Z\", \"updated_at\": \"2026-05-22T10:41:36.595Z\", \"conclusion\": \"killed\"}, \"verify_qwen3_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T17:58:04.070Z\", \"updated_at\": \"2026-05-22T10:41:35.182Z\", \"conclusion\": \"killed\"}, \"qwen_en_act_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T18:58:51.315Z\", \"updated_at\": \"2026-05-22T10:41:34.202Z\", \"conclusion\": \"killed\"}, \"llama_zh_act\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T18:58:53.614Z\", \"updated_at\": \"2026-05-22T10:41:33.267Z\", \"conclusion\": \"killed\"}, \"qwen_zh_act\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T18:58:55.608Z\", \"updated_at\": \"2026-05-22T10:41:32.309Z\", \"conclusion\": \"killed\"}, \"translate_zh_qwen_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:03:25.199Z\", \"updated_at\": \"2026-05-22T10:41:31.369Z\", \"conclusion\": \"killed\"}, \"probe_qwen_full\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:53:27.131Z\", \"updated_at\": \"2026-05-22T10:41:30.422Z\", \"conclusion\": \"killed\"}, \"qwen_zh_act_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T20:09:01.308Z\", \"updated_at\": \"2026-05-22T10:41:29.476Z\", \"hypothesis\": \"用 v2 re-verified 数据（966条，enable_thinking=False）重采 Qwen3-8B ZH 激活，替换 v1 污染数据（1116条）\", \"parent\": \"qwen_zh_act\", \"conclusion\": \"killed\"}, \"gemma_verify_en\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T04:25:03.216Z\", \"updated_at\": \"2026-05-22T10:41:28.574Z\", \"conclusion\": \"killed\"}, \"gemma_translate_zh\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T04:37:46.610Z\", \"updated_at\": \"2026-05-22T10:41:27.531Z\", \"conclusion\": \"killed\"}, \"gemma_zh_act_103\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:12:32.474Z\", \"updated_at\": \"2026-05-22T10:19:08.822Z\", \"hypothesis\": \"收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练\", \"parent\": \"gemma_full_pipeline_102\", \"conclusion\": \"success\"}, \"cka_svcca_104\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T07:16:25.262Z\", \"updated_at\": \"2026-05-22T08:16:28.383Z\", \"hypothesis\": \"冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_conflict_aligned_cka_mean\": 0.652, \"qwen_xnli_aligned_cka_mean\": 0.094, \"llama_conflict_aligned_cka_mean\": 0.778, \"llama_xnli_aligned_cka_mean\": 0.151, \"qwen_conflict_shuffled_cka_mean\": 0.124, \"qwen_xnli_shuffled_cka_mean\": 0.096, \"llama_conflict_shuffled_cka_mean\": 0.08, \"llama_xnli_shuffled_cka_mean\": 0.165, \"qwen_shuffled_diff\": 0.028, \"llama_shuffled_diff\": -0.085, \"conclusion_detail\": \"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\"}}, \"comet_llama_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:35:29.651Z\", \"updated_at\": \"2026-05-22T07:48:20.081Z\", \"hypothesis\": \"COMET back-translation 质量验证 Llama ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）\", \"conclusion\": \"killed\"}, \"comet_qwen_v6\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T02:35:28.893Z\", \"updated_at\": \"2026-05-22T07:48:19.163Z\", \"hypothesis\": \"COMET back-translation 质量验证 Qwen ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）\", \"conclusion\": \"killed\"}, \"gemma_en_act_102\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:53:33.602Z\", \"updated_at\": \"2026-05-22T06:59:03.002Z\", \"hypothesis\": \"Collecting EN residual stream activations from Gemma-2-9B-IT for cross-lingual knowledge conflict analysis\", \"conclusion\": \"success\"}, \"xnli_baseline_110\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:55:49.066Z\", \"updated_at\": \"2026-05-22T06:48:45.784Z\", \"hypothesis\": \"跨语言探针迁移不对称性（ZH→EN > EN→ZH ~7pp）是知识冲突信号特有的，而非一般性跨语言属性。在非冲突语义任务（XNLI entailment vs contradiction）上，同pipeline的残差流线性探针不应展现类似幅度的迁移不对称性（预期 <2pp）。若非冲突任务也展现 ≥5pp 不对称性，则 C2 需 reframe 为 general cross-lingual property。\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_xnli_asymmetry_pp\": 6.72, \"qwen_xnli_ci\": \"[2.36, 11.73]\", \"qwen_xnli_significant\": true, \"qwen_conflict_asymmetry_pp\": 5.95, \"qwen_conflict_ci\": \"[-3.67, 14.81]\", \"llama_xnli_asymmetry_pp\": 5.97, \"llama_xnli_ci\": \"[0.92, 11.33]\", \"llama_xnli_significant\": true, \"llama_conflict_asymmetry_pp\": 11.76, \"llama_conflict_ci\": \"[4.29, 19.57]\", \"qwen_xnli_en_en\": 96.58, \"qwen_xnli_zh_zh\": 89.49, \"qwen_xnli_en_zh\": 90.45, \"qwen_xnli_zh_en\": 97.17, \"llama_xnli_en_en\": 93.98, \"llama_xnli_zh_zh\": 87.47, \"llama_xnli_en_zh\": 88.95, \"llama_xnli_zh_en\": 94.92, \"conclusion_detail\": \"XNLI asymmetry >=5pp, C2 reframed - asymmetry is general cross-lingual property, not conflict-specific (D008)\", \"mlp_contrast\": {\"c3_confirmed\": true, \"qwen_xnli_en_zh_mlp_delta\": -2, \"qwen_conflict_en_zh_mlp_delta\": 2.4, \"llama_xnli_en_zh_mlp_delta\": -0.5, \"llama_conflict_en_zh_mlp_delta\": 9.2, \"interpretation\": \"MLP gains absent in XNLI but present in conflict task → non-linear encoding is conflict-specific (C3 validated)\"}}}, \"comet_llama_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T20:03:13.250Z\", \"updated_at\": \"2026-05-22T05:25:23.000Z\", \"conclusion\": \"killed\"}, \"comet_qwen_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T20:03:10.943Z\", \"updated_at\": \"2026-05-22T05:06:03.839Z\", \"conclusion\": \"killed\"}, \"mvp_probe_llama_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:36:20.794Z\", \"updated_at\": \"2026-05-22T03:02:27.650Z\", \"hypothesis\": \"跨语言知识冲突信号可在 Llama-3.1-8B-Instruct 残差流中被线性探针检测（EN acc ≥ 80%），且展现跨语言迁移（EN→ZH binomial p < 0.01, point > 60%）——与 Qwen3-8B 形成跨模型验证\", \"parent\": \"mvp_probe_v1\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0722, \"bootstrap_asymmetry_ci_corrected\": \"[0.0110, 0.1361]\", \"bootstrap_asymmetry_significant_corrected\": true, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.1176, \"bootstrap_asymmetry_ci_old\": \"[0.0429, 0.1957]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": 1.65, \"fisher_p\": 0.761301, \"high_bal_acc\": 0.6165, \"med_bal_acc\": 0.5624, \"low_bal_acc\": 0.6, \"best_layer\": 13, \"full_balanced_acc\": 0.5919, \"n_samples\": 272, \"detail\": \"Minimal delta (+1.65pp), p=0.76. Translation quality is NOT a confounder for probe transfer.\"}}, \"conclusion\": \"success\"}, \"mvp_probe_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T13:16:30.420Z\", \"updated_at\": \"2026-05-22T02:22:12.626Z\", \"hypothesis\": \"跨语言知识冲突信号可在 Qwen3-8B-Instruct 残差流中被线性探针检测（EN acc ≥ 80%），且展现有意义的跨语言迁移（EN→ZH binomial p < 0.01, point > 60%）\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0718, \"bootstrap_asymmetry_ci_corrected\": \"[-0.0119, 0.1341]\", \"bootstrap_asymmetry_significant_corrected\": false, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.0595, \"bootstrap_asymmetry_ci_old\": \"[-0.0367, 0.1481]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": -5.64, \"fisher_p\": 0.695, \"high_bal_acc\": 0.6071, \"med_bal_acc\": 0.6769, \"low_bal_acc\": 0.6635, \"best_layer\": 22, \"detail\": \"Reversed direction (High COMET → lower probe acc). COMET gate can be relaxed.\"}}, \"conclusion\": \"success\"}, \"comet_llama_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:59:05.160Z\", \"updated_at\": \"2026-05-22T01:49:37.575Z\", \"conclusion\": \"killed\"}, \"comet_llama_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:57:35.138Z\", \"updated_at\": \"2026-05-22T01:49:37.101Z\", \"conclusion\": \"killed\"}, \"comet_llama_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:55:09.474Z\", \"updated_at\": \"2026-05-22T01:49:36.136Z\", \"conclusion\": \"killed\"}, \"comet_llama\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:54:31.949Z\", \"updated_at\": \"2026-05-22T01:49:35.112Z\", \"conclusion\": \"killed\"}, \"comet_qwen_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:59:02.341Z\", \"updated_at\": \"2026-05-22T01:49:34.689Z\", \"conclusion\": \"killed\"}, \"comet_qwen_v3\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:57:32.856Z\", \"updated_at\": \"2026-05-22T01:49:33.744Z\", \"conclusion\": \"killed\"}, \"comet_qwen_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:55:07.372Z\", \"updated_at\": \"2026-05-22T01:49:32.775Z\", \"conclusion\": \"killed\"}, \"comet_qwen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T19:54:29.451Z\", \"updated_at\": \"2026-05-22T01:49:31.858Z\", \"conclusion\": \"killed\"}}, \"count\": 79, \"total\": 79, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2312}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3b528297-fe67-48c0-a7cd-f1f1f8d641e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-26T09:34:26.529Z_
+
+<details><summary>↩ Tool result · `toolu_01ADE1hbB25Z4PgKefF1seaF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"claims\": [], \"matrix\": {}, \"unassigned\": [], \"summary\": {\"total_experiments\": 0, \"total_claims\": 0, \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"coverage\": \"0/0\", \"coverage_pct\": 0.0, \"unassigned\": 0}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cfd0deb2-af28-4d70-9327-eba8671e7a0f",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "3c6b0550-8c92-4e42-8bf2-ab3cbfbe46f2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"claims\\\": [], \\\"matrix\\\": {}, \\\"unassigned\\\": [], \\\"summary\\\": {\\\"total_experiments\\\": 0, \\\"total_claims\\\": 0, \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"coverage\\\": \\\"0/0\\\", \\\"coverage_pct\\\": 0.0, \\\"unassigned\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"claims\": [], \"matrix\": {}, \"unassigned\": [], \"summary\": {\"total_experiments\": 0, \"total_claims\": 0, \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"coverage\": \"0/0\", \"coverage_pct\": 0.0, \"unassigned\": 0}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cfd0deb2-af28-4d70-9327-eba8671e7a0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-26T09:34:26.508Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01VZxneeBz66jSj2h9BbSbn3`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5621a63-8e07-4629-a558-489eefabdce7",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9JDoKrSxo28NG4XSn",
+  "type": "assistant",
+  "uuid": "008987c4-ad54-47f4-a826-410583c087a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FH3nqqmVanxr91FeSYbS6n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 33431,
+      "output_tokens": 271,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 271,
+          "cache_read_input_tokens": 33431,
+          "cache_creation_input_tokens": 1676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T09:34:26.542Z_
+
+<details><summary>↩ Tool result · `toolu_01VZxneeBz66jSj2h9BbSbn3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/report.md\", \"content\": \"# Handover — 2026-05-26\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- gemma-steering-pickup（准备中）\\n- llama31_en_activations（准备中）\\n- qwen3_translate_zh（准备中）\\n- collect_en_activations_qwen3_8b（准备中）\\n- collect_en_activations_llama_v2（准备中）\\n- translate_zh_llama_v2（准备中）\\n- translate_zh_qwen（准备中）\\n- collect_en_act_llama_v3（准备中）\\n- collect_en_act_qwen_v2（准备中）\\n- verify_qwen3_v2（准备中）\\n- …另有 16 项\\n\\n## 近期结论\\n- **steering_gemma_v2_L21_139** (negative): Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug). ← 基于 steering_107_gemma_L21\\n- **steering_qwen_L15_135** (negative): Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary. ← 基于 steering_107_qwen_L14\\n- **steering_qwen_L14_134** (negative): Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound. ← 基于 steering_107_qwen_L14\\n\\n## 趋势\\n成功 19 / 负向 23 / 失败 1 / 共 53\\nalpha_neg10_p: 0.458 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-14391: 空闲 cuda:0\\n\\n## 告警\\n- comet_qwen_v5: 已被终止 — unknown\\n- comet_llama_v5: 已被终止 — unknown\\n- comet_qwen_v6: 已被终止 — unknown\\n- comet_llama_v6: 已被终止 — unknown\\n- gemma_full_pipeline_102: 训练失败 — unknown\\n- gemma_xnli_113: 已被终止 — unknown\\n- de_probe_n2000_112: 已被终止 — unknown\\n- de_bootstrap_parallel_114: 已被终止 — unknown\\n- steering_gemma_L16_130: 已被终止 — unknown\\n- steering_gemma_L17_131: 已被终止 — unknown\\n- steering_gemma_L18_132: 已被终止 — unknown\\n\", \"total_chars\": 2039, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "008987c4-ad54-47f4-a826-410583c087a6",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "796f241d-42f7-42d4-8575-f515ebc158e5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-26\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- gemma-steering-pickup（准备中）\\\\n- llama31_en_activations（准备中）\\\\n- qwen3_translate_zh（准备中）\\\\n- collect_en_activations_qwen3_8b（准备中）\\\\n- collect_en_activations_llama_v2（准备中）\\\\n- translate_zh_llama_v2（准备中）\\\\n- translate_zh_qwen（准备中）\\\\n- collect_en_act_llama_v3（准备中）\\\\n- collect_en_act_qwen_v2（准备中）\\\\n- verify_qwen3_v2（准备中）\\\\n- …另有 16 项\\\\n\\\\n## 近期结论\\\\n- **steering_gemma_v2_L21_139** (negative): Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug). ← 基于 steering_107_gemma_L21\\\\n- **steering_qwen_L15_135** (negative): Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary. ← 基于 steering_107_qwen_L14\\\\n- **steering_qwen_L14_134** (negative): Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound. ← 基于 steering_107_qwen_L14\\\\n\\\\n## 趋势\\\\n成功 19 / 负向 23 / 失败 1 / 共 53\\\\nalpha_neg10_p: 0.458 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-14391: 空闲 cuda:0\\\\n\\\\n## 告警\\\\n- comet_qwen_v5: 已被终止 — unknown\\\\n- comet_llama_v5: 已被终止 — unknown\\\\n- comet_qwen_v6: 已被终止 — unknown\\\\n- comet_llama_v6: 已被终止 — unknown\\\\n- gemma_full_pipeline_102: 训练失败 — unknown\\\\n- gemma_xnli_113: 已被终止 — unknown\\\\n- de_probe_n2000_112: 已被终止 — unknown\\\\n- de_bootstrap_parallel_114: 已被终止 — unknown\\\\n- steering_gemma_L16_130: 已被终止 — unknown\\\\n- steering_gemma_L17_131: 已被终止 — unknown\\\\n- steering_gemma_L18_132: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 2039, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/report.md\", \"content\": \"# Handover — 2026-05-26\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- gemma-steering-pickup（准备中）\\n- llama31_en_activations（准备中）\\n- qwen3_translate_zh（准备中）\\n- collect_en_activations_qwen3_8b（准备中）\\n- collect_en_activations_llama_v2（准备中）\\n- translate_zh_llama_v2（准备中）\\n- translate_zh_qwen（准备中）\\n- collect_en_act_llama_v3（准备中）\\n- collect_en_act_qwen_v2（准备中）\\n- verify_qwen3_v2（准备中）\\n- …另有 16 项\\n\\n## 近期结论\\n- **steering_gemma_v2_L21_139** (negative): Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug). ← 基于 steering_107_gemma_L21\\n- **steering_qwen_L15_135** (negative): Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary. ← 基于 steering_107_qwen_L14\\n- **steering_qwen_L14_134** (negative): Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound. ← 基于 steering_107_qwen_L14\\n\\n## 趋势\\n成功 19 / 负向 23 / 失败 1 / 共 53\\nalpha_neg10_p: 0.458 ↓（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-14391: 空闲 cuda:0\\n\\n## 告警\\n- comet_qwen_v5: 已被终止 — unknown\\n- comet_llama_v5: 已被终止 — unknown\\n- comet_qwen_v6: 已被终止 — unknown\\n- comet_llama_v6: 已被终止 — unknown\\n- gemma_full_pipeline_102: 训练失败 — unknown\\n- gemma_xnli_113: 已被终止 — unknown\\n- de_probe_n2000_112: 已被终止 — unknown\\n- de_bootstrap_parallel_114: 已被终止 — unknown\\n- steering_gemma_L16_130: 已被终止 — unknown\\n- steering_gemma_L17_131: 已被终止 — unknown\\n- steering_gemma_L18_132: 已被终止 — unknown\\n\", \"total_chars\": 2039, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "008987c4-ad54-47f4-a826-410583c087a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "796f241d-42f7-42d4-8575-f515ebc158e5",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-26T09:34:39.233Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I've gathered:
+
+1. **ROADMAP** shows Paper Agent completed all 6 fixes + Figure redesign, consistency check passed. Round 4 review submitted, waiting for user approval. Key contributions C1-C4 all marked complete.
+
+2. **Registry** has many experiments. Let me read the full registry output to check for any issues.
+
+3. **Coverage matrix** returns empty — experiment_plan.yaml may not have `claim` fields assigned, so everything shows as unassigned. This is a gap.
+
+4. **Report** shows no running experiments, 26+ pending experiments (all "准备中"), recent conclusions are all negative (Gemma v2 L21, Qwen L14/L15 steering), and GPU is idle.
+   
+Now I'm noticing some inconsistencies: the ROADMAP indicates paper review is in progress and all GPU experiments are complete, but the report shows 26+ pending experiments that haven't started yet. There's also a minor formatting issue with duplicate timestamp lines in the ROADMAP, and the empty coverage matrix suggests the experiment plan is missing claim field assignments.
+
+Let me dig into the registry output and check the paper framing and provenance files to understand what's actually happening.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "796f241d-42f7-42d4-8575-f515ebc158e5",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9cD2qBj4w8Gc6xzEC",
+  "type": "assistant",
+  "uuid": "3cfbe0a1-4b8b-48be-b976-c2d6111ddb81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zd8aZvoLXGwB3aHEFq3TT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 35107,
+      "output_tokens": 866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 866,
+          "cache_read_input_tokens": 35107,
+          "cache_creation_input_tokens": 4423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-26T09:34:39.304Z_
+
+需要进一步检查论文溯源和paper framing的一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cfbe0a1-4b8b-48be-b976-c2d6111ddb81",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9cD2qBj4w8Gc6xzEC",
+  "type": "assistant",
+  "uuid": "9f290eaf-5502-45af-8208-58ff418ef258",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zd8aZvoLXGwB3aHEFq3TT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 35107,
+      "output_tokens": 866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 866,
+          "cache_read_input_tokens": 35107,
+          "cache_creation_input_tokens": 4423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-26T09:34:40.193Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UrkVF8e85B4EecT2YndL7x`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "paper_framing.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f290eaf-5502-45af-8208-58ff418ef258",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9cD2qBj4w8Gc6xzEC",
+  "type": "assistant",
+  "uuid": "b97c0331-4c09-445d-8288-6136e9844742",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zd8aZvoLXGwB3aHEFq3TT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 35107,
+      "output_tokens": 866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 866,
+          "cache_read_input_tokens": 35107,
+          "cache_creation_input_tokens": 4423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T09:34:40.211Z_
+
+<details><summary>↩ Tool result · `toolu_01UrkVF8e85B4EecT2YndL7x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_framing.md\", \"content\": \"# Paper Framing — clkc_mech_interp\\n\\n> 最后更新: 2026-05-22 | 目标: EMNLP 2026 via ARR (DDL 2026-05-25, 3天)\\n\\n## Core Insight\\n\\n多语言 LLM 中，跨语言知识冲突的检测信号可在残差流中被线性探针检测，且跨语言迁移呈现**方向性不对称**（ZH→EN >> EN→ZH ~7.2pp），该不对称性跨架构高度一致。**关键发现（plan_110 XNLI 基线）**：该不对称性并非冲突特有——非冲突语义任务 (XNLI) 展现几乎相同幅度的迁移不对称性（Qwen +6.72pp, Llama +5.97pp）。这说明冲突信号**编码在模型的通用跨语言表征空间中**，继承其方向性偏置，而非独立的专用机制。\\n\\n**注意**: CLEAR 的发现是 task-dependent 的——entity-centric factual conflicts 由 linguistic affinity 主导，reasoning-intensive tasks 由 resource abundance 主导。我们使用 ConflictQA（entity-centric），引用 CLEAR 时必须限定为 entity-centric 场景。\\n\\n## Narrative Structure\\n\\n**机制分析驱动**（非 \\\"发现新现象\\\"）：\\n\\n1. **Phenomenon**: CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 决定跨语言冲突解决，但未提供机制解释\\n2. **Mechanistic question**: 冲突信号在模型内部如何编码？与一般跨语言语义表征的关系是什么？\\n3. **Our answer**: 冲突信号可线性检测且跨架构一致，但其跨语言迁移模式（方向不对称性）**与一般语义任务 (XNLI) 无异**——冲突检测 piggyback 在模型已有的跨语言对齐结构上，而非专用子空间。通过层结构分析和因果干预验证这一机制。\\n4. **Methodological contribution**: 严格的 confound exclusion pipeline (COMET ablation + token overlap) + 非冲突基线对照，为跨语言 probing 研究树立方法论标准\\n\\n**Secondary framing**: 跨语言 probing 中方向性偏置的普遍性——English-dominant 模型的固有属性，影响所有跨语言迁移研究的结论解读\\n\\n## Competing Hypotheses (pre-registered)\\n\\n**H1 — English-anchored universal detection**:\\n冲突检测信号本身是 language-independent 的（\\\"是否存在冲突\\\" 是语言无关判断），编码在 mid-layer 共享表征空间中。final-layer language transition 引入 similarity-dependent 干扰，影响 resolution 但不影响 detection。\\n- 预测: mid-layer conflict feature 跨语言 Jaccard >> late-layer Jaccard (paired permutation test p < 0.05)\\n- 预测: 英语探针跨语言迁移更强（英语作为训练数据主导语言，表征空间以英语为锚点）\\n\\n**H2 — Language-pair-specific encoding**:\\n冲突特征从 mid-layer 起即为 language-pair-specific 的，linguistic distance 直接编码在冲突表征中。\\n- 预测: mid-layer 和 late-layer Jaccard 无显著差异，或 mid < late\\n- 预测: 探针迁移准确率与语言对 typological distance 强相关\\n\\n**MVP + plan_110 证据倾向**:\\nZH→EN 迁移优势（~7pp）在冲突和 XNLI 任务中均存在且幅度一致，说明这是模型跨语言表征的固有属性（H1 部分支持：英语锚点存在，但非冲突特有）。冲突信号编码在通用跨语言空间中。非线性成分（MLP EN→ZH gains）是否冲突特有待 XNLI 上的 MLP 对照验证。\\n\\n## Core Claims\\n\\n### Claim 1: Cross-lingual conflict detectability\\n**Statement**: 跨语言知识冲突信号可在残差流中被线性探针检测，准确率显著高于随机基线。\\n**Evidence needed**:\\n- ≥2 model architectures 的 within-language probe acc > 70% (balanced) ✅ (Llama 77.6%, Qwen 75.0%)\\n- Permutation test p < 0.001 ✅ (all directions)\\n- Cross-lingual transfer acc > chance (50%) with statistical significance ✅ (all directions 64-72%)\\n**Status**: MVP 已验证 ✅\\n\\n### Claim 2: Cross-lingual transfer asymmetry as general model property [REFRAMED per D008]\\n**Statement**: 跨语言探针迁移呈方向一致的不对称（ZH→EN > EN→ZH ~7pp），但 **XNLI 非冲突基线展现几乎相同幅度的不对称性**（Qwen +6.72pp, Llama +5.97pp），说明这是 English-dominant 模型的一般跨语言迁移属性，非冲突特有。冲突信号继承了模型的通用跨语言表征结构。\\n**Evidence**:\\n- 冲突不对称性: Llama +7.22pp CI[1.1,13.6], Qwen +7.18pp CI[-1.2,13.4] ✅\\n- XNLI 不对称性: Llama +5.97pp CI[0.92,11.33], Qwen +6.72pp CI[2.36,11.73] ✅\\n- 两者量级无显著差异，CI 大幅重叠 ✅\\n- Token overlap 排除 ✅ | COMET confound 排除 ✅\\n- ≥1 additional architecture 验证 ❌ (plan_102 Gemma 进行中)\\n**Status**: XNLI 基线已完成，C2 reframed ✅⚠️ (待第三模型确认)\\n\\n### Claim 3: Non-linear encoding trend [DEAD — D012 双模型 CI 含零]\\n**Statement**: ~~冲突信号包含非线性成分~~ → 降为 supporting observation，不作为独立 claim。\\n**Evidence**:\\n- 冲突 MLP Δ (EN→ZH): Qwen +3.84pp CI[-3.57,+11.31] 含零 ❌; Llama +5.21pp CI[-2.21,+12.87] 含零 ❌\\n- XNLI MLP Δ (EN→ZH): Qwen -2.0pp, Llama -0.5pp — 方向对比成立但不显著\\n- **双模型 bootstrap 均不显著**，方向一致（冲突正、XNLI 负）可作为 suggestive trend 在 discussion 中提及\\n**Status**: ❌ 不作为论文 claim。Discussion 中作为 observation 报告。\\n\\n### Claim 4: Layer-wise conflict signal structure\\n**Statement**: 冲突信号在 mid-to-upper layers 集中，峰值层在不同模型架构中占比一致（Llama ~88% depth, Qwen ~67% depth 有差异——需更多模型确认 pattern）。\\n**Evidence needed**:\\n- Layer-wise probe accuracy curves for ≥3 models ❌\\n- Layer-wise CKA/SVCCA 量化 EN vs ZH 表征相似度 ❌\\n- 与 \\\"Lost in Multilinguality\\\" 的 language transition 层对比 ❌\\n**Status**: 未验证 ❌\\n\\n### Claim 5: Cross-lingual SAE conflict features (Track 2)\\n**Statement**: SAE 特征空间中存在跨语言共享的冲突编码特征，可与 language-identity 特征解耦。\\n**Evidence needed**:\\n- Qwen-Scope SAE 特征分析 on Qwen3-8B-Base ❌\\n- LangFIR random-token filtering 控制 ❌\\n- Cross-lingual feature Jaccard 分析 ❌\\n**Status**: 未开始 ❌\\n\\n### Claim 6: Causal evidence via representation steering (Track 3) [Llama-specific SUCCESS]\\n**Statement**: 探针权重方向在 Llama 中具有因果意义——沿此方向 steering 可改变模型冲突解决行为。跨模型验证失败，steering 是 architecture-dependent。\\n**Evidence**:\\n- Probe-weight steering 显著改变 p↔c flip rate (vs random control) ✅ (Llama L13)\\n- ≥1 layer/position 配置 Fisher p < 0.05 ✅ (α=+5 p=0.002, α=-20 p=0.0009)\\n**L13 result (D014, SUCCESS)**: Llama L13, last-token — α=+5 p=0.002 (19.9% vs 6.6%), α=-20 p=0.0009 (36.0% vs 17.6%)。方向性正确：正α→p→c, 负α→c→p。\\n**L28/L18/L28-all NEGATIVE**: 因果节点在 mid-layer (L13, ~40% depth), NOT probe peak (L28, ~88%)。\\n**跨模型验证 NEGATIVE**:\\n- Qwen L14 (39%): negative, 但 underpowered (9.5% parametric baseline, 8 samples) → uninformative\\n- Qwen L23 (64%): negative (all p=1.0)\\n- **Gemma L17 (40%)**: negative, adequate sample size, probe acc 75.3% → **informative negative**，确认 steering 是 architecture-dependent\\n- Gemma L21 (50%): ⏳ running, 预期 negative\\n**核心机制发现**: Detection ≠ Decision — 模型在 late-layer 编码可检测信号，但因果决策在 mid-layer 形成。且因果效应是 architecture-dependent：同一深度的 probe weight 方向在 Llama 有因果力但在 Gemma/Qwen 没有。\\n**Status**: Llama L13 ✅ SUCCESS, 跨模型 ❌ NEGATIVE (Llama-specific)\\n\\n## Anticipated Reviewer Concerns\\n\\n### RC1: Translation quality confound [RESOLVED ✅]\\n**Concern**: 中文翻译质量差可能导致虚假的冲突信号或迁移失败\\n**Result**: Plan_105 COMET tercile ablation 证明翻译质量非 confounder。Qwen test: Low COMET (mean 0.585) → 66.35% acc, High COMET (mean 0.816) → 60.71% acc, delta=-5.64pp (反向), Fisher p=0.695。冲突信号检测不依赖翻译质量。Back-translation COMET ≥0.80 阈值过严（两步翻译天然拉低），但 ablation 实证排除了翻译质量 confound。\\n**Remaining**: Llama test COMET 完成后重复此分析确认一致性。\\n\\n### RC2: Token overlap confound [RESOLVED ✅]\\n**Concern**: 跨语言迁移可能由 EN-ZH 共享 token（数字、专有名词、标点）驱动\\n**Result**: Per-sample Jaccard 仅 3-4%（type-level 10-15% 被膨胀）。Qwen 无相关 (p>0.4)，Llama 显著负相关 (r=-0.15, p=0.012, tercile Δ=-23.9pp)。高 overlap 反而降低准确率，方向与 RC2 相反。**共享 token 不驱动跨语言迁移，迁移发生在语义表示层。**\\n\\n### RC3: Model coverage insufficient [HIGH]\\n**Concern**: 只有 2 个模型，无法声称 \\\"架构无关\\\"\\n**Mitigation**: 加 ≥1 不同架构（Mistral/Gemma），验证 ~7.2pp 不对称性\\n**Experiment**: P0 — additional model verification\\n\\n### RC4: Dataset size and diversity [MEDIUM]\\n**Concern**: ConflictQA 覆盖面有限（~1000 samples/model），只有 EN-ZH 一个语言对\\n**Mitigation**: Phase 1 聚焦 EN-ZH 验证核心机制，Phase 2 扩展多语言（≥1 额外语言对）\\n**Experiment**: P0 — multilingual extension (EN↔JA or EN↔DE)\\n\\n### RC5: Linear probe expressiveness [LOW]\\n**Concern**: 线性探针可能遗漏复杂非线性信号\\n**Mitigation**: MLP 对比实验已完成 ✅，非线性成分已量化\\n**Experiment**: Done — MLP vs Linear comparison\\n\\n### RC6: SAE base/instruct mismatch [MEDIUM]\\n**Concern**: Qwen-Scope SAE 训练在 base model 上，用于 instruct model 分析可能失配\\n**Mitigation**: Track 2 用 base model 做 SAE 分析 + 与 Track 1 instruct probe 交叉验证\\n**Experiment**: Track 2 设计已考虑\\n\\n### RC7: Steering failure precedent [MEDIUM]\\n**Concern**: \\\"Interpretability without actionability\\\" 证明 SAE steering 可能完全无效\\n**Mitigation**: 知识冲突与临床分诊的 5 维差异（SpARE 已证明知识冲突场景 steering 有效）；Track 3 显式报告失败模式\\n**Experiment**: Track 3 包含 negative result framing\\n\\n### RC8: Causal claims without intervention [RESOLVED ✅ — L13 steering success D014]\\n**Concern**: 探针只证明信号可检测，不证明因果关系\\n**Result**: L13 steering (Llama) 提供因果证据 — α=+5 p=0.002, α=-20 p=0.0009。L28/L18 均 NEGATIVE，说明因果节点在 mid-layer。Detection-vs-Decision 层分离本身是核心机制发现。\\n**Remaining**: Qwen L13 跨模型验证进行中。\\n\\n### RC9: Non-conflict semantic baseline [CRITICAL — Dream 三档一致]\\n**Concern**: X→EN > EN→X 不对称性可能是英语主导模型的一般跨语言迁移属性，非冲突特异性\\n**Mitigation**: 用相同 pipeline 探针非冲突语义任务（sentiment/NLI），验证不对称性是否消失\\n**Experiment**: P0 — plan_110 (非冲突语义基线)\\n**判断标准**: 非冲突任务的不对称性 < 2pp → conflict-specific confirmed；2-5pp → partially specific（报告为 \\\"general cross-lingual component exists but conflict amplifies asymmetry\\\"）；≥ 5pp → reframe as general cross-lingual property\\n\\n### RC10: Bootstrap n 不足 [MAJOR — Dream 三档一致]\\n**Concern**: n=100 bootstrap 低于 Efron & Tibshirani (1993) 标准 n≥1000，CI endpoints 波动大\\n**Mitigation**: 升级至 n≥2000\\n**Experiment**: P0 — plan_111\\n\\n### RC11: Typological diversity 不足 [MAJOR — Dream 三档一致]\\n**Concern**: 仅 CJK 语言对，无法支撑 \\\"universal\\\" 声明\\n**Mitigation**: 添加 Indo-European 语言对 EN↔DE\\n**Experiment**: P0 — plan_112\\n\\n## Paper Structure (Updated for EMNLP 2026, 8-page limit)\\n\\n1. **Introduction**: CLEAR gap → mechanistic question → probing approach → key findings (detection + XNLI comparison)\\n2. **Related Work**: Cross-lingual knowledge conflicts → Probing methodology → Cross-lingual representations\\n3. **Method**: Data construction (ConflictQA + translation + COMET verification) → Residual stream probing → Non-conflict baseline (XNLI) → Confound controls\\n4. **Experiments & Results**:\\n   - 4.1 Cross-lingual conflict detectability (C1) — within/cross-language probe accuracy\\n   - 4.2 Transfer asymmetry + XNLI comparison (C2) — asymmetry is general cross-lingual property\\n   - 4.3 Methodological controls (token overlap, COMET ablation, bootstrap)\\n   - 4.4 Layer-wise probe accuracy structure (from existing data)\\n5. **Discussion**: Mechanism implications → MLP non-linearity trend (C3 observation) → Steering negative finding → Limitations → Connection to CLEAR\\n6. **Conclusion**\\n\\n## Scope Control (EMNLP 2026, DDL May 25)\\n\\n**投稿最低要求 (must-have)**:\\n- C1 fully supported (cross-lingual detectability, ≥2 models) ✅\\n- C2 fully supported (XNLI non-conflict comparison) ✅\\n- Token overlap control ✅\\n- COMET translation quality validation ✅\\n- Bootstrap n≥2000 (plan_111, 运行中)\\n\\n**可能来得及 (best-effort, 完成即补入)**:\\n- Gemma 第三模型验证 (probe training 中)\\n- EN↔DE 第二语言对 (translate 即将完成)\\n- Steering v2 variants 结果 (L13/L18/Qwen)\\n- Layer-wise probe acc curves (从已有数据提取，无需新 GPU 实验)\\n\\n**不做 (out of scope for this submission)**:\\n- Track 2 SAE analysis\\n- Track 3 full steering (作为 negative finding 报告)\\n- CKA/SVCCA layer analysis\\n- 多于 2 个语言对\\n\", \"total_chars\": 9645, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b97c0331-4c09-445d-8288-6136e9844742",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "b6b9a024-cd36-4af0-ae2c-43c238141c21",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — clkc_mech_interp\\\\n\\\\n> 最后更新: 2026-05-22 | 目标: EMNLP 2026 via ARR (DDL 2026-05-25, 3天)\\\\n\\\\n## Core Insight\\\\n\\\\n多语言 LLM 中，跨语言知识冲突的检测信号可在残差流中被线性探针检测，且跨语言迁移呈现**方向性不对称**（ZH→EN >> EN→ZH ~7.2pp），该不对称性跨架构高度一致。**关键发现（plan_110 XNLI 基线）**：该不对称性并非冲突特有——非冲突语义任务 (XNLI) 展现几乎相同幅度的迁移不对称性（Qwen +6.72pp, Llama +5.97pp）。这说明冲突信号**编码在模型的通用跨语言表征空间中**，继承其方向性偏置，而非独立的专用机制。\\\\n\\\\n**注意**: CLEAR 的发现是 task-dependent 的——entity-centric factual conflicts 由 linguistic affinity 主导，reasoning-intensive tasks 由 resource abundance 主导。我们使用 ConflictQA（entity-centric），引用 CLEAR 时必须限定为 entity-centric 场景。\\\\n\\\\n## Narrative Structure\\\\n\\\\n**机制分析驱动**（非 \\\\\\\"发现新现象\\\\\\\"）：\\\\n\\\\n1. **Phenomenon**: CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 决定跨语言冲突解决，但未提供机制解释\\\\n2. **Mechanistic question**: 冲突信号在模型内部如何编码？与一般跨语言语义表征的关系是什么？\\\\n3. **Our answer**: 冲突信号可线性检测且跨架构一致，但其跨语言迁移模式（方向不对称性）**与一般语义任务 (XNLI) 无异**——冲突检测 piggyback 在模型已有的跨语言对齐结构上，而非专用子空间。通过层结构分析和因果干预验证这一机制。\\\\n4. **Methodological contribution**: 严格的 confound exclusion pipeline (COMET ablation + token overlap) + 非冲突基线对照，为跨语言 probing 研究树立方法论标准\\\\n\\\\n**Secondary framing**: 跨语言 probing 中方向性偏置的普遍性——English-dominant 模型的固有属性，影响所有跨语言迁移研究的结论解读\\\\n\\\\n## Competing Hypotheses (pre-registered)\\\\n\\\\n**H1 — English-anchored universal detection**:\\\\n冲突检测信号本身是 language-independent 的（\\\\\\\"是否存在冲突\\\\\\\" 是语言无关判断），编码在 mid-layer 共享表征空间中。final-layer language transition 引入 similarity-dependent 干扰，影响 resolution 但不影响 detection。\\\\n- 预测: mid-layer conflict feature 跨语言 Jaccard >> late-layer Jaccard (paired permutation test p < 0.05)\\\\n- 预测: 英语探针跨语言迁移更强（英语作为训练数据主导语言，表征空间以英语为锚点）\\\\n\\\\n**H2 — Language-pair-specific encoding**:\\\\n冲突特征从 mid-layer 起即为 language-pair-specific 的，linguistic distance 直接编码在冲突表征中。\\\\n- 预测: mid-layer 和 late-layer Jaccard 无显著差异，或 mid < late\\\\n- 预测: 探针迁移准确率与语言对 typological distance 强相关\\\\n\\\\n**MVP + plan_110 证据倾向**:\\\\nZH→EN 迁移优势（~7pp）在冲突和 XNLI 任务中均存在且幅度一致，说明这是模型跨语言表征的固有属性（H1 部分支持：英语锚点存在，但非冲突特有）。冲突信号编码在通用跨语言空间中。非线性成分（MLP EN→ZH gains）是否冲突特有待 XNLI 上的 MLP 对照验证。\\\\n\\\\n## Core Claims\\\\n\\\\n### Claim 1: Cross-lingual conflict detectability\\\\n**Statement**: 跨语言知识冲突信号可在残差流中被线性探针检测，准确率显著高于随机基线。\\\\n**Evidence needed**:\\\\n- ≥2 model architectures 的 within-language probe acc > 70% (balanced) ✅ (Llama 77.6%, Qwen 75.0%)\\\\n- Permutation test p < 0.001 ✅ (all directions)\\\\n- Cross-lingual transfer acc > chance (50%) with statistical significance ✅ (all directions 64-72%)\\\\n**Status**: MVP 已验证 ✅\\\\n\\\\n### Claim 2: Cross-lingual transfer asymmetry as general model property [REFRAMED per D008]\\\\n**Statement**: 跨语言探针迁移呈方向一致的不对称（ZH→EN > EN→ZH ~7pp），但 **XNLI 非冲突基线展现几乎相同幅度的不对称性**（Qwen +6.72pp, Llama +5.97pp），说明这是 English-dominant 模型的一般跨语言迁移属性，非冲突特有。冲突信号继承了模型的通用跨语言表征结构。\\\\n**Evidence**:\\\\n- 冲突不对称性: Llama +7.22pp CI[1.1,13.6], Qwen +7.18pp CI[-1.2,13.4] ✅\\\\n- XNLI 不对称性: Llama +5.97pp CI[0.92,11.33], Qwen +6.72pp CI[2.36,11.73] ✅\\\\n- 两者量级无显著差异，CI 大幅重叠 ✅\\\\n- Token overlap 排除 ✅ | COMET confound 排除 ✅\\\\n- ≥1 additional architecture 验证 ❌ (plan_102 Gemma 进行中)\\\\n**Status**: XNLI 基线已完成，C2 reframed ✅⚠️ (待第三模型确认)\\\\n\\\\n### Claim 3: Non-linear encoding trend [DEAD — D012 双模型 CI 含零]\\\\n**Statement**: ~~冲突信号包含非线性成分~~ → 降为 supporting observation，不作为独立 claim。\\\\n**Evidence**:\\\\n- 冲突 MLP Δ (EN→ZH): Qwen +3.84pp CI[-3.57,+11.31] 含零 ❌; Llama +5.21pp CI[-2.21,+12.87] 含零 ❌\\\\n- XNLI MLP Δ (EN→ZH): Qwen -2.0pp, Llama -0.5pp — 方向对比成立但不显著\\\\n- **双模型 bootstrap 均不显著**，方向一致（冲突正、XNLI 负）可作为 suggestive trend 在 discussion 中提及\\\\n**Status**: ❌ 不作为论文 claim。Discussion 中作为 observation 报告。\\\\n\\\\n### Claim 4: Layer-wise conflict signal structure\\\\n**Statement**: 冲突信号在 mid-to-upper layers 集中，峰值层在不同模型架构中占比一致（Llama ~88% depth, Qwen ~67% depth 有差异——需更多模型确认 pattern）。\\\\n**Evidence needed**:\\\\n- Layer-wise probe accuracy curves for ≥3 models ❌\\\\n- Layer-wise CKA/SVCCA 量化 EN vs ZH 表征相似度 ❌\\\\n- 与 \\\\\\\"Lost in Multilinguality\\\\\\\" 的 language transition 层对比 ❌\\\\n**Status**: 未验证 ❌\\\\n\\\\n### Claim 5: Cross-lingual SAE conflict features (Track 2)\\\\n**Statement**: SAE 特征空间中存在跨语言共享的冲突编码特征，可与 language-identity 特征解耦。\\\\n**Evidence needed**:\\\\n- Qwen-Scope SAE 特征分析 on Qwen3-8B-Base ❌\\\\n- LangFIR random-token filtering 控制 ❌\\\\n- Cross-lingual feature Jaccard 分析 ❌\\\\n**Status**: 未开始 ❌\\\\n\\\\n### Claim 6: Causal evidence via representation steering (Track 3) [Llama-specific SUCCESS]\\\\n**Statement**: 探针权重方向在 Llama 中具有因果意义——沿此方向 steering 可改变模型冲突解决行为。跨模型验证失败，steering 是 architecture-dependent。\\\\n**Evidence**:\\\\n- Probe-weight steering 显著改变 p↔c flip rate (vs random control) ✅ (Llama L13)\\\\n- ≥1 layer/position 配置 Fisher p < 0.05 ✅ (α=+5 p=0.002, α=-20 p=0.0009)\\\\n**L13 result (D014, SUCCESS)**: Llama L13, last-token — α=+5 p=0.002 (19.9% vs 6.6%), α=-20 p=0.0009 (36.0% vs 17.6%)。方向性正确：正α→p→c, 负α→c→p。\\\\n**L28/L18/L28-all NEGATIVE**: 因果节点在 mid-layer (L13, ~40% depth), NOT probe peak (L28, ~88%)。\\\\n**跨模型验证 NEGATIVE**:\\\\n- Qwen L14 (39%): negative, 但 underpowered (9.5% parametric baseline, 8 samples) → uninformative\\\\n- Qwen L23 (64%): negative (all p=1.0)\\\\n- **Gemma L17 (40%)**: negative, adequate sample size, probe acc 75.3% → **informative negative**，确认 steering 是 architecture-dependent\\\\n- Gemma L21 (50%): ⏳ running, 预期 negative\\\\n**核心机制发现**: Detection ≠ Decision — 模型在 late-layer 编码可检测信号，但因果决策在 mid-layer 形成。且因果效应是 architecture-dependent：同一深度的 probe weight 方向在 Llama 有因果力但在 Gemma/Qwen 没有。\\\\n**Status**: Llama L13 ✅ SUCCESS, 跨模型 ❌ NEGATIVE (Llama-specific)\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### RC1: Translation quality confound [RESOLVED ✅]\\\\n**Concern**: 中文翻译质量差可能导致虚假的冲突信号或迁移失败\\\\n**Result**: Plan_105 COMET tercile ablation 证明翻译质量非 confounder。Qwen test: Low COMET (mean 0.585) → 66.35% acc, High COMET (mean 0.816) → 60.71% acc, delta=-5.64pp (反向), Fisher p=0.695。冲突信号检测不依赖翻译质量。Back-translation COMET ≥0.80 阈值过严（两步翻译天然拉低），但 ablation 实证排除了翻译质量 confound。\\\\n**Remaining**: Llama test COMET 完成后重复此分析确认一致性。\\\\n\\\\n### RC2: Token overlap confound [RESOLVED ✅]\\\\n**Concern**: 跨语言迁移可能由 EN-ZH 共享 token（数字、专有名词、标点）驱动\\\\n**Result**: Per-sample Jaccard 仅 3-4%（type-level 10-15% 被膨胀）。Qwen 无相关 (p>0.4)，Llama 显著负相关 (r=-0.15, p=0.012, tercile Δ=-23.9pp)。高 overlap 反而降低准确率，方向与 RC2 相反。**共享 token 不驱动跨语言迁移，迁移发生在语义表示层。**\\\\n\\\\n### RC3: Model coverage insufficient [HIGH]\\\\n**Concern**: 只有 2 个模型，无法声称 \\\\\\\"架构无关\\\\\\\"\\\\n**Mitigation**: 加 ≥1 不同架构（Mistral/Gemma），验证 ~7.2pp 不对称性\\\\n**Experiment**: P0 — additional model verification\\\\n\\\\n### RC4: Dataset size and diversity [MEDIUM]\\\\n**Concern**: ConflictQA 覆盖面有限（~1000 samples/model），只有 EN-ZH 一个语言对\\\\n**Mitigation**: Phase 1 聚焦 EN-ZH 验证核心机制，Phase 2 扩展多语言（≥1 额外语言对）\\\\n**Experiment**: P0 — multilingual extension (EN↔JA or EN↔DE)\\\\n\\\\n### RC5: Linear probe expressiveness [LOW]\\\\n**Concern**: 线性探针可能遗漏复杂非线性信号\\\\n**Mitigation**: MLP 对比实验已完成 ✅，非线性成分已量化\\\\n**Experiment**: Done — MLP vs Linear comparison\\\\n\\\\n### RC6: SAE base/instruct mismatch [MEDIUM]\\\\n**Concern**: Qwen-Scope SAE 训练在 base model 上，用于 instruct model 分析可能失配\\\\n**Mitigation**: Track 2 用 base model 做 SAE 分析 + 与 Track 1 instruct probe 交叉验证\\\\n**Experiment**: Track 2 设计已考虑\\\\n\\\\n### RC7: Steering failure precedent [MEDIUM]\\\\n**Concern**: \\\\\\\"Interpretability without actionability\\\\\\\" 证明 SAE steering 可能完全无效\\\\n**Mitigation**: 知识冲突与临床分诊的 5 维差异（SpARE 已证明知识冲突场景 steering 有效）；Track 3 显式报告失败模式\\\\n**Experiment**: Track 3 包含 negative result framing\\\\n\\\\n### RC8: Causal claims without intervention [RESOLVED ✅ — L13 steering success D014]\\\\n**Concern**: 探针只证明信号可检测，不证明因果关系\\\\n**Result**: L13 steering (Llama) 提供因果证据 — α=+5 p=0.002, α=-20 p=0.0009。L28/L18 均 NEGATIVE，说明因果节点在 mid-layer。Detection-vs-Decision 层分离本身是核心机制发现。\\\\n**Remaining**: Qwen L13 跨模型验证进行中。\\\\n\\\\n### RC9: Non-conflict semantic baseline [CRITICAL — Dream 三档一致]\\\\n**Concern**: X→EN > EN→X 不对称性可能是英语主导模型的一般跨语言迁移属性，非冲突特异性\\\\n**Mitigation**: 用相同 pipeline 探针非冲突语义任务（sentiment/NLI），验证不对称性是否消失\\\\n**Experiment**: P0 — plan_110 (非冲突语义基线)\\\\n**判断标准**: 非冲突任务的不对称性 < 2pp → conflict-specific confirmed；2-5pp → partially specific（报告为 \\\\\\\"general cross-lingual component exists but conflict amplifies asymmetry\\\\\\\"）；≥ 5pp → reframe as general cross-lingual property\\\\n\\\\n### RC10: Bootstrap n 不足 [MAJOR — Dream 三档一致]\\\\n**Concern**: n=100 bootstrap 低于 Efron & Tibshirani (1993) 标准 n≥1000，CI endpoints 波动大\\\\n**Mitigation**: 升级至 n≥2000\\\\n**Experiment**: P0 — plan_111\\\\n\\\\n### RC11: Typological diversity 不足 [MAJOR — Dream 三档一致]\\\\n**Concern**: 仅 CJK 语言对，无法支撑 \\\\\\\"universal\\\\\\\" 声明\\\\n**Mitigation**: 添加 Indo-European 语言对 EN↔DE\\\\n**Experiment**: P0 — plan_112\\\\n\\\\n## Paper Structure (Updated for EMNLP 2026, 8-page limit)\\\\n\\\\n1. **Introduction**: CLEAR gap → mechanistic question → probing approach → key findings (detection + XNLI comparison)\\\\n2. **Related Work**: Cross-lingual knowledge conflicts → Probing methodology → Cross-lingual representations\\\\n3. **Method**: Data construction (ConflictQA + translation + COMET verification) → Residual stream probing → Non-conflict baseline (XNLI) → Confound controls\\\\n4. **Experiments & Results**:\\\\n   - 4.1 Cross-lingual conflict detectability (C1) — within/cross-language probe accuracy\\\\n   - 4.2 Transfer asymmetry + XNLI comparison (C2) — asymmetry is general cross-lingual property\\\\n   - 4.3 Methodological controls (token overlap, COMET ablation, bootstrap)\\\\n   - 4.4 Layer-wise probe accuracy structure (from existing data)\\\\n5. **Discussion**: Mechanism implications → MLP non-linearity trend (C3 observation) → Steering negative finding → Limitations → Connection to CLEAR\\\\n6. **Conclusion**\\\\n\\\\n## Scope Control (EMNLP 2026, DDL May 25)\\\\n\\\\n**投稿最低要求 (must-have)**:\\\\n- C1 fully supported (cross-lingual detectability, ≥2 models) ✅\\\\n- C2 fully supported (XNLI non-conflict comparison) ✅\\\\n- Token overlap control ✅\\\\n- COMET translation quality validation ✅\\\\n- Bootstrap n≥2000 (plan_111, 运行中)\\\\n\\\\n**可能来得及 (best-effort, 完成即补入)**:\\\\n- Gemma 第三模型验证 (probe training 中)\\\\n- EN↔DE 第二语言对 (translate 即将完成)\\\\n- Steering v2 variants 结果 (L13/L18/Qwen)\\\\n- Layer-wise probe acc curves (从已有数据提取，无需新 GPU 实验)\\\\n\\\\n**不做 (out of scope for this submission)**:\\\\n- Track 2 SAE analysis\\\\n- Track 3 full steering (作为 negative finding 报告)\\\\n- CKA/SVCCA layer analysis\\\\n- 多于 2 个语言对\\\\n\\\", \\\"total_chars\\\": 9645, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_framing.md\", \"content\": \"# Paper Framing — clkc_mech_interp\\n\\n> 最后更新: 2026-05-22 | 目标: EMNLP 2026 via ARR (DDL 2026-05-25, 3天)\\n\\n## Core Insight\\n\\n多语言 LLM 中，跨语言知识冲突的检测信号可在残差流中被线性探针检测，且跨语言迁移呈现**方向性不对称**（ZH→EN >> EN→ZH ~7.2pp），该不对称性跨架构高度一致。**关键发现（plan_110 XNLI 基线）**：该不对称性并非冲突特有——非冲突语义任务 (XNLI) 展现几乎相同幅度的迁移不对称性（Qwen +6.72pp, Llama +5.97pp）。这说明冲突信号**编码在模型的通用跨语言表征空间中**，继承其方向性偏置，而非独立的专用机制。\\n\\n**注意**: CLEAR 的发现是 task-dependent 的——entity-centric factual conflicts 由 linguistic affinity 主导，reasoning-intensive tasks 由 resource abundance 主导。我们使用 ConflictQA（entity-centric），引用 CLEAR 时必须限定为 entity-centric 场景。\\n\\n## Narrative Structure\\n\\n**机制分析驱动**（非 \\\"发现新现象\\\"）：\\n\\n1. **Phenomenon**: CLEAR 发现在 entity-centric factual conflicts 中，linguistic affinity 决定跨语言冲突解决，但未提供机制解释\\n2. **Mechanistic question**: 冲突信号在模型内部如何编码？与一般跨语言语义表征的关系是什么？\\n3. **Our answer**: 冲突信号可线性检测且跨架构一致，但其跨语言迁移模式（方向不对称性）**与一般语义任务 (XNLI) 无异**——冲突检测 piggyback 在模型已有的跨语言对齐结构上，而非专用子空间。通过层结构分析和因果干预验证这一机制。\\n4. **Methodological contribution**: 严格的 confound exclusion pipeline (COMET ablation + token overlap) + 非冲突基线对照，为跨语言 probing 研究树立方法论标准\\n\\n**Secondary framing**: 跨语言 probing 中方向性偏置的普遍性——English-dominant 模型的固有属性，影响所有跨语言迁移研究的结论解读\\n\\n## Competing Hypotheses (pre-registered)\\n\\n**H1 — English-anchored universal detection**:\\n冲突检测信号本身是 language-independent 的（\\\"是否存在冲突\\\" 是语言无关判断），编码在 mid-layer 共享表征空间中。final-layer language transition 引入 similarity-dependent 干扰，影响 resolution 但不影响 detection。\\n- 预测: mid-layer conflict feature 跨语言 Jaccard >> late-layer Jaccard (paired permutation test p < 0.05)\\n- 预测: 英语探针跨语言迁移更强（英语作为训练数据主导语言，表征空间以英语为锚点）\\n\\n**H2 — Language-pair-specific encoding**:\\n冲突特征从 mid-layer 起即为 language-pair-specific 的，linguistic distance 直接编码在冲突表征中。\\n- 预测: mid-layer 和 late-layer Jaccard 无显著差异，或 mid < late\\n- 预测: 探针迁移准确率与语言对 typological distance 强相关\\n\\n**MVP + plan_110 证据倾向**:\\nZH→EN 迁移优势（~7pp）在冲突和 XNLI 任务中均存在且幅度一致，说明这是模型跨语言表征的固有属性（H1 部分支持：英语锚点存在，但非冲突特有）。冲突信号编码在通用跨语言空间中。非线性成分（MLP EN→ZH gains）是否冲突特有待 XNLI 上的 MLP 对照验证。\\n\\n## Core Claims\\n\\n### Claim 1: Cross-lingual conflict detectability\\n**Statement**: 跨语言知识冲突信号可在残差流中被线性探针检测，准确率显著高于随机基线。\\n**Evidence needed**:\\n- ≥2 model architectures 的 within-language probe acc > 70% (balanced) ✅ (Llama 77.6%, Qwen 75.0%)\\n- Permutation test p < 0.001 ✅ (all directions)\\n- Cross-lingual transfer acc > chance (50%) with statistical significance ✅ (all directions 64-72%)\\n**Status**: MVP 已验证 ✅\\n\\n### Claim 2: Cross-lingual transfer asymmetry as general model property [REFRAMED per D008]\\n**Statement**: 跨语言探针迁移呈方向一致的不对称（ZH→EN > EN→ZH ~7pp），但 **XNLI 非冲突基线展现几乎相同幅度的不对称性**（Qwen +6.72pp, Llama +5.97pp），说明这是 English-dominant 模型的一般跨语言迁移属性，非冲突特有。冲突信号继承了模型的通用跨语言表征结构。\\n**Evidence**:\\n- 冲突不对称性: Llama +7.22pp CI[1.1,13.6], Qwen +7.18pp CI[-1.2,13.4] ✅\\n- XNLI 不对称性: Llama +5.97pp CI[0.92,11.33], Qwen +6.72pp CI[2.36,11.73] ✅\\n- 两者量级无显著差异，CI 大幅重叠 ✅\\n- Token overlap 排除 ✅ | COMET confound 排除 ✅\\n- ≥1 additional architecture 验证 ❌ (plan_102 Gemma 进行中)\\n**Status**: XNLI 基线已完成，C2 reframed ✅⚠️ (待第三模型确认)\\n\\n### Claim 3: Non-linear encoding trend [DEAD — D012 双模型 CI 含零]\\n**Statement**: ~~冲突信号包含非线性成分~~ → 降为 supporting observation，不作为独立 claim。\\n**Evidence**:\\n- 冲突 MLP Δ (EN→ZH): Qwen +3.84pp CI[-3.57,+11.31] 含零 ❌; Llama +5.21pp CI[-2.21,+12.87] 含零 ❌\\n- XNLI MLP Δ (EN→ZH): Qwen -2.0pp, Llama -0.5pp — 方向对比成立但不显著\\n- **双模型 bootstrap 均不显著**，方向一致（冲突正、XNLI 负）可作为 suggestive trend 在 discussion 中提及\\n**Status**: ❌ 不作为论文 claim。Discussion 中作为 observation 报告。\\n\\n### Claim 4: Layer-wise conflict signal structure\\n**Statement**: 冲突信号在 mid-to-upper layers 集中，峰值层在不同模型架构中占比一致（Llama ~88% depth, Qwen ~67% depth 有差异——需更多模型确认 pattern）。\\n**Evidence needed**:\\n- Layer-wise probe accuracy curves for ≥3 models ❌\\n- Layer-wise CKA/SVCCA 量化 EN vs ZH 表征相似度 ❌\\n- 与 \\\"Lost in Multilinguality\\\" 的 language transition 层对比 ❌\\n**Status**: 未验证 ❌\\n\\n### Claim 5: Cross-lingual SAE conflict features (Track 2)\\n**Statement**: SAE 特征空间中存在跨语言共享的冲突编码特征，可与 language-identity 特征解耦。\\n**Evidence needed**:\\n- Qwen-Scope SAE 特征分析 on Qwen3-8B-Base ❌\\n- LangFIR random-token filtering 控制 ❌\\n- Cross-lingual feature Jaccard 分析 ❌\\n**Status**: 未开始 ❌\\n\\n### Claim 6: Causal evidence via representation steering (Track 3) [Llama-specific SUCCESS]\\n**Statement**: 探针权重方向在 Llama 中具有因果意义——沿此方向 steering 可改变模型冲突解决行为。跨模型验证失败，steering 是 architecture-dependent。\\n**Evidence**:\\n- Probe-weight steering 显著改变 p↔c flip rate (vs random control) ✅ (Llama L13)\\n- ≥1 layer/position 配置 Fisher p < 0.05 ✅ (α=+5 p=0.002, α=-20 p=0.0009)\\n**L13 result (D014, SUCCESS)**: Llama L13, last-token — α=+5 p=0.002 (19.9% vs 6.6%), α=-20 p=0.0009 (36.0% vs 17.6%)。方向性正确：正α→p→c, 负α→c→p。\\n**L28/L18/L28-all NEGATIVE**: 因果节点在 mid-layer (L13, ~40% depth), NOT probe peak (L28, ~88%)。\\n**跨模型验证 NEGATIVE**:\\n- Qwen L14 (39%): negative, 但 underpowered (9.5% parametric baseline, 8 samples) → uninformative\\n- Qwen L23 (64%): negative (all p=1.0)\\n- **Gemma L17 (40%)**: negative, adequate sample size, probe acc 75.3% → **informative negative**，确认 steering 是 architecture-dependent\\n- Gemma L21 (50%): ⏳ running, 预期 negative\\n**核心机制发现**: Detection ≠ Decision — 模型在 late-layer 编码可检测信号，但因果决策在 mid-layer 形成。且因果效应是 architecture-dependent：同一深度的 probe weight 方向在 Llama 有因果力但在 Gemma/Qwen 没有。\\n**Status**: Llama L13 ✅ SUCCESS, 跨模型 ❌ NEGATIVE (Llama-specific)\\n\\n## Anticipated Reviewer Concerns\\n\\n### RC1: Translation quality confound [RESOLVED ✅]\\n**Concern**: 中文翻译质量差可能导致虚假的冲突信号或迁移失败\\n**Result**: Plan_105 COMET tercile ablation 证明翻译质量非 confounder。Qwen test: Low COMET (mean 0.585) → 66.35% acc, High COMET (mean 0.816) → 60.71% acc, delta=-5.64pp (反向), Fisher p=0.695。冲突信号检测不依赖翻译质量。Back-translation COMET ≥0.80 阈值过严（两步翻译天然拉低），但 ablation 实证排除了翻译质量 confound。\\n**Remaining**: Llama test COMET 完成后重复此分析确认一致性。\\n\\n### RC2: Token overlap confound [RESOLVED ✅]\\n**Concern**: 跨语言迁移可能由 EN-ZH 共享 token（数字、专有名词、标点）驱动\\n**Result**: Per-sample Jaccard 仅 3-4%（type-level 10-15% 被膨胀）。Qwen 无相关 (p>0.4)，Llama 显著负相关 (r=-0.15, p=0.012, tercile Δ=-23.9pp)。高 overlap 反而降低准确率，方向与 RC2 相反。**共享 token 不驱动跨语言迁移，迁移发生在语义表示层。**\\n\\n### RC3: Model coverage insufficient [HIGH]\\n**Concern**: 只有 2 个模型，无法声称 \\\"架构无关\\\"\\n**Mitigation**: 加 ≥1 不同架构（Mistral/Gemma），验证 ~7.2pp 不对称性\\n**Experiment**: P0 — additional model verification\\n\\n### RC4: Dataset size and diversity [MEDIUM]\\n**Concern**: ConflictQA 覆盖面有限（~1000 samples/model），只有 EN-ZH 一个语言对\\n**Mitigation**: Phase 1 聚焦 EN-ZH 验证核心机制，Phase 2 扩展多语言（≥1 额外语言对）\\n**Experiment**: P0 — multilingual extension (EN↔JA or EN↔DE)\\n\\n### RC5: Linear probe expressiveness [LOW]\\n**Concern**: 线性探针可能遗漏复杂非线性信号\\n**Mitigation**: MLP 对比实验已完成 ✅，非线性成分已量化\\n**Experiment**: Done — MLP vs Linear comparison\\n\\n### RC6: SAE base/instruct mismatch [MEDIUM]\\n**Concern**: Qwen-Scope SAE 训练在 base model 上，用于 instruct model 分析可能失配\\n**Mitigation**: Track 2 用 base model 做 SAE 分析 + 与 Track 1 instruct probe 交叉验证\\n**Experiment**: Track 2 设计已考虑\\n\\n### RC7: Steering failure precedent [MEDIUM]\\n**Concern**: \\\"Interpretability without actionability\\\" 证明 SAE steering 可能完全无效\\n**Mitigation**: 知识冲突与临床分诊的 5 维差异（SpARE 已证明知识冲突场景 steering 有效）；Track 3 显式报告失败模式\\n**Experiment**: Track 3 包含 negative result framing\\n\\n### RC8: Causal claims without intervention [RESOLVED ✅ — L13 steering success D014]\\n**Concern**: 探针只证明信号可检测，不证明因果关系\\n**Result**: L13 steering (Llama) 提供因果证据 — α=+5 p=0.002, α=-20 p=0.0009。L28/L18 均 NEGATIVE，说明因果节点在 mid-layer。Detection-vs-Decision 层分离本身是核心机制发现。\\n**Remaining**: Qwen L13 跨模型验证进行中。\\n\\n### RC9: Non-conflict semantic baseline [CRITICAL — Dream 三档一致]\\n**Concern**: X→EN > EN→X 不对称性可能是英语主导模型的一般跨语言迁移属性，非冲突特异性\\n**Mitigation**: 用相同 pipeline 探针非冲突语义任务（sentiment/NLI），验证不对称性是否消失\\n**Experiment**: P0 — plan_110 (非冲突语义基线)\\n**判断标准**: 非冲突任务的不对称性 < 2pp → conflict-specific confirmed；2-5pp → partially specific（报告为 \\\"general cross-lingual component exists but conflict amplifies asymmetry\\\"）；≥ 5pp → reframe as general cross-lingual property\\n\\n### RC10: Bootstrap n 不足 [MAJOR — Dream 三档一致]\\n**Concern**: n=100 bootstrap 低于 Efron & Tibshirani (1993) 标准 n≥1000，CI endpoints 波动大\\n**Mitigation**: 升级至 n≥2000\\n**Experiment**: P0 — plan_111\\n\\n### RC11: Typological diversity 不足 [MAJOR — Dream 三档一致]\\n**Concern**: 仅 CJK 语言对，无法支撑 \\\"universal\\\" 声明\\n**Mitigation**: 添加 Indo-European 语言对 EN↔DE\\n**Experiment**: P0 — plan_112\\n\\n## Paper Structure (Updated for EMNLP 2026, 8-page limit)\\n\\n1. **Introduction**: CLEAR gap → mechanistic question → probing approach → key findings (detection + XNLI comparison)\\n2. **Related Work**: Cross-lingual knowledge conflicts → Probing methodology → Cross-lingual representations\\n3. **Method**: Data construction (ConflictQA + translation + COMET verification) → Residual stream probing → Non-conflict baseline (XNLI) → Confound controls\\n4. **Experiments & Results**:\\n   - 4.1 Cross-lingual conflict detectability (C1) — within/cross-language probe accuracy\\n   - 4.2 Transfer asymmetry + XNLI comparison (C2) — asymmetry is general cross-lingual property\\n   - 4.3 Methodological controls (token overlap, COMET ablation, bootstrap)\\n   - 4.4 Layer-wise probe accuracy structure (from existing data)\\n5. **Discussion**: Mechanism implications → MLP non-linearity trend (C3 observation) → Steering negative finding → Limitations → Connection to CLEAR\\n6. **Conclusion**\\n\\n## Scope Control (EMNLP 2026, DDL May 25)\\n\\n**投稿最低要求 (must-have)**:\\n- C1 fully supported (cross-lingual detectability, ≥2 models) ✅\\n- C2 fully supported (XNLI non-conflict comparison) ✅\\n- Token overlap control ✅\\n- COMET translation quality validation ✅\\n- Bootstrap n≥2000 (plan_111, 运行中)\\n\\n**可能来得及 (best-effort, 完成即补入)**:\\n- Gemma 第三模型验证 (probe training 中)\\n- EN↔DE 第二语言对 (translate 即将完成)\\n- Steering v2 variants 结果 (L13/L18/Qwen)\\n- Layer-wise probe acc curves (从已有数据提取，无需新 GPU 实验)\\n\\n**不做 (out of scope for this submission)**:\\n- Track 2 SAE analysis\\n- Track 3 full steering (作为 negative finding 报告)\\n- CKA/SVCCA layer analysis\\n- 多于 2 个语言对\\n\", \"total_chars\": 9645, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b97c0331-4c09-445d-8288-6136e9844742",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-26T09:34:40.660Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01U38py1VAWYrnPUQBX1nUj8`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "paper_provenance.yaml",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6b9a024-cd36-4af0-ae2c-43c238141c21",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9cD2qBj4w8Gc6xzEC",
+  "type": "assistant",
+  "uuid": "4479e31e-8cd7-43ee-9cd6-9a94c18e6062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zd8aZvoLXGwB3aHEFq3TT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 35107,
+      "output_tokens": 866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 866,
+          "cache_read_input_tokens": 35107,
+          "cache_creation_input_tokens": 4423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T09:34:40.671Z_
+
+<details><summary>↩ Tool result · `toolu_01U38py1VAWYrnPUQBX1nUj8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 36\\n  generated_at: '2026-05-26T09:16:50.090027+00:00'\\nclaims:\\n- id: C001\\n  location:\\n    section: experiments_test\\n    paragraph: 0\\n    sentence: 0\\n  text: test claim\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C002\\n  location:\\n    section: experiments_test2\\n    paragraph: 0\\n    sentence: 0\\n  text: test\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: test decision\\n  deprecated: false\\n- id: C003\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Llama EN-EN 77.1%, ZH-ZH 71.2% balanced accuracy\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  decisions: []\\n  deprecated: false\\n- id: C005\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Qwen EN-EN 75.3%, ZH-ZH 71.6% balanced accuracy\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C008\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Asymmetry Llama +7.2pp CI[1.1,13.6], Qwen +7.2pp CI[-0.6,13.7]\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: 'C2 framing: asymmetry is general cross-lingual property'\\n  deprecated: false\\n- id: C012\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: XNLI asymmetry Llama +6.0pp, Qwen +6.7pp, overlaps conflict CIs\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  decisions: []\\n  deprecated: false\\n- id: C017\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: COMET tercile not confounder p=0.695/0.761\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions: []\\n  deprecated: false\\n- id: C023\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: L13 steering a=+5 p=0.002, a=-20 p<0.001 bidirectional\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  decisions:\\n  - decision: Use causal influence not causal control\\n  deprecated: false\\n- id: C030\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: L28/L18 steering negative all p>0.3\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107\\n  - exp_id: steering_107_L18\\n  - exp_id: steering_107_L28_all\\n  decisions: []\\n  deprecated: false\\n- id: C038\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: a=+20 reversal control>steering p=0.053\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  decisions:\\n  - decision: Must report per Director calibration\\n  deprecated: false\\n- id: C039\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Method section: no quantitative claims, procedural description only'\\n  type: methodological\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: steering_107_L13\\n  decisions: []\\n  deprecated: false\\n- id: C040\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Probes achieve 77.1% and 75.3% balanced accuracy\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C042\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Asymmetry ~7pp matches XNLI (+6.0, +6.7pp), not conflict-specific\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  - exp_id: xnli_baseline_110\\n  decisions:\\n  - decision: 'C2: asymmetry is general cross-lingual property'\\n  deprecated: false\\n- id: C045\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: L13 steering Fisher p=0.002, L28 no significant effect\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: steering_107\\n  decisions:\\n  - decision: Use causal influence not causal control\\n  deprecated: false\\n- id: C046\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Related Work: positioning only, no quantitative claims'\\n  type: methodological\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C047\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Probe accuracy on EN→EN peaks at layer 28 (88% depth), yet representation\\n    steering succeeds only at layer 13 (41% depth; Fisher p=0.002)\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Detection-decision dissociation is the central mechanistic finding\\n  deprecated: false\\n- id: C049\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Llama ZH→ZH probe peaks at L13, the same layer where steering succeeds\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Mid-layer serves dual role as cross-lingual alignment site and causal\\n      locus\\n  deprecated: false\\n- id: C052\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: XNLI ZH→EN transfer advantage (+6.0 and +6.7 pp) closely matches conflict\\n    task asymmetry (+7.2 pp), with overlapping CIs\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: Asymmetry is not conflict-specific, inherits from general cross-lingual\\n      alignment\\n  deprecated: false\\n- id: C056\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MLP gains positive for conflict (Qwen +3.84pp, Llama +5.21pp) but CI includes\\n    zero for both models\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Reported as suggestive trend only, not as a claim\\n  deprecated: false\\n- id: C057\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Conflict signals are linearly detectable with balanced accuracies of 77.1%\\n    and 75.3% on EN within-language detection\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: Summary claim restating C1\\n  deprecated: false\\n- id: C059\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Transfer asymmetry (~7pp) matches XNLI non-conflict baseline in magnitude\\n    and direction\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Summary claim restating C2\\n  deprecated: false\\n- id: C062\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Probe peak at L28 (88% depth) but steering succeeds only at L13 (41% depth;\\n    Fisher p=0.002)\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Summary claim restating detection-decision dissociation\\n  deprecated: false\\n- id: C063\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Cross-lingual transfer asymmetry: ZH->EN exceeds EN->ZH by approximately\\n    7 percentage points'\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Abstract summary of C2 asymmetry\\n  deprecated: false\\n- id: C065\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Asymmetry matches XNLI non-conflict baseline in magnitude and direction with\\n    overlapping CIs\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  decisions:\\n  - decision: Asymmetry is general cross-lingual property\\n  deprecated: false\\n- id: C068\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Probe signal peaks at late layers (88% depth) but steering achieves causal\\n    influence only at mid-layer (41% depth)\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Abstract summary of detection-decision dissociation\\n  deprecated: false\\n- id: C069\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Llama asymmetry 7.3pp, CI [0.4, 14.0], p=0.038 (n=2000 bootstrap)\\n  type: quantitative\\n  evidence:\\n  - exp_id: bootstrap_n2000_111\\n  decisions:\\n  - decision: Updated from n=100 to n=2000 bootstrap\\n  deprecated: false\\ntables:\\n- id: t1\\n  location:\\n    section: experiments\\n    table_number: 0\\n  caption: ''\\n  cells:\\n  - row: r1\\n    col: c1\\n    value: '77.1'\\n    source:\\n      exp_id: mvp_probe_llama_v1\\n      metric: bal_acc\\n  deprecated: true\\n- id: tab:main_results\\n  location:\\n    section: experiments\\n    table_number: 0\\n  caption: ''\\n  cells:\\n  - row: EN-EN\\n    col: Llama\\n    value: '77.1'\\n    source:\\n      exp_id: mvp_probe_llama_v1\\n      metric: balanced_accuracy_mean\\n  - row: EN-ZH\\n    col: Llama\\n    value: '64.1'\\n    source:\\n      exp_id: mvp_probe_llama_v1\\n      metric: balanced_accuracy_mean\\n  - row: Delta\\n    col: Qwen\\n    value: +7.2 [-0.6,13.7]\\n    source:\\n      exp_id: mvp_probe_v1\\n      metric: asymmetry_n2000\\n  deprecated: false\\n- id: tab:steering\\n  location:\\n    section: experiments\\n    table_number: 0\\n  caption: ''\\n  cells:\\n  - row: L13_a5\\n    col: all\\n    value: 19.9/6.6/0.002\\n    source:\\n      exp_id: steering_107_L13\\n      metric: alpha_5\\n  - row: L13_a-20\\n    col: all\\n    value: 36.0/17.6/<0.001\\n    source:\\n      exp_id: steering_107_L13\\n      metric: alpha_neg20\\n  deprecated: false\\nfigures:\\n- id: fig1\\n  location:\\n    section: experiments_test4\\n    figure_number: 0\\n  caption: test\\n  type: line\\n  source:\\n    exp_id: exp1\\n  output_path: fig1.pdf\\n  deprecated: false\\n- id: fig_layer_probe\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Layer-wise probe accuracy\\n  type: line_plot\\n  source:\\n    exp_id: mvp_probe_llama_v1\\n  output_path: figures/paper/fig2_layer_probe.pdf\\n  deprecated: false\\n- id: fig_asymmetry_forest\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Asymmetry forest plot\\n  type: forest_plot\\n  source:\\n    exp_id: xnli_baseline_110\\n  output_path: figures/paper/fig3_asymmetry_forest.pdf\\n  deprecated: false\\n- id: fig2_layer_probe\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Layer-wise probe balanced accuracy with steering overlay\\n  type: statistical\\n  source:\\n    exp_id: mvp_probe_v1, mvp_probe_llama_v1, steering_107_L13\\n  output_path: figures/paper/fig2_layerwise_probes.pdf\\n  deprecated: false\\n- id: fig3_asymmetry_forest\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Transfer asymmetry forest plot, conflict vs XNLI\\n  type: statistical\\n  source:\\n    exp_id: mvp_probe_v1, mvp_probe_llama_v1, xnli_baseline_110, bootstrap_n2000_111\\n  output_path: figures/paper/fig3_asymmetry_forest.pdf\\n  deprecated: false\\n_completeness:\\n  coverage: 26/31\\n  claims: 26\\n  tables: 2\\n  figures: 5\\n  tier_counts:\\n    tier1: 0\\n    tier2: 26\\n    tier3: 5\\n    tierX: 0\\n  last_checked: '2026-05-26T09:16:50.090064+00:00'\\n\", \"total_chars\": 10938, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4479e31e-8cd7-43ee-9cd6-9a94c18e6062",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "f5e5e919-4006-47a0-a5d1-ef4510395593",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_provenance.yaml\\\", \\\"content\\\": \\\"paper:\\\\n  title: ''\\\\n  version: 36\\\\n  generated_at: '2026-05-26T09:16:50.090027+00:00'\\\\nclaims:\\\\n- id: C001\\\\n  location:\\\\n    section: experiments_test\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: test claim\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C002\\\\n  location:\\\\n    section: experiments_test2\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: test\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions:\\\\n  - decision: test decision\\\\n  deprecated: false\\\\n- id: C003\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Llama EN-EN 77.1%, ZH-ZH 71.2% balanced accuracy\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C005\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Qwen EN-EN 75.3%, ZH-ZH 71.6% balanced accuracy\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C008\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Asymmetry Llama +7.2pp CI[1.1,13.6], Qwen +7.2pp CI[-0.6,13.7]\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions:\\\\n  - decision: 'C2 framing: asymmetry is general cross-lingual property'\\\\n  deprecated: false\\\\n- id: C012\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: XNLI asymmetry Llama +6.0pp, Qwen +6.7pp, overlaps conflict CIs\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: xnli_baseline_110\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C017\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: COMET tercile not confounder p=0.695/0.761\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C023\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: L13 steering a=+5 p=0.002, a=-20 p<0.001 bidirectional\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107_L13\\\\n  decisions:\\\\n  - decision: Use causal influence not causal control\\\\n  deprecated: false\\\\n- id: C030\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: L28/L18 steering negative all p>0.3\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107\\\\n  - exp_id: steering_107_L18\\\\n  - exp_id: steering_107_L28_all\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C038\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: a=+20 reversal control>steering p=0.053\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107_L13\\\\n  decisions:\\\\n  - decision: Must report per Director calibration\\\\n  deprecated: false\\\\n- id: C039\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Method section: no quantitative claims, procedural description only'\\\\n  type: methodological\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  - exp_id: steering_107_L13\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C040\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Probes achieve 77.1% and 75.3% balanced accuracy\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C042\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Asymmetry ~7pp matches XNLI (+6.0, +6.7pp), not conflict-specific\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  - exp_id: mvp_probe_v1\\\\n  - exp_id: xnli_baseline_110\\\\n  decisions:\\\\n  - decision: 'C2: asymmetry is general cross-lingual property'\\\\n  deprecated: false\\\\n- id: C045\\\\n  location:\\\\n    section: introduction\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: L13 steering Fisher p=0.002, L28 no significant effect\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107_L13\\\\n  - exp_id: steering_107\\\\n  decisions:\\\\n  - decision: Use causal influence not causal control\\\\n  deprecated: false\\\\n- id: C046\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Related Work: positioning only, no quantitative claims'\\\\n  type: methodological\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C047\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Probe accuracy on EN→EN peaks at layer 28 (88% depth), yet representation\\\\n    steering succeeds only at layer 13 (41% depth; Fisher p=0.002)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107_L13\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Detection-decision dissociation is the central mechanistic finding\\\\n  deprecated: false\\\\n- id: C049\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Llama ZH→ZH probe peaks at L13, the same layer where steering succeeds\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Mid-layer serves dual role as cross-lingual alignment site and causal\\\\n      locus\\\\n  deprecated: false\\\\n- id: C052\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: XNLI ZH→EN transfer advantage (+6.0 and +6.7 pp) closely matches conflict\\\\n    task asymmetry (+7.2 pp), with overlapping CIs\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: xnli_baseline_110\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions:\\\\n  - decision: Asymmetry is not conflict-specific, inherits from general cross-lingual\\\\n      alignment\\\\n  deprecated: false\\\\n- id: C056\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: MLP gains positive for conflict (Qwen +3.84pp, Llama +5.21pp) but CI includes\\\\n    zero for both models\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Reported as suggestive trend only, not as a claim\\\\n  deprecated: false\\\\n- id: C057\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Conflict signals are linearly detectable with balanced accuracies of 77.1%\\\\n    and 75.3% on EN within-language detection\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  - exp_id: mvp_probe_v1\\\\n  decisions:\\\\n  - decision: Summary claim restating C1\\\\n  deprecated: false\\\\n- id: C059\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Transfer asymmetry (~7pp) matches XNLI non-conflict baseline in magnitude\\\\n    and direction\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: xnli_baseline_110\\\\n  - exp_id: mvp_probe_v1\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Summary claim restating C2\\\\n  deprecated: false\\\\n- id: C062\\\\n  location:\\\\n    section: conclusion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Probe peak at L28 (88% depth) but steering succeeds only at L13 (41% depth;\\\\n    Fisher p=0.002)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107_L13\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Summary claim restating detection-decision dissociation\\\\n  deprecated: false\\\\n- id: C063\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Cross-lingual transfer asymmetry: ZH->EN exceeds EN->ZH by approximately\\\\n    7 percentage points'\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: mvp_probe_v1\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Abstract summary of C2 asymmetry\\\\n  deprecated: false\\\\n- id: C065\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Asymmetry matches XNLI non-conflict baseline in magnitude and direction with\\\\n    overlapping CIs\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: xnli_baseline_110\\\\n  decisions:\\\\n  - decision: Asymmetry is general cross-lingual property\\\\n  deprecated: false\\\\n- id: C068\\\\n  location:\\\\n    section: abstract\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Probe signal peaks at late layers (88% depth) but steering achieves causal\\\\n    influence only at mid-layer (41% depth)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: steering_107_L13\\\\n  - exp_id: mvp_probe_llama_v1\\\\n  decisions:\\\\n  - decision: Abstract summary of detection-decision dissociation\\\\n  deprecated: false\\\\n- id: C069\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Llama asymmetry 7.3pp, CI [0.4, 14.0], p=0.038 (n=2000 bootstrap)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: bootstrap_n2000_111\\\\n  decisions:\\\\n  - decision: Updated from n=100 to n=2000 bootstrap\\\\n  deprecated: false\\\\ntables:\\\\n- id: t1\\\\n  location:\\\\n    section: experiments\\\\n    table_number: 0\\\\n  caption: ''\\\\n  cells:\\\\n  - row: r1\\\\n    col: c1\\\\n    value: '77.1'\\\\n    source:\\\\n      exp_id: mvp_probe_llama_v1\\\\n      metric: bal_acc\\\\n  deprecated: true\\\\n- id: tab:main_results\\\\n  location:\\\\n    section: experiments\\\\n    table_number: 0\\\\n  caption: ''\\\\n  cells:\\\\n  - row: EN-EN\\\\n    col: Llama\\\\n    value: '77.1'\\\\n    source:\\\\n      exp_id: mvp_probe_llama_v1\\\\n      metric: balanced_accuracy_mean\\\\n  - row: EN-ZH\\\\n    col: Llama\\\\n    value: '64.1'\\\\n    source:\\\\n      exp_id: mvp_probe_llama_v1\\\\n      metric: balanced_accuracy_mean\\\\n  - row: Delta\\\\n    col: Qwen\\\\n    value: +7.2 [-0.6,13.7]\\\\n    source:\\\\n      exp_id: mvp_probe_v1\\\\n      metric: asymmetry_n2000\\\\n  deprecated: false\\\\n- id: tab:steering\\\\n  location:\\\\n    section: experiments\\\\n    table_number: 0\\\\n  caption: ''\\\\n  cells:\\\\n  - row: L13_a5\\\\n    col: all\\\\n    value: 19.9/6.6/0.002\\\\n    source:\\\\n      exp_id: steering_107_L13\\\\n      metric: alpha_5\\\\n  - row: L13_a-20\\\\n    col: all\\\\n    value: 36.0/17.6/<0.001\\\\n    source:\\\\n      exp_id: steering_107_L13\\\\n      metric: alpha_neg20\\\\n  deprecated: false\\\\nfigures:\\\\n- id: fig1\\\\n  location:\\\\n    section: experiments_test4\\\\n    figure_number: 0\\\\n  caption: test\\\\n  type: line\\\\n  source:\\\\n    exp_id: exp1\\\\n  output_path: fig1.pdf\\\\n  deprecated: false\\\\n- id: fig_layer_probe\\\\n  location:\\\\n    section: experiments\\\\n    figure_number: 0\\\\n  caption: Layer-wise probe accuracy\\\\n  type: line_plot\\\\n  source:\\\\n    exp_id: mvp_probe_llama_v1\\\\n  output_path: figures/paper/fig2_layer_probe.pdf\\\\n  deprecated: false\\\\n- id: fig_asymmetry_forest\\\\n  location:\\\\n    section: experiments\\\\n    figure_number: 0\\\\n  caption: Asymmetry forest plot\\\\n  type: forest_plot\\\\n  source:\\\\n    exp_id: xnli_baseline_110\\\\n  output_path: figures/paper/fig3_asymmetry_forest.pdf\\\\n  deprecated: false\\\\n- id: fig2_layer_probe\\\\n  location:\\\\n    section: experiments\\\\n    figure_number: 0\\\\n  caption: Layer-wise probe balanced accuracy with steering overlay\\\\n  type: statistical\\\\n  source:\\\\n    exp_id: mvp_probe_v1, mvp_probe_llama_v1, steering_107_L13\\\\n  output_path: figures/paper/fig2_layerwise_probes.pdf\\\\n  deprecated: false\\\\n- id: fig3_asymmetry_forest\\\\n  location:\\\\n    section: experiments\\\\n    figure_number: 0\\\\n  caption: Transfer asymmetry forest plot, conflict vs XNLI\\\\n  type: statistical\\\\n  source:\\\\n    exp_id: mvp_probe_v1, mvp_probe_llama_v1, xnli_baseline_110, bootstrap_n2000_111\\\\n  output_path: figures/paper/fig3_asymmetry_forest.pdf\\\\n  deprecated: false\\\\n_completeness:\\\\n  coverage: 26/31\\\\n  claims: 26\\\\n  tables: 2\\\\n  figures: 5\\\\n  tier_counts:\\\\n    tier1: 0\\\\n    tier2: 26\\\\n    tier3: 5\\\\n    tierX: 0\\\\n  last_checked: '2026-05-26T09:16:50.090064+00:00'\\\\n\\\", \\\"total_chars\\\": 10938, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 36\\n  generated_at: '2026-05-26T09:16:50.090027+00:00'\\nclaims:\\n- id: C001\\n  location:\\n    section: experiments_test\\n    paragraph: 0\\n    sentence: 0\\n  text: test claim\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C002\\n  location:\\n    section: experiments_test2\\n    paragraph: 0\\n    sentence: 0\\n  text: test\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: test decision\\n  deprecated: false\\n- id: C003\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Llama EN-EN 77.1%, ZH-ZH 71.2% balanced accuracy\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  decisions: []\\n  deprecated: false\\n- id: C005\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Qwen EN-EN 75.3%, ZH-ZH 71.6% balanced accuracy\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C008\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Asymmetry Llama +7.2pp CI[1.1,13.6], Qwen +7.2pp CI[-0.6,13.7]\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: 'C2 framing: asymmetry is general cross-lingual property'\\n  deprecated: false\\n- id: C012\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: XNLI asymmetry Llama +6.0pp, Qwen +6.7pp, overlaps conflict CIs\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  decisions: []\\n  deprecated: false\\n- id: C017\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: COMET tercile not confounder p=0.695/0.761\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions: []\\n  deprecated: false\\n- id: C023\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: L13 steering a=+5 p=0.002, a=-20 p<0.001 bidirectional\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  decisions:\\n  - decision: Use causal influence not causal control\\n  deprecated: false\\n- id: C030\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: L28/L18 steering negative all p>0.3\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107\\n  - exp_id: steering_107_L18\\n  - exp_id: steering_107_L28_all\\n  decisions: []\\n  deprecated: false\\n- id: C038\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: a=+20 reversal control>steering p=0.053\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  decisions:\\n  - decision: Must report per Director calibration\\n  deprecated: false\\n- id: C039\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Method section: no quantitative claims, procedural description only'\\n  type: methodological\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: steering_107_L13\\n  decisions: []\\n  deprecated: false\\n- id: C040\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Probes achieve 77.1% and 75.3% balanced accuracy\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C042\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: Asymmetry ~7pp matches XNLI (+6.0, +6.7pp), not conflict-specific\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  - exp_id: xnli_baseline_110\\n  decisions:\\n  - decision: 'C2: asymmetry is general cross-lingual property'\\n  deprecated: false\\n- id: C045\\n  location:\\n    section: introduction\\n    paragraph: 0\\n    sentence: 0\\n  text: L13 steering Fisher p=0.002, L28 no significant effect\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: steering_107\\n  decisions:\\n  - decision: Use causal influence not causal control\\n  deprecated: false\\n- id: C046\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Related Work: positioning only, no quantitative claims'\\n  type: methodological\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  decisions: []\\n  deprecated: false\\n- id: C047\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Probe accuracy on EN→EN peaks at layer 28 (88% depth), yet representation\\n    steering succeeds only at layer 13 (41% depth; Fisher p=0.002)\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Detection-decision dissociation is the central mechanistic finding\\n  deprecated: false\\n- id: C049\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: Llama ZH→ZH probe peaks at L13, the same layer where steering succeeds\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Mid-layer serves dual role as cross-lingual alignment site and causal\\n      locus\\n  deprecated: false\\n- id: C052\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: XNLI ZH→EN transfer advantage (+6.0 and +6.7 pp) closely matches conflict\\n    task asymmetry (+7.2 pp), with overlapping CIs\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: Asymmetry is not conflict-specific, inherits from general cross-lingual\\n      alignment\\n  deprecated: false\\n- id: C056\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: MLP gains positive for conflict (Qwen +3.84pp, Llama +5.21pp) but CI includes\\n    zero for both models\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Reported as suggestive trend only, not as a claim\\n  deprecated: false\\n- id: C057\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Conflict signals are linearly detectable with balanced accuracies of 77.1%\\n    and 75.3% on EN within-language detection\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_llama_v1\\n  - exp_id: mvp_probe_v1\\n  decisions:\\n  - decision: Summary claim restating C1\\n  deprecated: false\\n- id: C059\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Transfer asymmetry (~7pp) matches XNLI non-conflict baseline in magnitude\\n    and direction\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Summary claim restating C2\\n  deprecated: false\\n- id: C062\\n  location:\\n    section: conclusion\\n    paragraph: 0\\n    sentence: 0\\n  text: Probe peak at L28 (88% depth) but steering succeeds only at L13 (41% depth;\\n    Fisher p=0.002)\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Summary claim restating detection-decision dissociation\\n  deprecated: false\\n- id: C063\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Cross-lingual transfer asymmetry: ZH->EN exceeds EN->ZH by approximately\\n    7 percentage points'\\n  type: quantitative\\n  evidence:\\n  - exp_id: mvp_probe_v1\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Abstract summary of C2 asymmetry\\n  deprecated: false\\n- id: C065\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Asymmetry matches XNLI non-conflict baseline in magnitude and direction with\\n    overlapping CIs\\n  type: quantitative\\n  evidence:\\n  - exp_id: xnli_baseline_110\\n  decisions:\\n  - decision: Asymmetry is general cross-lingual property\\n  deprecated: false\\n- id: C068\\n  location:\\n    section: abstract\\n    paragraph: 0\\n    sentence: 0\\n  text: Probe signal peaks at late layers (88% depth) but steering achieves causal\\n    influence only at mid-layer (41% depth)\\n  type: quantitative\\n  evidence:\\n  - exp_id: steering_107_L13\\n  - exp_id: mvp_probe_llama_v1\\n  decisions:\\n  - decision: Abstract summary of detection-decision dissociation\\n  deprecated: false\\n- id: C069\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Llama asymmetry 7.3pp, CI [0.4, 14.0], p=0.038 (n=2000 bootstrap)\\n  type: quantitative\\n  evidence:\\n  - exp_id: bootstrap_n2000_111\\n  decisions:\\n  - decision: Updated from n=100 to n=2000 bootstrap\\n  deprecated: false\\ntables:\\n- id: t1\\n  location:\\n    section: experiments\\n    table_number: 0\\n  caption: ''\\n  cells:\\n  - row: r1\\n    col: c1\\n    value: '77.1'\\n    source:\\n      exp_id: mvp_probe_llama_v1\\n      metric: bal_acc\\n  deprecated: true\\n- id: tab:main_results\\n  location:\\n    section: experiments\\n    table_number: 0\\n  caption: ''\\n  cells:\\n  - row: EN-EN\\n    col: Llama\\n    value: '77.1'\\n    source:\\n      exp_id: mvp_probe_llama_v1\\n      metric: balanced_accuracy_mean\\n  - row: EN-ZH\\n    col: Llama\\n    value: '64.1'\\n    source:\\n      exp_id: mvp_probe_llama_v1\\n      metric: balanced_accuracy_mean\\n  - row: Delta\\n    col: Qwen\\n    value: +7.2 [-0.6,13.7]\\n    source:\\n      exp_id: mvp_probe_v1\\n      metric: asymmetry_n2000\\n  deprecated: false\\n- id: tab:steering\\n  location:\\n    section: experiments\\n    table_number: 0\\n  caption: ''\\n  cells:\\n  - row: L13_a5\\n    col: all\\n    value: 19.9/6.6/0.002\\n    source:\\n      exp_id: steering_107_L13\\n      metric: alpha_5\\n  - row: L13_a-20\\n    col: all\\n    value: 36.0/17.6/<0.001\\n    source:\\n      exp_id: steering_107_L13\\n      metric: alpha_neg20\\n  deprecated: false\\nfigures:\\n- id: fig1\\n  location:\\n    section: experiments_test4\\n    figure_number: 0\\n  caption: test\\n  type: line\\n  source:\\n    exp_id: exp1\\n  output_path: fig1.pdf\\n  deprecated: false\\n- id: fig_layer_probe\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Layer-wise probe accuracy\\n  type: line_plot\\n  source:\\n    exp_id: mvp_probe_llama_v1\\n  output_path: figures/paper/fig2_layer_probe.pdf\\n  deprecated: false\\n- id: fig_asymmetry_forest\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Asymmetry forest plot\\n  type: forest_plot\\n  source:\\n    exp_id: xnli_baseline_110\\n  output_path: figures/paper/fig3_asymmetry_forest.pdf\\n  deprecated: false\\n- id: fig2_layer_probe\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Layer-wise probe balanced accuracy with steering overlay\\n  type: statistical\\n  source:\\n    exp_id: mvp_probe_v1, mvp_probe_llama_v1, steering_107_L13\\n  output_path: figures/paper/fig2_layerwise_probes.pdf\\n  deprecated: false\\n- id: fig3_asymmetry_forest\\n  location:\\n    section: experiments\\n    figure_number: 0\\n  caption: Transfer asymmetry forest plot, conflict vs XNLI\\n  type: statistical\\n  source:\\n    exp_id: mvp_probe_v1, mvp_probe_llama_v1, xnli_baseline_110, bootstrap_n2000_111\\n  output_path: figures/paper/fig3_asymmetry_forest.pdf\\n  deprecated: false\\n_completeness:\\n  coverage: 26/31\\n  claims: 26\\n  tables: 2\\n  figures: 5\\n  tier_counts:\\n    tier1: 0\\n    tier2: 26\\n    tier3: 5\\n    tierX: 0\\n  last_checked: '2026-05-26T09:16:50.090064+00:00'\\n\", \"total_chars\": 10938, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4479e31e-8cd7-43ee-9cd6-9a94c18e6062",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-26T09:34:41.728Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01W9tQvXseH2cGsM8n3rMjgx`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "decisions.yaml",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5e5e919-4006-47a0-a5d1-ef4510395593",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9cD2qBj4w8Gc6xzEC",
+  "type": "assistant",
+  "uuid": "06d72d04-1074-48a5-80a8-4c80981a3673",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zd8aZvoLXGwB3aHEFq3TT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 35107,
+      "output_tokens": 866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 866,
+          "cache_read_input_tokens": 35107,
+          "cache_creation_input_tokens": 4423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T09:34:41.760Z_
+
+<details><summary>↩ Tool result · `toolu_01W9tQvXseH2cGsM8n3rMjgx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\", \"content\": \"_next_id: 21\\ndecisions:\\n- id: D001\\n  date: 2026-05-21 12:00 UTC\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-21 12:06 UTC\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-21 14:26 UTC\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: triggered_decision\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D004\\n  date: 2026-05-21 19:17 UTC\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15\\n  depends_on:\\n  - D002\\n- id: D005\\n  date: 2026-05-21 20:33 UTC\\n  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN\\n    >> EN→ZH），等 COMET 验证后进入 research 阶段\\n  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)\\n    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH\\n    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET\\n    翻译质量验证是最后一个前置条件。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%\\n  - exp_id: mvp_probe_v1\\n    role: primary\\n    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)\\n  depends_on:\\n  - D002\\n  - D004\\n- id: D006\\n  date: 2026-05-22 02:13 UTC\\n  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果\\n  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80\\n    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用\\n    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非\\n    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。\\n  related_experiments:\\n  - exp_id: comet_qwen_v5\\n    role: evidence\\n    result: Qwen test COMET mean=0.70, pass 18.45%\\n  - exp_id: mvp_probe_v1\\n    role: dependent\\n    result: 探针结果可能受翻译质量影响\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-22 03:50 UTC\\n  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）\\n  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别\\n    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap\\n    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110\\n    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md\\n    新增 RC9-RC11，scope control 更新。\\n  related_experiments:\\n  - exp_id: dream_20260522T023801\\n    role: trigger\\n    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-22 05:43 UTC\\n  summary: C2 reframe：不对称性非冲突特异性，改为\\\"冲突信号继承模型一般跨语言迁移偏置\\\"\\n  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按\\n    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是\\n    piggyback 在已有的跨语言对齐结构上。论文从\\\"发现新现象\\\"转为\\\"机制分析+方法论贡献\\\"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-22 07:12 UTC\\n  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性\\n  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen\\n    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为\\n    C2 reframe 后论文的核心差异化 contribution。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'\\n  - exp_id: mvp_002\\n    role: comparison\\n    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-22 07:50 UTC\\n  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点\\n  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有\\n    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track\\n    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖\\n    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention\\n    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: context\\n    result: C3 MLP contrast confirmed but statistically weak\\n  - exp_id: mvp_002\\n    role: context\\n    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-22 11:03 UTC\\n  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡\\n  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行\\n    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。\\n  related_experiments:\\n  - exp_id: steering_107\\n    role: evidence\\n    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-22 12:44 UTC\\n  summary: D009 撤回：C3 non-linearity 降为 \\\"trend only\\\"，双模型 bootstrap CI 均含零\\n  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen\\n    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论\\\"C3\\n    confirmed conflict-specific\\\"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: evidence\\n    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast\\n      holds but CIs include zero\\n  - exp_id: mvp_002\\n    role: baseline\\n    result: single-seed MLP deltas were larger but not bootstrapped\\n  depends_on:\\n  - D009\\n- id: D013\\n  date: 2026-05-22 12:55 UTC\\n  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'\\n  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper\\n    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: mvp_probe_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: xnli_baseline_110\\n    role: core\\n    result: C2 reframed\\n  - exp_id: steering_107\\n    role: core\\n    result: negative, reportable finding\\n  depends_on: []\\n- id: D014\\n  date: 2026-05-22 13:22 UTC\\n  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011\\n    策略验证成功\\n  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002\\n    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%\\n    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后\\n    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。\\n  related_experiments:\\n  - exp_id: steering_107_L13\\n    role: core\\n    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002\\n  - exp_id: steering_107\\n    role: control\\n    result: NEGATIVE at L28\\n  - exp_id: steering_107_L18\\n    role: control\\n    result: NEGATIVE at L18\\n  - exp_id: steering_107_L28_all\\n    role: control\\n    result: NEGATIVE at L28 all-position\\n  depends_on:\\n  - D011\\n- id: D015\\n  date: 2026-05-22 16:34 UTC\\n  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证\\n  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative\\n    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering\\n    因果效应是 architecture-dependent。论文叙事维持 \\\"detection ≠ decision\\\" 核心发现 + Llama-specific\\n    steering + model-specificity 方法论警告。不再追加 steering 实验。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: cross-model validation\\n    result: negative (all p>0.1, 0 directional flips)\\n  - exp_id: steering_107_L13\\n    role: primary evidence\\n    result: success (p=0.002, p=0.0009)\\n  - exp_id: steering_107_qwen_L14\\n    role: cross-model validation\\n    result: negative (underpowered)\\n  depends_on:\\n  - D014\\n- id: D016\\n  date: 2026-05-23 07:47 UTC\\n  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine\\n    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。\\n  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无\\n    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)\\n    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal\\n    使用。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: piggyback direct test\\n    result: Llama near-perfect transfer, Gemma mid-layer collapse\\n  - exp_id: probe-cosine-sim-117\\n    role: piggyback angle test\\n    result: cosine ≈ 0, trivial/expected\\n  - exp_id: tost-equivalence-118\\n    role: formal equivalence test\\n    result: all fail, underpowered\\n  depends_on: []\\n- id: D017\\n  date: 2026-05-23 08:24 UTC\\n  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU\\n    ablation。剩余工作全部 CPU 级别。\\n  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative\\n    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)\\n    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_gemma_L21\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_qwen_L14\\n    role: Qwen steering negative\\n    result: negative\\n  - exp_id: cross-task-transfer-116\\n    role: Gemma mid-layer collapse discovery\\n    result: L14-22 collapse\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-23 08:25 UTC\\n  summary: 推翻 D016 中 cross-task transfer \\\"不加入\\\"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦\\n    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释\\n  rationale: 1) 用户明确批准 \\\"最能提分无条件支持做\\\"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma\\n    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为\\n    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST\\n    和 cosine sim 仍不加入（D016 中这两项维持不变）。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: single-seed results\\n    result: Llama ≥0.97, Gemma L14-22 collapse\\n  - exp_id: cross-task-bootstrap-119\\n    role: bootstrap CI in progress\\n    result: pending\\n  depends_on:\\n  - D016\\n- id: D019\\n  date: 2026-05-23 11:27 UTC\\n  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13\\n    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化\\n\\n... [截断: 省略 1294 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 13294, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06d72d04-1074-48a5-80a8-4c80981a3673",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "c86570fc-ab15-470f-8c29-8ae05ff78f8c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 21\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-21 12:00 UTC\\\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-21 12:06 UTC\\\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-21 14:26 UTC\\\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: triggered_decision\\\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\\\n  depends_on:\\\\n  - D001\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-21 19:17 UTC\\\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: primary\\\\n    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15\\\\n  depends_on:\\\\n  - D002\\\\n- id: D005\\\\n  date: 2026-05-21 20:33 UTC\\\\n  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN\\\\n    >> EN→ZH），等 COMET 验证后进入 research 阶段\\\\n  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)\\\\n    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH\\\\n    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET\\\\n    翻译质量验证是最后一个前置条件。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: primary\\\\n    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%\\\\n  - exp_id: mvp_probe_v1\\\\n    role: primary\\\\n    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)\\\\n  depends_on:\\\\n  - D002\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-22 02:13 UTC\\\\n  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果\\\\n  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80\\\\n    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用\\\\n    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非\\\\n    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。\\\\n  related_experiments:\\\\n  - exp_id: comet_qwen_v5\\\\n    role: evidence\\\\n    result: Qwen test COMET mean=0.70, pass 18.45%\\\\n  - exp_id: mvp_probe_v1\\\\n    role: dependent\\\\n    result: 探针结果可能受翻译质量影响\\\\n  depends_on:\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-22 03:50 UTC\\\\n  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）\\\\n  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别\\\\n    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap\\\\n    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110\\\\n    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md\\\\n    新增 RC9-RC11，scope control 更新。\\\\n  related_experiments:\\\\n  - exp_id: dream_20260522T023801\\\\n    role: trigger\\\\n    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'\\\\n  depends_on: []\\\\n- id: D008\\\\n  date: 2026-05-22 05:43 UTC\\\\n  summary: C2 reframe：不对称性非冲突特异性，改为\\\\\\\"冲突信号继承模型一般跨语言迁移偏置\\\\\\\"\\\\n  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按\\\\n    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是\\\\n    piggyback 在已有的跨语言对齐结构上。论文从\\\\\\\"发现新现象\\\\\\\"转为\\\\\\\"机制分析+方法论贡献\\\\\\\"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: decisive\\\\n    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe\\\\n  depends_on:\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-22 07:12 UTC\\\\n  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性\\\\n  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen\\\\n    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为\\\\n    C2 reframe 后论文的核心差异化 contribution。'\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: decisive\\\\n    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'\\\\n  - exp_id: mvp_002\\\\n    role: comparison\\\\n    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-22 07:50 UTC\\\\n  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点\\\\n  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有\\\\n    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track\\\\n    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖\\\\n    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention\\\\n    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: context\\\\n    result: C3 MLP contrast confirmed but statistically weak\\\\n  - exp_id: mvp_002\\\\n    role: context\\\\n    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)\\\\n  depends_on:\\\\n  - D008\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-22 11:03 UTC\\\\n  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡\\\\n  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行\\\\n    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。\\\\n  related_experiments:\\\\n  - exp_id: steering_107\\\\n    role: evidence\\\\n    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]\\\\n  depends_on:\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-22 12:44 UTC\\\\n  summary: D009 撤回：C3 non-linearity 降为 \\\\\\\"trend only\\\\\\\"，双模型 bootstrap CI 均含零\\\\n  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen\\\\n    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论\\\\\\\"C3\\\\n    confirmed conflict-specific\\\\\\\"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: evidence\\\\n    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast\\\\n      holds but CIs include zero\\\\n  - exp_id: mvp_002\\\\n    role: baseline\\\\n    result: single-seed MLP deltas were larger but not bootstrapped\\\\n  depends_on:\\\\n  - D009\\\\n- id: D013\\\\n  date: 2026-05-22 12:55 UTC\\\\n  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'\\\\n  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper\\\\n    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: core\\\\n    result: C1 success\\\\n  - exp_id: mvp_probe_v1\\\\n    role: core\\\\n    result: C1 success\\\\n  - exp_id: xnli_baseline_110\\\\n    role: core\\\\n    result: C2 reframed\\\\n  - exp_id: steering_107\\\\n    role: core\\\\n    result: negative, reportable finding\\\\n  depends_on: []\\\\n- id: D014\\\\n  date: 2026-05-22 13:22 UTC\\\\n  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011\\\\n    策略验证成功\\\\n  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002\\\\n    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%\\\\n    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后\\\\n    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。\\\\n  related_experiments:\\\\n  - exp_id: steering_107_L13\\\\n    role: core\\\\n    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002\\\\n  - exp_id: steering_107\\\\n    role: control\\\\n    result: NEGATIVE at L28\\\\n  - exp_id: steering_107_L18\\\\n    role: control\\\\n    result: NEGATIVE at L18\\\\n  - exp_id: steering_107_L28_all\\\\n    role: control\\\\n    result: NEGATIVE at L28 all-position\\\\n  depends_on:\\\\n  - D011\\\\n- id: D015\\\\n  date: 2026-05-22 16:34 UTC\\\\n  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证\\\\n  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative\\\\n    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering\\\\n    因果效应是 architecture-dependent。论文叙事维持 \\\\\\\"detection ≠ decision\\\\\\\" 核心发现 + Llama-specific\\\\n    steering + model-specificity 方法论警告。不再追加 steering 实验。\\\\n  related_experiments:\\\\n  - exp_id: steering_107_gemma_L17\\\\n    role: cross-model validation\\\\n    result: negative (all p>0.1, 0 directional flips)\\\\n  - exp_id: steering_107_L13\\\\n    role: primary evidence\\\\n    result: success (p=0.002, p=0.0009)\\\\n  - exp_id: steering_107_qwen_L14\\\\n    role: cross-model validation\\\\n    result: negative (underpowered)\\\\n  depends_on:\\\\n  - D014\\\\n- id: D016\\\\n  date: 2026-05-23 07:47 UTC\\\\n  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine\\\\n    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。\\\\n  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无\\\\n    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)\\\\n    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal\\\\n    使用。\\\\n  related_experiments:\\\\n  - exp_id: cross-task-transfer-116\\\\n    role: piggyback direct test\\\\n    result: Llama near-perfect transfer, Gemma mid-layer collapse\\\\n  - exp_id: probe-cosine-sim-117\\\\n    role: piggyback angle test\\\\n    result: cosine ≈ 0, trivial/expected\\\\n  - exp_id: tost-equivalence-118\\\\n    role: formal equivalence test\\\\n    result: all fail, underpowered\\\\n  depends_on: []\\\\n- id: D017\\\\n  date: 2026-05-23 08:24 UTC\\\\n  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU\\\\n    ablation。剩余工作全部 CPU 级别。\\\\n  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative\\\\n    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)\\\\n    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。\\\\n  related_experiments:\\\\n  - exp_id: steering_107_gemma_L17\\\\n    role: Gemma steering negative\\\\n    result: negative\\\\n  - exp_id: steering_107_gemma_L21\\\\n    role: Gemma steering negative\\\\n    result: negative\\\\n  - exp_id: steering_107_qwen_L14\\\\n    role: Qwen steering negative\\\\n    result: negative\\\\n  - exp_id: cross-task-transfer-116\\\\n    role: Gemma mid-layer collapse discovery\\\\n    result: L14-22 collapse\\\\n  depends_on:\\\\n  - D015\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-23 08:25 UTC\\\\n  summary: 推翻 D016 中 cross-task transfer \\\\\\\"不加入\\\\\\\"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦\\\\n    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释\\\\n  rationale: 1) 用户明确批准 \\\\\\\"最能提分无条件支持做\\\\\\\"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma\\\\n    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为\\\\n    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST\\\\n    和 cosine sim 仍不加入（D016 中这两项维持不变）。\\\\n  related_experiments:\\\\n  - exp_id: cross-task-transfer-116\\\\n    role: single-seed results\\\\n    result: Llama ≥0.97, Gemma L14-22 collapse\\\\n  - exp_id: cross-task-bootstrap-119\\\\n    role: bootstrap CI in progress\\\\n    result: pending\\\\n  depends_on:\\\\n  - D016\\\\n- id: D019\\\\n  date: 2026-05-23 11:27 UTC\\\\n  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13\\\\n    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化\\\\n\\\\n... [截断: 省略 1294 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 13294, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\", \"content\": \"_next_id: 21\\ndecisions:\\n- id: D001\\n  date: 2026-05-21 12:00 UTC\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-21 12:06 UTC\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-21 14:26 UTC\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: triggered_decision\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D004\\n  date: 2026-05-21 19:17 UTC\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15\\n  depends_on:\\n  - D002\\n- id: D005\\n  date: 2026-05-21 20:33 UTC\\n  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN\\n    >> EN→ZH），等 COMET 验证后进入 research 阶段\\n  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)\\n    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH\\n    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET\\n    翻译质量验证是最后一个前置条件。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%\\n  - exp_id: mvp_probe_v1\\n    role: primary\\n    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)\\n  depends_on:\\n  - D002\\n  - D004\\n- id: D006\\n  date: 2026-05-22 02:13 UTC\\n  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果\\n  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80\\n    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用\\n    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非\\n    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。\\n  related_experiments:\\n  - exp_id: comet_qwen_v5\\n    role: evidence\\n    result: Qwen test COMET mean=0.70, pass 18.45%\\n  - exp_id: mvp_probe_v1\\n    role: dependent\\n    result: 探针结果可能受翻译质量影响\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-22 03:50 UTC\\n  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）\\n  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别\\n    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap\\n    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110\\n    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md\\n    新增 RC9-RC11，scope control 更新。\\n  related_experiments:\\n  - exp_id: dream_20260522T023801\\n    role: trigger\\n    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-22 05:43 UTC\\n  summary: C2 reframe：不对称性非冲突特异性，改为\\\"冲突信号继承模型一般跨语言迁移偏置\\\"\\n  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按\\n    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是\\n    piggyback 在已有的跨语言对齐结构上。论文从\\\"发现新现象\\\"转为\\\"机制分析+方法论贡献\\\"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-22 07:12 UTC\\n  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性\\n  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen\\n    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为\\n    C2 reframe 后论文的核心差异化 contribution。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'\\n  - exp_id: mvp_002\\n    role: comparison\\n    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-22 07:50 UTC\\n  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点\\n  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有\\n    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track\\n    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖\\n    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention\\n    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: context\\n    result: C3 MLP contrast confirmed but statistically weak\\n  - exp_id: mvp_002\\n    role: context\\n    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-22 11:03 UTC\\n  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡\\n  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行\\n    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。\\n  related_experiments:\\n  - exp_id: steering_107\\n    role: evidence\\n    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-22 12:44 UTC\\n  summary: D009 撤回：C3 non-linearity 降为 \\\"trend only\\\"，双模型 bootstrap CI 均含零\\n  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen\\n    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论\\\"C3\\n    confirmed conflict-specific\\\"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: evidence\\n    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast\\n      holds but CIs include zero\\n  - exp_id: mvp_002\\n    role: baseline\\n    result: single-seed MLP deltas were larger but not bootstrapped\\n  depends_on:\\n  - D009\\n- id: D013\\n  date: 2026-05-22 12:55 UTC\\n  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'\\n  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper\\n    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: mvp_probe_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: xnli_baseline_110\\n    role: core\\n    result: C2 reframed\\n  - exp_id: steering_107\\n    role: core\\n    result: negative, reportable finding\\n  depends_on: []\\n- id: D014\\n  date: 2026-05-22 13:22 UTC\\n  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011\\n    策略验证成功\\n  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002\\n    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%\\n    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后\\n    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。\\n  related_experiments:\\n  - exp_id: steering_107_L13\\n    role: core\\n    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002\\n  - exp_id: steering_107\\n    role: control\\n    result: NEGATIVE at L28\\n  - exp_id: steering_107_L18\\n    role: control\\n    result: NEGATIVE at L18\\n  - exp_id: steering_107_L28_all\\n    role: control\\n    result: NEGATIVE at L28 all-position\\n  depends_on:\\n  - D011\\n- id: D015\\n  date: 2026-05-22 16:34 UTC\\n  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证\\n  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative\\n    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering\\n    因果效应是 architecture-dependent。论文叙事维持 \\\"detection ≠ decision\\\" 核心发现 + Llama-specific\\n    steering + model-specificity 方法论警告。不再追加 steering 实验。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: cross-model validation\\n    result: negative (all p>0.1, 0 directional flips)\\n  - exp_id: steering_107_L13\\n    role: primary evidence\\n    result: success (p=0.002, p=0.0009)\\n  - exp_id: steering_107_qwen_L14\\n    role: cross-model validation\\n    result: negative (underpowered)\\n  depends_on:\\n  - D014\\n- id: D016\\n  date: 2026-05-23 07:47 UTC\\n  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine\\n    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。\\n  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无\\n    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)\\n    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal\\n    使用。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: piggyback direct test\\n    result: Llama near-perfect transfer, Gemma mid-layer collapse\\n  - exp_id: probe-cosine-sim-117\\n    role: piggyback angle test\\n    result: cosine ≈ 0, trivial/expected\\n  - exp_id: tost-equivalence-118\\n    role: formal equivalence test\\n    result: all fail, underpowered\\n  depends_on: []\\n- id: D017\\n  date: 2026-05-23 08:24 UTC\\n  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU\\n    ablation。剩余工作全部 CPU 级别。\\n  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative\\n    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)\\n    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_gemma_L21\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_qwen_L14\\n    role: Qwen steering negative\\n    result: negative\\n  - exp_id: cross-task-transfer-116\\n    role: Gemma mid-layer collapse discovery\\n    result: L14-22 collapse\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-23 08:25 UTC\\n  summary: 推翻 D016 中 cross-task transfer \\\"不加入\\\"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦\\n    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释\\n  rationale: 1) 用户明确批准 \\\"最能提分无条件支持做\\\"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma\\n    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为\\n    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST\\n    和 cosine sim 仍不加入（D016 中这两项维持不变）。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: single-seed results\\n    result: Llama ≥0.97, Gemma L14-22 collapse\\n  - exp_id: cross-task-bootstrap-119\\n    role: bootstrap CI in progress\\n    result: pending\\n  depends_on:\\n  - D016\\n- id: D019\\n  date: 2026-05-23 11:27 UTC\\n  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13\\n    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化\\n\\n... [截断: 省略 1294 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 13294, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06d72d04-1074-48a5-80a8-4c80981a3673",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-26T09:34:42.501Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XgatuPmhw9BzPpbEHNkDD2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/d0fa44a5-9760-4850-be9e-340618167017/tool-results/toolu_01GbxGKMXHhGMTtYBB6d2FEk.txt",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c86570fc-ab15-470f-8c29-8ae05ff78f8c",
+  "isSidechain": false,
+  "requestId": "req_011CbQx9cD2qBj4w8Gc6xzEC",
+  "type": "assistant",
+  "uuid": "d8adcde1-a320-4927-b5cc-43c1d18753cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Zd8aZvoLXGwB3aHEFq3TT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4423,
+      "cache_read_input_tokens": 35107,
+      "output_tokens": 866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4423,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 866,
+          "cache_read_input_tokens": 35107,
+          "cache_creation_input_tokens": 4423,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4423
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T09:34:42.516Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01XgatuPmhw9BzPpbEHNkDD2`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8adcde1-a320-4927-b5cc-43c1d18753cf",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "526da33a-9e65-43ec-97f3-4917874e24e1",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e.",
+  "sourceToolAssistantUUID": "d8adcde1-a320-4927-b5cc-43c1d18753cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-26T09:34:42.521Z_
+
+```json
+{
+  "parentUuid": "526da33a-9e65-43ec-97f3-4917874e24e1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4d6a1f08-4ab8-4c3e-9235-a16803344d38",
+  "timestamp": "2026-05-26T09:34:42.521Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "4d6a1f08-4ab8-4c3e-9235-a16803344d38",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-26T09:34:48.043Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the full registry output from the saved file. The path was wrong - let me check.
+
+Actually, let me read the truncated decisions.yaml for the last entries, and check the full registry. The registry was saved to a persisted-output file. Let me try reading it.
+
+Let me read the decisions.yaml in full to see D019 and D020.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d6a1f08-4ab8-4c3e-9235-a16803344d38",
+  "isSidechain": false,
+  "requestId": "req_011CbQxAnQj17d4xo6KajeqH",
+  "type": "assistant",
+  "uuid": "1424d13a-5dac-4944-a8c9-e73502a7ee18",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149fZpxNpSezkix7sxLPFt5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17915,
+      "cache_read_input_tokens": 39530,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 39530,
+          "cache_creation_input_tokens": 17915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-26T09:34:48.531Z_
+
+读取截断的 decisions 尾部和 registry 完整内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1424d13a-5dac-4944-a8c9-e73502a7ee18",
+  "isSidechain": false,
+  "requestId": "req_011CbQxAnQj17d4xo6KajeqH",
+  "type": "assistant",
+  "uuid": "2ed2aacc-965d-4f04-a8ba-e5d7fc6ab5f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149fZpxNpSezkix7sxLPFt5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17915,
+      "cache_read_input_tokens": 39530,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 39530,
+          "cache_creation_input_tokens": 17915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T09:34:49.503Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01MGW3aNGccMkYVaMkzpmTRR`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ed2aacc-965d-4f04-a8ba-e5d7fc6ab5f0",
+  "isSidechain": false,
+  "requestId": "req_011CbQxAnQj17d4xo6KajeqH",
+  "type": "assistant",
+  "uuid": "56f1c575-5b0e-4b67-9459-426d8f23bc29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149fZpxNpSezkix7sxLPFt5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17915,
+      "cache_read_input_tokens": 39530,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 39530,
+          "cache_creation_input_tokens": 17915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T09:34:49.514Z_
+
+<details><summary>↩ Tool result · `toolu_01MGW3aNGccMkYVaMkzpmTRR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\", \"content\": \"_next_id: 21\\ndecisions:\\n- id: D001\\n  date: 2026-05-21 12:00 UTC\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-21 12:06 UTC\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-21 14:26 UTC\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: triggered_decision\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D004\\n  date: 2026-05-21 19:17 UTC\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15\\n  depends_on:\\n  - D002\\n- id: D005\\n  date: 2026-05-21 20:33 UTC\\n  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN\\n    >> EN→ZH），等 COMET 验证后进入 research 阶段\\n  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)\\n    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH\\n    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET\\n    翻译质量验证是最后一个前置条件。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%\\n  - exp_id: mvp_probe_v1\\n    role: primary\\n    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)\\n  depends_on:\\n  - D002\\n  - D004\\n- id: D006\\n  date: 2026-05-22 02:13 UTC\\n  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果\\n  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80\\n    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用\\n    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非\\n    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。\\n  related_experiments:\\n  - exp_id: comet_qwen_v5\\n    role: evidence\\n    result: Qwen test COMET mean=0.70, pass 18.45%\\n  - exp_id: mvp_probe_v1\\n    role: dependent\\n    result: 探针结果可能受翻译质量影响\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-22 03:50 UTC\\n  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）\\n  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别\\n    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap\\n    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110\\n    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md\\n    新增 RC9-RC11，scope control 更新。\\n  related_experiments:\\n  - exp_id: dream_20260522T023801\\n    role: trigger\\n    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-22 05:43 UTC\\n  summary: C2 reframe：不对称性非冲突特异性，改为\\\"冲突信号继承模型一般跨语言迁移偏置\\\"\\n  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按\\n    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是\\n    piggyback 在已有的跨语言对齐结构上。论文从\\\"发现新现象\\\"转为\\\"机制分析+方法论贡献\\\"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-22 07:12 UTC\\n  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性\\n  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen\\n    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为\\n    C2 reframe 后论文的核心差异化 contribution。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'\\n  - exp_id: mvp_002\\n    role: comparison\\n    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-22 07:50 UTC\\n  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点\\n  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有\\n    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track\\n    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖\\n    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention\\n    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: context\\n    result: C3 MLP contrast confirmed but statistically weak\\n  - exp_id: mvp_002\\n    role: context\\n    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-22 11:03 UTC\\n  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡\\n  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行\\n    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。\\n  related_experiments:\\n  - exp_id: steering_107\\n    role: evidence\\n    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-22 12:44 UTC\\n  summary: D009 撤回：C3 non-linearity 降为 \\\"trend only\\\"，双模型 bootstrap CI 均含零\\n  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen\\n    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论\\\"C3\\n    confirmed conflict-specific\\\"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: evidence\\n    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast\\n      holds but CIs include zero\\n  - exp_id: mvp_002\\n    role: baseline\\n    result: single-seed MLP deltas were larger but not bootstrapped\\n  depends_on:\\n  - D009\\n- id: D013\\n  date: 2026-05-22 12:55 UTC\\n  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'\\n  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper\\n    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: mvp_probe_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: xnli_baseline_110\\n    role: core\\n    result: C2 reframed\\n  - exp_id: steering_107\\n    role: core\\n    result: negative, reportable finding\\n  depends_on: []\\n- id: D014\\n  date: 2026-05-22 13:22 UTC\\n  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011\\n    策略验证成功\\n  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002\\n    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%\\n    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后\\n    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。\\n  related_experiments:\\n  - exp_id: steering_107_L13\\n    role: core\\n    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002\\n  - exp_id: steering_107\\n    role: control\\n    result: NEGATIVE at L28\\n  - exp_id: steering_107_L18\\n    role: control\\n    result: NEGATIVE at L18\\n  - exp_id: steering_107_L28_all\\n    role: control\\n    result: NEGATIVE at L28 all-position\\n  depends_on:\\n  - D011\\n- id: D015\\n  date: 2026-05-22 16:34 UTC\\n  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证\\n  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative\\n    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering\\n    因果效应是 architecture-dependent。论文叙事维持 \\\"detection ≠ decision\\\" 核心发现 + Llama-specific\\n    steering + model-specificity 方法论警告。不再追加 steering 实验。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: cross-model validation\\n    result: negative (all p>0.1, 0 directional flips)\\n  - exp_id: steering_107_L13\\n    role: primary evidence\\n    result: success (p=0.002, p=0.0009)\\n  - exp_id: steering_107_qwen_L14\\n    role: cross-model validation\\n    result: negative (underpowered)\\n  depends_on:\\n  - D014\\n- id: D016\\n  date: 2026-05-23 07:47 UTC\\n  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine\\n    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。\\n  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无\\n    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)\\n    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal\\n    使用。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: piggyback direct test\\n    result: Llama near-perfect transfer, Gemma mid-layer collapse\\n  - exp_id: probe-cosine-sim-117\\n    role: piggyback angle test\\n    result: cosine ≈ 0, trivial/expected\\n  - exp_id: tost-equivalence-118\\n    role: formal equivalence test\\n    result: all fail, underpowered\\n  depends_on: []\\n- id: D017\\n  date: 2026-05-23 08:24 UTC\\n  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU\\n    ablation。剩余工作全部 CPU 级别。\\n  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative\\n    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)\\n    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_gemma_L21\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_qwen_L14\\n    role: Qwen steering negative\\n    result: negative\\n  - exp_id: cross-task-transfer-116\\n    role: Gemma mid-layer collapse discovery\\n    result: L14-22 collapse\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-23 08:25 UTC\\n  summary: 推翻 D016 中 cross-task transfer \\\"不加入\\\"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦\\n    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释\\n  rationale: 1) 用户明确批准 \\\"最能提分无条件支持做\\\"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma\\n    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为\\n    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST\\n    和 cosine sim 仍不加入（D016 中这两项维持不变）。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: single-seed results\\n    result: Llama ≥0.97, Gemma L14-22 collapse\\n  - exp_id: cross-task-bootstrap-119\\n    role: bootstrap CI in progress\\n    result: pending\\n  depends_on:\\n  - D016\\n- id: D019\\n  date: 2026-05-23 11:27 UTC\\n  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13\\n    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化。\\n  rationale: 新增 3 个 negative 加上之前的 6 个，总计 12 个 steering configs 中只有 Llama L13 成功。Qwen\\n    三层(L14/L18/L23)、Gemma 三层(L10/L17/L24)全面失败。Llama L16（距L13仅3层）也失败，证明因果窗口极窄。论文叙事\\\"Detection\\n    ≠ Decision + narrow causal window\\\"更加稳固。考虑将 Llama L16 加入 Table 3 以展示 causal window\\n    精度。\\n  related_experiments:\\n  - exp_id: steering-qwen-L18-122\\n    role: Qwen additional layer\\n    result: negative, all p=1.0\\n  - exp_id: steering-llama-L16-123\\n    role: causal window boundary\\n    result: negative, narrowest gap to L13\\n  - exp_id: steering-gemma-L24-121\\n    role: Gemma post-dip layer\\n    result: negative, cleanest null\\n  depends_on:\\n  - D015\\n  - D018\\n- id: D020\\n  date: 2026-05-24 17:15 UTC\\n  summary: Detection≠Decision 叙事从 \\\"L28 peak vs L13 causal = 大幅分离\\\" 改为 \\\"causal site\\n    L13 稳定而 detection peak 随数据波动\\\"\\n  rationale: 多种子实验（虽数据版本不同）揭示 peak layer 在种子间剧烈波动（Llama L28→L12/L15），而 peak accuracy\\n    稳定（±0.12%）。这说明 L28 peak 可能是数据依赖的，但 causal site L13 有 boundary sweep（6层, N=201,\\n    独立样本）确认是稳健的。新叙事实际上更强：detection 是分布式的（broad plateau L3-L22），causal influence 是集中的（L13），这比\\\"L28\\n    vs L13 距离大\\\"更有 mechanistic insight。配合 MF-3 的 Llama-specific 限定，整体 framing 更诚实。\\n  related_experiments:\\n  - exp_id: multi_seed_probing\\n    role: trigger\\n    result: peak layer unstable across seeds, accuracy stable\\n  depends_on: []\\n\", \"total_chars\": 13294, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "56f1c575-5b0e-4b67-9459-426d8f23bc29",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "0588bb14-bfbc-423a-9596-74813402586d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 21\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-21 12:00 UTC\\\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-21 12:06 UTC\\\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-21 14:26 UTC\\\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: triggered_decision\\\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\\\n  depends_on:\\\\n  - D001\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-21 19:17 UTC\\\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: primary\\\\n    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15\\\\n  depends_on:\\\\n  - D002\\\\n- id: D005\\\\n  date: 2026-05-21 20:33 UTC\\\\n  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN\\\\n    >> EN→ZH），等 COMET 验证后进入 research 阶段\\\\n  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)\\\\n    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH\\\\n    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET\\\\n    翻译质量验证是最后一个前置条件。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: primary\\\\n    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%\\\\n  - exp_id: mvp_probe_v1\\\\n    role: primary\\\\n    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)\\\\n  depends_on:\\\\n  - D002\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-22 02:13 UTC\\\\n  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果\\\\n  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80\\\\n    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用\\\\n    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非\\\\n    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。\\\\n  related_experiments:\\\\n  - exp_id: comet_qwen_v5\\\\n    role: evidence\\\\n    result: Qwen test COMET mean=0.70, pass 18.45%\\\\n  - exp_id: mvp_probe_v1\\\\n    role: dependent\\\\n    result: 探针结果可能受翻译质量影响\\\\n  depends_on:\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-22 03:50 UTC\\\\n  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）\\\\n  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别\\\\n    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap\\\\n    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110\\\\n    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md\\\\n    新增 RC9-RC11，scope control 更新。\\\\n  related_experiments:\\\\n  - exp_id: dream_20260522T023801\\\\n    role: trigger\\\\n    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'\\\\n  depends_on: []\\\\n- id: D008\\\\n  date: 2026-05-22 05:43 UTC\\\\n  summary: C2 reframe：不对称性非冲突特异性，改为\\\\\\\"冲突信号继承模型一般跨语言迁移偏置\\\\\\\"\\\\n  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按\\\\n    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是\\\\n    piggyback 在已有的跨语言对齐结构上。论文从\\\\\\\"发现新现象\\\\\\\"转为\\\\\\\"机制分析+方法论贡献\\\\\\\"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: decisive\\\\n    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe\\\\n  depends_on:\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-22 07:12 UTC\\\\n  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性\\\\n  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen\\\\n    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为\\\\n    C2 reframe 后论文的核心差异化 contribution。'\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: decisive\\\\n    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'\\\\n  - exp_id: mvp_002\\\\n    role: comparison\\\\n    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-22 07:50 UTC\\\\n  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点\\\\n  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有\\\\n    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track\\\\n    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖\\\\n    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention\\\\n    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: context\\\\n    result: C3 MLP contrast confirmed but statistically weak\\\\n  - exp_id: mvp_002\\\\n    role: context\\\\n    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)\\\\n  depends_on:\\\\n  - D008\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-22 11:03 UTC\\\\n  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡\\\\n  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行\\\\n    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。\\\\n  related_experiments:\\\\n  - exp_id: steering_107\\\\n    role: evidence\\\\n    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]\\\\n  depends_on:\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-22 12:44 UTC\\\\n  summary: D009 撤回：C3 non-linearity 降为 \\\\\\\"trend only\\\\\\\"，双模型 bootstrap CI 均含零\\\\n  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen\\\\n    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论\\\\\\\"C3\\\\n    confirmed conflict-specific\\\\\\\"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'\\\\n  related_experiments:\\\\n  - exp_id: xnli_baseline_110\\\\n    role: evidence\\\\n    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast\\\\n      holds but CIs include zero\\\\n  - exp_id: mvp_002\\\\n    role: baseline\\\\n    result: single-seed MLP deltas were larger but not bootstrapped\\\\n  depends_on:\\\\n  - D009\\\\n- id: D013\\\\n  date: 2026-05-22 12:55 UTC\\\\n  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'\\\\n  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper\\\\n    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。\\\\n  related_experiments:\\\\n  - exp_id: mvp_probe_llama_v1\\\\n    role: core\\\\n    result: C1 success\\\\n  - exp_id: mvp_probe_v1\\\\n    role: core\\\\n    result: C1 success\\\\n  - exp_id: xnli_baseline_110\\\\n    role: core\\\\n    result: C2 reframed\\\\n  - exp_id: steering_107\\\\n    role: core\\\\n    result: negative, reportable finding\\\\n  depends_on: []\\\\n- id: D014\\\\n  date: 2026-05-22 13:22 UTC\\\\n  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011\\\\n    策略验证成功\\\\n  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002\\\\n    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%\\\\n    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后\\\\n    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。\\\\n  related_experiments:\\\\n  - exp_id: steering_107_L13\\\\n    role: core\\\\n    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002\\\\n  - exp_id: steering_107\\\\n    role: control\\\\n    result: NEGATIVE at L28\\\\n  - exp_id: steering_107_L18\\\\n    role: control\\\\n    result: NEGATIVE at L18\\\\n  - exp_id: steering_107_L28_all\\\\n    role: control\\\\n    result: NEGATIVE at L28 all-position\\\\n  depends_on:\\\\n  - D011\\\\n- id: D015\\\\n  date: 2026-05-22 16:34 UTC\\\\n  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证\\\\n  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative\\\\n    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering\\\\n    因果效应是 architecture-dependent。论文叙事维持 \\\\\\\"detection ≠ decision\\\\\\\" 核心发现 + Llama-specific\\\\n    steering + model-specificity 方法论警告。不再追加 steering 实验。\\\\n  related_experiments:\\\\n  - exp_id: steering_107_gemma_L17\\\\n    role: cross-model validation\\\\n    result: negative (all p>0.1, 0 directional flips)\\\\n  - exp_id: steering_107_L13\\\\n    role: primary evidence\\\\n    result: success (p=0.002, p=0.0009)\\\\n  - exp_id: steering_107_qwen_L14\\\\n    role: cross-model validation\\\\n    result: negative (underpowered)\\\\n  depends_on:\\\\n  - D014\\\\n- id: D016\\\\n  date: 2026-05-23 07:47 UTC\\\\n  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine\\\\n    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。\\\\n  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无\\\\n    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)\\\\n    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal\\\\n    使用。\\\\n  related_experiments:\\\\n  - exp_id: cross-task-transfer-116\\\\n    role: piggyback direct test\\\\n    result: Llama near-perfect transfer, Gemma mid-layer collapse\\\\n  - exp_id: probe-cosine-sim-117\\\\n    role: piggyback angle test\\\\n    result: cosine ≈ 0, trivial/expected\\\\n  - exp_id: tost-equivalence-118\\\\n    role: formal equivalence test\\\\n    result: all fail, underpowered\\\\n  depends_on: []\\\\n- id: D017\\\\n  date: 2026-05-23 08:24 UTC\\\\n  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU\\\\n    ablation。剩余工作全部 CPU 级别。\\\\n  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative\\\\n    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)\\\\n    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。\\\\n  related_experiments:\\\\n  - exp_id: steering_107_gemma_L17\\\\n    role: Gemma steering negative\\\\n    result: negative\\\\n  - exp_id: steering_107_gemma_L21\\\\n    role: Gemma steering negative\\\\n    result: negative\\\\n  - exp_id: steering_107_qwen_L14\\\\n    role: Qwen steering negative\\\\n    result: negative\\\\n  - exp_id: cross-task-transfer-116\\\\n    role: Gemma mid-layer collapse discovery\\\\n    result: L14-22 collapse\\\\n  depends_on:\\\\n  - D015\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-23 08:25 UTC\\\\n  summary: 推翻 D016 中 cross-task transfer \\\\\\\"不加入\\\\\\\"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦\\\\n    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释\\\\n  rationale: 1) 用户明确批准 \\\\\\\"最能提分无条件支持做\\\\\\\"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma\\\\n    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为\\\\n    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST\\\\n    和 cosine sim 仍不加入（D016 中这两项维持不变）。\\\\n  related_experiments:\\\\n  - exp_id: cross-task-transfer-116\\\\n    role: single-seed results\\\\n    result: Llama ≥0.97, Gemma L14-22 collapse\\\\n  - exp_id: cross-task-bootstrap-119\\\\n    role: bootstrap CI in progress\\\\n    result: pending\\\\n  depends_on:\\\\n  - D016\\\\n- id: D019\\\\n  date: 2026-05-23 11:27 UTC\\\\n  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13\\\\n    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化。\\\\n  rationale: 新增 3 个 negative 加上之前的 6 个，总计 12 个 steering configs 中只有 Llama L13 成功。Qwen\\\\n    三层(L14/L18/L23)、Gemma 三层(L10/L17/L24)全面失败。Llama L16（距L13仅3层）也失败，证明因果窗口极窄。论文叙事\\\\\\\"Detection\\\\n    ≠ Decision + narrow causal window\\\\\\\"更加稳固。考虑将 Llama L16 加入 Table 3 以展示 causal window\\\\n    精度。\\\\n  related_experiments:\\\\n  - exp_id: steering-qwen-L18-122\\\\n    role: Qwen additional layer\\\\n    result: negative, all p=1.0\\\\n  - exp_id: steering-llama-L16-123\\\\n    role: causal window boundary\\\\n    result: negative, narrowest gap to L13\\\\n  - exp_id: steering-gemma-L24-121\\\\n    role: Gemma post-dip layer\\\\n    result: negative, cleanest null\\\\n  depends_on:\\\\n  - D015\\\\n  - D018\\\\n- id: D020\\\\n  date: 2026-05-24 17:15 UTC\\\\n  summary: Detection≠Decision 叙事从 \\\\\\\"L28 peak vs L13 causal = 大幅分离\\\\\\\" 改为 \\\\\\\"causal site\\\\n    L13 稳定而 detection peak 随数据波动\\\\\\\"\\\\n  rationale: 多种子实验（虽数据版本不同）揭示 peak layer 在种子间剧烈波动（Llama L28→L12/L15），而 peak accuracy\\\\n    稳定（±0.12%）。这说明 L28 peak 可能是数据依赖的，但 causal site L13 有 boundary sweep（6层, N=201,\\\\n    独立样本）确认是稳健的。新叙事实际上更强：detection 是分布式的（broad plateau L3-L22），causal influence 是集中的（L13），这比\\\\\\\"L28\\\\n    vs L13 距离大\\\\\\\"更有 mechanistic insight。配合 MF-3 的 Llama-specific 限定，整体 framing 更诚实。\\\\n  related_experiments:\\\\n  - exp_id: multi_seed_probing\\\\n    role: trigger\\\\n    result: peak layer unstable across seeds, accuracy stable\\\\n  depends_on: []\\\\n\\\", \\\"total_chars\\\": 13294, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/decisions.yaml\", \"content\": \"_next_id: 21\\ndecisions:\\n- id: D001\\n  date: 2026-05-21 12:00 UTC\\n  summary: MVP 方案：EN+ZH 双语探针迁移实验验证跨语言冲突信号可检测性\\n  rationale: Track 1（探针迁移）是整个 3-track 研究的基础前提。如果残差流中无法检测冲突信号或跨语言完全不迁移，后续 SAE 分析和 steering\\n    均无意义。选 Qwen3-8B-Instruct 因 Qwen-Scope 提供 base SAE 便于后续 Track 2。选 EN+ZH 因语系距离大，若迁移成功则信号强。ConflictQA\\n    公开可用，无需等 CLEAR 数据。Pass/fail 标准参考 Brink et al. 单语 0.96 F1 和 Zhao et al. ~90% 探针精度。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-21 12:06 UTC\\n  summary: 采纳 Reviewer 5 条 warning，细化 MVP gate：增加 70-79% conditional pass 定义、layer-wise\\n    量化标准、统计显著性要求（binomial p<0.01）、翻译 COMET gate（≥0.80）、FAIL→retry Llama 行动路径\\n  rationale: Reviewer 指出原 gate criteria 存在 ambiguous zone（70-79% 无定义）、layer-wise pattern\\n    逃逸条款过于模糊、ZH 60% 阈值缺统计锚定、翻译质量是迁移失败的混淆因素、FAIL 后行动未定义。全部采纳以确保 MVP 结论可靠。FAIL→retry\\n    on Llama 给予一次排除模型特异性的机会，两模型均 FAIL 才 kill。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-21 14:26 UTC\\n  summary: 补采样至 2000 条 + 取消强制交集，每个模型用各自 verified 数据集\\n  rationale: Llama verify 保留率仅 33%（266/800 train），低于 300 阈值。ConflictQA 有 ~10K 条，扩至\\n    2000 可保证两模型各自 ≥300 有效样本。取消交集策略因为强制交集会进一步损失样本量，且跨模型对比不要求相同样本——各自 verified 集上报告相同指标即可，交集作为补充分析。20%\\n    标签翻转率确认了 M001 verify 步骤的必要性。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: triggered_decision\\n    result: verify 保留率 33%, 266 train / 70 test, 20% flip\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D004\\n  date: 2026-05-21 19:17 UTC\\n  summary: Llama MVP CONDITIONAL PASS → EXTEND：EN→EN 77.6%, 跨语言迁移不对称（ZH→EN 71.3% vs\\n    EN→ZH 59.6%），等 Qwen 结果做最终 verdict\\n  rationale: Llama 4 方向探针结果显示冲突信号可线性检测（所有方向 p < 0.01），但 EN→EN 未达 80% PASS 阈值（77.6%）。跨语言迁移存在但高度不对称：ZH→EN\\n    强迁移（71.3%），EN→ZH 弱迁移（59.6%，刚好低于 60% point 阈值但 p=9.7e-4 仍显著）。CONDITIONAL PASS 按\\n    D002 规则进入 EXTEND 评估。等 Qwen 跨模型验证后做最终 MVP verdict。不对称迁移本身是有价值的科学发现。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6% L28, ZH→ZH 72.1% L13, EN→ZH 59.6% L5, ZH→EN 71.3% L15\\n  depends_on:\\n  - D002\\n- id: D005\\n  date: 2026-05-21 20:33 UTC\\n  summary: 双模型 MVP CONDITIONAL PASS：Llama EN→EN 77.6% + Qwen EN→EN 75.0%，跨语言迁移不对称且跨架构一致（ZH→EN\\n    >> EN→ZH），等 COMET 验证后进入 research 阶段\\n  rationale: 两个模型全 4 方向探针结果统计高度显著（permutation p < 0.001）。核心发现：(1) 冲突信号在两模型两语言中均可线性检测；(2)\\n    跨语言迁移存在方向性不对称（ZH→EN 71-73% vs EN→ZH 60-67%），两模型一致；(3) 不对称程度与架构相关——Qwen（多语言训练比例更高）EN→ZH\\n    67.3% 远强于 Llama 59.6%。EN→EN 均在 70-79% CONDITIONAL 区间，未达 80% PASS，但跨语言迁移的质量和不对称发现的科学价值足以支撑继续研究。COMET\\n    翻译质量验证是最后一个前置条件。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: primary\\n    result: EN→EN 77.6%, ZH→ZH 72.1%, EN→ZH 59.6%, ZH→EN 71.3%\\n  - exp_id: mvp_probe_v1\\n    role: primary\\n    result: EN→EN 75.0%, ZH→ZH 72.6%, EN→ZH 67.3%, ZH→EN 73.2% (v2 clean labels)\\n  depends_on:\\n  - D002\\n  - D004\\n- id: D006\\n  date: 2026-05-22 02:13 UTC\\n  summary: COMET 0.80 阈值不直接适用 back-translation：提升 plan_105 至 P0，用 ablation 实证判断翻译质量是否影响探针结果\\n  rationale: Qwen test COMET mean=0.70, pass rate 18.45% (31/168 at ≥0.80)。但 0.80\\n    阈值是为正向翻译设定的，back-translation 引入二次噪声（EN→ZH→EN），COMET 天然偏低。降低阈值是 ad hoc 的；正确做法是用\\n    plan_105 COMET 分段 ablation 实证检验：按 COMET tertile 分组比较 probe acc，如果组间无显著差异 → 翻译质量非\\n    confounder → 放宽阈值有据可依；如果组间差异显著 → 需过滤低 COMET 样本重跑探针。\\n  related_experiments:\\n  - exp_id: comet_qwen_v5\\n    role: evidence\\n    result: Qwen test COMET mean=0.70, pass 18.45%\\n  - exp_id: mvp_probe_v1\\n    role: dependent\\n    result: 探针结果可能受翻译质量影响\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-22 03:50 UTC\\n  summary: Dream 审稿结果处理：新增 3 个 P0 实验（非冲突基线、bootstrap 升级、EN↔DE）\\n  rationale: Dream dream_20260522T023801 三档审稿（best 5/10, median 5/10, worst 4/10）一致识别\\n    CRITICAL gap：缺失非冲突语义基线。X→EN > EN→X 不对称性可能是英语主导模型的一般性质而非冲突特异性。另外两个 MAJOR gap：bootstrap\\n    n=100 不足（需 n≥2000）、仅 CJK 语言对（需 Indo-European）。三个问题均与实验结果无关，属结构性缺陷，优先级最高。新增 plan_110\\n    (非冲突基线, P0)、plan_111 (bootstrap 升级, P0)、plan_112 (EN↔DE, P0)。paper_framing.md\\n    新增 RC9-RC11，scope control 更新。\\n  related_experiments:\\n  - exp_id: dream_20260522T023801\\n    role: trigger\\n    result: 'best 5/10, median 5/10, worst 4/10 — 三档一致 CRITICAL: 缺非冲突基线'\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-22 05:43 UTC\\n  summary: C2 reframe：不对称性非冲突特异性，改为\\\"冲突信号继承模型一般跨语言迁移偏置\\\"\\n  rationale: plan_110 XNLI 基线结果：Qwen +6.72pp CI[2.36,11.73], Llama +5.97pp CI[0.92,11.33]，与冲突任务（7.18/7.22pp）量级无区别，均≥5pp。按\\n    RC9 预设标准，C2 需 reframe。新 framing：冲突信号编码在模型的通用跨语言表征空间中（非独立机制），继承其方向性偏置。这是更深层的机制洞察——冲突检测不是专用子空间，而是\\n    piggyback 在已有的跨语言对齐结构上。论文从\\\"发现新现象\\\"转为\\\"机制分析+方法论贡献\\\"。C1(可检测性)、C3(非线性)、C4(层结构)不受影响。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: XNLI asymmetry Qwen +6.72pp Llama +5.97pp, ≥5pp threshold → reframe\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-22 07:12 UTC\\n  summary: C3 confirmed conflict-specific：XNLI MLP 对照证明非线性 encoding 是冲突特有属性\\n  rationale: 'XNLI EN→ZH MLP Δ: Qwen -2.0pp, Llama -0.5pp（负/零）。冲突 EN→ZH MLP Δ: Qwen\\n    +2.4pp, Llama +9.2pp（正且显著）。两模型一致。虽然方向不对称性 (C2) 是一般跨语言属性，但冲突信号在弱迁移方向 (EN→ZH) 需要非线性变换才能解码，而一般语义任务不需要。这成为\\n    C2 reframe 后论文的核心差异化 contribution。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: decisive\\n    result: 'XNLI MLP EN→ZH Δ: Qwen -2.0pp, Llama -0.5pp'\\n  - exp_id: mvp_002\\n    role: comparison\\n    result: 'Conflict MLP EN→ZH Δ: Qwen +2.4pp, Llama +9.2pp'\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-22 07:50 UTC\\n  summary: Steering (plan_107) 升为最高优先级；C3 需统计加固但不作为唯一卖点\\n  rationale: Reviewer 评估 C3 作为主要 contribution 不充分（Qwen +2.4pp 噪声级，无 CI，4× 跨架构差异）。当前叙事骨架只有\\n    C1 扎实，C2 是 null result repackage，C3/C4 是 supporting evidence。Reviewer 建议最有效路径：Track\\n    3 steering > Track 2 SAE > 打磨 C3。plan_107 (probe-weight steering) 已在 P0 列表，不依赖\\n    SAE，可立即启动。论文结构升级为：Detection (C1) → Characterization (C2+C3+C4) → Causal Intervention\\n    (steering)。C3 同时做统计加固（Gemma MLP + bootstrap CI）作为并行任务。\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: context\\n    result: C3 MLP contrast confirmed but statistically weak\\n  - exp_id: mvp_002\\n    role: context\\n    result: MLP Δ Qwen +2.4pp (noise-level), Llama +9.2pp (single-seed)\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-22 11:03 UTC\\n  summary: Steering v1 NEGATIVE; 启动诊断性变体轮（3配置并行）后再判定 Track 3 存亡\\n  rationale: Steering_107 v1 (L28, last-token, Llama) 10个alpha全部不显著。但方法改进框架要求：只测了1个配置不能宣布方向死亡。L28是88%深度，太晚——mid-layer(L13/L18)理论上更适合跨语言处理干预。position=all可能比last-token更有效（冲突信号可能分布在多个token）。成本：3个变体并行\\n    ~4-6h GPU时间，<1天。如果全部失败→steering dead，论文退为probing+analysis贡献。\\n  related_experiments:\\n  - exp_id: steering_107\\n    role: evidence\\n    result: negative — all alphas non-significant, Fisher p∈[0.31,1.00]\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-22 12:44 UTC\\n  summary: D009 撤回：C3 non-linearity 降为 \\\"trend only\\\"，双模型 bootstrap CI 均含零\\n  rationale: 'Llama L18 bootstrap n=1000: delta=+5.21pp, CI=[-2.21%,+12.87%]，含零。Qwen\\n    L23: delta=+3.84pp, CI=[-3.57%,+11.31%]，含零。两模型 MLP 优势方向一致（正）但统计不显著。D009 原结论\\\"C3\\n    confirmed conflict-specific\\\"不成立。C3 降为 supporting observation / trend，不再作为独立 claim。'\\n  related_experiments:\\n  - exp_id: xnli_baseline_110\\n    role: evidence\\n    result: XNLI MLP delta negative/zero vs conflict positive — direction contrast\\n      holds but CIs include zero\\n  - exp_id: mvp_002\\n    role: baseline\\n    result: single-seed MLP deltas were larger but not bootstrapped\\n  depends_on:\\n  - D009\\n- id: D013\\n  date: 2026-05-22 12:55 UTC\\n  summary: 'DDL确认: EMNLP 2026 ARR May 25 (3天), 立即启动论文写作'\\n  rationale: 用户确认 venue 从 ICLR 2027 改为 EMNLP 2026 ARR，deadline May 25。剩余3天。立即启动 Paper\\n    Agent，用已有结果（C1+C2+XNLI对照+方法论控制+steering negative as finding）写作。实验继续跑，完成的结果即时补入。\\n  related_experiments:\\n  - exp_id: mvp_probe_llama_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: mvp_probe_v1\\n    role: core\\n    result: C1 success\\n  - exp_id: xnli_baseline_110\\n    role: core\\n    result: C2 reframed\\n  - exp_id: steering_107\\n    role: core\\n    result: negative, reportable finding\\n  depends_on: []\\n- id: D014\\n  date: 2026-05-22 13:22 UTC\\n  summary: Steering L13 SUCCESS (p=0.0009/0.002)! 因果节点在 mid-layer，非 probe peak。D010/D011\\n    策略验证成功\\n  rationale: L13 steering 两个 alpha 显著：α=-20 p=0.0009 (36% vs 17.6%), α=+5 p=0.002\\n    (19.9% vs 6.6%)。方向性完全正确（正α→p→c, 负α→c→p）。L28/L18 均 negative → 因果决策在 mid-layer (~40%\\n    depth)，probe peak (L28, 88%) 只是诊断信号。这是论文核心因果证据，直接回应 RC8。下一步：等 α=+10/+20 确认，然后\\n    Qwen L13 跨模型验证。Paper story 升级为 detection-vs-decision 层分离。\\n  related_experiments:\\n  - exp_id: steering_107_L13\\n    role: core\\n    result: SUCCESS — α=-20 p=0.0009, α=+5 p=0.002\\n  - exp_id: steering_107\\n    role: control\\n    result: NEGATIVE at L28\\n  - exp_id: steering_107_L18\\n    role: control\\n    result: NEGATIVE at L18\\n  - exp_id: steering_107_L28_all\\n    role: control\\n    result: NEGATIVE at L28 all-position\\n  depends_on:\\n  - D011\\n- id: D015\\n  date: 2026-05-22 16:34 UTC\\n  summary: C6 steering 确认为 Llama-specific；Gemma L17 informative negative 终结跨模型验证\\n  rationale: 三个模型的 ~40% depth 层全测完：Llama L13 SUCCESS (p<0.001), Qwen L14 negative\\n    (underpowered), Gemma L17 negative (informative, adequate sample size)。Steering\\n    因果效应是 architecture-dependent。论文叙事维持 \\\"detection ≠ decision\\\" 核心发现 + Llama-specific\\n    steering + model-specificity 方法论警告。不再追加 steering 实验。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: cross-model validation\\n    result: negative (all p>0.1, 0 directional flips)\\n  - exp_id: steering_107_L13\\n    role: primary evidence\\n    result: success (p=0.002, p=0.0009)\\n  - exp_id: steering_107_qwen_L14\\n    role: cross-model validation\\n    result: negative (underpowered)\\n  depends_on:\\n  - D014\\n- id: D016\\n  date: 2026-05-23 07:47 UTC\\n  summary: 三个 piggyback 验证实验完成：cross-task transfer 有价值但不加入当前提交，TOST underpowered 不加入，cosine\\n    similarity 逻辑错误不加入。全部保留为 rebuttal 储备。\\n  rationale: 1) Cross-task transfer (116)：Llama 大部分层 ≥0.97、L13=1.0 直接支持 piggyback，但单种子无\\n    CI，Gemma 中间层崩塌增加叙事复杂度，8 页限制下无法充分展开。2) TOST (118)：点估计均 <1.3pp 但 SE 太大(2.6-4.4pp)\\n    导致检验失败，加入会给审稿人攻击弹药。3) Cosine sim (117)：实验设计逻辑错误，近零结果是 trivial 的。三个实验均保留数据供 rebuttal\\n    使用。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: piggyback direct test\\n    result: Llama near-perfect transfer, Gemma mid-layer collapse\\n  - exp_id: probe-cosine-sim-117\\n    role: piggyback angle test\\n    result: cosine ≈ 0, trivial/expected\\n  - exp_id: tost-equivalence-118\\n    role: formal equivalence test\\n    result: all fail, underpowered\\n  depends_on: []\\n- id: D017\\n  date: 2026-05-23 08:24 UTC\\n  summary: Reviewer 独立终审确认：GPU 实验全部完成，无需追加 Gemma 额外 steering 层扫描、Qwen 换 α、或其他 GPU\\n    ablation。剩余工作全部 CPU 级别。\\n  rationale: Reviewer 逐项评估 4 个潜在 GPU 实验方向均给 NO：(1) Gemma L14-22 已有 L17/L21 两个 negative\\n    数据点，新增层扫描风险高收益低；(2) Qwen underpowered 是数据集限制非 α 问题；(3) Llama L13 已有 10 个 α 完整扫描+Bonferroni；(4)\\n    更细粒度层扫描是 camera-ready 工作。DDL 48h 内应集中论文打磨。\\n  related_experiments:\\n  - exp_id: steering_107_gemma_L17\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_gemma_L21\\n    role: Gemma steering negative\\n    result: negative\\n  - exp_id: steering_107_qwen_L14\\n    role: Qwen steering negative\\n    result: negative\\n  - exp_id: cross-task-transfer-116\\n    role: Gemma mid-layer collapse discovery\\n    result: L14-22 collapse\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-23 08:25 UTC\\n  summary: 推翻 D016 中 cross-task transfer \\\"不加入\\\"的决定：用户批准加入论文，bootstrap n=1000 解决单种子问题，聚焦\\n    Gemma L14-22 崩塌与 steering 失败共定位的 mechanistic 解释\\n  rationale: 1) 用户明确批准 \\\"最能提分无条件支持做\\\"；2) bootstrap CI 将解决 Reviewer 对单种子的担忧；3) Gemma\\n    mid-layer 崩塌与 steering 失败的共定位是 mechanistic insight，把 informative negative 升级为\\n    mechanistically explained negative；4) 页数有余量（当前 7 页，段落框架 4 行已确认不超 8 页）；5) TOST\\n    和 cosine sim 仍不加入（D016 中这两项维持不变）。\\n  related_experiments:\\n  - exp_id: cross-task-transfer-116\\n    role: single-seed results\\n    result: Llama ≥0.97, Gemma L14-22 collapse\\n  - exp_id: cross-task-bootstrap-119\\n    role: bootstrap CI in progress\\n    result: pending\\n  depends_on:\\n  - D016\\n- id: D019\\n  date: 2026-05-23 11:27 UTC\\n  summary: 第二轮 steering 实验全部 negative：Qwen L18、Llama L16、Gemma L24 均无显著效应。Llama 因果窗口极窄（L13\\n    成功，L16/L18/L28 全失败）。Steering 是 Llama L13 唯一成功点，architecture-specific 结论进一步强化。\\n  rationale: 新增 3 个 negative 加上之前的 6 个，总计 12 个 steering configs 中只有 Llama L13 成功。Qwen\\n    三层(L14/L18/L23)、Gemma 三层(L10/L17/L24)全面失败。Llama L16（距L13仅3层）也失败，证明因果窗口极窄。论文叙事\\\"Detection\\n    ≠ Decision + narrow causal window\\\"更加稳固。考虑将 Llama L16 加入 Table 3 以展示 causal window\\n    精度。\\n  related_experiments:\\n  - exp_id: steering-qwen-L18-122\\n    role: Qwen additional layer\\n    result: negative, all p=1.0\\n  - exp_id: steering-llama-L16-123\\n    role: causal window boundary\\n    result: negative, narrowest gap to L13\\n  - exp_id: steering-gemma-L24-121\\n    role: Gemma post-dip layer\\n    result: negative, cleanest null\\n  depends_on:\\n  - D015\\n  - D018\\n- id: D020\\n  date: 2026-05-24 17:15 UTC\\n  summary: Detection≠Decision 叙事从 \\\"L28 peak vs L13 causal = 大幅分离\\\" 改为 \\\"causal site\\n    L13 稳定而 detection peak 随数据波动\\\"\\n  rationale: 多种子实验（虽数据版本不同）揭示 peak layer 在种子间剧烈波动（Llama L28→L12/L15），而 peak accuracy\\n    稳定（±0.12%）。这说明 L28 peak 可能是数据依赖的，但 causal site L13 有 boundary sweep（6层, N=201,\\n    独立样本）确认是稳健的。新叙事实际上更强：detection 是分布式的（broad plateau L3-L22），causal influence 是集中的（L13），这比\\\"L28\\n    vs L13 距离大\\\"更有 mechanistic insight。配合 MF-3 的 Llama-specific 限定，整体 framing 更诚实。\\n  related_experiments:\\n  - exp_id: multi_seed_probing\\n    role: trigger\\n    result: peak layer unstable across seeds, accuracy stable\\n  depends_on: []\\n\", \"total_chars\": 13294, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "56f1c575-5b0e-4b67-9459-426d8f23bc29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-26T09:34:50.398Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014xUMt3Wo4rmiPbzxC8uukD`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "limit": 0,
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "status": "DONE"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0588bb14-bfbc-423a-9596-74813402586d",
+  "isSidechain": false,
+  "requestId": "req_011CbQxAnQj17d4xo6KajeqH",
+  "type": "assistant",
+  "uuid": "b5367350-ad65-45bd-96d6-f80cc3fa0ff0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149fZpxNpSezkix7sxLPFt5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17915,
+      "cache_read_input_tokens": 39530,
+      "output_tokens": 339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 339,
+          "cache_read_input_tokens": 39530,
+          "cache_creation_input_tokens": 17915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "b5367350-ad65-45bd-96d6-f80cc3fa0ff0",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-26T09:34:50.942Z_
+
+<details><summary>↩ Tool result · `toolu_014xUMt3Wo4rmiPbzxC8uukD`</summary>
+
+```text
+Error: result (83,615 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5367350-ad65-45bd-96d6-f80cc3fa0ff0",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "ba530d1d-874d-4260-85db-4c261314ceff",
+  "toolUseResult": "Error: result (83,615 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T08:59:57.338Z\", \"updated_at\": \"2026-05-26T09:27:53.838Z\", \"hypothesis\": \"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\", \"parent\": \"steering_107_gemma_L21\", \"notes\": \"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\", \"spec\": {\"command\": \"python run_steering_v2.py --model gemma-2-9b-it --layer 21\", \"server\": \"westd-14391\", \"data_path\": \"v2 matched-condition pipeline\", \"data_count\": 171, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": 42, \"checkpoint_source\": \"steering_107_gemma_L21\", \"eval_data\": \"v2 matched-condition conflict samples N=171\"}, \"checkpoint_path\": \"pending_verification (SSH断连)\", \"log_path\": \"pending_verification (SSH断连)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-26T09:27:49.156Z\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:01:12.928Z\", \"updated_at\": \"2026-05-24T13:58:00.265Z\", \"hypothesis\": \"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\", \"parent\": \"steering_107_qwen_L14\", \"spec\": {\"command\": \"python steering_experiment.py --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B/ --activations-path data/qwen3/en_activations.pt --test-data data/qwen3/en_conflict_test_verified.jsonl --layer 15 --alphas -20 -10 -5 5 10 20 --position last\", \"server\": \"westd-14391\", \"data_path\": \"data/qwen3/en_conflict_test_verified.jsonl\", \"data_count\": 131, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"logistic regression probe on en_activations.pt layer 15\", \"eval_data\": \"data/qwen3/en_conflict_test_verified.jsonl (N=131 conflict samples)\"}, \"checkpoint_path\": \"westd-14391:/root/clkc_mech_interp/data/qwen3/steering_results_L15_last.json\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/logs/steering_qwen3_L15.log\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"notes\": \"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-24T13:58:00.265Z\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:01:11.100Z\", \"updated_at\": \"2026-05-24T13:57:59.678Z\", \"hypothesis\": \"Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.\", \"parent\": \"steering_107_qwen_L14\", \"spec\": {\"command\": \"python steering_experiment.py --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B/ --activations-path data/qwen3/en_activations.pt --test-data data/qwen3/en_conflict_test_verified.jsonl --layer 14 --alphas -20 -10 -5 5 10 20 --position last\", \"server\": \"westd-14391\", \"data_path\": \"data/qwen3/en_conflict_test_verified.jsonl\", \"data_count\": 131, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"logistic regression probe on en_activations.pt layer 14\", \"eval_data\": \"data/qwen3/en_conflict_test_verified.jsonl (N=131 conflict samples)\"}, \"checkpoint_path\": \"westd-14391:/root/clkc_mech_interp/data/qwen3/steering_results_L14_last.json\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/logs/steering_qwen3_L14.log\", \"metrics\": {\"probe_balanced_acc\": 70.99, \"best_fisher_p\": 0.7847, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering at depth-matched layer (39% ≈ Llama L13 41%). N=131, probe acc 70.99%. 0/6 alphas significant. 0 directional flips. Confirms original paper result (N=84, best p=0.682) with 56% more samples.\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-24T13:57:59.678Z\"}, \"steering_qwen_L13_133\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:01:08.705Z\", \"updated_at\": \"2026-05-24T13:57:58.905Z\", \"hypothesis\": \"Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.\", \"parent\": \"steering_107_qwen_L14\", \"spec\": {\"command\": \"python steering_experiment.py --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B/ --activations-path data/qwen3/en_activations.pt --test-data data/qwen3/en_conflict_test_verified.jsonl --layer 13 --alphas -20 -10 -5 5 10 20 --position last\", \"server\": \"westd-14391\", \"data_path\": \"data/qwen3/en_conflict_test_verified.jsonl\", \"data_count\": 131, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"logistic regression probe on en_activations.pt layer 13\", \"eval_data\": \"data/qwen3/en_conflict_test_verified.jsonl (N=131 conflict samples)\"}, \"checkpoint_path\": \"westd-14391:/root/clkc_mech_interp/data/qwen3/steering_results_L13_last.json\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/logs/steering_qwen3_L13.log\", \"metrics\": {\"probe_balanced_acc\": 71.76, \"best_fisher_p\": 0.1677, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-24T13:57:58.905Z\"}, \"steering_gemma_v2_L18_138\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T11:22:28.018Z\", \"updated_at\": \"2026-05-24T11:27:23.186Z\", \"hypothesis\": \"Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.\", \"parent\": \"steering_gemma_L18_132\", \"spec\": {\"command\": \"python steering_experiment.py --model-path /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it/ --activations-path data/gemma2_v2/en_activations.pt --test-data data/gemma2_v2/en_conflict_test_verified.jsonl --layer 18 --alphas -20 -10 -5 5 10 20 --position last\", \"server\": \"westd-14391\", \"data_path\": \"data/gemma2_v2/en_conflict_test_verified.jsonl\", \"data_count\": 171, \"model_name\": \"gemma-2-9b-it\", \"seed\": 42, \"checkpoint_source\": \"logistic regression probe on en_activations.pt layer 18\", \"eval_data\": \"data/gemma2_v2/en_conflict_test_verified.jsonl (N=171 conflict samples)\"}, \"checkpoint_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L18_last.json\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L18_last.json\", \"metrics\": {\"probe_balanced_acc\": 89.5, \"best_fisher_p\": 0.219, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-24T11:27:23.186Z\"}, \"steering_gemma_v2_L17_137\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T11:22:27.406Z\", \"updated_at\": \"2026-05-24T11:27:22.654Z\", \"hypothesis\": \"Gemma-2-9B-IT L17 (40% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171.\", \"parent\": \"steering_gemma_L17_131\", \"spec\": {\"command\": \"python steering_experiment.py --model-path /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it/ --activations-path data/gemma2_v2/en_activations.pt --test-data data/gemma2_v2/en_conflict_test_verified.jsonl --layer 17 --alphas -20 -10 -5 5 10 20 --position last\", \"server\": \"westd-14391\", \"data_path\": \"data/gemma2_v2/en_conflict_test_verified.jsonl\", \"data_count\": 171, \"model_name\": \"gemma-2-9b-it\", \"seed\": 42, \"checkpoint_source\": \"logistic regression probe on en_activations.pt layer 17\", \"eval_data\": \"data/gemma2_v2/en_conflict_test_verified.jsonl (N=171 conflict samples)\"}, \"checkpoint_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L17_last.json\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L17_last.json\", \"metrics\": {\"probe_balanced_acc\": 88.9, \"best_fisher_p\": 0.448, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 88.9% validates data quality. Best p=0.448, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-24T11:27:22.654Z\"}, \"steering_gemma_v2_L16_136\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T11:22:26.566Z\", \"updated_at\": \"2026-05-24T11:27:21.552Z\", \"hypothesis\": \"Gemma-2-9B-IT L16 (38% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~88% and N=171.\", \"parent\": \"steering_gemma_L16_130\", \"spec\": {\"command\": \"python steering_experiment.py --model-path /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it/ --activations-path data/gemma2_v2/en_activations.pt --test-data data/gemma2_v2/en_conflict_test_verified.jsonl --layer 16 --alphas -20 -10 -5 5 10 20 --position last\", \"server\": \"westd-14391\", \"data_path\": \"data/gemma2_v2/en_conflict_test_verified.jsonl\", \"data_count\": 171, \"model_name\": \"gemma-2-9b-it\", \"seed\": 42, \"checkpoint_source\": \"logistic regression probe on en_activations.pt layer 16\", \"eval_data\": \"data/gemma2_v2/en_conflict_test_verified.jsonl (N=171 conflict samples)\"}, \"checkpoint_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L16_last.json\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2_v2/steering_results_L16_last.json\", \"metrics\": {\"probe_balanced_acc\": 88, \"best_fisher_p\": 0.067, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 88.0% validates data quality. Best p=0.067 (uncorrected), 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-24T11:27:21.552Z\"}, \"steering_gemma_L17_131\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:01:06.445Z\", \"updated_at\": \"2026-05-24T09:15:12.895Z\", \"hypothesis\": \"Gemma-2-9B-IT L17 (40% depth) steering 匹配条件复现：原始 L17 在低 probe acc (75%, N=158) 下 best p=0.104，是所有 Gemma 层中最接近显著的。Llama L16 从 p=0.12 翻转为 p=0.005 after probe quality 提升。用匹配条件重跑 L17，验证是否也翻转。\", \"parent\": \"steering_107_gemma_L17\", \"spec\": {\"command\": \"python src/steering_experiment.py --model /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 17 --alphas -20,-10,-5,5,10,20 --position last --output_suffix L17_last\", \"server\": \"westd-14391\", \"data_path\": \"data/gemma2/en_conflict_test_verified.jsonl\", \"data_count\": 88, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": \"default\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"google/gemma-2-9b-it (pretrained)\", \"eval_data\": \"data/gemma2/en_conflict_test_verified.jsonl\"}, \"metrics\": {\"N\": 88, \"probe_acc\": 0.6648, \"best_alpha\": \"none\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"total_flips\": 0}, \"checkpoint_path\": \"N/A (steering, no checkpoint)\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2/steering_results_L17_last.json\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-24T09:02:23.013Z\", \"notes\": \"condition_mismatch: true — probe acc 66.5% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线 prepare_gemma_data.py relabel bug 导致 68% conflict 样本 parametric_answer==contextual_answer。\"}, \"steering_gemma_L18_132\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:01:06.974Z\", \"updated_at\": \"2026-05-24T09:07:12.065Z\", \"hypothesis\": \"Gemma-2-9B-IT L18 (43% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc 下 best p=0.104。用匹配条件重跑 L18（L17 peak+1），确认 causal window 上界。与 Llama L14 (44% depth) 深度匹配。\", \"parent\": \"steering_107_gemma_L17\", \"spec\": {\"command\": \"python src/steering_experiment.py --model /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 18 --alphas -20,-10,-5,5,10,20 --position last --output_suffix L18_last\", \"server\": \"westd-14391\", \"data_path\": \"data/gemma2/en_conflict_test_verified.jsonl\", \"data_count\": 88, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": \"default\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"google/gemma-2-9b-it (pretrained)\", \"eval_data\": \"data/gemma2/en_conflict_test_verified.jsonl\"}, \"metrics\": {\"N\": 88, \"probe_acc\": 0.6193, \"best_alpha\": \"-20\", \"best_fisher_p\": 0.4971, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 0.4971, \"alpha_neg10\": 0.4971, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 2.3, \"max_ctrl_flip_pct\": 0}, \"checkpoint_path\": \"N/A (steering, no checkpoint)\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2/steering_results_L18_last.json\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-24T09:02:24.491Z\", \"notes\": \"condition_mismatch: true — probe acc 61.9% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线对 Gemma 适配问题导致数据质量崩塌。\"}, \"steering_gemma_L16_130\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:01:05.466Z\", \"updated_at\": \"2026-05-24T09:07:09.457Z\", \"hypothesis\": \"Gemma-2-9B-IT L16 (38% depth) steering 匹配条件复现：L17 (40%) 在低 probe acc (75%) 下 best p=0.104，接近 marginal。用匹配 Llama 的高质量条件（N≈200, 高 probe acc）重跑 L16（L17 peak-1），确认 causal window 下界。\", \"parent\": \"steering_107_gemma_L17\", \"spec\": {\"command\": \"python src/steering_experiment.py --model /root/autodl-tmp/models/AI-ModelScope/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 16 --alphas -20,-10,-5,5,10,20 --position last --output_suffix L16_last\", \"server\": \"westd-14391\", \"data_path\": \"data/gemma2/en_conflict_test_verified.jsonl\", \"data_count\": 88, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": \"default\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"google/gemma-2-9b-it (pretrained)\", \"eval_data\": \"data/gemma2/en_conflict_test_verified.jsonl\"}, \"metrics\": {\"N\": 88, \"probe_acc\": 0.5966, \"best_alpha\": \"+5\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 1.1, \"max_ctrl_flip_pct\": 1.1}, \"checkpoint_path\": \"N/A (steering, no checkpoint)\", \"log_path\": \"westd-14391:/root/clkc_mech_interp/data/gemma2/steering_results_L16_last.json\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-24T09:02:23.829Z\", \"notes\": \"condition_mismatch: true — probe acc 59.7% (目标 91%), N=88 (目标 200), parametric=1/88 (目标 ≥10%). 匹配条件未达成，结果不可用于 camera-ready 对比。verify 管线对 Gemma 适配问题导致数据质量崩塌。\"}, \"steering_llama_L28_129\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:01:02.744Z\", \"updated_at\": \"2026-05-24T01:36:44.245Z\", \"hypothesis\": \"Llama-3.1-8B L28 (88% depth) steering 同条件复现：原始 L28 (N=136, probe acc 77%) 为 negative (p=0.31)。L16 翻转证明 probe quality confound。L28 是 detection peak 层——若 L28 也翻转为 significant，则 Detection ≠ Decision 解离 claim 不成立；若仍 negative，则解离在高质量 probe 条件下依然稳健。\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 28 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L28_last\", \"server\": \"westd-14391\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 201, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"ConflictQA popQA-chatgpt 201 conflict test samples\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/data/llama31/steering_results_L28_last.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L28\": 0.8525, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.284, \"alpha_neg20_steer\": \"12/201\", \"alpha_neg20_ctrl\": \"11/201\", \"alpha_neg20_p\": 1, \"alpha_neg10_steer\": \"5/201\", \"alpha_neg10_ctrl\": \"8/201\", \"alpha_neg10_p\": 0.575, \"alpha_neg5_steer\": \"3/201\", \"alpha_neg5_ctrl\": \"5/201\", \"alpha_neg5_p\": 0.724, \"alpha_pos5_steer\": \"4/201\", \"alpha_pos5_ctrl\": \"2/201\", \"alpha_pos5_p\": 0.685, \"alpha_pos10_steer\": \"6/201\", \"alpha_pos10_ctrl\": \"2/201\", \"alpha_pos10_p\": 0.284, \"alpha_pos20_steer\": \"16/201\", \"alpha_pos20_ctrl\": \"15/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"none\"}, \"completed_at\": \"2026-05-24T01:36:44.245Z\"}, \"steering_llama_L18_128\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T01:00:59.605Z\", \"updated_at\": \"2026-05-24T01:36:43.317Z\", \"hypothesis\": \"Llama-3.1-8B L18 (56% depth) steering 同条件复现：原始 L18 (N=136, probe acc 77%) 为 negative (p=0.45)。L16 从 negative 翻转为 success (p=0.005) 证明 probe quality confound。用同条件高质量 probe (N=201, acc ~91%) 重跑 L18，确认 causal window 上界是否延伸到 L18。\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 18 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L18_last\", \"server\": \"westd-14391\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 201, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"ConflictQA popQA-chatgpt 201 conflict test samples\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/data/llama31/steering_results_L18_last.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.9075, \"best_alpha\": \"+5\", \"best_fisher_p\": 0.0099, \"alpha_neg20_steer\": \"28/201\", \"alpha_neg20_ctrl\": \"30/201\", \"alpha_neg20_p\": 0.887, \"alpha_neg10_steer\": \"15/201\", \"alpha_neg10_ctrl\": \"12/201\", \"alpha_neg10_p\": 0.691, \"alpha_neg5_steer\": \"10/201\", \"alpha_neg5_ctrl\": \"9/201\", \"alpha_neg5_p\": 1, \"alpha_pos5_steer\": \"16/201\", \"alpha_pos5_ctrl\": \"4/201\", \"alpha_pos5_p\": 0.0099, \"alpha_pos10_steer\": \"26/201\", \"alpha_pos10_ctrl\": \"15/201\", \"alpha_pos10_p\": 0.098, \"alpha_pos20_steer\": \"64/201\", \"alpha_pos20_ctrl\": \"45/201\", \"alpha_pos20_p\": 0.043, \"bonferroni_significant\": \"none (best p=0.0099 > 0.0083)\", \"note\": \"marginal - just above Bonferroni threshold\"}, \"completed_at\": \"2026-05-24T01:36:43.317Z\"}, \"steering_llama_L16_127\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T00:41:39.262Z\", \"updated_at\": \"2026-05-24T00:59:10.452Z\", \"hypothesis\": \"Llama-3.1-8B L16 (50% depth) steering 同条件复现：原始 L16 (N=136, probe acc 77%) 为 negative (p=0.12)。用与 L12/L13/L14 相同的数据和 probe（N=201, probe acc ~91%）重跑 L16，消除 probe quality confound。若仍 negative 则确认 causal window 上界在 L14-L16 之间。\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 16 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L16_last\", \"server\": \"westd-14391\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 201, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"ConflictQA popQA-chatgpt 201 conflict test samples\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/data/llama31/steering_results_L16_last.json\"}, \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L16\": 0.915, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.005, \"alpha_neg20_steer\": \"49/201\", \"alpha_neg20_ctrl\": \"47/201\", \"alpha_neg20_p\": 0.907, \"alpha_neg10_steer\": \"29/201\", \"alpha_neg10_ctrl\": \"23/201\", \"alpha_neg10_p\": 0.458, \"alpha_neg5_steer\": \"15/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.691, \"alpha_pos5_steer\": \"10/201\", \"alpha_pos5_ctrl\": \"9/201\", \"alpha_pos5_p\": 1, \"alpha_pos10_steer\": \"37/201\", \"alpha_pos10_ctrl\": \"17/201\", \"alpha_pos10_p\": 0.005, \"alpha_pos20_steer\": \"56/201\", \"alpha_pos20_ctrl\": \"57/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.005)\"}, \"completed_at\": \"2026-05-24T00:59:10.452Z\"}, \"steering_llama_L13_repl_126\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:04:17.974Z\", \"updated_at\": \"2026-05-23T23:05:04.173Z\", \"hypothesis\": \"Llama-3.1-8B L13 steering 复现：在 westd-14391 上用新采样的 ConflictQA 数据（N=201）复现原始 L13 steering 结果（原 p=0.0009 on westd-41302, N=136）。验证结果对数据采样的鲁棒性。\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 13 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L13_last\", \"server\": \"westd-14391\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 201, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"ConflictQA popQA-chatgpt 201 conflict test samples\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/data/llama31/steering_results_L13_last.json\"}, \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L13\": 0.9, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0003, \"alpha_neg20_steer\": \"47/201\", \"alpha_neg20_ctrl\": \"49/201\", \"alpha_neg20_p\": 0.9043, \"alpha_neg10_steer\": \"26/201\", \"alpha_neg10_ctrl\": \"34/201\", \"alpha_neg10_p\": 0.3332, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"18/201\", \"alpha_neg5_p\": 0.8634, \"alpha_pos5_steer\": \"38/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.0034, \"alpha_pos10_steer\": \"66/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0003, \"alpha_pos20_steer\": \"70/201\", \"alpha_pos20_ctrl\": \"67/201\", \"alpha_pos20_p\": 0.8141, \"bonferroni_significant\": \"alpha_pos5 (p=0.0034), alpha_pos10 (p=0.0003)\"}, \"completed_at\": \"2026-05-23T23:05:04.173Z\"}, \"steering_llama_L14_125\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:54:23.641Z\", \"updated_at\": \"2026-05-23T23:04:14.368Z\", \"hypothesis\": \"Llama-3.1-8B L14 (44% depth) steering：L13 (41%) 成功 (p=0.0009)，L14 仅差 1 层。若 L14 也 negative（配合 L16 negative）则 causal window 上界精确到 L13；若显著则 causal window 至少跨 L13-L14。\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 14 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L14_last\", \"server\": \"westd-14391\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 201, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"ConflictQA popQA-chatgpt 201 conflict test samples\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/data/llama31/steering_results_L14_last.json\"}, \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L14\": 0.9175, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0022, \"alpha_neg20_steer\": \"51/201\", \"alpha_neg20_ctrl\": \"43/201\", \"alpha_neg20_p\": 0.4095, \"alpha_neg10_steer\": \"28/201\", \"alpha_neg10_ctrl\": \"33/201\", \"alpha_neg10_p\": 0.5784, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.1965, \"alpha_pos5_steer\": \"24/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.4152, \"alpha_pos10_steer\": \"56/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0022, \"alpha_pos20_steer\": \"67/201\", \"alpha_pos20_ctrl\": \"68/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.0022)\"}, \"completed_at\": \"2026-05-23T23:04:14.368Z\"}, \"steering_llama_L12_124\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T21:54:21.084Z\", \"updated_at\": \"2026-05-23T23:04:13.558Z\", \"hypothesis\": \"Llama-3.1-8B L12 (38% depth) steering：L13 (41%) 成功 (p=0.0009)，L12 仅差 1 层。若 L12 也 negative 则 causal node 下界精确到 L13；若 L12 也 significant 则 causal window 向浅层延伸至少 1 层。±1 层分辨率定位。\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/steering_experiment.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_dir data/llama31 --peak_layer 12 --alphas -20 -10 -5 5 10 20 --position last --output_suffix _L12_last\", \"server\": \"westd-14391\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 201, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"ConflictQA popQA-chatgpt 201 conflict test samples\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/data/llama31/steering_results_L12_last.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L12\": 0.9175, \"best_alpha\": \"+20\", \"best_fisher_p\": 0.0853, \"alpha_neg20_steer\": \"54/201\", \"alpha_neg20_ctrl\": \"50/201\", \"alpha_neg20_p\": 0.7327, \"alpha_neg10_steer\": \"36/201\", \"alpha_neg10_ctrl\": \"29/201\", \"alpha_neg10_p\": 0.4165, \"alpha_neg5_steer\": \"17/201\", \"alpha_neg5_ctrl\": \"19/201\", \"alpha_neg5_p\": 0.8616, \"alpha_pos5_steer\": \"21/201\", \"alpha_pos5_ctrl\": \"14/201\", \"alpha_pos5_p\": 0.2884, \"alpha_pos10_steer\": \"38/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.3518, \"alpha_pos20_steer\": \"43/201\", \"alpha_pos20_ctrl\": \"59/201\", \"alpha_pos20_p\": 0.0853, \"bonferroni_significant\": \"none\"}, \"completed_at\": \"2026-05-23T23:04:13.558Z\"}, \"steering_gemma_L10_120\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:01:18.511Z\", \"updated_at\": \"2026-05-23T12:03:20.769Z\", \"hypothesis\": \"Gemma-2-9B L10 (~24% depth) steering：之前 L17/L21 (40-50% depth) negative。若更浅层（接近 early processing）能产生因果效应，则 Gemma 的 causal node 可能在比 Llama L13 (41%) 更浅的相对位置。parent=steering_107_gemma_L17\", \"parent\": \"steering_107_gemma_L17\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 OMP_NUM_THREADS=1 python src/steering_experiment.py --model gemma --layer 10 --alphas 5 10 20 --position last\", \"server\": \"westd-41302\", \"data_path\": \"/root/clkc_mech_interp/data/gemma2/\", \"data_count\": 158, \"model_name\": \"Gemma-2-9B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"steering_107_gemma_L17\", \"eval_data\": \"conflict probe activations\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_gemma_L10.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L10\": 0.706, \"alpha_5_flips\": \"3/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"1/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 0.2143, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}, \"completed_at\": \"2026-05-23T12:03:20.769Z\"}, \"steering_gemma_L24_121\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:01:20.736Z\", \"updated_at\": \"2026-05-23T10:57:22.106Z\", \"hypothesis\": \"Gemma-2-9B L24 (~57% depth) steering：L17/L21 negative, 试更深层。若 L24 也 negative 则 Gemma 确实不存在 single-layer causal node（支持 Llama-specific 结论）。parent=steering_107_gemma_L17\", \"parent\": \"steering_107_gemma_L17\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 OMP_NUM_THREADS=1 python src/steering_experiment.py --model gemma --layer 24 --alphas 5 10 20 --position last\", \"server\": \"westd-41302\", \"data_path\": \"/root/clkc_mech_interp/data/gemma2/\", \"data_count\": 158, \"model_name\": \"Gemma-2-9B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"checkpoint_source\": \"steering_107_gemma_L17\", \"eval_data\": \"conflict probe activations\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_gemma_L24.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L24\": 0.7627, \"alpha_5_flips\": \"1/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"3/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}, \"completed_at\": \"2026-05-23T10:57:22.106Z\"}, \"steering_llama_L16_123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:01:26.264Z\", \"updated_at\": \"2026-05-23T10:56:10.928Z\", \"hypothesis\": \"Llama-3.1-8B L16 (~50% depth) steering：L13 (41%) 成功 (p=0.0009)。L16 紧邻 L13 但更深，验证 causal window 宽度。若 L16 也显著则 causal node 是一个区间而非单点；若 negative 则 L13 是精确 causal layer。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 OMP_NUM_THREADS=1 python src/steering_experiment.py --model llama --layer 16 --alphas 5 10 20 --position last\", \"server\": \"westd-41302\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 136, \"model_name\": \"Llama-3.1-8B\", \"seed\": 42, \"gpu\": \"cuda:3\", \"checkpoint_source\": \"steering_107_L13\", \"eval_data\": \"conflict probe activations\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_llama_L16.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L16\": 0.7684, \"alpha_5_flips\": \"12/136\", \"alpha_5_control\": \"11/136\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"25/136\", \"alpha_10_control\": \"15/136\", \"alpha_10_fisher_p\": 0.1226, \"alpha_20_flips\": \"31/136\", \"alpha_20_control\": \"33/136\", \"alpha_20_fisher_p\": 0.8864, \"bonferroni_significant\": \"none\", \"note\": \"only positive alphas tested\"}, \"completed_at\": \"2026-05-23T10:56:10.928Z\"}, \"steering_qwen_L18_122\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T10:01:23.666Z\", \"updated_at\": \"2026-05-23T10:42:57.409Z\", \"hypothesis\": \"Qwen3-8B L18 (~50% depth) steering：L14 (39%) 和 L23 (64%) 均 negative。L18 是 probe accuracy 另一个局部峰值，若 mid-layer 也 negative 则 Qwen 确认无 single-layer causal node。parent=steering_107_qwen_L14\", \"parent\": \"steering_107_qwen_L14\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 OMP_NUM_THREADS=1 python src/steering_experiment.py --model qwen --layer 18 --alphas 5 10 20 --position last\", \"server\": \"westd-41302\", \"data_path\": \"/root/clkc_mech_interp/data/qwen3/\", \"data_count\": 84, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"gpu\": \"cuda:2\", \"checkpoint_source\": \"steering_107_qwen_L14\", \"eval_data\": \"conflict probe activations\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_qwen_L18.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.738, \"alpha_5_flips\": \"3/84\", \"alpha_5_fisher_p\": 0.6205, \"alpha_10_flips\": \"3/84\", \"alpha_10_fisher_p\": 0.6205, \"alpha_20_flips\": \"3/84\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\"}, \"completed_at\": \"2026-05-23T10:42:57.409Z\"}, \"cross_task_bootstrap_119\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T09:27:46.635Z\", \"updated_at\": \"2026-05-23T09:28:45.659Z\", \"hypothesis\": \"Cross-task probe transfer bootstrap n=1000：为 cross_task_transfer_116 的单种子结果提供 95% CI。验证所有层的跨任务迁移准确率是否统计上显著高于 chance (0.5)。parent=cross_task_transfer_116\", \"parent\": \"cross_task_transfer_116\", \"conclusion\": \"success\", \"metrics\": {\"key_layers\": {\"llama_L13_c2x\": {\"mean\": 0.9984, \"ci\": [0.9925, 1]}, \"llama_L13_x2c\": {\"mean\": 1, \"ci\": [1, 1]}, \"qwen_L23_c2x\": {\"mean\": 0.9647, \"ci\": [0.895, 0.995]}, \"gemma_L15_c2x\": {\"mean\": 0.9682, \"ci\": [0.93, 0.99]}, \"gemma_L21_c2x\": {\"mean\": 0.7303, \"ci\": [0.6525, 0.8275]}}, \"all_ci_above_chance\": true, \"weakest\": \"Gemma L21 C→X: 0.73 [0.65, 0.83]\", \"runtime_min\": 86}, \"spec\": {\"command\": \"OMP_NUM_THREADS=1 python3 src/cross_task_transfer_bootstrap.py\", \"server\": \"westd-41302\", \"data_path\": \"data/{llama31,qwen3,gemma2}/ + data/xnli/\", \"data_count\": 1368, \"model_name\": \"Llama+Qwen+Gemma\", \"seed\": \"0-999\", \"checkpoint_source\": \"cross_task_transfer_116\", \"eval_data\": \"data/xnli/ + data/{llama31,qwen3,gemma2}/ (cross-evaluation)\", \"checkpoint_path\": \"data/cross_task_transfer_bootstrap_n1000.json\", \"log_path\": \"logs/cross_task_bootstrap.log\"}, \"completed_at\": \"2026-05-23T09:28:45.659Z\"}, \"probe_cosine_sim_117\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:45:46.903Z\", \"updated_at\": \"2026-05-23T07:46:52.529Z\", \"hypothesis\": \"Probe weight cosine similarity：如果 conflict 和 XNLI 探针权重向量高度对齐（cos > 0.5），则 piggyback 假说在方向级别成立。3 模型 × 全层。\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"peak_cos_en\": 0.0497, \"peak_layer_en\": 13, \"peak_cos_zh\": 0.0462, \"peak_layer_zh\": 8}, \"qwen\": {\"peak_cos_en\": 0.0236, \"peak_layer_en\": 4, \"peak_cos_zh\": 0.0407, \"peak_layer_zh\": 9}, \"gemma\": {\"peak_cos_en\": 0.0415, \"peak_layer_en\": 19, \"peak_cos_zh\": 0.0356, \"peak_layer_zh\": 20}, \"random_baseline\": 0.001, \"summary\": \"Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions.\"}, \"spec\": {\"command\": \"python3 src/probe_cosine_similarity.py\", \"server\": \"westd-41302\", \"data_path\": \"data/{llama31,qwen3,gemma2}/ + data/xnli/\", \"data_count\": 1368, \"model_name\": \"Llama+Qwen+Gemma\", \"seed\": \"fixed\", \"checkpoint_path\": \"data/probe_cosine_similarity.json\", \"log_path\": \"N/A (analysis script)\"}, \"completed_at\": \"2026-05-23T07:46:52.529Z\"}, \"cross_task_transfer_116\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:42:11.538Z\", \"updated_at\": \"2026-05-23T07:42:58.768Z\", \"hypothesis\": \"Cross-task probe transfer 验证 piggyback 假说：用 XNLI 探针评估 conflict 激活（反之亦然），如果跨任务准确率 >> 50% 则说明两个任务共享相同的跨语言子空间。3 模型 × 全层 × 2 方向。\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"c_to_xnli_min\": 0.8725, \"c_to_xnli_min_layer\": 11, \"x_to_conf_min\": 0.9945, \"x_to_conf_min_layer\": 24, \"transfer_stable\": true}, \"qwen\": {\"c_to_xnli_min\": 0.5625, \"c_to_xnli_min_layer\": 23, \"x_to_conf_min\": 1, \"x_to_conf_min_layer\": \"none\", \"transfer_dip_layers\": \"18-24\"}, \"gemma\": {\"c_to_xnli_min\": 0.5325, \"c_to_xnli_min_layer\": 15, \"x_to_conf_min\": 0.8145, \"x_to_conf_min_layer\": 13, \"transfer_dip_layers\": \"14-22\"}, \"summary\": \"Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs.\"}, \"spec\": {\"command\": \"python3 src/cross_task_transfer.py\", \"server\": \"westd-41302\", \"data_path\": \"data/{llama31,qwen3,gemma2}/{en,zh}_activations.pt + data/xnli/{llama31,qwen3,gemma2}/{en,zh}_activations.pt\", \"data_count\": 1368, \"model_name\": \"Llama+Qwen+Gemma\", \"seed\": \"fixed\", \"checkpoint_path\": \"data/cross_task_transfer_results.json\", \"log_path\": \"N/A (analysis script)\"}, \"completed_at\": \"2026-05-23T07:42:58.768Z\"}, \"tost_equivalence_118\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:40:09.343Z\", \"updated_at\": \"2026-05-23T07:41:04.343Z\", \"hypothesis\": \"TOST 等价性检验：conflict Δ_asym 和 XNLI Δ_asym 在 ±2pp 边界内是否统计等价。如果等价，则 piggyback 假说成立——冲突信号搭载在通用跨语言子空间上。\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"delta_conflict\": 7.27, \"delta_xnli\": 6, \"diff\": 1.27, \"se_diff\": 4.37, \"p_tost\": 0.434, \"equivalent\": false}, \"qwen\": {\"delta_conflict\": 7.23, \"delta_xnli\": 6.72, \"diff\": 0.51, \"se_diff\": 4.36, \"p_tost\": 0.366, \"equivalent\": false}, \"gemma\": {\"delta_conflict\": 6.62, \"delta_xnli\": 7.81, \"diff\": -1.19, \"se_diff\": 2.58, \"p_tost\": 0.377, \"equivalent\": false}, \"note\": \"Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero.\"}, \"spec\": {\"command\": \"python3 src/tost_equivalence.py\", \"server\": \"westd-41302\", \"data_path\": \"data/*/probe_results_bootstrap_n2000.json\", \"data_count\": 2000, \"model_name\": \"Llama+Qwen+Gemma\", \"seed\": \"bootstrap_2000\", \"checkpoint_path\": \"data/tost_equivalence_results.json\", \"log_path\": \"N/A (analysis script)\"}, \"completed_at\": \"2026-05-23T07:41:04.344Z\"}, \"de_bootstrap_parallel_114_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:51:54.227Z\", \"updated_at\": \"2026-05-23T07:05:24.710Z\", \"hypothesis\": \"DE bootstrap n=2000 v2: OMP_NUM_THREADS=1 修复 BLAS 线程爆炸。4 方向 EN↔DE，64 workers 并行。parent=de_activations_112\", \"parent\": \"de_activations_112\", \"spec\": {\"command\": \"OMP_NUM_THREADS=1 nohup python -u src/bootstrap_de_parallel.py --n_bootstrap 2000 --n_workers 64 --output_file de_bootstrap_n2000_results.json\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/{en,de}_activations.pt\", \"data_count\": 1368, \"model_name\": \"Llama-3.1-8B-Instruct (CPU-only)\", \"seed\": \"0-1999\", \"checkpoint_source\": \"data/llama31/{en,de}_activations.pt\", \"eval_data\": \"data/llama31/de_bootstrap_n2000_results.json\", \"checkpoint_path\": \"data/llama31/de_bootstrap_n2000_results.json\", \"log_path\": \"logs/de_bootstrap_n2000_parallel.log\"}, \"metrics\": {\"en_en\": {\"mean\": 0.7709, \"ci\": [0.7463, 0.7978]}, \"de_de\": {\"mean\": 0.7626, \"ci\": [0.739, 0.7868]}, \"en_de\": {\"mean\": 0.6923, \"ci\": [0.6324, 0.739]}, \"de_en\": {\"mean\": 0.7047, \"ci\": [0.6654, 0.7426]}, \"asymmetry_delta\": 0.0124, \"asymmetry_ci\": [-0.0478, 0.0809], \"asymmetry_p\": 0.4045}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T07:05:24.710Z\"}, \"gemma_xnli_bootstrap_115\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:45:28.200Z\", \"updated_at\": \"2026-05-23T06:52:25.994Z\", \"hypothesis\": \"Gemma XNLI bootstrap n=2000 并行版。基础 probe 显示 ZH→EN (97.5%) >> EN→ZH (89.4%)，Δ≈+8.1pp。Bootstrap 确认 CI 和 p-value。parent=gemma_xnli_113\", \"parent\": \"gemma_xnli_113\", \"spec\": {\"command\": \"OMP_NUM_THREADS=1 python -u src/bootstrap_xnli_gemma_parallel.py --activation_dir data/xnli/gemma2/ --output_dir data/xnli/gemma2/ --n_bootstrap 2000 --n_workers 32 --output_file probe_results_bootstrap_n2000.json\", \"server\": \"westd-41302\", \"data_path\": \"data/xnli/gemma2/{en,zh}_activations.pt\", \"data_count\": 1000, \"model_name\": \"gemma-2-9b-it\", \"seed\": \"0-1999\", \"checkpoint_source\": \"gemma_xnli_113\", \"eval_data\": \"data/xnli/gemma2/{en,zh}_activations.pt\", \"checkpoint_path\": \"data/xnli/gemma2/probe_results_bootstrap_n2000.json\", \"log_path\": \"logs/gemma_xnli_bootstrap_n2000_parallel.log\"}, \"conclusion\": \"success\", \"metrics\": {\"en_en\": {\"mean\": 0.9635, \"ci\": [0.9492, 0.9799]}, \"zh_zh\": {\"mean\": 0.8941, \"ci\": [0.8796, 0.9097]}, \"en_zh\": {\"mean\": 0.894, \"ci\": [0.8795, 0.9097]}, \"zh_en\": {\"mean\": 0.9721, \"ci\": [0.9575, 0.9852]}, \"asymmetry_delta\": 0.0781, \"asymmetry_ci\": [0.0571, 0.0999], \"asymmetry_p\": 0}, \"completed_at\": \"2026-05-23T06:52:25.994Z\"}, \"de_bootstrap_parallel_114\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-23T04:03:13.084Z\", \"updated_at\": \"2026-05-23T04:55:58.841Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct EN↔DE 跨语言探针迁移 bootstrap n=2000（64 workers 并行）。4 方向：EN→EN, DE→DE, EN→DE, DE→EN。测试 Δ_asym = (DE→EN - EN→DE) 是否显著为正，与 ZH 的 +7pp 不对称性方向一致，验证 C2 跨语言属性 claim。parent=de_activations_112\", \"parent\": \"de_activations_112\", \"completed_at\": \"2026-05-23T04:50:20.593Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}}, \"spec\": {\"command\": \"OMP_NUM_THREADS=1 python -u src/bootstrap_de_parallel.py --activation_dir data/llama31/ --output_dir data/llama31/ --n_bootstrap 2000 --n_workers 64 --output_file de_bootstrap_n2000_results.json\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/\", \"data_count\": 2000, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": \"bootstrap_2000\", \"checkpoint_source\": \"de_activations_112\", \"eval_data\": \"XNLI EN/DE train=1096 test=272\", \"pid\": 550508, \"note\": \"v2: restarted with OMP_NUM_THREADS=1 to fix BLAS thread explosion (load 950→expected <200)\", \"checkpoint_path\": \"N/A (killed)\", \"log_path\": \"N/A (killed)\"}, \"conclusion\": \"killed\"}, \"gemma_xnli_113\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:25:55.128Z\", \"updated_at\": \"2026-05-23T04:04:30.621Z\", \"hypothesis\": \"Gemma-2-9B-IT 在 XNLI entailment/contradiction 任务上的跨语言探针迁移不对称性（ZH→EN > EN→ZH）与冲突任务一致（~6-7pp），证明该不对称性是英语主导模型的通用跨语言属性而非冲突特有。若成立，C2 从两模型扩展到三模型跨架构验证，显著增强论文 significance。parent=xnli_baseline_110\", \"parent\": \"xnli_baseline_110\", \"spec\": {\"command\": \"collect_activations.py (EN+ZH, cuda:0) → nohup bootstrap_n2000.py (PID 507351) + train_probe.py (PID 512737)\", \"server\": \"westd-41302\", \"data_path\": \"data/xnli/{en,zh}_xnli_{train,test}.jsonl\", \"data_count\": 1000, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/gemma-2-9b-it\", \"eval_data\": \"data/xnli/gemma2/\", \"activation_shape\": \"[1000, 42, 3584]\", \"checkpoint_path\": \"data/xnli/gemma2/probe_basic_results.json\", \"log_path\": \"logs/gemma_xnli_probe.log\", \"kill_reason\": \"Bootstrap n=2000 killed to free CPU for DE probe. Basic probe results complete and sufficient for Table 1.\"}, \"notes\": \"基础 probe 结果完好 (probe_basic_results.json): EN→EN=0.9563@L20, ZH→ZH=0.8896@L24, EN→ZH=0.8944@L28, ZH→EN=0.9752@L21。n=2000 bootstrap (bootstrap_n2000.py) 的 64 个 orphaned worker 进程被 kill（父进程 507589 已死但子进程仍在跑，导致 load=852）。需重新启动 n=2000 bootstrap（用并行版本）。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-23T04:04:30.621Z\"}, \"de_probe_n2000_112\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:59:12.387Z\", \"updated_at\": \"2026-05-23T03:59:56.738Z\", \"hypothesis\": \"串行 3-lang (EN/ZH/DE) bootstrap n=2000 探针训练。因串行实现导致预估 120h 无法在 DDL 前完成，被 Director 指令 kill，替换为并行版本 (bootstrap_de_parallel.py, 64 workers, 只跑 EN↔DE 4 方向)。parent=de_activations_112\", \"spec\": {\"command\": \"python src/train_probe.py --langs en,zh,de --bootstrap_seeds 2000 (serial)\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/{en,zh,de}_activations.pt\", \"data_count\": 1368, \"model_name\": \"Llama-3.1-8B-Instruct (CPU-only)\", \"seed\": 42, \"checkpoint_path\": \"N/A (killed before completion)\", \"log_path\": \"/tmp/de_probe_n2000.log\", \"kill_reason\": \"串行实现预估 120h 超出 DDL，Director 指令 kill 并替换为并行版本\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-23T03:59:56.738Z\"}, \"gemma_probe_n2000_106\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:27:24.006Z\", \"updated_at\": \"2026-05-22T18:28:39.242Z\", \"hypothesis\": \"升级 Gemma-2-9B-IT 冲突任务探针 bootstrap 至 n=2000，获得稳定 CI endpoints。预期 EN→EN ~76%，迁移不对称性 +6-7pp 与 Llama/Qwen 一致，p<0.01。parent=gemma_full_pipeline_102\", \"parent\": \"gemma_full_pipeline_102\", \"spec\": {\"command\": \"python src/train_probe.py --activation_dir data/gemma2/ --output_dir data/gemma2/ --bootstrap_seeds 2000 --langs en,zh --skip_permutation\", \"server\": \"westd-41302\", \"data_path\": \"data/gemma2/{en,zh}_activations.pt\", \"data_count\": 1590, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": 42, \"checkpoint_source\": \"gemma_en_act_102 + gemma_zh_act_103\", \"eval_data\": \"data/gemma2/en_conflict_test.jsonl + data/gemma2/zh_conflict_test.jsonl\", \"checkpoint_path\": \"data/gemma2/probe_results_bootstrap_n2000.json\", \"log_path\": \"logs/gemma_probe_n2000.log\"}, \"metrics\": {\"en_en_bal_acc\": 76.2, \"en_en_peak_layer\": 24, \"zh_zh_bal_acc\": 71, \"zh_zh_peak_layer\": 24, \"en_zh_bal_acc\": 62.9, \"en_zh_peak_layer\": 22, \"zh_en_bal_acc\": 70.2, \"zh_en_peak_layer\": 24, \"asymmetry_pp\": 6.62, \"asymmetry_ci_lo\": 1.9, \"asymmetry_ci_hi\": 11.08, \"asymmetry_p\": 0.006, \"bootstrap_n\": 2000}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T18:28:39.242Z\"}, \"steering_107_gemma_L21\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:54:17.099Z\", \"updated_at\": \"2026-05-22T17:28:33.495Z\", \"hypothesis\": \"Gemma L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配但可能 negative。L21 (50% depth) 作为对照——如果 L17 negative 但 L21 positive，说明 Gemma 因果节点在不同相对深度；两者都 negative 则确认 Gemma steering 失败（与 Qwen 一致，steering 是 Llama-specific）。parent=steering_107_gemma_L17\", \"parent\": \"steering_107_gemma_L17\", \"spec\": {\"checkpoint_path\": \"N/A (steering experiment)\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_gemma_L21.log\"}, \"metrics\": {\"probe_accuracy\": 0.763, \"n_samples\": 158, \"baseline\": {\"both\": 32, \"neither\": 55, \"parametric\": 26, \"contextual\": 45}, \"best_fisher_p\": 0.623, \"directional_flips\": 0, \"max_steering_flip_rate\": 0.0316, \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\", \"notes\": \"L21 (50% depth) steering NEGATIVE. All 6 alphas: Fisher p ≥ 0.62, directional flips (p2c/c2p) = 0 at every alpha. Probe accuracy 0.763 (adequate). Combined with L17 negative result, confirms Gemma steering fails at both 40% and 50% depth — consistent with Qwen pattern, steering appears Llama-specific.\", \"completed_at\": \"2026-05-22T17:28:33.496Z\"}, \"steering_107_gemma_L17\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:31:22.416Z\", \"updated_at\": \"2026-05-22T16:32:04.369Z\", \"hypothesis\": \"Gemma-2-9B-IT L17 (40% depth) 与 Llama L13 (41% depth) 深度匹配。若 steering 在此层有因果效应（Fisher p<0.05 + 方向性 flip），则证明 probe-weight steering 跨模型泛化；否则 steering 可能是 Llama-specific。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/steering_experiment.py --model_name google/gemma-2-9b-it --data_dir data/gemma2 --peak_layer 17 --position last --output_suffix _gemma_L17 --alphas -20 -10 -5 5 10 20\", \"server\": \"westd-41302\", \"data_path\": \"/root/clkc_mech_interp/data/gemma2\", \"model_name\": \"google/gemma-2-9b-it\", \"seed\": 42, \"data_count\": 158, \"gpu\": \"cuda:1\", \"checkpoint_source\": \"data/gemma2/probes/linear_probe_results.pt\", \"eval_data\": \"data/gemma2/en_conflict_test.jsonl\", \"checkpoint_path\": \"data/gemma2/steering_results/steering_results_gemma_L17.json\", \"log_path\": \"logs/steering_gemma_L17.log\"}, \"metrics\": {\"probe_accuracy\": 0.7532, \"n_test\": 158, \"layer\": 17, \"position\": \"last\", \"baseline\": {\"parametric\": 26, \"contextual\": 45, \"both\": 32, \"neither\": 55}, \"alpha_neg20\": {\"steering_flips\": 2, \"control_flips\": 8, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0506, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.103795}, \"alpha_neg10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_neg5\": {\"steering_flips\": 2, \"control_flips\": 1, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0063, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_5\": {\"steering_flips\": 1, \"control_flips\": 3, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.019, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.622608}, \"alpha_10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_20\": {\"steering_flips\": 1, \"control_flips\": 4, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.0253, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.371013}, \"significant_alphas\": [], \"best_fisher_p\": 0.103795, \"best_alpha\": -20, \"all_p2c\": 0, \"all_c2p\": 0}, \"conclusion\": \"negative\", \"notes\": \"Gemma L17 steering 完全失败：所有 6 个 alpha 的 Fisher p > 0.1，最好的是 alpha=-20 (p=0.104)。零方向性 flip（所有 p2c=0, c2p=0）。Flip rate 极低（1-2/158），与 random control 无差异。结合 Qwen L14 (negative) 和 Qwen L23 (negative)，steering 因果效应仅在 Llama L13 观察到（1/3 模型）。这意味着 probe 权重方向的因果意义是 Llama-specific，不是跨模型普遍现象。论文中 steering 实验应定位为 Llama-specific positive + 两模型 negative 的对比结果。\", \"completed_at\": \"2026-05-22T16:32:04.369Z\"}, \"de_activations_112\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T13:30:11.654Z\", \"updated_at\": \"2026-05-22T15:30:37.823Z\", \"hypothesis\": \"收集 Llama-3.1-8B-Instruct 在 DE conflict 数据上的 hidden state activations，用于训练 DE 单语 probe 和 EN↔DE 跨语言迁移 probe。预期 EN→DE 迁移准确率高于 EN→ZH（因印欧语系相似性），验证 C2 跨语言属性 claim 的语言族维度。parent=en_de_translate_112\", \"parent\": \"en_de_translate_112\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/collect_activations.py --model /root/models/Llama-3.1-8B-Instruct --data_dir data/llama31/ --output_dir data/llama31/ --lang de --batch_size 4\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/de_conflict_{train,test}.jsonl\", \"data_count\": 1368, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"data/llama31/de_activations.pt\", \"log_path\": \"/root/clkc_mech_interp/logs/de_activations.log\", \"checkpoint_source\": \"Llama-3.1-8B-Instruct (pretrained, no fine-tuning)\", \"eval_data\": \"data/llama31/de_conflict_{train,test}.jsonl\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T15:30:37.823Z\"}, \"steering_107_qwen_L23\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T13:01:30.907Z\", \"updated_at\": \"2026-05-22T15:30:32.790Z\", \"hypothesis\": \"Linear probe 在 Qwen3-8B L23 的冲突检测 accuracy ~75%。若 L23 probe weight 方向的 steering 能产生因果效应（flip rate > control），将证明 probe 捕获的方向在 Qwen 中具有因果意义。与 Llama 的 4 个 NEGATIVE 变体对比，可判断 steering 失败是 Llama 特有还是跨模型普遍现象。parent=steering_107\", \"parent\": \"steering_107\", \"spec\": {\"command\": \"steering_experiment.py --model /root/models/Qwen3-8B --peak_layer 23 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L23\", \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"model_name\": \"Qwen3-8B\", \"data_path\": \"data/qwen3\", \"data_count\": 966, \"seed\": 42, \"pid\": 485320, \"checkpoint_path\": \"data/qwen3/steering_results/steering_results_qwen_L23.json\", \"log_path\": \"logs/steering_qwen_L23.log\", \"checkpoint_source\": \"data/qwen3/probes/linear_probe_results.pt\", \"eval_data\": \"data/qwen3/en_conflict_test.jsonl\"}, \"conclusion\": \"negative\", \"metrics\": {\"all_fisher_p\": 1, \"probe_accuracy\": 0.732, \"note\": \"L23 at 64% depth - wrong layer. ZH→ZH peak is L14 at 39% depth\"}, \"completed_at\": \"2026-05-22T15:30:32.790Z\"}, \"steering_107_L13_all\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:19:16.120Z\", \"updated_at\": \"2026-05-22T15:19:54.389Z\", \"hypothesis\": \"L13 last-token steering 显著 (p<0.001)。如果 all-position steering（对所有 token 位置施加干预）产生更强或不同模式的因果效应，则说明冲突信号分布在多个 token 位置；如果结果一致，则说明因果信号集中在 last token。parent=steering_107_L13\", \"parent\": \"steering_107_L13\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 13 --position all --alphas -20 -10 -5 5 10 20 --output_suffix _L13_all\", \"server\": \"westd-41302\", \"gpu\": \"cuda:3\", \"model_name\": \"Llama-3.1-8B-Instruct\", \"data_path\": \"data/llama31\", \"data_count\": 136, \"seed\": 42, \"pid\": 494291, \"checkpoint_path\": \"data/llama31/steering_results/steering_results_L13_all.json\", \"log_path\": \"logs/steering_llama_L13_all.log\", \"checkpoint_source\": \"data/llama31/probes/linear_probe_results.pt\", \"eval_data\": \"data/llama31/en_conflict_test.jsonl\"}, \"metrics\": {\"probe_accuracy\": 0.761, \"n_samples\": 136, \"layer\": 13, \"position\": \"all\", \"baseline\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"alpha_neg20\": {\"steering_flips\": 49, \"control_flips\": 24, \"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"p2c\": 1, \"c2p\": 5, \"fisher_p\": 0.000948}, \"alpha_neg10\": {\"steering_flips\": 31, \"control_flips\": 25, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1838, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.453592}, \"alpha_neg5\": {\"steering_flips\": 22, \"control_flips\": 17, \"steering_flip_rate\": 0.1618, \"control_flip_rate\": 0.125, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.489298}, \"alpha_5\": {\"steering_flips\": 27, \"control_flips\": 9, \"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"p2c\": 4, \"c2p\": 0, \"fisher_p\": 0.002005}, \"alpha_10\": {\"steering_flips\": 31, \"control_flips\": 20, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1471, \"p2c\": 2, \"c2p\": 0, \"fisher_p\": 0.119745}, \"alpha_20\": {\"steering_flips\": 28, \"control_flips\": 43, \"steering_flip_rate\": 0.2059, \"control_flip_rate\": 0.3162, \"p2c\": 2, \"c2p\": 2, \"fisher_p\": 0.052826}, \"significant_alphas\": [-20, 5], \"bidirectional_confirmed\": true, \"identical_to_last_token\": true}, \"conclusion\": \"success\", \"notes\": \"All-position steering at L13 produces IDENTICAL results to last-token steering (same flip counts, same Fisher p-values for every alpha). This means: (1) the causal signal is entirely concentrated at the last token position, (2) steering non-last tokens has zero additional effect. This is informative — it rules out distributed encoding of the conflict signal across token positions at L13. The causal mechanism operates through the last token's residual stream.\", \"completed_at\": \"2026-05-22T15:19:54.389Z\"}, \"steering_107_qwen_L14\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:38:53.449Z\", \"updated_at\": \"2026-05-22T15:12:13.613Z\", \"hypothesis\": \"Steering Qwen3-8B at layer 14 (the ZH→ZH peak layer with 72.6% probe accuracy) will causally shift language-knowledge routing, analogous to Llama L13 steering, confirming cross-model depth-ratio consistency (~40%) for the cultural-linguistic knowledge conflict mechanism.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/steering_experiment.py --model /root/models/Qwen3-8B --data_dir data/qwen3 --output_dir data/qwen3/steering_results --peak_layer 14 --position last --alphas -20 -10 -5 5 10 20 --output_suffix _qwen_L14\", \"server\": \"westd-41302\", \"data_path\": \"data/qwen3\", \"data_count\": 168, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"checkpoint_path\": \"data/qwen3/steering_results/steering_results_qwen_L14.json\", \"log_path\": \"logs/steering_qwen_L14.log\", \"pid\": 493122}, \"reproduce\": {\"finished_at\": \"2026-05-22T15:10:27.638Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T15:10:28.182Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T15:10:29.719060+00:00\"}]}, \"metrics\": {\"probe_accuracy\": 0.7024, \"n_test\": 84, \"baseline_contextual\": 35, \"baseline_parametric\": 8, \"baseline_both\": 20, \"baseline_neither\": 21, \"best_fisher_p\": 0.6818, \"best_alpha\": -10, \"significant_alphas\": [], \"all_p2c\": 0, \"all_c2p\": 0}, \"notes\": \"False positive failure — process completed normally, output JSON exists at data/qwen3/steering_results/steering_results_qwen_L14.json. Marked failed by cron because no W&B metrics were written. Result is clearly negative: no alpha achieved Fisher p < 0.05, and all directional flip counts (p2c, c2p) are zero. Steering at Qwen3-8B layer 14 does not causally shift answer routing despite 70.2% probe accuracy.\"}, \"bootstrap_n2000_111\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:18:39.374Z\", \"updated_at\": \"2026-05-22T15:11:46.737Z\", \"hypothesis\": \"Bootstrap n=100 低于学术标准（Efron &amp; Tibshirani 1993 推荐 n≥1000）。升级 Llama 和 Qwen 的探针 bootstrap 至 n=2000，获得更稳定的 CI endpoints，特别是 Qwen 下界 -1.2pp 可能因 n 不足而不准确。\", \"spec\": {\"command\": \"python src/train_probe.py --bootstrap_seeds 2000\", \"server\": \"westd-41302\", \"data_path\": \"data/qwen3/ + data/llama31/\", \"data_count\": 2364, \"model_name\": \"Qwen3-8B + Llama-3.1-8B-Instruct (CPU-only)\", \"seed\": 42, \"checkpoint_path\": \"data/llama31/probe_results_bootstrap_n2000.json + data/qwen3/probe_results_bootstrap_n2000.json\", \"log_path\": \"logs/probe_training_fast_llama.log\"}, \"metrics\": {\"llama_asymmetry_peak_mean_diff\": 0.0727, \"llama_asymmetry_p_value\": 0.038, \"llama_asymmetry_ci\": [0.0037, 0.1397], \"llama_n_seeds\": 2000, \"llama_en_en_peak_layer\": \"18-19\", \"llama_status\": \"completed\", \"qwen_status\": \"completed\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T15:11:46.737Z\"}, \"steering_107_L13\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T11:32:16.358Z\", \"updated_at\": \"2026-05-22T13:30:51.752Z\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 13 --position last --output_suffix _L13_last\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"model_name\": \"Llama-3.1-8B-Instruct\", \"data_path\": \"data/llama31\", \"data_count\": 136, \"seed\": 42, \"pid\": 479381, \"checkpoint_path\": \"data/llama31/steering_results/steering_results_L13_last.json\", \"log_path\": \"logs/steering_llama_L13_last.log\"}, \"hypothesis\": \"Steering v1 在 L28(最后层)失败。L13(mid-layer)可能包含更强的跨语言共享冲突信号方向,因为 mid-layer 是跨语言对齐发生的典型位置(Conneau et al. 2020),steering 在此层更可能产生因果效应。parent=steering_107\", \"parent\": \"steering_107\", \"reproduce\": {\"finished_at\": \"2026-05-22T13:28:11.731Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T13:28:12.183Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:28:17.138571+00:00\"}]}, \"metrics\": {\"n_samples\": 136, \"layer\": 13, \"position\": \"last\", \"alpha_neg20\": {\"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"fisher_p\": 0.000948, \"p2c\": 1, \"c2p\": 5}, \"alpha_5\": {\"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"fisher_p\": 0.002005, \"p2c\": 4, \"c2p\": 0}, \"alpha_2\": {\"steering_flip_rate\": 0.1176, \"control_flip_rate\": 0.0515, \"fisher_p\": 0.079357, \"p2c\": 3, \"c2p\": 0}, \"significant_alphas\": [-20, 5], \"marginal_alphas\": [2], \"bidirectional_confirmed\": true, \"conclusion_detail\": \"L13 (mid-layer) steering 有显著双向因果效应！负α推向parametric (c→p=5 at α=-20, p<0.001), 正α推向contextual (p→c=4 at α=5, p=0.002)。因果节点在 mid-layer 而非 final/MLP-peak layer，与跨语言对齐文献一致。\"}, \"notes\": \"Cron 误判 (false positive): 进程正常完成并输出结果 JSON，但未写 W&B metrics 被 cron 标记 failed。实际结论: SUCCESS。这是项目突破性结果——首次证明 probe weight 方向具有因果意义（p<0.001），且因果节点在 mid-layer (L13) 符合跨语言对齐理论预期。\"}, \"steering_107_L18\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T11:32:16.683Z\", \"updated_at\": \"2026-05-22T13:30:49.492Z\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 18 --position last --output_suffix _L18_last\", \"server\": \"westd-41302\", \"gpu\": \"cuda:2\", \"model_name\": \"Llama-3.1-8B-Instruct\", \"data_path\": \"data/llama31\", \"data_count\": 136, \"seed\": 42, \"pid\": 479644, \"checkpoint_path\": \"data/llama31/steering_results/steering_results_L18_last.json\", \"log_path\": \"logs/steering_llama_L18_last.log\"}, \"hypothesis\": \"L18 是 MLP probe 的 peak layer(68.75% vs Linear 59.56%),表明该层存在非线性编码的冲突信号。若 steering 在此层成功,将同时证明: (1) 探针方向具有因果性 (2) 非线性信号的物理位置与因果位置一致。parent=steering_107\", \"parent\": \"steering_107\", \"reproduce\": {\"finished_at\": \"2026-05-22T13:27:52.267Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T13:27:52.977Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:27:54.931982+00:00\"}]}, \"metrics\": {\"n_samples\": 136, \"layer\": 18, \"position\": \"last\", \"all_fisher_p_gt_0.05\": true, \"min_fisher_p\": 0.447, \"min_p_alpha\": 2, \"best_steering_flip_rate\": 0.0368, \"best_control_flip_rate\": 0.0147, \"alpha_neg20\": {\"steering_flips\": 28, \"control_flips\": 25, \"fisher_p\": 0.76, \"c2p\": 4, \"p2c\": 0}, \"alpha_5\": {\"steering_flips\": 9, \"control_flips\": 7, \"fisher_p\": 0.798, \"p2c\": 1, \"c2p\": 0}, \"conclusion_detail\": \"L18 (MLP peak layer) steering 无显著因果效应。所有 alpha 的 Fisher p > 0.44。MLP 非线性编码的 peak layer 不具有因果意义——探针方向在此层是相关性而非因果性。\"}, \"notes\": \"Cron 误判 (false positive): 进程正常完成并输出结果 JSON，但未写 W&B metrics 被 cron 标记 failed。实际结论: NEGATIVE。结合 L28/L28-all/L18 三个 NEGATIVE + L13 SUCCESS，因果节点明确在 mid-layer (L13) 而非后层。\"}, \"en_de_translate_112\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:16:17.050Z\", \"updated_at\": \"2026-05-22T13:28:53.223Z\", \"spec\": {\"pid\": 462040, \"server\": \"westd-41302\", \"command\": \"python src/translate_to_de.py\", \"data_path\": \"data/llama31/en_conflict_{train,test}.jsonl\", \"data_count\": 1368, \"model_name\": \"Qwen3-8B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"data/llama31/de_conflict_{train,test}.jsonl\", \"log_path\": \"logs/de_translate.log\"}, \"hypothesis\": \"跨语言知识冲突信号的可检测性和迁移模式可推广到第三语言（德语）。EN-DE 语言对因印欧系内较高相似性，预期 probe 迁移准确率高于 EN-ZH（证据：EN-DE 共享更多词汇和句法结构），且迁移不对称性幅度小于 EN-ZH（因为 DE 在预训练语料中占比高于 ZH，表征空间更接近 EN）。\", \"conclusion\": \"success\", \"metrics\": {\"train_count\": 1096, \"test_count\": 272, \"total\": 1368}, \"completed_at\": \"2026-05-22T13:28:53.223Z\"}, \"steering_107_L28_all\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T11:33:06.652Z\", \"updated_at\": \"2026-05-22T12:45:16.362Z\", \"hypothesis\": \"Steering v1 在 L28/last-token 失败。可能原因是 last-token 注入过窄——冲突信号可能分布在多个 token 位置（如 entity tokens, context tokens）。all-position steering 覆盖所有 token，如果成功则说明因果信号分布式编码。parent=steering_107\", \"parent\": \"steering_107\", \"spec\": {\"command\": \"steering_experiment.py --peak_layer 28 --position all --alphas -20 -10 -5 5 10 20\", \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"model_name\": \"Llama-3.1-8B-Instruct\", \"data_path\": \"data/llama31\", \"data_count\": 136, \"seed\": 42, \"pid\": 480150, \"checkpoint_path\": \"data/llama31/steering_results/steering_results_L28_all.json\", \"log_path\": \"logs/steering_llama_L28_all.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7757, \"n_samples\": 136, \"alphas\": [-20, -10, -5, 5, 10, 20], \"position\": \"all\", \"peak_layer\": 28, \"best_fisher_p\": 0.37, \"all_fisher_p_gt_0.05\": true, \"max_steering_flip_pct\": 11.8, \"max_control_flip_pct\": 11.8, \"total_directional_flips\": 7, \"conclusion_detail\": \"L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。\"}, \"completed_at\": \"2026-05-22T12:45:16.362Z\"}, \"steering_107\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:08:08.511Z\", \"updated_at\": \"2026-05-22T11:26:09.937Z\", \"spec\": {\"pid\": 468898, \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"model_name\": \"Llama-3.1-8B-Instruct\", \"peak_layer\": 28, \"probe_acc\": 0.7757, \"n_samples\": 136, \"note\": \"Status ANALYZING but PID still alive at 09:40 UTC, ~11-12 alphas done out of ~15-20, ETA 20-40min\", \"command\": \"python src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --peak_layer 28\", \"data_path\": \"/root/clkc_mech_interp/data/llama31/\", \"data_count\": 136, \"seed\": 42, \"checkpoint_source\": \"linear_probe_weights\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_llama.log\", \"checkpoint_path\": \"/root/clkc_mech_interp/data/llama31/steering_results/\"}, \"hypothesis\": \"线性探针权重定义了残差流中的冲突信号方向。沿此方向施加 steering（加/减 α·w_probe）可因果性地改变模型在知识冲突时的输出选择：正向 steering 增加 contextual answer 选择率，负向 steering 增加 parametric answer 选择率。对照组（随机正交方向同幅度干预）不应产生系统性 flip。预期 flip rate ≥15%（steering）vs ≤5%（random），证明探针捕获的方向具有因果意义而非仅仅是相关性。\", \"parent\": \"mvp_probe_v1\", \"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-22T08:14:32.378Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/clkc_mech_interp && CUDA_VISIBLE_DEVICES=0 python -u src/steering_experiment.py --model /root/models/Llama-3.1-8B-Instruct/ --data_dir data/llama31 --output_dir data/llama31/steering_results 2>&1 | tee logs/steering_llama.log\\\"\", \"finished_at\": \"2026-05-22T08:28:42.915Z\", \"training_hours\": 0.24}, \"pid\": \"466385\", \"log_path\": \"/root/clkc_mech_interp/logs/steering_llama_v3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:28:44.903019+00:00\"}]}, \"metrics\": {\"probe_accuracy\": 0.7757, \"peak_layer\": 28, \"n_test\": 136, \"baseline_distribution\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"best_steering_alpha\": -20, \"best_steering_flip_rate\": 0.1471, \"best_steering_control_flip_rate\": 0.1691, \"best_steering_fisher_p\": 0.7399, \"max_directional_p2c\": 2, \"max_directional_c2p\": 2, \"all_fisher_p_min\": 0.3093, \"hypothesis_met\": false, \"steering_vs_random_summary\": \"steering flip rates statistically indistinguishable from random at all alphas\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/clkc_mech_interp/data/llama31/steering_results/steering_results.json\", \"completed_at\": \"2026-05-22T10:54:46.323Z\"}, \"gemma_full_pipeline_102\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-22T03:55:53.223Z\", \"updated_at\": \"2026-05-22T10:45:34.455Z\", \"hypothesis\": \"跨语言知识冲突信号的可检测性（EN balanced acc ≥70%）和迁移不对称性（ZH→EN > EN→ZH ~7pp）在第三个模型架构 Gemma-2-9B-IT（42层 GQA）上同样成立，与 Llama-3.1-8B 和 Qwen3-8B 形成三模型跨架构验证。\", \"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-22T03:57:47.790Z\", \"finished_at\": \"2026-05-22T10:08:39.314Z\", \"training_hours\": 6.18}, \"completed_at\": \"2026-05-22T04:24:55.671Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T10:08:41.602790+00:00\"}]}, \"spec\": {\"command\": \"translate_to_zh running in tmux(gemma_translate_zh), verify EN done (1274 train + 316 test)\", \"server\": \"westd-41302\", \"data_path\": \"data/gemma2/\", \"data_count\": 1590, \"model_name\": \"Gemma-2-9B-IT\", \"seed\": 42}, \"metrics\": {\"gemma_probe_training_status\": \"running\", \"probe_pid\": 476334, \"probe_script\": \"train_probe_fast.py\", \"probe_n_seeds\": 2000, \"probe_n_jobs\": 32, \"probe_start_time\": \"2026-05-22T18:30\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"notes\": \"失败原因: cron 误判（false positive）。翻译步骤正常完成（1274 train + 316 test），进程正常退出（log 尾部 \\\"Done.\\\"），但 cron 预期 W&B metrics 未找到 → 误标 failed。已有成果: ZH 翻译数据完整生成（zh_conflict_train.jsonl 1274条, zh_conflict_test.jsonl 316条）。建议: 继续 pipeline 后续步骤（collect ZH activations → probe → bootstrap）\"}, \"gemma_zh_act_103\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:12:32.474Z\", \"updated_at\": \"2026-05-22T10:19:08.822Z\", \"hypothesis\": \"收集 Gemma-2-9B-IT ZH 残差流激活用于跨语言 probe 训练\", \"parent\": \"gemma_full_pipeline_102\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/collect_activations.py --model /root/autodl-tmp/models/gemma-2-9b-it --lang zh --train_file data/gemma2/zh_conflict_train.jsonl --test_file data/gemma2/zh_conflict_test.jsonl --output_dir data/gemma2 --batch_size 4\", \"server\": \"westd-41302\", \"data_path\": \"/root/clkc_mech_interp/data/gemma2/zh_conflict_{train,test}.jsonl\", \"data_count\": 1590, \"model_name\": \"gemma-2-9b-it\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/gemma-2-9b-it\", \"eval_data\": \"zh_conflict_train.jsonl + zh_conflict_test.jsonl (1274+316=1590)\"}, \"checkpoint_path\": \"/root/clkc_mech_interp/data/gemma2/zh_activations.pt\", \"log_path\": \"/root/clkc_mech_interp/logs/gemma_zh_act.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:19:08.822Z\"}, \"cka_svcca_104\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:16:25.262Z\", \"updated_at\": \"2026-05-22T08:16:28.383Z\", \"spec\": {\"command\": \"python src/compute_cka.py (custom script, CKA + SVCCA per layer)\", \"server\": \"westd-41302\", \"data_path\": \"data/{llama31,qwen3}/{en,zh}_activations.pt + data/xnli/{llama31,qwen3}/{en,zh}_activations.pt\", \"data_count\": 4728, \"model_name\": \"Llama-3.1-8B-Instruct + Qwen3-8B (CPU-only, activation analysis)\", \"seed\": 42, \"gpu_ids\": [\"cuda:3\"], \"account\": \"root\", \"checkpoint_path\": \"data/cka_svcca_results_v2.json\", \"log_path\": \"logs/cka_svcca_fix.log\"}, \"hypothesis\": \"冲突任务的 EN-ZH 逐层 CKA/SVCCA 相似度在中后层（探针检测冲突信号的 peak layers 附近）显著低于 XNLI 的对应层，表明冲突信号导致语言间表征出现特有的分叉（divergence），而非冲突语义任务中 EN-ZH 表征保持较高对齐。这将从表征几何角度强化 C3（冲突信号需要非线性解码是因为跨语言表征在冲突条件下发生了非线性分叉）。\", \"server\": \"westd-41302\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-22T07:46:44.474Z\"}, \"conclusion\": \"negative\", \"metrics\": {\"qwen_conflict_aligned_cka_mean\": 0.652, \"qwen_xnli_aligned_cka_mean\": 0.094, \"llama_conflict_aligned_cka_mean\": 0.778, \"llama_xnli_aligned_cka_mean\": 0.151, \"qwen_conflict_shuffled_cka_mean\": 0.124, \"qwen_xnli_shuffled_cka_mean\": 0.096, \"llama_conflict_shuffled_cka_mean\": 0.08, \"llama_xnli_shuffled_cka_mean\": 0.165, \"qwen_shuffled_diff\": 0.028, \"llama_shuffled_diff\": -0.085, \"conclusion_detail\": \"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\"}, \"completed_at\": \"2026-05-22T08:13:26.907Z\"}, \"comet_llama_v6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:35:29.651Z\", \"updated_at\": \"2026-05-22T07:48:20.081Z\", \"hypothesis\": \"COMET back-translation 质量验证 Llama ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）\", \"spec\": {\"command\": \"nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/llama31/ --en_dir data/llama31/ --output_dir data/llama31/ --threshold 0.80\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/\", \"data_count\": 1368, \"model_name\": \"Unbabel/wmt22-comet-da\", \"seed\": 0, \"checkpoint_path\": \"data/llama31/zh_conflict_{train,test}_validated.jsonl\", \"log_path\": \"logs/comet_llama_nohup.log\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-22T07:48:20.081Z\"}, \"comet_qwen_v6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:35:28.893Z\", \"updated_at\": \"2026-05-22T07:48:19.163Z\", \"hypothesis\": \"COMET back-translation 质量验证 Qwen ZH 翻译（v6: 跟踪 nohup 进程，v5 被 tmux 监控误标 failed）\", \"spec\": {\"command\": \"nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/qwen3/ --en_dir data/qwen3/ --output_dir data/qwen3/ --threshold 0.80\", \"server\": \"westd-41302\", \"data_path\": \"data/qwen3/\", \"data_count\": 966, \"model_name\": \"Unbabel/wmt22-comet-da\", \"seed\": 0, \"checkpoint_path\": \"data/qwen3/zh_conflict_{train,test}_validated.jsonl\", \"log_path\": \"logs/comet_qwen_nohup.log\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-22T07:48:19.163Z\"}, \"gemma_en_act_102\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T06:53:33.602Z\", \"updated_at\": \"2026-05-22T06:59:03.002Z\", \"hypothesis\": \"Collecting EN residual stream activations from Gemma-2-9B-IT for cross-lingual knowledge conflict analysis\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u src/collect_activations.py --model /root/autodl-tmp/models/gemma-2-9b-it --data_dir data/gemma2/ --output_dir data/gemma2/ --lang en --batch_size 4\", \"server\": \"westd-41302\", \"data_path\": \"data/gemma2/en_conflict_{train,test}_verified.jsonl\", \"data_count\": 1590, \"model_name\": \"gemma-2-9b-it\", \"seed\": 42, \"checkpoint_path\": \"data/gemma2/en_activations.pt\", \"log_path\": \"logs/gemma_en_activations.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T06:59:03.002Z\"}, \"xnli_baseline_110\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T03:55:49.066Z\", \"updated_at\": \"2026-05-22T06:48:45.784Z\", \"hypothesis\": \"跨语言探针迁移不对称性（ZH→EN > EN→ZH ~7pp）是知识冲突信号特有的，而非一般性跨语言属性。在非冲突语义任务（XNLI entailment vs contradiction）上，同pipeline的残差流线性探针不应展现类似幅度的迁移不对称性（预期 <2pp）。若非冲突任务也展现 ≥5pp 不对称性，则 C2 需 reframe 为 general cross-lingual property。\", \"server\": \"westd-41302\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41302\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-22T03:57:47.118Z\"}, \"spec\": {\"command\": \"collect_activations (Qwen+Llama, EN+ZH) → train_probe bootstrap n=2000\", \"server\": \"westd-41302\", \"data_path\": \"data/xnli/\", \"data_count\": 1000, \"model_name\": \"Qwen3-8B + Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"data/xnli/qwen3/probe_results.json + data/xnli/llama31/probe_results.json\", \"log_path\": \"logs/xnli_*.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"qwen_xnli_asymmetry_pp\": 6.72, \"qwen_xnli_ci\": \"[2.36, 11.73]\", \"qwen_xnli_significant\": true, \"qwen_conflict_asymmetry_pp\": 5.95, \"qwen_conflict_ci\": \"[-3.67, 14.81]\", \"llama_xnli_asymmetry_pp\": 5.97, \"llama_xnli_ci\": \"[0.92, 11.33]\", \"llama_xnli_significant\": true, \"llama_conflict_asymmetry_pp\": 11.76, \"llama_conflict_ci\": \"[4.29, 19.57]\", \"qwen_xnli_en_en\": 96.58, \"qwen_xnli_zh_zh\": 89.49, \"qwen_xnli_en_zh\": 90.45, \"qwen_xnli_zh_en\": 97.17, \"llama_xnli_en_en\": 93.98, \"llama_xnli_zh_zh\": 87.47, \"llama_xnli_en_zh\": 88.95, \"llama_xnli_zh_en\": 94.92, \"conclusion_detail\": \"XNLI asymmetry >=5pp, C2 reframed - asymmetry is general cross-lingual property, not conflict-specific (D008)\", \"mlp_contrast\": {\"c3_confirmed\": true, \"qwen_xnli_en_zh_mlp_delta\": -2, \"qwen_conflict_en_zh_mlp_delta\": 2.4, \"llama_xnli_en_zh_mlp_delta\": -0.5, \"llama_conflict_en_zh_mlp_delta\": 9.2, \"interpretation\": \"MLP gains absent in XNLI but present in conflict task → non-linear encoding is conflict-specific (C3 validated)\"}}, \"completed_at\": \"2026-05-22T05:44:59.987Z\"}, \"comet_llama_v5\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-21T20:03:13.250Z\", \"updated_at\": \"2026-05-22T05:25:23.000Z\", \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-22T02:10:08.349Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\", \"metrics\": {\"death_cause\": \"EXIT_CODE=124 timeout kill by submit_training_job (REGISTRY ONLY - actual nohup processes alive)\", \"restart_pid\": 59571, \"restart_gpu\": \"cuda:2\", \"restart_method\": \"nohup + TRANSFORMERS_OFFLINE=1\", \"restart_time\": \"2026-05-21T23:15:00Z\", \"no_resume\": true, \"acceleration\": \"cuda:3 并行处理 test set (272条) - IN PROGRESS 66%\", \"llama_train_progress\": \"300/1096 (~27%)\", \"llama_test_progress\": \"180/272 (~66%)\", \"actual_status\": \"train on cuda:2 (PID 59571), test on cuda:3 (PID 64179)\", \"registry_failed_is_false_alarm\": true}}}, \"spec\": {\"command\": \"nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/llama31/ --en_dir data/llama31/ --output_dir data/llama31/ --threshold 0.80\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/\", \"data_count\": 1368, \"model_name\": \"Unbabel/wmt22-comet-da\", \"seed\": 0}, \"conclusion\": \"killed\"}, \"comet_qwen_v5\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-21T20:03:10.943Z\", \"updated_at\": \"2026-05-22T05:06:03.839Z\", \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-22T02:10:06.809Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\", \"metrics\": {\"death_cause\": \"EXIT_CODE=124 timeout kill by submit_training_job (REGISTRY ONLY - actual nohup processes alive)\", \"restart_pid\": 59412, \"restart_gpu\": \"cuda:0\", \"restart_method\": \"nohup + TRANSFORMERS_OFFLINE=1\", \"restart_time\": \"2026-05-21T23:15:00Z\", \"no_resume\": true, \"acceleration\": \"cuda:1 并行处理 test set (168条) - COMPLETED\", \"qwen_test_completed\": true, \"qwen_test_total\": 168, \"qwen_test_passed\": 31, \"qwen_test_pass_rate\": 0.185, \"qwen_test_mean_comet\": 0.7016, \"qwen_test_passed_mean_comet\": 0.8503, \"qwen_train_progress\": \"320/798 (~40%)\", \"actual_status\": \"train still running on cuda:0 (PID 59412)\", \"registry_failed_is_false_alarm\": true}}}, \"spec\": {\"command\": \"nohup python -u src/validate_translation.py --model /root/models/Qwen3-8B/ --comet_model Unbabel/wmt22-comet-da --zh_dir data/qwen3/ --en_dir data/qwen3/ --output_dir data/qwen3/ --threshold 0.80\", \"server\": \"westd-41302\", \"data_path\": \"data/qwen3/\", \"data_count\": 966, \"model_name\": \"Unbabel/wmt22-comet-da\", \"seed\": 0}, \"conclusion\": \"killed\"}, \"mvp_probe_llama_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:36:20.794Z\", \"updated_at\": \"2026-05-22T03:02:27.650Z\", \"hypothesis\": \"跨语言知识冲突信号可在 Llama-3.1-8B-Instruct 残差流中被线性探针检测（EN acc ≥ 80%），且展现跨语言迁移（EN→ZH binomial p < 0.01, point > 60%）——与 Qwen3-8B 形成跨模型验证\", \"parent\": \"mvp_probe_v1\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0722, \"bootstrap_asymmetry_ci_corrected\": \"[0.0110, 0.1361]\", \"bootstrap_asymmetry_significant_corrected\": true, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.1176, \"bootstrap_asymmetry_ci_old\": \"[0.0429, 0.1957]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": 1.65, \"fisher_p\": 0.761301, \"high_bal_acc\": 0.6165, \"med_bal_acc\": 0.5624, \"low_bal_acc\": 0.6, \"best_layer\": 13, \"full_balanced_acc\": 0.5919, \"n_samples\": 272, \"detail\": \"Minimal delta (+1.65pp), p=0.76. Translation quality is NOT a confounder for probe transfer.\"}}, \"spec\": {\"command\": \"python src/train_probe.py --model_dir data/llama31/ --bootstrap_seeds 100\", \"server\": \"westd-41302\", \"data_path\": \"data/llama31/\", \"data_count\": 1368, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"mvp_probe_v1\", \"eval_data\": \"data/llama31/en_conflict_test_verified.jsonl\", \"checkpoint_path\": \"/root/clkc_mech_interp/data/llama31/probe_results_bootstrap.json\", \"log_path\": \"/root/clkc_mech_interp/logs/probe_llama_bootstrap.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T02:08:16.823Z\"}, \"mvp_probe_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:16:30.420Z\", \"updated_at\": \"2026-05-22T02:22:12.626Z\", \"hypothesis\": \"跨语言知识冲突信号可在 Qwen3-8B-Instruct 残差流中被线性探针检测（EN acc ≥ 80%），且展现有意义的跨语言迁移（EN→ZH binomial p < 0.01, point > 60%）\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0718, \"bootstrap_asymmetry_ci_corrected\": \"[-0.0119, 0.1341]\", \"bootstrap_asymmetry_significant_corrected\": false, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.0595, \"bootstrap_asymmetry_ci_old\": \"[-0.0367, 0.1481]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": -5.64, \"fisher_p\": 0.695, \"high_bal_acc\": 0.6071, \"med_bal_acc\": 0.6769, \"low_bal_acc\": 0.6635, \"best_layer\": 22, \"detail\": \"Reversed direction (High COMET → lower probe acc). COMET gate can be relaxed.\"}}, \"spec\": {\"command\": \"python src/train_probe.py --model_dir data/qwen3/ --bootstrap_seeds 100\", \"server\": \"westd-41302\", \"data_path\": \"data/qwen3/\", \"data_count\": 966, \"model_name\": \"Qwen3-8B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/clkc_mech_interp/data/qwen3/probe_results_bootstrap.json\", \"log_path\": \"/root/clkc_mech_interp/logs/probe_qwen_bootstrap.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T02:08:15.512Z\"}}, \"count\": 53, \"total\": 53, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2123}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b5367350-ad65-45bd-96d6-f80cc3fa0ff0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "ba530d1d-874d-4260-85db-4c261314ceff",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-26T09:35:05.965Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The full registry is too large. Let me read it in chunks to get a complete picture. But given the ROADMAP update notification is about Paper Agent completing 6 fixes + Figure redesign, let me focus on the key aspects:
+
+1. ROADMAP consistency
+2. Contribution status vs registry
+3. Coverage matrix (empty — this is an issue)
+4. Paper_framing.md consistency with ROADMAP
+5. Any new concerns
+
+Let me read the registry file in chunks, focusing on the most recent experiments and the Gemma v2 experiments which I've been tracking.
+
+Actually, let me be strategic about what I need from the registry. 
+
+Now I'm checking the ROADMAP claims against what's actually in the registry. The ROADMAP lists specific performance ranges for each checkpoint — Gemma hitting 88.0-89.5% across layers 16-18 with 171 samples for C1, and Qwen at 71.0-72.9% across layers 13-15 with 131 samples. I need to verify these numbers match what's recorded.
+
+There's also some confusion about what "Round 4 审稿已提交" refers to, and the framing document still has outdated references since the May 25 deadline already passed. Rather than dig through the entire 83K registry file, I should focus on spot-checking the critical performance claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba530d1d-874d-4260-85db-4c261314ceff",
+  "isSidechain": false,
+  "requestId": "req_011CbQxBQKiYzi6rBip8icjE",
+  "type": "assistant",
+  "uuid": "f76cf8df-1635-444d-9e6b-d81e78a4d536",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wk5JJbxuDWMUU6dWWdLt1v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8508,
+      "cache_read_input_tokens": 57445,
+      "output_tokens": 763,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 763,
+          "cache_read_input_tokens": 57445,
+          "cache_creation_input_tokens": 8508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-26T09:35:05.967Z_
+
+检查 ROADMAP 中 Gemma/Qwen 的 C1 数据是否与 registry 一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f76cf8df-1635-444d-9e6b-d81e78a4d536",
+  "isSidechain": false,
+  "requestId": "req_011CbQxBQKiYzi6rBip8icjE",
+  "type": "assistant",
+  "uuid": "a11cc954-71ed-4008-b7ef-9594758a0368",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wk5JJbxuDWMUU6dWWdLt1v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8508,
+      "cache_read_input_tokens": 57445,
+      "output_tokens": 763,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 763,
+          "cache_read_input_tokens": 57445,
+          "cache_creation_input_tokens": 8508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-26T09:35:06.526Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01E2bqpD3STXaGPqAQAn6wdn`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "filters": {
+    "status": "DONE"
+  },
+  "limit": 5,
+  "fields": [
+    "status",
+    "hypothesis",
+    "metrics",
+    "conclusion",
+    "notes"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a11cc954-71ed-4008-b7ef-9594758a0368",
+  "isSidechain": false,
+  "requestId": "req_011CbQxBQKiYzi6rBip8icjE",
+  "type": "assistant",
+  "uuid": "e9071fd7-f1cd-440d-b130-2bae8e2a1dd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wk5JJbxuDWMUU6dWWdLt1v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8508,
+      "cache_read_input_tokens": 57445,
+      "output_tokens": 763,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 763,
+          "cache_read_input_tokens": 57445,
+          "cache_creation_input_tokens": 8508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-26T09:35:06.704Z_
+
+<details><summary>↩ Tool result · `toolu_01E2bqpD3STXaGPqAQAn6wdn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"hypothesis\": \"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\", \"notes\": \"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\", \"conclusion\": \"negative\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"notes\": \"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\", \"conclusion\": \"negative\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.\", \"metrics\": {\"probe_balanced_acc\": 70.99, \"best_fisher_p\": 0.7847, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering at depth-matched layer (39% ≈ Llama L13 41%). N=131, probe acc 70.99%. 0/6 alphas significant. 0 directional flips. Confirms original paper result (N=84, best p=0.682) with 56% more samples.\", \"conclusion\": \"negative\"}, \"steering_qwen_L13_133\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.\", \"metrics\": {\"probe_balanced_acc\": 71.76, \"best_fisher_p\": 0.1677, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).\", \"conclusion\": \"negative\"}, \"steering_gemma_v2_L18_138\": {\"status\": \"DONE\", \"hypothesis\": \"Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.\", \"metrics\": {\"probe_balanced_acc\": 89.5, \"best_fisher_p\": 0.219, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\"}}, \"count\": 5, \"total\": 53, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1668}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9071fd7-f1cd-440d-b130-2bae8e2a1dd2",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "d942535f-311d-4576-a7c8-0b3fa59c1f2d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"steering_gemma_v2_L21_139\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\\\", \\\"notes\\\": \\\"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L15_135\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 72.9, \\\"best_fisher_p\\\": 0.6172, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20], \\\"note_directional\\\": \\\"1 c→p at L15 α=+20 only\\\"}, \\\"notes\\\": \\\"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L14_134\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 70.99, \\\"best_fisher_p\\\": 0.7847, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"Qwen3-8B matched-condition steering at depth-matched layer (39% ≈ Llama L13 41%). N=131, probe acc 70.99%. 0/6 alphas significant. 0 directional flips. Confirms original paper result (N=84, best p=0.682) with 56% more samples.\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L13_133\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 71.76, \\\"best_fisher_p\\\": 0.1677, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L18_138\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 89.5, \\\"best_fisher_p\\\": 0.219, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"notes\\\": \\\"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 5, \\\"total\\\": 53, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1668}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"hypothesis\": \"Gemma-2-9B-IT L21 (50% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89% and N=171. Original L21 (steering_107_gemma_L21) used buggy data (N=158, probe acc 76.3%, 68% conflict samples had parametric==contextual due to relabel bug).\", \"notes\": \"Director 指令标记 negative：与 v2 L16/L17/L18 一致（probe acc 88-89.5%，所有 p > 0.05），Gemma steering 全线 negative。SSH 断连无法直接验证结果文件，但基于 L16/L17/L18 全部 negative 的一致性模式，Director 判定无需再验证。Gemma steering 全部 4 层（L16-L21）确认无因果效应。\", \"conclusion\": \"negative\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-8B-Instruct L15 (42% depth) probe direction causally influences conflict resolution with matched-condition data. L15 = L14 peak + 1, testing whether causal window extends one layer past the probe peak, analogous to Llama L13-L16 boundary.\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"notes\": \"Qwen3-8B matched-condition steering L15 (42% depth). N=131, probe acc 72.90%. 0/6 alphas significant. 1 isolated c→p flip at α=+20 (noise). Null result. All three Qwen layers (L13-L15) confirm no causal steering effect.\", \"conclusion\": \"negative\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-8B-Instruct L14 (39% depth) probe direction causally influences conflict resolution with matched-condition data. Original L14 had low probe acc (70%, N=84, best p=0.68). Depth matches Llama L13 (41%). Re-test with matched conditions to eliminate probe quality confound.\", \"metrics\": {\"probe_balanced_acc\": 70.99, \"best_fisher_p\": 0.7847, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering at depth-matched layer (39% ≈ Llama L13 41%). N=131, probe acc 70.99%. 0/6 alphas significant. 0 directional flips. Confirms original paper result (N=84, best p=0.682) with 56% more samples.\", \"conclusion\": \"negative\"}, \"steering_qwen_L13_133\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen3-8B-Instruct L13 (36% depth) probe direction causally influences conflict resolution with matched-condition data (N≈200, high probe acc). L13 = L14 peak - 1, establishing Qwen layer scan baseline for comparison with Llama L13 causal window.\", \"metrics\": {\"probe_balanced_acc\": 71.76, \"best_fisher_p\": 0.1677, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"Qwen3-8B matched-condition steering. N=131 (below 150 gate), probe acc 71.76% (below 75% gate but consistent with paper's original Qwen probing results). 0/6 alphas significant. 0 directional flips. Null result consistent with original paper Appendix C (N=84, best p=0.682).\", \"conclusion\": \"negative\"}, \"steering_gemma_v2_L18_138\": {\"status\": \"DONE\", \"hypothesis\": \"Gemma-2-9B-IT L18 (43% depth) probe direction causally influences conflict resolution when steering with matched-condition data (v2 pipeline, relabel bug fixed). Re-test with valid probe acc ~89.5% and N=171.\", \"metrics\": {\"probe_balanced_acc\": 89.5, \"best_fisher_p\": 0.219, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"notes\": \"v2 pipeline, relabel bug fixed, matched-condition with Llama. Probe acc 89.5% validates data quality. Best p=0.219, 0/6 alphas survive Bonferroni. No directional flips at any alpha. Conclusion: no causal effect.\", \"conclusion\": \"negative\"}}, \"count\": 5, \"total\": 53, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1668}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e9071fd7-f1cd-440d-b130-2bae8e2a1dd2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-26T09:35:08.316Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XpDj4tAXGEgA66rErb9Nuh`</summary>
+
+```json
+{
+  "command": "grep -E \"gemma_matched|qwen_matched|gemma_v2|qwen.*L13|qwen.*L14|qwen.*L15\" /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt | head -50",
+  "description": "Search registry for Gemma/Qwen matched-condition experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d942535f-311d-4576-a7c8-0b3fa59c1f2d",
+  "isSidechain": false,
+  "requestId": "req_011CbQxBQKiYzi6rBip8icjE",
+  "type": "assistant",
+  "uuid": "87b35fb2-d4b2-4a28-af83-d3ebee204406",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wk5JJbxuDWMUU6dWWdLt1v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8508,
+      "cache_read_input_tokens": 57445,
+      "output_tokens": 763,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 763,
+          "cache_read_input_tokens": 57445,
+          "cache_creation_input_tokens": 8508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-26T09:35:08.486Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01XpDj4tAXGEgA66rErb9Nuh`</summary>
+
+```text
+Exit code 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87b35fb2-d4b2-4a28-af83-d3ebee204406",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "780a3078-a56d-4f20-9b04-8a510ef7e67b",
+  "toolUseResult": "Error: Exit code 1",
+  "sourceToolAssistantUUID": "87b35fb2-d4b2-4a28-af83-d3ebee204406",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-26T09:35:16.619Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The grep didn't find results because the file path might be different. Let me look at Gemma v2 results more carefully.
+
+From the registry, I can see:
+- steering_gemma_v2_L18_138: probe_balanced_acc 89.5%, N=171, negative
+- steering_gemma_v2_L21_139: notes mention "probe acc 88-89.5%, N=171", negative
+
+
+- steering_qwen_L15_135: probe_balanced_acc 72.9%, N=131
+- steering_qwen_L14_134: probe_balanced_acc 70.99%, N=131
+- steering_qwen_L13_133: probe_balanced_acc 71.76%, N=131
+
+The ROADMAP expectations align with what I'm seeing: Gemma hitting 88.0-89.5% across layers 16-18 with N=171, and Qwen matching the 71.0-72.9% range across layers 13-15 with N=131. I should verify whether L16 for Gemma actually shows 88.0%.
+
+Now I need to check the Gemma v2 L16 and L17 results, plus confirm the Llama matched condition results to see if L13 reaches that 90.0% target.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "780a3078-a56d-4f20-9b04-8a510ef7e67b",
+  "isSidechain": false,
+  "requestId": "req_011CbQxChKC5WAKBFkGSBAj2",
+  "type": "assistant",
+  "uuid": "6d85a504-3fad-4104-bb82-c89b148189d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K86f6U2SjUwUE5fDSKVfUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 65953,
+      "output_tokens": 584,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2368,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 584,
+          "cache_read_input_tokens": 65953,
+          "cache_creation_input_tokens": 2368,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2368
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-26T09:35:16.966Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01M1McWWov3TLd1SguJYJ8xG`</summary>
+
+```json
+{
+  "pattern": "steering_gemma_v2_L16|steering_gemma_v2_L17|gemma_matched|llama_matched|multi_seed_probing",
+  "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt",
+  "output_mode": "content",
+  "-C": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d85a504-3fad-4104-bb82-c89b148189d8",
+  "isSidechain": false,
+  "requestId": "req_011CbQxChKC5WAKBFkGSBAj2",
+  "type": "assistant",
+  "uuid": "f785c289-9832-403e-8787-ddc061212ace",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K86f6U2SjUwUE5fDSKVfUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 65953,
+      "output_tokens": 584,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2368,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 584,
+          "cache_read_input_tokens": 65953,
+          "cache_creation_input_tokens": 2368,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2368
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-26T09:35:16.983Z_
+
+<details><summary>↩ Tool result · `toolu_01M1McWWov3TLd1SguJYJ8xG`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f785c289-9832-403e-8787-ddc061212ace",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "f0d26946-1f6b-4990-889a-f5fbfbdc2b2c",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "1:[Omitted long matching line]",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "f785c289-9832-403e-8787-ddc061212ace",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-26T09:35:19.883Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me try a different approach - use the read_registry with specific filters to find the Gemma v2 experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0d26946-1f6b-4990-889a-f5fbfbdc2b2c",
+  "isSidechain": false,
+  "requestId": "req_011CbQxDLMQ7sg3LsjeM7ncP",
+  "type": "assistant",
+  "uuid": "9d6834b3-f9d1-4e62-a59c-552ee24b5dea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014FiNLfV5rnd1muMBEXFCnP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 68321,
+      "output_tokens": 413,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 413,
+          "cache_read_input_tokens": 68321,
+          "cache_creation_input_tokens": 603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-26T09:35:23.250Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QrQhe9XRTThQNGiwNccR76`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find experiments with 'gemma_v2' or 'multi_seed' in name\nfor k, v in exps.items():\n    if 'gemma_v2' in k or 'multi_seed' in k or 'matched' in k:\n        metrics = v.get('metrics', {})\n        print(f'{k}: status={v[\\\"status\\\"]}, conclusion={v.get(\\\"conclusion\\\",\\\"?\\\")}, probe_acc={metrics.get(\\\"probe_balanced_acc\\\",\\\"?\\\")}, N={metrics.get(\\\"N_conflict\\\",\\\"?\\\")}')\n\"\n",
+  "description": "Extract Gemma v2 and multi-seed experiment details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d6834b3-f9d1-4e62-a59c-552ee24b5dea",
+  "isSidechain": false,
+  "requestId": "req_011CbQxDLMQ7sg3LsjeM7ncP",
+  "type": "assistant",
+  "uuid": "0941b01c-1525-4ac8-8537-488fb516f56b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014FiNLfV5rnd1muMBEXFCnP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 68321,
+      "output_tokens": 413,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 413,
+          "cache_read_input_tokens": 68321,
+          "cache_creation_input_tokens": 603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-26T09:35:23.359Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QrQhe9XRTThQNGiwNccR76`</summary>
+
+```text
+Exit code 120
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0941b01c-1525-4ac8-8537-488fb516f56b",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "c9af68c1-449b-4b8a-b2a4-8768e11469cd",
+  "toolUseResult": "Error: Exit code 120",
+  "sourceToolAssistantUUID": "0941b01c-1525-4ac8-8537-488fb516f56b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "c9af68c1-449b-4b8a-b2a4-8768e11469cd",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-26T09:35:27.911Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X1qrpErn4Cs7tGP8CxhR4W`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt') as f:\n    raw = json.loads(f.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nfor k, v in exps.items():\n    if 'gemma_v2' in k or 'multi_seed' in k or 'matched' in k:\n        metrics = v.get('metrics', {})\n        print(f'{k}: status={v[\\\"status\\\"]}, conclusion={v.get(\\\"conclusion\\\",\\\"?\\\")}, probe_acc={metrics.get(\\\"probe_balanced_acc\\\",\\\"?\\\")}, N={metrics.get(\\\"N_conflict\\\",\\\"?\\\")}')\n\"\n",
+  "description": "Extract Gemma v2 and matched experiment details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9af68c1-449b-4b8a-b2a4-8768e11469cd",
+  "isSidechain": false,
+  "requestId": "req_011CbQxDo1GtC6d6UpSonGyN",
+  "type": "assistant",
+  "uuid": "a6ba82ba-0e32-4a7b-811e-83349a67c148",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVzThvqKdmg2dZ9NzrhUt8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 68924,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 68924,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-26T09:35:28.014Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01X1qrpErn4Cs7tGP8CxhR4W`</summary>
+
+```text
+Exit code 120
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6ba82ba-0e32-4a7b-811e-83349a67c148",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "d909be9e-181c-415a-b43b-e2a3a8150733",
+  "toolUseResult": "Error: Exit code 120",
+  "sourceToolAssistantUUID": "a6ba82ba-0e32-4a7b-811e-83349a67c148",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-26T09:35:31.492Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WY7aBRvpeiqWQwF3cNVWN9`</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt",
+  "description": "Check registry output file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d909be9e-181c-415a-b43b-e2a3a8150733",
+  "isSidechain": false,
+  "requestId": "req_011CbQxE8qPDJQ4K5X8uH5Vx",
+  "type": "assistant",
+  "uuid": "3cab9ef6-e026-4f2c-9699-b190b8e36335",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GFuHvtBvdTRogu5r2jKr3A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 370,
+      "cache_read_input_tokens": 69361,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 69361,
+          "cache_creation_input_tokens": 370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-26T09:35:31.541Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WY7aBRvpeiqWQwF3cNVWN9`</summary>
+
+```text
+Exit code 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3cab9ef6-e026-4f2c-9699-b190b8e36335",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "815f83a8-f737-41d5-b2b4-4b778a3e1108",
+  "toolUseResult": "Error: Exit code 1",
+  "sourceToolAssistantUUID": "3cab9ef6-e026-4f2c-9699-b190b8e36335",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63 · 2026-05-26T09:35:31.555Z_
+
+```json
+{
+  "parentUuid": "815f83a8-f737-41d5-b2b4-4b778a3e1108",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e0c0fbea-cdd6-4dac-9141-8f7e7e40e200",
+  "timestamp": "2026-05-26T09:35:31.555Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-26T09:35:34.940Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016KgtQHeNnRTVPr3pb7eW2q`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/ 2>/dev/null || echo \"Directory not found\"",
+  "description": "Check if registry output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0c0fbea-cdd6-4dac-9141-8f7e7e40e200",
+  "isSidechain": false,
+  "requestId": "req_011CbQxEPwETzWb4opRDsjCS",
+  "type": "assistant",
+  "uuid": "f3dfabc4-9193-49fb-b851-bf9f80118370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kup54rkLwHQUY4W9TEBEHw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 298,
+      "cache_read_input_tokens": 69731,
+      "output_tokens": 164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 164,
+          "cache_read_input_tokens": 69731,
+          "cache_creation_input_tokens": 298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-26T09:35:34.987Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016KgtQHeNnRTVPr3pb7eW2q`</summary>
+
+```text
+Exit code 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3dfabc4-9193-49fb-b851-bf9f80118370",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "415db435-0da1-4d2d-8890-f06d60463ecb",
+  "toolUseResult": "Error: Exit code 1",
+  "sourceToolAssistantUUID": "f3dfabc4-9193-49fb-b851-bf9f80118370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-26T09:35:38.474Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file doesn't exist at that path. Let me search for the actual persisted output file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "415db435-0da1-4d2d-8890-f06d60463ecb",
+  "isSidechain": false,
+  "requestId": "req_011CbQxEeqfq7NrV64bAWSu4",
+  "type": "assistant",
+  "uuid": "d663cb59-5769-4eb3-abad-28a33309972a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QGMvHqPKeN8twjYJPQTcjt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 188,
+      "cache_read_input_tokens": 70029,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 188,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 70029,
+          "cache_creation_input_tokens": 188,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 188
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-26T09:35:39.201Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01YbkBehnQdMw7a2HavJSyxv`</summary>
+
+```json
+{
+  "pattern": "**/tool-results/*.txt",
+  "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d663cb59-5769-4eb3-abad-28a33309972a",
+  "isSidechain": false,
+  "requestId": "req_011CbQxEeqfq7NrV64bAWSu4",
+  "type": "assistant",
+  "uuid": "88ed6e19-52cb-4603-ac50-6c39fa6d6716",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QGMvHqPKeN8twjYJPQTcjt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 188,
+      "cache_read_input_tokens": 70029,
+      "output_tokens": 157,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 188,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 157,
+          "cache_read_input_tokens": 70029,
+          "cache_creation_input_tokens": 188,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 188
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-26T09:35:39.226Z_
+
+<details><summary>↩ Tool result · `toolu_01YbkBehnQdMw7a2HavJSyxv`</summary>
+
+```text
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/fbcb94d7-4ae4-428b-bf8e-067434184125/tool-results/toolu_01XjNAfEzLf4PUB1VXPSZjBo.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/fbcb94d7-4ae4-428b-bf8e-067434184125/tool-results/toolu_01WajvX86MVL63jytsTCscyB.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/cade2b8d-6973-474b-bb66-65fbfa4ea818/tool-results/toolu_01PVNm8URbzevAyXHxjBgH3S.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/08ba1bdc-a666-46de-9b6e-d375760febed/tool-results/beu1f3uem.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/08ba1bdc-a666-46de-9b6e-d375760febed/tool-results/bwyp803i6.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/08ba1bdc-a666-46de-9b6e-d375760febed/tool-results/br2ol6p0i.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/bwksanynk.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/bgqcgdcxq.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/bphwrh8is.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/b8adqso3f.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/toolu_011tqMUpqSdoTdL8cDHRGQcR.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/toolu_01GbxGKMXHhGMTtYBB6d2FEk.txt
+/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88ed6e19-52cb-4603-ac50-6c39fa6d6716",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "c6563dc3-2a28-4fe7-bb2f-0e8c3b0b6bd0",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/fbcb94d7-4ae4-428b-bf8e-067434184125/tool-results/toolu_01XjNAfEzLf4PUB1VXPSZjBo.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/fbcb94d7-4ae4-428b-bf8e-067434184125/tool-results/toolu_01WajvX86MVL63jytsTCscyB.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/cade2b8d-6973-474b-bb66-65fbfa4ea818/tool-results/toolu_01PVNm8URbzevAyXHxjBgH3S.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/08ba1bdc-a666-46de-9b6e-d375760febed/tool-results/beu1f3uem.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/08ba1bdc-a666-46de-9b6e-d375760febed/tool-results/bwyp803i6.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/08ba1bdc-a666-46de-9b6e-d375760febed/tool-results/br2ol6p0i.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/bwksanynk.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/bgqcgdcxq.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/bphwrh8is.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/b8adqso3f.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/0c94121f-a4e4-48fa-b11d-20800ee0278a/tool-results/toolu_011tqMUpqSdoTdL8cDHRGQcR.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/toolu_01GbxGKMXHhGMTtYBB6d2FEk.txt",
+      "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt"
+    ],
+    "durationMs": 19,
+    "numFiles": 13,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "88ed6e19-52cb-4603-ac50-6c39fa6d6716",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-26T09:35:42.811Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DjskPodkM5H2tjVyxMYyNU`</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt",
+  "description": "Check registry file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6563dc3-2a28-4fe7-bb2f-0e8c3b0b6bd0",
+  "isSidechain": false,
+  "requestId": "req_011CbQxEy7mQ9yLT212V1p8n",
+  "type": "assistant",
+  "uuid": "b4632a5a-fbe2-413a-b78f-f8402497f3a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Rsowgc84MWRvLyX6K9Vfq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 70217,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 70217,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-26T09:35:42.871Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DjskPodkM5H2tjVyxMYyNU`</summary>
+
+```text
+Exit code 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4632a5a-fbe2-413a-b78f-f8402497f3a6",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "85e2ee7f-ca7d-4e10-8517-f3364d2027c6",
+  "toolUseResult": "Error: Exit code 1",
+  "sourceToolAssistantUUID": "b4632a5a-fbe2-413a-b78f-f8402497f3a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-26T09:35:45.850Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HaDCucQxwsGzVEAQUwrc3p`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85e2ee7f-ca7d-4e10-8517-f3364d2027c6",
+  "isSidechain": false,
+  "requestId": "req_011CbQxFEWULhcWVSZj3USAz",
+  "type": "assistant",
+  "uuid": "004b4adf-09b7-4531-bb6a-527145efb344",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MscKyKFgec25QRxW2xb4Rf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 71603,
+      "output_tokens": 164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 164,
+          "cache_read_input_tokens": 71603,
+          "cache_creation_input_tokens": 194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-26T09:35:46.120Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01HaDCucQxwsGzVEAQUwrc3p`</summary>
+
+```text
+File content (37522 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "004b4adf-09b7-4531-bb6a-527145efb344",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "11f36873-2212-44b9-8ed0-0bd67f730bfb",
+  "toolUseResult": "Error: File content (37522 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "004b4adf-09b7-4531-bb6a-527145efb344",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-26T09:35:49.834Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_019MxVrx7Mecv2UQNd6XfNvJ`</summary>
+
+```json
+{
+  "pattern": "gemma_v2_L16|gemma_v2_L17|multi_seed|Llama.*90\\.0|N.*201",
+  "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-prod42-projects-clkc-mech-interp--claude-sessions-reviewer-509ec47e/d0fa44a5-9760-4850-be9e-340618167017/tool-results/mcp-agent-ml-research-read_registry-1779788090927.txt",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11f36873-2212-44b9-8ed0-0bd67f730bfb",
+  "isSidechain": false,
+  "requestId": "req_011CbQxFUDUzjnhH4jn9eo5g",
+  "type": "assistant",
+  "uuid": "05d26f2f-879f-4cfd-9ff1-10bba776c1e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NduzsDnqcEK4wcTMCNM8z8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 225,
+      "cache_read_input_tokens": 71797,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 225,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 71797,
+          "cache_creation_input_tokens": 225,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 225
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-26T09:35:49.847Z_
+
+<details><summary>↩ Tool result · `toolu_019MxVrx7Mecv2UQNd6XfNvJ`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05d26f2f-879f-4cfd-9ff1-10bba776c1e5",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "f7efae59-d369-44ce-a048-0fe220f2baa0",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "1:[Omitted long matching line]",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "05d26f2f-879f-4cfd-9ff1-10bba776c1e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-26T09:35:53.061Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file is a single long JSON line, which makes grep not very useful. Let me try a targeted registry query for the specific experiments I need to verify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7efae59-d369-44ce-a048-0fe220f2baa0",
+  "isSidechain": false,
+  "requestId": "req_011CbQxFkNL26FvK1KWVS75N",
+  "type": "assistant",
+  "uuid": "2b9776b3-5249-48de-a04f-ae77c8e118b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5KzChzbccnSUfe4f4GT2T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 72022,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 235,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 72022,
+          "cache_creation_input_tokens": 235,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 235
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-26T09:35:53.595Z_
+
+直接查询需要核实的具体实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b9776b3-5249-48de-a04f-ae77c8e118b6",
+  "isSidechain": false,
+  "requestId": "req_011CbQxFkNL26FvK1KWVS75N",
+  "type": "assistant",
+  "uuid": "215031cc-a1de-42f3-b269-eab721167d2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5KzChzbccnSUfe4f4GT2T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 72022,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 235,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 72022,
+          "cache_creation_input_tokens": 235,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 235
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-26T09:35:54.408Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MSWBUfEbSzUoJhm775fu5h`</summary>
+
+```json
+{
+  "project": "clkc_mech_interp",
+  "limit": 0,
+  "fields": [
+    "status",
+    "metrics",
+    "conclusion"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "215031cc-a1de-42f3-b269-eab721167d2e",
+  "isSidechain": false,
+  "requestId": "req_011CbQxFkNL26FvK1KWVS75N",
+  "type": "assistant",
+  "uuid": "05160505-c5b2-4ea5-bd27-779d472e683e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5KzChzbccnSUfe4f4GT2T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 72022,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 235,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 72022,
+          "cache_creation_input_tokens": 235,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 235
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-26T09:35:54.612Z_
+
+<details><summary>↩ Tool result · `toolu_01MSWBUfEbSzUoJhm775fu5h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"conclusion\": \"negative\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 70.99, \"best_fisher_p\": 0.7847, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_qwen_L13_133\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 71.76, \"best_fisher_p\": 0.1677, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_gemma_v2_L18_138\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 89.5, \"best_fisher_p\": 0.219, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_gemma_v2_L17_137\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 88.9, \"best_fisher_p\": 0.448, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_gemma_v2_L16_136\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 88, \"best_fisher_p\": 0.067, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"gemma-steering-pickup\": {\"status\": \"PREPARING\", \"conclusion\": \"failed\"}, \"steering_gemma_L17_131\": {\"status\": \"DONE\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.6648, \"best_alpha\": \"none\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"total_flips\": 0}, \"conclusion\": \"killed\"}, \"steering_gemma_L18_132\": {\"status\": \"DONE\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.6193, \"best_alpha\": \"-20\", \"best_fisher_p\": 0.4971, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 0.4971, \"alpha_neg10\": 0.4971, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 2.3, \"max_ctrl_flip_pct\": 0}, \"conclusion\": \"killed\"}, \"steering_gemma_L16_130\": {\"status\": \"DONE\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.5966, \"best_alpha\": \"+5\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 1.1, \"max_ctrl_flip_pct\": 1.1}, \"conclusion\": \"killed\"}, \"steering_llama_L28_129\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L28\": 0.8525, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.284, \"alpha_neg20_steer\": \"12/201\", \"alpha_neg20_ctrl\": \"11/201\", \"alpha_neg20_p\": 1, \"alpha_neg10_steer\": \"5/201\", \"alpha_neg10_ctrl\": \"8/201\", \"alpha_neg10_p\": 0.575, \"alpha_neg5_steer\": \"3/201\", \"alpha_neg5_ctrl\": \"5/201\", \"alpha_neg5_p\": 0.724, \"alpha_pos5_steer\": \"4/201\", \"alpha_pos5_ctrl\": \"2/201\", \"alpha_pos5_p\": 0.685, \"alpha_pos10_steer\": \"6/201\", \"alpha_pos10_ctrl\": \"2/201\", \"alpha_pos10_p\": 0.284, \"alpha_pos20_steer\": \"16/201\", \"alpha_pos20_ctrl\": \"15/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"none\"}}, \"steering_llama_L18_128\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.9075, \"best_alpha\": \"+5\", \"best_fisher_p\": 0.0099, \"alpha_neg20_steer\": \"28/201\", \"alpha_neg20_ctrl\": \"30/201\", \"alpha_neg20_p\": 0.887, \"alpha_neg10_steer\": \"15/201\", \"alpha_neg10_ctrl\": \"12/201\", \"alpha_neg10_p\": 0.691, \"alpha_neg5_steer\": \"10/201\", \"alpha_neg5_ctrl\": \"9/201\", \"alpha_neg5_p\": 1, \"alpha_pos5_steer\": \"16/201\", \"alpha_pos5_ctrl\": \"4/201\", \"alpha_pos5_p\": 0.0099, \"alpha_pos10_steer\": \"26/201\", \"alpha_pos10_ctrl\": \"15/201\", \"alpha_pos10_p\": 0.098, \"alpha_pos20_steer\": \"64/201\", \"alpha_pos20_ctrl\": \"45/201\", \"alpha_pos20_p\": 0.043, \"bonferroni_significant\": \"none (best p=0.0099 > 0.0083)\", \"note\": \"marginal - just above Bonferroni threshold\"}}, \"steering_llama_L16_127\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L16\": 0.915, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.005, \"alpha_neg20_steer\": \"49/201\", \"alpha_neg20_ctrl\": \"47/201\", \"alpha_neg20_p\": 0.907, \"alpha_neg10_steer\": \"29/201\", \"alpha_neg10_ctrl\": \"23/201\", \"alpha_neg10_p\": 0.458, \"alpha_neg5_steer\": \"15/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.691, \"alpha_pos5_steer\": \"10/201\", \"alpha_pos5_ctrl\": \"9/201\", \"alpha_pos5_p\": 1, \"alpha_pos10_steer\": \"37/201\", \"alpha_pos10_ctrl\": \"17/201\", \"alpha_pos10_p\": 0.005, \"alpha_pos20_steer\": \"56/201\", \"alpha_pos20_ctrl\": \"57/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.005)\"}}, \"steering_llama_L13_repl_126\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L13\": 0.9, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0003, \"alpha_neg20_steer\": \"47/201\", \"alpha_neg20_ctrl\": \"49/201\", \"alpha_neg20_p\": 0.9043, \"alpha_neg10_steer\": \"26/201\", \"alpha_neg10_ctrl\": \"34/201\", \"alpha_neg10_p\": 0.3332, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"18/201\", \"alpha_neg5_p\": 0.8634, \"alpha_pos5_steer\": \"38/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.0034, \"alpha_pos10_steer\": \"66/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0003, \"alpha_pos20_steer\": \"70/201\", \"alpha_pos20_ctrl\": \"67/201\", \"alpha_pos20_p\": 0.8141, \"bonferroni_significant\": \"alpha_pos5 (p=0.0034), alpha_pos10 (p=0.0003)\"}}, \"steering_llama_L14_125\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L14\": 0.9175, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0022, \"alpha_neg20_steer\": \"51/201\", \"alpha_neg20_ctrl\": \"43/201\", \"alpha_neg20_p\": 0.4095, \"alpha_neg10_steer\": \"28/201\", \"alpha_neg10_ctrl\": \"33/201\", \"alpha_neg10_p\": 0.5784, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.1965, \"alpha_pos5_steer\": \"24/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.4152, \"alpha_pos10_steer\": \"56/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0022, \"alpha_pos20_steer\": \"67/201\", \"alpha_pos20_ctrl\": \"68/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.0022)\"}}, \"steering_llama_L12_124\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L12\": 0.9175, \"best_alpha\": \"+20\", \"best_fisher_p\": 0.0853, \"alpha_neg20_steer\": \"54/201\", \"alpha_neg20_ctrl\": \"50/201\", \"alpha_neg20_p\": 0.7327, \"alpha_neg10_steer\": \"36/201\", \"alpha_neg10_ctrl\": \"29/201\", \"alpha_neg10_p\": 0.4165, \"alpha_neg5_steer\": \"17/201\", \"alpha_neg5_ctrl\": \"19/201\", \"alpha_neg5_p\": 0.8616, \"alpha_pos5_steer\": \"21/201\", \"alpha_pos5_ctrl\": \"14/201\", \"alpha_pos5_p\": 0.2884, \"alpha_pos10_steer\": \"38/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.3518, \"alpha_pos20_steer\": \"43/201\", \"alpha_pos20_ctrl\": \"59/201\", \"alpha_pos20_p\": 0.0853, \"bonferroni_significant\": \"none\"}}, \"steering_gemma_L10_120\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L10\": 0.706, \"alpha_5_flips\": \"3/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"1/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 0.2143, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}}, \"steering_gemma_L24_121\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L24\": 0.7627, \"alpha_5_flips\": \"1/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"3/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}}, \"steering_llama_L16_123\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L16\": 0.7684, \"alpha_5_flips\": \"12/136\", \"alpha_5_control\": \"11/136\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"25/136\", \"alpha_10_control\": \"15/136\", \"alpha_10_fisher_p\": 0.1226, \"alpha_20_flips\": \"31/136\", \"alpha_20_control\": \"33/136\", \"alpha_20_fisher_p\": 0.8864, \"bonferroni_significant\": \"none\", \"note\": \"only positive alphas tested\"}}, \"steering_qwen_L18_122\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.738, \"alpha_5_flips\": \"3/84\", \"alpha_5_fisher_p\": 0.6205, \"alpha_10_flips\": \"3/84\", \"alpha_10_fisher_p\": 0.6205, \"alpha_20_flips\": \"3/84\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\"}}, \"cross_task_bootstrap_119\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"key_layers\": {\"llama_L13_c2x\": {\"mean\": 0.9984, \"ci\": [0.9925, 1]}, \"llama_L13_x2c\": {\"mean\": 1, \"ci\": [1, 1]}, \"qwen_L23_c2x\": {\"mean\": 0.9647, \"ci\": [0.895, 0.995]}, \"gemma_L15_c2x\": {\"mean\": 0.9682, \"ci\": [0.93, 0.99]}, \"gemma_L21_c2x\": {\"mean\": 0.7303, \"ci\": [0.6525, 0.8275]}}, \"all_ci_above_chance\": true, \"weakest\": \"Gemma L21 C→X: 0.73 [0.65, 0.83]\", \"runtime_min\": 86}}, \"probe_cosine_sim_117\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"peak_cos_en\": 0.0497, \"peak_layer_en\": 13, \"peak_cos_zh\": 0.0462, \"peak_layer_zh\": 8}, \"qwen\": {\"peak_cos_en\": 0.0236, \"peak_layer_en\": 4, \"peak_cos_zh\": 0.0407, \"peak_layer_zh\": 9}, \"gemma\": {\"peak_cos_en\": 0.0415, \"peak_layer_en\": 19, \"peak_cos_zh\": 0.0356, \"peak_layer_zh\": 20}, \"random_baseline\": 0.001, \"summary\": \"Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions.\"}}, \"cross_task_transfer_116\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"c_to_xnli_min\": 0.8725, \"c_to_xnli_min_layer\": 11, \"x_to_conf_min\": 0.9945, \"x_to_conf_min_layer\": 24, \"transfer_stable\": true}, \"qwen\": {\"c_to_xnli_min\": 0.5625, \"c_to_xnli_min_layer\": 23, \"x_to_conf_min\": 1, \"x_to_conf_min_layer\": \"none\", \"transfer_dip_layers\": \"18-24\"}, \"gemma\": {\"c_to_xnli_min\": 0.5325, \"c_to_xnli_min_layer\": 15, \"x_to_conf_min\": 0.8145, \"x_to_conf_min_layer\": 13, \"transfer_dip_layers\": \"14-22\"}, \"summary\": \"Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs.\"}}, \"tost_equivalence_118\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"delta_conflict\": 7.27, \"delta_xnli\": 6, \"diff\": 1.27, \"se_diff\": 4.37, \"p_tost\": 0.434, \"equivalent\": false}, \"qwen\": {\"delta_conflict\": 7.23, \"delta_xnli\": 6.72, \"diff\": 0.51, \"se_diff\": 4.36, \"p_tost\": 0.366, \"equivalent\": false}, \"gemma\": {\"delta_conflict\": 6.62, \"delta_xnli\": 7.81, \"diff\": -1.19, \"se_diff\": 2.58, \"p_tost\": 0.377, \"equivalent\": false}, \"note\": \"Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero.\"}}, \"de_bootstrap_parallel_114_v2\": {\"status\": \"DONE\", \"metrics\": {\"en_en\": {\"mean\": 0.7709, \"ci\": [0.7463, 0.7978]}, \"de_de\": {\"mean\": 0.7626, \"ci\": [0.739, 0.7868]}, \"en_de\": {\"mean\": 0.6923, \"ci\": [0.6324, 0.739]}, \"de_en\": {\"mean\": 0.7047, \"ci\": [0.6654, 0.7426]}, \"asymmetry_delta\": 0.0124, \"asymmetry_ci\": [-0.0478, 0.0809], \"asymmetry_p\": 0.4045}, \"conclusion\": \"success\"}, \"gemma_xnli_bootstrap_115\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"en_en\": {\"mean\": 0.9635, \"ci\": [0.9492, 0.9799]}, \"zh_zh\": {\"mean\": 0.8941, \"ci\": [0.8796, 0.9097]}, \"en_zh\": {\"mean\": 0.894, \"ci\": [0.8795, 0.9097]}, \"zh_en\": {\"mean\": 0.9721, \"ci\": [0.9575, 0.9852]}, \"asymmetry_delta\": 0.0781, \"asymmetry_ci\": [0.0571, 0.0999], \"asymmetry_p\": 0}}, \"de_bootstrap_parallel_114\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"gemma_xnli_113\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"de_probe_n2000_112\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"gemma_probe_n2000_106\": {\"status\": \"DONE\", \"metrics\": {\"en_en_bal_acc\": 76.2, \"en_en_peak_layer\": 24, \"zh_zh_bal_acc\": 71, \"zh_zh_peak_layer\": 24, \"en_zh_bal_acc\": 62.9, \"en_zh_peak_layer\": 22, \"zh_en_bal_acc\": 70.2, \"zh_en_peak_layer\": 24, \"asymmetry_pp\": 6.62, \"asymmetry_ci_lo\": 1.9, \"asymmetry_ci_hi\": 11.08, \"asymmetry_p\": 0.006, \"bootstrap_n\": 2000}, \"conclusion\": \"success\"}, \"steering_107_gemma_L21\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.763, \"n_samples\": 158, \"baseline\": {\"both\": 32, \"neither\": 55, \"parametric\": 26, \"contextual\": 45}, \"best_fisher_p\": 0.623, \"directional_flips\": 0, \"max_steering_flip_rate\": 0.0316, \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_107_gemma_L17\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.7532, \"n_test\": 158, \"layer\": 17, \"position\": \"last\", \"baseline\": {\"parametric\": 26, \"contextual\": 45, \"both\": 32, \"neither\": 55}, \"alpha_neg20\": {\"steering_flips\": 2, \"control_flips\": 8, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0506, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.103795}, \"alpha_neg10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_neg5\": {\"steering_flips\": 2, \"control_flips\": 1, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0063, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_5\": {\"steering_flips\": 1, \"control_flips\": 3, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.019, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.622608}, \"alpha_10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_20\": {\"steering_flips\": 1, \"control_flips\": 4, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.0253, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.371013}, \"significant_alphas\": [], \"best_fisher_p\": 0.103795, \"best_alpha\": -20, \"all_p2c\": 0, \"all_c2p\": 0}, \"conclusion\": \"negative\"}, \"de_activations_112\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"steering_107_qwen_L23\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"all_fisher_p\": 1, \"probe_accuracy\": 0.732, \"note\": \"L23 at 64% depth - wrong layer. ZH→ZH peak is L14 at 39% depth\"}}, \"steering_107_L13_all\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.761, \"n_samples\": 136, \"layer\": 13, \"position\": \"all\", \"baseline\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"alpha_neg20\": {\"steering_flips\": 49, \"control_flips\": 24, \"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"p2c\": 1, \"c2p\": 5, \"fisher_p\": 0.000948}, \"alpha_neg10\": {\"steering_flips\": 31, \"control_flips\": 25, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1838, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.453592}, \"alpha_neg5\": {\"steering_flips\": 22, \"control_flips\": 17, \"steering_flip_rate\": 0.1618, \"control_flip_rate\": 0.125, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.489298}, \"alpha_5\": {\"steering_flips\": 27, \"control_flips\": 9, \"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"p2c\": 4, \"c2p\": 0, \"fisher_p\": 0.002005}, \"alpha_10\": {\"steering_flips\": 31, \"control_flips\": 20, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1471, \"p2c\": 2, \"c2p\": 0, \"fisher_p\": 0.119745}, \"alpha_20\": {\"steering_flips\": 28, \"control_flips\": 43, \"steering_flip_rate\": 0.2059, \"control_flip_rate\": 0.3162, \"p2c\": 2, \"c2p\": 2, \"fisher_p\": 0.052826}, \"significant_alphas\": [-20, 5], \"bidirectional_confirmed\": true, \"identical_to_last_token\": true}, \"conclusion\": \"success\"}, \"steering_107_qwen_L14\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7024, \"n_test\": 84, \"baseline_contextual\": 35, \"baseline_parametric\": 8, \"baseline_both\": 20, \"baseline_neither\": 21, \"best_fisher_p\": 0.6818, \"best_alpha\": -10, \"significant_alphas\": [], \"all_p2c\": 0, \"all_c2p\": 0}}, \"bootstrap_n2000_111\": {\"status\": \"DONE\", \"metrics\": {\"llama_asymmetry_peak_mean_diff\": 0.0727, \"llama_asymmetry_p_value\": 0.038, \"llama_asymmetry_ci\": [0.0037, 0.1397], \"llama_n_seeds\": 2000, \"llama_en_en_peak_layer\": \"18-19\", \"llama_status\": \"completed\", \"qwen_status\": \"completed\"}, \"conclusion\": \"success\"}, \"steering_107_L13\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n_samples\": 136, \"layer\": 13, \"position\": \"last\", \"alpha_neg20\": {\"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"fisher_p\": 0.000948, \"p2c\": 1, \"c2p\": 5}, \"alpha_5\": {\"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"fisher_p\": 0.002005, \"p2c\": 4, \"c2p\": 0}, \"alpha_2\": {\"steering_flip_rate\": 0.1176, \"control_flip_rate\": 0.0515, \"fisher_p\": 0.079357, \"p2c\": 3, \"c2p\": 0}, \"significant_alphas\": [-20, 5], \"marginal_alphas\": [2], \"bidirectional_confirmed\": true, \"conclusion_detail\": \"L13 (mid-layer) steering 有显著双向因果效应！负α推向parametric (c→p=5 at α=-20, p<0.001), 正α推向contextual (p→c=4 at α=5, p=0.002)。因果节点在 mid-layer 而非 final/MLP-peak layer，与跨语言对齐文献一致。\"}}, \"steering_107_L18\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n_samples\": 136, \"layer\": 18, \"position\": \"last\", \"all_fisher_p_gt_0.05\": true, \"min_fisher_p\": 0.447, \"min_p_alpha\": 2, \"best_steering_flip_rate\": 0.0368, \"best_control_flip_rate\": 0.0147, \"alpha_neg20\": {\"steering_flips\": 28, \"control_flips\": 25, \"fisher_p\": 0.76, \"c2p\": 4, \"p2c\": 0}, \"alpha_5\": {\"steering_flips\": 9, \"control_flips\": 7, \"fisher_p\": 0.798, \"p2c\": 1, \"c2p\": 0}, \"conclusion_detail\": \"L18 (MLP peak layer) steering 无显著因果效应。所有 alpha 的 Fisher p > 0.44。MLP 非线性编码的 peak layer 不具有因果意义——探针方向在此层是相关性而非因果性。\"}}, \"en_de_translate_112\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_count\": 1096, \"test_count\": 272, \"total\": 1368}}, \"steering_107_L28_all\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7757, \"n_samples\": 136, \"alphas\": [-20, -10, -5, 5, 10, 20], \"position\": \"all\", \"peak_layer\": 28, \"best_fisher_p\": 0.37, \"all_fisher_p_gt_0.05\": true, \"max_steering_flip_pct\": 11.8, \"max_control_flip_pct\": 11.8, \"total_directional_flips\": 7, \"conclusion_detail\": \"L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。\"}}, \"steering_107\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.7757, \"peak_layer\": 28, \"n_test\": 136, \"baseline_distribution\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"best_steering_alpha\": -20, \"best_steering_flip_rate\": 0.1471, \"best_steering_control_flip_rate\": 0.1691, \"best_steering_fisher_p\": 0.7399, \"max_directional_p2c\": 2, \"max_directional_c2p\": 2, \"all_fisher_p_min\": 0.3093, \"hypothesis_met\": false, \"steering_vs_random_summary\": \"steering flip rates statistically indistinguishable from random at all alphas\"}, \"conclusion\": \"negative\"}, \"gemma_full_pipeline_102\": {\"status\": \"DONE\", \"metrics\": {\"gemma_probe_training_status\": \"running\", \"probe_pid\": 476334, \"probe_script\": \"train_probe_fast.py\", \"probe_n_seeds\": 2000, \"probe_n_jobs\": 32, \"probe_start_time\": \"2026-05-22T18:30\"}, \"conclusion\": \"failed\"}, \"llama31_en_activations\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen3_translate_zh\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_activations_qwen3_8b\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_activations_llama_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"translate_zh_llama_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"translate_zh_qwen\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_act_llama_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_act_qwen_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"verify_qwen3_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen_en_act_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"llama_zh_act\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen_zh_act\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"translate_zh_qwen_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"probe_qwen_full\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen_zh_act_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"gemma_verify_en\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"gemma_translate_zh\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"gemma_zh_act_103\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"cka_svcca_104\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_conflict_aligned_cka_mean\": 0.652, \"qwen_xnli_aligned_cka_mean\": 0.094, \"llama_conflict_aligned_cka_mean\": 0.778, \"llama_xnli_aligned_cka_mean\": 0.151, \"qwen_conflict_shuffled_cka_mean\": 0.124, \"qwen_xnli_shuffled_cka_mean\": 0.096, \"llama_conflict_shuffled_cka_mean\": 0.08, \"llama_xnli_shuffled_cka_mean\": 0.165, \"qwen_shuffled_diff\": 0.028, \"llama_shuffled_diff\": -0.085, \"conclusion_detail\": \"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\"}}, \"comet_llama_v6\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"comet_qwen_v6\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"gemma_en_act_102\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"xnli_baseline_110\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_xnli_asymmetry_pp\": 6.72, \"qwen_xnli_ci\": \"[2.36, 11.73]\", \"qwen_xnli_significant\": true, \"qwen_conflict_asymmetry_pp\": 5.95, \"qwen_conflict_ci\": \"[-3.67, 14.81]\", \"llama_xnli_asymmetry_pp\": 5.97, \"llama_xnli_ci\": \"[0.92, 11.33]\", \"llama_xnli_significant\": true, \"llama_conflict_asymmetry_pp\": 11.76, \"llama_conflict_ci\": \"[4.29, 19.57]\", \"qwen_xnli_en_en\": 96.58, \"qwen_xnli_zh_zh\": 89.49, \"qwen_xnli_en_zh\": 90.45, \"qwen_xnli_zh_en\": 97.17, \"llama_xnli_en_en\": 93.98, \"llama_xnli_zh_zh\": 87.47, \"llama_xnli_en_zh\": 88.95, \"llama_xnli_zh_en\": 94.92, \"conclusion_detail\": \"XNLI asymmetry >=5pp, C2 reframed - asymmetry is general cross-lingual property, not conflict-specific (D008)\", \"mlp_contrast\": {\"c3_confirmed\": true, \"qwen_xnli_en_zh_mlp_delta\": -2, \"qwen_conflict_en_zh_mlp_delta\": 2.4, \"llama_xnli_en_zh_mlp_delta\": -0.5, \"llama_conflict_en_zh_mlp_delta\": 9.2, \"interpretation\": \"MLP gains absent in XNLI but present in conflict task → non-linear encoding is conflict-specific (C3 validated)\"}}}, \"comet_llama_v5\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"comet_qwen_v5\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_probe_llama_v1\": {\"status\": \"DONE\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0722, \"bootstrap_asymmetry_ci_corrected\": \"[0.0110, 0.1361]\", \"bootstrap_asymmetry_significant_corrected\": true, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.1176, \"bootstrap_asymmetry_ci_old\": \"[0.0429, 0.1957]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": 1.65, \"fisher_p\": 0.761301, \"high_bal_acc\": 0.6165, \"med_bal_acc\": 0.5624, \"low_bal_acc\": 0.6, \"best_layer\": 13, \"full_balanced_acc\": 0.5919, \"n_samples\": 272, \"detail\": \"Minimal delta (+1.65pp), p=0.76. Translation quality is NOT a confounder for probe transfer.\"}}, \"conclusion\": \"success\"}, \"mvp_probe_v1\": {\"status\": \"DONE\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0718, \"bootstrap_asymmetry_ci_corrected\": \"[-0.0119, 0.1341]\", \"bootstrap_asymmetry_significant_corrected\": false, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.0595, \"bootstrap_asymmetry_ci_old\": \"[-0.0367, 0.1481]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": -5.64, \"fisher_p\": 0.695, \"high_bal_acc\": 0.6071, \"med_bal_acc\": 0.6769, \"low_bal_acc\": 0.6635, \"best_layer\": 22, \"detail\": \"Reversed direction (High COMET → lower probe acc). COMET gate can be relaxed.\"}}, \"conclusion\": \"success\"}, \"comet_llama_v4\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_llama_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_llama_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_llama\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen_v4\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}}, \"count\": 79, \"total\": 79, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1918}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05160505-c5b2-4ea5-bd27-779d472e683e",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "e9216077-d8a8-4f02-8d87-ff198eb9effd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"steering_gemma_v2_L21_139\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L15_135\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 72.9, \\\"best_fisher_p\\\": 0.6172, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20], \\\"note_directional\\\": \\\"1 c→p at L15 α=+20 only\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L14_134\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 70.99, \\\"best_fisher_p\\\": 0.7847, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_qwen_L13_133\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 71.76, \\\"best_fisher_p\\\": 0.1677, \\\"N_conflict\\\": 131, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L18_138\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 89.5, \\\"best_fisher_p\\\": 0.219, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L17_137\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 88.9, \\\"best_fisher_p\\\": 0.448, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_gemma_v2_L16_136\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_balanced_acc\\\": 88, \\\"best_fisher_p\\\": 0.067, \\\"N_conflict\\\": 171, \\\"directional_flips\\\": 0, \\\"bonferroni_sig_alphas\\\": \\\"0/6\\\", \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"gemma-steering-pickup\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"steering_gemma_L17_131\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"N\\\": 88, \\\"probe_acc\\\": 0.6648, \\\"best_alpha\\\": \\\"none\\\", \\\"best_fisher_p\\\": 1, \\\"bonferroni_significant\\\": false, \\\"all_p_values\\\": {\\\"alpha_neg20\\\": 1, \\\"alpha_neg10\\\": 1, \\\"alpha_neg5\\\": 1, \\\"alpha_pos5\\\": 1, \\\"alpha_pos10\\\": 1, \\\"alpha_pos20\\\": 1}, \\\"total_flips\\\": 0}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"steering_gemma_L18_132\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"N\\\": 88, \\\"probe_acc\\\": 0.6193, \\\"best_alpha\\\": \\\"-20\\\", \\\"best_fisher_p\\\": 0.4971, \\\"bonferroni_significant\\\": false, \\\"all_p_values\\\": {\\\"alpha_neg20\\\": 0.4971, \\\"alpha_neg10\\\": 0.4971, \\\"alpha_neg5\\\": 1, \\\"alpha_pos5\\\": 1, \\\"alpha_pos10\\\": 1, \\\"alpha_pos20\\\": 1}, \\\"max_steer_flip_pct\\\": 2.3, \\\"max_ctrl_flip_pct\\\": 0}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"steering_gemma_L16_130\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"N\\\": 88, \\\"probe_acc\\\": 0.5966, \\\"best_alpha\\\": \\\"+5\\\", \\\"best_fisher_p\\\": 1, \\\"bonferroni_significant\\\": false, \\\"all_p_values\\\": {\\\"alpha_neg20\\\": 1, \\\"alpha_neg10\\\": 1, \\\"alpha_neg5\\\": 1, \\\"alpha_pos5\\\": 1, \\\"alpha_pos10\\\": 1, \\\"alpha_pos20\\\": 1}, \\\"max_steer_flip_pct\\\": 1.1, \\\"max_ctrl_flip_pct\\\": 1.1}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"steering_llama_L28_129\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L28\\\": 0.8525, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.284, \\\"alpha_neg20_steer\\\": \\\"12/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"11/201\\\", \\\"alpha_neg20_p\\\": 1, \\\"alpha_neg10_steer\\\": \\\"5/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"8/201\\\", \\\"alpha_neg10_p\\\": 0.575, \\\"alpha_neg5_steer\\\": \\\"3/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"5/201\\\", \\\"alpha_neg5_p\\\": 0.724, \\\"alpha_pos5_steer\\\": \\\"4/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"2/201\\\", \\\"alpha_pos5_p\\\": 0.685, \\\"alpha_pos10_steer\\\": \\\"6/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"2/201\\\", \\\"alpha_pos10_p\\\": 0.284, \\\"alpha_pos20_steer\\\": \\\"16/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"15/201\\\", \\\"alpha_pos20_p\\\": 1, \\\"bonferroni_significant\\\": \\\"none\\\"}}, \\\"steering_llama_L18_128\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L18\\\": 0.9075, \\\"best_alpha\\\": \\\"+5\\\", \\\"best_fisher_p\\\": 0.0099, \\\"alpha_neg20_steer\\\": \\\"28/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"30/201\\\", \\\"alpha_neg20_p\\\": 0.887, \\\"alpha_neg10_steer\\\": \\\"15/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"12/201\\\", \\\"alpha_neg10_p\\\": 0.691, \\\"alpha_neg5_steer\\\": \\\"10/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"9/201\\\", \\\"alpha_neg5_p\\\": 1, \\\"alpha_pos5_steer\\\": \\\"16/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"4/201\\\", \\\"alpha_pos5_p\\\": 0.0099, \\\"alpha_pos10_steer\\\": \\\"26/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"15/201\\\", \\\"alpha_pos10_p\\\": 0.098, \\\"alpha_pos20_steer\\\": \\\"64/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"45/201\\\", \\\"alpha_pos20_p\\\": 0.043, \\\"bonferroni_significant\\\": \\\"none (best p=0.0099 > 0.0083)\\\", \\\"note\\\": \\\"marginal - just above Bonferroni threshold\\\"}}, \\\"steering_llama_L16_127\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"probe_accuracy_L16\\\": 0.915, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.005, \\\"alpha_neg20_steer\\\": \\\"49/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"47/201\\\", \\\"alpha_neg20_p\\\": 0.907, \\\"alpha_neg10_steer\\\": \\\"29/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"23/201\\\", \\\"alpha_neg10_p\\\": 0.458, \\\"alpha_neg5_steer\\\": \\\"15/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"12/201\\\", \\\"alpha_neg5_p\\\": 0.691, \\\"alpha_pos5_steer\\\": \\\"10/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"9/201\\\", \\\"alpha_pos5_p\\\": 1, \\\"alpha_pos10_steer\\\": \\\"37/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"17/201\\\", \\\"alpha_pos10_p\\\": 0.005, \\\"alpha_pos20_steer\\\": \\\"56/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"57/201\\\", \\\"alpha_pos20_p\\\": 1, \\\"bonferroni_significant\\\": \\\"alpha_pos10 (p=0.005)\\\"}}, \\\"steering_llama_L13_repl_126\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"probe_accuracy_L13\\\": 0.9, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.0003, \\\"alpha_neg20_steer\\\": \\\"47/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"49/201\\\", \\\"alpha_neg20_p\\\": 0.9043, \\\"alpha_neg10_steer\\\": \\\"26/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"34/201\\\", \\\"alpha_neg10_p\\\": 0.3332, \\\"alpha_neg5_steer\\\": \\\"20/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"18/201\\\", \\\"alpha_neg5_p\\\": 0.8634, \\\"alpha_pos5_steer\\\": \\\"38/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"18/201\\\", \\\"alpha_pos5_p\\\": 0.0034, \\\"alpha_pos10_steer\\\": \\\"66/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"30/201\\\", \\\"alpha_pos10_p\\\": 0.0003, \\\"alpha_pos20_steer\\\": \\\"70/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"67/201\\\", \\\"alpha_pos20_p\\\": 0.8141, \\\"bonferroni_significant\\\": \\\"alpha_pos5 (p=0.0034), alpha_pos10 (p=0.0003)\\\"}}, \\\"steering_llama_L14_125\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"probe_accuracy_L14\\\": 0.9175, \\\"best_alpha\\\": \\\"+10\\\", \\\"best_fisher_p\\\": 0.0022, \\\"alpha_neg20_steer\\\": \\\"51/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"43/201\\\", \\\"alpha_neg20_p\\\": 0.4095, \\\"alpha_neg10_steer\\\": \\\"28/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"33/201\\\", \\\"alpha_neg10_p\\\": 0.5784, \\\"alpha_neg5_steer\\\": \\\"20/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"12/201\\\", \\\"alpha_neg5_p\\\": 0.1965, \\\"alpha_pos5_steer\\\": \\\"24/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"18/201\\\", \\\"alpha_pos5_p\\\": 0.4152, \\\"alpha_pos10_steer\\\": \\\"56/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"30/201\\\", \\\"alpha_pos10_p\\\": 0.0022, \\\"alpha_pos20_steer\\\": \\\"67/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"68/201\\\", \\\"alpha_pos20_p\\\": 1, \\\"bonferroni_significant\\\": \\\"alpha_pos10 (p=0.0022)\\\"}}, \\\"steering_llama_L12_124\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L12\\\": 0.9175, \\\"best_alpha\\\": \\\"+20\\\", \\\"best_fisher_p\\\": 0.0853, \\\"alpha_neg20_steer\\\": \\\"54/201\\\", \\\"alpha_neg20_ctrl\\\": \\\"50/201\\\", \\\"alpha_neg20_p\\\": 0.7327, \\\"alpha_neg10_steer\\\": \\\"36/201\\\", \\\"alpha_neg10_ctrl\\\": \\\"29/201\\\", \\\"alpha_neg10_p\\\": 0.4165, \\\"alpha_neg5_steer\\\": \\\"17/201\\\", \\\"alpha_neg5_ctrl\\\": \\\"19/201\\\", \\\"alpha_neg5_p\\\": 0.8616, \\\"alpha_pos5_steer\\\": \\\"21/201\\\", \\\"alpha_pos5_ctrl\\\": \\\"14/201\\\", \\\"alpha_pos5_p\\\": 0.2884, \\\"alpha_pos10_steer\\\": \\\"38/201\\\", \\\"alpha_pos10_ctrl\\\": \\\"30/201\\\", \\\"alpha_pos10_p\\\": 0.3518, \\\"alpha_pos20_steer\\\": \\\"43/201\\\", \\\"alpha_pos20_ctrl\\\": \\\"59/201\\\", \\\"alpha_pos20_p\\\": 0.0853, \\\"bonferroni_significant\\\": \\\"none\\\"}}, \\\"steering_gemma_L10_120\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L10\\\": 0.706, \\\"alpha_5_flips\\\": \\\"3/158\\\", \\\"alpha_5_fisher_p\\\": 1, \\\"alpha_10_flips\\\": \\\"1/158\\\", \\\"alpha_10_fisher_p\\\": 1, \\\"alpha_20_flips\\\": \\\"5/158\\\", \\\"alpha_20_fisher_p\\\": 0.2143, \\\"bonferroni_significant\\\": \\\"none\\\", \\\"directional_flips_p2c\\\": 0, \\\"directional_flips_c2p\\\": 0}}, \\\"steering_gemma_L24_121\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L24\\\": 0.7627, \\\"alpha_5_flips\\\": \\\"1/158\\\", \\\"alpha_5_fisher_p\\\": 1, \\\"alpha_10_flips\\\": \\\"3/158\\\", \\\"alpha_10_fisher_p\\\": 1, \\\"alpha_20_flips\\\": \\\"5/158\\\", \\\"alpha_20_fisher_p\\\": 1, \\\"bonferroni_significant\\\": \\\"none\\\", \\\"directional_flips_p2c\\\": 0, \\\"directional_flips_c2p\\\": 0}}, \\\"steering_llama_L16_123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L16\\\": 0.7684, \\\"alpha_5_flips\\\": \\\"12/136\\\", \\\"alpha_5_control\\\": \\\"11/136\\\", \\\"alpha_5_fisher_p\\\": 1, \\\"alpha_10_flips\\\": \\\"25/136\\\", \\\"alpha_10_control\\\": \\\"15/136\\\", \\\"alpha_10_fisher_p\\\": 0.1226, \\\"alpha_20_flips\\\": \\\"31/136\\\", \\\"alpha_20_control\\\": \\\"33/136\\\", \\\"alpha_20_fisher_p\\\": 0.8864, \\\"bonferroni_significant\\\": \\\"none\\\", \\\"note\\\": \\\"only positive alphas tested\\\"}}, \\\"steering_qwen_L18_122\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy_L18\\\": 0.738, \\\"alpha_5_flips\\\": \\\"3/84\\\", \\\"alpha_5_fisher_p\\\": 0.6205, \\\"alpha_10_flips\\\": \\\"3/84\\\", \\\"alpha_10_fisher_p\\\": 0.6205, \\\"alpha_20_flips\\\": \\\"3/84\\\", \\\"alpha_20_fisher_p\\\": 1, \\\"bonferroni_significant\\\": \\\"none\\\"}}, \\\"cross_task_bootstrap_119\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"key_layers\\\": {\\\"llama_L13_c2x\\\": {\\\"mean\\\": 0.9984, \\\"ci\\\": [0.9925, 1]}, \\\"llama_L13_x2c\\\": {\\\"mean\\\": 1, \\\"ci\\\": [1, 1]}, \\\"qwen_L23_c2x\\\": {\\\"mean\\\": 0.9647, \\\"ci\\\": [0.895, 0.995]}, \\\"gemma_L15_c2x\\\": {\\\"mean\\\": 0.9682, \\\"ci\\\": [0.93, 0.99]}, \\\"gemma_L21_c2x\\\": {\\\"mean\\\": 0.7303, \\\"ci\\\": [0.6525, 0.8275]}}, \\\"all_ci_above_chance\\\": true, \\\"weakest\\\": \\\"Gemma L21 C→X: 0.73 [0.65, 0.83]\\\", \\\"runtime_min\\\": 86}}, \\\"probe_cosine_sim_117\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"llama\\\": {\\\"peak_cos_en\\\": 0.0497, \\\"peak_layer_en\\\": 13, \\\"peak_cos_zh\\\": 0.0462, \\\"peak_layer_zh\\\": 8}, \\\"qwen\\\": {\\\"peak_cos_en\\\": 0.0236, \\\"peak_layer_en\\\": 4, \\\"peak_cos_zh\\\": 0.0407, \\\"peak_layer_zh\\\": 9}, \\\"gemma\\\": {\\\"peak_cos_en\\\": 0.0415, \\\"peak_layer_en\\\": 19, \\\"peak_cos_zh\\\": 0.0356, \\\"peak_layer_zh\\\": 20}, \\\"random_baseline\\\": 0.001, \\\"summary\\\": \\\"Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions.\\\"}}, \\\"cross_task_transfer_116\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"llama\\\": {\\\"c_to_xnli_min\\\": 0.8725, \\\"c_to_xnli_min_layer\\\": 11, \\\"x_to_conf_min\\\": 0.9945, \\\"x_to_conf_min_layer\\\": 24, \\\"transfer_stable\\\": true}, \\\"qwen\\\": {\\\"c_to_xnli_min\\\": 0.5625, \\\"c_to_xnli_min_layer\\\": 23, \\\"x_to_conf_min\\\": 1, \\\"x_to_conf_min_layer\\\": \\\"none\\\", \\\"transfer_dip_layers\\\": \\\"18-24\\\"}, \\\"gemma\\\": {\\\"c_to_xnli_min\\\": 0.5325, \\\"c_to_xnli_min_layer\\\": 15, \\\"x_to_conf_min\\\": 0.8145, \\\"x_to_conf_min_layer\\\": 13, \\\"transfer_dip_layers\\\": \\\"14-22\\\"}, \\\"summary\\\": \\\"Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs.\\\"}}, \\\"tost_equivalence_118\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"llama\\\": {\\\"delta_conflict\\\": 7.27, \\\"delta_xnli\\\": 6, \\\"diff\\\": 1.27, \\\"se_diff\\\": 4.37, \\\"p_tost\\\": 0.434, \\\"equivalent\\\": false}, \\\"qwen\\\": {\\\"delta_conflict\\\": 7.23, \\\"delta_xnli\\\": 6.72, \\\"diff\\\": 0.51, \\\"se_diff\\\": 4.36, \\\"p_tost\\\": 0.366, \\\"equivalent\\\": false}, \\\"gemma\\\": {\\\"delta_conflict\\\": 6.62, \\\"delta_xnli\\\": 7.81, \\\"diff\\\": -1.19, \\\"se_diff\\\": 2.58, \\\"p_tost\\\": 0.377, \\\"equivalent\\\": false}, \\\"note\\\": \\\"Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero.\\\"}}, \\\"de_bootstrap_parallel_114_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"en_en\\\": {\\\"mean\\\": 0.7709, \\\"ci\\\": [0.7463, 0.7978]}, \\\"de_de\\\": {\\\"mean\\\": 0.7626, \\\"ci\\\": [0.739, 0.7868]}, \\\"en_de\\\": {\\\"mean\\\": 0.6923, \\\"ci\\\": [0.6324, 0.739]}, \\\"de_en\\\": {\\\"mean\\\": 0.7047, \\\"ci\\\": [0.6654, 0.7426]}, \\\"asymmetry_delta\\\": 0.0124, \\\"asymmetry_ci\\\": [-0.0478, 0.0809], \\\"asymmetry_p\\\": 0.4045}, \\\"conclusion\\\": \\\"success\\\"}, \\\"gemma_xnli_bootstrap_115\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"en_en\\\": {\\\"mean\\\": 0.9635, \\\"ci\\\": [0.9492, 0.9799]}, \\\"zh_zh\\\": {\\\"mean\\\": 0.8941, \\\"ci\\\": [0.8796, 0.9097]}, \\\"en_zh\\\": {\\\"mean\\\": 0.894, \\\"ci\\\": [0.8795, 0.9097]}, \\\"zh_en\\\": {\\\"mean\\\": 0.9721, \\\"ci\\\": [0.9575, 0.9852]}, \\\"asymmetry_delta\\\": 0.0781, \\\"asymmetry_ci\\\": [0.0571, 0.0999], \\\"asymmetry_p\\\": 0}}, \\\"de_bootstrap_parallel_114\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_xnli_113\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"de_probe_n2000_112\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_probe_n2000_106\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"en_en_bal_acc\\\": 76.2, \\\"en_en_peak_layer\\\": 24, \\\"zh_zh_bal_acc\\\": 71, \\\"zh_zh_peak_layer\\\": 24, \\\"en_zh_bal_acc\\\": 62.9, \\\"en_zh_peak_layer\\\": 22, \\\"zh_en_bal_acc\\\": 70.2, \\\"zh_en_peak_layer\\\": 24, \\\"asymmetry_pp\\\": 6.62, \\\"asymmetry_ci_lo\\\": 1.9, \\\"asymmetry_ci_hi\\\": 11.08, \\\"asymmetry_p\\\": 0.006, \\\"bootstrap_n\\\": 2000}, \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_gemma_L21\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.763, \\\"n_samples\\\": 158, \\\"baseline\\\": {\\\"both\\\": 32, \\\"neither\\\": 55, \\\"parametric\\\": 26, \\\"contextual\\\": 45}, \\\"best_fisher_p\\\": 0.623, \\\"directional_flips\\\": 0, \\\"max_steering_flip_rate\\\": 0.0316, \\\"alphas_tested\\\": [-20, -10, -5, 5, 10, 20]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"steering_107_gemma_L17\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7532, \\\"n_test\\\": 158, \\\"layer\\\": 17, \\\"position\\\": \\\"last\\\", \\\"baseline\\\": {\\\"parametric\\\": 26, \\\"contextual\\\": 45, \\\"both\\\": 32, \\\"neither\\\": 55}, \\\"alpha_neg20\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 8, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0506, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.103795}, \\\"alpha_neg10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 2, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0127, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_neg5\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 1, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0063, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 3, \\\"steering_flip_rate\\\": 0.0063, \\\"control_flip_rate\\\": 0.019, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.622608}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 2, \\\"control_flips\\\": 2, \\\"steering_flip_rate\\\": 0.0127, \\\"control_flip_rate\\\": 0.0127, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 1}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 1, \\\"control_flips\\\": 4, \\\"steering_flip_rate\\\": 0.0063, \\\"control_flip_rate\\\": 0.0253, \\\"p2c\\\": 0, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.371013}, \\\"significant_alphas\\\": [], \\\"best_fisher_p\\\": 0.103795, \\\"best_alpha\\\": -20, \\\"all_p2c\\\": 0, \\\"all_c2p\\\": 0}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"de_activations_112\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_qwen_L23\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"all_fisher_p\\\": 1, \\\"probe_accuracy\\\": 0.732, \\\"note\\\": \\\"L23 at 64% depth - wrong layer. ZH→ZH peak is L14 at 39% depth\\\"}}, \\\"steering_107_L13_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.761, \\\"n_samples\\\": 136, \\\"layer\\\": 13, \\\"position\\\": \\\"all\\\", \\\"baseline\\\": {\\\"parametric\\\": 32, \\\"contextual\\\": 41, \\\"both\\\": 35, \\\"neither\\\": 28}, \\\"alpha_neg20\\\": {\\\"steering_flips\\\": 49, \\\"control_flips\\\": 24, \\\"steering_flip_rate\\\": 0.3603, \\\"control_flip_rate\\\": 0.1765, \\\"p2c\\\": 1, \\\"c2p\\\": 5, \\\"fisher_p\\\": 0.000948}, \\\"alpha_neg10\\\": {\\\"steering_flips\\\": 31, \\\"control_flips\\\": 25, \\\"steering_flip_rate\\\": 0.2279, \\\"control_flip_rate\\\": 0.1838, \\\"p2c\\\": 2, \\\"c2p\\\": 1, \\\"fisher_p\\\": 0.453592}, \\\"alpha_neg5\\\": {\\\"steering_flips\\\": 22, \\\"control_flips\\\": 17, \\\"steering_flip_rate\\\": 0.1618, \\\"control_flip_rate\\\": 0.125, \\\"p2c\\\": 2, \\\"c2p\\\": 1, \\\"fisher_p\\\": 0.489298}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 27, \\\"control_flips\\\": 9, \\\"steering_flip_rate\\\": 0.1985, \\\"control_flip_rate\\\": 0.0662, \\\"p2c\\\": 4, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.002005}, \\\"alpha_10\\\": {\\\"steering_flips\\\": 31, \\\"control_flips\\\": 20, \\\"steering_flip_rate\\\": 0.2279, \\\"control_flip_rate\\\": 0.1471, \\\"p2c\\\": 2, \\\"c2p\\\": 0, \\\"fisher_p\\\": 0.119745}, \\\"alpha_20\\\": {\\\"steering_flips\\\": 28, \\\"control_flips\\\": 43, \\\"steering_flip_rate\\\": 0.2059, \\\"control_flip_rate\\\": 0.3162, \\\"p2c\\\": 2, \\\"c2p\\\": 2, \\\"fisher_p\\\": 0.052826}, \\\"significant_alphas\\\": [-20, 5], \\\"bidirectional_confirmed\\\": true, \\\"identical_to_last_token\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_qwen_L14\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7024, \\\"n_test\\\": 84, \\\"baseline_contextual\\\": 35, \\\"baseline_parametric\\\": 8, \\\"baseline_both\\\": 20, \\\"baseline_neither\\\": 21, \\\"best_fisher_p\\\": 0.6818, \\\"best_alpha\\\": -10, \\\"significant_alphas\\\": [], \\\"all_p2c\\\": 0, \\\"all_c2p\\\": 0}}, \\\"bootstrap_n2000_111\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"llama_asymmetry_peak_mean_diff\\\": 0.0727, \\\"llama_asymmetry_p_value\\\": 0.038, \\\"llama_asymmetry_ci\\\": [0.0037, 0.1397], \\\"llama_n_seeds\\\": 2000, \\\"llama_en_en_peak_layer\\\": \\\"18-19\\\", \\\"llama_status\\\": \\\"completed\\\", \\\"qwen_status\\\": \\\"completed\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"steering_107_L13\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_samples\\\": 136, \\\"layer\\\": 13, \\\"position\\\": \\\"last\\\", \\\"alpha_neg20\\\": {\\\"steering_flip_rate\\\": 0.3603, \\\"control_flip_rate\\\": 0.1765, \\\"fisher_p\\\": 0.000948, \\\"p2c\\\": 1, \\\"c2p\\\": 5}, \\\"alpha_5\\\": {\\\"steering_flip_rate\\\": 0.1985, \\\"control_flip_rate\\\": 0.0662, \\\"fisher_p\\\": 0.002005, \\\"p2c\\\": 4, \\\"c2p\\\": 0}, \\\"alpha_2\\\": {\\\"steering_flip_rate\\\": 0.1176, \\\"control_flip_rate\\\": 0.0515, \\\"fisher_p\\\": 0.079357, \\\"p2c\\\": 3, \\\"c2p\\\": 0}, \\\"significant_alphas\\\": [-20, 5], \\\"marginal_alphas\\\": [2], \\\"bidirectional_confirmed\\\": true, \\\"conclusion_detail\\\": \\\"L13 (mid-layer) steering 有显著双向因果效应！负α推向parametric (c→p=5 at α=-20, p<0.001), 正α推向contextual (p→c=4 at α=5, p=0.002)。因果节点在 mid-layer 而非 final/MLP-peak layer，与跨语言对齐文献一致。\\\"}}, \\\"steering_107_L18\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"n_samples\\\": 136, \\\"layer\\\": 18, \\\"position\\\": \\\"last\\\", \\\"all_fisher_p_gt_0.05\\\": true, \\\"min_fisher_p\\\": 0.447, \\\"min_p_alpha\\\": 2, \\\"best_steering_flip_rate\\\": 0.0368, \\\"best_control_flip_rate\\\": 0.0147, \\\"alpha_neg20\\\": {\\\"steering_flips\\\": 28, \\\"control_flips\\\": 25, \\\"fisher_p\\\": 0.76, \\\"c2p\\\": 4, \\\"p2c\\\": 0}, \\\"alpha_5\\\": {\\\"steering_flips\\\": 9, \\\"control_flips\\\": 7, \\\"fisher_p\\\": 0.798, \\\"p2c\\\": 1, \\\"c2p\\\": 0}, \\\"conclusion_detail\\\": \\\"L18 (MLP peak layer) steering 无显著因果效应。所有 alpha 的 Fisher p > 0.44。MLP 非线性编码的 peak layer 不具有因果意义——探针方向在此层是相关性而非因果性。\\\"}}, \\\"en_de_translate_112\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_count\\\": 1096, \\\"test_count\\\": 272, \\\"total\\\": 1368}}, \\\"steering_107_L28_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7757, \\\"n_samples\\\": 136, \\\"alphas\\\": [-20, -10, -5, 5, 10, 20], \\\"position\\\": \\\"all\\\", \\\"peak_layer\\\": 28, \\\"best_fisher_p\\\": 0.37, \\\"all_fisher_p_gt_0.05\\\": true, \\\"max_steering_flip_pct\\\": 11.8, \\\"max_control_flip_pct\\\": 11.8, \\\"total_directional_flips\\\": 7, \\\"conclusion_detail\\\": \\\"L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。\\\"}}, \\\"steering_107\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"probe_accuracy\\\": 0.7757, \\\"peak_layer\\\": 28, \\\"n_test\\\": 136, \\\"baseline_distribution\\\": {\\\"parametric\\\": 32, \\\"contextual\\\": 41, \\\"both\\\": 35, \\\"neither\\\": 28}, \\\"best_steering_alpha\\\": -20, \\\"best_steering_flip_rate\\\": 0.1471, \\\"best_steering_control_flip_rate\\\": 0.1691, \\\"best_steering_fisher_p\\\": 0.7399, \\\"max_directional_p2c\\\": 2, \\\"max_directional_c2p\\\": 2, \\\"all_fisher_p_min\\\": 0.3093, \\\"hypothesis_met\\\": false, \\\"steering_vs_random_summary\\\": \\\"steering flip rates statistically indistinguishable from random at all alphas\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"gemma_full_pipeline_102\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"gemma_probe_training_status\\\": \\\"running\\\", \\\"probe_pid\\\": 476334, \\\"probe_script\\\": \\\"train_probe_fast.py\\\", \\\"probe_n_seeds\\\": 2000, \\\"probe_n_jobs\\\": 32, \\\"probe_start_time\\\": \\\"2026-05-22T18:30\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama31_en_activations\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen3_translate_zh\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_activations_qwen3_8b\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_activations_llama_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"translate_zh_llama_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"translate_zh_qwen\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_act_llama_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"collect_en_act_qwen_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"verify_qwen3_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen_en_act_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"llama_zh_act\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen_zh_act\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"translate_zh_qwen_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"probe_qwen_full\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"qwen_zh_act_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_verify_en\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_translate_zh\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_zh_act_103\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"cka_svcca_104\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"qwen_conflict_aligned_cka_mean\\\": 0.652, \\\"qwen_xnli_aligned_cka_mean\\\": 0.094, \\\"llama_conflict_aligned_cka_mean\\\": 0.778, \\\"llama_xnli_aligned_cka_mean\\\": 0.151, \\\"qwen_conflict_shuffled_cka_mean\\\": 0.124, \\\"qwen_xnli_shuffled_cka_mean\\\": 0.096, \\\"llama_conflict_shuffled_cka_mean\\\": 0.08, \\\"llama_xnli_shuffled_cka_mean\\\": 0.165, \\\"qwen_shuffled_diff\\\": 0.028, \\\"llama_shuffled_diff\\\": -0.085, \\\"conclusion_detail\\\": \\\"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\\\"}}, \\\"comet_llama_v6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gemma_en_act_102\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"xnli_baseline_110\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"qwen_xnli_asymmetry_pp\\\": 6.72, \\\"qwen_xnli_ci\\\": \\\"[2.36, 11.73]\\\", \\\"qwen_xnli_significant\\\": true, \\\"qwen_conflict_asymmetry_pp\\\": 5.95, \\\"qwen_conflict_ci\\\": \\\"[-3.67, 14.81]\\\", \\\"llama_xnli_asymmetry_pp\\\": 5.97, \\\"llama_xnli_ci\\\": \\\"[0.92, 11.33]\\\", \\\"llama_xnli_significant\\\": true, \\\"llama_conflict_asymmetry_pp\\\": 11.76, \\\"llama_conflict_ci\\\": \\\"[4.29, 19.57]\\\", \\\"qwen_xnli_en_en\\\": 96.58, \\\"qwen_xnli_zh_zh\\\": 89.49, \\\"qwen_xnli_en_zh\\\": 90.45, \\\"qwen_xnli_zh_en\\\": 97.17, \\\"llama_xnli_en_en\\\": 93.98, \\\"llama_xnli_zh_zh\\\": 87.47, \\\"llama_xnli_en_zh\\\": 88.95, \\\"llama_xnli_zh_en\\\": 94.92, \\\"conclusion_detail\\\": \\\"XNLI asymmetry >=5pp, C2 reframed - asymmetry is general cross-lingual property, not conflict-specific (D008)\\\", \\\"mlp_contrast\\\": {\\\"c3_confirmed\\\": true, \\\"qwen_xnli_en_zh_mlp_delta\\\": -2, \\\"qwen_conflict_en_zh_mlp_delta\\\": 2.4, \\\"llama_xnli_en_zh_mlp_delta\\\": -0.5, \\\"llama_conflict_en_zh_mlp_delta\\\": 9.2, \\\"interpretation\\\": \\\"MLP gains absent in XNLI but present in conflict task → non-linear encoding is conflict-specific (C3 validated)\\\"}}}, \\\"comet_llama_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_probe_llama_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"bootstrap_asymmetry_diff_corrected\\\": 0.0722, \\\"bootstrap_asymmetry_ci_corrected\\\": \\\"[0.0110, 0.1361]\\\", \\\"bootstrap_asymmetry_significant_corrected\\\": true, \\\"bootstrap_asymmetry_method\\\": \\\"per_iteration_paired_diff_from_training_bootstrap_n100\\\", \\\"bootstrap_asymmetry_diff_old\\\": 0.1176, \\\"bootstrap_asymmetry_ci_old\\\": \\\"[0.0429, 0.1957]\\\", \\\"comet_tertile_ablation\\\": {\\\"conclusion\\\": \\\"not_confounder\\\", \\\"delta_high_low_pp\\\": 1.65, \\\"fisher_p\\\": 0.761301, \\\"high_bal_acc\\\": 0.6165, \\\"med_bal_acc\\\": 0.5624, \\\"low_bal_acc\\\": 0.6, \\\"best_layer\\\": 13, \\\"full_balanced_acc\\\": 0.5919, \\\"n_samples\\\": 272, \\\"detail\\\": \\\"Minimal delta (+1.65pp), p=0.76. Translation quality is NOT a confounder for probe transfer.\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_probe_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"bootstrap_asymmetry_diff_corrected\\\": 0.0718, \\\"bootstrap_asymmetry_ci_corrected\\\": \\\"[-0.0119, 0.1341]\\\", \\\"bootstrap_asymmetry_significant_corrected\\\": false, \\\"bootstrap_asymmetry_method\\\": \\\"per_iteration_paired_diff_from_training_bootstrap_n100\\\", \\\"bootstrap_asymmetry_diff_old\\\": 0.0595, \\\"bootstrap_asymmetry_ci_old\\\": \\\"[-0.0367, 0.1481]\\\", \\\"comet_tertile_ablation\\\": {\\\"conclusion\\\": \\\"not_confounder\\\", \\\"delta_high_low_pp\\\": -5.64, \\\"fisher_p\\\": 0.695, \\\"high_bal_acc\\\": 0.6071, \\\"med_bal_acc\\\": 0.6769, \\\"low_bal_acc\\\": 0.6635, \\\"best_layer\\\": 22, \\\"detail\\\": \\\"Reversed direction (High COMET → lower probe acc). COMET gate can be relaxed.\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"comet_llama_v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_llama_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_llama_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_llama\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"comet_qwen\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 79, \\\"total\\\": 79, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1918}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"steering_gemma_v2_L21_139\": {\"status\": \"DONE\", \"conclusion\": \"negative\"}, \"steering_qwen_L15_135\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 72.9, \"best_fisher_p\": 0.6172, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20], \"note_directional\": \"1 c→p at L15 α=+20 only\"}, \"conclusion\": \"negative\"}, \"steering_qwen_L14_134\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 70.99, \"best_fisher_p\": 0.7847, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_qwen_L13_133\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 71.76, \"best_fisher_p\": 0.1677, \"N_conflict\": 131, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_gemma_v2_L18_138\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 89.5, \"best_fisher_p\": 0.219, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_gemma_v2_L17_137\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 88.9, \"best_fisher_p\": 0.448, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_gemma_v2_L16_136\": {\"status\": \"DONE\", \"metrics\": {\"probe_balanced_acc\": 88, \"best_fisher_p\": 0.067, \"N_conflict\": 171, \"directional_flips\": 0, \"bonferroni_sig_alphas\": \"0/6\", \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"gemma-steering-pickup\": {\"status\": \"PREPARING\", \"conclusion\": \"failed\"}, \"steering_gemma_L17_131\": {\"status\": \"DONE\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.6648, \"best_alpha\": \"none\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"total_flips\": 0}, \"conclusion\": \"killed\"}, \"steering_gemma_L18_132\": {\"status\": \"DONE\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.6193, \"best_alpha\": \"-20\", \"best_fisher_p\": 0.4971, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 0.4971, \"alpha_neg10\": 0.4971, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 2.3, \"max_ctrl_flip_pct\": 0}, \"conclusion\": \"killed\"}, \"steering_gemma_L16_130\": {\"status\": \"DONE\", \"metrics\": {\"N\": 88, \"probe_acc\": 0.5966, \"best_alpha\": \"+5\", \"best_fisher_p\": 1, \"bonferroni_significant\": false, \"all_p_values\": {\"alpha_neg20\": 1, \"alpha_neg10\": 1, \"alpha_neg5\": 1, \"alpha_pos5\": 1, \"alpha_pos10\": 1, \"alpha_pos20\": 1}, \"max_steer_flip_pct\": 1.1, \"max_ctrl_flip_pct\": 1.1}, \"conclusion\": \"killed\"}, \"steering_llama_L28_129\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L28\": 0.8525, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.284, \"alpha_neg20_steer\": \"12/201\", \"alpha_neg20_ctrl\": \"11/201\", \"alpha_neg20_p\": 1, \"alpha_neg10_steer\": \"5/201\", \"alpha_neg10_ctrl\": \"8/201\", \"alpha_neg10_p\": 0.575, \"alpha_neg5_steer\": \"3/201\", \"alpha_neg5_ctrl\": \"5/201\", \"alpha_neg5_p\": 0.724, \"alpha_pos5_steer\": \"4/201\", \"alpha_pos5_ctrl\": \"2/201\", \"alpha_pos5_p\": 0.685, \"alpha_pos10_steer\": \"6/201\", \"alpha_pos10_ctrl\": \"2/201\", \"alpha_pos10_p\": 0.284, \"alpha_pos20_steer\": \"16/201\", \"alpha_pos20_ctrl\": \"15/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"none\"}}, \"steering_llama_L18_128\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.9075, \"best_alpha\": \"+5\", \"best_fisher_p\": 0.0099, \"alpha_neg20_steer\": \"28/201\", \"alpha_neg20_ctrl\": \"30/201\", \"alpha_neg20_p\": 0.887, \"alpha_neg10_steer\": \"15/201\", \"alpha_neg10_ctrl\": \"12/201\", \"alpha_neg10_p\": 0.691, \"alpha_neg5_steer\": \"10/201\", \"alpha_neg5_ctrl\": \"9/201\", \"alpha_neg5_p\": 1, \"alpha_pos5_steer\": \"16/201\", \"alpha_pos5_ctrl\": \"4/201\", \"alpha_pos5_p\": 0.0099, \"alpha_pos10_steer\": \"26/201\", \"alpha_pos10_ctrl\": \"15/201\", \"alpha_pos10_p\": 0.098, \"alpha_pos20_steer\": \"64/201\", \"alpha_pos20_ctrl\": \"45/201\", \"alpha_pos20_p\": 0.043, \"bonferroni_significant\": \"none (best p=0.0099 > 0.0083)\", \"note\": \"marginal - just above Bonferroni threshold\"}}, \"steering_llama_L16_127\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L16\": 0.915, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.005, \"alpha_neg20_steer\": \"49/201\", \"alpha_neg20_ctrl\": \"47/201\", \"alpha_neg20_p\": 0.907, \"alpha_neg10_steer\": \"29/201\", \"alpha_neg10_ctrl\": \"23/201\", \"alpha_neg10_p\": 0.458, \"alpha_neg5_steer\": \"15/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.691, \"alpha_pos5_steer\": \"10/201\", \"alpha_pos5_ctrl\": \"9/201\", \"alpha_pos5_p\": 1, \"alpha_pos10_steer\": \"37/201\", \"alpha_pos10_ctrl\": \"17/201\", \"alpha_pos10_p\": 0.005, \"alpha_pos20_steer\": \"56/201\", \"alpha_pos20_ctrl\": \"57/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.005)\"}}, \"steering_llama_L13_repl_126\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L13\": 0.9, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0003, \"alpha_neg20_steer\": \"47/201\", \"alpha_neg20_ctrl\": \"49/201\", \"alpha_neg20_p\": 0.9043, \"alpha_neg10_steer\": \"26/201\", \"alpha_neg10_ctrl\": \"34/201\", \"alpha_neg10_p\": 0.3332, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"18/201\", \"alpha_neg5_p\": 0.8634, \"alpha_pos5_steer\": \"38/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.0034, \"alpha_pos10_steer\": \"66/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0003, \"alpha_pos20_steer\": \"70/201\", \"alpha_pos20_ctrl\": \"67/201\", \"alpha_pos20_p\": 0.8141, \"bonferroni_significant\": \"alpha_pos5 (p=0.0034), alpha_pos10 (p=0.0003)\"}}, \"steering_llama_L14_125\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"probe_accuracy_L14\": 0.9175, \"best_alpha\": \"+10\", \"best_fisher_p\": 0.0022, \"alpha_neg20_steer\": \"51/201\", \"alpha_neg20_ctrl\": \"43/201\", \"alpha_neg20_p\": 0.4095, \"alpha_neg10_steer\": \"28/201\", \"alpha_neg10_ctrl\": \"33/201\", \"alpha_neg10_p\": 0.5784, \"alpha_neg5_steer\": \"20/201\", \"alpha_neg5_ctrl\": \"12/201\", \"alpha_neg5_p\": 0.1965, \"alpha_pos5_steer\": \"24/201\", \"alpha_pos5_ctrl\": \"18/201\", \"alpha_pos5_p\": 0.4152, \"alpha_pos10_steer\": \"56/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.0022, \"alpha_pos20_steer\": \"67/201\", \"alpha_pos20_ctrl\": \"68/201\", \"alpha_pos20_p\": 1, \"bonferroni_significant\": \"alpha_pos10 (p=0.0022)\"}}, \"steering_llama_L12_124\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L12\": 0.9175, \"best_alpha\": \"+20\", \"best_fisher_p\": 0.0853, \"alpha_neg20_steer\": \"54/201\", \"alpha_neg20_ctrl\": \"50/201\", \"alpha_neg20_p\": 0.7327, \"alpha_neg10_steer\": \"36/201\", \"alpha_neg10_ctrl\": \"29/201\", \"alpha_neg10_p\": 0.4165, \"alpha_neg5_steer\": \"17/201\", \"alpha_neg5_ctrl\": \"19/201\", \"alpha_neg5_p\": 0.8616, \"alpha_pos5_steer\": \"21/201\", \"alpha_pos5_ctrl\": \"14/201\", \"alpha_pos5_p\": 0.2884, \"alpha_pos10_steer\": \"38/201\", \"alpha_pos10_ctrl\": \"30/201\", \"alpha_pos10_p\": 0.3518, \"alpha_pos20_steer\": \"43/201\", \"alpha_pos20_ctrl\": \"59/201\", \"alpha_pos20_p\": 0.0853, \"bonferroni_significant\": \"none\"}}, \"steering_gemma_L10_120\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L10\": 0.706, \"alpha_5_flips\": \"3/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"1/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 0.2143, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}}, \"steering_gemma_L24_121\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L24\": 0.7627, \"alpha_5_flips\": \"1/158\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"3/158\", \"alpha_10_fisher_p\": 1, \"alpha_20_flips\": \"5/158\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\", \"directional_flips_p2c\": 0, \"directional_flips_c2p\": 0}}, \"steering_llama_L16_123\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L16\": 0.7684, \"alpha_5_flips\": \"12/136\", \"alpha_5_control\": \"11/136\", \"alpha_5_fisher_p\": 1, \"alpha_10_flips\": \"25/136\", \"alpha_10_control\": \"15/136\", \"alpha_10_fisher_p\": 0.1226, \"alpha_20_flips\": \"31/136\", \"alpha_20_control\": \"33/136\", \"alpha_20_fisher_p\": 0.8864, \"bonferroni_significant\": \"none\", \"note\": \"only positive alphas tested\"}}, \"steering_qwen_L18_122\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy_L18\": 0.738, \"alpha_5_flips\": \"3/84\", \"alpha_5_fisher_p\": 0.6205, \"alpha_10_flips\": \"3/84\", \"alpha_10_fisher_p\": 0.6205, \"alpha_20_flips\": \"3/84\", \"alpha_20_fisher_p\": 1, \"bonferroni_significant\": \"none\"}}, \"cross_task_bootstrap_119\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"key_layers\": {\"llama_L13_c2x\": {\"mean\": 0.9984, \"ci\": [0.9925, 1]}, \"llama_L13_x2c\": {\"mean\": 1, \"ci\": [1, 1]}, \"qwen_L23_c2x\": {\"mean\": 0.9647, \"ci\": [0.895, 0.995]}, \"gemma_L15_c2x\": {\"mean\": 0.9682, \"ci\": [0.93, 0.99]}, \"gemma_L21_c2x\": {\"mean\": 0.7303, \"ci\": [0.6525, 0.8275]}}, \"all_ci_above_chance\": true, \"weakest\": \"Gemma L21 C→X: 0.73 [0.65, 0.83]\", \"runtime_min\": 86}}, \"probe_cosine_sim_117\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"peak_cos_en\": 0.0497, \"peak_layer_en\": 13, \"peak_cos_zh\": 0.0462, \"peak_layer_zh\": 8}, \"qwen\": {\"peak_cos_en\": 0.0236, \"peak_layer_en\": 4, \"peak_cos_zh\": 0.0407, \"peak_layer_zh\": 9}, \"gemma\": {\"peak_cos_en\": 0.0415, \"peak_layer_en\": 19, \"peak_cos_zh\": 0.0356, \"peak_layer_zh\": 20}, \"random_baseline\": 0.001, \"summary\": \"Near-orthogonal (cos 0.02-0.05). Combined with Exp 116 perfect transfer: shared subspace, different discriminative directions.\"}}, \"cross_task_transfer_116\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"c_to_xnli_min\": 0.8725, \"c_to_xnli_min_layer\": 11, \"x_to_conf_min\": 0.9945, \"x_to_conf_min_layer\": 24, \"transfer_stable\": true}, \"qwen\": {\"c_to_xnli_min\": 0.5625, \"c_to_xnli_min_layer\": 23, \"x_to_conf_min\": 1, \"x_to_conf_min_layer\": \"none\", \"transfer_dip_layers\": \"18-24\"}, \"gemma\": {\"c_to_xnli_min\": 0.5325, \"c_to_xnli_min_layer\": 15, \"x_to_conf_min\": 0.8145, \"x_to_conf_min_layer\": 13, \"transfer_dip_layers\": \"14-22\"}, \"summary\": \"Piggyback confirmed. Most layers ~1.0 transfer. Mid-layer dip in Gemma/Qwen where conflict-specific processing occurs.\"}}, \"tost_equivalence_118\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"llama\": {\"delta_conflict\": 7.27, \"delta_xnli\": 6, \"diff\": 1.27, \"se_diff\": 4.37, \"p_tost\": 0.434, \"equivalent\": false}, \"qwen\": {\"delta_conflict\": 7.23, \"delta_xnli\": 6.72, \"diff\": 0.51, \"se_diff\": 4.36, \"p_tost\": 0.366, \"equivalent\": false}, \"gemma\": {\"delta_conflict\": 6.62, \"delta_xnli\": 7.81, \"diff\": -1.19, \"se_diff\": 2.58, \"p_tost\": 0.377, \"equivalent\": false}, \"note\": \"Power insufficient, not actual difference. Point estimates all within ±1.3pp of zero.\"}}, \"de_bootstrap_parallel_114_v2\": {\"status\": \"DONE\", \"metrics\": {\"en_en\": {\"mean\": 0.7709, \"ci\": [0.7463, 0.7978]}, \"de_de\": {\"mean\": 0.7626, \"ci\": [0.739, 0.7868]}, \"en_de\": {\"mean\": 0.6923, \"ci\": [0.6324, 0.739]}, \"de_en\": {\"mean\": 0.7047, \"ci\": [0.6654, 0.7426]}, \"asymmetry_delta\": 0.0124, \"asymmetry_ci\": [-0.0478, 0.0809], \"asymmetry_p\": 0.4045}, \"conclusion\": \"success\"}, \"gemma_xnli_bootstrap_115\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"en_en\": {\"mean\": 0.9635, \"ci\": [0.9492, 0.9799]}, \"zh_zh\": {\"mean\": 0.8941, \"ci\": [0.8796, 0.9097]}, \"en_zh\": {\"mean\": 0.894, \"ci\": [0.8795, 0.9097]}, \"zh_en\": {\"mean\": 0.9721, \"ci\": [0.9575, 0.9852]}, \"asymmetry_delta\": 0.0781, \"asymmetry_ci\": [0.0571, 0.0999], \"asymmetry_p\": 0}}, \"de_bootstrap_parallel_114\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"gemma_xnli_113\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"de_probe_n2000_112\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"gemma_probe_n2000_106\": {\"status\": \"DONE\", \"metrics\": {\"en_en_bal_acc\": 76.2, \"en_en_peak_layer\": 24, \"zh_zh_bal_acc\": 71, \"zh_zh_peak_layer\": 24, \"en_zh_bal_acc\": 62.9, \"en_zh_peak_layer\": 22, \"zh_en_bal_acc\": 70.2, \"zh_en_peak_layer\": 24, \"asymmetry_pp\": 6.62, \"asymmetry_ci_lo\": 1.9, \"asymmetry_ci_hi\": 11.08, \"asymmetry_p\": 0.006, \"bootstrap_n\": 2000}, \"conclusion\": \"success\"}, \"steering_107_gemma_L21\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.763, \"n_samples\": 158, \"baseline\": {\"both\": 32, \"neither\": 55, \"parametric\": 26, \"contextual\": 45}, \"best_fisher_p\": 0.623, \"directional_flips\": 0, \"max_steering_flip_rate\": 0.0316, \"alphas_tested\": [-20, -10, -5, 5, 10, 20]}, \"conclusion\": \"negative\"}, \"steering_107_gemma_L17\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.7532, \"n_test\": 158, \"layer\": 17, \"position\": \"last\", \"baseline\": {\"parametric\": 26, \"contextual\": 45, \"both\": 32, \"neither\": 55}, \"alpha_neg20\": {\"steering_flips\": 2, \"control_flips\": 8, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0506, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.103795}, \"alpha_neg10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_neg5\": {\"steering_flips\": 2, \"control_flips\": 1, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0063, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_5\": {\"steering_flips\": 1, \"control_flips\": 3, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.019, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.622608}, \"alpha_10\": {\"steering_flips\": 2, \"control_flips\": 2, \"steering_flip_rate\": 0.0127, \"control_flip_rate\": 0.0127, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 1}, \"alpha_20\": {\"steering_flips\": 1, \"control_flips\": 4, \"steering_flip_rate\": 0.0063, \"control_flip_rate\": 0.0253, \"p2c\": 0, \"c2p\": 0, \"fisher_p\": 0.371013}, \"significant_alphas\": [], \"best_fisher_p\": 0.103795, \"best_alpha\": -20, \"all_p2c\": 0, \"all_c2p\": 0}, \"conclusion\": \"negative\"}, \"de_activations_112\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"steering_107_qwen_L23\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"all_fisher_p\": 1, \"probe_accuracy\": 0.732, \"note\": \"L23 at 64% depth - wrong layer. ZH→ZH peak is L14 at 39% depth\"}}, \"steering_107_L13_all\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.761, \"n_samples\": 136, \"layer\": 13, \"position\": \"all\", \"baseline\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"alpha_neg20\": {\"steering_flips\": 49, \"control_flips\": 24, \"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"p2c\": 1, \"c2p\": 5, \"fisher_p\": 0.000948}, \"alpha_neg10\": {\"steering_flips\": 31, \"control_flips\": 25, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1838, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.453592}, \"alpha_neg5\": {\"steering_flips\": 22, \"control_flips\": 17, \"steering_flip_rate\": 0.1618, \"control_flip_rate\": 0.125, \"p2c\": 2, \"c2p\": 1, \"fisher_p\": 0.489298}, \"alpha_5\": {\"steering_flips\": 27, \"control_flips\": 9, \"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"p2c\": 4, \"c2p\": 0, \"fisher_p\": 0.002005}, \"alpha_10\": {\"steering_flips\": 31, \"control_flips\": 20, \"steering_flip_rate\": 0.2279, \"control_flip_rate\": 0.1471, \"p2c\": 2, \"c2p\": 0, \"fisher_p\": 0.119745}, \"alpha_20\": {\"steering_flips\": 28, \"control_flips\": 43, \"steering_flip_rate\": 0.2059, \"control_flip_rate\": 0.3162, \"p2c\": 2, \"c2p\": 2, \"fisher_p\": 0.052826}, \"significant_alphas\": [-20, 5], \"bidirectional_confirmed\": true, \"identical_to_last_token\": true}, \"conclusion\": \"success\"}, \"steering_107_qwen_L14\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7024, \"n_test\": 84, \"baseline_contextual\": 35, \"baseline_parametric\": 8, \"baseline_both\": 20, \"baseline_neither\": 21, \"best_fisher_p\": 0.6818, \"best_alpha\": -10, \"significant_alphas\": [], \"all_p2c\": 0, \"all_c2p\": 0}}, \"bootstrap_n2000_111\": {\"status\": \"DONE\", \"metrics\": {\"llama_asymmetry_peak_mean_diff\": 0.0727, \"llama_asymmetry_p_value\": 0.038, \"llama_asymmetry_ci\": [0.0037, 0.1397], \"llama_n_seeds\": 2000, \"llama_en_en_peak_layer\": \"18-19\", \"llama_status\": \"completed\", \"qwen_status\": \"completed\"}, \"conclusion\": \"success\"}, \"steering_107_L13\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"n_samples\": 136, \"layer\": 13, \"position\": \"last\", \"alpha_neg20\": {\"steering_flip_rate\": 0.3603, \"control_flip_rate\": 0.1765, \"fisher_p\": 0.000948, \"p2c\": 1, \"c2p\": 5}, \"alpha_5\": {\"steering_flip_rate\": 0.1985, \"control_flip_rate\": 0.0662, \"fisher_p\": 0.002005, \"p2c\": 4, \"c2p\": 0}, \"alpha_2\": {\"steering_flip_rate\": 0.1176, \"control_flip_rate\": 0.0515, \"fisher_p\": 0.079357, \"p2c\": 3, \"c2p\": 0}, \"significant_alphas\": [-20, 5], \"marginal_alphas\": [2], \"bidirectional_confirmed\": true, \"conclusion_detail\": \"L13 (mid-layer) steering 有显著双向因果效应！负α推向parametric (c→p=5 at α=-20, p<0.001), 正α推向contextual (p→c=4 at α=5, p=0.002)。因果节点在 mid-layer 而非 final/MLP-peak layer，与跨语言对齐文献一致。\"}}, \"steering_107_L18\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"n_samples\": 136, \"layer\": 18, \"position\": \"last\", \"all_fisher_p_gt_0.05\": true, \"min_fisher_p\": 0.447, \"min_p_alpha\": 2, \"best_steering_flip_rate\": 0.0368, \"best_control_flip_rate\": 0.0147, \"alpha_neg20\": {\"steering_flips\": 28, \"control_flips\": 25, \"fisher_p\": 0.76, \"c2p\": 4, \"p2c\": 0}, \"alpha_5\": {\"steering_flips\": 9, \"control_flips\": 7, \"fisher_p\": 0.798, \"p2c\": 1, \"c2p\": 0}, \"conclusion_detail\": \"L18 (MLP peak layer) steering 无显著因果效应。所有 alpha 的 Fisher p > 0.44。MLP 非线性编码的 peak layer 不具有因果意义——探针方向在此层是相关性而非因果性。\"}}, \"en_de_translate_112\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"train_count\": 1096, \"test_count\": 272, \"total\": 1368}}, \"steering_107_L28_all\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"probe_accuracy\": 0.7757, \"n_samples\": 136, \"alphas\": [-20, -10, -5, 5, 10, 20], \"position\": \"all\", \"peak_layer\": 28, \"best_fisher_p\": 0.37, \"all_fisher_p_gt_0.05\": true, \"max_steering_flip_pct\": 11.8, \"max_control_flip_pct\": 11.8, \"total_directional_flips\": 7, \"conclusion_detail\": \"L28 all-position steering 无效。Flip 率与 random control 无差异。All-position 覆盖全部 token 位置仍无因果效应，排除了 last-token 过窄的假设。\"}}, \"steering_107\": {\"status\": \"DONE\", \"metrics\": {\"probe_accuracy\": 0.7757, \"peak_layer\": 28, \"n_test\": 136, \"baseline_distribution\": {\"parametric\": 32, \"contextual\": 41, \"both\": 35, \"neither\": 28}, \"best_steering_alpha\": -20, \"best_steering_flip_rate\": 0.1471, \"best_steering_control_flip_rate\": 0.1691, \"best_steering_fisher_p\": 0.7399, \"max_directional_p2c\": 2, \"max_directional_c2p\": 2, \"all_fisher_p_min\": 0.3093, \"hypothesis_met\": false, \"steering_vs_random_summary\": \"steering flip rates statistically indistinguishable from random at all alphas\"}, \"conclusion\": \"negative\"}, \"gemma_full_pipeline_102\": {\"status\": \"DONE\", \"metrics\": {\"gemma_probe_training_status\": \"running\", \"probe_pid\": 476334, \"probe_script\": \"train_probe_fast.py\", \"probe_n_seeds\": 2000, \"probe_n_jobs\": 32, \"probe_start_time\": \"2026-05-22T18:30\"}, \"conclusion\": \"failed\"}, \"llama31_en_activations\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen3_translate_zh\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_activations_qwen3_8b\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_activations_llama_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"translate_zh_llama_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"translate_zh_qwen\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_act_llama_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"collect_en_act_qwen_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"verify_qwen3_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen_en_act_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"llama_zh_act\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen_zh_act\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"translate_zh_qwen_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"probe_qwen_full\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"qwen_zh_act_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"gemma_verify_en\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"gemma_translate_zh\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"gemma_zh_act_103\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"cka_svcca_104\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_conflict_aligned_cka_mean\": 0.652, \"qwen_xnli_aligned_cka_mean\": 0.094, \"llama_conflict_aligned_cka_mean\": 0.778, \"llama_xnli_aligned_cka_mean\": 0.151, \"qwen_conflict_shuffled_cka_mean\": 0.124, \"qwen_xnli_shuffled_cka_mean\": 0.096, \"llama_conflict_shuffled_cka_mean\": 0.08, \"llama_xnli_shuffled_cka_mean\": 0.165, \"qwen_shuffled_diff\": 0.028, \"llama_shuffled_diff\": -0.085, \"conclusion_detail\": \"CKA 差异在控制内容配对后消失（Qwen +0.028≈0）或反转（Llama -0.085）。不支持 conflict-specific cross-lingual alignment。结果可作为 appendix methodological lesson。脚本自动判断有 bug（Llama 反转方向被误判为 supported），已手动修正。\"}}, \"comet_llama_v6\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"comet_qwen_v6\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"gemma_en_act_102\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"xnli_baseline_110\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"qwen_xnli_asymmetry_pp\": 6.72, \"qwen_xnli_ci\": \"[2.36, 11.73]\", \"qwen_xnli_significant\": true, \"qwen_conflict_asymmetry_pp\": 5.95, \"qwen_conflict_ci\": \"[-3.67, 14.81]\", \"llama_xnli_asymmetry_pp\": 5.97, \"llama_xnli_ci\": \"[0.92, 11.33]\", \"llama_xnli_significant\": true, \"llama_conflict_asymmetry_pp\": 11.76, \"llama_conflict_ci\": \"[4.29, 19.57]\", \"qwen_xnli_en_en\": 96.58, \"qwen_xnli_zh_zh\": 89.49, \"qwen_xnli_en_zh\": 90.45, \"qwen_xnli_zh_en\": 97.17, \"llama_xnli_en_en\": 93.98, \"llama_xnli_zh_zh\": 87.47, \"llama_xnli_en_zh\": 88.95, \"llama_xnli_zh_en\": 94.92, \"conclusion_detail\": \"XNLI asymmetry >=5pp, C2 reframed - asymmetry is general cross-lingual property, not conflict-specific (D008)\", \"mlp_contrast\": {\"c3_confirmed\": true, \"qwen_xnli_en_zh_mlp_delta\": -2, \"qwen_conflict_en_zh_mlp_delta\": 2.4, \"llama_xnli_en_zh_mlp_delta\": -0.5, \"llama_conflict_en_zh_mlp_delta\": 9.2, \"interpretation\": \"MLP gains absent in XNLI but present in conflict task → non-linear encoding is conflict-specific (C3 validated)\"}}}, \"comet_llama_v5\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"comet_qwen_v5\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_probe_llama_v1\": {\"status\": \"DONE\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0722, \"bootstrap_asymmetry_ci_corrected\": \"[0.0110, 0.1361]\", \"bootstrap_asymmetry_significant_corrected\": true, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.1176, \"bootstrap_asymmetry_ci_old\": \"[0.0429, 0.1957]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": 1.65, \"fisher_p\": 0.761301, \"high_bal_acc\": 0.6165, \"med_bal_acc\": 0.5624, \"low_bal_acc\": 0.6, \"best_layer\": 13, \"full_balanced_acc\": 0.5919, \"n_samples\": 272, \"detail\": \"Minimal delta (+1.65pp), p=0.76. Translation quality is NOT a confounder for probe transfer.\"}}, \"conclusion\": \"success\"}, \"mvp_probe_v1\": {\"status\": \"DONE\", \"metrics\": {\"bootstrap_asymmetry_diff_corrected\": 0.0718, \"bootstrap_asymmetry_ci_corrected\": \"[-0.0119, 0.1341]\", \"bootstrap_asymmetry_significant_corrected\": false, \"bootstrap_asymmetry_method\": \"per_iteration_paired_diff_from_training_bootstrap_n100\", \"bootstrap_asymmetry_diff_old\": 0.0595, \"bootstrap_asymmetry_ci_old\": \"[-0.0367, 0.1481]\", \"comet_tertile_ablation\": {\"conclusion\": \"not_confounder\", \"delta_high_low_pp\": -5.64, \"fisher_p\": 0.695, \"high_bal_acc\": 0.6071, \"med_bal_acc\": 0.6769, \"low_bal_acc\": 0.6635, \"best_layer\": 22, \"detail\": \"Reversed direction (High COMET → lower probe acc). COMET gate can be relaxed.\"}}, \"conclusion\": \"success\"}, \"comet_llama_v4\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_llama_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_llama_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_llama\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen_v4\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen_v3\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen_v2\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}, \"comet_qwen\": {\"status\": \"PREPARING\", \"conclusion\": \"killed\"}}, \"count\": 79, \"total\": 79, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1918}}"
+    }
+  },
+  "sourceToolAssistantUUID": "05160505-c5b2-4ea5-bd27-779d472e683e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "e9216077-d8a8-4f02-8d87-ff198eb9effd",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-26T09:38:34.599Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me analyze the ROADMAP update systematically.
+
+**Key data from registry:**
+
+1. **Gemma v2 steering experiments (matched-condition)**:
+   - L16 (136): probe_balanced_acc = 88.0%, N=171, negative
+   - L17 (137): probe_balanced_acc = 88.9%, N=171, negative
+   - L18 (138): probe_balanced_acc = 89.5%, N=171, negative
+   - L21 (139): no metrics directly shown, but notes say probe acc 88-89.5%, negative
+   
+Looking at the Qwen and Llama matched-condition experiments, I'm seeing a pattern where Qwen's probe accuracy hovers around 71-73% across layers 13-15, while the newer Llama experiments show much stronger performance at 90-91% accuracy, with one configuration achieving statistical significance at p=0.0003.
+
+Now I'm noticing something important — the ROADMAP references a Llama result at L13 with 90.0% accuracy and N=201, and I can confirm this matches the registry entry for steering_llama_L13_repl_126, which shows exactly that performance level.
+
+For Gemma, the ROADMAP targets of 88.0-89.5% across layers L16-L18 align perfectly with what's in the registry. With Qwen, there's a minor discrepancy where the ROADMAP says 71.0% but the registry shows 70.99% at L14 — this is just a rounding difference and essentially matches the expected range of 71.0-72.9%.
+
+Now I'm spotting some formatting issues. The ROADMAP has duplicate "最后更新" headers with the same timestamp and update reason, which is redundant. More importantly, the ROADMAP claims L13 is the unique causal node with monotonic decay across six layers, but the registry data shows L12 actually has negative values with a best p-value of 0.0853, which contradicts that claim.
+
+Looking at the actual results, L14 and L16 both show significant success after Bonferroni correction (p=0.0022 and p=0.005 respectively), which directly contradicts the "L13 唯一因果节点" statement in the ROADMAP. The data clearly shows multiple layers passing the significance threshold, not just L13. The matched-condition experiments reveal that L13, L14, and L16 all show statistically significant causal effects—contradicting the ROADMAP's claim that L13 is the sole causal node. I'm realizing there are two separate experimental sets here: the original steering experiments with N=136 and the newer matched-condition replications with N=201, and I need to figure out which findings the paper actually relies on. I'm noticing a critical discrepancy between two different L16 experiments—the original one from D019 used a lower probe accuracy (76.84%) with N=136 and showed negative results, while the matched-condition replication with higher probe accuracy (91.5%) and larger N=201 actually succeeded at α=+10 with p=0.005. This suggests the matched-condition replications have expanded the causal window beyond just L13 to include L14 and L16, which directly contradicts the current narrative that L13 is the only causal node. Now I need to figure out which dataset the paper actually uses.
+
+Looking at the matched-condition results more carefully, I see a pattern where L13, L14, and L16 all show significant effects, but L12 and L18 don't meet the significance threshold—this "6层梯度单调衰减" description seems to be describing something about how the effects decay across layers, though the actual pattern is more complex than simple monotonic decay.
+
+But here's the problem: the roadmap claims L13 is the "唯一因果节点" (sole causal node), yet the data clearly shows L14 and L16 are also statistically significant. This is a fundamental contradiction between the paper's central narrative and what the matched-condition replication actually demonstrates.
+
+Let me check the decision history more carefully. The matched-condition steering experiments (124-129) have registry entries but don't appear in decisions.yaml at all — there's no documented decision about how these broader causal findings should reshape the paper's claims. The most recent decision (D020 from May 2026) discusses multi-seed probing and layer instability, but doesn't address this discrepancy.
+
+Looking at the actual experimental results: the original steering work found L13 as the sole success case, but the matched-condition sweep at higher probe accuracy (90-92%) reveals a gradient pattern across L12-L13-L14-L16-L18-L28 where significance peaks at L13 but extends across multiple layers. The "6层梯度单调衰减" in the roadmap likely describes this monotonic decay pattern, making L13 the peak rather than the only causal node.
+
+This distinction matters because if L14 and L16 also show Bonferroni-significant effects in the same dataset, claiming L13 as the unique causal site could invite reviewer scrutiny—especially since a broader causal window spanning L13-L16 would actually be a stronger finding than a single-layer effect. The experiment names (steering_llama_L12_124 through L28_129, all N=201) suggest these come from the matched-condition pipeline, which I should verify against the roadmap structure. The steering claims in the paper reference the original N=136 experiments, but C1 appears to use probe accuracy from the matched-condition dataset with N=201, creating an inconsistency in which experimental data supports which claims. I should focus on documenting the key issues for the ROADMAP review: the duplicate header formatting and the mismatch between the C3 narrative claiming L13 as the sole causal node versus the matched-condition data showing L14 and L16 also significant. The paper appears to mix data sources across steering claims—using matched-condition probe accuracy (N=201) but original steering significance (N=136)—which could raise reviewer concerns. Beyond that, the experiment plan lacks claim assignments for coverage tracking, the framing document still references an outdated deadline, and there are 26+ historical "killed" experiments cluttering the registry that don't reflect the actual completed GPU work. One Gemma v2 experiment also has no metrics recorded.
+
+Looking more carefully at the matched-condition steering experiments though, I need to reconsider whether the paper is actually reporting both the original L13 discovery (N=136, p=0.002/0.0009) and the matched-condition replication (N=201, p=0.0003/0.0034) as separate confirmations. The matched-condition runs also flagged L14 and L16 as significant, which either strengthens the pattern or suggests something else is going on.
+
+The ROADMAP doesn't acknowledge that L14/L16 showed significance in the matched-condition experiments at all. D019 notes L16 is negative in the original steering data but positive in the matched-condition version, yet there's no decision documenting this shift. This looks like a real gap — the matched-condition replication uncovered a wider causal window, but the narrative hasn't integrated that finding. It's possible these experiments were run after the paper draft as additional validation and just haven't been folded into the documentation yet.
+
+However, the ROADMAP explicitly cites matched-condition data for the Llama 90.0% result, so that data is definitely being used in the submission. This makes the silence on L14/L16 significance even more problematic. Looking back at D019, it claims all second-round steering experiments were negative, with Llama's causal window being extremely narrow — only L13 succeeded while L16, L18, and L28 all failed.
+
+But that assessment was based on an older steering experiment with lower sample size and probe accuracy. The newer matched-condition experiment at L16 with N=201 and 91.5% probe accuracy actually did find significant effects. So D019 is outdated. What's really concerning is that there's no decision document at all for the matched-condition boundary sweep across layers L12-L28 — these experiments exist in the registry but have no corresponding analysis entry. This gap is significant because the registry shows steering_llama_L14_125 and steering_llama_L16_127 both achieved Bonferroni-significant causal effects with N=201, directly contradicting the claim that L13 is the only causal node.
+
+Now I need to be more careful about what "唯一因果节点" actually means in context.  C3 does acknowledge the boundary sweep results showing decreasing significance across six layers, but the claim that L13 is the "only" causal node contradicts the data if L14 and L16 also pass Bonferroni correction. The phrase might be interpreted as "L13 is the peak causal node with monotonic decay across the six-layer sweep" rather than literally the sole causal node, but "唯一" in Chinese unambiguously means "only" or "sole," so this interpretation seems like a stretch.
+
+I should flag this as a warning since the underlying data is consistent and the narrative direction is correct (mid-layer causality, late-layer non-causality), but the specific claim about L13 being unique is inaccurate and a reviewer examining the supplementary data would catch this discrepancy. There's also the separate issue of D019 reporting L16 as negative based on the earlier pipeline, while the newer matched-condition experiments show L16 as positive—I need to decide how to document this pipeline difference.
+
+The core problem is whether the paper uses matched-condition data (which would require acknowledging L14/L16 significance) or the original data (which would support the "L13 only" claim), and mixing data sources between different analyses is problematic.
+
+Now I'm documenting the key discrepancies: D019 concluded L16 was negative based on one dataset (N=136), but the matched-condition version (N=201) shows L16 is actually significant at p=0.005. There are also several documentation issues—outdated DDL references, duplicate headers in the roadmap, missing metrics for Gemma v2 L21, and an empty coverage matrix from unassigned claims. The critical question remains what data the paper is actually using, and I'm checking paper_provenance to see which steering experiments are referenced.
+
+Looking at the claims, the paper cites the original steering data (N=136 from steering_107_L13) for causal effects, but the roadmap lists matched-condition probe accuracy (90.0%, N=201) for detectability. This creates a fundamental tension—the two claims are pulling from different experimental versions, which could undermine the paper's coherence if the matched-condition data tells a different story about steering effectiveness. use matched-condition data, C3 should show L13/L14/L16 significant (broader window).
+If both use original data, C1 should show different probe accuracies.
+
+Wait, I need to reconsider where the C1 numbers are coming from. The matched-condition steering experiments report probe accuracy on their specific conflict-only subset, which is different from the original cross-lingual transfer accuracy measured in the mvp_probe experiments. So C1 might be mixing two distinct measurements: the cross-lingual transfer accuracy around 77.6% versus the matched-condition conflict detection accuracy of 90.0%. I'm realizing the matched-condition probe accuracy and cross-lingual detectability are measuring different things — the former shows probe quality on curated conflict data used for steering, while the latter demonstrates actual cross-lingual transfer capability. I need to verify whether the "L13 unique causal node" claim in the roadmap is actually supported by the available experimental data.
+
+Looking at the original steering results with N=136, L13 is indeed the only significant site with strong p-values, while L18, L28, and the alternative L16 data all show negative results. But when I examine the matched-condition data with N=201, the picture changes — L13, L14, and L16 all reach significance, suggesting the causal window is actually broader than the roadmap claims.
+
+The critical issue is that the paper's steering evidence comes from the original dataset (citing p=0.002 and p<0.001 for L13), yet the roadmap's claim about "6-layer monotonic gradient decay" appears to come from the matched-condition sweep instead. So the roadmap is conflating findings across two different datasets — the "L13 only" part is accurate for the original data the paper reports, but the gradient decay pattern isn't actually demonstrated in the paper's reported results.
+
+Looking more closely at the phrasing though, "6层梯度单调衰减" might be describing how significance drops off from L13 outward across layers, with "唯一因果节点" referring to L13 as the peak rather than literally the only significant layer. The Chinese is ambiguous enough that this interpretation is plausible, though "唯一" typically does mean "only."
+
+Now let me verify the Paper Agent completion claim against the ROADMAP — it shows all 14 fixes plus 6 additional consistency fixes completed, the figures redesigned and deployed, and the consistency check passing with just 1 info-level item. That all checks out. The last thing to note is that Round 4 review was submitted and is awaiting user approval on the review mode.
+
+I should also flag that paper_framing.md is quite outdated — it still references the original May 25 deadline and lists experiments and concerns that have since been resolved. Since it's just a planning document though, updating it isn't urgent.
+
+For the Director, the key issue I'm seeing is a potential wording problem in ROADMAP C3 regarding "L13 唯一因果节点" — the matched-condition experiments show Bonferroni-significant effects at N=201, which means the "唯一" (only) claim needs to be qualified. The paper itself uses the original N=136 dataset where L13 is indeed the sole success, so there's a discrepancy between what the ROADMAP claims and what the expanded analysis shows.
+
+There's also an undocumented reversal in the decision log: D019 marked "L16 negative" based on the N=136 steering experiment, but the N=201 version shows p=0.005, which is significant. This means the causal window assessment for Llama is stale and needs updating.
+
+A few minor items: ROADMAP has duplicate timestamp lines, the coverage matrix is empty because experiment_plan.yaml lacks claim mappings, and paper_framing.md is still referencing the old deadline.
+
+For Gemma v2 L21, there are no direct metrics—the Director extrapolated from the L16/L17/L18 pattern to mark it negative, which is reasonable but ideally should be verified directly.
+
+Overall, the ROADMAP direction is solid and contributions are well-defined, but the main concern is reconciling the C3 wording with what the matched-condition data actually shows. No critical blockers though.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9216077-d8a8-4f02-8d87-ff198eb9effd",
+  "isSidechain": false,
+  "requestId": "req_011CbQxG6X38yHjegHuZJZDG",
+  "type": "assistant",
+  "uuid": "d583ff44-18c2-4b0c-a703-799b8f42e0fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KxKiE1bNja3mKhDFDSkdD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12137,
+      "cache_read_input_tokens": 72257,
+      "output_tokens": 10022,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12137,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10022,
+          "cache_read_input_tokens": 72257,
+          "cache_creation_input_tokens": 12137,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12137
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-26T09:38:37.527Z_
+
+数据收集完毕，开始逐项核实。
+
+关键数据已提取。Registry 中匹配条件 Llama 层扫描（N=201）结果：
+- L12: negative (best p=0.085)
+- **L13: success (p=0.0003)**
+- **L14: success (p=0.0022)**
+- **L16: success (p=0.005)**
+- L18: negative (marginal p=0.0099)
+- L28: negative (p=0.284)
+
+而 ROADMAP C3 写的是"L13 **唯一**因果节点"。这需要核实。
+
+同时注意 D019 结论"Llama L16 也失败"基于 steering_llama_L16_123（N=136, probe acc 76.84%），但 matched-condition 的 steering_llama_L16_127（N=201, probe acc 91.5%）显示 L16 是显著的（p=0.005）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d583ff44-18c2-4b0c-a703-799b8f42e0fb",
+  "isSidechain": false,
+  "requestId": "req_011CbQxG6X38yHjegHuZJZDG",
+  "type": "assistant",
+  "uuid": "b40f8c62-ad43-4554-894b-20867b07fca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KxKiE1bNja3mKhDFDSkdD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12137,
+      "cache_read_input_tokens": 72257,
+      "output_tokens": 10022,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12137,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10022,
+          "cache_read_input_tokens": 72257,
+          "cache_creation_input_tokens": 12137,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12137
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-26T09:39:00.181Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_016tg4YTBdkee5mdPShDMsn2`</summary>
+
+````json
+{
+  "text": "## ROADMAP 审查报告 — 2026-05-26 更新（Paper Agent 6项修复 + Figure 重设计）\n\n**结论**: WARNING\n\n### 发现\n\n**1. [severity: warning] ROADMAP C3 \"L13 唯一因果节点\" 与 matched-condition registry 数据不一致**\n\nROADMAP C3 描述：\"L13 唯一因果节点，6层梯度单调衰减\"。但 registry 中 matched-condition 层扫描实验（N=201）显示：\n- steering_llama_L13_repl_126: Bonferroni 显著 (α=+10 p=0.0003, α=+5 p=0.0034)\n- steering_llama_L14_125: Bonferroni 显著 (α=+10 p=0.0022)\n- steering_llama_L16_127: Bonferroni 显著 (α=+10 p=0.005)\n\nL14 和 L16 同样通过 Bonferroni 校正（阈值 0.05/6=0.00833），\"唯一\" 一词不准确。\n\n**混源风险**：ROADMAP C1 引用 matched-condition 数据（\"Llama 90.0%, N=201\"），但 paper_provenance 中 steering claims (C023/C045/C047/C062/C068) 全部引用 steering_107_L13（原始 N=136 数据）。如果论文用原始数据，L13 确实是唯一显著点；但 ROADMAP C3 的\"6层梯度单调衰减\"来自 matched-condition 数据，该数据集中 L14/L16 也显著。ROADMAP 混用两套数据源的叙事，需统一。\n\n**建议**：\n- 若论文基于原始 N=136 数据：ROADMAP C3 删除\"6层梯度单调衰减\"或标注数据源\n- 若论文基于 matched-condition N=201 数据：改\"唯一\"为\"peak\"，L14/L16 显著性需在论文中报告\n- 无论哪种，decisions.yaml 需新增一条决策记录 L14/L16 matched-condition 结果（D019 的\"L16 negative\"已被 N=201 数据推翻）\n\n**2. [severity: warning] D019 结论过时未更新**\n\nD019（2026-05-23）：\"Llama L16 也失败\"——基于 steering_llama_L16_123（N=136, probe acc 76.84%）。但 steering_llama_L16_127（matched-condition, N=201, probe acc 91.5%）结论为 success（Bonferroni p=0.005）。decisions.yaml 中没有记录这一逆转。如果 matched-condition 实验的目的是作为最终定论，D019 的 L16 判断已失效。\n\n**3. [severity: info] ROADMAP 格式问题 — 重复 header**\n\n两行几乎相同的\"最后更新\"：\n```\n> 最后更新: 2026-05-26 09:34 UTC | 更新原因: ...\n> 最后更新: 2026-05-26 | 更新原因: ...\n```\n\n**4. [severity: info] Coverage matrix 为空**\n\nexperiment_plan.yaml 无 claim 字段映射，compute_coverage_matrix 返回 0/0。不阻塞但失去自动覆盖度追踪能力。\n\n**5. [severity: info] Gemma v2 L21 (steering_gemma_v2_L21_139) 无直接 metrics**\n\nRegistry 无 metrics 字段，结论基于 Director 从 L16/L17/L18 一致 negative 模式推断。考虑到 L16-L18 全线 negative（probe acc 88-89.5%, N=171, 0 directional flips），推断合理，但如有条件建议补全实际数值。\n\n### 整体评估\n\nROADMAP 方向合理：\n- 四个 Contribution 均有数据支撑\n- 一致性检查通过（0 critical, 0 warning）\n- GPU 实验全部完成，资源状态正确\n- Paper Agent 修复轮完成\n\n主要风险是 C3 叙事的数据源混用问题——审稿人如果看到 appendix 中 L14/L16 的 matched-condition 数据，可能质疑\"L13 唯一因果节点\"的措辞。建议在 Round 4 审稿前统一数据源叙事。",
+  "project": "clkc_mech_interp"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b40f8c62-ad43-4554-894b-20867b07fca2",
+  "isSidechain": false,
+  "requestId": "req_011CbQxG6X38yHjegHuZJZDG",
+  "type": "assistant",
+  "uuid": "a9ead61a-cedc-4465-aa64-c0c04be69131",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KxKiE1bNja3mKhDFDSkdD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12137,
+      "cache_read_input_tokens": 72257,
+      "output_tokens": 10022,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12137,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10022,
+          "cache_read_input_tokens": 72257,
+          "cache_creation_input_tokens": 12137,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12137
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "a9ead61a-cedc-4465-aa64-c0c04be69131",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-26T09:39:04.306Z_
+
+<details><summary>↩ Tool result · `toolu_016tg4YTBdkee5mdPShDMsn2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9ead61a-cedc-4465-aa64-c0c04be69131",
+  "isSidechain": false,
+  "promptId": "2896ba67-0271-4259-a6b3-3349604f065e",
+  "type": "user",
+  "uuid": "e20184db-29d3-46e1-ace0-d82ba1e862d4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_6951eb3869a0070e3ae607ab60c90dad:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "a9ead61a-cedc-4465-aa64-c0c04be69131",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-26T09:39:10.071Z_
+
+审查报告已发送。
+
+核心发现：ROADMAP C3 "L13 唯一因果节点" 与 matched-condition 层扫描数据存在矛盾——registry 中 L14（p=0.0022）和 L16（p=0.005）在 N=201 数据上同样通过 Bonferroni 校正。ROADMAP 混用了原始 N=136 和 matched-condition N=201 两套数据源的叙事，需要统一。D019 的"L16 negative"结论已被新数据推翻但未记录。其余方面（方向合理、GPU 完成、一致性检查通过）无异常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e20184db-29d3-46e1-ace0-d82ba1e862d4",
+  "isSidechain": false,
+  "requestId": "req_011CbQxW5mXihZ9YbcxSzJp1",
+  "type": "assistant",
+  "uuid": "935b6f78-0c51-4c89-97a2-3a98c946fd7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/reviewer_509ec47e",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKrRyk7DZM6zRC2qjB2dzz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10076,
+      "cache_read_input_tokens": 84394,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 84394,
+          "cache_creation_input_tokens": 10076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：Paper Agent 完成全部 6 项修复 + Figure 重设计，一致性检查通过），请审查研究方向和计划的合理性。",
+  "leafUuid": "935b6f78-0c51-4c89-97a2-3a98c946fd7f",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review roadmap after Paper Agent completion",
+  "sessionId": "d0fa44a5-9760-4850-be9e-340618167017"
+}
+```
+
+---

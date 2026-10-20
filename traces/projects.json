@@ -159,6 +159,19 @@
       }
     },
     {
+      "project": "clkc_mech_interp--export-20260712",
+      "title": "English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries (July export snapshot)",
+      "catalog": "../research-snapshots/clkc_mech_interp/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 287,
+        "messages": 61458,
+        "user_turns": 2947,
+        "tool_calls": 16875,
+        "unparsed_lines": 0,
+        "conversation": 287
+      }
+    },
+    {
       "project": "collapse-aware-mixing",
       "title": "collapse aware mixing",
       "catalog": "../paper-assets/collapse-aware-mixing/05-generation-trace/catalog.json",

@@ -1,0 +1,1024 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ca12202bbf8e416464c9",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-22T06:46:50.245Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4668d575-67fc-48d3-8b99-171437aaaaa3",
+            "isSidechain": false,
+            "requestId": "req_011CbHA8RvVQfk1syGpVaYSm",
+            "type": "assistant",
+            "uuid": "ec8dc565-5c02-4894-9e5d-392c25536ffe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0142xM4ngKLFv7RbXtPAiGHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1435,
+                "cache_read_input_tokens": 143937,
+                "output_tokens": 79,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1435,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 79,
+                    "cache_read_input_tokens": 143937,
+                    "cache_creation_input_tokens": 1435,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1435
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-22T06:46:50.607Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HFmfEVFCXMMFpRWzx5ZTsk",
+              "name": "ToolSearch",
+              "input": {
+                "query": "register artifact",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec8dc565-5c02-4894-9e5d-392c25536ffe",
+            "isSidechain": false,
+            "requestId": "req_011CbHA8RvVQfk1syGpVaYSm",
+            "type": "assistant",
+            "uuid": "0c610877-5090-4640-9f1f-17d5fa377ffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0142xM4ngKLFv7RbXtPAiGHF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1435,
+                "cache_read_input_tokens": 143937,
+                "output_tokens": 79,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1435,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 79,
+                    "cache_read_input_tokens": 143937,
+                    "cache_creation_input_tokens": 1435,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1435
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-22T06:46:50.623Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HFmfEVFCXMMFpRWzx5ZTsk",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c610877-5090-4640-9f1f-17d5fa377ffa",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "7f0c3cf2-cc6c-468e-a3d5-144cf839a16b",
+            "toolUseResult": {
+              "matches": [],
+              "query": "register artifact",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "0c610877-5090-4640-9f1f-17d5fa377ffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-22T06:46:53.748Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qgq2vCDCxijd8Rimmb94nr",
+              "name": "Grep",
+              "input": {
+                "pattern": "register_artifact",
+                "path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f0c3cf2-cc6c-468e-a3d5-144cf839a16b",
+            "isSidechain": false,
+            "requestId": "req_011CbHA8gS7gXP8q6EuWdb7x",
+            "type": "assistant",
+            "uuid": "7daf9fb7-fa25-4621-a921-f16c0168c2e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KswAkHjjEL3edgCsUNPMci",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 97,
+                "cache_read_input_tokens": 145372,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 97,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 145372,
+                    "cache_creation_input_tokens": 97,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 97
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-22T06:46:54.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qgq2vCDCxijd8Rimmb94nr",
+              "type": "tool_result",
+              "content": "Found 2 files\nartifacts/clkc_code/.venv/lib/python3.14/site-packages/torch/_logging/_registrations.py\nartifacts/clkc_code/.venv/lib/python3.14/site-packages/torch/_logging/_internal.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7daf9fb7-fa25-4621-a921-f16c0168c2e7",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "33b4b6c7-91ca-45d7-8964-0d3db53dbba6",
+            "toolUseResult": {
+              "mode": "files_with_matches",
+              "filenames": [
+                "artifacts/clkc_code/.venv/lib/python3.14/site-packages/torch/_logging/_registrations.py",
+                "artifacts/clkc_code/.venv/lib/python3.14/site-packages/torch/_logging/_internal.py"
+              ],
+              "numFiles": 2
+            },
+            "sourceToolAssistantUUID": "7daf9fb7-fa25-4621-a921-f16c0168c2e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-22T06:46:58.039Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WRHg4GnNFZArcZmCwFMQAH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33b4b6c7-91ca-45d7-8964-0d3db53dbba6",
+            "isSidechain": false,
+            "requestId": "req_011CbHA8ymuSnhpFs2uXZvSb",
+            "type": "assistant",
+            "uuid": "90f8c520-4dea-411a-8288-61ac17c19785",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RY2HxCP31QKjqW9JX4cdjM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 198,
+                "cache_read_input_tokens": 145469,
+                "output_tokens": 83,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 198,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 83,
+                    "cache_read_input_tokens": 145469,
+                    "cache_creation_input_tokens": 198,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 198
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-22T06:46:58.046Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WRHg4GnNFZArcZmCwFMQAH",
+              "type": "tool_result",
+              "content": "1\t- id: art_20260522_ec166f\n2\t  name: token_overlap_results\n3\t  type: report\n4\t  description: EN-ZH token overlap analysis for Qwen3-8B and Llama-3.1-8B-Instruct\n5\t    tokenizers\n6\t  path: projects/clkc_mech_interp/artifacts/_project/report/token_overlap_results.md\n7\t  url: null\n8\t  project: clkc_mech_interp\n9\t  exp_id: null\n10\t  skill: ''\n11\t  created_at: '2026-05-22T00:59:43.452576+00:00'\n12\t  tags:\n13\t  - token_overlap\n14\t  - tokenizer\n15\t  - cross_lingual\n16\t- id: art_20260522_761a07\n17\t  name: token_overlap_enhanced_analysis\n18\t  type: data\n19\t  description: 'Enhanced token overlap analysis: per-sample Jaccard, correlation with\n20\t    EN→ZH probe correctness, tercile control experiment. Conclusion: RC2 (token overlap\n21\t    drives transfer) EXCLUDED. Qwen shows no significant correlation; Llama shows\n22\t    significant negative correlation.'\n23\t  path: projects/clkc_mech_interp/artifacts/_project/data/token_overlap_summary.md\n24\t  url: null\n25\t  project: clkc_mech_interp\n26\t  exp_id: null\n27\t  skill: ''\n28\t  created_at: '2026-05-22T01:41:21.094334+00:00'\n29\t  tags:\n30\t  - token_overlap\n31\t  - RC2\n32\t  - control_experiment\n33\t- id: art_20260522_3dc34a\n34\t  name: bootstrap_asymmetry_corrected_qwen\n35\t  type: data\n36\t  description: 'Qwen3-8B corrected bootstrap asymmetry CI (plan_099): 7.18pp [-1.19%,\n37\t    13.41%], not significant'\n38\t  path: projects/clkc_mech_interp/artifacts/mvp_probe_v1/data/bootstrap_qwen.json\n39\t  url: null\n40\t  project: clkc_mech_interp\n41\t  exp_id: mvp_probe_v1\n42\t  skill: ''\n43\t  created_at: '2026-05-22T02:19:58.473358+00:00'\n44\t  tags:\n45\t  - bootstrap\n46\t  - asymmetry\n47\t  - plan_099\n48\t- id: art_20260522_97f39a\n49\t  name: bootstrap_asymmetry_corrected_llama\n50\t  type: data\n51\t  description: 'Llama3.1-8B corrected bootstrap asymmetry CI (plan_099): 7.22pp [1.10%,\n52\t    13.61%], significant'\n53\t  path: projects/clkc_mech_interp/artifacts/mvp_probe_llama_v1/data/bootstrap_llama.json\n54\t  url: null\n55\t  project: clkc_mech_interp\n56\t  exp_id: mvp_probe_llama_v1\n57\t  skill: ''\n58\t  created_at: '2026-05-22T02:19:59.701708+00:00'\n59\t  tags:\n60\t  - bootstrap\n61\t  - asymmetry\n62\t  - plan_099\n63\t- id: art_20260522_a2aa95\n64\t  name: comet_tertile_ablation\n65\t  type: data\n66\t  description: 'COMET tertile ablation for Qwen3-8B EN to ZH probe (plan_105). NOT\n67\t    confounder: delta=-5.64pp reversed, Fisher p=0.695.'\n68\t  path: projects/clkc_mech_interp/artifacts/_project/data/comet_tertile_ablation.txt\n69\t  url: null\n70\t  project: clkc_mech_interp\n71\t  exp_id: null\n72\t  skill: ''\n73\t  created_at: '2026-05-22T02:22:39.354141+00:00'\n74\t  tags:\n75\t  - plan_105\n76\t  - comet\n77\t  - ablation\n78\t  - qwen3\n79\t- id: art_20260522_g2pipe\n80\t  name: gemma2_pipeline_commands\n81\t  type: report\n82\t  description: 'Gemma-2-9B-IT full probe pipeline commands (plan_102): 6-step execution\n83\t    sequence with verified args, time estimates, and risk notes'\n84\t  path: projects/clkc_mech_interp/artifacts/gemma2_pipeline_commands.md\n85\t  url: null\n86\t  project: clkc_mech_interp\n87\t  exp_id: null\n88\t  skill: ''\n89\t  created_at: '2026-05-22T12:00:00.000000+00:00'\n90\t  tags:\n91\t  - plan_102\n92\t  - gemma2\n93\t  - pipeline\n94\t- id: art_20260522_1150c6\n95\t  name: plan_110_xnli_baseline_report\n96\t  type: report\n97\t  description: 'XNLI non-conflict semantic baseline experiment report. Compares cross-lingual\n98\t    probe transfer asymmetry between XNLI (NLI task) and knowledge conflict task for\n99\t    Qwen3-8B and Llama-3.1-8B. Key finding: ~6pp ZH→EN > EN→ZH asymmetry is a general\n100\t    cross-lingual property, not conflict-specific.'\n101\t  path: projects/clkc_mech_interp/artifacts/plan_110/report/plan_110_xnli_baseline_report.md\n102\t  url: null\n103\t  project: clkc_mech_interp\n104\t  exp_id: plan_110\n105\t  skill: ''\n106\t  created_at: '2026-05-22T05:39:36.475661+00:00'\n107\t  tags:\n108\t  - xnli\n109\t  - baseline\n110\t  - asymmetry\n111\t  - cross-lingual\n112\t  - probe\n113\t  - bootstrap\n114\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90f8c520-4dea-411a-8288-61ac17c19785",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "136f5379-e267-4736-9765-0c7f47fc62e7",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml",
+                "content": "- id: art_20260522_ec166f\n  name: token_overlap_results\n  type: report\n  description: EN-ZH token overlap analysis for Qwen3-8B and Llama-3.1-8B-Instruct\n    tokenizers\n  path: projects/clkc_mech_interp/artifacts/_project/report/token_overlap_results.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T00:59:43.452576+00:00'\n  tags:\n  - token_overlap\n  - tokenizer\n  - cross_lingual\n- id: art_20260522_761a07\n  name: token_overlap_enhanced_analysis\n  type: data\n  description: 'Enhanced token overlap analysis: per-sample Jaccard, correlation with\n    EN→ZH probe correctness, tercile control experiment. Conclusion: RC2 (token overlap\n    drives transfer) EXCLUDED. Qwen shows no significant correlation; Llama shows\n    significant negative correlation.'\n  path: projects/clkc_mech_interp/artifacts/_project/data/token_overlap_summary.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T01:41:21.094334+00:00'\n  tags:\n  - token_overlap\n  - RC2\n  - control_experiment\n- id: art_20260522_3dc34a\n  name: bootstrap_asymmetry_corrected_qwen\n  type: data\n  description: 'Qwen3-8B corrected bootstrap asymmetry CI (plan_099): 7.18pp [-1.19%,\n    13.41%], not significant'\n  path: projects/clkc_mech_interp/artifacts/mvp_probe_v1/data/bootstrap_qwen.json\n  url: null\n  project: clkc_mech_interp\n  exp_id: mvp_probe_v1\n  skill: ''\n  created_at: '2026-05-22T02:19:58.473358+00:00'\n  tags:\n  - bootstrap\n  - asymmetry\n  - plan_099\n- id: art_20260522_97f39a\n  name: bootstrap_asymmetry_corrected_llama\n  type: data\n  description: 'Llama3.1-8B corrected bootstrap asymmetry CI (plan_099): 7.22pp [1.10%,\n    13.61%], significant'\n  path: projects/clkc_mech_interp/artifacts/mvp_probe_llama_v1/data/bootstrap_llama.json\n  url: null\n  project: clkc_mech_interp\n  exp_id: mvp_probe_llama_v1\n  skill: ''\n  created_at: '2026-05-22T02:19:59.701708+00:00'\n  tags:\n  - bootstrap\n  - asymmetry\n  - plan_099\n- id: art_20260522_a2aa95\n  name: comet_tertile_ablation\n  type: data\n  description: 'COMET tertile ablation for Qwen3-8B EN to ZH probe (plan_105). NOT\n    confounder: delta=-5.64pp reversed, Fisher p=0.695.'\n  path: projects/clkc_mech_interp/artifacts/_project/data/comet_tertile_ablation.txt\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T02:22:39.354141+00:00'\n  tags:\n  - plan_105\n  - comet\n  - ablation\n  - qwen3\n- id: art_20260522_g2pipe\n  name: gemma2_pipeline_commands\n  type: report\n  description: 'Gemma-2-9B-IT full probe pipeline commands (plan_102): 6-step execution\n    sequence with verified args, time estimates, and risk notes'\n  path: projects/clkc_mech_interp/artifacts/gemma2_pipeline_commands.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T12:00:00.000000+00:00'\n  tags:\n  - plan_102\n  - gemma2\n  - pipeline\n- id: art_20260522_1150c6\n  name: plan_110_xnli_baseline_report\n  type: report\n  description: 'XNLI non-conflict semantic baseline experiment report. Compares cross-lingual\n    probe transfer asymmetry between XNLI (NLI task) and knowledge conflict task for\n    Qwen3-8B and Llama-3.1-8B. Key finding: ~6pp ZH→EN > EN→ZH asymmetry is a general\n    cross-lingual property, not conflict-specific.'\n  path: projects/clkc_mech_interp/artifacts/plan_110/report/plan_110_xnli_baseline_report.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: plan_110\n  skill: ''\n  created_at: '2026-05-22T05:39:36.475661+00:00'\n  tags:\n  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap\n",
+                "numLines": 114,
+                "startLine": 1,
+                "totalLines": 114
+              }
+            },
+            "sourceToolAssistantUUID": "90f8c520-4dea-411a-8288-61ac17c19785",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "136f5379-e267-4736-9765-0c7f47fc62e7",
+                "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f"
+              }
+            }
+          ],
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Collect XNLI MLP probe results",
+                "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f"
+              }
+            }
+          ],
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-22T06:47:01.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qgwa2kojCZfPmpXu5tRPCT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "136f5379-e267-4736-9765-0c7f47fc62e7",
+            "isSidechain": false,
+            "requestId": "req_011CbHA9EgbJkZ52bXkJm6U3",
+            "type": "assistant",
+            "uuid": "2e715f79-8d00-487a-87c3-6a2108f370b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017u4RT3hwQpGTLfzJhsQh3Y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1747,
+                "cache_read_input_tokens": 145667,
+                "output_tokens": 83,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1747,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 83,
+                    "cache_read_input_tokens": 145667,
+                    "cache_creation_input_tokens": 1747,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1747
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-22T06:47:01.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qgwa2kojCZfPmpXu5tRPCT",
+              "type": "tool_result",
+              "content": "File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e715f79-8d00-487a-87c3-6a2108f370b4",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "fde82e01-4fca-42b0-a686-51a2db1b8a27",
+            "toolUseResult": {
+              "type": "file_unchanged",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml"
+              }
+            },
+            "sourceToolAssistantUUID": "2e715f79-8d00-487a-87c3-6a2108f370b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-22T06:47:07.539Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JgfxKPZpxzkECZDMx7CMtc",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml",
+                "old_string": "  - bootstrap\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap",
+                "new_string": "  - bootstrap\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap\n- id: art_20260522_mlpc3\n  name: xnli_mlp_probe_c3_report\n  type: report\n  description: 'XNLI MLP probe results vs conflict task. C3 CONFIRMED: XNLI EN→ZH\n    MLP gains are negative (Qwen -2.0pp, Llama -0.5pp) vs conflict task positive\n    (Qwen +2.4pp, Llama +9.2pp). Non-linear encoding is conflict-specific.'\n  path: projects/clkc_mech_interp/artifacts/xnli_mlp_probe_report.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: plan_110\n  skill: ''\n  created_at: '2026-05-22T14:50:00.000000+00:00'\n  tags:\n  - xnli\n  - mlp_probe\n  - C3\n  - non-linearity\n  - cross-lingual"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fde82e01-4fca-42b0-a686-51a2db1b8a27",
+            "isSidechain": false,
+            "requestId": "req_011CbHA9U2XJu8vGxPsDBv44",
+            "type": "assistant",
+            "uuid": "81180d63-8bfc-46e2-9c27-50e5832ebfde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R4f99GFZ6gX5yZmiE8k8W4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 125,
+                "cache_read_input_tokens": 147414,
+                "output_tokens": 419,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 125,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 419,
+                    "cache_read_input_tokens": 147414,
+                    "cache_creation_input_tokens": 125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 125
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-22T06:47:07.544Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>String to replace not found in file.\nString:   - bootstrap\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01JgfxKPZpxzkECZDMx7CMtc"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81180d63-8bfc-46e2-9c27-50e5832ebfde",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "47223a3f-caed-476f-8a74-061fc3844eef",
+            "toolUseResult": "Error: String to replace not found in file.\nString:   - bootstrap\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap",
+            "sourceToolAssistantUUID": "81180d63-8bfc-46e2-9c27-50e5832ebfde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-22T06:47:10.757Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DCBD5yUUZkih6JACcJNfJ1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml",
+                "offset": 105
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47223a3f-caed-476f-8a74-061fc3844eef",
+            "isSidechain": false,
+            "requestId": "req_011CbHA9vbgmXsGGcBey3C3V",
+            "type": "assistant",
+            "uuid": "d4f2ac7d-8e4b-404f-9cf4-e9fa8302d931",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019GzoCJt4t9mRJWtBLo6TZ6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 505,
+                "cache_read_input_tokens": 147539,
+                "output_tokens": 100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 505,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 100,
+                    "cache_read_input_tokens": 147539,
+                    "cache_creation_input_tokens": 505,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 505
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-22T06:47:10.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DCBD5yUUZkih6JACcJNfJ1",
+              "type": "tool_result",
+              "content": "105\t  skill: ''\n106\t  created_at: '2026-05-22T05:39:36.475661+00:00'\n107\t  tags:\n108\t  - xnli\n109\t  - baseline\n110\t  - asymmetry\n111\t  - cross-lingual\n112\t  - probe\n113\t  - bootstrap\n114\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4f2ac7d-8e4b-404f-9cf4-e9fa8302d931",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "8071aa05-9667-4c95-a239-c474030a03a5",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml",
+                "content": "  skill: ''\n  created_at: '2026-05-22T05:39:36.475661+00:00'\n  tags:\n  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap\n",
+                "numLines": 10,
+                "startLine": 105,
+                "totalLines": 114
+              }
+            },
+            "sourceToolAssistantUUID": "d4f2ac7d-8e4b-404f-9cf4-e9fa8302d931",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-22T06:47:10.856Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8071aa05-9667-4c95-a239-c474030a03a5",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "a6822410-8999-48ef-8741-eb842baf0e58",
+                "timestamp": "2026-05-22T06:47:10.856Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+                "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-22T06:47:16.525Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TUaQx7E4tZdWNrkso4keT1",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml",
+                "old_string": "  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap",
+                "new_string": "  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap\n- id: art_20260522_mlpc3\n  name: xnli_mlp_probe_c3_report\n  type: report\n  description: 'XNLI MLP probe results vs conflict task. C3 CONFIRMED: XNLI EN→ZH\n    MLP gains are negative (Qwen -2.0pp, Llama -0.5pp) vs conflict task positive\n    (Qwen +2.4pp, Llama +9.2pp). Non-linear encoding is conflict-specific.'\n  path: projects/clkc_mech_interp/artifacts/xnli_mlp_probe_report.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: plan_110\n  skill: ''\n  created_at: '2026-05-22T14:50:00.000000+00:00'\n  tags:\n  - xnli\n  - mlp_probe\n  - C3\n  - non-linearity\n  - cross-lingual"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a6822410-8999-48ef-8741-eb842baf0e58",
+            "isSidechain": false,
+            "requestId": "req_011CbHAAAnDmx6wDQhjxihvC",
+            "type": "assistant",
+            "uuid": "3d13a43a-e091-4a6e-8067-a552d8184141",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EXhP2UhiAqPR1AZFaoMRXW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 301,
+                "cache_read_input_tokens": 148044,
+                "output_tokens": 431,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 301,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 431,
+                    "cache_read_input_tokens": 148044,
+                    "cache_creation_input_tokens": 301,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 301
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-22T06:47:16.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TUaQx7E4tZdWNrkso4keT1",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d13a43a-e091-4a6e-8067-a552d8184141",
+            "isSidechain": false,
+            "promptId": "8db8db82-472b-40e5-a303-ddc36c31c3e8",
+            "type": "user",
+            "uuid": "1ca8c7b2-888e-41e2-9985-cb406122e8c2",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/artifacts/manifest.yaml",
+              "oldString": "  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap",
+              "newString": "  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap\n- id: art_20260522_mlpc3\n  name: xnli_mlp_probe_c3_report\n  type: report\n  description: 'XNLI MLP probe results vs conflict task. C3 CONFIRMED: XNLI EN→ZH\n    MLP gains are negative (Qwen -2.0pp, Llama -0.5pp) vs conflict task positive\n    (Qwen +2.4pp, Llama +9.2pp). Non-linear encoding is conflict-specific.'\n  path: projects/clkc_mech_interp/artifacts/xnli_mlp_probe_report.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: plan_110\n  skill: ''\n  created_at: '2026-05-22T14:50:00.000000+00:00'\n  tags:\n  - xnli\n  - mlp_probe\n  - C3\n  - non-linearity\n  - cross-lingual",
+              "originalFile": "- id: art_20260522_ec166f\n  name: token_overlap_results\n  type: report\n  description: EN-ZH token overlap analysis for Qwen3-8B and Llama-3.1-8B-Instruct\n    tokenizers\n  path: projects/clkc_mech_interp/artifacts/_project/report/token_overlap_results.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T00:59:43.452576+00:00'\n  tags:\n  - token_overlap\n  - tokenizer\n  - cross_lingual\n- id: art_20260522_761a07\n  name: token_overlap_enhanced_analysis\n  type: data\n  description: 'Enhanced token overlap analysis: per-sample Jaccard, correlation with\n    EN→ZH probe correctness, tercile control experiment. Conclusion: RC2 (token overlap\n    drives transfer) EXCLUDED. Qwen shows no significant correlation; Llama shows\n    significant negative correlation.'\n  path: projects/clkc_mech_interp/artifacts/_project/data/token_overlap_summary.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T01:41:21.094334+00:00'\n  tags:\n  - token_overlap\n  - RC2\n  - control_experiment\n- id: art_20260522_3dc34a\n  name: bootstrap_asymmetry_corrected_qwen\n  type: data\n  description: 'Qwen3-8B corrected bootstrap asymmetry CI (plan_099): 7.18pp [-1.19%,\n    13.41%], not significant'\n  path: projects/clkc_mech_interp/artifacts/mvp_probe_v1/data/bootstrap_qwen.json\n  url: null\n  project: clkc_mech_interp\n  exp_id: mvp_probe_v1\n  skill: ''\n  created_at: '2026-05-22T02:19:58.473358+00:00'\n  tags:\n  - bootstrap\n  - asymmetry\n  - plan_099\n- id: art_20260522_97f39a\n  name: bootstrap_asymmetry_corrected_llama\n  type: data\n  description: 'Llama3.1-8B corrected bootstrap asymmetry CI (plan_099): 7.22pp [1.10%,\n    13.61%], significant'\n  path: projects/clkc_mech_interp/artifacts/mvp_probe_llama_v1/data/bootstrap_llama.json\n  url: null\n  project: clkc_mech_interp\n  exp_id: mvp_probe_llama_v1\n  skill: ''\n  created_at: '2026-05-22T02:19:59.701708+00:00'\n  tags:\n  - bootstrap\n  - asymmetry\n  - plan_099\n- id: art_20260522_a2aa95\n  name: comet_tertile_ablation\n  type: data\n  description: 'COMET tertile ablation for Qwen3-8B EN to ZH probe (plan_105). NOT\n    confounder: delta=-5.64pp reversed, Fisher p=0.695.'\n  path: projects/clkc_mech_interp/artifacts/_project/data/comet_tertile_ablation.txt\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T02:22:39.354141+00:00'\n  tags:\n  - plan_105\n  - comet\n  - ablation\n  - qwen3\n- id: art_20260522_g2pipe\n  name: gemma2_pipeline_commands\n  type: report\n  description: 'Gemma-2-9B-IT full probe pipeline commands (plan_102): 6-step execution\n    sequence with verified args, time estimates, and risk notes'\n  path: projects/clkc_mech_interp/artifacts/gemma2_pipeline_commands.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-22T12:00:00.000000+00:00'\n  tags:\n  - plan_102\n  - gemma2\n  - pipeline\n- id: art_20260522_1150c6\n  name: plan_110_xnli_baseline_report\n  type: report\n  description: 'XNLI non-conflict semantic baseline experiment report. Compares cross-lingual\n    probe transfer asymmetry between XNLI (NLI task) and knowledge conflict task for\n    Qwen3-8B and Llama-3.1-8B. Key finding: ~6pp ZH→EN > EN→ZH asymmetry is a general\n    cross-lingual property, not conflict-specific.'\n  path: projects/clkc_mech_interp/artifacts/plan_110/report/plan_110_xnli_baseline_report.md\n  url: null\n  project: clkc_mech_interp\n  exp_id: plan_110\n  skill: ''\n  created_at: '2026-05-22T05:39:36.475661+00:00'\n  tags:\n  - xnli\n  - baseline\n  - asymmetry\n  - cross-lingual\n  - probe\n  - bootstrap\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 111,
+                  "oldLines": 3,
+                  "newStart": 111,
+                  "newLines": 21,
+                  "lines": [
+                    "   - cross-lingual",
+                    "   - probe",
+                    "   - bootstrap",
+                    "+- id: art_20260522_mlpc3",
+                    "+  name: xnli_mlp_probe_c3_report",
+                    "+  type: report",
+                    "+  description: 'XNLI MLP probe results vs conflict task. C3 CONFIRMED: XNLI EN→ZH",
+                    "+    MLP gains are negative (Qwen -2.0pp, Llama -0.5pp) vs conflict task positive",
+                    "+    (Qwen +2.4pp, Llama +9.2pp). Non-linear encoding is conflict-specific.'",
+                    "+  path: projects/clkc_mech_interp/artifacts/xnli_mlp_probe_report.md",
+                    "+  url: null",
+                    "+  project: clkc_mech_interp",
+                    "+  exp_id: plan_110",
+                    "+  skill: ''",
+                    "+  created_at: '2026-05-22T14:50:00.000000+00:00'",
+                    "+  tags:",
+                    "+  - xnli",
+                    "+  - mlp_probe",
+                    "+  - C3",
+                    "+  - non-linearity",
+                    "+  - cross-lingual"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "3d13a43a-e091-4a6e-8067-a552d8184141",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-22T06:47:23.535Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n## XNLI MLP Probe — C3 验证结果\n\n**C3 成立：非线性 encoding 是冲突任务特有的。**\n\n关键 EN→ZH 方向 MLP gains 对比：\n\n| Model | XNLI EN→ZH Δ | Conflict EN→ZH Δ |\n|-------|:-----------:|:----------------:|\n| Qwen3 | **-2.0pp** | **+2.4pp** |\n| Llama3.1 | **-0.5pp** | **+9.2pp** |\n\nXNLI 上 MLP probe 相比 linear probe 完全没有增益（甚至为负），而冲突任务上 MLP 有显著提升。这说明冲突任务中 EN→ZH 方向的 representation 需要非线性变换才能解码，而这种 non-linear encoding 在普通 NLI 任务中不存在。\n\n报告已保存至 `artifacts/xnli_mlp_probe_report.md` 并注册到 manifest。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ca8c7b2-888e-41e2-9985-cb406122e8c2",
+            "isSidechain": false,
+            "requestId": "req_011CbHAAbBez1GZzpaKGAbYD",
+            "type": "assistant",
+            "uuid": "16df5905-8a55-4783-968f-9cd52e0d65fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp",
+            "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NGenhR63csuiw43rQ8q3N2",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 499,
+                "cache_read_input_tokens": 148345,
+                "output_tokens": 297,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 499,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 297,
+                    "cache_read_input_tokens": 148345,
+                    "cache_creation_input_tokens": 499,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 499
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "16df5905-8a55-4783-968f-9cd52e0d65fe",
+                "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f"
+              }
+            }
+          ],
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Collect XNLI MLP probe results",
+                "sessionId": "6dd8ae8c-af38-48cc-b33d-4a2ffa3b071f"
+              }
+            }
+          ],
+          "id": "event-000741"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,691 @@
+# Research conversation: Search the web for the paper "Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model 
+
+**English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a1d1ce30d06bef9ac.jsonl`
+- **Structured JSON:** [`75097c39de50089444aa.json`](../../sessions/75/75097c39de50089444aa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+10 recorded events
+
+### User
+
+_source line 1 · 2026-05-22T16:39:55.594Z_
+
+Search the web for the paper "Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations" by Basu et al. 2026, arXiv:2603.18353. I need to verify a specific claim: does the paper report 98.2% AUROC for their probe accuracy? Look for the exact AUROC number they report. Return the exact number and the context in which it appears.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "149d8baf-f3a7-4427-99cc-3f7c3cda5876",
+  "agentId": "a1d1ce30d06bef9ac",
+  "type": "user",
+  "uuid": "e47039f2-7e1f-4f40-8754-95da82069f27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T16:39:55.601Z_
+
+```json
+{
+  "parentUuid": "e47039f2-7e1f-4f40-8754-95da82069f27",
+  "isSidechain": true,
+  "agentId": "a1d1ce30d06bef9ac",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5acc1c5c-ff53-4ca9-b12b-ab8324ad8b07",
+  "timestamp": "2026-05-22T16:39:55.601Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-22T16:39:57.976Z_
+
+
+
+I'll search for this paper to verify the specific AUROC claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5acc1c5c-ff53-4ca9-b12b-ab8324ad8b07",
+  "isSidechain": true,
+  "agentId": "a1d1ce30d06bef9ac",
+  "requestId": "req_011CbHwMoLhbCyUmy4CevtgC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d22b1c02-9dd0-4598-b7a0-82e766564823",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V9uWxkt7rhPCEgpfZwAqSQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23341,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 23341,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-22T16:39:58.249Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017uLFq24cgMshDSW15sirsK`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d22b1c02-9dd0-4598-b7a0-82e766564823",
+  "isSidechain": true,
+  "agentId": "a1d1ce30d06bef9ac",
+  "requestId": "req_011CbHwMoLhbCyUmy4CevtgC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d3dc3e6c-42d0-4dea-b768-a5f51431f5b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V9uWxkt7rhPCEgpfZwAqSQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23341,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 23341
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 23341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 23341,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-22T16:39:58.256Z_
+
+<details><summary>↩ Tool result · `toolu_017uLFq24cgMshDSW15sirsK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3dc3e6c-42d0-4dea-b768-a5f51431f5b2",
+  "isSidechain": true,
+  "promptId": "149d8baf-f3a7-4427-99cc-3f7c3cda5876",
+  "agentId": "a1d1ce30d06bef9ac",
+  "type": "user",
+  "uuid": "c94c3cd5-a2d9-4f00-a841-8ca12f782329",
+  "sourceToolAssistantUUID": "d3dc3e6c-42d0-4dea-b768-a5f51431f5b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-22T16:40:01.072Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DTPgVB4BobpYcxZfEJTEoJ`</summary>
+
+```json
+{
+  "query": "arXiv 2603.18353 Basu \"Interpretability without Actionability\" AUROC probe accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c94c3cd5-a2d9-4f00-a841-8ca12f782329",
+  "isSidechain": true,
+  "agentId": "a1d1ce30d06bef9ac",
+  "requestId": "req_011CbHwMzpGCmnRmzwJPsZuy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2509deb3-dc75-4514-8c6e-0bf7ca373c5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JzBGX8dAkBMXw7BGWRXsm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1456,
+      "cache_read_input_tokens": 23341,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1456
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 23341,
+          "cache_creation_input_tokens": 1456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1456,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T16:40:08.225Z_
+
+<details><summary>↩ Tool result · `toolu_01DTPgVB4BobpYcxZfEJTEoJ`</summary>
+
+```text
+Web search results for query: "arXiv 2603.18353 Basu "Interpretability without Actionability" AUROC probe accuracy"
+
+Links: [{"title":"[2603.18353] Interpretability without actionability","url":"https://arxiv.org/abs/2603.18353"},{"title":"Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2603.18353"},{"title":"Interpretability without actionability: mechanistic methods ...","url":"https://arxiv.org/pdf/2603.18353"},{"title":"Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations","url":"https://arxiv.org/html/2603.18353"},{"title":"(PDF) Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations","url":"https://www.researchgate.net/publication/402859588_Interpretability_without_actionability_mechanistic_methods_cannot_correct_language_model_errors_despite_near-perfect_internal_representations"},{"title":"Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations | Gist.Science","url":"https://gist.science/paper/2603.18353"},{"title":"Detecting Multi-Agent Collusion Through Multi-Agent Interpretability","url":"https://arxiv.org/html/2604.01151v1"},{"title":"Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling","url":"https://arxiv.org/html/2604.13386v1"}]
+
+Based on the search results, I found the paper you're looking for. Here are the key findings regarding AUROC probe accuracy from arXiv 2603.18353:
+
+Linear probes discriminated hazardous from benign cases with 98.2% AUROC, yet the model's output sensitivity was only 45.1%, a 53-percentage-point knowledge-action gap.
+
+The paper, authored by Sanjay Basu and colleagues, is titled "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations." The study compared four mechanistic interpretability methods -- concept bottleneck steering (Steerling-8B), sparse autoencoder feature steering, logit lens with activation patching, and linear probing with truthfulness separator vector steering (Qwen 2.5 7B Instruct) -- for correcting false-negative triage errors using 400 physician-adjudicated clinical vignettes (144 hazards, 256 benign).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2509deb3-dc75-4514-8c6e-0bf7ca373c5d",
+  "isSidechain": true,
+  "promptId": "149d8baf-f3a7-4427-99cc-3f7c3cda5876",
+  "agentId": "a1d1ce30d06bef9ac",
+  "type": "user",
+  "uuid": "7f1e767a-d66a-4cd1-9171-7e3e92d35ddd",
+  "sourceToolAssistantUUID": "2509deb3-dc75-4514-8c6e-0bf7ca373c5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-22T16:40:11.011Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bBP7KeF5oKztK4kTLtFbj`</summary>
+
+```json
+{
+  "query": "arxiv 2603.18353 \"98.2\" AUROC linear probe details context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f1e767a-d66a-4cd1-9171-7e3e92d35ddd",
+  "isSidechain": true,
+  "agentId": "a1d1ce30d06bef9ac",
+  "requestId": "req_011CbHwNjDvnkfCZ6vimm1XA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3c175a98-d45c-4b81-b34d-b6849d91bf95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjnJLUuCeLUr1em6MfxVQG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 24797,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 749
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 24797,
+          "cache_creation_input_tokens": 749,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 749,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T16:40:18.222Z_
+
+<details><summary>↩ Tool result · `toolu_019bBP7KeF5oKztK4kTLtFbj`</summary>
+
+```text
+Web search results for query: "arxiv 2603.18353 "98.2" AUROC linear probe details context"
+
+Links: [{"title":"[2603.18353] Interpretability without actionability","url":"https://arxiv.org/abs/2603.18353"},{"title":"Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations","url":"https://arxiv.org/html/2603.18353"},{"title":"Interpretability without actionability: mechanistic methods ...","url":"https://arxiv.org/pdf/2603.18353"},{"title":"Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2603.18353"},{"title":"Linear Probe Accuracy Scales with Model Size and Benefits from Multi-Layer Ensembling","url":"https://arxiv.org/html/2604.13386v1"},{"title":"Understanding intermediate layers using linear classifier probes","url":"https://arxiv.org/pdf/1610.01644"},{"title":"Using a Cross-Task Grid of Linear Probes to Interpret CNN Model   Predictions On Retinal Images","url":"https://arxiv.org/pdf/2107.11468"}]
+
+Based on the search results, here's the context around the 98.2% AUROC linear probe finding from arxiv 2603.18353:
+
+## Paper Overview
+The paper is titled "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations", submitted on March 18, 2026.
+
+## The 98.2% AUROC Finding
+
+Linear probes trained on Qwen's internal representations discriminated hazardous from benign cases with 98.2% AUROC (95% CI 0.968 to 0.993), demonstrating a 53-percentage-point gap between internal knowledge and output behaviour.
+
+## Technical Details
+
+A linear classifier trained on the internal representations of Qwen 2.5 7B at layer 23 discriminates hazardous from benign cases at 98.2% AUROC, yet the model's generative output detects only 45.1% of those same hazards—a 53-percentage-point gap between what the model knows and what it does.
+
+## Key Finding
+
+Linear probes discriminated hazardous from benign cases with 98.2% AUROC, yet the model's output sensitivity was only 45.1%, a 53-percentage-point knowledge-action gap. The study tested four mechanistic interpretability methods using 400 physician-adjudicated clinical vignettes (144 hazards, 256 benign).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c175a98-d45c-4b81-b34d-b6849d91bf95",
+  "isSidechain": true,
+  "promptId": "149d8baf-f3a7-4427-99cc-3f7c3cda5876",
+  "agentId": "a1d1ce30d06bef9ac",
+  "type": "user",
+  "uuid": "af9361ae-ee55-4230-86c9-f42a683ab724",
+  "sourceToolAssistantUUID": "3c175a98-d45c-4b81-b34d-b6849d91bf95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-22T16:40:25.585Z_
+
+The paper **does** report **98.2% AUROC** for their linear probe. Here are the exact details:
+
+**Exact number**: 98.2% AUROC (95% CI: 0.968 to 0.993)
+
+**Context**: A linear probe was trained on the internal representations of Qwen 2.5 7B Instruct at **layer 23**. This probe discriminated hazardous from benign clinical cases with 98.2% AUROC across 400 physician-adjudicated clinical vignettes (144 hazardous, 256 benign).
+
+The central finding of the paper is the **53-percentage-point "knowledge-action gap"**: despite near-perfect internal discrimination (98.2% AUROC), the model's generative output sensitivity was only 45.1% -- meaning the model "knows" internally which cases are hazardous but fails to act on that knowledge in its outputs. The paper tested four mechanistic interpretability methods (concept bottleneck steering, SAE feature steering, logit lens with activation patching, and linear probing with truthfulness separator vector steering) and found none could reliably close this gap.
+
+Sources:
+- [arXiv:2603.18353 Abstract](https://arxiv.org/abs/2603.18353)
+- [arXiv:2603.18353 HTML](https://arxiv.org/html/2603.18353)
+- [Cool Papers summary](https://papers.cool/arxiv/2603.18353)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af9361ae-ee55-4230-86c9-f42a683ab724",
+  "isSidechain": true,
+  "agentId": "a1d1ce30d06bef9ac",
+  "requestId": "req_011CbHwPTxBqPWocv1YFatHP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9fa317db-0112-4859-83a1-180f369507e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+  "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "enchanted-petting-dahl",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013XmpUzb7241pibSeq87YJs",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 25546,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 739
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 25546,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 739,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

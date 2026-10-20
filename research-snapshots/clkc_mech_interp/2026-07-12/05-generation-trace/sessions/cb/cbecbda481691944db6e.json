@@ -1,0 +1,611 @@
+{
+  "schema_version": "1.0",
+  "id": "cbecbda481691944db6e",
+  "project": "clkc_mech_interp--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the literature_map.yaml at `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/literature_map.yaml` a",
+  "task_key": "agent-acd089d1966135c41",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-acd089d1966135c41.jsonl",
+    "occurrence": 1,
+    "bytes": 50069,
+    "sha256": "91d52f724af02700cb0228eafd96a0c929dd11a83d228132b00dbb8227f30ef2"
+  },
+  "statistics": {
+    "messages": 10,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:24:37.919Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the literature_map.yaml at `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/literature_map.yaml` and generate a complete BibTeX file at `/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib`.\n\nRules:\n1. Only include papers with `verified: true`\n2. For venue mapping:\n   - Venues containing \"arXiv\" → `@article` with `journal = {arXiv preprint arXiv:XXXX.XXXXX}` (extract ID from url)\n   - \"ACL\", \"EMNLP\", \"NAACL\", \"EACL\", \"NeurIPS\", \"ICML\", \"ICLR\" → `@inproceedings` with `booktitle = {Proceedings of ...}`\n   - \"Findings of ACL/NAACL/EMNLP\" → `@inproceedings` with `booktitle = {Findings of ...}`\n   - \"Computational Linguistics\" → `@article` with `journal = {Computational Linguistics}`\n3. Every entry must have: author, title, year, and either booktitle or journal\n4. Use proper BibTeX author formatting: `{Last1, First1 and Last2, First2}`\n5. Include `url` field when available\n6. Include `doi` field when non-empty\n7. For \"et al.\" in authors list, try to expand if the full author list is in the data, otherwise use the available names\n\nThe existing references.bib file has only placeholder comments — overwrite it completely.\n\nImportant: Read the file first, then Write the complete BibTeX output.\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9ba93c69-17bf-4ffd-b2fc-6339c47e699d",
+            "agentId": "acd089d1966135c41",
+            "type": "user",
+            "uuid": "a7e9cf2b-be48-400a-9499-c305e6d42e86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:24:37.923Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a7e9cf2b-be48-400a-9499-c305e6d42e86",
+                "isSidechain": true,
+                "agentId": "acd089d1966135c41",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c901124b-e340-43a7-b0ae-aa0282b30534",
+                "timestamp": "2026-05-22T14:24:37.923Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+                "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "enchanted-petting-dahl"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:24:41.086Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GLAsCE5wQvaFnfiwGFBymk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c901124b-e340-43a7-b0ae-aa0282b30534",
+            "isSidechain": true,
+            "agentId": "acd089d1966135c41",
+            "requestId": "req_011CbHm3QizXaoMzH2dEtXMB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "578de6a7-afc4-408d-ae80-21b5974ea75b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QY4ScHVG9b1hWL7G3fxQmw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 24617,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 24617,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:24:41.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GLAsCE5wQvaFnfiwGFBymk",
+              "type": "tool_result",
+              "content": "1\tcategories: []\n2\tmeta:\n3\t  last_updated: '2026-05-22T14:30:00Z'\n4\t  total_papers: 29\n5\tpapers:\n6\t  basu2026interpretability:\n7\t    abstract: ''\n8\t    added_at: '2026-05-21T12:04:50.273Z'\n9\t    added_by: director-bootstrap\n10\t    authors:\n11\t    - Basu, S.\n12\t    - et al.\n13\t    bibtex_key: basu2026interpretability\n14\t    category: sae-steering\n15\t    doi: ''\n16\t    relevance: 'SAE steering failure in clinical triage despite 98.2% AUROC probes.\n17\t      Critical negative result: defines boundary conditions for when SAE steering\n18\t      works. Our Track 3 design addresses their methodological gaps.'\n19\t    role: direct-competitor\n20\t    semantic_scholar_id: ''\n21\t    title: 'Interpretability without actionability: mechanistic methods cannot correct\n22\t      language model errors despite near-perfect internal representations'\n23\t    url: https://arxiv.org/abs/2603.18353\n24\t    venue: arXiv\n25\t    verified: true\n26\t    year: 2026\n27\t  boer2026probing:\n28\t    abstract: ''\n29\t    added_at: '2026-05-21T12:04:50.273Z'\n30\t    added_by: director-bootstrap\n31\t    authors:\n32\t    - Boer, A.\n33\t    - Brink, I.\n34\t    - Ulmer, D.\n35\t    bibtex_key: boer2026probing\n36\t    category: probing\n37\t    doi: ''\n38\t    relevance: 0.96 Macro-F1 parametric-vs-contextual attribution probe on Llama/Mistral/Qwen.\n39\t      Monolingual performance ceiling for our Track 1. Cross-domain transfer 0.94-0.99\n40\t      F1.\n41\t    role: direct-competitor\n42\t    semantic_scholar_id: ''\n43\t    title: Probing for Knowledge Attribution in Large Language Models\n44\t    url: https://arxiv.org/abs/2602.22787\n45\t    venue: arXiv\n46\t    verified: true\n47\t    year: 2026\n48\t  ifergan2024beneath:\n49\t    added_at: '2026-05-22T14:00:00Z'\n50\t    added_by: paper-agent-lit-search\n51\t    authors:\n52\t    - Ifergan, M.\n53\t    - Choshen, L.\n54\t    - Aharoni, R.\n55\t    - Szpektor, I.\n56\t    - Abend, O.\n57\t    bibtex_key: ifergan2024beneath\n58\t    category: cross-lingual-conflict\n59\t    doi: ''\n60\t    relevance: Shows cross-lingual answer consistency does not imply shared representation;\n61\t      script similarity dominates sharing. Directly motivates our probing approach\n62\t      to test whether conflict signals share representations across languages.\n63\t    role: foundation\n64\t    title: 'Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge\n65\t      Representation Sharing in LLMs'\n66\t    url: https://arxiv.org/abs/2408.10646\n67\t    venue: Findings of NAACL 2025\n68\t    verified: true\n69\t    year: 2024\n70\t  kialy2026universal:\n71\t    abstract: ''\n72\t    added_at: '2026-05-21T12:04:50.273Z'\n73\t    added_by: director-bootstrap\n74\t    authors:\n75\t    - Kialy, U.Z.\n76\t    - Shtarkberg, A.\n77\t    - Klein, A.\n78\t    bibtex_key: kialy2026universal\n79\t    category: cross-lingual-sae\n80\t    doi: ''\n81\t    relevance: First cross-lingual SAE feature discovery. Shows cross-linguistic core\n82\t      for register features + zero-shot steering transfer. We test whether this extends\n83\t      to knowledge conflict features.\n84\t    role: direct-competitor\n85\t    semantic_scholar_id: ''\n86\t    title: A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register\n87\t      with SAEs\n88\t    url: https://arxiv.org/abs/2603.26236\n89\t    venue: arXiv\n90\t    verified: true\n91\t    year: 2026\n92\t  li2025taming:\n93\t    added_at: '2026-05-22T14:00:00Z'\n94\t    added_by: paper-agent-lit-search\n95\t    authors:\n96\t    - Li, G.\n97\t    - Chen, Y.\n98\t    - Tong, H.\n99\t    bibtex_key: li2025taming\n100\t    category: knowledge-conflict\n101\t    doi: ''\n102\t    relevance: Proposes conflict resolution framework for LLMs. Provides resolution\n103\t      baselines our mechanistic approach complements.\n104\t    role: direct-competitor\n105\t    title: Taming Knowledge Conflicts in Language Models\n106\t    url: https://arxiv.org/abs/2503.10996\n107\t    venue: ICML 2025 (Spotlight)\n108\t    verified: true\n109\t    year: 2025\n110\t  pham2026where:\n111\t    abstract: ''\n112\t    added_at: '2026-05-21T12:04:50.273Z'\n113\t    added_by: director-bootstrap\n114\t    authors:\n115\t    - Pham, M.V.\n116\t    - Borkakoty, H.\n117\t    - Hou, Y.\n118\t    bibtex_key: pham2026where\n119\t    category: conflict-mechanism\n120\t    doi: ''\n121\t    relevance: Activation patching + CMAP for intra-memory conflicts. Attention layers\n122\t      21-47 dominate conflict resolution in Qwen3-4B. Closest methodological parallel\n123\t      for within-parametric conflicts.\n124\t    role: direct-competitor\n125\t    semantic_scholar_id: ''\n126\t    title: 'Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge\n127\t      Conflict in Language Models'\n128\t    url: https://arxiv.org/abs/2601.09445\n129\t    venue: arXiv\n130\t    verified: true\n131\t    year: 2026\n132\t  team2026qwen:\n133\t    abstract: ''\n134\t    added_at: '2026-05-21T12:04:50.273Z'\n135\t    added_by: director-bootstrap\n136\t    authors:\n137\t    - Qwen Team\n138\t    bibtex_key: team2026qwen\n139\t    category: sae-tools\n140\t    doi: ''\n141\t    relevance: Pretrained SAEs for Qwen3 family. Our Track 2 uses Qwen-Scope SAEs\n142\t      on Qwen3-8B-Base. Documents cross-lingual transfer for toxicity features (Section\n143\t      5.2).\n144\t    role: foundation\n145\t    semantic_scholar_id: ''\n146\t    title: 'Qwen-Scope: Turning Sparse Features into Development Tools for Large Language\n147\t      Models'\n148\t    url: https://arxiv.org/abs/2605.11887\n149\t    venue: arXiv\n150\t    verified: true\n151\t    year: 2026\n152\t  wang2025lost:\n153\t    abstract: ''\n154\t    added_at: '2026-05-21T12:04:50.273Z'\n155\t    added_by: director-bootstrap\n156\t    authors:\n157\t    - Wang, M.\n158\t    - Adel, H.\n159\t    - Lange, L.\n160\t    - et al.\n161\t    bibtex_key: wang2025lost\n162\t    category: cross-lingual-mechanism\n163\t    doi: ''\n164\t    relevance: Language-independent concept space through most layers, language-specific\n165\t      only in final layers. Key mechanistic finding our H1/H2 hypotheses build on.\n166\t    role: foundation\n167\t    semantic_scholar_id: ''\n168\t    title: 'Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency\n169\t      in Transformer Language Models'\n170\t    url: https://arxiv.org/abs/2504.04264\n171\t    venue: ACL 2025 (SAC Highlights)\n172\t    verified: true\n173\t    year: 2025\n174\t  wong2026langfir:\n175\t    abstract: ''\n176\t    added_at: '2026-05-21T12:04:50.273Z'\n177\t    added_by: director-bootstrap\n178\t    authors:\n179\t    - Wong, S.H.\n180\t    - Siddique, A.B.\n181\t    - Sajjad, H.\n182\t    bibtex_key: wong2026langfir\n183\t    category: cross-lingual-sae\n184\t    doi: ''\n185\t    relevance: Random-token filtering isolates <5 language-specific SAE features/language.\n186\t      Our Track 2 uses this as control to disentangle language-identity from conflict\n187\t      features.\n188\t    role: direct-competitor\n189\t    semantic_scholar_id: ''\n190\t    title: 'LangFIR: Discovering Sparse Language-Specific Features from Monolingual\n191\t      Data for Language Steering'\n192\t    url: https://arxiv.org/abs/2604.03532\n193\t    venue: arXiv\n194\t    verified: true\n195\t    year: 2026\n196\t  xie2024adaptive:\n197\t    added_at: '2026-05-22T14:00:00Z'\n198\t    added_by: paper-agent-lit-search\n199\t    authors:\n200\t    - Xie, J.\n201\t    - Zhang, K.\n202\t    - Chen, J.\n203\t    - Lou, R.\n204\t    - Su, Y.\n205\t    bibtex_key: xie2024adaptive\n206\t    category: knowledge-conflict\n207\t    doi: ''\n208\t    relevance: Introduces ConflictQA benchmark (PopQA + StrategyQA based) for studying\n209\t      LLM behavior under context-parametric knowledge conflicts. Our primary evaluation\n210\t      dataset.\n211\t    role: foundation\n212\t    title: 'Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large\n213\t      Language Models in Knowledge Conflicts'\n214\t    url: https://arxiv.org/abs/2305.13300\n215\t    venue: ICLR 2024\n216\t    verified: true\n217\t    year: 2024\n218\t  xing2024evaluating:\n219\t    added_at: '2026-05-22T14:00:00Z'\n220\t    added_by: paper-agent-lit-search\n221\t    authors:\n222\t    - Xing, X.\n223\t    - He, Z.\n224\t    - Xu, H.\n225\t    - Wang, X.\n226\t    - Wang, R.\n227\t    - Hong, Y.\n228\t    bibtex_key: xing2024evaluating\n229\t    category: cross-lingual-conflict\n230\t    doi: ''\n231\t    relevance: Proposes cross-lingual semantic/accuracy/timeliness consistency metrics\n232\t      (xSC, xAC, xTC) for evaluating multilingual LLM inconsistency. Provides evaluation\n233\t      methodology relevant to our cross-lingual conflict measurement.\n234\t    role: peripheral\n235\t    title: Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language\n236\t      Models\n237\t    url: https://arxiv.org/abs/2407.01358\n238\t    venue: arXiv\n239\t    verified: true\n240\t    year: 2024\n241\t  xu2024knowledge:\n242\t    added_at: '2026-05-22T14:00:00Z'\n243\t    added_by: paper-agent-lit-search\n244\t    authors:\n245\t    - Xu, R.\n246\t    - Qi, Z.\n247\t    - Guo, Z.\n248\t    - Wang, C.\n249\t    - Wang, H.\n250\t    - Zhang, Y.\n251\t    - Xu, W.\n252\t    bibtex_key: xu2024knowledge\n253\t    category: knowledge-conflict\n254\t    doi: ''\n255\t    relevance: Comprehensive survey of context-memory, inter-context, and intra-memory\n256\t      knowledge conflicts in LLMs. Defines the taxonomy our work builds on.\n257\t    role: foundation\n258\t    title: 'Knowledge Conflicts for LLMs: A Survey'\n259\t    url: https://arxiv.org/abs/2403.08319\n260\t    venue: EMNLP 2024\n261\t    verified: true\n262\t    year: 2024\n263\t  zhao2024analysing:\n264\t    abstract: ''\n265\t    added_at: '2026-05-21T12:04:50.273Z'\n266\t    added_by: director-bootstrap\n267\t    authors:\n268\t    - Zhao, Y.\n269\t    - Du, X.\n270\t    - Hong, G.\n271\t    - et al.\n272\t    bibtex_key: zhao2024analysing\n273\t    category: probing\n274\t    doi: ''\n275\t    relevance: 'Original conflict probing work: ~90% accuracy detecting conflicts\n276\t      in residual stream. Foundation for our Track 1 cross-lingual extension.'\n277\t    role: foundation\n278\t    semantic_scholar_id: ''\n279\t    title: Analysing the Residual Stream of Language Models Under Knowledge Conflicts\n280\t    url: https://arxiv.org/abs/2410.16090\n281\t    venue: NeurIPS 2024 FMI Workshop\n282\t    verified: true\n283\t    year: 2024\n284\t  zhao2025steering:\n285\t    abstract: ''\n286\t    added_at: '2026-05-21T12:04:50.273Z'\n287\t    added_by: director-bootstrap\n288\t    authors:\n289\t    - Zhao, Y.\n290\t    - Devoto, A.\n291\t    - Hong, G.\n292\t    - et al.\n293\t    bibtex_key: zhao2025steering\n294\t    category: sae-steering\n295\t    doi: ''\n296\t    relevance: 'SpARE: SAE-based conflict feature selection + steering. Core methodology\n297\t      we extend to cross-lingual setting. MI-based feature selection, constraint-aware\n298\t      activation editing.'\n299\t    role: direct-competitor\n300\t    semantic_scholar_id: ''\n301\t    title: Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation\n302\t      Engineering\n303\t    url: https://arxiv.org/abs/2410.15999\n304\t    venue: NAACL 2025 Oral\n305\t    verified: true\n306\t    year: 2025\n307\t  zhao2026when:\n308\t    abstract: ''\n309\t    added_at: '2026-05-21T12:04:50.273Z'\n310\t    added_by: director-bootstrap\n311\t    authors:\n312\t    - Zhao, J.\n313\t    - et al.\n314\t    bibtex_key: zhao2026when\n315\t    category: cross-lingual-conflict\n316\t    doi: ''\n317\t    relevance: 'CLEAR benchmark: 10-language cross-lingual conflict evaluation. Behavioral\n318\t      finding that linguistic similarity governs entity-centric conflict resolution.\n319\t      Our work provides mechanistic explanation.'\n320\t    role: direct-competitor\n321\t    semantic_scholar_id: ''\n322\t    title: 'When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models'\n323\t    url: https://arxiv.org/abs/2601.07041\n324\t    venue: arXiv\n325\t    verified: true\n326\t    year: 2026\n327\t  wu2020emerging:\n328\t    added_at: '2026-05-22T14:30:00Z'\n329\t    added_by: paper-agent-lit-search\n330\t    authors:\n331\t    - Wu, S.\n332\t    - Conneau, A.\n333\t    - Li, H.\n334\t    - Zettlemoyer, L.\n335\t    - Stoyanov, V.\n336\t    bibtex_key: wu2020emerging\n337\t    category: cross-lingual-repr\n338\t    doi: 10.18653/v1/2020.acl-main.536\n339\t    relevance: Shows mid-layer cross-lingual alignment emerges from shared parameters\n340\t      alone; monolingual representations can be aligned post-hoc. Foundation for understanding\n341\t      language-agnostic concept space our probing hypotheses build on. MUST CITE.\n342\t    role: foundation\n343\t    title: Emerging Cross-lingual Structure in Pretrained Language Models\n344\t    url: https://aclanthology.org/2020.acl-main.536/\n345\t    venue: ACL 2020\n346\t    verified: true\n347\t    year: 2020\n348\t  wendler2024llamas:\n349\t    added_at: '2026-05-22T14:30:00Z'\n350\t    added_by: paper-agent-lit-search\n351\t    authors:\n352\t    - Wendler, C.\n353\t    - Veselovsky, V.\n354\t    - Monea, G.\n355\t    - West, R.\n356\t    bibtex_key: wendler2024llamas\n357\t    category: cross-lingual-repr\n358\t    doi: ''\n359\t    relevance: Demonstrates English-centric LLMs implicitly pivot through English representations\n360\t      in middle layers. Three-phase pattern (input language -> English pivot -> output\n361\t      language) supports hypothesis that conflict signals may route through English-aligned\n362\t      subspace.\n363\t    role: foundation\n364\t    title: 'Do Llamas Work in English? On the Latent Language of Multilingual Transformers'\n365\t    url: https://arxiv.org/abs/2402.10588\n366\t    venue: ACL 2024\n367\t    verified: true\n368\t    year: 2024\n369\t  muller2021first:\n370\t    added_at: '2026-05-22T14:30:00Z'\n371\t    added_by: paper-agent-lit-search\n372\t    authors:\n373\t    - Muller, B.\n374\t    - Elazar, Y.\n375\t    - Sagot, B.\n376\t    - Seddah, D.\n377\t    bibtex_key: muller2021first\n378\t    category: cross-lingual-repr\n379\t    doi: ''\n380\t    relevance: CKA-based layer-wise analysis showing mBERT decomposes into multilingual\n381\t      encoder + language-agnostic predictor. Representations first converge to language\n382\t      neutrality then recover language specificity. Methodological precedent for our\n383\t      layer-wise analysis.\n384\t    role: methodology\n385\t    title: 'First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual\n386\t      BERT'\n387\t    url: https://aclanthology.org/2021.eacl-main.189/\n388\t    venue: EACL 2021\n389\t    verified: true\n390\t    year: 2021\n391\t  kargaran2024mexa:\n392\t    added_at: '2026-05-22T14:30:00Z'\n393\t    added_by: paper-agent-lit-search\n394\t    authors:\n395\t    - Kargaran, A.H.\n396\t    - Modarressi, A.\n397\t    - Nikeghbal, N.\n398\t    - Diesner, J.\n399\t    - Yvon, F.\n400\t    - \"Sch\\xFCtze, H.\"\n401\t    bibtex_key: kargaran2024mexa\n402\t    category: cross-lingual-repr\n403\t    doi: ''\n404\t    relevance: Cross-lingual alignment metric leveraging English pivot hypothesis, 0.90\n405\t      Pearson correlation with downstream tasks. Provides evaluation methodology for\n406\t      measuring English-centric alignment relevant to our cross-lingual transfer analysis.\n407\t    role: methodology\n408\t    title: 'MEXA: Multilingual Evaluation of English-Centric LLMs via Cross-Lingual\n409\t      Alignment'\n410\t    url: https://arxiv.org/abs/2410.05873\n411\t    venue: Findings of ACL 2025\n412\t    verified: true\n413\t    year: 2024\n414\t  belinkov2022probing:\n415\t    added_at: '2026-05-22T14:30:00Z'\n416\t    added_by: paper-agent-lit-search\n417\t    authors:\n418\t    - Belinkov, Y.\n419\t    bibtex_key: belinkov2022probing\n420\t    category: probing-methodology\n421\t    doi: ''\n422\t    relevance: Comprehensive survey of probing classifier promises, shortcomings, and\n423\t      advances. Defines the methodological framework our linear probes follow. MUST\n424\t      CITE for probing methodology justification.\n425\t    role: foundation\n426\t    title: 'Probing Classifiers: Promises, Shortcomings, and Advances'\n427\t    url: https://arxiv.org/abs/2102.12452\n428\t    venue: Computational Linguistics 48(1)\n429\t    verified: true\n430\t    year: 2022\n431\t  hewitt2019designing:\n432\t    added_at: '2026-05-22T14:30:00Z'\n433\t    added_by: paper-agent-lit-search\n434\t    authors:\n435\t    - Hewitt, J.\n436\t    - Liang, P.\n437\t    bibtex_key: hewitt2019designing\n438\t    category: probing-methodology\n439\t    doi: ''\n440\t    relevance: Introduces selectivity metric (linguistic accuracy - control accuracy)\n441\t      to distinguish genuine representation encoding from probe memorization. Our probing\n442\t      design uses control tasks following this framework. EMNLP 2019 Best Paper Runner\n443\t      Up.\n444\t    role: methodology\n445\t    title: Designing and Interpreting Probes with Control Tasks\n446\t    url: https://aclanthology.org/D19-1275/\n447\t    venue: EMNLP 2019\n448\t    verified: true\n449\t    year: 2019\n450\t  ulmer2022deep:\n451\t    added_at: '2026-05-22T14:30:00Z'\n452\t    added_by: paper-agent-lit-search\n453\t    authors:\n454\t    - Ulmer, D.\n455\t    - Hardmeier, C.\n456\t    - Frellsen, J.\n457\t    bibtex_key: ulmer2022deep\n458\t    category: probing-methodology\n459\t    doi: ''\n460\t    relevance: Bootstrap-based statistical testing framework for neural network comparisons,\n461\t      including Almost Stochastic Order (ASO). Provides the bootstrap CI methodology\n462\t      we use for probing accuracy significance testing.\n463\t    role: methodology\n464\t    title: 'deep-significance: Easy and Meaningful Statistical Significance Testing\n465\t      in the Age of Neural Networks'\n466\t    url: https://arxiv.org/abs/2204.06815\n467\t    venue: arXiv\n468\t    verified: true\n469\t    year: 2022\n470\t  li2023iti:\n471\t    added_at: '2026-05-22T16:00:00Z'\n472\t    added_by: paper-agent-lit-search\n473\t    authors:\n474\t    - Li, K.\n475\t    - Patel, O.\n476\t    - \"Vi\\xE9gas, F.\"\n477\t    - Pfister, H.\n478\t    - Wattenberg, M.\n479\t    bibtex_key: li2023iti\n480\t    category: steering\n481\t    doi: ''\n482\t    relevance: Inference-Time Intervention shifts activations along truthful directions\n483\t      in attention heads to improve truthfulness. Foundational activation steering method\n484\t      our causal intervention approach builds on.\n485\t    role: foundation\n486\t    title: 'Inference-Time Intervention: Eliciting Truthful Answers from a Language\n487\t      Model'\n488\t    url: https://arxiv.org/abs/2306.03341\n489\t    venue: NeurIPS 2023\n490\t    verified: true\n491\t    year: 2023\n492\t  zou2023representation:\n493\t    added_at: '2026-05-22T16:00:00Z'\n494\t    added_by: paper-agent-lit-search\n495\t    authors:\n496\t    - Zou, A.\n497\t    - Phan, L.\n498\t    - Chen, S.\n499\t    - Campbell, J.\n500\t    - Guo, P.\n501\t    - Ren, R.\n502\t    - Pan, A.\n503\t    - et al.\n504\t    bibtex_key: zou2023representation\n505\t    category: steering\n506\t    doi: ''\n507\t    relevance: Introduces Representation Engineering (RepE) framework using population-level\n508\t      representations for monitoring and manipulating high-level cognitive phenomena.\n509\t      Foundational paradigm for our steering methodology.\n510\t    role: foundation\n511\t    title: 'Representation Engineering: A Top-Down Approach to AI Transparency'\n512\t    url: https://arxiv.org/abs/2310.01405\n513\t    venue: arXiv\n514\t    verified: true\n515\t    year: 2023\n516\t  feng2026finegrained:\n517\t    added_at: '2026-05-22T16:00:00Z'\n518\t    added_by: paper-agent-lit-search\n519\t    authors:\n520\t    - Feng, Z.\n521\t    - Li, T.\n522\t    - Zhu, Z.\n523\t    - Zhou, H.\n524\t    - Qian, J.\n525\t    - Zhang, L.\n526\t    - Mao, K.\n527\t    bibtex_key: feng2026finegrained\n528\t    category: steering\n529\t    doi: ''\n530\t    relevance: Decomposes block activations into atomic-unit-level activations for\n531\t      fine-grained steering. Shows block-level steering entangles beneficial and harmful\n532\t      features. Methodological advance relevant to our per-feature steering design.\n533\t    role: methodology\n534\t    title: 'Fine-Grained Activation Steering: Steering Less, Achieving More'\n535\t    url: https://arxiv.org/abs/2602.04428\n536\t    venue: ICLR 2026\n537\t    verified: true\n538\t    year: 2026\n539\t  conneau2018xnli:\n540\t    added_at: '2026-05-22T16:00:00Z'\n541\t    added_by: paper-agent-lit-search\n542\t    authors:\n543\t    - Conneau, A.\n544\t    - Rinott, R.\n545\t    - Lample, G.\n546\t    - Williams, A.\n547\t    - Bowman, S.\n548\t    - Schwenk, H.\n549\t    - Stoyanov, V.\n550\t    bibtex_key: conneau2018xnli\n551\t    category: dataset-tool\n552\t    doi: ''\n553\t    relevance: Cross-lingual NLI benchmark spanning 15 languages. Used for evaluating\n554\t      cross-lingual transfer and multilingual understanding in our experiments.\n555\t    role: foundation\n556\t    title: 'XNLI: Evaluating Cross-lingual Sentence Representations'\n557\t    url: https://aclanthology.org/D18-1269/\n558\t    venue: EMNLP 2018\n559\t    verified: true\n560\t    year: 2018\n561\t  rei2020comet:\n562\t    added_at: '2026-05-22T16:00:00Z'\n563\t    added_by: paper-agent-lit-search\n564\t    authors:\n565\t    - Rei, R.\n566\t    - Stewart, C.\n567\t    - Farinha, A.C.\n568\t    - Lavie, A.\n569\t    bibtex_key: rei2020comet\n570\t    category: dataset-tool\n571\t    doi: ''\n572\t    relevance: Neural MT evaluation metric using cross-lingual pretrained encoders.\n573\t      Provides translation quality evaluation for our cross-lingual dataset construction\n574\t      pipeline.\n575\t    role: methodology\n576\t    title: 'COMET: A Neural Framework for MT Evaluation'\n577\t    url: https://aclanthology.org/2020.emnlp-main.213/\n578\t    venue: EMNLP 2020\n579\t    verified: true\n580\t    year: 2020\n581\t  grattafiori2024llama:\n582\t    added_at: '2026-05-22T16:00:00Z'\n583\t    added_by: paper-agent-lit-search\n584\t    authors:\n585\t    - Grattafiori, A.\n586\t    - et al. (Llama Team, AI @ Meta)\n587\t    bibtex_key: grattafiori2024llama\n588\t    category: dataset-tool\n589\t    doi: ''\n590\t    relevance: Technical report for Llama 3.1 models (8B/70B/405B). One of our primary\n591\t      experimental models. Documents multilingual capabilities and 128K context window.\n592\t    role: foundation\n593\t    title: The Llama 3 Herd of Models\n594\t    url: https://arxiv.org/abs/2407.21783\n595\t    venue: arXiv\n596\t    verified: true\n597\t    year: 2024\n598\t  yang2024qwen25:\n599\t    added_at: '2026-05-22T16:00:00Z'\n600\t    added_by: paper-agent-lit-search\n601\t    authors:\n602\t    - Yang, A.\n603\t    - Yang, B.\n604\t    - et al. (Qwen Team)\n605\t    bibtex_key: yang2024qwen25\n606\t    category: dataset-tool\n607\t    doi: ''\n608\t    relevance: Technical report for Qwen2.5 model series. One of our primary experimental\n609\t      models. Documents multilingual pretraining on 18T tokens.\n610\t    role: foundation\n611\t    title: Qwen2.5 Technical Report\n612\t    url: https://arxiv.org/abs/2412.15115\n613\t    venue: arXiv\n614\t    verified: true\n615\t    year: 2024\n616\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "578de6a7-afc4-408d-ae80-21b5974ea75b",
+            "isSidechain": true,
+            "promptId": "9ba93c69-17bf-4ffd-b2fc-6339c47e699d",
+            "agentId": "acd089d1966135c41",
+            "type": "user",
+            "uuid": "be545eb2-77b3-43e5-b5c1-91f9ac2d731e",
+            "sourceToolAssistantUUID": "578de6a7-afc4-408d-ae80-21b5974ea75b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:24:41.259Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G9UdNwrWDUjRaxdaWT5943",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be545eb2-77b3-43e5-b5c1-91f9ac2d731e",
+            "isSidechain": true,
+            "agentId": "acd089d1966135c41",
+            "requestId": "req_011CbHm3QizXaoMzH2dEtXMB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "91b77ab7-adcf-495a-8cb2-3431439ae087",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QY4ScHVG9b1hWL7G3fxQmw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 24617,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 153,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 24617
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 153,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 24617,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 24617,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:24:41.266Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G9UdNwrWDUjRaxdaWT5943",
+              "type": "tool_result",
+              "content": "1\t% References for Cross-Lingual Knowledge Conflict paper\n2\t% Auto-generated from literature_map.yaml — will be populated in Step 3 bib_sync\n3\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91b77ab7-adcf-495a-8cb2-3431439ae087",
+            "isSidechain": true,
+            "promptId": "9ba93c69-17bf-4ffd-b2fc-6339c47e699d",
+            "agentId": "acd089d1966135c41",
+            "type": "user",
+            "uuid": "4fb682ae-113f-44d1-b5f9-6727cf2cd4ae",
+            "sourceToolAssistantUUID": "91b77ab7-adcf-495a-8cb2-3431439ae087",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T14:24:44.806Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 29 papers have `verified: true`. Now I'll generate the complete BibTeX file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fb682ae-113f-44d1-b5f9-6727cf2cd4ae",
+            "isSidechain": true,
+            "agentId": "acd089d1966135c41",
+            "requestId": "req_011CbHm3fevFE5mNC7n79QLY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a040801-422a-4196-b05c-23f9a45d769e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Riyz1x35zwyeCQq6V1H8sG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9123,
+                "cache_read_input_tokens": 24617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9123,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:25:35.524Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MX8jsRyLbtkqGEFhV85SaT",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib",
+                "content": "% References for Cross-Lingual Knowledge Conflict paper\n% Auto-generated from literature_map.yaml\n\n@article{basu2026interpretability,\n  author    = {Basu, S. and others},\n  title     = {Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations},\n  journal   = {arXiv preprint arXiv:2603.18353},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.18353}\n}\n\n@article{boer2026probing,\n  author    = {Boer, A. and Brink, I. and Ulmer, D.},\n  title     = {Probing for Knowledge Attribution in Large Language Models},\n  journal   = {arXiv preprint arXiv:2602.22787},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.22787}\n}\n\n@inproceedings{ifergan2024beneath,\n  author    = {Ifergan, M. and Choshen, L. and Aharoni, R. and Szpektor, I. and Abend, O.},\n  title     = {Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in {LLMs}},\n  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2408.10646}\n}\n\n@article{kialy2026universal,\n  author    = {Kialy, U.Z. and Shtarkberg, A. and Klein, A.},\n  title     = {A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register with {SAEs}},\n  journal   = {arXiv preprint arXiv:2603.26236},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.26236}\n}\n\n@inproceedings{li2025taming,\n  author    = {Li, G. and Chen, Y. and Tong, H.},\n  title     = {Taming Knowledge Conflicts in Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2503.10996}\n}\n\n@article{pham2026where,\n  author    = {Pham, M.V. and Borkakoty, H. and Hou, Y.},\n  title     = {Where Knowledge Collides: A Mechanistic Study of Intra-Memory Knowledge Conflict in Language Models},\n  journal   = {arXiv preprint arXiv:2601.09445},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2601.09445}\n}\n\n@article{team2026qwen,\n  author    = {{Qwen Team}},\n  title     = {Qwen-Scope: Turning Sparse Features into Development Tools for Large Language Models},\n  journal   = {arXiv preprint arXiv:2605.11887},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2605.11887}\n}\n\n@inproceedings{wang2025lost,\n  author    = {Wang, M. and Adel, H. and Lange, L. and others},\n  title     = {Lost in Multilinguality: Dissecting Cross-lingual Factual Inconsistency in Transformer Language Models},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2504.04264}\n}\n\n@article{wong2026langfir,\n  author    = {Wong, S.H. and Siddique, A.B. and Sajjad, H.},\n  title     = {{LangFIR}: Discovering Sparse Language-Specific Features from Monolingual Data for Language Steering},\n  journal   = {arXiv preprint arXiv:2604.03532},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.03532}\n}\n\n@inproceedings{xie2024adaptive,\n  author    = {Xie, J. and Zhang, K. and Chen, J. and Lou, R. and Su, Y.},\n  title     = {Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts},\n  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2305.13300}\n}\n\n@article{xing2024evaluating,\n  author    = {Xing, X. and He, Z. and Xu, H. and Wang, X. and Wang, R. and Hong, Y.},\n  title     = {Evaluating Knowledge-based Cross-lingual Inconsistency in Large Language Models},\n  journal   = {arXiv preprint arXiv:2407.01358},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2407.01358}\n}\n\n@inproceedings{xu2024knowledge,\n  author    = {Xu, R. and Qi, Z. and Guo, Z. and Wang, C. and Wang, H. and Zhang, Y. and Xu, W.},\n  title     = {Knowledge Conflicts for {LLMs}: A Survey},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2403.08319}\n}\n\n@inproceedings{zhao2024analysing,\n  author    = {Zhao, Y. and Du, X. and Hong, G. and others},\n  title     = {Analysing the Residual Stream of Language Models Under Knowledge Conflicts},\n  booktitle = {NeurIPS 2024 Workshop on Foundation Model Interventions},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2410.16090}\n}\n\n@inproceedings{zhao2025steering,\n  author    = {Zhao, Y. and Devoto, A. and Hong, G. and others},\n  title     = {Steering Knowledge Selection Behaviours in {LLMs} via {SAE}-Based Representation Engineering},\n  booktitle = {Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2410.15999}\n}\n\n@article{zhao2026when,\n  author    = {Zhao, J. and others},\n  title     = {When Abundance Conceals Weakness: Knowledge Conflict in Multilingual Models},\n  journal   = {arXiv preprint arXiv:2601.07041},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2601.07041}\n}\n\n@inproceedings{wu2020emerging,\n  author    = {Wu, S. and Conneau, A. and Li, H. and Zettlemoyer, L. and Stoyanov, V.},\n  title     = {Emerging Cross-lingual Structure in Pretrained Language Models},\n  booktitle = {Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2020},\n  url       = {https://aclanthology.org/2020.acl-main.536/},\n  doi       = {10.18653/v1/2020.acl-main.536}\n}\n\n@inproceedings{wendler2024llamas,\n  author    = {Wendler, C. and Veselovsky, V. and Monea, G. and West, R.},\n  title     = {Do Llamas Work in {English}? On the Latent Language of Multilingual Transformers},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2402.10588}\n}\n\n@inproceedings{muller2021first,\n  author    = {Muller, B. and Elazar, Y. and Sagot, B. and Seddah, D.},\n  title     = {First Align, then Predict: Understanding the Cross-Lingual Ability of Multilingual {BERT}},\n  booktitle = {Proceedings of the 16th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.eacl-main.189/}\n}\n\n@inproceedings{kargaran2024mexa,\n  author    = {Kargaran, A.H. and Modarressi, A. and Nikeghbal, N. and Diesner, J. and Yvon, F. and Sch{\\\"u}tze, H.},\n  title     = {{MEXA}: Multilingual Evaluation of {English}-Centric {LLMs} via Cross-Lingual Alignment},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2410.05873}\n}\n\n@article{belinkov2022probing,\n  author    = {Belinkov, Y.},\n  title     = {Probing Classifiers: Promises, Shortcomings, and Advances},\n  journal   = {Computational Linguistics},\n  volume    = {48},\n  number    = {1},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2102.12452}\n}\n\n@inproceedings{hewitt2019designing,\n  author    = {Hewitt, J. and Liang, P.},\n  title     = {Designing and Interpreting Probes with Control Tasks},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2019},\n  url       = {https://aclanthology.org/D19-1275/}\n}\n\n@article{ulmer2022deep,\n  author    = {Ulmer, D. and Hardmeier, C. and Frellsen, J.},\n  title     = {deep-significance: Easy and Meaningful Statistical Significance Testing in the Age of Neural Networks},\n  journal   = {arXiv preprint arXiv:2204.06815},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2204.06815}\n}\n\n@inproceedings{li2023iti,\n  author    = {Li, K. and Patel, O. and Vi{\\'e}gas, F. and Pfister, H. and Wattenberg, M.},\n  title     = {Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2306.03341}\n}\n\n@article{zou2023representation,\n  author    = {Zou, A. and Phan, L. and Chen, S. and Campbell, J. and Guo, P. and Ren, R. and Pan, A. and others},\n  title     = {Representation Engineering: A Top-Down Approach to {AI} Transparency},\n  journal   = {arXiv preprint arXiv:2310.01405},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2310.01405}\n}\n\n@inproceedings{feng2026finegrained,\n  author    = {Feng, Z. and Li, T. and Zhu, Z. and Zhou, H. and Qian, J. and Zhang, L. and Mao, K.},\n  title     = {Fine-Grained Activation Steering: Steering Less, Achieving More},\n  booktitle = {Proceedings of the 14th International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.04428}\n}\n\n@inproceedings{conneau2018xnli,\n  author    = {Conneau, A. and Rinott, R. and Lample, G. and Williams, A. and Bowman, S. and Schwenk, H. and Stoyanov, V.},\n  title     = {{XNLI}: Evaluating Cross-lingual Sentence Representations},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2018},\n  url       = {https://aclanthology.org/D18-1269/}\n}\n\n@inproceedings{rei2020comet,\n  author    = {Rei, R. and Stewart, C. and Farinha, A.C. and Lavie, A.},\n  title     = {{COMET}: A Neural Framework for {MT} Evaluation},\n  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2020},\n  url       = {https://aclanthology.org/2020.emnlp-main.213/}\n}\n\n@article{grattafiori2024llama,\n  author    = {Grattafiori, A. and others},\n  title     = {The {Llama} 3 Herd of Models},\n  journal   = {arXiv preprint arXiv:2407.21783},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2407.21783}\n}\n\n@article{yang2024qwen25,\n  author    = {Yang, A. and Yang, B. and others},\n  title     = {Qwen2.5 Technical Report},\n  journal   = {arXiv preprint arXiv:2412.15115},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2412.15115}\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a040801-422a-4196-b05c-23f9a45d769e",
+            "isSidechain": true,
+            "agentId": "acd089d1966135c41",
+            "requestId": "req_011CbHm3fevFE5mNC7n79QLY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "044cd859-cf22-4e8d-b0ea-5f40da88148f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Riyz1x35zwyeCQq6V1H8sG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9123,
+                "cache_read_input_tokens": 24617,
+                "output_tokens": 3878,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9123
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3878,
+                    "cache_read_input_tokens": 24617,
+                    "cache_creation_input_tokens": 9123,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9123,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:25:35.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MX8jsRyLbtkqGEFhV85SaT",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "044cd859-cf22-4e8d-b0ea-5f40da88148f",
+            "isSidechain": true,
+            "promptId": "9ba93c69-17bf-4ffd-b2fc-6339c47e699d",
+            "agentId": "acd089d1966135c41",
+            "type": "user",
+            "uuid": "414dd743-80cc-4692-bb67-be05f1deebb3",
+            "sourceToolAssistantUUID": "044cd859-cf22-4e8d-b0ea-5f40da88148f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:25:44.853Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成完整 BibTeX 文件，包含全部 29 篇 verified 论文。\n\n文件路径：`/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/docs/paper/references.bib`\n\n处理细节：\n- **`@article`**（13篇）：所有 arXiv 论文 + `belinkov2022probing`（Computational Linguistics）+ `ulmer2022deep`（arXiv）\n- **`@inproceedings`**（16篇）：ACL/EMNLP/NAACL/EACL/NeurIPS/ICML/ICLR 会议论文 + Findings 论文\n- `wu2020emerging` 是唯一带 `doi` 字段的条目（`10.18653/v1/2020.acl-main.536`）\n- 特殊字符处理：`Schütze` → `Sch{\\\"u}tze`，`Viégas` → `Vi{\\'e}gas`\n- 团队作者用 `{{Qwen Team}}` 双括弧防止 BibTeX 拆分\n- \"et al.\" 保留为 `and others`（原始数据未提供完整作者列表）\n- 缩写词（LLMs, SAEs, BERT, XNLI, COMET, LangFIR, MEXA, Llama, MT, AI）用 `{}` 保护大小写"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "414dd743-80cc-4692-bb67-be05f1deebb3",
+            "isSidechain": true,
+            "agentId": "acd089d1966135c41",
+            "requestId": "req_011CbHm7fCkPrNMLZduZoLod",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2da93301-844d-420e-bb53-973fa43f3eb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod42/projects/clkc_mech_interp/.claude/sessions/paper_agent_d627ec85",
+            "sessionId": "33306ce6-bc65-47b8-8276-72d7d617436c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "enchanted-petting-dahl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016mnsyUsbsGPyNAZLodG4hB",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3930,
+                "cache_read_input_tokens": 33740,
+                "output_tokens": 401,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3930
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 401,
+                    "cache_read_input_tokens": 33740,
+                    "cache_creation_input_tokens": 3930,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3930,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        }
+      ],
+      "message_count": 10
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-literature-map-yaml-at-home-ubuntu-agent-ml-research-prod42-projects.md"
+}

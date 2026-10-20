@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0c65075f84e88038194c",
+  "project": "clkc_mech_interp--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: clkc_mech_interp ## 运行环境 - 服务器名: westd-14391 - SSH 账户: root（调用 ssh_execute / submit_training_job",
+  "task_key": "343da34a-3de8-4f3f-b3fb-9278df95f19e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/343da34a-3de8-4f3f-b3fb-9278df95f19e.jsonl",
+    "occurrence": 1,
+    "bytes": 589429,
+    "sha256": "7de5a8a80693ae7d5b62f59ced7f6d19a0c827f988fe011ff416fa71fbc3da60"
+  },
+  "statistics": {
+    "messages": 143,
+    "user_turns": 1,
+    "tool_calls": 39,
+    "roles": {
+      "record": 38,
+      "user": 1,
+      "assistant": 26,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0c65075f84e88038194c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 141,
+      "chunks": [
+        {
+          "path": "0c65075f84e88038194c-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "0c65075f84e88038194c-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-clkc-mech-interp-westd-14391-ssh-root-ssh-execute-submit-train-copy-13.md"
+}
