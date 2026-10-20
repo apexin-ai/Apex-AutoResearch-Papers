@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_sdgd_v2_kill_or_wait_20260515T154656_result.json",
     "occurrence": 1,
-    "bytes": 964,
-    "sha256": "d2f1a6ddc9e8c5e0740a827feec69034d6c817d4614d89ddc3b37b25986f7987"
+    "bytes": 963,
+    "sha256": "7379e466c5830fc60deae37ce604a55eb57125332e10a072129385b7a6b7fe22"
   },
   "statistics": {
     "messages": 1,

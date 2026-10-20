@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_confusability_batch_composition_20260516T061306_result.json",
     "occurrence": 1,
-    "bytes": 704,
-    "sha256": "cb8325771d086f6cdf2dd63b24ce4d183e303989c86a79cf027be57f05934dff"
+    "bytes": 703,
+    "sha256": "5183fb8390485ae5b834ecb65b6b6efcdca55d3b7ab2dd64c9ec8cd8743ed0e1"
   },
   "statistics": {
     "messages": 1,

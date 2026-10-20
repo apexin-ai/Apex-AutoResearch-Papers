@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r26_integrate_analyses_20260522T052238_result.json",
     "occurrence": 1,
-    "bytes": 1152,
-    "sha256": "07da682534a3ea312e3e436c88473bac7d3d19ade9f655e929c9af9251e3b37e"
+    "bytes": 1151,
+    "sha256": "43f655734986eb669f15a880131d479c39cdaeced94e1a02a1831da6ed6eca74"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_westd-70b-exp3-fix_20260517T102041_result.json",
     "occurrence": 1,
-    "bytes": 748,
-    "sha256": "2923bf09bb8bf7e52815754bd12e65e9c6a0ff9cd61436681f450b1d0c957dc2"
+    "bytes": 747,
+    "sha256": "9fcebb76cc38fae1502607a8089e42978fa646263ad30c29d56b19ee792a0481"
   },
   "statistics": {
     "messages": 1,

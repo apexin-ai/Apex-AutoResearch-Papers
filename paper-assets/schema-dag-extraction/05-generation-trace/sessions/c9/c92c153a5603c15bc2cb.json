@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_reeval_70b_fewnerd_unified_20260517T132526_result.json",
     "occurrence": 1,
-    "bytes": 1324,
-    "sha256": "9c1d158a57aa7531826edc45069849f172a63644f0d1b7ce099a234c01ea1445"
+    "bytes": 1323,
+    "sha256": "1b7ece4ebb0a0d056b24f8a9596bb23a5dd7a666f8847256764e089c046d7b10"
   },
   "statistics": {
     "messages": 1,

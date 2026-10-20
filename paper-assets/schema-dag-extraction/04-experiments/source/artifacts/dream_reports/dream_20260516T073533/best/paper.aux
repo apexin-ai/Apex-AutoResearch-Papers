@@ -1,0 +1,75 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wei2023zeroshot}
+\citation{zhou2024universalner}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{li2023gptner}
+\citation{sainz2024gollie}
+\citation{zhou2024universalner}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-Free LLM IE.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema Decomposition.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confusability in Classification.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Confusability Measures}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema Cosine Similarity (SCS).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Batch Confusability Score (BCS).}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Experimental Design}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Count Curves.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{BCS-Controlled Comparisons.}{2}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SCS vs.\ empirical confusion matrix correlation. Both embeddings significantly predict actual confusion ($p < 10^{-5}$). Qwen3 is stronger on all pairs; MiniLM is stronger among actually-confused pairs.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:scs-validation}{{1}{3}{SCS vs.\ empirical confusion matrix correlation. Both embeddings significantly predict actual confusion ($p < 10^{-5}$). Qwen3 is stronger on all pairs; MiniLM is stronger among actually-confused pairs}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{2$\times $2 Factorial Design.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Error Taxonomy.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Datasets and Models}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Schema-Driven Graph Decomposition (SDGD)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}SCS as Confusability Proxy}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:scs-validation}{{4.1}{3}{SCS as Confusability Proxy}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DocRED count curve: accuracy declines monotonically from 0.875 (single type) to 0.392 (all 96 types), a 48.3pp drop.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:docred-count}{{2}{4}{DocRED count curve: accuracy declines monotonically from 0.875 (single type) to 0.392 (all 96 types), a 48.3pp drop}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces DocRED BCS-controlled accuracy. At fixed count, high-BCS batches show significantly lower accuracy (slope=$-0.713$, 95\% CI [$-0.909, -0.529$]).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:docred-bcs}{{3}{4}{DocRED BCS-controlled accuracy. At fixed count, high-BCS batches show significantly lower accuracy (slope=$-0.713$, 95\% CI [$-0.909, -0.529$])}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}DocRED Confusability Study}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:docred}{{4.2}{4}{DocRED Confusability Study}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}2$\times $2 Interaction Effect}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:interaction}{{4.3}{4}{2$\times $2 Interaction Effect}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Error Taxonomy Analysis}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:error-taxonomy}{{4.4}{4}{Error Taxonomy Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 2$\times $2 factorial on Few-NERD. Interaction is not significant ($z{=}{-}0.667$, $p{=}0.505$), consistent with additive (orthogonal) channels.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:2x2}{{4}{5}{2$\times $2 factorial on Few-NERD. Interaction is not significant ($z{=}{-}0.667$, $p{=}0.505$), consistent with additive (orthogonal) channels}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Error distribution by BCS bin on Few-NERD. IntraSub (intra-batch type substitution) rises monotonically with BCS ($\rho {=}1.0$), while hallucination remains below 3\% across all bins.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:error-taxonomy}{{5}{5}{Error distribution by BCS bin on Few-NERD. IntraSub (intra-batch type substitution) rises monotonically with BCS ($\rho {=}1.0$), while hallucination remains below 3\% across all bins}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Schema Decomposition: SDGD}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:sdgd}{{4.5}{5}{Schema Decomposition: SDGD}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}SDGD on Few-NERD}{5}{subsubsection.4.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}SDGD on MAVEN}{5}{subsubsection.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation: Random Batching vs.\ SDGD}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ablation-random}{{4.6}{5}{Ablation: Random Batching vs.\ SDGD}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-task error taxonomy comparison. IntraSub rate correlates near-perfectly with BCS on both tasks.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:error-cross-task}{{6}{6}{Cross-task error taxonomy comparison. IntraSub rate correlates near-perfectly with BCS on both tasks}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces SDGD variants on Few-NERD. All decomposition methods underperform single-pass. SDGD-cal improves over SDGD-zero (+18\%) but remains 36\% below single-pass.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:sdgd-fewnerd}{{7}{6}{SDGD variants on Few-NERD. All decomposition methods underperform single-pass. SDGD-cal improves over SDGD-zero (+18\%) but remains 36\% below single-pass}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Ablation: Per-Type Splitting}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:per-type}{{4.7}{6}{Ablation: Per-Type Splitting}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Small $r$ Matters.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Centrality Confound.}{6}{section*.11}\protected@file@percent }
+\bibcite{wei2023zeroshot}{1}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces SDGD on MAVEN (168 event types). The same ordering holds: single-pass $>$ random $>$ SDGD-cal $>$ SDGD-zero.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:sdgd-maven}{{8}{7}{SDGD on MAVEN (168 event types). The same ordering holds: single-pass $>$ random $>$ SDGD-cal $>$ SDGD-zero}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-task SDGD failure pattern. The $\sim $35\% structural cost is consistent across tasks.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:sdgd-cross-task}{{9}{7}{Cross-task SDGD failure pattern. The $\sim $35\% structural cost is consistent across tasks}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Merge Amplification as Structural Challenge.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Model Validation.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{zhou2024universalner}{2}
+\bibcite{li2023gptner}{3}
+\bibcite{sainz2024gollie}{4}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Random vs.\ SDGD ablation. SDGD reduces intra-batch confusion (0.018 vs.\ 0.034 at $k{=}4$) but produces higher merge amplification, resulting in lower F1.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:ablation-random}{{10}{8}{Random vs.\ SDGD ablation. SDGD reduces intra-batch confusion (0.018 vs.\ 0.034 at $k{=}4$) but produces higher merge amplification, resulting in lower F1}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Decomposition spectrum on Few-NERD. Per-type achieves the highest recall (+59\% vs.\ single-pass) but the lowest precision ($-$66\%), with 32$\times $ latency.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:per-type}{{11}{8}{Decomposition spectrum on Few-NERD. Per-type achieves the highest recall (+59\% vs.\ single-pass) but the lowest precision ($-$66\%), with 32$\times $ latency}{table.11}{}}
+\gdef \@abspage@last{8}

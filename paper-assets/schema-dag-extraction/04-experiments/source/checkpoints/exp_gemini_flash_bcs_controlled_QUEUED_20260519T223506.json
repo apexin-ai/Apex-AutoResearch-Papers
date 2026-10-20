@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_gemini_flash_bcs_controlled",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:34:39.845Z",
+    "updated_at": "2026-05-19T22:35:06.701Z",
+    "hypothesis": "BCS-accuracy negative correlation observed on open-weight models (Qwen3-32B, LLaMA) generalizes to proprietary API models. Gemini 2.5 Flash should show significant BCS gap on extreme-BCS batches at count 8 and count 16, confirming Dimension 2 is architecture-family-independent.",
+    "parent": "exp_gemini_flash_cross_model",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T22:35:06.839041+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r11-q5-freq-dispersion_20260517T100043_result.json",
     "occurrence": 1,
-    "bytes": 2019,
-    "sha256": "c619750f150d9473ecfc98569c25e4bb97d567f0cbdce79288226ebbcb5000cb"
+    "bytes": 2018,
+    "sha256": "74b37e0bc8b568786b54af58c226db87ccc7d6c00641018fe1a7cf44c578b17c"
   },
   "statistics": {
     "messages": 1,

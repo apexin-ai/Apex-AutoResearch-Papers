@@ -1,0 +1,22 @@
+paper_key: "self-improve-ner-2024"
+title: "Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models"
+venue: "NAACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["LLM zero-shot NER without self-improvement"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "4 NER benchmarks", size: "not specified"}]
+  ablation_dimensions: ["reliable annotation selection strategies", "unlabeled corpus size", "self-improving iterations"]
+  training_recipe: {method: "training-free self-improving with self-consistency + ICL"}
+  method_family: "self-improving / self-training for zero-shot NER"
+
+positioning:
+  core_claim: "A training-free self-improving framework using unlabeled data with self-consistency and reliable annotation selection substantially improves LLM zero-shot NER"
+  key_results: "Substantial improvements on 4 benchmarks; more advanced annotation selection matters more than corpus size or iterations"
+  limitations: ["scaling unlabeled corpus or iterations does not guarantee further improvement", "depends on LLM self-consistency quality"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

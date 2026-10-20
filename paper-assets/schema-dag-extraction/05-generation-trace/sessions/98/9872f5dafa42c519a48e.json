@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_sdgd-v2-validation_20260515T133921_result.json",
     "occurrence": 1,
-    "bytes": 1205,
-    "sha256": "8b76a608229a336491cbf87c39af10cb54a33fd9fb225ec4b5745412d1b4adcc"
+    "bytes": 1204,
+    "sha256": "7491efacd6632ff2365c6ec2c6df951ddc9430fed0b45ed0d6a27cc072a662a8"
   },
   "statistics": {
     "messages": 1,

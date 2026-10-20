@@ -1,0 +1,84 @@
+{
+  "exp_id": "exp001_count_baseline",
+  "project": "schema-dag-extraction",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:13:40.180Z",
+    "updated_at": "2026-05-15T03:11:54.884Z",
+    "spec": {
+      "hypothesis": "F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "count=[1,2,6,12,22,44,66]，每档 5 random samples，count=1 = solo baseline",
+      "command": "nohup python3 run_experiment.py --mode exp1 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 188307,
+      "vllm_version": "0.20.2",
+      "max_model_len": 4096,
+      "gpu_memory_utilization": 0.95
+    },
+    "log_path": "/root/schema-dag-extraction/logs/exp1.log",
+    "metrics": {
+      "diagnosis": "char offset 96.5% fabricated by model",
+      "text_match_reeval": {
+        "count_1": {
+          "f1": 0.184,
+          "precision": 0.105,
+          "recall": 0.72,
+          "pred_gold_ratio": 6.85
+        },
+        "count_2": {
+          "f1": 0.123,
+          "precision": 0.068,
+          "recall": 0.698,
+          "pred_gold_ratio": 10.33
+        },
+        "count_6": {
+          "f1": 0.155,
+          "precision": 0.088,
+          "recall": 0.62,
+          "pred_gold_ratio": 7.02
+        },
+        "count_12": {
+          "f1": 0.246,
+          "precision": 0.16,
+          "recall": 0.539,
+          "pred_gold_ratio": 3.38
+        },
+        "count_22": {
+          "f1": 0.322,
+          "precision": 0.232,
+          "recall": 0.527,
+          "pred_gold_ratio": 2.27
+        },
+        "count_44": {
+          "f1": 0.473,
+          "precision": 0.414,
+          "recall": 0.551,
+          "pred_gold_ratio": 1.33
+        },
+        "count_64": {
+          "f1": 0.463,
+          "precision": 0.52,
+          "recall": 0.418,
+          "pred_gold_ratio": 0.8
+        }
+      },
+      "key_finding": "recall monotonically decreases (0.72→0.42), precision monotonically increases (0.11→0.52) due to over-prediction reduction. F1 inverted-U peak at count_44",
+      "wrong_type_trend": "type confusion increases with count: 0→2434, supports confusability hypothesis",
+      "spurious_dominant": "spurious FPs (text in source but not entity) dominate at low count, not hallucination",
+      "conclusion_text_match": "F1 curve inversion caused by over-prediction confound, NOT absence of confusability effect. Recall curve + type confusion pattern support hypothesis."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T03:11:54.924318+00:00",
+  "trigger": "update_registry"
+}

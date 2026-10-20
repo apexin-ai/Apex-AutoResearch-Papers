@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_embedding-ablation-miniml-fewnerd_20260515T075628_result.json",
     "occurrence": 1,
-    "bytes": 1777,
-    "sha256": "57aaab3441311d2140e2def681df7a3098ffffdf8e6cc53eeaf3f115d0807c15"
+    "bytes": 1776,
+    "sha256": "fb9cddf1ef3765f4dc48c1bf8f8604ebea24864d4187f1b9b0b1eeaeb318ff04"
   },
   "statistics": {
     "messages": 1,

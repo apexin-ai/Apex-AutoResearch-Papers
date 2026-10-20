@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_maven-qwen3-embeddings-v2_20260515T053208_result.json",
     "occurrence": 1,
-    "bytes": 319,
-    "sha256": "62f749cccca117fab7666647f6f332c66ce12c4f712610b8747a746eba1f0069"
+    "bytes": 318,
+    "sha256": "67eab08a4216878025598498e4af5ebc504ce9b5a90803b3aab0bedb2ac1ff05"
   },
   "statistics": {
     "messages": 1,

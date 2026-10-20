@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_fewrel_80rel_error_taxonomy_20260515T150702_result.json",
     "occurrence": 1,
-    "bytes": 1570,
-    "sha256": "012432dab778759bd5c06d7e426fe984943ff248b6df3cd3c065a38a7d57dda2"
+    "bytes": 1569,
+    "sha256": "fc2bd0143c8a60f11bccc49afdb66fd65d86a111ba666de13ad54439945ba66e"
   },
   "statistics": {
     "messages": 1,

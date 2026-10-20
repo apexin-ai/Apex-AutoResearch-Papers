@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_bcs_definition_fix_20260516T043644_result.json",
     "occurrence": 1,
-    "bytes": 1701,
-    "sha256": "e92740469acefb63b6e315c1c33d99d6a004d7675514dc2560c5ed4da732ff5d"
+    "bytes": 1700,
+    "sha256": "93b4e8556280e49169673207a41bc6b32f78e4a3d0ae1fb78851bd1d8086b4aa"
   },
   "statistics": {
     "messages": 1,

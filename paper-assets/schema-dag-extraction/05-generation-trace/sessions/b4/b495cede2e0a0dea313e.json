@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fewrel-formal-status_20260515T121548_result.json",
     "occurrence": 1,
-    "bytes": 2673,
-    "sha256": "b21d4ba91fae1f75d2edde42d527a0038323af8f0e0ff58df8a9bfd75433d3ac"
+    "bytes": 2672,
+    "sha256": "85e97fab7761286b523f483c0b73cbd1303c76fedf93256299b3311880377ba1"
   },
   "statistics": {
     "messages": 1,

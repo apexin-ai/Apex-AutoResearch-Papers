@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r26_squeeze_3lines_20260522T054237_result.json",
     "occurrence": 1,
-    "bytes": 887,
-    "sha256": "140b05f293abb7131d052bedc2c8b2f0d80b77d1a39310c71732987204ad025c"
+    "bytes": 886,
+    "sha256": "d7b5fde4bae56ab984f4cc67393e26f1f42424157cf878d00f0ee96ba74113e3"
   },
   "statistics": {
     "messages": 1,

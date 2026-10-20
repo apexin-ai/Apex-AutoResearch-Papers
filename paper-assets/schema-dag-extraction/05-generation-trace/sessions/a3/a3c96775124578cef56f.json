@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_ace05-preprocess-scripts_20260515T030622_result.json",
     "occurrence": 1,
-    "bytes": 985,
-    "sha256": "8130e5c4a111e62e74da54662f80034d5b67aa0087c682c4f6567264fd1c607f"
+    "bytes": 984,
+    "sha256": "725eeace283c213b711cf3f240c5664698235450bf3d54224c535ffe222ba457"
   },
   "statistics": {
     "messages": 1,

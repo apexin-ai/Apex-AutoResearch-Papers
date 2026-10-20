@@ -1,0 +1,736 @@
+# research paper outline draft
+
+**collapse aware mixing** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_research_paper_outline_draft_20260514T012031.log`
+- **Structured JSON:** [`8f69081c0a7af2b270e6.json`](../../sessions/8f/8f69081c0a7af2b270e6.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing",
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2009f5fc-acaf-445f-b9bb-57b9d6c52f10",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-collapse-aware-mixing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778725800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b64fcd87-55e3-4892-ae0d-538c43ac32a2",
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the required project files to understand the current state of the research.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "9c4e0cfe-1582-4338-8134-1ab057c420e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbZzYCABCQMUQJFLfeVs8u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11799,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11799
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取项目文件和注册表。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "8906a89f-fde2-44ce-89cd-713fa8cd30a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbZzYCABCQMUQJFLfeVs8u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11799,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11799
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RTCPWUv2h2X9W2rp2TEasa`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "80535d87-635a-48a8-b493-56544448910a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbZzYCABCQMUQJFLfeVs8u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11799,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11799
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T01:20:44.526Z_
+
+<details><summary>↩ Tool result · `toolu_01RTCPWUv2h2X9W2rp2TEasa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "2fd68ac5-8c92-483a-b738-28ebdbd2996d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01JVhiuqkwG5vmwerb8db8PR`</summary>
+
+```json
+{
+  "project": "collapse-aware-mixing",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "f4a331f5-a846-4941-bbe7-231d8e64e13e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yEPW5cyfPEddtRbxHmHXp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 23640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1092
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T01:20:49.145Z_
+
+<details><summary>↩ Tool result · `toolu_01JVhiuqkwG5vmwerb8db8PR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/paper_framing.md\", \"content\": \"# Paper Framing — Collapse-Aware Mixing\\n\\n> ⚠️ **Draft — conditional on MVP GO.** MVP (v7) 尚未完成，C1 核心假设无实验数据支撑。MVP NO-GO 后需根据结果修改或废弃。\\n\\n## Title (候选)\\n1. **Closing the Loop: Spectral Effective Rank as a Leading Indicator for Active Model Collapse Control**\\n2. **From Monitoring to Control: PI-Regulated Data Mixing via Spectral Collapse Detection**\\n3. **Collapse-Aware Mixing: Closed-Loop Control of Synthetic Data Ratios Using Spectral Effective Rank**\\n\\n## Story Arc\\n\\n1. **Problem**: Model collapse in iterative LLM training with synthetic data is well-documented (Shumailov et al., 2024). As models train on their own outputs across generations, quality degrades — PPL rises, diversity drops, tail distributions vanish.\\n\\n2. **Gap**: Recent work (SIGMA, 2026) demonstrates spectral analysis of embedding Gram matrices can *detect* collapse, and ERBP (2025) provides theoretical grounding for entropy-based reservoir management. But both are **passive** — they diagnose after the fact, offering no mechanism to *prevent* collapse during training.\\n\\n3. **Insight**: Spectral effective rank of the embedding Gram matrix is a **leading indicator** of collapse — it drops before PPL rises, providing an actionable early warning signal. This temporal gap creates a window for intervention.\\n\\n4. **Solution**: We build a PI (proportional-integral) controller that monitors spectral effective rank in real-time and dynamically adjusts the real/synthetic data mixing ratio. When rank drops (early collapse signal), the controller increases real data proportion; when rank stabilizes, it relaxes back. This is the first **closed-loop control** system for model collapse.\\n\\n5. **Result**: The controller automatically maintains model quality across generations without manual tuning of data ratios, outperforming fixed mixing strategies and uncontrolled baselines.\\n\\n## Core Claims (精确表述)\\n\\n- **C1 (Leading Indicator)**: In iterative synthetic training of autoregressive LMs, spectral effective rank of the embedding Gram matrix decreases by ≥3 points (absolute) or ≥0.5% (relative) from G0 final at checkpoint t while held-out PPL has not yet increased by ≥2 points or ≥5% from G0 final — establishing effective rank as a leading indicator of model collapse.\\n  - *Strength*: Empirical observation on Pythia-1B. Does not claim universality across all architectures/scales.\\n\\n- **C2 (Controller Mechanism)**: A PI controller using spectral effective rank as input signal can automatically adjust real/synthetic data mixing ratio w_t ∈ [0.1, 0.9], responding to collapse dynamics without manual intervention.\\n  - *Strength*: Mechanistic claim — the controller works as designed. Ablation over Kp, Ki validates sensitivity.\\n\\n- **C3 (Collapse Mitigation)**: Closed-loop PI control of data mixing ratio reduces model collapse severity (measured by final PPL, generation-over-generation KL divergence, and vocabulary coverage) compared to fixed-ratio baselines across 3+ generations of iterative training.\\n  - *Strength*: Comparative claim. We do NOT claim collapse is \\\"solved\\\" — only that it is measurably mitigated.\\n\\n## Novelty vs SIGMA\\n\\n| Dimension | SIGMA (2026-01) | Ours |\\n|-----------|-----------------|------|\\n| Spectral metric | Gram matrix spectral bounds (upper/lower) | Effective rank (entropy-based, continuous) |\\n| Role of metric | Post-hoc collapse detection/diagnosis | Real-time leading indicator for control |\\n| Control mechanism | None — passive monitoring only | PI controller with automatic ratio adjustment |\\n| Data mixing | Not addressed | Core contribution: dynamic real/synthetic mixing |\\n| Temporal analysis | Collapse detection at convergence | Leading indicator: rank precedes PPL degradation |\\n| Actionability | \\\"Collapse is happening\\\" | \\\"Collapse is approaching → adjust now\\\" |\\n\\n**Key differentiator**: SIGMA answers \\\"is collapse occurring?\\\"; we answer \\\"collapse is approaching — here's the automatic corrective action.\\\" The relationship is analogous to a **thermometer** (SIGMA) vs. a **thermostat** (ours).\\n\\n## Novelty vs EntroPIC\\n\\nEntroPIC（Yang et al., 2025）与本工作均采用 PI 控制范式稳定训练过程，且均证明了纯比例控制（P-only）不足以应对累积误差，积分项（I-term）不可或缺。然而，两者在三个核心维度上存在本质差异：\\n\\n| Dimension | EntroPIC (Yang et al., 2025) | Ours |\\n|-----------|------------------------------|------|\\n| Controlled variable | RL loss coefficients (参数更新空间) | Data mixing ratio w_t (数据空间) |\\n| Control signal | Policy entropy (输出分布多样性) | Spectral effective rank (内部表征维度利用率) |\\n| Application | RLHF/GRPO entropy collapse (探索-利用平衡) | Iterative synthetic pretraining collapse (分布退化防护) |\\n| Intervention surface | Gradient signal weighting | Training data distribution reconstruction |\\n\\n**控制变量不同。** EntroPIC 调节 RL 训练中正/负样本的 loss 系数，作用于参数更新空间；我们调节 iterative pretraining 中 synthetic-to-real 的数据混合比例，作用于数据空间。前者是梯度信号的加权，后者是训练数据分布的重构。\\n\\n**控制信号不同。** EntroPIC 以 policy 输出分布的 entropy 为反馈信号；我们以权重矩阵的 spectral effective rank 为反馈信号，度量模型内部表征的维度利用率。Effective rank 是一个更早期的 collapse 前兆指标——entropy 下降时 collapse 可能已经开始，而 spectral rank 的收缩往往先于可观测的性能退化。\\n\\n**应用场景不同。** EntroPIC 解决 RLHF/GRPO 阶段的 entropy collapse（模型过早收敛到确定性策略）；我们解决 iterative synthetic pretraining 中的 model collapse（多轮自训练导致分布退化）。\\n\\n**共同点与方法论传承。** 两者共享 PI 控制的方法论内核。EntroPIC 验证了 PI 控制在 ML 训练稳定性问题上的有效性，为本工作提供旁证支持。但 control surface 的根本差异（参数空间 loss weighting vs 数据空间 mixing ratio，policy entropy vs spectral effective rank）确保了充分的新颖性。\\n\\n## Reviewer Concerns (预期)\\n\\n### RC1: Scale — \\\"Only Pythia-1B, does this generalize?\\\"\\n- **预备回应**: Pythia family shares architecture with GPT-NeoX/LLaMA. Effective rank is architecture-agnostic (computed on embedding space, not architecture-specific components). We acknowledge scale as a limitation and frame Pythia-1B as proof-of-concept for the control paradigm. Stretch goal: Pythia-2.8B validation if GPU budget allows.\\n\\n### RC2: Controller choice — \\\"Why PI, not PID / RL / adaptive?\\\"\\n- **预备回应**: PI is deliberately simple — the contribution is the *closed-loop framework*, not the specific controller. PI has 2 hyperparameters (vs. RL's many), is interpretable, and has known stability properties. We ablate over Kp/Ki and show robustness. PID's derivative term adds noise sensitivity without clear benefit at our signal frequency. More sophisticated controllers are future work.\\n\\n### RC3: Metric choice — \\\"Why effective rank vs. other spectral metrics?\\\"\\n- **预备回应**: Effective rank (exponential of spectral entropy) captures the full eigenvalue distribution in a single scalar, is differentiable, and has information-theoretic grounding. We compare against condition number and trace norm in ablation and show effective rank has the earliest and most consistent leading indicator property.\\n\\n### RC4: Data scale — \\\"wikitext-103 is tiny, web-scale data may behave differently\\\"\\n- **预备回应**: MVP uses wikitext-103 (20M tokens/gen) for rapid iteration to validate the control paradigm. The collapse phenomenon is data-scale-invariant in prior work (Shumailov et al.); our contribution is the control mechanism, not the collapse itself. Scale-up experiments (larger datasets, more tokens/gen) are planned as resources allow, but the core signal (spectral rank as leading indicator) should be observable at any scale where collapse occurs.\\n\\n### RC5: Practical applicability — \\\"Real training pipelines don't retrain from scratch each generation\\\"\\n- **预备回应**: Our framework applies to any iterative training setting where synthetic data accumulates: knowledge distillation rounds, self-play, RLHF iterations. The PI controller is agnostic to whether training is from scratch or continued. We frame as a general principle applicable to the growing trend of synthetic data in training pipelines.\\n\\n## Pivot B Framing (conditional on verification — 2026-05-13)\\n\\n> ⚠️ **Conditional on analyze_generated_eff_rank.py results.** If generated eff_rank does NOT drop, fall back to Plan A (n-gram PI controller).\\n\\n### Title (Pivot B 候选)\\n1. **Self-Referential Spectral Analysis for Closed-Loop Model Collapse Control**\\n2. **Where You Look Matters: Spectral Monitoring on Self-Generated Text for Active Collapse Prevention** ← Reviewer 推荐：简洁、传达核心 insight\\n3. ~~Collapse-Aware Mixing: Why Holdout Metrics Miss Model Collapse and How Self-Referential Spectral Rank Catches It~~ （过长，19 词，EMNLP 通常限 ~15 词）\\n\\n### Story Arc (Pivot B)\\n\\n1. **Problem**: Same — model collapse in iterative synthetic training.\\n\\n2. **Gap (升级版)**: SIGMA (2026) uses spectral analysis of embeddings on **holdout/reference data** to detect collapse. We show this fundamentally fails — holdout-side metrics (including eff_rank AND PPL) remain stable while generation quality collapses catastrophically (n-gram entropy -86%, vocab coverage -71%). The collapse signature is invisible from the outside.\\n\\n3. **Insight (新)**: Collapse manifests in the **generation space**, not the holdout space. Computing spectral effective rank on the model's **own generated text** (self-referential spectral analysis) reveals the dimensional collapse that holdout metrics miss. The model's internal representations stay diverse when processing external input, but collapse when self-referencing.\\n\\n4. **Solution**: Same PI controller, but driven by self-referential spectral effective rank instead of holdout-based rank. Real-time monitoring of generation-space rank as the control signal for dynamic data mixing.\\n\\n5. **Result**: Same — controller maintains quality across generations.\\n\\n### Narrative Strategy (Reviewer-informed — D013)\\n\\n\\\"Holdout 失灵\\\" 在论文中承担双重角色：\\n1. **Motivation (Section 1-2)**: \\\"The standard practice of monitoring holdout metrics misses early-stage collapse — holdout eff_rank actually *increases* while generation diversity collapses.\\\"\\n2. **Methodological finding (Section 4 分析)**: \\\"We identify a fundamental asymmetry: encoding capability (holdout) decouples from generation diversity during early collapse.\\\" → 解释为什么需要 self-referential surface。\\n\\n**⚠️ Pivot B 存活条件 (D013)**：generated eff_rank 必须证明比 n-gram entropy **额外有价值**。n-gram entropy 在 G1 step 152 已检测到 collapse（6.93→3.92 一步崩塌），如果 generated eff_rank 也在同一时点才检测到且无额外优势，审稿人会质疑 \\\"为什么要做昂贵的 SVD\\\"。至少需要以下之一：\\n- (a) generated eff_rank 比 n-gram 更早检测（理想）\\n- (b) generated eff_rank 提供更平滑的连续信号，适合 PI 控制器渐进反馈（n-gram 是阶跃函数，控制器来不及反应）\\n- (c) generated eff_rank 在 n-gram 未剧变时已渐进下降——即使同 checkpoint 检测，梯度信息更丰富\\n\\n**验证方法**：analyze_generated_eff_rank.py 运行后，逐 checkpoint 对比 generated eff_rank 与 n-gram entropy 变化梯度。\\n\\n### Pivot B GO/NO-GO 判定标准 (D014)\\n\\n**数据来源**：analyze_generated_eff_rank.py 在 G0/G1/G2 final_model 上的输出。\\n\\n**GO (Pivot B 成立)**：满足以下全部条件：\\n1. Generated eff_rank 在 G0→G1→G2 呈**下降**趋势（绝对值下降 ≥5% from G0 final）\\n2. Generated eff_rank 下降方向与 holdout eff_rank **相反**（holdout 上升 +0.96%，generated 下降）\\n3. compare_eff_rank_vs_ngram.py verdict ≠ PIVOT_B_FAILS\\n4. 至少满足存活条件 (a)(b)(c) 之一\\n\\n**MARGINAL (需要额外数据)**：\\n- Generated eff_rank 下降但 <5%，或 verdict = PIVOT_B_MARGINAL\\n- 行动：补充中间 checkpoint 分析（从 3 个 final_model 扩展到全部 18 个 checkpoint），验证渐进性\\n\\n**KILL (Pivot B 不成立)**：\\n- Generated eff_rank 不下降、上升、或与 holdout 同向\\n- verdict = PIVOT_B_LOSES 或 PIVOT_B_FAILS\\n- 行动：启动 Plan C 或 negative result paper（见 Reviewer 预案评估）\\n\\n### Core Claims (Pivot B)\\n\\n- **C1-B (Self-Referential Spectral Collapse Detection)**: Self-referential spectral effective rank (computed on model-generated text) detects model collapse that holdout-side metrics (PPL, standard eff_rank) miss entirely within the first 1–3 generations of iterative synthetic training. This establishes the generation space as the correct measurement surface for early collapse monitoring.\\n  - *Strength*: Empirical. Does not assume holdout metrics \\\"eventually\\\" detect collapse — frames holdout as blind to early-stage collapse. Narrower than \\\"all generation-side > all holdout-side\\\"（后者文献已有支撑）。Claim 特指 spectral analysis on self-generated text — 文献中不存在。\\n  - *Must show*: generated eff_rank 比 n-gram entropy 提供额外价值（更早/更平滑/更适合 PI 控制）。具体数字留到 Experiments section，claim 中不硬编码。\\n\\n- **C2-B (Controller Mechanism)**: Same as C2 — PI controller works with self-referential eff_rank as input.\\n\\n- **C3-B (Collapse Mitigation)**: Same as C3.\\n\\n### Novelty vs SIGMA (Pivot B — 升级)\\n\\n| Dimension | SIGMA (2026-01) | Ours |\\n|-----------|-----------------|------|\\n| Measurement surface | Holdout/reference data | **Self-generated text** |\\n| Spectral metric | Gram matrix spectral bounds | Effective rank on generation space |\\n| Effectiveness | Detects collapse at convergence | **We prove holdout metrics miss early collapse** |\\n| Role of metric | Post-hoc diagnosis | **Real-time leading indicator + control signal** |\\n| Control mechanism | None | PI controller with automatic ratio adjustment |\\n| Key contribution | \\\"Collapse has spectral signatures\\\" | **\\\"Spectral signatures exist in generation space, not holdout space\\\"** |\\n\\n**Key differentiator (升级)**: SIGMA's spectral approach effectively diagnoses severe collapse at convergence; we show that early-stage collapse — before holdout metrics move — requires monitoring on a different surface (self-generated text). Our work extends the spectral paradigm from diagnosis to prevention. 内部 shorthand: \\\"thermometer on the wrong surface vs thermostat on the right surface\\\"（不用于正式论文措辞）。\\n\\n### Anticipated RC6 (Pivot B): \\\"Why spectral rank over n-gram entropy?\\\"\\n\\n- **预备回应**: Spectral effective rank 直接度量表征空间的维度利用率退化——这是 collapse 的**因**（表征坍缩），而 n-gram entropy 是 collapse 的**果**（输出多样性下降）。信息论层面，eff_rank = exp(H(normalized singular values))，捕获了完整的表征几何结构，而 n-gram entropy 仅统计 surface-level token 频率。作为 PI 控制信号，eff_rank 的优势在于：(1) 信息论根基——对 collapse 机制有因果解释力而非纯相关；(2) [具体数据待 analyze_generated_eff_rank.py 验证] 可能提供更平滑的渐进下降信号（vs n-gram 在粗 checkpoint 分辨率下的剧烈变化），但此点需高频 checkpoint 数据支撑，不作为主要论据。如果实验显示 eff_rank 无额外优势，需要重新评估 Pivot B 可行性。\\n- **注意**: \\\"n-gram 是阶跃函数\\\" 的论断可能是 checkpoint 分辨率 artifact（v7 间隔 5M tokens），更高频 checkpoint 下 n-gram 可能也是渐进的。不以此作为主要差异化论据。\\n\\n### Anticipated RC7 (Pivot B): \\\"What's the computational overhead of self-referential monitoring?\\\"\\n\\n- **预备回应**: Self-referential eff_rank 需要 (1) 生成 N 段文本 (2) forward pass 取 hidden states (3) SVD。比 holdout PPL 贵（holdout 只需 forward pass，不需 generation）。但 (a) monitoring 频率可调（如每 K training steps 采样一次），成本与 K 成反比；(b) 提前检测 collapse 后调整 data mixing 避免的无效训练时间 >> monitoring 成本；(c) 生成阶段可以 batch 处理。[具体 GPU 时间量化待实验补充]\\n\\n### Anticipated RC8 (Pivot B): \\\"How stable is generated eff_rank across sampling runs?\\\"\\n\\n- **预备回应**: Holdout eff_rank 是确定性的（相同数据→相同结果），generated eff_rank 取决于 sampling（temperature, top_p, seed）。需证明方差可控。[实验计划：同一 checkpoint 多次采样（5-10 次）计算 generated eff_rank，报告 mean ± std，论证信噪比足够做 PI 控制信号]\\n\\n## Evidence Map\\n\\n| Claim | Required Evidence | Experiment | Status |\\n|-------|-------------------|------------|--------|\\n| C1 | Temporal gap: rank drops ≥3pts/0.5% before PPL rises ≥2pts/5% | mvp_pilot_v7 | running (v7) |\\n| C1 | Statistical significance of temporal gap (bootstrap CI) | leading_indicator_analysis | planned |\\n| C1 | Effective rank vs alternative spectral metrics | spectral_metric_comparison | planned (P0) |\\n| C2 | Kp/Ki grid sensitivity on Pythia-1B | pi_sweep_p0 | planned (P0) |\\n| C2 | PI floor test: w_min=0.1 alone vs PI dynamics | baseline_w01 | planned (P0) |\\n| C2 | PI vs best fixed ratio, 3-seed significance | seed_validation | planned (P0) |\\n| C2 | Controller responds correctly to rank changes | controller_ablation | planned |\\n| C2 | Controller robust to hyperparameter variation | controller_sensitivity | planned |\\n| C3 | Collapse lower bound: pure synthetic (w=0) | baseline_w0 | planned (P0) |\\n| C3 | No-collapse upper bound: pure real (w=1) | baseline_w1 | planned (P0) |\\n| C3 | PI vs best fixed ratio, 3-seed significance | seed_validation | planned (P0) |\\n| C3 | PI control outperforms fixed ratios in final PPL | controller_vs_baselines | planned |\\n| C3 | PI control maintains higher vocab coverage, lower KL | controller_vs_baselines | planned |\\n| C3 | Multi-generation stability under control (5 gen) | full_collapse_run | planned |\\n| RC1 | Scale validation (stretch) | cross_model_validation | stretch |\\n| RC3 | Metric comparison justification | spectral_metric_comparison | planned (P0) |\\n| **Pivot B** | | | |\\n| C1-B | Generated eff_rank drops while holdout eff_rank doesn't | analyze_generated_eff_rank | pending (v7 G2 eval) |\\n| C1-B | Generated eff_rank provides value beyond n-gram entropy | compare_eff_rank_vs_ngram | pending (after above) |\\n| C1-B | Per-layer eff_rank reveals collapse locus | analyze_layer_eff_rank | pending (after above) |\\n| RC6 | Generated eff_rank smoother/earlier than n-gram | compare_eff_rank_vs_ngram | pending |\\n| RC7 | Monitoring overhead quantification | pivot_b_overhead_timing | planned |\\n| RC8 | Generated eff_rank stability across sampling runs | pivot_b_sampling_stability | planned |\\n\", \"total_chars\": 16564, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "92ff953f-ee95-44a2-af35-bf36b68af5f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — Collapse-Aware Mixing\\\\n\\\\n> ⚠️ **Draft — conditional on MVP GO.** MVP (v7) 尚未完成，C1 核心假设无实验数据支撑。MVP NO-GO 后需根据结果修改或废弃。\\\\n\\\\n## Title (候选)\\\\n1. **Closing the Loop: Spectral Effective Rank as a Leading Indicator for Active Model Collapse Control**\\\\n2. **From Monitoring to Control: PI-Regulated Data Mixing via Spectral Collapse Detection**\\\\n3. **Collapse-Aware Mixing: Closed-Loop Control of Synthetic Data Ratios Using Spectral Effective Rank**\\\\n\\\\n## Story Arc\\\\n\\\\n1. **Problem**: Model collapse in iterative LLM training with synthetic data is well-documented (Shumailov et al., 2024). As models train on their own outputs across generations, quality degrades — PPL rises, diversity drops, tail distributions vanish.\\\\n\\\\n2. **Gap**: Recent work (SIGMA, 2026) demonstrates spectral analysis of embedding Gram matrices can *detect* collapse, and ERBP (2025) provides theoretical grounding for entropy-based reservoir management. But both are **passive** — they diagnose after the fact, offering no mechanism to *prevent* collapse during training.\\\\n\\\\n3. **Insight**: Spectral effective rank of the embedding Gram matrix is a **leading indicator** of collapse — it drops before PPL rises, providing an actionable early warning signal. This temporal gap creates a window for intervention.\\\\n\\\\n4. **Solution**: We build a PI (proportional-integral) controller that monitors spectral effective rank in real-time and dynamically adjusts the real/synthetic data mixing ratio. When rank drops (early collapse signal), the controller increases real data proportion; when rank stabilizes, it relaxes back. This is the first **closed-loop control** system for model collapse.\\\\n\\\\n5. **Result**: The controller automatically maintains model quality across generations without manual tuning of data ratios, outperforming fixed mixing strategies and uncontrolled baselines.\\\\n\\\\n## Core Claims (精确表述)\\\\n\\\\n- **C1 (Leading Indicator)**: In iterative synthetic training of autoregressive LMs, spectral effective rank of the embedding Gram matrix decreases by ≥3 points (absolute) or ≥0.5% (relative) from G0 final at checkpoint t while held-out PPL has not yet increased by ≥2 points or ≥5% from G0 final — establishing effective rank as a leading indicator of model collapse.\\\\n  - *Strength*: Empirical observation on Pythia-1B. Does not claim universality across all architectures/scales.\\\\n\\\\n- **C2 (Controller Mechanism)**: A PI controller using spectral effective rank as input signal can automatically adjust real/synthetic data mixing ratio w_t ∈ [0.1, 0.9], responding to collapse dynamics without manual intervention.\\\\n  - *Strength*: Mechanistic claim — the controller works as designed. Ablation over Kp, Ki validates sensitivity.\\\\n\\\\n- **C3 (Collapse Mitigation)**: Closed-loop PI control of data mixing ratio reduces model collapse severity (measured by final PPL, generation-over-generation KL divergence, and vocabulary coverage) compared to fixed-ratio baselines across 3+ generations of iterative training.\\\\n  - *Strength*: Comparative claim. We do NOT claim collapse is \\\\\\\"solved\\\\\\\" — only that it is measurably mitigated.\\\\n\\\\n## Novelty vs SIGMA\\\\n\\\\n| Dimension | SIGMA (2026-01) | Ours |\\\\n|-----------|-----------------|------|\\\\n| Spectral metric | Gram matrix spectral bounds (upper/lower) | Effective rank (entropy-based, continuous) |\\\\n| Role of metric | Post-hoc collapse detection/diagnosis | Real-time leading indicator for control |\\\\n| Control mechanism | None — passive monitoring only | PI controller with automatic ratio adjustment |\\\\n| Data mixing | Not addressed | Core contribution: dynamic real/synthetic mixing |\\\\n| Temporal analysis | Collapse detection at convergence | Leading indicator: rank precedes PPL degradation |\\\\n| Actionability | \\\\\\\"Collapse is happening\\\\\\\" | \\\\\\\"Collapse is approaching → adjust now\\\\\\\" |\\\\n\\\\n**Key differentiator**: SIGMA answers \\\\\\\"is collapse occurring?\\\\\\\"; we answer \\\\\\\"collapse is approaching — here's the automatic corrective action.\\\\\\\" The relationship is analogous to a **thermometer** (SIGMA) vs. a **thermostat** (ours).\\\\n\\\\n## Novelty vs EntroPIC\\\\n\\\\nEntroPIC（Yang et al., 2025）与本工作均采用 PI 控制范式稳定训练过程，且均证明了纯比例控制（P-only）不足以应对累积误差，积分项（I-term）不可或缺。然而，两者在三个核心维度上存在本质差异：\\\\n\\\\n| Dimension | EntroPIC (Yang et al., 2025) | Ours |\\\\n|-----------|------------------------------|------|\\\\n| Controlled variable | RL loss coefficients (参数更新空间) | Data mixing ratio w_t (数据空间) |\\\\n| Control signal | Policy entropy (输出分布多样性) | Spectral effective rank (内部表征维度利用率) |\\\\n| Application | RLHF/GRPO entropy collapse (探索-利用平衡) | Iterative synthetic pretraining collapse (分布退化防护) |\\\\n| Intervention surface | Gradient signal weighting | Training data distribution reconstruction |\\\\n\\\\n**控制变量不同。** EntroPIC 调节 RL 训练中正/负样本的 loss 系数，作用于参数更新空间；我们调节 iterative pretraining 中 synthetic-to-real 的数据混合比例，作用于数据空间。前者是梯度信号的加权，后者是训练数据分布的重构。\\\\n\\\\n**控制信号不同。** EntroPIC 以 policy 输出分布的 entropy 为反馈信号；我们以权重矩阵的 spectral effective rank 为反馈信号，度量模型内部表征的维度利用率。Effective rank 是一个更早期的 collapse 前兆指标——entropy 下降时 collapse 可能已经开始，而 spectral rank 的收缩往往先于可观测的性能退化。\\\\n\\\\n**应用场景不同。** EntroPIC 解决 RLHF/GRPO 阶段的 entropy collapse（模型过早收敛到确定性策略）；我们解决 iterative synthetic pretraining 中的 model collapse（多轮自训练导致分布退化）。\\\\n\\\\n**共同点与方法论传承。** 两者共享 PI 控制的方法论内核。EntroPIC 验证了 PI 控制在 ML 训练稳定性问题上的有效性，为本工作提供旁证支持。但 control surface 的根本差异（参数空间 loss weighting vs 数据空间 mixing ratio，policy entropy vs spectral effective rank）确保了充分的新颖性。\\\\n\\\\n## Reviewer Concerns (预期)\\\\n\\\\n### RC1: Scale — \\\\\\\"Only Pythia-1B, does this generalize?\\\\\\\"\\\\n- **预备回应**: Pythia family shares architecture with GPT-NeoX/LLaMA. Effective rank is architecture-agnostic (computed on embedding space, not architecture-specific components). We acknowledge scale as a limitation and frame Pythia-1B as proof-of-concept for the control paradigm. Stretch goal: Pythia-2.8B validation if GPU budget allows.\\\\n\\\\n### RC2: Controller choice — \\\\\\\"Why PI, not PID / RL / adaptive?\\\\\\\"\\\\n- **预备回应**: PI is deliberately simple — the contribution is the *closed-loop framework*, not the specific controller. PI has 2 hyperparameters (vs. RL's many), is interpretable, and has known stability properties. We ablate over Kp/Ki and show robustness. PID's derivative term adds noise sensitivity without clear benefit at our signal frequency. More sophisticated controllers are future work.\\\\n\\\\n### RC3: Metric choice — \\\\\\\"Why effective rank vs. other spectral metrics?\\\\\\\"\\\\n- **预备回应**: Effective rank (exponential of spectral entropy) captures the full eigenvalue distribution in a single scalar, is differentiable, and has information-theoretic grounding. We compare against condition number and trace norm in ablation and show effective rank has the earliest and most consistent leading indicator property.\\\\n\\\\n### RC4: Data scale — \\\\\\\"wikitext-103 is tiny, web-scale data may behave differently\\\\\\\"\\\\n- **预备回应**: MVP uses wikitext-103 (20M tokens/gen) for rapid iteration to validate the control paradigm. The collapse phenomenon is data-scale-invariant in prior work (Shumailov et al.); our contribution is the control mechanism, not the collapse itself. Scale-up experiments (larger datasets, more tokens/gen) are planned as resources allow, but the core signal (spectral rank as leading indicator) should be observable at any scale where collapse occurs.\\\\n\\\\n### RC5: Practical applicability — \\\\\\\"Real training pipelines don't retrain from scratch each generation\\\\\\\"\\\\n- **预备回应**: Our framework applies to any iterative training setting where synthetic data accumulates: knowledge distillation rounds, self-play, RLHF iterations. The PI controller is agnostic to whether training is from scratch or continued. We frame as a general principle applicable to the growing trend of synthetic data in training pipelines.\\\\n\\\\n## Pivot B Framing (conditional on verification — 2026-05-13)\\\\n\\\\n> ⚠️ **Conditional on analyze_generated_eff_rank.py results.** If generated eff_rank does NOT drop, fall back to Plan A (n-gram PI controller).\\\\n\\\\n### Title (Pivot B 候选)\\\\n1. **Self-Referential Spectral Analysis for Closed-Loop Model Collapse Control**\\\\n2. **Where You Look Matters: Spectral Monitoring on Self-Generated Text for Active Collapse Prevention** ← Reviewer 推荐：简洁、传达核心 insight\\\\n3. ~~Collapse-Aware Mixing: Why Holdout Metrics Miss Model Collapse and How Self-Referential Spectral Rank Catches It~~ （过长，19 词，EMNLP 通常限 ~15 词）\\\\n\\\\n### Story Arc (Pivot B)\\\\n\\\\n1. **Problem**: Same — model collapse in iterative synthetic training.\\\\n\\\\n2. **Gap (升级版)**: SIGMA (2026) uses spectral analysis of embeddings on **holdout/reference data** to detect collapse. We show this fundamentally fails — holdout-side metrics (including eff_rank AND PPL) remain stable while generation quality collapses catastrophically (n-gram entropy -86%, vocab coverage -71%). The collapse signature is invisible from the outside.\\\\n\\\\n3. **Insight (新)**: Collapse manifests in the **generation space**, not the holdout space. Computing spectral effective rank on the model's **own generated text** (self-referential spectral analysis) reveals the dimensional collapse that holdout metrics miss. The model's internal representations stay diverse when processing external input, but collapse when self-referencing.\\\\n\\\\n4. **Solution**: Same PI controller, but driven by self-referential spectral effective rank instead of holdout-based rank. Real-time monitoring of generation-space rank as the control signal for dynamic data mixing.\\\\n\\\\n5. **Result**: Same — controller maintains quality across generations.\\\\n\\\\n### Narrative Strategy (Reviewer-informed — D013)\\\\n\\\\n\\\\\\\"Holdout 失灵\\\\\\\" 在论文中承担双重角色：\\\\n1. **Motivation (Section 1-2)**: \\\\\\\"The standard practice of monitoring holdout metrics misses early-stage collapse — holdout eff_rank actually *increases* while generation diversity collapses.\\\\\\\"\\\\n2. **Methodological finding (Section 4 分析)**: \\\\\\\"We identify a fundamental asymmetry: encoding capability (holdout) decouples from generation diversity during early collapse.\\\\\\\" → 解释为什么需要 self-referential surface。\\\\n\\\\n**⚠️ Pivot B 存活条件 (D013)**：generated eff_rank 必须证明比 n-gram entropy **额外有价值**。n-gram entropy 在 G1 step 152 已检测到 collapse（6.93→3.92 一步崩塌），如果 generated eff_rank 也在同一时点才检测到且无额外优势，审稿人会质疑 \\\\\\\"为什么要做昂贵的 SVD\\\\\\\"。至少需要以下之一：\\\\n- (a) generated eff_rank 比 n-gram 更早检测（理想）\\\\n- (b) generated eff_rank 提供更平滑的连续信号，适合 PI 控制器渐进反馈（n-gram 是阶跃函数，控制器来不及反应）\\\\n- (c) generated eff_rank 在 n-gram 未剧变时已渐进下降——即使同 checkpoint 检测，梯度信息更丰富\\\\n\\\\n**验证方法**：analyze_generated_eff_rank.py 运行后，逐 checkpoint 对比 generated eff_rank 与 n-gram entropy 变化梯度。\\\\n\\\\n### Pivot B GO/NO-GO 判定标准 (D014)\\\\n\\\\n**数据来源**：analyze_generated_eff_rank.py 在 G0/G1/G2 final_model 上的输出。\\\\n\\\\n**GO (Pivot B 成立)**：满足以下全部条件：\\\\n1. Generated eff_rank 在 G0→G1→G2 呈**下降**趋势（绝对值下降 ≥5% from G0 final）\\\\n2. Generated eff_rank 下降方向与 holdout eff_rank **相反**（holdout 上升 +0.96%，generated 下降）\\\\n3. compare_eff_rank_vs_ngram.py verdict ≠ PIVOT_B_FAILS\\\\n4. 至少满足存活条件 (a)(b)(c) 之一\\\\n\\\\n**MARGINAL (需要额外数据)**：\\\\n- Generated eff_rank 下降但 <5%，或 verdict = PIVOT_B_MARGINAL\\\\n- 行动：补充中间 checkpoint 分析（从 3 个 final_model 扩展到全部 18 个 checkpoint），验证渐进性\\\\n\\\\n**KILL (Pivot B 不成立)**：\\\\n- Generated eff_rank 不下降、上升、或与 holdout 同向\\\\n- verdict = PIVOT_B_LOSES 或 PIVOT_B_FAILS\\\\n- 行动：启动 Plan C 或 negative result paper（见 Reviewer 预案评估）\\\\n\\\\n### Core Claims (Pivot B)\\\\n\\\\n- **C1-B (Self-Referential Spectral Collapse Detection)**: Self-referential spectral effective rank (computed on model-generated text) detects model collapse that holdout-side metrics (PPL, standard eff_rank) miss entirely within the first 1–3 generations of iterative synthetic training. This establishes the generation space as the correct measurement surface for early collapse monitoring.\\\\n  - *Strength*: Empirical. Does not assume holdout metrics \\\\\\\"eventually\\\\\\\" detect collapse — frames holdout as blind to early-stage collapse. Narrower than \\\\\\\"all generation-side > all holdout-side\\\\\\\"（后者文献已有支撑）。Claim 特指 spectral analysis on self-generated text — 文献中不存在。\\\\n  - *Must show*: generated eff_rank 比 n-gram entropy 提供额外价值（更早/更平滑/更适合 PI 控制）。具体数字留到 Experiments section，claim 中不硬编码。\\\\n\\\\n- **C2-B (Controller Mechanism)**: Same as C2 — PI controller works with self-referential eff_rank as input.\\\\n\\\\n- **C3-B (Collapse Mitigation)**: Same as C3.\\\\n\\\\n### Novelty vs SIGMA (Pivot B — 升级)\\\\n\\\\n| Dimension | SIGMA (2026-01) | Ours |\\\\n|-----------|-----------------|------|\\\\n| Measurement surface | Holdout/reference data | **Self-generated text** |\\\\n| Spectral metric | Gram matrix spectral bounds | Effective rank on generation space |\\\\n| Effectiveness | Detects collapse at convergence | **We prove holdout metrics miss early collapse** |\\\\n| Role of metric | Post-hoc diagnosis | **Real-time leading indicator + control signal** |\\\\n| Control mechanism | None | PI controller with automatic ratio adjustment |\\\\n| Key contribution | \\\\\\\"Collapse has spectral signatures\\\\\\\" | **\\\\\\\"Spectral signatures exist in generation space, not holdout space\\\\\\\"** |\\\\n\\\\n**Key differentiator (升级)**: SIGMA's spectral approach effectively diagnoses severe collapse at convergence; we show that early-stage collapse — before holdout metrics move — requires monitoring on a different surface (self-generated text). Our work extends the spectral paradigm from diagnosis to prevention. 内部 shorthand: \\\\\\\"thermometer on the wrong surface vs thermostat on the right surface\\\\\\\"（不用于正式论文措辞）。\\\\n\\\\n### Anticipated RC6 (Pivot B): \\\\\\\"Why spectral rank over n-gram entropy?\\\\\\\"\\\\n\\\\n- **预备回应**: Spectral effective rank 直接度量表征空间的维度利用率退化——这是 collapse 的**因**（表征坍缩），而 n-gram entropy 是 collapse 的**果**（输出多样性下降）。信息论层面，eff_rank = exp(H(normalized singular values))，捕获了完整的表征几何结构，而 n-gram entropy 仅统计 surface-level token 频率。作为 PI 控制信号，eff_rank 的优势在于：(1) 信息论根基——对 collapse 机制有因果解释力而非纯相关；(2) [具体数据待 analyze_generated_eff_rank.py 验证] 可能提供更平滑的渐进下降信号（vs n-gram 在粗 checkpoint 分辨率下的剧烈变化），但此点需高频 checkpoint 数据支撑，不作为主要论据。如果实验显示 eff_rank 无额外优势，需要重新评估 Pivot B 可行性。\\\\n- **注意**: \\\\\\\"n-gram 是阶跃函数\\\\\\\" 的论断可能是 checkpoint 分辨率 artifact（v7 间隔 5M tokens），更高频 checkpoint 下 n-gram 可能也是渐进的。不以此作为主要差异化论据。\\\\n\\\\n### Anticipated RC7 (Pivot B): \\\\\\\"What's the computational overhead of self-referential monitoring?\\\\\\\"\\\\n\\\\n- **预备回应**: Self-referential eff_rank 需要 (1) 生成 N 段文本 (2) forward pass 取 hidden states (3) SVD。比 holdout PPL 贵（holdout 只需 forward pass，不需 generation）。但 (a) monitoring 频率可调（如每 K training steps 采样一次），成本与 K 成反比；(b) 提前检测 collapse 后调整 data mixing 避免的无效训练时间 >> monitoring 成本；(c) 生成阶段可以 batch 处理。[具体 GPU 时间量化待实验补充]\\\\n\\\\n### Anticipated RC8 (Pivot B): \\\\\\\"How stable is generated eff_rank across sampling runs?\\\\\\\"\\\\n\\\\n- **预备回应**: Holdout eff_rank 是确定性的（相同数据→相同结果），generated eff_rank 取决于 sampling（temperature, top_p, seed）。需证明方差可控。[实验计划：同一 checkpoint 多次采样（5-10 次）计算 generated eff_rank，报告 mean ± std，论证信噪比足够做 PI 控制信号]\\\\n\\\\n## Evidence Map\\\\n\\\\n| Claim | Required Evidence | Experiment | Status |\\\\n|-------|-------------------|------------|--------|\\\\n| C1 | Temporal gap: rank drops ≥3pts/0.5% before PPL rises ≥2pts/5% | mvp_pilot_v7 | running (v7) |\\\\n| C1 | Statistical significance of temporal gap (bootstrap CI) | leading_indicator_analysis | planned |\\\\n| C1 | Effective rank vs alternative spectral metrics | spectral_metric_comparison | planned (P0) |\\\\n| C2 | Kp/Ki grid sensitivity on Pythia-1B | pi_sweep_p0 | planned (P0) |\\\\n| C2 | PI floor test: w_min=0.1 alone vs PI dynamics | baseline_w01 | planned (P0) |\\\\n| C2 | PI vs best fixed ratio, 3-seed significance | seed_validation | planned (P0) |\\\\n| C2 | Controller responds correctly to rank changes | controller_ablation | planned |\\\\n| C2 | Controller robust to hyperparameter variation | controller_sensitivity | planned |\\\\n| C3 | Collapse lower bound: pure synthetic (w=0) | baseline_w0 | planned (P0) |\\\\n| C3 | No-collapse upper bound: pure real (w=1) | baseline_w1 | planned (P0) |\\\\n| C3 | PI vs best fixed ratio, 3-seed significance | seed_validation | planned (P0) |\\\\n| C3 | PI control outperforms fixed ratios in final PPL | controller_vs_baselines | planned |\\\\n| C3 | PI control maintains higher vocab coverage, lower KL | controller_vs_baselines | planned |\\\\n| C3 | Multi-generation stability under control (5 gen) | full_collapse_run | planned |\\\\n| RC1 | Scale validation (stretch) | cross_model_validation | stretch |\\\\n| RC3 | Metric comparison justification | spectral_metric_comparison | planned (P0) |\\\\n| **Pivot B** | | | |\\\\n| C1-B | Generated eff_rank drops while holdout eff_rank doesn't | analyze_generated_eff_rank | pending (v7 G2 eval) |\\\\n| C1-B | Generated eff_rank provides value beyond n-gram entropy | compare_eff_rank_vs_ngram | pending (after above) |\\\\n| C1-B | Per-layer eff_rank reveals collapse locus | analyze_layer_eff_rank | pending (after above) |\\\\n| RC6 | Generated eff_rank smoother/earlier than n-gram | compare_eff_rank_vs_ngram | pending |\\\\n| RC7 | Monitoring overhead quantification | pivot_b_overhead_timing | planned |\\\\n| RC8 | Generated eff_rank stability across sampling runs | pivot_b_sampling_stability | planned |\\\\n\\\", \\\"total_chars\\\": 16564, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/paper_framing.md\", \"content\": \"# Paper Framing — Collapse-Aware Mixing\\n\\n> ⚠️ **Draft — conditional on MVP GO.** MVP (v7) 尚未完成，C1 核心假设无实验数据支撑。MVP NO-GO 后需根据结果修改或废弃。\\n\\n## Title (候选)\\n1. **Closing the Loop: Spectral Effective Rank as a Leading Indicator for Active Model Collapse Control**\\n2. **From Monitoring to Control: PI-Regulated Data Mixing via Spectral Collapse Detection**\\n3. **Collapse-Aware Mixing: Closed-Loop Control of Synthetic Data Ratios Using Spectral Effective Rank**\\n\\n## Story Arc\\n\\n1. **Problem**: Model collapse in iterative LLM training with synthetic data is well-documented (Shumailov et al., 2024). As models train on their own outputs across generations, quality degrades — PPL rises, diversity drops, tail distributions vanish.\\n\\n2. **Gap**: Recent work (SIGMA, 2026) demonstrates spectral analysis of embedding Gram matrices can *detect* collapse, and ERBP (2025) provides theoretical grounding for entropy-based reservoir management. But both are **passive** — they diagnose after the fact, offering no mechanism to *prevent* collapse during training.\\n\\n3. **Insight**: Spectral effective rank of the embedding Gram matrix is a **leading indicator** of collapse — it drops before PPL rises, providing an actionable early warning signal. This temporal gap creates a window for intervention.\\n\\n4. **Solution**: We build a PI (proportional-integral) controller that monitors spectral effective rank in real-time and dynamically adjusts the real/synthetic data mixing ratio. When rank drops (early collapse signal), the controller increases real data proportion; when rank stabilizes, it relaxes back. This is the first **closed-loop control** system for model collapse.\\n\\n5. **Result**: The controller automatically maintains model quality across generations without manual tuning of data ratios, outperforming fixed mixing strategies and uncontrolled baselines.\\n\\n## Core Claims (精确表述)\\n\\n- **C1 (Leading Indicator)**: In iterative synthetic training of autoregressive LMs, spectral effective rank of the embedding Gram matrix decreases by ≥3 points (absolute) or ≥0.5% (relative) from G0 final at checkpoint t while held-out PPL has not yet increased by ≥2 points or ≥5% from G0 final — establishing effective rank as a leading indicator of model collapse.\\n  - *Strength*: Empirical observation on Pythia-1B. Does not claim universality across all architectures/scales.\\n\\n- **C2 (Controller Mechanism)**: A PI controller using spectral effective rank as input signal can automatically adjust real/synthetic data mixing ratio w_t ∈ [0.1, 0.9], responding to collapse dynamics without manual intervention.\\n  - *Strength*: Mechanistic claim — the controller works as designed. Ablation over Kp, Ki validates sensitivity.\\n\\n- **C3 (Collapse Mitigation)**: Closed-loop PI control of data mixing ratio reduces model collapse severity (measured by final PPL, generation-over-generation KL divergence, and vocabulary coverage) compared to fixed-ratio baselines across 3+ generations of iterative training.\\n  - *Strength*: Comparative claim. We do NOT claim collapse is \\\"solved\\\" — only that it is measurably mitigated.\\n\\n## Novelty vs SIGMA\\n\\n| Dimension | SIGMA (2026-01) | Ours |\\n|-----------|-----------------|------|\\n| Spectral metric | Gram matrix spectral bounds (upper/lower) | Effective rank (entropy-based, continuous) |\\n| Role of metric | Post-hoc collapse detection/diagnosis | Real-time leading indicator for control |\\n| Control mechanism | None — passive monitoring only | PI controller with automatic ratio adjustment |\\n| Data mixing | Not addressed | Core contribution: dynamic real/synthetic mixing |\\n| Temporal analysis | Collapse detection at convergence | Leading indicator: rank precedes PPL degradation |\\n| Actionability | \\\"Collapse is happening\\\" | \\\"Collapse is approaching → adjust now\\\" |\\n\\n**Key differentiator**: SIGMA answers \\\"is collapse occurring?\\\"; we answer \\\"collapse is approaching — here's the automatic corrective action.\\\" The relationship is analogous to a **thermometer** (SIGMA) vs. a **thermostat** (ours).\\n\\n## Novelty vs EntroPIC\\n\\nEntroPIC（Yang et al., 2025）与本工作均采用 PI 控制范式稳定训练过程，且均证明了纯比例控制（P-only）不足以应对累积误差，积分项（I-term）不可或缺。然而，两者在三个核心维度上存在本质差异：\\n\\n| Dimension | EntroPIC (Yang et al., 2025) | Ours |\\n|-----------|------------------------------|------|\\n| Controlled variable | RL loss coefficients (参数更新空间) | Data mixing ratio w_t (数据空间) |\\n| Control signal | Policy entropy (输出分布多样性) | Spectral effective rank (内部表征维度利用率) |\\n| Application | RLHF/GRPO entropy collapse (探索-利用平衡) | Iterative synthetic pretraining collapse (分布退化防护) |\\n| Intervention surface | Gradient signal weighting | Training data distribution reconstruction |\\n\\n**控制变量不同。** EntroPIC 调节 RL 训练中正/负样本的 loss 系数，作用于参数更新空间；我们调节 iterative pretraining 中 synthetic-to-real 的数据混合比例，作用于数据空间。前者是梯度信号的加权，后者是训练数据分布的重构。\\n\\n**控制信号不同。** EntroPIC 以 policy 输出分布的 entropy 为反馈信号；我们以权重矩阵的 spectral effective rank 为反馈信号，度量模型内部表征的维度利用率。Effective rank 是一个更早期的 collapse 前兆指标——entropy 下降时 collapse 可能已经开始，而 spectral rank 的收缩往往先于可观测的性能退化。\\n\\n**应用场景不同。** EntroPIC 解决 RLHF/GRPO 阶段的 entropy collapse（模型过早收敛到确定性策略）；我们解决 iterative synthetic pretraining 中的 model collapse（多轮自训练导致分布退化）。\\n\\n**共同点与方法论传承。** 两者共享 PI 控制的方法论内核。EntroPIC 验证了 PI 控制在 ML 训练稳定性问题上的有效性，为本工作提供旁证支持。但 control surface 的根本差异（参数空间 loss weighting vs 数据空间 mixing ratio，policy entropy vs spectral effective rank）确保了充分的新颖性。\\n\\n## Reviewer Concerns (预期)\\n\\n### RC1: Scale — \\\"Only Pythia-1B, does this generalize?\\\"\\n- **预备回应**: Pythia family shares architecture with GPT-NeoX/LLaMA. Effective rank is architecture-agnostic (computed on embedding space, not architecture-specific components). We acknowledge scale as a limitation and frame Pythia-1B as proof-of-concept for the control paradigm. Stretch goal: Pythia-2.8B validation if GPU budget allows.\\n\\n### RC2: Controller choice — \\\"Why PI, not PID / RL / adaptive?\\\"\\n- **预备回应**: PI is deliberately simple — the contribution is the *closed-loop framework*, not the specific controller. PI has 2 hyperparameters (vs. RL's many), is interpretable, and has known stability properties. We ablate over Kp/Ki and show robustness. PID's derivative term adds noise sensitivity without clear benefit at our signal frequency. More sophisticated controllers are future work.\\n\\n### RC3: Metric choice — \\\"Why effective rank vs. other spectral metrics?\\\"\\n- **预备回应**: Effective rank (exponential of spectral entropy) captures the full eigenvalue distribution in a single scalar, is differentiable, and has information-theoretic grounding. We compare against condition number and trace norm in ablation and show effective rank has the earliest and most consistent leading indicator property.\\n\\n### RC4: Data scale — \\\"wikitext-103 is tiny, web-scale data may behave differently\\\"\\n- **预备回应**: MVP uses wikitext-103 (20M tokens/gen) for rapid iteration to validate the control paradigm. The collapse phenomenon is data-scale-invariant in prior work (Shumailov et al.); our contribution is the control mechanism, not the collapse itself. Scale-up experiments (larger datasets, more tokens/gen) are planned as resources allow, but the core signal (spectral rank as leading indicator) should be observable at any scale where collapse occurs.\\n\\n### RC5: Practical applicability — \\\"Real training pipelines don't retrain from scratch each generation\\\"\\n- **预备回应**: Our framework applies to any iterative training setting where synthetic data accumulates: knowledge distillation rounds, self-play, RLHF iterations. The PI controller is agnostic to whether training is from scratch or continued. We frame as a general principle applicable to the growing trend of synthetic data in training pipelines.\\n\\n## Pivot B Framing (conditional on verification — 2026-05-13)\\n\\n> ⚠️ **Conditional on analyze_generated_eff_rank.py results.** If generated eff_rank does NOT drop, fall back to Plan A (n-gram PI controller).\\n\\n### Title (Pivot B 候选)\\n1. **Self-Referential Spectral Analysis for Closed-Loop Model Collapse Control**\\n2. **Where You Look Matters: Spectral Monitoring on Self-Generated Text for Active Collapse Prevention** ← Reviewer 推荐：简洁、传达核心 insight\\n3. ~~Collapse-Aware Mixing: Why Holdout Metrics Miss Model Collapse and How Self-Referential Spectral Rank Catches It~~ （过长，19 词，EMNLP 通常限 ~15 词）\\n\\n### Story Arc (Pivot B)\\n\\n1. **Problem**: Same — model collapse in iterative synthetic training.\\n\\n2. **Gap (升级版)**: SIGMA (2026) uses spectral analysis of embeddings on **holdout/reference data** to detect collapse. We show this fundamentally fails — holdout-side metrics (including eff_rank AND PPL) remain stable while generation quality collapses catastrophically (n-gram entropy -86%, vocab coverage -71%). The collapse signature is invisible from the outside.\\n\\n3. **Insight (新)**: Collapse manifests in the **generation space**, not the holdout space. Computing spectral effective rank on the model's **own generated text** (self-referential spectral analysis) reveals the dimensional collapse that holdout metrics miss. The model's internal representations stay diverse when processing external input, but collapse when self-referencing.\\n\\n4. **Solution**: Same PI controller, but driven by self-referential spectral effective rank instead of holdout-based rank. Real-time monitoring of generation-space rank as the control signal for dynamic data mixing.\\n\\n5. **Result**: Same — controller maintains quality across generations.\\n\\n### Narrative Strategy (Reviewer-informed — D013)\\n\\n\\\"Holdout 失灵\\\" 在论文中承担双重角色：\\n1. **Motivation (Section 1-2)**: \\\"The standard practice of monitoring holdout metrics misses early-stage collapse — holdout eff_rank actually *increases* while generation diversity collapses.\\\"\\n2. **Methodological finding (Section 4 分析)**: \\\"We identify a fundamental asymmetry: encoding capability (holdout) decouples from generation diversity during early collapse.\\\" → 解释为什么需要 self-referential surface。\\n\\n**⚠️ Pivot B 存活条件 (D013)**：generated eff_rank 必须证明比 n-gram entropy **额外有价值**。n-gram entropy 在 G1 step 152 已检测到 collapse（6.93→3.92 一步崩塌），如果 generated eff_rank 也在同一时点才检测到且无额外优势，审稿人会质疑 \\\"为什么要做昂贵的 SVD\\\"。至少需要以下之一：\\n- (a) generated eff_rank 比 n-gram 更早检测（理想）\\n- (b) generated eff_rank 提供更平滑的连续信号，适合 PI 控制器渐进反馈（n-gram 是阶跃函数，控制器来不及反应）\\n- (c) generated eff_rank 在 n-gram 未剧变时已渐进下降——即使同 checkpoint 检测，梯度信息更丰富\\n\\n**验证方法**：analyze_generated_eff_rank.py 运行后，逐 checkpoint 对比 generated eff_rank 与 n-gram entropy 变化梯度。\\n\\n### Pivot B GO/NO-GO 判定标准 (D014)\\n\\n**数据来源**：analyze_generated_eff_rank.py 在 G0/G1/G2 final_model 上的输出。\\n\\n**GO (Pivot B 成立)**：满足以下全部条件：\\n1. Generated eff_rank 在 G0→G1→G2 呈**下降**趋势（绝对值下降 ≥5% from G0 final）\\n2. Generated eff_rank 下降方向与 holdout eff_rank **相反**（holdout 上升 +0.96%，generated 下降）\\n3. compare_eff_rank_vs_ngram.py verdict ≠ PIVOT_B_FAILS\\n4. 至少满足存活条件 (a)(b)(c) 之一\\n\\n**MARGINAL (需要额外数据)**：\\n- Generated eff_rank 下降但 <5%，或 verdict = PIVOT_B_MARGINAL\\n- 行动：补充中间 checkpoint 分析（从 3 个 final_model 扩展到全部 18 个 checkpoint），验证渐进性\\n\\n**KILL (Pivot B 不成立)**：\\n- Generated eff_rank 不下降、上升、或与 holdout 同向\\n- verdict = PIVOT_B_LOSES 或 PIVOT_B_FAILS\\n- 行动：启动 Plan C 或 negative result paper（见 Reviewer 预案评估）\\n\\n### Core Claims (Pivot B)\\n\\n- **C1-B (Self-Referential Spectral Collapse Detection)**: Self-referential spectral effective rank (computed on model-generated text) detects model collapse that holdout-side metrics (PPL, standard eff_rank) miss entirely within the first 1–3 generations of iterative synthetic training. This establishes the generation space as the correct measurement surface for early collapse monitoring.\\n  - *Strength*: Empirical. Does not assume holdout metrics \\\"eventually\\\" detect collapse — frames holdout as blind to early-stage collapse. Narrower than \\\"all generation-side > all holdout-side\\\"（后者文献已有支撑）。Claim 特指 spectral analysis on self-generated text — 文献中不存在。\\n  - *Must show*: generated eff_rank 比 n-gram entropy 提供额外价值（更早/更平滑/更适合 PI 控制）。具体数字留到 Experiments section，claim 中不硬编码。\\n\\n- **C2-B (Controller Mechanism)**: Same as C2 — PI controller works with self-referential eff_rank as input.\\n\\n- **C3-B (Collapse Mitigation)**: Same as C3.\\n\\n### Novelty vs SIGMA (Pivot B — 升级)\\n\\n| Dimension | SIGMA (2026-01) | Ours |\\n|-----------|-----------------|------|\\n| Measurement surface | Holdout/reference data | **Self-generated text** |\\n| Spectral metric | Gram matrix spectral bounds | Effective rank on generation space |\\n| Effectiveness | Detects collapse at convergence | **We prove holdout metrics miss early collapse** |\\n| Role of metric | Post-hoc diagnosis | **Real-time leading indicator + control signal** |\\n| Control mechanism | None | PI controller with automatic ratio adjustment |\\n| Key contribution | \\\"Collapse has spectral signatures\\\" | **\\\"Spectral signatures exist in generation space, not holdout space\\\"** |\\n\\n**Key differentiator (升级)**: SIGMA's spectral approach effectively diagnoses severe collapse at convergence; we show that early-stage collapse — before holdout metrics move — requires monitoring on a different surface (self-generated text). Our work extends the spectral paradigm from diagnosis to prevention. 内部 shorthand: \\\"thermometer on the wrong surface vs thermostat on the right surface\\\"（不用于正式论文措辞）。\\n\\n### Anticipated RC6 (Pivot B): \\\"Why spectral rank over n-gram entropy?\\\"\\n\\n- **预备回应**: Spectral effective rank 直接度量表征空间的维度利用率退化——这是 collapse 的**因**（表征坍缩），而 n-gram entropy 是 collapse 的**果**（输出多样性下降）。信息论层面，eff_rank = exp(H(normalized singular values))，捕获了完整的表征几何结构，而 n-gram entropy 仅统计 surface-level token 频率。作为 PI 控制信号，eff_rank 的优势在于：(1) 信息论根基——对 collapse 机制有因果解释力而非纯相关；(2) [具体数据待 analyze_generated_eff_rank.py 验证] 可能提供更平滑的渐进下降信号（vs n-gram 在粗 checkpoint 分辨率下的剧烈变化），但此点需高频 checkpoint 数据支撑，不作为主要论据。如果实验显示 eff_rank 无额外优势，需要重新评估 Pivot B 可行性。\\n- **注意**: \\\"n-gram 是阶跃函数\\\" 的论断可能是 checkpoint 分辨率 artifact（v7 间隔 5M tokens），更高频 checkpoint 下 n-gram 可能也是渐进的。不以此作为主要差异化论据。\\n\\n### Anticipated RC7 (Pivot B): \\\"What's the computational overhead of self-referential monitoring?\\\"\\n\\n- **预备回应**: Self-referential eff_rank 需要 (1) 生成 N 段文本 (2) forward pass 取 hidden states (3) SVD。比 holdout PPL 贵（holdout 只需 forward pass，不需 generation）。但 (a) monitoring 频率可调（如每 K training steps 采样一次），成本与 K 成反比；(b) 提前检测 collapse 后调整 data mixing 避免的无效训练时间 >> monitoring 成本；(c) 生成阶段可以 batch 处理。[具体 GPU 时间量化待实验补充]\\n\\n### Anticipated RC8 (Pivot B): \\\"How stable is generated eff_rank across sampling runs?\\\"\\n\\n- **预备回应**: Holdout eff_rank 是确定性的（相同数据→相同结果），generated eff_rank 取决于 sampling（temperature, top_p, seed）。需证明方差可控。[实验计划：同一 checkpoint 多次采样（5-10 次）计算 generated eff_rank，报告 mean ± std，论证信噪比足够做 PI 控制信号]\\n\\n## Evidence Map\\n\\n| Claim | Required Evidence | Experiment | Status |\\n|-------|-------------------|------------|--------|\\n| C1 | Temporal gap: rank drops ≥3pts/0.5% before PPL rises ≥2pts/5% | mvp_pilot_v7 | running (v7) |\\n| C1 | Statistical significance of temporal gap (bootstrap CI) | leading_indicator_analysis | planned |\\n| C1 | Effective rank vs alternative spectral metrics | spectral_metric_comparison | planned (P0) |\\n| C2 | Kp/Ki grid sensitivity on Pythia-1B | pi_sweep_p0 | planned (P0) |\\n| C2 | PI floor test: w_min=0.1 alone vs PI dynamics | baseline_w01 | planned (P0) |\\n| C2 | PI vs best fixed ratio, 3-seed significance | seed_validation | planned (P0) |\\n| C2 | Controller responds correctly to rank changes | controller_ablation | planned |\\n| C2 | Controller robust to hyperparameter variation | controller_sensitivity | planned |\\n| C3 | Collapse lower bound: pure synthetic (w=0) | baseline_w0 | planned (P0) |\\n| C3 | No-collapse upper bound: pure real (w=1) | baseline_w1 | planned (P0) |\\n| C3 | PI vs best fixed ratio, 3-seed significance | seed_validation | planned (P0) |\\n| C3 | PI control outperforms fixed ratios in final PPL | controller_vs_baselines | planned |\\n| C3 | PI control maintains higher vocab coverage, lower KL | controller_vs_baselines | planned |\\n| C3 | Multi-generation stability under control (5 gen) | full_collapse_run | planned |\\n| RC1 | Scale validation (stretch) | cross_model_validation | stretch |\\n| RC3 | Metric comparison justification | spectral_metric_comparison | planned (P0) |\\n| **Pivot B** | | | |\\n| C1-B | Generated eff_rank drops while holdout eff_rank doesn't | analyze_generated_eff_rank | pending (v7 G2 eval) |\\n| C1-B | Generated eff_rank provides value beyond n-gram entropy | compare_eff_rank_vs_ngram | pending (after above) |\\n| C1-B | Per-layer eff_rank reveals collapse locus | analyze_layer_eff_rank | pending (after above) |\\n| RC6 | Generated eff_rank smoother/earlier than n-gram | compare_eff_rank_vs_ngram | pending |\\n| RC7 | Monitoring overhead quantification | pivot_b_overhead_timing | planned |\\n| RC8 | Generated eff_rank stability across sampling runs | pivot_b_sampling_stability | planned |\\n\", \"total_chars\": 16564, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01LeiGuDqzDi9FrUvribqVtb`</summary>
+
+```json
+{
+  "project": "collapse-aware-mixing",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "97691a94-717a-4bb5-b6fb-46e4c10d190a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yEPW5cyfPEddtRbxHmHXp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 23640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1092
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T01:20:50.055Z_
+
+<details><summary>↩ Tool result · `toolu_01LeiGuDqzDi9FrUvribqVtb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/ROADMAP.md\", \"content\": \"# collapse-aware-mixing — Research Dashboard\\n\\n> 最后更新: 2026-05-13 23:49 UTC | 更新原因: D018: MVP FAIL, 三条路径全封，待用户决策\\n\\n## 核心方向\\nSpectral effective rank 作为 model collapse 的 leading indicator → PI 控制器动态调节 real/synthetic mixing ratio。详见 paper_framing.md。\\n\\n**❌ MVP FAIL (D018)**：三条路径全封，核心假设在 MVP 阶段未通过验证。\\n\\n## 当前进展\\n\\n**阶段**: MVP FAIL — 待决策（Q2 negative result 或 archive）\\n\\n### 三条路径总结\\n1. **C1 holdout eff_rank** (D014): FALSIFIED — eff_rank 在 collapse 中反向上升 +0.96%，与 collapse 完全解耦\\n2. **Pivot B generated eff_rank** (D018): NO ADVANTAGE — 与 n-gram entropy 同时检测(G1 step 152)，噪声高 573 倍\\n3. **Direction C per-layer** (D016): DEAD — 所有层变化 <1%\\n\\n### 核心发现（有价值的 negative result）\\n- Holdout spectral eff_rank 与 mode collapse 完全解耦：模型生成崩塌到 1 个 unique token 时，holdout eff_rank 反而上升\\n- Generated eff_rank 能检测 collapse 但不优于简单 n-gram entropy baseline\\n- 挑战了 SIGMA 等工作中\\\"谱分析可监测 collapse\\\"的隐含假设\\n\\n## 待决选项\\n\\n### Q2: Negative Result Paper\\n- **目标**: EMNLP 2026 Findings\\n- **核心贡献**: \\\"holdout spectral effective rank rises during mode collapse\\\" — 挑战谱监测假设\\n- **需补实验**: multi-seed (3 seeds) + multi-scale (Pythia-410M/2.8B)\\n- **成本**: ~3-4 天 GPU\\n- **风险**: Findings 接受率对 negative results 不确定\\n\\n### Archive\\n- 释放 GPU 给更有前景的项目\\n\\n## GPU 预算\\n\\n| 资源 | 状态 |\\n|------|------|\\n| 1× RTX PRO 6000 (cqa1-38874) | 当前空闲，无 RUNNING 实验 |\\n\\n## 近期任务\\n\\n- [x] pivot_b_full_18ckpt 完成，确认 Pivot B 失败\\n- [ ] 等待用户决策：Q2 或 archive\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D018 | 2026-05-13 | MVP 最终判定 FAIL：三条路径全封（C1 falsified, Pivot B no adva | pivot_b_full_18ckpt, pivot_b_verification, mvp_pilot_v7 |\\n| D017 | 2026-05-13 | D013 存活条件 (a)(c) 未满足；启动 Option 1 细粒度 checkpoint 验证 | pivot_b_full_18ckpt |\\n| D016 | 2026-05-13 | Pivot B 核心信号确认 GO；Direction C KILLED；需全 checkpoint | pivot_b_verification |\\n| D015 | 2026-05-13 | Pivot B 失败预案：Q2 (negative result) 为首选保底，Q1 (multi- | — |\\n| D014 | 2026-05-13 | C1 原假设 definitively falsified by G2 data；立即启动 Pivo | mvp_pilot_v7 |\\n| D013 | 2026-05-13 | Pivot B 核心风险：generated eff_rank 必须证明比 n-gram entro | mvp_pilot_v7 |\\n| D012 | 2026-05-13 | Pivot 策略：B（生成文本 eff_rank）为首选，C（分层）并行验证，A（n-gram en | mvp_pilot_v7 |\\n| D011 | 2026-05-13 | v7 G1 数据：eff_rank 上升 +1.34 而非下降，核心假设 C1 面临挑战。等 G2  | mvp_pilot_v7 |\\n| D010 | 2026-05-13 | P0 补充：+3-seed 验证 + w=0.1 baseline + PI sweep 选择标准定 | mvp_pilot_v7 |\\n| D009 | 2026-05-13 | Post-MVP P0 扩展：+w=0/w=1 baselines、spectral metric  | mvp_pilot_v7 |\\n\\n\\n\", \"total_chars\": 2360, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "1f59a356-a615-4d36-ac77-1b744196a015",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/ROADMAP.md\\\", \\\"content\\\": \\\"# collapse-aware-mixing — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 23:49 UTC | 更新原因: D018: MVP FAIL, 三条路径全封，待用户决策\\\\n\\\\n## 核心方向\\\\nSpectral effective rank 作为 model collapse 的 leading indicator → PI 控制器动态调节 real/synthetic mixing ratio。详见 paper_framing.md。\\\\n\\\\n**❌ MVP FAIL (D018)**：三条路径全封，核心假设在 MVP 阶段未通过验证。\\\\n\\\\n## 当前进展\\\\n\\\\n**阶段**: MVP FAIL — 待决策（Q2 negative result 或 archive）\\\\n\\\\n### 三条路径总结\\\\n1. **C1 holdout eff_rank** (D014): FALSIFIED — eff_rank 在 collapse 中反向上升 +0.96%，与 collapse 完全解耦\\\\n2. **Pivot B generated eff_rank** (D018): NO ADVANTAGE — 与 n-gram entropy 同时检测(G1 step 152)，噪声高 573 倍\\\\n3. **Direction C per-layer** (D016): DEAD — 所有层变化 <1%\\\\n\\\\n### 核心发现（有价值的 negative result）\\\\n- Holdout spectral eff_rank 与 mode collapse 完全解耦：模型生成崩塌到 1 个 unique token 时，holdout eff_rank 反而上升\\\\n- Generated eff_rank 能检测 collapse 但不优于简单 n-gram entropy baseline\\\\n- 挑战了 SIGMA 等工作中\\\\\\\"谱分析可监测 collapse\\\\\\\"的隐含假设\\\\n\\\\n## 待决选项\\\\n\\\\n### Q2: Negative Result Paper\\\\n- **目标**: EMNLP 2026 Findings\\\\n- **核心贡献**: \\\\\\\"holdout spectral effective rank rises during mode collapse\\\\\\\" — 挑战谱监测假设\\\\n- **需补实验**: multi-seed (3 seeds) + multi-scale (Pythia-410M/2.8B)\\\\n- **成本**: ~3-4 天 GPU\\\\n- **风险**: Findings 接受率对 negative results 不确定\\\\n\\\\n### Archive\\\\n- 释放 GPU 给更有前景的项目\\\\n\\\\n## GPU 预算\\\\n\\\\n| 资源 | 状态 |\\\\n|------|------|\\\\n| 1× RTX PRO 6000 (cqa1-38874) | 当前空闲，无 RUNNING 实验 |\\\\n\\\\n## 近期任务\\\\n\\\\n- [x] pivot_b_full_18ckpt 完成，确认 Pivot B 失败\\\\n- [ ] 等待用户决策：Q2 或 archive\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D018 | 2026-05-13 | MVP 最终判定 FAIL：三条路径全封（C1 falsified, Pivot B no adva | pivot_b_full_18ckpt, pivot_b_verification, mvp_pilot_v7 |\\\\n| D017 | 2026-05-13 | D013 存活条件 (a)(c) 未满足；启动 Option 1 细粒度 checkpoint 验证 | pivot_b_full_18ckpt |\\\\n| D016 | 2026-05-13 | Pivot B 核心信号确认 GO；Direction C KILLED；需全 checkpoint | pivot_b_verification |\\\\n| D015 | 2026-05-13 | Pivot B 失败预案：Q2 (negative result) 为首选保底，Q1 (multi- | — |\\\\n| D014 | 2026-05-13 | C1 原假设 definitively falsified by G2 data；立即启动 Pivo | mvp_pilot_v7 |\\\\n| D013 | 2026-05-13 | Pivot B 核心风险：generated eff_rank 必须证明比 n-gram entro | mvp_pilot_v7 |\\\\n| D012 | 2026-05-13 | Pivot 策略：B（生成文本 eff_rank）为首选，C（分层）并行验证，A（n-gram en | mvp_pilot_v7 |\\\\n| D011 | 2026-05-13 | v7 G1 数据：eff_rank 上升 +1.34 而非下降，核心假设 C1 面临挑战。等 G2  | mvp_pilot_v7 |\\\\n| D010 | 2026-05-13 | P0 补充：+3-seed 验证 + w=0.1 baseline + PI sweep 选择标准定 | mvp_pilot_v7 |\\\\n| D009 | 2026-05-13 | Post-MVP P0 扩展：+w=0/w=1 baselines、spectral metric  | mvp_pilot_v7 |\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 2360, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/ROADMAP.md\", \"content\": \"# collapse-aware-mixing — Research Dashboard\\n\\n> 最后更新: 2026-05-13 23:49 UTC | 更新原因: D018: MVP FAIL, 三条路径全封，待用户决策\\n\\n## 核心方向\\nSpectral effective rank 作为 model collapse 的 leading indicator → PI 控制器动态调节 real/synthetic mixing ratio。详见 paper_framing.md。\\n\\n**❌ MVP FAIL (D018)**：三条路径全封，核心假设在 MVP 阶段未通过验证。\\n\\n## 当前进展\\n\\n**阶段**: MVP FAIL — 待决策（Q2 negative result 或 archive）\\n\\n### 三条路径总结\\n1. **C1 holdout eff_rank** (D014): FALSIFIED — eff_rank 在 collapse 中反向上升 +0.96%，与 collapse 完全解耦\\n2. **Pivot B generated eff_rank** (D018): NO ADVANTAGE — 与 n-gram entropy 同时检测(G1 step 152)，噪声高 573 倍\\n3. **Direction C per-layer** (D016): DEAD — 所有层变化 <1%\\n\\n### 核心发现（有价值的 negative result）\\n- Holdout spectral eff_rank 与 mode collapse 完全解耦：模型生成崩塌到 1 个 unique token 时，holdout eff_rank 反而上升\\n- Generated eff_rank 能检测 collapse 但不优于简单 n-gram entropy baseline\\n- 挑战了 SIGMA 等工作中\\\"谱分析可监测 collapse\\\"的隐含假设\\n\\n## 待决选项\\n\\n### Q2: Negative Result Paper\\n- **目标**: EMNLP 2026 Findings\\n- **核心贡献**: \\\"holdout spectral effective rank rises during mode collapse\\\" — 挑战谱监测假设\\n- **需补实验**: multi-seed (3 seeds) + multi-scale (Pythia-410M/2.8B)\\n- **成本**: ~3-4 天 GPU\\n- **风险**: Findings 接受率对 negative results 不确定\\n\\n### Archive\\n- 释放 GPU 给更有前景的项目\\n\\n## GPU 预算\\n\\n| 资源 | 状态 |\\n|------|------|\\n| 1× RTX PRO 6000 (cqa1-38874) | 当前空闲，无 RUNNING 实验 |\\n\\n## 近期任务\\n\\n- [x] pivot_b_full_18ckpt 完成，确认 Pivot B 失败\\n- [ ] 等待用户决策：Q2 或 archive\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D018 | 2026-05-13 | MVP 最终判定 FAIL：三条路径全封（C1 falsified, Pivot B no adva | pivot_b_full_18ckpt, pivot_b_verification, mvp_pilot_v7 |\\n| D017 | 2026-05-13 | D013 存活条件 (a)(c) 未满足；启动 Option 1 细粒度 checkpoint 验证 | pivot_b_full_18ckpt |\\n| D016 | 2026-05-13 | Pivot B 核心信号确认 GO；Direction C KILLED；需全 checkpoint | pivot_b_verification |\\n| D015 | 2026-05-13 | Pivot B 失败预案：Q2 (negative result) 为首选保底，Q1 (multi- | — |\\n| D014 | 2026-05-13 | C1 原假设 definitively falsified by G2 data；立即启动 Pivo | mvp_pilot_v7 |\\n| D013 | 2026-05-13 | Pivot B 核心风险：generated eff_rank 必须证明比 n-gram entro | mvp_pilot_v7 |\\n| D012 | 2026-05-13 | Pivot 策略：B（生成文本 eff_rank）为首选，C（分层）并行验证，A（n-gram en | mvp_pilot_v7 |\\n| D011 | 2026-05-13 | v7 G1 数据：eff_rank 上升 +1.34 而非下降，核心假设 C1 面临挑战。等 G2  | mvp_pilot_v7 |\\n| D010 | 2026-05-13 | P0 补充：+3-seed 验证 + w=0.1 baseline + PI sweep 选择标准定 | mvp_pilot_v7 |\\n| D009 | 2026-05-13 | Post-MVP P0 扩展：+w=0/w=1 baselines、spectral metric  | mvp_pilot_v7 |\\n\\n\\n\", \"total_chars\": 2360, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01WWpgu4S9cFnXAKgWAk66L9`</summary>
+
+```json
+{
+  "project": "collapse-aware-mixing",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "73c76725-284e-4d3e-8efc-bbbe13ef7e1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yEPW5cyfPEddtRbxHmHXp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 23640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1092
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T01:20:50.575Z_
+
+<details><summary>↩ Tool result · `toolu_01WWpgu4S9cFnXAKgWAk66L9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp_seed0_replication\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:33:31.240Z\", \"updated_at\": \"2026-05-14T00:47:08.437Z\", \"hypothesis\": \"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\", \"parent\": \"mvp_pilot_v7\", \"spec\": {\"command\": \"bash -c \\\"source /root/collapse-aware-mixing/env_init.sh && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"122711\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_seed0_replication.log\", \"submitted_at\": \"2026-05-14T00:45:25.090Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 103.3, \"gpu_hours\": 0.03}, \"conclusion\": \"failed\", \"notes\": \"Preflight 失败：磁盘空间不足（/root/autodl-tmp 仅剩 7GB），实验从未实际执行。Worker 误报 done。\", \"completed_at\": \"2026-05-14T00:47:08.437Z\"}, \"mvp_seed0_replication_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:41:36.029Z\", \"updated_at\": \"2026-05-14T00:45:39.035Z\", \"hypothesis\": \"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\", \"parent\": \"mvp_pilot_v7\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"122208\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_seed0_replication_r2.log\", \"submitted_at\": \"2026-05-14T00:44:24.453Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103-raw-v1 (HuggingFace)\", \"data_count\": \"~6340 train seqs (20M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 0, \"hyperparams\": {\"lr\": 2e-06, \"warmup_ratio\": 0.05, \"max_grad_norm\": 1, \"tokens_per_generation\": 20000000, \"num_generations\": 3, \"batch_size\": 8, \"grad_accum\": 4, \"max_seq_length\": 2048, \"torch_dtype\": \"bfloat16\", \"checkpoint_interval_tokens\": 5000000}, \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\"}}, \"mvp_pilot_v8_r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:51:51.460Z\", \"updated_at\": \"2026-05-13T23:57:53.325Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 -u resume_g2_eval.py 2>&1 | tee /root/autodl-tmp/pilot_v8.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"93708\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v8_r2.log\", \"submitted_at\": \"2026-05-13T17:51:51.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Contingency plan for v7 failure. Superseded by pivot analysis. Never started.\"}, \"mvp_pilot_v8\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:50:31.376Z\", \"updated_at\": \"2026-05-13T23:57:52.798Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 resume_g2_eval.py 2>&1 | tee /root/autodl-tmp/pilot_v8.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"93503\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v8.log\", \"submitted_at\": \"2026-05-13T17:50:31.360Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Contingency plan for v7 failure. Superseded by pivot analysis. Never started.\"}, \"pivot_b_full_18ckpt\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:23:19.590Z\", \"updated_at\": \"2026-05-13T23:57:31.207Z\", \"hypothesis\": \"全 18 checkpoint generated eff_rank 公平对比 n-gram entropy — 验证 generated eff_rank 是否在中间 checkpoint 已下降\", \"parent\": \"pivot_b_verification\", \"spec\": {\"command\": \"python3 analyze_generated_eff_rank.py --checkpoint-dir /root/autodl-tmp/output_v7/ --model-name EleutherAI/pythia-1b --num-samples 200 --max-length 2048 --output-dir /root/autodl-tmp/output_v7/pivot_b_analysis_full/\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"109597\", \"log_path\": \"~/runs/collapse-aware-mixing/pivot_b_full_18ckpt.log\", \"submitted_at\": \"2026-05-13T20:23:39.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)\", \"data_count\": \"200 samples per checkpoint\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_source\": \"mvp_pilot_v7 (G0/G1/G2 all checkpoints)\", \"eval_data\": \"wikitext-103-raw-v1 validation (holdout) + model-generated text\", \"checkpoint_path\": \"/root/autodl-tmp/output_v7/pivot_b_analysis_full/\", \"wall_clock_seconds\": 12832.0, \"gpu_hours\": 3.56}, \"conclusion\": \"negative\", \"notes\": \"generated eff_rank 与 n-gram 同时检测(G1 step 152)，噪声高 573 倍，无优势。D018 确认 Pivot B definitively 失败。\", \"completed_at\": \"2026-05-13T23:57:31.207Z\"}, \"pivot_b_verification\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:48:31.590Z\", \"updated_at\": \"2026-05-13T20:20:46.501Z\", \"spec\": {\"command\": \"analyze_ngram_leading.py + analyze_generated_eff_rank.py + compare_eff_rank_vs_ngram.py + analyze_layer_eff_rank.py (sequential)\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"pid\": \"99444\", \"log_path\": \"~/runs/collapse-aware-mixing/pivot_b_verification.log\", \"submitted_at\": \"2026-05-13T18:48:31.571Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)\", \"data_count\": \"1000 samples per checkpoint\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/output_v7/pivot_analysis/\", \"wall_clock_seconds\": 5534.9, \"gpu_hours\": 1.54}, \"metrics\": {\"G0_final\": {\"holdout_eff_rank\": 111.51, \"generated_eff_rank\": 63.89, \"delta\": 47.62}, \"G1_final\": {\"holdout_eff_rank\": 111.39, \"generated_eff_rank\": 3.87, \"delta\": 107.52, \"generated_drop_pct\": -93.9}, \"G2_final\": {\"holdout_eff_rank\": 111.86, \"generated_eff_rank\": 1.06, \"delta\": 110.79, \"generated_drop_pct\": -98.3}, \"compare_verdict\": \"PIVOT_B_LOSES\", \"ngram_detection\": \"G1 step 152, unigram_entropy -43.5%\", \"generated_eff_rank_detection\": \"G1 step 999999 (final), -93.9%\", \"note\": \"Generated eff_rank detects collapse (massive drop) but n-gram entropy detects earlier. Holdout eff_rank completely stable (~111.5 across all gens).\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T20:20:46.501Z\"}, \"mvp_pilot_v7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:35:35.418Z\", \"updated_at\": \"2026-05-13T18:47:15.929Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v5\", \"spec\": {\"command\": \"bash launch_pilot_v7.sh\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0 (RTX PRO 6000 96GB)\", \"data_path\": \"wikitext-103-raw-v1 (HuggingFace)\", \"data_count\": \"~6340 train seqs (20M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\", \"hyperparams\": {\"lr\": 2e-06, \"warmup_ratio\": 0.05, \"max_grad_norm\": 1, \"tokens_per_generation\": 20000000, \"num_generations\": 3, \"batch_size\": 8, \"grad_accum\": 4, \"max_seq_length\": 2048, \"torch_dtype\": \"bfloat16\", \"checkpoint_interval_tokens\": 5000000}, \"pid\": \"60104\", \"log_path\": \"/root/autodl-tmp/pilot_v7.log\"}, \"metrics\": {\"G0_final\": {\"eff_rank\": 676.96, \"ppl\": 13.27, \"spectral_entropy\": 6.518, \"vocab_coverage\": 0.469, \"unigram_entropy\": 6.93, \"trigram_entropy\": 11.41, \"unigram_unique\": 23586}, \"G1_final\": {\"eff_rank\": 678.3, \"ppl\": 13.41, \"spectral_entropy\": 6.52, \"vocab_coverage\": 0.137, \"unigram_entropy\": 0.96, \"trigram_entropy\": 1.28, \"unigram_unique\": 6878, \"kl_unigram\": 1.65}, \"G2_final\": {\"eff_rank\": 683.44, \"ppl\": 13.59, \"vocab_coverage\": 2e-05, \"unigram_entropy\": 0, \"trigram_entropy\": 0, \"unigram_unique\": 1, \"kl_unigram\": 0.618, \"total_gen_tokens\": 3968}, \"stage\": \"G2_eval_complete\", \"verdict\": \"EXTEND\", \"note\": \"G2 generation fully collapsed (unique_tokens=1), but eff_rank INCREASED (+6.48 from G0). PPL rose only +2.4%. Definitive: eff_rank does not detect collapse.\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T17:42:37.651Z\"}, \"failure_reason\": \"metrics.py:240 compute_kl_divergence ValueError: shapes (50277,) vs (50254,) — 两代 token 分布 vocab size 不一致。G2 评估阶段崩溃。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T17:42:38.314Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T17:42:39.033569+00:00\"}]}, \"notes\": \"失败原因: metrics.py:240 compute_kl_divergence shape mismatch (50277,) vs (50254,) — prev_gen 和 cur_gen token 分布用了不同 vocab size。崩在 G2 评估阶段 KL 计算。 | 已有成果: G0+G1 metrics 完整（eff_rank, ppl, n-gram entropy, coverage, logit_kl）| 建议: 修复 compute_kl_divergence 统一 vocab_size，重跑 v8\"}, \"mvp_pilot_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T15:44:14.338Z\", \"updated_at\": \"2026-05-13T02:21:06.722Z\", \"spec\": {\"command\": \"bash launch_pilot_v5.sh\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0 (RTX PRO 6000 96GB)\", \"data_path\": \"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\", \"data_count\": \"~43945 train seqs (90M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\", \"hyperparams\": {\"lr\": 2e-06, \"warmup_ratio\": 0.05, \"max_grad_norm\": 1, \"tokens_per_generation\": 90000000, \"num_generations\": 3, \"batch_size\": 8, \"grad_accum\": 4, \"max_seq_length\": 2048, \"torch_dtype\": \"bfloat16\"}, \"pid\": \"32154\", \"log_path\": \"/root/autodl-tmp/pilot_v5.log\", \"checkpoint_path\": \"/root/autodl-tmp/output/G0/training/final_model/\"}, \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v4\", \"conclusion\": \"failed\", \"failure_reason\": \"synth gen bottleneck (28h/gen at 90M tokens), D007 descale to 20M. G0 training+eval data preserved.\", \"completed_at\": \"2026-05-13T02:21:06.722Z\"}, \"mvp_pilot_v4\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T13:56:11.668Z\", \"updated_at\": \"2026-05-12T15:44:07.868Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v3\", \"reproduce\": {\"finished_at\": \"2026-05-12T15:23:19.096Z\"}, \"failure_reason\": \"Training divergence confirmed: manual per-token CE=114.79, PPL=inf, ratio=1.00 rules out transformers reporting artifact. Root cause: lr=1e-5 too high for Pythia-1B fine-tuning\", \"completed_at\": \"2026-05-12T14:53:02.247Z\", \"extra\": {\"ppl_diagnosis\": {\"manual_ce_mean\": 114.7858, \"manual_ppl\": \"inf (overflow)\", \"transformers_loss_last_batch\": 108.3693, \"manual_loss_last_batch\": 108.3693, \"ratio_transformers_manual\": 1, \"batches_evaluated\": 50, \"checkpoint\": \"checkpoint-760\", \"conclusion\": \"real divergence, NOT reporting artifact\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T14:53:02.967914+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:23:20.843237+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --tokens_per_generation 90000000 --checkpoint_interval_tokens 10000000 --holdout_size 5000 --no_wandb --seed 42\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0 (RTX PRO 6000 96GB)\", \"data_path\": \"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\", \"data_count\": \"43945 train seqs (90.0M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"pid\": \"28471\", \"log_path\": \"/tmp/pilot_v4.log\", \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\"}, \"conclusion\": \"failed\"}, \"mvp_pilot_v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:57:41.703Z\", \"updated_at\": \"2026-05-12T12:52:00.371Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v2\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo 2>/dev/null; export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt; export HF_HUB_DISABLE_XET=1; export HF_HOME=/root/autodl-tmp/.hf_cache; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42 2>&1 | tee /tmp/pilot_full_v3.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"13455\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v3.log\", \"submitted_at\": \"2026-05-12T11:57:53.250Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"mvp_pilot_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:21:43.874Z\", \"updated_at\": \"2026-05-12T11:57:26.717Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42 2>&1 | tee /tmp/pilot_full_v2.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"12186\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v2.log\", \"submitted_at\": \"2026-05-12T11:21:54.716Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"mvp_pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T09:05:00.421Z\", \"updated_at\": \"2026-05-12T11:21:36.814Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"spec\": {\"command\": \"bash -c 'cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42'\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"/tmp/pilot_full.log\", \"submitted_at\": \"2026-05-12T10:57:04.879Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"openwebtext (HuggingFace, downloaded at runtime)\", \"data_count\": \"500M tokens/generation x 3 generations\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"tmux_session\": \"mvp_pilot\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"python3 not found in tmux - conda not activated\", \"wall_clock_seconds\": 1471.9, \"gpu_hours\": 0.41}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-12T11:21:36.814Z\"}}, \"count\": 12, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0409}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "bf46f0f1-a3fc-405d-859d-7b741a6dadae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp_seed0_replication\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:33:31.240Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:47:08.437Z\\\", \\\"hypothesis\\\": \\\"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\\\", \\\"parent\\\": \\\"mvp_pilot_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/collapse-aware-mixing/env_init.sh && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"122711\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_seed0_replication.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T00:45:25.090Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 103.3, \\\"gpu_hours\\\": 0.03}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Preflight 失败：磁盘空间不足（/root/autodl-tmp 仅剩 7GB），实验从未实际执行。Worker 误报 done。\\\", \\\"completed_at\\\": \\\"2026-05-14T00:47:08.437Z\\\"}, \\\"mvp_seed0_replication_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:41:36.029Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:45:39.035Z\\\", \\\"hypothesis\\\": \\\"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\\\", \\\"parent\\\": \\\"mvp_pilot_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"122208\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_seed0_replication_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T00:44:24.453Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 (HuggingFace)\\\", \\\"data_count\\\": \\\"~6340 train seqs (20M tokens) + 5000 holdout seqs\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 0, \\\"hyperparams\\\": {\\\"lr\\\": 2e-06, \\\"warmup_ratio\\\": 0.05, \\\"max_grad_norm\\\": 1, \\\"tokens_per_generation\\\": 20000000, \\\"num_generations\\\": 3, \\\"batch_size\\\": 8, \\\"grad_accum\\\": 4, \\\"max_seq_length\\\": 2048, \\\"torch_dtype\\\": \\\"bfloat16\\\", \\\"checkpoint_interval_tokens\\\": 5000000}, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-1b (pretrained)\\\", \\\"eval_data\\\": \\\"wikitext-103-raw-v1 holdout (5000 seqs)\\\"}}, \\\"mvp_pilot_v8_r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:51:51.460Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:57:53.325Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 -u resume_g2_eval.py 2>&1 | tee /root/autodl-tmp/pilot_v8.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"93708\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_pilot_v8_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T17:51:51.443Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Contingency plan for v7 failure. Superseded by pivot analysis. Never started.\\\"}, \\\"mvp_pilot_v8\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:50:31.376Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:57:52.798Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 resume_g2_eval.py 2>&1 | tee /root/autodl-tmp/pilot_v8.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"93503\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_pilot_v8.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T17:50:31.360Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Contingency plan for v7 failure. Superseded by pivot analysis. Never started.\\\"}, \\\"pivot_b_full_18ckpt\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:23:19.590Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:57:31.207Z\\\", \\\"hypothesis\\\": \\\"全 18 checkpoint generated eff_rank 公平对比 n-gram entropy — 验证 generated eff_rank 是否在中间 checkpoint 已下降\\\", \\\"parent\\\": \\\"pivot_b_verification\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 analyze_generated_eff_rank.py --checkpoint-dir /root/autodl-tmp/output_v7/ --model-name EleutherAI/pythia-1b --num-samples 200 --max-length 2048 --output-dir /root/autodl-tmp/output_v7/pivot_b_analysis_full/\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"109597\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/pivot_b_full_18ckpt.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:23:39.177Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)\\\", \\\"data_count\\\": \\\"200 samples per checkpoint\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"mvp_pilot_v7 (G0/G1/G2 all checkpoints)\\\", \\\"eval_data\\\": \\\"wikitext-103-raw-v1 validation (holdout) + model-generated text\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output_v7/pivot_b_analysis_full/\\\", \\\"wall_clock_seconds\\\": 12832.0, \\\"gpu_hours\\\": 3.56}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"generated eff_rank 与 n-gram 同时检测(G1 step 152)，噪声高 573 倍，无优势。D018 确认 Pivot B definitively 失败。\\\", \\\"completed_at\\\": \\\"2026-05-13T23:57:31.207Z\\\"}, \\\"pivot_b_verification\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T18:48:31.590Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:20:46.501Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"analyze_ngram_leading.py + analyze_generated_eff_rank.py + compare_eff_rank_vs_ngram.py + analyze_layer_eff_rank.py (sequential)\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"99444\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/pivot_b_verification.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T18:48:31.571Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)\\\", \\\"data_count\\\": \\\"1000 samples per checkpoint\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output_v7/pivot_analysis/\\\", \\\"wall_clock_seconds\\\": 5534.9, \\\"gpu_hours\\\": 1.54}, \\\"metrics\\\": {\\\"G0_final\\\": {\\\"holdout_eff_rank\\\": 111.51, \\\"generated_eff_rank\\\": 63.89, \\\"delta\\\": 47.62}, \\\"G1_final\\\": {\\\"holdout_eff_rank\\\": 111.39, \\\"generated_eff_rank\\\": 3.87, \\\"delta\\\": 107.52, \\\"generated_drop_pct\\\": -93.9}, \\\"G2_final\\\": {\\\"holdout_eff_rank\\\": 111.86, \\\"generated_eff_rank\\\": 1.06, \\\"delta\\\": 110.79, \\\"generated_drop_pct\\\": -98.3}, \\\"compare_verdict\\\": \\\"PIVOT_B_LOSES\\\", \\\"ngram_detection\\\": \\\"G1 step 152, unigram_entropy -43.5%\\\", \\\"generated_eff_rank_detection\\\": \\\"G1 step 999999 (final), -93.9%\\\", \\\"note\\\": \\\"Generated eff_rank detects collapse (massive drop) but n-gram entropy detects earlier. Holdout eff_rank completely stable (~111.5 across all gens).\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-13T20:20:46.501Z\\\"}, \\\"mvp_pilot_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:35:35.418Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:47:15.929Z\\\", \\\"hypothesis\\\": \\\"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\\\", \\\"parent\\\": \\\"mvp_pilot_v5\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash launch_pilot_v7.sh\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000 96GB)\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 (HuggingFace)\\\", \\\"data_count\\\": \\\"~6340 train seqs (20M tokens) + 5000 holdout seqs\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-1b (pretrained)\\\", \\\"eval_data\\\": \\\"wikitext-103-raw-v1 holdout (5000 seqs)\\\", \\\"hyperparams\\\": {\\\"lr\\\": 2e-06, \\\"warmup_ratio\\\": 0.05, \\\"max_grad_norm\\\": 1, \\\"tokens_per_generation\\\": 20000000, \\\"num_generations\\\": 3, \\\"batch_size\\\": 8, \\\"grad_accum\\\": 4, \\\"max_seq_length\\\": 2048, \\\"torch_dtype\\\": \\\"bfloat16\\\", \\\"checkpoint_interval_tokens\\\": 5000000}, \\\"pid\\\": \\\"60104\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/pilot_v7.log\\\"}, \\\"metrics\\\": {\\\"G0_final\\\": {\\\"eff_rank\\\": 676.96, \\\"ppl\\\": 13.27, \\\"spectral_entropy\\\": 6.518, \\\"vocab_coverage\\\": 0.469, \\\"unigram_entropy\\\": 6.93, \\\"trigram_entropy\\\": 11.41, \\\"unigram_unique\\\": 23586}, \\\"G1_final\\\": {\\\"eff_rank\\\": 678.3, \\\"ppl\\\": 13.41, \\\"spectral_entropy\\\": 6.52, \\\"vocab_coverage\\\": 0.137, \\\"unigram_entropy\\\": 0.96, \\\"trigram_entropy\\\": 1.28, \\\"unigram_unique\\\": 6878, \\\"kl_unigram\\\": 1.65}, \\\"G2_final\\\": {\\\"eff_rank\\\": 683.44, \\\"ppl\\\": 13.59, \\\"vocab_coverage\\\": 2e-05, \\\"unigram_entropy\\\": 0, \\\"trigram_entropy\\\": 0, \\\"unigram_unique\\\": 1, \\\"kl_unigram\\\": 0.618, \\\"total_gen_tokens\\\": 3968}, \\\"stage\\\": \\\"G2_eval_complete\\\", \\\"verdict\\\": \\\"EXTEND\\\", \\\"note\\\": \\\"G2 generation fully collapsed (unique_tokens=1), but eff_rank INCREASED (+6.48 from G0). PPL rose only +2.4%. Definitive: eff_rank does not detect collapse.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T17:42:37.651Z\\\"}, \\\"failure_reason\\\": \\\"metrics.py:240 compute_kl_divergence ValueError: shapes (50277,) vs (50254,) — 两代 token 分布 vocab size 不一致。G2 评估阶段崩溃。\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T17:42:38.314Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T17:42:39.033569+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: metrics.py:240 compute_kl_divergence shape mismatch (50277,) vs (50254,) — prev_gen 和 cur_gen token 分布用了不同 vocab size。崩在 G2 评估阶段 KL 计算。 | 已有成果: G0+G1 metrics 完整（eff_rank, ppl, n-gram entropy, coverage, logit_kl）| 建议: 修复 compute_kl_divergence 统一 vocab_size，重跑 v8\\\"}, \\\"mvp_pilot_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T15:44:14.338Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:21:06.722Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash launch_pilot_v5.sh\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000 96GB)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\\\", \\\"data_count\\\": \\\"~43945 train seqs (90M tokens) + 5000 holdout seqs\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-1b (pretrained)\\\", \\\"eval_data\\\": \\\"wikitext-103-raw-v1 holdout (5000 seqs)\\\", \\\"hyperparams\\\": {\\\"lr\\\": 2e-06, \\\"warmup_ratio\\\": 0.05, \\\"max_grad_norm\\\": 1, \\\"tokens_per_generation\\\": 90000000, \\\"num_generations\\\": 3, \\\"batch_size\\\": 8, \\\"grad_accum\\\": 4, \\\"max_seq_length\\\": 2048, \\\"torch_dtype\\\": \\\"bfloat16\\\"}, \\\"pid\\\": \\\"32154\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/pilot_v5.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/G0/training/final_model/\\\"}, \\\"hypothesis\\\": \\\"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\\\", \\\"parent\\\": \\\"mvp_pilot_v4\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"failure_reason\\\": \\\"synth gen bottleneck (28h/gen at 90M tokens), D007 descale to 20M. G0 training+eval data preserved.\\\", \\\"completed_at\\\": \\\"2026-05-13T02:21:06.722Z\\\"}, \\\"mvp_pilot_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-12T13:56:11.668Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:44:07.868Z\\\", \\\"hypothesis\\\": \\\"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\\\", \\\"parent\\\": \\\"mvp_pilot_v3\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T15:23:19.096Z\\\"}, \\\"failure_reason\\\": \\\"Training divergence confirmed: manual per-token CE=114.79, PPL=inf, ratio=1.00 rules out transformers reporting artifact. Root cause: lr=1e-5 too high for Pythia-1B fine-tuning\\\", \\\"completed_at\\\": \\\"2026-05-12T14:53:02.247Z\\\", \\\"extra\\\": {\\\"ppl_diagnosis\\\": {\\\"manual_ce_mean\\\": 114.7858, \\\"manual_ppl\\\": \\\"inf (overflow)\\\", \\\"transformers_loss_last_batch\\\": 108.3693, \\\"manual_loss_last_batch\\\": 108.3693, \\\"ratio_transformers_manual\\\": 1, \\\"batches_evaluated\\\": 50, \\\"checkpoint\\\": \\\"checkpoint-760\\\", \\\"conclusion\\\": \\\"real divergence, NOT reporting artifact\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T14:53:02.967914+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T15:23:20.843237+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --tokens_per_generation 90000000 --checkpoint_interval_tokens 10000000 --holdout_size 5000 --no_wandb --seed 42\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000 96GB)\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\\\", \\\"data_count\\\": \\\"43945 train seqs (90.0M tokens) + 5000 holdout seqs\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"28471\\\", \\\"log_path\\\": \\\"/tmp/pilot_v4.log\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-1b (pretrained)\\\", \\\"eval_data\\\": \\\"wikitext-103-raw-v1 holdout (5000 seqs)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_pilot_v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:57:41.703Z\\\", \\\"updated_at\\\": \\\"2026-05-12T12:52:00.371Z\\\", \\\"hypothesis\\\": \\\"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\\\", \\\"parent\\\": \\\"mvp_pilot_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo 2>/dev/null; export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt; export HF_HUB_DISABLE_XET=1; export HF_HOME=/root/autodl-tmp/.hf_cache; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42 2>&1 | tee /tmp/pilot_full_v3.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"13455\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_pilot_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:57:53.250Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_pilot_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:21:43.874Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:57:26.717Z\\\", \\\"hypothesis\\\": \\\"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\\\", \\\"parent\\\": \\\"mvp_pilot\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42 2>&1 | tee /tmp/pilot_full_v2.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"12186\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_pilot_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:21:54.716Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T09:05:00.421Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:21:36.814Z\\\", \\\"hypothesis\\\": \\\"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42'\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"/tmp/pilot_full.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T10:57:04.879Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"openwebtext (HuggingFace, downloaded at runtime)\\\", \\\"data_count\\\": \\\"500M tokens/generation x 3 generations\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b\\\", \\\"seed\\\": 42, \\\"tmux_session\\\": \\\"mvp_pilot\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"failure_reason\\\": \\\"python3 not found in tmux - conda not activated\\\", \\\"wall_clock_seconds\\\": 1471.9, \\\"gpu_hours\\\": 0.41}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-12T11:21:36.814Z\\\"}}, \\\"count\\\": 12, \\\"total\\\": 12, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0409}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"mvp_seed0_replication\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:33:31.240Z\", \"updated_at\": \"2026-05-14T00:47:08.437Z\", \"hypothesis\": \"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\", \"parent\": \"mvp_pilot_v7\", \"spec\": {\"command\": \"bash -c \\\"source /root/collapse-aware-mixing/env_init.sh && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"122711\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_seed0_replication.log\", \"submitted_at\": \"2026-05-14T00:45:25.090Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 103.3, \"gpu_hours\": 0.03}, \"conclusion\": \"failed\", \"notes\": \"Preflight 失败：磁盘空间不足（/root/autodl-tmp 仅剩 7GB），实验从未实际执行。Worker 误报 done。\", \"completed_at\": \"2026-05-14T00:47:08.437Z\"}, \"mvp_seed0_replication_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:41:36.029Z\", \"updated_at\": \"2026-05-14T00:45:39.035Z\", \"hypothesis\": \"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\", \"parent\": \"mvp_pilot_v7\", \"spec\": {\"command\": \"bash -c \\\"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"122208\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_seed0_replication_r2.log\", \"submitted_at\": \"2026-05-14T00:44:24.453Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-103-raw-v1 (HuggingFace)\", \"data_count\": \"~6340 train seqs (20M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 0, \"hyperparams\": {\"lr\": 2e-06, \"warmup_ratio\": 0.05, \"max_grad_norm\": 1, \"tokens_per_generation\": 20000000, \"num_generations\": 3, \"batch_size\": 8, \"grad_accum\": 4, \"max_seq_length\": 2048, \"torch_dtype\": \"bfloat16\", \"checkpoint_interval_tokens\": 5000000}, \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\"}}, \"mvp_pilot_v8_r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:51:51.460Z\", \"updated_at\": \"2026-05-13T23:57:53.325Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 -u resume_g2_eval.py 2>&1 | tee /root/autodl-tmp/pilot_v8.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"93708\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v8_r2.log\", \"submitted_at\": \"2026-05-13T17:51:51.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Contingency plan for v7 failure. Superseded by pivot analysis. Never started.\"}, \"mvp_pilot_v8\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:50:31.376Z\", \"updated_at\": \"2026-05-13T23:57:52.798Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 resume_g2_eval.py 2>&1 | tee /root/autodl-tmp/pilot_v8.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"93503\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v8.log\", \"submitted_at\": \"2026-05-13T17:50:31.360Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Contingency plan for v7 failure. Superseded by pivot analysis. Never started.\"}, \"pivot_b_full_18ckpt\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:23:19.590Z\", \"updated_at\": \"2026-05-13T23:57:31.207Z\", \"hypothesis\": \"全 18 checkpoint generated eff_rank 公平对比 n-gram entropy — 验证 generated eff_rank 是否在中间 checkpoint 已下降\", \"parent\": \"pivot_b_verification\", \"spec\": {\"command\": \"python3 analyze_generated_eff_rank.py --checkpoint-dir /root/autodl-tmp/output_v7/ --model-name EleutherAI/pythia-1b --num-samples 200 --max-length 2048 --output-dir /root/autodl-tmp/output_v7/pivot_b_analysis_full/\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"109597\", \"log_path\": \"~/runs/collapse-aware-mixing/pivot_b_full_18ckpt.log\", \"submitted_at\": \"2026-05-13T20:23:39.177Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)\", \"data_count\": \"200 samples per checkpoint\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_source\": \"mvp_pilot_v7 (G0/G1/G2 all checkpoints)\", \"eval_data\": \"wikitext-103-raw-v1 validation (holdout) + model-generated text\", \"checkpoint_path\": \"/root/autodl-tmp/output_v7/pivot_b_analysis_full/\", \"wall_clock_seconds\": 12832.0, \"gpu_hours\": 3.56}, \"conclusion\": \"negative\", \"notes\": \"generated eff_rank 与 n-gram 同时检测(G1 step 152)，噪声高 573 倍，无优势。D018 确认 Pivot B definitively 失败。\", \"completed_at\": \"2026-05-13T23:57:31.207Z\"}, \"pivot_b_verification\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:48:31.590Z\", \"updated_at\": \"2026-05-13T20:20:46.501Z\", \"spec\": {\"command\": \"analyze_ngram_leading.py + analyze_generated_eff_rank.py + compare_eff_rank_vs_ngram.py + analyze_layer_eff_rank.py (sequential)\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0\", \"pid\": \"99444\", \"log_path\": \"~/runs/collapse-aware-mixing/pivot_b_verification.log\", \"submitted_at\": \"2026-05-13T18:48:31.571Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)\", \"data_count\": \"1000 samples per checkpoint\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/output_v7/pivot_analysis/\", \"wall_clock_seconds\": 5534.9, \"gpu_hours\": 1.54}, \"metrics\": {\"G0_final\": {\"holdout_eff_rank\": 111.51, \"generated_eff_rank\": 63.89, \"delta\": 47.62}, \"G1_final\": {\"holdout_eff_rank\": 111.39, \"generated_eff_rank\": 3.87, \"delta\": 107.52, \"generated_drop_pct\": -93.9}, \"G2_final\": {\"holdout_eff_rank\": 111.86, \"generated_eff_rank\": 1.06, \"delta\": 110.79, \"generated_drop_pct\": -98.3}, \"compare_verdict\": \"PIVOT_B_LOSES\", \"ngram_detection\": \"G1 step 152, unigram_entropy -43.5%\", \"generated_eff_rank_detection\": \"G1 step 999999 (final), -93.9%\", \"note\": \"Generated eff_rank detects collapse (massive drop) but n-gram entropy detects earlier. Holdout eff_rank completely stable (~111.5 across all gens).\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T20:20:46.501Z\"}, \"mvp_pilot_v7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:35:35.418Z\", \"updated_at\": \"2026-05-13T18:47:15.929Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v5\", \"spec\": {\"command\": \"bash launch_pilot_v7.sh\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0 (RTX PRO 6000 96GB)\", \"data_path\": \"wikitext-103-raw-v1 (HuggingFace)\", \"data_count\": \"~6340 train seqs (20M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\", \"hyperparams\": {\"lr\": 2e-06, \"warmup_ratio\": 0.05, \"max_grad_norm\": 1, \"tokens_per_generation\": 20000000, \"num_generations\": 3, \"batch_size\": 8, \"grad_accum\": 4, \"max_seq_length\": 2048, \"torch_dtype\": \"bfloat16\", \"checkpoint_interval_tokens\": 5000000}, \"pid\": \"60104\", \"log_path\": \"/root/autodl-tmp/pilot_v7.log\"}, \"metrics\": {\"G0_final\": {\"eff_rank\": 676.96, \"ppl\": 13.27, \"spectral_entropy\": 6.518, \"vocab_coverage\": 0.469, \"unigram_entropy\": 6.93, \"trigram_entropy\": 11.41, \"unigram_unique\": 23586}, \"G1_final\": {\"eff_rank\": 678.3, \"ppl\": 13.41, \"spectral_entropy\": 6.52, \"vocab_coverage\": 0.137, \"unigram_entropy\": 0.96, \"trigram_entropy\": 1.28, \"unigram_unique\": 6878, \"kl_unigram\": 1.65}, \"G2_final\": {\"eff_rank\": 683.44, \"ppl\": 13.59, \"vocab_coverage\": 2e-05, \"unigram_entropy\": 0, \"trigram_entropy\": 0, \"unigram_unique\": 1, \"kl_unigram\": 0.618, \"total_gen_tokens\": 3968}, \"stage\": \"G2_eval_complete\", \"verdict\": \"EXTEND\", \"note\": \"G2 generation fully collapsed (unique_tokens=1), but eff_rank INCREASED (+6.48 from G0). PPL rose only +2.4%. Definitive: eff_rank does not detect collapse.\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T17:42:37.651Z\"}, \"failure_reason\": \"metrics.py:240 compute_kl_divergence ValueError: shapes (50277,) vs (50254,) — 两代 token 分布 vocab size 不一致。G2 评估阶段崩溃。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T17:42:38.314Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T17:42:39.033569+00:00\"}]}, \"notes\": \"失败原因: metrics.py:240 compute_kl_divergence shape mismatch (50277,) vs (50254,) — prev_gen 和 cur_gen token 分布用了不同 vocab size。崩在 G2 评估阶段 KL 计算。 | 已有成果: G0+G1 metrics 完整（eff_rank, ppl, n-gram entropy, coverage, logit_kl）| 建议: 修复 compute_kl_divergence 统一 vocab_size，重跑 v8\"}, \"mvp_pilot_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T15:44:14.338Z\", \"updated_at\": \"2026-05-13T02:21:06.722Z\", \"spec\": {\"command\": \"bash launch_pilot_v5.sh\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0 (RTX PRO 6000 96GB)\", \"data_path\": \"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\", \"data_count\": \"~43945 train seqs (90M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\", \"hyperparams\": {\"lr\": 2e-06, \"warmup_ratio\": 0.05, \"max_grad_norm\": 1, \"tokens_per_generation\": 90000000, \"num_generations\": 3, \"batch_size\": 8, \"grad_accum\": 4, \"max_seq_length\": 2048, \"torch_dtype\": \"bfloat16\"}, \"pid\": \"32154\", \"log_path\": \"/root/autodl-tmp/pilot_v5.log\", \"checkpoint_path\": \"/root/autodl-tmp/output/G0/training/final_model/\"}, \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v4\", \"conclusion\": \"failed\", \"failure_reason\": \"synth gen bottleneck (28h/gen at 90M tokens), D007 descale to 20M. G0 training+eval data preserved.\", \"completed_at\": \"2026-05-13T02:21:06.722Z\"}, \"mvp_pilot_v4\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T13:56:11.668Z\", \"updated_at\": \"2026-05-12T15:44:07.868Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v3\", \"reproduce\": {\"finished_at\": \"2026-05-12T15:23:19.096Z\"}, \"failure_reason\": \"Training divergence confirmed: manual per-token CE=114.79, PPL=inf, ratio=1.00 rules out transformers reporting artifact. Root cause: lr=1e-5 too high for Pythia-1B fine-tuning\", \"completed_at\": \"2026-05-12T14:53:02.247Z\", \"extra\": {\"ppl_diagnosis\": {\"manual_ce_mean\": 114.7858, \"manual_ppl\": \"inf (overflow)\", \"transformers_loss_last_batch\": 108.3693, \"manual_loss_last_batch\": 108.3693, \"ratio_transformers_manual\": 1, \"batches_evaluated\": 50, \"checkpoint\": \"checkpoint-760\", \"conclusion\": \"real divergence, NOT reporting artifact\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T14:53:02.967914+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:23:20.843237+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --tokens_per_generation 90000000 --checkpoint_interval_tokens 10000000 --holdout_size 5000 --no_wandb --seed 42\", \"server\": \"cqa1-38874\", \"gpu\": \"cuda:0 (RTX PRO 6000 96GB)\", \"data_path\": \"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\", \"data_count\": \"43945 train seqs (90.0M tokens) + 5000 holdout seqs\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"pid\": \"28471\", \"log_path\": \"/tmp/pilot_v4.log\", \"checkpoint_source\": \"EleutherAI/pythia-1b (pretrained)\", \"eval_data\": \"wikitext-103-raw-v1 holdout (5000 seqs)\"}, \"conclusion\": \"failed\"}, \"mvp_pilot_v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:57:41.703Z\", \"updated_at\": \"2026-05-12T12:52:00.371Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot_v2\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo 2>/dev/null; export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt; export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt; export HF_HUB_DISABLE_XET=1; export HF_HOME=/root/autodl-tmp/.hf_cache; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42 2>&1 | tee /tmp/pilot_full_v3.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"13455\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v3.log\", \"submitted_at\": \"2026-05-12T11:57:53.250Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"mvp_pilot_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:21:43.874Z\", \"updated_at\": \"2026-05-12T11:57:26.717Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"parent\": \"mvp_pilot\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42 2>&1 | tee /tmp/pilot_full_v2.log\\\"\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"12186\", \"log_path\": \"~/runs/collapse-aware-mixing/mvp_pilot_v2.log\", \"submitted_at\": \"2026-05-12T11:21:54.716Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"failed\"}, \"mvp_pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T09:05:00.421Z\", \"updated_at\": \"2026-05-12T11:21:36.814Z\", \"hypothesis\": \"谱有效秩在迭代合成训练的 model collapse 过程中比 perplexity 更早发出退化信号 (leading indicator)\", \"spec\": {\"command\": \"bash -c 'cd /root/collapse-aware-mixing && python3 pilot_pipeline.py --output_dir /root/autodl-tmp/output --num_generations 3 --no_wandb --seed 42'\", \"server\": \"cqa1-38874\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"/tmp/pilot_full.log\", \"submitted_at\": \"2026-05-12T10:57:04.879Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:0\"], \"data_path\": \"openwebtext (HuggingFace, downloaded at runtime)\", \"data_count\": \"500M tokens/generation x 3 generations\", \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"tmux_session\": \"mvp_pilot\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"python3 not found in tmux - conda not activated\", \"wall_clock_seconds\": 1471.9, \"gpu_hours\": 0.41}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-12T11:21:36.814Z\"}}, \"count\": 12, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0409}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the project. Let me also read the memory.md and any existing docs to make sure I don't miss key findings.
+
+Key facts from the data:
+
+1. **Core negative result**: Holdout spectral effective rank is completely decoupled from mode collapse. When model generation collapsed to 1 unique token (G2), holdout eff_rank actually *increased* (+6.48 from G0, from 676.96 to 683.44).
+
+2. **Pivot B result**: Generated eff_rank does detect collapse (massive drop from 63.89 to 3.87 to 1.06), but detects at the same time as n-gram entropy (G1 step 152) with 573x more noise. No advantage.
+   
+3. **Direction C**: Per-layer analysis showed <1% change across all layers. Dead.
+
+4. **Key metrics from v7 (seed=42)**: Looking at the final numbers, G0 maintains an effective rank of 676.96 with reasonable perplexity and vocabulary coverage, while G1 shows a slight rank increase but catastrophic collapse in vocabulary coverage and entropy, dropping to just 6878 unique tokens.  G2 is completely degenerate—effective rank barely budges but vocabulary coverage essentially vanishes, entropy hits zero, and it's down to a single unique token.
+
+5. **Pivot B metrics**: The holdout effective rank stays stable across all groups around 111, but the generated effective rank tells the real story—G0 starts at 63.89, then G1 plummets to 3.87 and G2 to 1.06, indicating severe mode collapse in the generated samples. Pivot B clearly loses.
+
+I'm noticing n-gram patterns emerged at G1 step 152, and the generated effective rank degradation is visible by the final checkpoint. The seed=0 replication is running now, which should help validate these findings.
+
+For the paper, I'm framing this as a negative result targeting EMNLP 2026 Findings—the core argument is that while spectral metrics like effective rank have been proposed for collapse detection, our experiments show holdout effective rank is completely decoupled from actual collapse and even increases during it. Generated effective rank does catch the collapse, but it's no better than simple n-gram entropy, which undermines the case for using spectral methods as a monitoring tool.
+
+Now I'm drafting the paper outline to structure this narrative.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "e0462ef9-39b3-4e3b-aa64-987d0bd10b05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzgyCu9AQbFfkrMFJxbNpW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15007,
+      "cache_read_input_tokens": 24732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15007
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+已读取全部项目资料。现在基于实验数据草拟 outline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7c260305-f851-47e7-b029-0bd88bb48235",
+  "uuid": "95728e33-27cf-487c-b14c-67948934d365",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzgyCu9AQbFfkrMFJxbNpW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15007,
+      "cache_read_input_tokens": 24732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15007
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

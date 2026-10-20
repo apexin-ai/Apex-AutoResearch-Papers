@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_run_exp017_gpt4o_mini_fewrel_20260516T064019.log",
     "occurrence": 1,
-    "bytes": 9650217,
-    "sha256": "7fa887a5168c7107a4fd9dee4f16a5f6a0bb9e35e00bb4a72a69da89de150c87"
+    "bytes": 9650180,
+    "sha256": "0c7eb763e9b7a5e707c82917951bb846cc41594e4293e2af956deb159b8f893a"
   },
   "statistics": {
     "messages": 311,
@@ -36,19 +36,11 @@
       "chunks": [
         {
           "path": "7bbf6c44b2febbb72496-part-0001.json",
-          "message_count": 75
-        },
-        {
-          "path": "7bbf6c44b2febbb72496-part-0002.json",
-          "message_count": 1
-        },
-        {
-          "path": "7bbf6c44b2febbb72496-part-0003.json",
           "message_count": 180
         },
         {
-          "path": "7bbf6c44b2febbb72496-part-0004.json",
-          "message_count": 55
+          "path": "7bbf6c44b2febbb72496-part-0002.json",
+          "message_count": 131
         }
       ]
     }

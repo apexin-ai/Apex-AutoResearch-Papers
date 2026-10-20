@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_sdgd-3bug-fix_20260515T070619_result.json",
     "occurrence": 1,
-    "bytes": 1681,
-    "sha256": "7573d8ab0e7b8869f7909e8f1a73c8ef06385e547fd641afac0d3502d6a31245"
+    "bytes": 1680,
+    "sha256": "f1fcddc8e7f417b56849cc606a7a820f513d2463e35ae5fe185c5c707d98ea66"
   },
   "statistics": {
     "messages": 1,

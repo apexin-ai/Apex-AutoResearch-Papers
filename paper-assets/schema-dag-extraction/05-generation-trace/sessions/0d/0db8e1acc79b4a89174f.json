@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_limitations_logit_sentence_20260522T073429_result.json",
     "occurrence": 1,
-    "bytes": 378,
-    "sha256": "077d2409609212d18b32ffe593484e771be600d869e2941d87717e3fe73c9211"
+    "bytes": 377,
+    "sha256": "a25f8d35e0d8cca5edfed3de92c57c39dc5764d7519bd5825e4eca74e74fe023"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,77 @@
+# analyze pivot b full results
+
+**collapse aware mixing** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analyze_pivot_b_full_results_20260513T233800_result.json`
+- **Structured JSON:** [`6306a9575fab248655c3.json`](../../sessions/63/6306a9575fab248655c3.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+All data collected. Here's the full analysis:
+
+```
+=== FULL 18-CHECKPOINT PIVOT B ANALYSIS ===
+
+1. Per-checkpoint comparison table:
+| Gen | Step   | Holdout eff_rank | Generated eff_rank | Gen Δ% (from G0 final=61.00) | Unigram entropy | Uni Δ% (from G0 final=6.933) |
+|-----|--------|------------------|--------------------|------------------------------|-----------------|------------------------------|
+| G0  | 76     | 111.63           | 55.80              | -8.5%  (within-G0 noise)     | 6.906           | -0.4%                        |
+| G0  | 152    | 111.55           | 59.18              | -3.0%  (within-G0 noise)     | 6.936           | +0.04%                       |
+| G0  | 228    | 111.50           | 52.90              | -13.3% (within-G0 noise)     | 6.942           | +0.13%                       |
+| G0  | 304    | 111.51           | 52.97              | -13.2% (within-G0 noise)     | 6.901           | -0.46%                       |
+| G0  | 305    | 111.51           | 57.16              | -6.3%  (within-G0 noise)     | 6.908           | -0.36%                       |
+| G0  | final  | 111.51           | 61.00              | 0.0%   ← BASELINE            | 6.933           | 0.0%  ← BASELINE            |
+|-----|--------|------------------|--------------------|------------------------------|-----------------|------------------------------|
+| G1  | 76     | 111.42           | 59.25              | **-2.9%**                    | 6.729           | **-2.9%**                    |
+| G1  | 152    | 111.40           | 22.20              | **-63.6%**                   | 3.916           | **-43.5%**                   |
+| G1  | 228    | 111.39           | 5.95               | -90.2%                       | 1.290           | -81.4%                       |
+| G1  | 304    | 111.39           | 4.58               | -92.5%                       | 0.913           | -86.8%                       |
+| G1  | 305    | 111.39           | 5.71               | -90.6%                       | 0.936           | -86.5%                       |
+| G1  | final  | 111.39           | 4.76               | -92.2%                       | 0.960           | -86.2%                       |
+|-----|--------|------------------|--------------------|------------------------------|-----------------|------------------------------|
+| G2  | 76     | 111.50           | 1.04               | -98.3%                       | 0.0             | -100%                        |
+| G2  | 152    | 111.79           | 1.06               | -98.3%                       | 0.0             | -100%                        |
+| G2  | 228    | 111.85           | 1.06               | -98.3%                       | 0.0             | -100%                        |
+| G2  | 304    | 111.86           | 1.06               | -98.3%                       | 0.0             | -100%                        |
+| G2  | 305    | 111.86           | 1.06               | -98.3%                       | 0.0             | -100%                        |
+| G2  | final  | 111.86           | 1.06               | -98.3%                       | 0.0             | -100%                        |
+
+2. Detection timing:
+- Generated eff_rank first significant drop (≥5% from G0 final): G1 step 152 (-63.6%)
+- N-gram entropy first significant drop (≥5% from G0 final): G1 step 152 (-43.5%)
+- Which is earlier? **TIE** — both detected at same checkpoint
+- At G1 step 76, both show only ~2.9% decline — neither crosses 5% threshold
+- Note: script's own detection thresholds (0.5% rel for eff_rank, 10% rel for n-gram) also both fire at G1 step 152
+
+3. Signal smoothness:
+- Generated eff_rank first-diff variance: **441.72** (VERY noisy)
+- Unigram entropy first-diff variance: **0.77** (much smoother)
+- Scale-adjusted comparison: generated_eff_rank within G0 fluctuates wildly (52.9→57.2→61.0), making it inherently noisier
+- N-gram entropy is 570x smoother by raw first-diff variance
+
+4. compare_eff_rank_vs_ngram.py verdict:
+> **PIVOT_B_NO_ADVANTAGE: same detection time, no smoothness advantage**
+
+5. D014 conditions assessment:
+- (a) Earlier detection: **NO** — both fire at G1 step 152; at G1 step 76 both are ≈-2.9%, indistinguishable
+- (b) Smoother signal: **NO** — generated eff_rank is dramatically noisier (var=441.7 vs 0.77); within G0 baseline it fluctuates ±15% while n-gram entropy stays within ±0.5%
+- (c) Gradual decline before n-gram step: **NO** — at G1 step 76, generated eff_rank=59.25 is actually *higher* than several G0 checkpoints (52.9, 53.0); the -2.9% "decline" is within G0 noise band, not a meaningful gradient signal
+
+6. Overall conclusion: **KILL** for Pivot B
+
+Generated eff_rank on self-generated text provides zero advantage over n-gram entropy as a collapse detector in this experimental setup. It detects at the same checkpoint, is far noisier (unusable for threshold-based monitoring), and shows no gradual pre-collapse decline that n-gram entropy misses. The checkpoint granularity (76 steps apart) is coarse, but even if finer, the massive noise within G0 (eff_rank bouncing between 52.9–61.0) would make any early-detection claim unreliable. Holdout eff_rank remains rock-stable at ~111.5 across all generations — it detects nothing.
+
+---

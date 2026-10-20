@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fewrel-calibrate-bugfix_20260515T104553_result.json",
     "occurrence": 1,
-    "bytes": 1511,
-    "sha256": "d1f5b228f9ad51df394f1d01f708e57bc017f683d1c5e19b5933815a1812c409"
+    "bytes": 1510,
+    "sha256": "fffa6e8991cdd56a3aebea56c509108644b1f336af6a401d1e830c421a6eb530"
   },
   "statistics": {
     "messages": 1,

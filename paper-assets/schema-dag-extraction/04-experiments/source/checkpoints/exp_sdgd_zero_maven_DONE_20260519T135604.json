@@ -1,0 +1,73 @@
+{
+  "exp_id": "exp_sdgd_zero_maven",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T11:42:11.715Z",
+    "updated_at": "2026-05-19T13:56:03.963Z",
+    "hypothesis": "SDGD-zero on MAVEN (168 event types, 18 batches) will reproduce the schema DAG extraction capability observed on DocRED, validating cross-domain generalization from document-level RE to event detection.",
+    "notes": "Running on cuda:0 PID 610111. 4/5 arms done, last random_batch seed in progress. single_pass F1=0.2068 > sdgd_zero F1=0.1233 > random_batch F1=0.1129-0.1168. Precision collapses 0.287→0.091, pred_count inflates 3.7x. Merge amplification confirmed on event detection.",
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "completed_at": "2026-05-19T13:09:56.103Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Code ready at /root/schema-dag-extraction/src/run_sdgd_maven.py. Launch script: launch_sdgd_maven.sh. Dry-run passed (5 samples, F1=0.200). MAVEN decomposition: tau=0.3191, 18 batches (sizes=[39,20,16,12,12,10,10,8,8,6,6,6,5,4,2,2,1,1]). Waiting for exp_docred_bcs_expanded to finish before GPU submission on cuda:0."
+      }
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 src/run_sdgd_maven.py\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "610111",
+      "log_path": "~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log",
+      "submitted_at": "2026-05-19T13:11:18.603Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/maven/",
+      "data_count": 1000,
+      "model_name": "qwen3-32b-fp8",
+      "seed": 42,
+      "wall_clock_seconds": 2685.4,
+      "gpu_hours": 0.75
+    },
+    "conclusion": "success",
+    "metrics": {
+      "single_pass": {
+        "precision": 0.2866,
+        "recall": 0.1618,
+        "f1": 0.2068,
+        "pred_count": 1406
+      },
+      "sdgd_zero": {
+        "precision": 0.0911,
+        "recall": 0.1907,
+        "f1": 0.1233,
+        "pred_count": 5212,
+        "n_batches": 18,
+        "tau": 0.319
+      },
+      "random_batch_avg": {
+        "precision": 0.082,
+        "recall": 0.1769,
+        "f1": 0.1114,
+        "n_seeds": 3
+      },
+      "merge_amplification": {
+        "precision_drop_pp": -19.6,
+        "pred_count_inflation": 3.7,
+        "f1_drop_pp": -8.4
+      }
+    },
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_sdgd_zero_maven/",
+    "log_path": "~/runs/schema-dag-extraction/exp_sdgd_zero_maven.log"
+  },
+  "timestamp": "2026-05-19T13:56:04.113233+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp_fewrel_40rel_r4_20260515T213911_result.json",
     "occurrence": 1,
-    "bytes": 2213,
-    "sha256": "5c82ccbd682ef2a9849f71b644f4eeb3918a825fe93c59093d7fe876b951ec91"
+    "bytes": 2212,
+    "sha256": "e916c0b53e531ee3d0a6ca342af933a26419b5f9641d7f805b0facbd021ebb79"
   },
   "statistics": {
     "messages": 1,

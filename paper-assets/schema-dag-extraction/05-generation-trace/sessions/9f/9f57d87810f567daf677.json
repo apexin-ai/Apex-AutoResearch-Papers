@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_final_transparency_fixes_20260516T084723_result.json",
     "occurrence": 1,
-    "bytes": 747,
-    "sha256": "832d4983705012b635ba7929519ddd595c2fb76cd512ca74ef5d6a7ce33e1fed"
+    "bytes": 746,
+    "sha256": "a7d6a7fad6d5449c606ad245f8dfc2c5cf79a62f712d146b8e74abcdacb9afd8"
   },
   "statistics": {
     "messages": 1,

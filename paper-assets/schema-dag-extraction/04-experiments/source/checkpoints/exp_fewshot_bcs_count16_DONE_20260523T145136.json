@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_fewshot_bcs_count16",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:05:04.727Z",
+    "updated_at": "2026-05-23T14:51:35.980Z",
+    "hypothesis": "At count=16, the accuracy gap between low-BCS and high-BCS schema batches will widen as few-shot examples increase, consistent with count=8 pattern, because demonstrations reinforce distinguishable schemas more than confusable ones.",
+    "parent": "exp_fewshot_bcs_v2",
+    "spec": {
+      "command": "python3 src/run_fewshot_bcs_count16.py --stage all --n_shots 0 1 5 --seed 42",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_parquet/",
+      "data_count": 56000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen3-32B-FP8 (pre-trained, no fine-tuning)",
+      "eval_data": "FewRel 80-rel train+val, 960 test samples (12/rel balanced)",
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_fewshot_bcs_count16/",
+      "log_path": "/root/schema-dag-extraction/artifacts/exp_fewshot_bcs_count16/results_incremental.jsonl",
+      "metrics": {
+        "shot0": {
+          "low_acc": 0.5802,
+          "high_acc": 0.4233,
+          "gap_pp": 15.69,
+          "ci": [
+            14.08,
+            17.38
+          ]
+        },
+        "shot1": {
+          "low_acc": 0.6479,
+          "high_acc": 0.4642,
+          "gap_pp": 18.38,
+          "ci": [
+            16.5,
+            20.23
+          ]
+        },
+        "shot5": {
+          "low_acc": 0.5854,
+          "high_acc": 0.419,
+          "gap_pp": 16.65,
+          "ci": [
+            14.81,
+            18.5
+          ]
+        }
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-23T14:51:35.980Z"
+  },
+  "timestamp": "2026-05-23T14:51:36.135439+00:00",
+  "trigger": "update_registry"
+}

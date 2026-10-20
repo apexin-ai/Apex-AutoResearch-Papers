@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_fix_count_curves_critical_20260515T231828_result.json",
     "occurrence": 1,
-    "bytes": 532,
-    "sha256": "7c4aec8eaca6bcab1a847ee83ba9d2426170203eb9bd6947971256ce33b568af"
+    "bytes": 531,
+    "sha256": "9246e6d82603999bc9d39a201ba8fff219419facab83ddc84a802ba773374330"
   },
   "statistics": {
     "messages": 1,

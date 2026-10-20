@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_fig_sdgd_pipeline_20260523T123008_result.json",
     "occurrence": 1,
-    "bytes": 500,
-    "sha256": "94885749e99e0ff9f92b974288a229944a6c18efdc40ddee923f049d0356c103"
+    "bytes": 499,
+    "sha256": "e3f3e719b37cc2d0ce752354e314aa366abb7349ff60622cf1ac1659cf5de9a6"
   },
   "statistics": {
     "messages": 1,

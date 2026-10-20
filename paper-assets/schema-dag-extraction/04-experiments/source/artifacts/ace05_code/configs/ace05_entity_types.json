@@ -1,0 +1,9 @@
+{
+  "Person": "A person or group of people, including combatants, combatant groups, and unnamed individuals referenced by role or description.",
+  "Organization": "A corporation, agency, political party, religious organization, or other formal or informal group of people with a common purpose.",
+  "GPE": "A geopolitical entity — a location with a government, including nations, states, provinces, cities, counties, and municipalities.",
+  "Location": "A named geographical location that is not a geopolitical entity, including bodies of water, mountains, regions, continents, and celestial bodies.",
+  "Facility": "A functional structure or building, including airports, highways, bridges, factories, stadiums, hospitals, and other man-made structures.",
+  "Vehicle": "A physical device primarily designed for transporting people or cargo, including cars, planes, ships, trains, and spacecraft.",
+  "Weapon": "A physical device primarily used to inflict harm, including firearms, explosives, missiles, biological and chemical agents, and nuclear weapons."
+}

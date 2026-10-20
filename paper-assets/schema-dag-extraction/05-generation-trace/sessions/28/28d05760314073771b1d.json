@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_docred-integration_20260516T051152_result.json",
     "occurrence": 1,
-    "bytes": 497,
-    "sha256": "d061321fb6f7939724df7e766fd036689262416495dcddc91b8ec0cf106f2422"
+    "bytes": 496,
+    "sha256": "5cd52881857287af455c31408bc11cbc0c57cd5fec696892c42c46c9949c3402"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,16 @@
+% Appendix E.1: DocRED Ridge Regression (BCS directionality under multicollinearity)
+
+Ridge regression (GCV, $\lambda = 0.001$) on the 110 DocRED batches confirms
+the negative direction of the BCS--accuracy relationship even after
+regularizing for the severe BCS--centrality multicollinearity
+(VIF\,$\approx$\,50.9).
+The standardized BCS coefficient is $\hat{\beta}_{\textsc{bcs}} = -1.53$
+($\hat{\beta}_{\text{centrality}} = 0.78$, $R^2 = 0.594$).
+An analytic derivation shows that $\hat{\beta}_{\textsc{bcs}} < 0$ for
+\emph{all} $\lambda \geq 0$: the numerator of the closed-form ridge
+solution, $-(1{+}\lambda) \times 0.760 + 0.727$, is negative at
+$\lambda{=}0$ and monotonically decreasing thereafter.
+Given the shrinkage bias inherent to ridge estimation, we interpret only
+the sign---not the magnitude---of the BCS coefficient as directional
+evidence that higher schema confusability degrades extraction accuracy,
+independent of degree centrality.

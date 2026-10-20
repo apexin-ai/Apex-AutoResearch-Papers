@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_sdgd-routing-update_20260517T061924_result.json",
     "occurrence": 1,
-    "bytes": 909,
-    "sha256": "1ddc832da08e9915f688644880ef7db36a4bf7898d4ff4a9f066936c75443afe"
+    "bytes": 908,
+    "sha256": "ffac8b5b1bd6e3e0dc29cad824aa5d5042d82f6eef9f002139ce145fb84c2665"
   },
   "statistics": {
     "messages": 1,

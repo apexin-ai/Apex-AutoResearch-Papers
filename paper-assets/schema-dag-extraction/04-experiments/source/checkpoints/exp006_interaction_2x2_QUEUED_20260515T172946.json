@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp006_interaction_2x2",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:18:49.619Z",
+    "updated_at": "2026-05-15T17:29:46.398Z",
+    "hypothesis": "Count × Confusability 交互效应：{low count, high count} × {low BCS, high BCS} 2×2 设计，测试 count 和 confusability 对 accuracy 的影响是 additive 还是 multiplicative。若 multiplicative，高 count + 高 BCS 组的 degradation 应超过两个主效应之和。",
+    "parent": "exp002_confusability_controlled",
+    "plan_id": "exp-006",
+    "server": "cqa1-38874",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:20:09.901Z"
+    }
+  },
+  "timestamp": "2026-05-15T17:29:46.491623+00:00",
+  "trigger": "update_registry"
+}

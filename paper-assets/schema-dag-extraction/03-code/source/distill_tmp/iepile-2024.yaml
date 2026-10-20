@@ -1,0 +1,22 @@
+paper_key: "iepile-2024"
+title: "IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus"
+venue: "ACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["LLMs without IEPile training"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "IEPile (33 existing IE datasets aggregated)", size: "0.32B tokens"}]
+  ablation_dimensions: ["schema-based instruction generation", "bilingual coverage"]
+  training_recipe: {method: "schema-based instruction tuning on aggregated IE corpus"}
+  method_family: "schema-based IE instruction corpus"
+
+positioning:
+  core_claim: "A large-scale bilingual IE instruction corpus constructed from 33 datasets with schema-based instruction generation notably improves LLM zero-shot generalization for IE"
+  key_results: "Notable improvements in zero-shot generalization across IE tasks"
+  limitations: ["limited to existing dataset schemas", "instruction format may not cover all IE subtasks"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

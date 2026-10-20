@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d050_batch2_monte_carlo_20260516T170244_result.json",
     "occurrence": 1,
-    "bytes": 764,
-    "sha256": "545b9ba8b4970be57528f299f4c39eb39689aaeccfe16daa2022d00076723468"
+    "bytes": 763,
+    "sha256": "172ed62666e92cfd2695dbb74afc604b4bea6735a18184f2b6782a8243ee99ae"
   },
   "statistics": {
     "messages": 1,

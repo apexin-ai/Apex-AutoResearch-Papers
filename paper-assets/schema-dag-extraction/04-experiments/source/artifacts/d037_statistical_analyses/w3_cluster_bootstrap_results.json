@@ -1,0 +1,34 @@
+{
+  "fewnerd_bcs_confusion": {
+    "point_estimate": 0.111942,
+    "cluster_ci_lower": 0.057455,
+    "cluster_ci_upper": 0.18976,
+    "n_types": 63,
+    "n_pairs": 1953,
+    "n_bootstrap": 10000,
+    "n_valid_bootstrap": 10000,
+    "boot_mean": 0.117501,
+    "boot_std": 0.03321,
+    "original_pair_ci": {
+      "ci_lower": 0.076,
+      "ci_upper": 0.156
+    },
+    "significance": "significant (CI excludes 0)"
+  },
+  "maven_minilm_scs_confusion": {
+    "point_estimate": 0.105657,
+    "cluster_ci_lower": 0.070177,
+    "cluster_ci_upper": 0.139292,
+    "n_types": 149,
+    "n_pairs": 11026,
+    "n_bootstrap": 10000,
+    "n_valid_bootstrap": 10000,
+    "boot_mean": 0.106191,
+    "boot_std": 0.017734,
+    "original_pair_ci": {
+      "ci_lower": 0.104,
+      "ci_upper": 0.156
+    },
+    "significance": "significant (CI excludes 0)"
+  }
+}

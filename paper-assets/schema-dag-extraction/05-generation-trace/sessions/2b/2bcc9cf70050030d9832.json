@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp3a-diagnose-fix_20260515T024903_result.json",
     "occurrence": 1,
-    "bytes": 1330,
-    "sha256": "ee3157c1223e35b34dcfda1d176c31ac7dbb85da53b233b5cadf47901d692023"
+    "bytes": 1329,
+    "sha256": "949302b3b4a2e0890da07a3edfd013a54648fcad5fb31d1bf9587d554ae47a73"
   },
   "statistics": {
     "messages": 1,

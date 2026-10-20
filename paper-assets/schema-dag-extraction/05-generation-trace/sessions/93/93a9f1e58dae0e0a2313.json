@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_backup_westd_logs_to_cqa1_20260517T140753_result.json",
     "occurrence": 1,
-    "bytes": 810,
-    "sha256": "24ae1f9455206ed353e219e3a1df0c7bc20fde1b0ae23dbf578e405821b8452e"
+    "bytes": 809,
+    "sha256": "17a5aba690c4986033806a33197a85af2ddcbc8e8e8b18b9cef0564163b99fc2"
   },
   "statistics": {
     "messages": 1,

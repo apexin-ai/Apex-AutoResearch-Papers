@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_docred_phase2_20260516T043709_result.json",
     "occurrence": 1,
-    "bytes": 995,
-    "sha256": "e6ef43eea011ec36e8c7f45795ebe321ff1f06e121c08676c0206b0175ecc50c"
+    "bytes": 994,
+    "sha256": "217b39d1fac9be69776b8ecf460ab3198f657b3f8123a9096211367f964dd9f4"
   },
   "statistics": {
     "messages": 1,

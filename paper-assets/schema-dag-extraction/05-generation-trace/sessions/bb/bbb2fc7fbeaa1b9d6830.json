@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_bootstrap_reconcile_20260515T152233_result.json",
     "occurrence": 1,
-    "bytes": 3540,
-    "sha256": "7621f838db81d4dc5b9eb898ab25045e3ec26b576cf79b515247bd98723a80df"
+    "bytes": 3539,
+    "sha256": "f028d45a026231e24a084210bd53df9cfcedc3338ee7e8a7ae87ae668641e63e"
   },
   "statistics": {
     "messages": 1,

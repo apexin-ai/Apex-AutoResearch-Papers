@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf4856ed8035650216f",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "monitor v5 eval progress",
+  "task_key": "worker_monitor_v5_eval_progress_20260512T180557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v5_eval_progress_20260512T180557_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "2647db0c7215dda5f5fbf4a50ac8171616968d5ae10724b1c2bd45cf8b2db01b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v5 评估进度报告\n\n**进程状态**: PID 32154 存活，运行 2h15m\n\n**Pipeline 阶段**:\n- G0 训练 ✅ 完成（50m32s，1373 steps，10 个 checkpoint）\n- G0 评估 🔄 进行中\n\n**评估进度**: 正在评估 checkpoint **6/11**（checkpoint-912）\n- 5 个 checkpoint 已完成\n- 当前 spectral-rank 已算完，正在算 token entropy variance（02:06:36 开始）\n\n**每个 checkpoint 评估耗时**: ~13.5 min（非常稳定，5 个间隔均为 13m28s±3s）\n\n**预估剩余时间**:\n- 完成 ckpt 6：~2-3 min\n- 剩余 5 个 checkpoint：5 × 13.5 = ~68 min\n- **G0 评估总剩余 ≈ 1h10m**\n\n**注意**: Pipeline 配置了 3 个 generation（G0/G1/G2）。G0 评估完后可能还有 G1、G2 的训练+评估。如果 3 代结构一致，总剩余可能在 **~5-6h**。\n\n**GPU**: 100% 利用率，29.7GB / 97.9GB 显存\n\n**异常**: 无报错。有大量 `right-padding was detected` 警告，不影响正确性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v5-eval-progress.md"
+}

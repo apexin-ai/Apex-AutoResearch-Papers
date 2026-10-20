@@ -1,0 +1,22 @@
+paper_key: "dee-2024"
+title: "Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["baseline EE approaches"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "prominent event extraction benchmarks", size: "not specified"}, {name: "synthesized benchmark", size: "not specified"}]
+  ablation_dimensions: ["task decomposition (detection vs argument extraction)", "schema-aware retrieval augmentation", "dynamic prompt design"]
+  training_recipe: {method: "decompose EE into detection + argument extraction, enrich with schema-aware RAG examples"}
+  method_family: "schema-aware RAG for event extraction"
+
+positioning:
+  core_claim: "Decomposing event extraction into detection and argument extraction with dynamic schema-aware retrieval-augmented prompts reduces LLM hallucination and improves EE"
+  key_results: "Superior performance over baselines on standard and synthesized EE benchmarks"
+  limitations: ["depends on retrieval quality", "hallucination mitigation is partial"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

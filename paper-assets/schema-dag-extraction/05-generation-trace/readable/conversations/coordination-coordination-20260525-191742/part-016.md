@@ -8,165 +8,6 @@
 
 ### Tool result
 
-_source line 9925 · 2026-05-23T19:17:14.302660+00:00_
-
-599	
-600	\paragraph{Sensitivity to $\rho$.}
-601	The inter-pair SCS correlation $\rho = 0.35$ is estimated from pairs sharing a common type. At $\rho = 0.20$ (halved correlation), a parallel simulation yields batch $R^2 \approx 0.22$; at $\rho = 0.50$, the correlation structure approaches the positive-definiteness boundary; $\rho = 0.35$ thus sits in a stable regime. The simulation is illustrative; the pooled semipartial $R^2 = 0.273$ (\S\ref{sec:bcs_controlled}) is the primary evidence.
-602	
-603	\paragraph{Non-independence and ecological inference.}
-604	Types within a batch share prompt context, so their extraction outcomes are not independent---a form of ecological correlation \citep{robinson-1950-ecological}. This non-independence is built into the design: BCS measures batch-level confusability precisely because co-present types interact during type resolution. The core batch-level effect (FewRel semipartial $R^2 = 0.273$, DocRED pooled $R^2 = 0.578$; \S\ref{sec:practical_magnitude}) is a direct empirical observation from regressing batch accuracy on BCS, not derived from the simulation above. The inter-pair SCS correlation $\rho = 0.35$ used in the simulation was estimated from the SCS correlation matrix independently of batch-level accuracy data.
-605	
-606	\section{BCS Independence from Type Composition}
-607	\label{app:bcs-composition}
-608	
-609	FewRel's balanced design (700 instances per type) makes type frequency invariant across batches, ruling out frequency-driven confounding. To test whether BCS captures information beyond type composition effects, we decompose the explained variance in a joint model (accuracy $\sim$ BCS $+$ mean type difficulty), where type difficulty is the per-type solo-baseline accuracy averaged across batch members. On 100 random 8-type batches from the 16-relation pool, the joint model explains $R^2 = 0.704$. Variance decomposition yields: BCS unique $R^2 = 0.259$ (36.8\% of explained variance), composition unique $R^2 = 0.298$ (42.3\%)
-…[truncated 23840 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9926 · 2026-05-23T19:17:14.304999+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/",
-  "description": "List paper directory contents"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/",
-    "description": "List paper directory contents"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 9927 · 2026-05-23T19:17:14.305975+00:00_
-
-_pdf_check
-_pdf_check10
-_pdf_check2
-_pdf_check3
-_pdf_check4
-_pdf_check5
-_pdf_check6
-_pdf_check7
-_pdf_check8
-_pdf_check9
-_pdf_images
-abstract.tex
-acl.sty
-acl_natbib.bst
-checklist.tex
-conclusion.tex
-discussion.tex
-experimental_setup.tex
-introduction.tex
-main.aux
-main.bbl
-main.blg
-main.fdb_latexmk
-main.fls
-main.log
-main.out
-main.pdf
-main.tex
-prompt_appendix.tex
-references.bib
-related_work.tex
-results.tex
-sdgd_negative.tex
-supplementary.bbl
-supplementary.tex
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Bash",
-  "elapsed_ms": 0
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 9928 · 2026-05-23T19:17:14.306731+00:00_
-
-called Read
-
-<details open><summary>🔧 Tool call — Read</summary>
-
-```json
-{
-  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "tool_args": {
-    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
 _source line 9929 · 2026-05-23T19:17:14.307036+00:00_
 
 1	\begin{abstract}
@@ -13061,6 +12902,28 @@ called mcp__agent-ml-research__get_worker_status
   "tool_args": {
     "worker_id": "worker_ops_server-audit-cqa1_20260523T194902"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10254 · 2026-05-23T19:55:31.864167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_server-audit-cqa1_20260523T194902\", \"status\": \"done\", \"task_type\": \"ops:server-audit-cqa1\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-23T19:49:02.839657+00:00\", \"ended_at\": \"2026-05-23T19:49:57.311966+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 服务器审计报告 — cqa1-38874\\n\\n### GPU\\n| 项目 | 值 |\\n|------|-----|\\n| 型号 | NVIDIA RTX PRO 6000 Blackwell Server Edition |\\n| 显存 | 97,887 MiB (~96 GB) |\\n| 当前使用 | 0 MiB / 0% 利用率 |\\n\\n### 运行进程\\n- **无 Python/vLLM/PyTorch 训练进程在跑**\\n- 后台服务：supervisord、sshd、JupyterLab、HTTP server (port 18765)\\n- 一个 tmux session `exp_unconstrained_decoding_ablation` 残留（bash idle）\\n\\n### 项目目录\\n| 项目 | 值 |\\n|------|-----|\\n| 总大小 | **1.6 GB** |\\n| artifacts/ | 67 个子目录 + 大量 JSON/PT 文件 |\\n| results/ | 评估结果、分析 JSON、可视化 PNG/PDF |\\n\\n### 重要数据文件\\n- **.pt 文件**（22 个）：embedding 矩阵、相似度矩阵（sim_matrix.pt、type_embeddings.pt、bcs_matrix 等）\\n- **.json 文件**：大量实验配置、预测结果、评估结果（predictions_exp1.json 51MB、predictions_exp2.json 31MB 等）\\n- **无 .safetensors 文件**\\n\\n### 模型缓存\\n| 路径 | 大小 |\\n|------|------|\\n| /root/autodl-tmp/ | **213 GB** |\\n| /root/autodl-tmp/.hf_cache/ | **100 GB** |\\n\\n缓存内容：\\n- `llama-3.3-70b-instruct-fp8`\\n- `qwen3-32b-fp8`\\n- `sentence-transformers/all-MiniLM-L6-v2`\\n- `DFKI-SLT/few-nerd` 数据集\\n\\n/root/autodl-tmp/models/：\\n- `llama-3.1-8b-instruct`\\n- `llama-3.1-8b-instruct-ms`\\n\\n### 磁盘使用\\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\\n|------|------|------|------|--------|\\n| / (根) | 30 GB | 22 GB | 8.8 GB | **71%** |\\n| /root/autodl-tmp (数据盘) | 250 GB | 213 GB | 38 GB | **85%** |\\n\\n### vLLM 服务\\n**未运行。** GPU 完全空闲。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 52
 }
 ```
 

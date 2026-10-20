@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_multiseed_bcs_check_20260518T080629_result.json",
     "occurrence": 1,
-    "bytes": 1533,
-    "sha256": "098a9cd07ae257f30d1bf5518ca0386627a79abb2f3c7ac36aae68c1e64898e9"
+    "bytes": 1532,
+    "sha256": "520cf77a57e0194b705de99c5840ac0b4d28800c2d9458207468d2fb4c11a2a5"
   },
   "statistics": {
     "messages": 1,

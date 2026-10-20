@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = BASE_DIR / "artifacts" / "exp_gemini_flash"
 
 # TUM proxy config (OpenAI-compatible)
-DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+DEFAULT_API_KEY = "[REDACTED]"
 DEFAULT_BASE_URL = "http://47.94.22.126/v1"
 DEFAULT_MODEL = "gemini-2.5-flash"
 

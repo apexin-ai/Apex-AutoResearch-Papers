@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_three_way_comparison_prep_20260516T020126_result.json",
     "occurrence": 1,
-    "bytes": 832,
-    "sha256": "622f6037f2715ca25c0d9754c67b990eb6a715c093d3dd4f78524b8d1e44deea"
+    "bytes": 831,
+    "sha256": "27f9f2b675472aa58ef199feb537bc96675addf0a28746538a60a50836400758"
   },
   "statistics": {
     "messages": 1,

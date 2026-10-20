@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_fewnerd_r_value_deep_investigation_20260516T061932_result.json",
     "occurrence": 1,
-    "bytes": 2132,
-    "sha256": "2133df2dedcee5ce932d4b66e75ccf0ff018d29f2437240dd5a43c9ae5a8756a"
+    "bytes": 2131,
+    "sha256": "149ab1e4234fe97632ad311c31e5151359538d943e71282780779046884a80f7"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp012_llama_fewnerd_r3",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:53:18.937Z",
+    "updated_at": "2026-05-15T15:53:18.937Z"
+  },
+  "timestamp": "2026-05-15T15:53:19.008513+00:00",
+  "trigger": "update_registry"
+}

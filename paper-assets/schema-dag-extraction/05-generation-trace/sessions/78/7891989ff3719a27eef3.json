@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_write_prompt_appendix_c1a_20260516T031758_result.json",
     "occurrence": 1,
-    "bytes": 342,
-    "sha256": "9820543c027b63c6dc1f7091d51734080270b5a556acceba631bb0d265309e16"
+    "bytes": 341,
+    "sha256": "7ff66a3d9860fb2432922641d621e4396860f058c77bc004fba0585ea0ddd965"
   },
   "statistics": {
     "messages": 1,

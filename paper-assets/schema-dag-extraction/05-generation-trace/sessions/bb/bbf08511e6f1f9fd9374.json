@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fewrel-pilot-prep_20260515T062022_result.json",
     "occurrence": 1,
-    "bytes": 1512,
-    "sha256": "0d5990d5cbe7c24a95789a427ad3ccfc59900ec96725a3017914d7525b41f5f6"
+    "bytes": 1511,
+    "sha256": "82b18cd89c958ca2e4603d9f5ef99067ac8c18191a90e2998b76deeadabbd5ff"
   },
   "statistics": {
     "messages": 1,

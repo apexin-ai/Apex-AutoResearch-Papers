@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_rollback-and-run-all_20260514T184153_result.json",
     "occurrence": 1,
-    "bytes": 439,
-    "sha256": "0693614f877662046a89f3e46711e9cfb0bc91fd6012eedd4d0105f4dcda2247"
+    "bytes": 438,
+    "sha256": "972c78ca305a72f701bc8b9cbf40d474f9cb24696869b432440e71846fea174b"
   },
   "statistics": {
     "messages": 1,

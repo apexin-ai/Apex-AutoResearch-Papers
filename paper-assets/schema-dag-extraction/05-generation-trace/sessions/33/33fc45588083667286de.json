@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_cleanup_awq_scripts_delete_20260515T231834_result.json",
     "occurrence": 1,
-    "bytes": 147,
-    "sha256": "a1078c030def5ffd74b31db95c6a502ddcde3b1e0c9ecfa2b1260dada9669eea"
+    "bytes": 146,
+    "sha256": "f25503840f345a727f69ddee9879ea4c71f95ee0e1123312be16e372d88e5ed0"
   },
   "statistics": {
     "messages": 1,

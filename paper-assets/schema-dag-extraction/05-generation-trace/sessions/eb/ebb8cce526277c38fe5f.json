@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_unconstrained_ablation_check_20260518T103044_result.json",
     "occurrence": 1,
-    "bytes": 580,
-    "sha256": "3efa1e28fd88dd6b93de897d026dcaf634712a68994cac655642c02a1f57424a"
+    "bytes": 579,
+    "sha256": "a6c2c637741efa11ea695bd48306bb74fab06fb3fcaebdc9522de2aec2585e4f"
   },
   "statistics": {
     "messages": 1,

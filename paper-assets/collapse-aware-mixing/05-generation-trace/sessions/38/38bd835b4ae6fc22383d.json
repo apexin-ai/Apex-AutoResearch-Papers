@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38bd835b4ae6fc22383d",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "code seed0 analysis prep",
+  "task_key": "worker_code_seed0_analysis_prep_20260514T091216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed0_analysis_prep_20260514T091216_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "bea83ef05fd20c3f8d94f5b36dc110f6b1eaf0186ca763a20adde09368a781d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 进度报告\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 122208 存活，已运行 8h28m |\n| 当前阶段 | **G0 完成** → 正在为 G1 生成合成数据 (291/306, **95%**) |\n| 预计生成完成 | ~20 分钟后 |\n| 预计全部完成 | 还需 **~10-11 小时**（G1 训练+评估+生成 + G2 训练+评估） |\n| 磁盘 | 134G/250G (54%)，空间充足 |\n\n**G0 seed0 vs v7 初步对比（final_model）：**\n\n| 指标 | v7 (seed=42) | seed0 (seed=0) | 差异 |\n|------|-------------|---------------|------|\n| eff_rank | 676.96 | 676.89 | -0.01% |\n| ppl | 13.27 | 13.27 | +0.01% |\n| vocab_cov | 0.469 | 0.468 | -0.24% |\n\nG0 阶段两个 seed 的 metrics 高度一致，复现性良好。\n\n## 产出\n\n`analyze_seed0_vs_v7.py` 已部署到服务器 `/root/collapse-aware-mixing/`，语法验证通过，dry-run 输出正常。G1/G2 完成后直接运行即可得到最终判定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seed0-analysis-prep.md"
+}

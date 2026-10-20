@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp_confusability_batch_composition",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:11.857Z",
+    "updated_at": "2026-05-16T07:37:23.384Z",
+    "hypothesis": "Confusability-aware batch composition (graph coloring on SCS matrix to separate high-SCS pairs) improves per-type accuracy and reduces substitution errors compared to random batching and single-pass full schema, providing a practical application of the confusability findings.",
+    "spec": {
+      "command": "python3 src/run_confusability_batch_composition.py --stage extract --preprocess_path artifacts/exp_confusability_batch_composition/preprocess.json",
+      "server": "cqa1-38874",
+      "data_path": "data/fewrel_parquet/{train,val}.parquet",
+      "data_count": 960,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "description": "Confusability-aware batch composition: graph coloring vs random vs single-pass on FewRel 80-rel",
+      "pid": 373174,
+      "log_path": "/root/schema-dag-extraction/logs/exp018_confusability_batch.log",
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/",
+      "gpu": [
+        "cuda:0"
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "confusability_aware": {
+        "accuracy": 0.8021,
+        "macro_f1": 0.8021,
+        "mean_batch_bcs": 0.5524
+      },
+      "random_batch_15seeds": {
+        "accuracy_mean": 0.7877,
+        "accuracy_std": 0.0178,
+        "macro_f1_mean": 0.7877,
+        "mean_batch_bcs": 0.5585,
+        "ci_95_upper": 0.7967
+      },
+      "single_pass": {
+        "accuracy": 0.5042,
+        "macro_f1": 0.5042,
+        "mean_batch_bcs": 0.5572
+      },
+      "improvement": {
+        "confusability_vs_random_pp": 1.44,
+        "significant": true,
+        "note": "confusability_aware (0.8021) > random 95% CI upper (0.7967)"
+      },
+      "per_type": {
+        "types_improved": 51,
+        "types_degraded": 28,
+        "mean_delta_pp": 1.44
+      },
+      "n_conditions": 17,
+      "n_samples": 960
+    },
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_confusability_batch_composition/results.json",
+    "log_path": "/root/schema-dag-extraction/logs/exp018_confusability_batch.log",
+    "completed_at": "2026-05-16T07:37:23.384Z"
+  },
+  "timestamp": "2026-05-16T07:37:23.491750+00:00",
+  "trigger": "update_registry"
+}

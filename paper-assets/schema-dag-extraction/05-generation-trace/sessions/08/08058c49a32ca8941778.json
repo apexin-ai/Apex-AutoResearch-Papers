@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp3a-analysis-pipeline_20260515T050851_result.json",
     "occurrence": 1,
-    "bytes": 776,
-    "sha256": "af1a5b3ad178baa19d79743b4d3ffb46a7de7355e6362e5134d0254e00056d81"
+    "bytes": 775,
+    "sha256": "ea6c70969c80714dc6ab932d6bf53441b81991556fed69ff6f31855f924bad70"
   },
   "statistics": {
     "messages": 1,

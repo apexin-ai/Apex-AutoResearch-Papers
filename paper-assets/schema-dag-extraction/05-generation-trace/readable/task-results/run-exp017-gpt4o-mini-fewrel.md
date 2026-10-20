@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_run_exp017_gpt4o_mini_fewrel_20260516T064019_result.json`
 - **Structured JSON:** [`93edf7e90af77c211379.json`](../../sessions/93/93edf7e90af77c211379.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](run-exp017-gpt4o-mini-fewrel/part-001.md) · [Part 2](run-exp017-gpt4o-mini-fewrel/part-002.md) · [Part 3](run-exp017-gpt4o-mini-fewrel/part-003.md) · [Part 4](run-exp017-gpt4o-mini-fewrel/part-004.md)
+### Task result
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 3041653,
+      "serialized_sha256": "a96de1429479fd0425cae27a1541fe70304c6d891546db1b191732bf114f83ea",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

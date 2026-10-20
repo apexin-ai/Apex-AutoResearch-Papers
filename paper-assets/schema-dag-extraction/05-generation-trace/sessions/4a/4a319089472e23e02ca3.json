@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_fewrel_v2_bcs_controlled_20260516T031819_result.json",
     "occurrence": 1,
-    "bytes": 1545,
-    "sha256": "f6d9c589094cb8e43029f7b5827b8e4943d1265948e67eca25d097c7a9f5fdfb"
+    "bytes": 1544,
+    "sha256": "7c78b7aa8ffdea526e2a5e05d61564ee93ab3977b13de8bede3d4598c6704123"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Dataset statistics. \emph{Cross}: schema types span diverse semantic domains. \emph{Same}: types derive from a single ontological field (FrameNet event frames).}
+\label{tab:datasets}
+\begin{tabular}{@{}lccrl@{}}
+\toprule
+\textbf{Dataset} & \textbf{Task} & \textbf{\#\,Types} & \textbf{Eval.\ Size} & \textbf{Domain} \\
+\midrule
+Few-NERD & NER & 66 & 1{,}000 & Cross \\
+FewRel   & RE  & 80 & 1{,}000 & Cross \\
+MAVEN    & ED  & 168 & 18{,}904$^\dagger$ & Same \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}\\
+{\footnotesize $^\dagger$Trigger mentions across 710 documents.}
+\end{table}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_80pool_status_20260516T021312_result.json",
     "occurrence": 1,
-    "bytes": 1109,
-    "sha256": "9c9663695ee3da08b93ccdf7b8c6d44e5f03955d6985e5e20c2aa15872442bb3"
+    "bytes": 1108,
+    "sha256": "d9cceb674f64a967283a9a3ca9c43035e84a4d485af455e3b89686cb3e071f73"
   },
   "statistics": {
     "messages": 1,

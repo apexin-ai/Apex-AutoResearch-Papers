@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp012_llama_8b_r2_exp2",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:54:21.278Z",
+    "updated_at": "2026-05-15T20:07:37.597Z",
+    "spec": {
+      "command": "bash scripts/run_exp012_llama8b_r2_exp2only.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "321037",
+      "log_path": "~/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log",
+      "submitted_at": "2026-05-15T19:55:44.273Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 42
+    },
+    "hypothesis": "LLaMA-3.1-8B-Instruct exp2 重跑：BCS-controlled factorial (count=6/12, low/high BCS)，验证 confusability effect 跨模型泛化。Parent exp012_llama_8b_r2 的 exp1 count curve 已完成。"
+  },
+  "timestamp": "2026-05-15T20:07:37.721104+00:00",
+  "trigger": "update_registry"
+}

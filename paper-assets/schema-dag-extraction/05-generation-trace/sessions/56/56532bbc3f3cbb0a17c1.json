@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_arr_precheck_suppl_checklist_20260522T072522_result.json",
     "occurrence": 1,
-    "bytes": 1763,
-    "sha256": "6b41c310f4cd928074b0227d015b8b5927a32c12f06fb7652d736eb889059453"
+    "bytes": 1762,
+    "sha256": "b56845726f2f67cb28f08735e5826deafd56927e239a9d62113aef0b678c15b3"
   },
   "statistics": {
     "messages": 1,

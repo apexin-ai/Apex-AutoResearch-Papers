@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_limitations_compress_20260522T073005_result.json",
     "occurrence": 1,
-    "bytes": 1578,
-    "sha256": "1eeb7d6e3cb250b7592a33ff1514deb0fd6d22fd6f014b1e4a00bdf0a56cd17f"
+    "bytes": 1577,
+    "sha256": "3929673d2f556f120df02d5ece427aaea657e17aa25030331a89161a5d78994c"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp006_interaction_2x2",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T17:18:49.619Z",
+    "updated_at": "2026-05-15T17:56:23.840Z",
+    "hypothesis": "Count × Confusability 交互效应：{low count, high count} × {low BCS, high BCS} 2×2 设计，测试 count 和 confusability 对 accuracy 的影响是 additive 还是 multiplicative。若 multiplicative，高 count + 高 BCS 组的 degradation 应超过两个主效应之和。",
+    "parent": "exp002_confusability_controlled",
+    "plan_id": "exp-006",
+    "server": "cqa1-38874",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:20:09.901Z",
+      "finished_at": "2026-05-15T17:48:26.350Z",
+      "training_hours": 0.47
+    },
+    "failure_reason": "Traceback → extraction/src/run_extraction.py\", line 231, in run_extraction batches_to_run.append((\"low_bcs\", strategies[\"low_bcs\"][\"types\"], strategies[\"low_bcs\"][\"bcs\"])) ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^ TypeError: list indices must be integers or slices, not str",
+    "completed_at": "2026-05-15T17:48:27.854Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T17:48:29.418279+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T17:56:23.902173+00:00",
+  "trigger": "update_registry"
+}

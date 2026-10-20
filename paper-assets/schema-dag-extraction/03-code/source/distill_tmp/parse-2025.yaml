@@ -1,0 +1,120 @@
+paper_key: "parse-2025"
+title: "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction"
+venue: "EMNLP 2025 Industry"
+full_text_available: true
+
+research:
+  baselines:
+    - "Baseline (single-pass LLM extraction)"
+    - "Agent (simple retry without guardrails)"
+  metrics:
+    - {name: "Extraction Accuracy (%)", direction: "higher_better"}
+    - {name: "Latency (seconds)", direction: "lower_better"}
+    - {name: "Guardrail Check Count", direction: "lower_better"}
+  datasets:
+    - {name: "Retail-Conv (internal)", size: "6 schemas x 40 samples = 240 total"}
+    - {name: "Schema-Guided Dialogue (SGD)", size: "20,000 annotated conversations across 20 domains"}
+    - {name: "Structured Web Data Extraction (SWDE)", size: "1,600 test samples across 8 verticals"}
+  ablation_dimensions:
+    - "ARCHITECT schema optimization vs original schema"
+    - "SCOPE reflection-based guardrails vs simple retry (Agent) vs no retry (Baseline)"
+    - "Cross-model schema transferability (schema optimized by model X, used by model Y)"
+    - "Schema optimization iterations (1-10 iterations)"
+    - "Schema modification types (descriptions, min/max length, pattern/regex, validation rules, required fields, numeric constraints, structure changes, enum constraints)"
+  training_recipe:
+    optimizer: "N/A (inference-only, no fine-tuning)"
+    lr: "N/A"
+    hardware: "N/A (API-based LLM calls)"
+    note: "ARCHITECT is offline one-time schema optimization; SCOPE is per-inference extraction with reflection loop"
+  method_family: "Schema优化 + 反思式结构化抽取 (prompt engineering / self-correction paradigm)"
+
+positioning:
+  core_claim: "将JSON schema视为可优化的LLM接口而非静态合约，通过自动化schema优化(ARCHITECT)和反思式guardrail验证(SCOPE)的协同，大幅提升LLM结构化信息抽取的准确性和可靠性"
+  key_results: "SWDE上最高提升64.7%抽取准确率(Claude 3.7 Sonnet: 24.5% -> 93.14%); 跨数据集平均提升~10%; SCOPE在首次重试中减少92%抽取错误; 使用ARCHITECT优化schema后SCOPE延迟平均降低4.05秒"
+  limitations:
+    - "迭代优化过程对复杂schema计算开销大（需合成数据生成、抽取评估、失败分析）"
+    - "优化质量严重依赖seed数据集的可用性和代表性，全新领域难以应用"
+    - "假设schema结构相对静态、可离线优化，无法处理持续演进的schema"
+  relation_to_us: "competitor"
+  # PARSE直接解决schema-guided IE问题，将schema优化作为核心创新点，与schema-dag-extraction的schema引导抽取高度竞争；
+  # 但PARSE不涉及DAG结构建模，仅做扁平schema字段优化，DAG层级依赖关系是我们的差异化方向
+
+narrative:
+  story_type: "突破局限型"
+  hook: "以Software 3.0范式转变开篇——LLM agent自主与API/工具交互的时代，结构化信息抽取是关键基础设施，但JSON schema作为人类设计的合约与LLM理解之间存在根本性错配"
+  tension: "现有方法(constraint decoding, RL)将schema视为不可变的静态合约，仅在抽取端做补救；但schema本身就是问题的根源——描述模糊、验证规则不完整、结构针对人类可读性而非机器理解优化"
+  key_insight: "JSON schema本身就是一种自然语言理解合约(natural language understanding contract)，LLM既能理解也能系统性地改进它——将schema从静态约束转变为可优化的接口"
+  argument_chain: "Software 3.0需要可靠结构化抽取 → 现有schema为人类设计非LLM优化 → 现有方法只在抽取端补救 → 核心洞察：schema本身可被LLM优化 → ARCHITECT自动优化schema + RELAY保持向后兼容 → SCOPE反思式guardrail抽取 → 三数据集五模型验证"
+  contribution_framing: "三项贡献：(1) ARCHITECT框架——迭代优化schema使之适配LLM消费，含RELAY向后兼容模块; (2) SCOPE框架——结合静态规则和LLM guardrail的反思式抽取; (3) 大规模实验验证——SWDE上最高64.7%提升，跨数据集10%提升"
+  intro_structure: "5段：P1-Software 3.0范式转变与结构化抽取需求; P2-核心问题：人类设计的schema与LLM理解的错配; P3-现有方法的批判（constraint decoding/RL都假设静态schema）; P4-核心洞察：schema是可优化的NLU合约; P5-PARSE框架介绍与量化结果"
+  notable_technique: "用'Software 3.0'这一工业界热门概念作为开篇框架，将学术问题(schema-guided IE)包装为工业界紧迫需求，巧妙连接了读者的实际痛点；同时SWDE 24.5%→93.14%的戏剧性提升数字制造了强烈的'before/after'冲击"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "PARSE框架全景图，展示Build Phase(ARCHITECT schema优化)和Extract Phase(SCOPE抽取)的完整流水线。左侧输入为未优化schema和原始文本，中间经过ARCHITECT优化和SCOPE抽取，右侧输出准确的结构化结果。包含具体的JSON schema示例（优化前后对比）和抽取结果示例"
+    narrative_role: "在论文第一页建立整体框架认知，同时通过具体JSON示例让读者直观理解'schema优化'的含义——从模糊的type:string到带description/pattern/minLength的精确约束"
+    design_elements:
+      - "左右对比布局（未优化schema vs 优化后schema + 抽取结果）"
+      - "颜色编码：红色X标记错误输出、绿色勾标记正确输出、绿色高亮正确值、红色高亮错误值"
+      - "具体JSON代码片段作为示例"
+      - "编号步骤(1-5)引导阅读顺序"
+      - "Build Phase和Extract Phase明确分区"
+    visual_style: "双区域布局（上Build/下Extract），浅黄色背景区分两个phase，箭头表示数据流向，包含大量文字细节（JSON代码），信息密度高但通过颜色和编号保持可读性"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar_chart (dual panel)"
+      what_compared: "两个子图对比：(a)有reflection的SCOPE的guardrail检查分布 vs (b)无reflection的简单retry的检查分布。每个子图内对比With/Without ARCHITECT schema"
+      how_gain_highlighted: "(a)有reflection时大量错误在第1次retry就修复（154→121 with ARCHITECT），后续retry急剧递减至个位数；(b)无reflection时所有retry轮次的检查数几乎持平（~120-154），无收敛趋势，形成鲜明对比"
+      design_note: "通过双panel对比（有/无reflection）制造视觉冲击：一个是快速收敛的长尾分布，一个是平坦的均匀分布，直观证明reflection机制的关键性。红/绿和橙/黄配色区分两种条件"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "4条线追踪不同schema在ARCHITECT优化迭代(1-10次)中的准确率变化：Schema 1 (SWDE蓝实线)、Schema 2 (SWDE红实线)、Schema 3 (Internal绿虚线)、Schema 4 (Internal橙虚线)"
+      how_gain_highlighted: "所有schema在前5-6次迭代中准确率稳步上升（如Schema 2从0.75→0.93），之后趋于平稳或略有波动，展示迭代优化的收敛性"
+      design_note: "用实线/虚线区分SWDE和Internal数据集，4种颜色清晰区分，数据点标注具体数值。展示了优化过程的收敛特性，暗示5-6次迭代是实用的停止点"
+    - figure_id: "Figure 5"
+      viz_type: "horizontal_bar_chart"
+      what_compared: "ARCHITECT对schema所做修改类型的频率分布：Descriptions(16次)、Min/Max Length(10次)、Pattern/Regex(9次)、Validation Rules(4次)、Required Fields(4次)、Numeric Constraints(2次)、Structure Changes(1次)、Enum Constraints(1次)"
+      how_gain_highlighted: "通过降序排列，最重要的修改类型（Descriptions）占据视觉主导位置，直观展示schema优化的主要手段"
+      design_note: "多彩配色（粉红、蓝、粉紫、橙、绿、青、浅绿、珊瑚），每条标注具体数字。揭示了一个关键洞察：描述增强是最主要的优化手段（16/47=34%），其次是长度约束和正则模式"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar_chart"
+      dimensions_varied: ["reflection机制有无", "ARCHITECT schema有无"]
+      design_note: "本质上是消融图，双panel分别消融reflection，每panel内通过颜色消融ARCHITECT，四种组合清晰可比"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["优化迭代次数(1-10)", "不同schema(4个)"]
+      design_note: "追踪优化过程的收敛曲线，既验证迭代优化有效，也暗示最佳迭代次数"
+  figure_narrative_role: "Figure 1(框架全景+具体示例) → Figure 2(技术架构细节) → Figure 3(SCOPE guardrail效果+reflection消融) → Figure 4(ARCHITECT迭代收敛) → Figure 5(schema修改类型分析)。从整体到局部，从系统架构到定量分析到定性洞察"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "datasets x schema_type x extraction_method"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "未明确标注bold/underline，但ARCHITECT+SCOPE组合始终为最高值"
+    statistical_reporting: "single run (无mean/std报告)"
+    num_baselines: 2
+    design_note: "三层列头结构（dataset → original/ARCHITECT schema → Baseline/Agent/SCOPE），将schema优化和抽取方法作为正交维度交叉呈现，读者可沿任意维度比较。5个模型覆盖Claude/Llama/DeepSeek三个family，展示通用性。表格信息密度极高（5 models x 3 datasets x 2 schemas x 3 methods = 90个cell），但通过层级列头保持可读"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["ARCHITECT优化用的模型", "SCOPE抽取用的模型"]
+      variation_style: "full_numbers"
+      design_note: "2x2交叉实验（Claude/Llama做ARCHITECT × Claude/Llama做SCOPE），验证schema优化的跨模型迁移性。简洁的4-cell表格，核心发现是ARCHITECT-Claude/SCOPE-Claude(93.7) vs ARCHITECT-Llama/SCOPE-Llama(88.4)差距不大，证明模型无关性"
+    - table_id: "Table 3"
+      what_varied: ["original vs ARCHITECT schema", "Baseline vs Agent vs SCOPE抽取方法"]
+      variation_style: "full_numbers"
+      design_note: "延迟分析表，展示SCOPE guardrail的时间代价。关键发现：ARCHITECT优化后的schema使SCOPE延迟降低（平均-4.05秒），因为更精确的schema减少了retry次数"
+    - table_id: "Table 6"
+      what_varied: ["ARCHITECT优化迭代次数(iteration 1, 3, 5)"]
+      variation_style: "full_numbers"
+      design_note: "定性展示SWDE Auto schema在优化过程中的演化：从generic type:string逐步添加description/pattern/minLength约束。4个字段的演化轨迹，直观展示ARCHITECT的优化行为"
+  supplementary_tables:
+    in_appendix: false
+    content: "Table 4展示SWDE具体抽取案例（baseline vs PARSE对HTML数据的处理差异）；Table 5展示SGD和Retail-Conv的定性比较（SCOPE vs baseline预测对比，含4个具体对话场景）；Table 6展示schema迭代演化过程"
+    reason: "定性分析表放在主文中而非附录，用于补充定量结果的直观理解——Table 4解释SWDE巨大提升的原因（HTML数据的特殊性），Table 5展示SCOPE在复杂场景中的鲁棒性，Table 6揭示ARCHITECT的优化行为模式"

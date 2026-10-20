@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp012_llama_fewrel_ch2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:12:56.136Z",
+    "updated_at": "2026-05-15T22:40:30.554Z",
+    "spec": {
+      "command": "bash scripts/run_llama_fewrel_ch2.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "330198",
+      "log_path": "~/runs/schema-dag-extraction/exp012_llama_fewrel_ch2.log",
+      "submitted_at": "2026-05-15T21:43:45.369Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "FewRel 80-rel",
+      "data_count": 80,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 42,
+      "description": "LLaMA-3.1-8B-Instruct FewRel 80-rel exp2 BCS-controlled, verify confusability effect cross-model",
+      "checkpoint_source": "/root/autodl-tmp/models/llama-3.1-8b-instruct/LLM-Research/Meta-Llama-3___1-8B-Instruct",
+      "eval_data": "FewRel 80-rel exp2 BCS-controlled",
+      "wall_clock_seconds": 3158.4,
+      "gpu_hours": 0.88
+    },
+    "hypothesis": "LLaMA-3.1-8B-Instruct 在 FewRel 80-rel RE 任务上验证 Channel 2 (BCS-controlled confusability effect)。跨模型家族(Qwen→LLaMA) + 跨规模(32B→8B) + 跨任务(NER→RE) 三重泛化验证。exp2 design: count 8/16 × low/high BCS × 27 batches。",
+    "parent": "exp012_llama_8b_r2",
+    "conclusion": "success",
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/llama_fewrel_ch2/",
+    "completed_at": "2026-05-15T22:36:23.818Z"
+  },
+  "timestamp": "2026-05-15T22:40:30.629936+00:00",
+  "trigger": "update_registry"
+}

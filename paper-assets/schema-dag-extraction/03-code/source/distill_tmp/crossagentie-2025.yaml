@@ -1,0 +1,127 @@
+paper_key: "crossagentie-2025"
+title: "CROSSAGENTIE: Cross-Type and Cross-Task Multi-Agent LLM Collaboration for Zero-Shot Information Extraction"
+venue: "ACL 2025 Findings"
+full_text_available: true
+
+research:
+  baselines:
+    - "AEiO (All-Entity-in-One, Li et al. 2024a)"
+    - "Self-consistency (Wang et al. 2023d)"
+    - "Soft Self-consistency (Wang et al. 2024)"
+    - "Type-Agents"
+    - "Template fine-tuning (One-LLM)"
+    - "One-step (Li et al. 2024a)"
+    - "Direct-prompting"
+    - "G&O (Li et al. 2024a)"
+    - "Self-Improving (Xie et al. 2024)"
+    - "Decomposed-QA (Xie et al. 2023b)"
+  metrics:
+    - {name: "Micro F1-score", direction: "higher_better"}
+    - {name: "Micro Precision", direction: "higher_better"}
+    - {name: "Micro Recall", direction: "higher_better"}
+  datasets:
+    - {name: "CoNLL03", size: "NER benchmark", task: "NER"}
+    - {name: "CoNLL04", size: "NER+RE benchmark", task: "NER & RE"}
+    - {name: "OntoNotes4", size: "NER benchmark", task: "NER"}
+    - {name: "SemEval", size: "NER+RE benchmark", task: "NER & RE"}
+    - {name: "TACRED", size: "NER+RE benchmark", task: "NER & RE"}
+    - {name: "NYT", size: "RE benchmark", task: "RE"}
+    - {name: "SciERC", size: "RE benchmark", task: "RE"}
+  ablation_dimensions:
+    - "跨类型辩论 vs 无辩论（intra-group cross-type debate）"
+    - "跨任务辩论 vs 无辩论（inter-group cross-task debate）"
+    - "NER-only debate vs RE-only debate vs both"
+    - "backbone模型选择（GPT-3.5, LLaMA3-8b, Mistral-7B, Mixtral 8x7B）"
+    - "template fine-tuning 样本数量（10-30 cases per type）"
+    - "单步总结 vs 迭代辩论框架设计"
+    - "自验证推理（self-verification）效果"
+  training_recipe:
+    optimizer: "N/A（zero-shot框架，无训练；template fine-tuning使用GPT-3.5蒸馏）"
+    lr: "N/A"
+    hardware: "GPT-3.5-Turbo API（主实验）; GPT-4o（补充实验）"
+    temperature: 0.9
+    max_iterations: 2
+    frequency_penalty: 0.1
+    framework: "Microsoft Autogen"
+  method_family: "多智能体LLM协作 + 辩论式推理 + 知识蒸馏"
+
+positioning:
+  core_claim: "通过跨实体类型辩论和跨NER-RE任务双向反馈两种多智能体协作机制，解决LLM在零样本IE中结构化输出不一致和实体标签冲突的问题，并用template fine-tuning将多智能体输出蒸馏到单模型降低成本"
+  key_results: "NER平均F1: 50.19（vs AEiO 41.63，+8.56）; RE平均F1: 30.97（vs Direct-Prompting 21.84，+9.13）; Template fine-tuning NER平均48.88, RE平均27.92; GPT-4o上CoNLL04 NER F1: 72.14, RE F1: 55.22; CoNLL03上超过G&O 7.07%, 超过Self-Improving 0.56%"
+  limitations:
+    - "计算成本高：多智能体迭代辩论和双向refinement带来大量API调用开销"
+    - "多智能体扩展性差：随agent数量增加，冲突协调和收敛保证困难"
+    - "依赖模型推理质量：LLM仍可能幻觉或产生不一致输出，辩论只能部分缓解"
+    - "本体约束固定：依赖预定义实体和关系本体，无法适应开放域或动态schema"
+    - "评估数据集和任务有限：仅在有限数据集上验证，缺乏更多领域特定数据集的鲁棒性验证"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "IE是NLP基础任务，LLM虽强但在zero-shot IE中面临结构化输出不一致的核心挑战——开篇从IE任务重要性切入，快速过渡到LLM时代的新范式"
+  tension: "三层递进的局限铺垫：(1) LLM难以生成符合预定义schema的结构化输出，实体标签冲突频发（如Washington同时被标为Location和Person）；(2) 实体标签冲突缺乏有效解决机制；(3) LLM缺乏领域适应能力，prompt engineering无法跨域泛化。用具体数字强化——GPT-3.5在CoNLL03仅45% F1，OntoNotes4仅34%"
+  key_insight: "将多智能体辩论引入IE任务，设计两层协作：组内跨类型辩论解决同一任务内的标签冲突（如同一实体被不同type agent标为不同类型），组间跨任务辩论让NER和RE互相提供反馈（如RE的关系约束帮助NER纠正实体类型）"
+  argument_chain: "LLM在zero-shot IE中表现差 → 根因是三个挑战（结构化输出、标签冲突、域适应） → 提出跨类型辩论解决标签冲突 → 提出跨任务辩论让NER-RE互补 → template fine-tuning降低推理成本 → 10个数据集上显著超越SOTA"
+  contribution_framing: "四点贡献，措辞较为标准：(1) 提出CROSSAGENTIE框架（核心贡献）；(2) 跨类型辩论机制（技术贡献1）；(3) 跨任务双向反馈（技术贡献2）；(4) template fine-tuning蒸馏降成本（工程贡献）。在intro末段以'To address the above challenges'引出，四点用First/Second/Third/Finally串联"
+  intro_structure: "5段：P1-IE任务定义和传统方法局限 → P2-LLM时代的zero-shot IE新方向及已有方法 → P3-LLM在zero-shot IE中的三个核心挑战（First/Second/Third加粗标记） → P4-提出CROSSAGENTIE及四点贡献 → P5-实验结果总结"
+  notable_technique: "三个挑战用First/Second/Third加粗排列，每个挑战配具体例子（Washington标签冲突）和数字（GPT-3.5 45% F1），形成层层递进的问题铺垫；贡献点与挑战一一对应，读者可清晰追踪问题-方案映射"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "CROSSAGENTIE的四阶段全流程概览图。左侧展示主流程（输入→多智能体协作→输出），中间展示多智能体协作的四个阶段（Type-Agents Setup → Intra-Group Cross-Type Discussion → Inter-Group Cross-Task Discussion → Template Fine-Tuning），右侧用详细的表格和对话气泡展示每个阶段的具体操作细节——包括type agent分配表、NER冲突检测、辩论对话过程、双向反馈修正"
+    narrative_role: "作为方法核心图承载整个框架的直观理解，四阶段pipeline从左到右展开，每阶段右侧有详细zoom-in panel，读者可以从宏观流程到微观操作逐层理解"
+    design_elements: ["三列布局（流程-协作-细节）", "彩色图标区分不同agent角色", "对话气泡展示辩论过程", "表格展示实体分配和冲突检测", "箭头标注双向反馈流", "紫色/绿色/蓝色区分不同阶段"]
+    visual_style: "信息量极大的综合图，水平三列布局，左侧简洁流程图，中间展示协作pipeline，右侧用表格+对话框展示每个stage的具体example。颜色较多（绿、紫、蓝、橙），用robot图标代表agent，整体偏密集但层次分明"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "template fine-tuning的样本数量（10-30 cases）对NER和RE F1-score的影响"
+      how_gain_highlighted: "双折线（NER红线、RE蓝线）展示最优点在约15-20 cases处"
+      design_note: "简洁的双折线图，x轴为cases数量，y轴为F1 score，用不同颜色区分NER和RE两条线，可快速看出最优样本数"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "不同backbone LLM（LLaMA3-8B, Mistral-7B, Mixtral 8x7B, GPT-3.5）在三种设置下的NER性能对比"
+      how_gain_highlighted: "分组柱状图，三种颜色（蓝=Type-Agents Baseline, 红=Self-verification, 绿=Our Method）并排对比，GPT-3.5组绿色柱最高"
+      design_note: "经典grouped bar chart，每个backbone模型一组三根柱子，视觉上直接对比不同模型和方法的组合效果"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1（方法全景）→ Figure 2（fine-tuning超参分析）→ Figure 3（backbone模型对比）：从方法理解到实验细节的递进"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × metrics (CoNLL03, CoNLL04, SemEval, TACRED, OntoNotes, Average)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best，dagger标记次优（template fine-tuning时某些数据集低于full CROSSAGENTIE）"
+    statistical_reporting: "单次运行F1-score百分比，无std"
+    num_baselines: 3
+    design_note: "NER主结果表，分baseline（AEiO）和CROSSAGENTIE三个变体（Type-Agents, CROSSAGENTIE, Template-finetuning），用dagger号标注template fine-tuning的次优表现，最后一列Average便于快速对比。结构清晰但baseline数量偏少，在Table 2/4/6中补充更多baseline对比"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["不同NER方法在CoNLL03上的对比（G&O, Self-Improving各变体, CROSSAGENTIE各变体）"]
+      variation_style: "full_numbers"
+      design_note: "将CROSSAGENTIE的三个stage（Type-Agents → CROSSAGENTIE → Template-finetuning）与其他SOTA方法的多个变体并排对比，每个方法展示所有子变体的F1"
+    - table_id: "Table 3"
+      what_varied: ["不同RE方法在CoNLL04上的对比（G&O, CROSSAGENTIE各变体）"]
+      variation_style: "full_numbers"
+      design_note: "RE任务的方法对比表，结构与Table 2类似"
+    - table_id: "Table 4"
+      what_varied: ["NER任务中Self-consistency vs Soft SC vs CROSSAGENTIE在CoNLL04上的对比"]
+      variation_style: "full_numbers"
+      design_note: "针对投票/一致性方法的专项对比，证明辩论机制优于简单投票"
+    - table_id: "Table 7"
+      what_varied: ["GPT-4o backbone下CROSSAGENTIE在CoNLL04上NER和RE的表现"]
+      variation_style: "full_numbers"
+      design_note: "展示更强backbone下框架仍有效，NER 72.14, RE 55.22"
+    - table_id: "Table 8"
+      what_varied: ["三阶段（Baseline-NER, 1st-Debate-NER, 2nd-Feedback-NER）的错误类型统计"]
+      variation_style: "full_numbers"
+      design_note: "error analysis表，按Boundary Errors/Wrong Types/Missing Entities三类统计，展示辩论机制逐步减少错误的过程，bold标注总错误数的下降趋势"
+  supplementary_tables:
+    in_appendix: true
+    content: "附录包含大量补充表格：Table 5（RE主结果跨5个数据集）、Table 6（OntoNotes上NER详细对比）、Table 12（NER-RE双向反馈迭代效果）、Table 13（辩论消融：NER-only vs RE-only vs both）等。还有各数据集的详细统计、prompt模板、额外baseline对比"
+    reason: "主表聚焦核心对比（NER主结果+关键消融），将数据集级别的详细对比、额外baseline、error analysis细节、prompt设计等放入附录（论文正文8页+附录扩展到25页），保持正文信息密度"

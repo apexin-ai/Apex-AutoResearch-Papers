@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_fewrel_16rel_bootstrap",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:01:33.940Z",
+    "updated_at": "2026-05-16T01:56:07.987Z",
+    "hypothesis": "FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。",
+    "parent": "exp_fewrel_formal",
+    "spec": {
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "Qwen3-32B-FP8",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_parquet/val.parquet",
+      "data_count": 992,
+      "seed": 42,
+      "description": "100 random 8-type batches from 16-rel pool, BCS quartile bootstrap CI",
+      "command": "python3 src/run_fewrel_16rel_bootstrap.py",
+      "checkpoint_source": "n/a",
+      "eval_data": "FewRel val 16-rel"
+    },
+    "metrics": {
+      "n_batches": 100,
+      "pool_size": 16,
+      "batch_size": 8,
+      "bcs_range": [
+        0.6532,
+        0.9002
+      ],
+      "quartile_delta": {
+        "Q4_minus_Q1_pp": -7.42,
+        "ci_95_lower": -9.45,
+        "ci_95_upper": -4.49
+      },
+      "pearson_r_bcs_acc": -0.6373,
+      "key_finding": "16-rel pool BCS effect confirmed: Δ(Q4-Q1)=-7.42pp, 95% CI [-9.45, -4.49], r=-0.637. Bootstrap 1000 resamples."
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/fewrel_16rel_bootstrap/",
+    "log_path": "~/runs/schema-dag-extraction/exp_fewrel_16rel_bootstrap.log",
+    "completed_at": "2026-05-16T01:56:07.987Z"
+  },
+  "timestamp": "2026-05-16T01:56:08.102412+00:00",
+  "trigger": "update_registry"
+}

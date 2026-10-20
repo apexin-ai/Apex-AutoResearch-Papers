@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_q3-bcs-distribution_20260517T075611_result.json",
     "occurrence": 1,
-    "bytes": 1270,
-    "sha256": "2c89e3b912a8987db4c8b889735642d712a510c8e79cc6af45fce90ad951d5d0"
+    "bytes": 1269,
+    "sha256": "5c228f1fbbb1629a0384a2153709f7f927848babeaf9dddd6c0128bc9ee8573b"
   },
   "statistics": {
     "messages": 1,

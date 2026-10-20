@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_prose_tightening_20260522T024335_result.json",
     "occurrence": 1,
-    "bytes": 1014,
-    "sha256": "4f18d25af472c7fc39101648f6649ace247e0af479156d26ab68aec3a00ad9dc"
+    "bytes": 1013,
+    "sha256": "9eb34b75aae4060cd34d961f9b4274c205e2939cc922c0d14d8084e877e09ba9"
   },
   "statistics": {
     "messages": 1,

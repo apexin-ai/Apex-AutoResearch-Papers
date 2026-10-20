@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb08fe68a2dc9b677fb6",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "code plan a implementation",
+  "task_key": "worker_code_plan_a_implementation_20260514T031920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_a_implementation_20260514T031920_result.json",
+    "occurrence": 1,
+    "bytes": 2393,
+    "sha256": "0e0a9c282114353e9c1fcdd1b2cae810c4d13321f9fd13fac438839b791850df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed0 r2 正在 synthetic data generation 阶段（10%），运行正常。\n\n## 完成报告\n\n### 改动摘要\n\n**1. controller.py** — 完全重写\n- 删除旧的 `CollapseAwareController`（velocity form + spectral rank 信号）\n- 新增 `PIController`：位置式 PI，`u(k) = u_bias + Kp * e(k) + integral`\n- 误差定义 `e = setpoint - y`（entropy 下降 → e > 0 → 增加 real data）\n- 条件积分 anti-windup：输出饱和时停止积分\n- `set_baseline(g0_entropy)`：自动计算 setpoint = g0_entropy * margin\n- `from_config()` 类方法 + `ControllerConfig` dataclass 保留\n- 默认参数：Kp=0.15, Ki=0.02, u_bias=0.5, w_min=0.1, w_max=0.9, margin=0.9\n\n**2. controlled_pipeline.py** — 大幅重构\n- 信号源从 spectral rank → n-gram entropy（100K generated tokens）\n- spectral rank 保留为辅助记录指标\n- 支持 5 种模式：`pure_synthetic`, `fixed_mix`, `threshold`, `pi_controller`, `pure_real`\n- G0 训练后自动测量 baseline entropy → `controller.set_baseline()`\n- PIController 实例跨 generation 保持状态（integral 累积）\n- control_log.jsonl 记录：generation, segment, step, unigram_entropy, trigram_entropy, vocab_coverage, eff_rank, holdout_ppl, w, mode, controller_state\n- 新增 CLI 参数：--mode, --w_fixed, --threshold, --kp, --ki, --u_bias, --setpoint_margin, --setpoint, --w_min, --w_max\n- checkpoint_interval_tokens 默认改为 5M（与 v7 一致）\n\n**3. run_plan_a.sh** — 新建\n- 支持环境变量覆盖所有参数（MODE, SEED, KP, KI 等）\n- 支持尾部额外参数传递 (`\"$@\"`)\n- conda 环境自动激活\n\n### Dry-run 结果\n\n| 测试 | 结果 |\n|------|------|\n| PIController 基本功能 | PASSED — set_baseline/step/get_state 正确 |\n| Anti-windup（y=0 极端 collapse） | PASSED — w=0.9 clamped，integral 不增长 |\n| ControllerConfig → from_config | PASSED |\n| reset() | PASSED — integral/step_count 归零，setpoint 保留 |\n| controlled_pipeline.py --help | PASSED — 全部 19 个参数正确解析 |\n| 全量 import 验证 | PASSED — PIController/MixedDataset/VALID_MODES 正常导入 |\n| GPU dry-run | 跳过 — GPU 被 seed0 r2 占用 |\n\n### 与设计文档的偏差\n\n无实质性偏差。设计文档中 `run_plan_a.sh` 未包含 `--checkpoint_interval_tokens` 和 `--u_bias`/`--w_min`/`--w_max`，已补充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-a-implementation.md"
+}

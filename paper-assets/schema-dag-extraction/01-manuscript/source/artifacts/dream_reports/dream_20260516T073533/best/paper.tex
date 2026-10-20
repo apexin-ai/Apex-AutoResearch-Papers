@@ -1,0 +1,470 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{Multi-Channel Schema Degradation in Training-Free LLM Information Extraction:\\Type Count and Confusability as Orthogonal Failure Modes}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Training-free LLM-based information extraction degrades severely on complex schemas, but the mechanisms underlying this degradation remain poorly understood.
+We conduct a controlled empirical study across three IE tasks---NER (Few-NERD, 66 types), RE (FewRel, 80 relations; DocRED, 96 relations), and ED (MAVEN, 168 event types)---isolating type count from type confusability as independent predictors of extraction quality.
+We find that pairwise type confusability (measured via schema cosine similarity, SCS) independently predicts extraction degradation across all tasks ($r{=}0.11$--$0.13$, all CIs exclude zero), with 10--28$\times$ more type confusion errors in high-confusability batches.
+The confusability effect amplifies with schema complexity: 3.4$\times$ stronger on 80-type vs.\ 16-type schemas ($\Delta{=}{-}31.2$pp vs.\ ${-}9.1$pp).
+Error taxonomy analysis reveals orthogonal degradation channels: type count drives recall decline via attention dilution, while confusability drives type confusion via semantic interference (IntraSub $\rho{\geq}0.95$ across NER and RE).
+We further show that naive confusability-aware schema decomposition (SDGD) fails due to merge amplification---a structural challenge where decompose-then-merge introduces more errors than it resolves---pointing to calibration-based approaches as a principled alternative.
+\end{abstract}
+
+\section{Introduction}
+
+Large language models (LLMs) have emerged as powerful tools for training-free information extraction (IE), enabling zero-shot and few-shot extraction across diverse schemas without task-specific training \cite{wei2023zeroshot}.
+However, performance degrades substantially as schema complexity increases: a 20--60 F1 gap between training-free LLM IE and supervised methods is commonly observed on complex schemas.
+
+Prior work has addressed this degradation through schema decomposition strategies.
+UniNER \cite{zhou2024universalner} splits extraction into per-type passes, gaining 3.3 F1 but losing cross-type context.
+LLM-PEE uses type similarity as an implicit confusability proxy but never validates this assumption empirically.
+Critically, no prior work isolates \emph{what} makes schemas complex for LLMs: is it the sheer number of types, the semantic similarity between types, or their interaction?
+
+We conduct the first controlled empirical study that disentangles type count from type confusability in training-free LLM IE across three tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED).
+Our experimental design varies count and confusability independently, enabling causal identification of their separate effects.
+
+Our contributions are:
+\begin{enumerate}
+\item \textbf{Confusability Independence.} We demonstrate that pairwise type confusability independently predicts extraction degradation beyond type count ($r{=}0.11$--$0.13$, all bootstrap CIs exclude zero), validated across NER, RE, and ED. The effect amplifies 3.4$\times$ with schema complexity and is robust across two embedding families (Qwen3-32B, MiniLM-L6-v2).
+
+\item \textbf{Multi-Channel Degradation Model.} We identify two orthogonal degradation channels: count$\to$recall decline (attention dilution) and confusability$\to$type confusion (semantic interference), with cross-task IntraSub correlation $\rho{\geq}0.95$.
+
+\item \textbf{Decomposition Negative Result.} We show that naive confusability-aware decomposition (SDGD) fails due to merge amplification (${\sim}35\%$ structural cost across two datasets), establishing that the value of confusability lies in diagnosis, not decomposition.
+
+\item \textbf{Methodological Contribution.} We identify a centrality confound in per-type aggregation of confusability on semantically homogeneous schemas, and demonstrate that pairwise analysis avoids this confound.
+\end{enumerate}
+
+\section{Related Work}
+
+\paragraph{Training-Free LLM IE.}
+Recent work has shown that LLMs can perform IE tasks zero-shot or with minimal demonstrations.
+GPT-NER \cite{li2023gptner} and GoLLIE \cite{sainz2024gollie} prompt LLMs directly with type definitions.
+Performance varies widely with schema complexity, but systematic characterization of failure modes has been limited.
+
+\paragraph{Schema Decomposition.}
+UniNER \cite{zhou2024universalner} extracts one entity type per pass, trading cross-type context for reduced confusion.
+This per-type splitting represents the extreme of schema decomposition.
+However, no principled criterion exists for when or how to decompose schemas.
+
+\paragraph{Confusability in Classification.}
+The notion that semantically similar categories cause confusion is well-established in cognitive science and fine-grained classification.
+In NLP, label confusion has been studied in text classification and NER, but not systematically isolated from label set size in the LLM IE setting.
+
+\section{Methodology}
+
+\subsection{Confusability Measures}
+
+\paragraph{Schema Cosine Similarity (SCS).}
+For a pair of types $(t_i, t_j)$, we compute the cosine similarity between their label embeddings:
+\begin{equation}
+\text{SCS}(t_i, t_j) = \frac{\mathbf{e}_i \cdot \mathbf{e}_j}{\|\mathbf{e}_i\| \|\mathbf{e}_j\|}
+\end{equation}
+where $\mathbf{e}_i$ is the embedding of type $t_i$'s label text.
+We use two embedding models: Qwen3-32B (the extraction model itself) and MiniLM-L6-v2 (a generic sentence encoder).
+
+\paragraph{Batch Confusability Score (BCS).}
+For a batch of types $B = \{t_1, \ldots, t_k\}$, BCS is the mean pairwise SCS:
+\begin{equation}
+\text{BCS}(B) = \frac{2}{k(k-1)} \sum_{i<j} \text{SCS}(t_i, t_j)
+\end{equation}
+BCS captures the overall confusability pressure within a single extraction prompt.
+
+\subsection{Experimental Design}
+
+We design controlled experiments that vary type count and confusability independently.
+
+\paragraph{Count Curves.}
+For each dataset, we construct batches of increasing size ($k = 1, 4, 8, 16, 32, \ldots$) by sampling types, measuring accuracy as a function of type count.
+BCS is recorded as a covariate.
+
+\paragraph{BCS-Controlled Comparisons.}
+At fixed type count $k$, we construct matched batch pairs: one with low BCS (dissimilar types) and one with high BCS (confusable types).
+The accuracy gap $\Delta$ isolates confusability from count.
+
+\paragraph{2$\times$2 Factorial Design.}
+On Few-NERD, we cross \{low count, high count\} $\times$ \{low BCS, high BCS\} to test for additive vs.\ multiplicative interaction between the two factors.
+
+\paragraph{Error Taxonomy.}
+We classify false positives into four categories: \emph{IntraSub} (correct span, wrong type from same batch), \emph{ExtraSub} (correct span, type not in batch), \emph{Boundary} (partial overlap), and \emph{Hallucination} (no corresponding gold entity).
+This enables mechanistic attribution: count-driven errors should appear as recall decline, while confusability-driven errors should appear as IntraSub increases.
+
+\subsection{Datasets and Models}
+
+We evaluate on:
+\begin{itemize}
+\item \textbf{Few-NERD} (NER): 66 fine-grained entity types across 8 coarse domains.
+\item \textbf{FewRel} (RE): 16-relation and 80-relation settings, with explicit relation definitions.
+\item \textbf{DocRED} (RE): 96 document-level relation types.
+\item \textbf{MAVEN} (ED): 168 event types from Wikipedia.
+\end{itemize}
+
+Primary extraction model: Qwen3-32B (zero-shot). Replication model: LLaMA-3.3-70B (87\% consistency with Qwen3).
+
+\subsection{Schema-Driven Graph Decomposition (SDGD)}
+
+SDGD constructs a confusability graph $G = (V, E)$ where vertices are types and edge weights are pairwise SCS values.
+Graph partitioning minimizes intra-batch confusability while balancing batch sizes.
+We evaluate two variants:
+\begin{itemize}
+\item \textbf{SDGD-zero}: Uses SCS (embedding similarity) directly.
+\item \textbf{SDGD-cal}: Uses an empirical confusion matrix from 5--10 calibration examples per type pair.
+\end{itemize}
+
+\section{Experiments}
+
+\subsection{SCS as Confusability Proxy}
+\label{sec:scs-validation}
+
+We first validate that embedding-based SCS is a meaningful proxy for actual LLM confusion by comparing SCS to an empirical confusion matrix constructed from Few-NERD extraction outputs (1,953 type pairs, 216 with nonzero confusion).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Embedding} & \textbf{Scope} & \textbf{Spearman $\rho$} & \textbf{$p$} & \textbf{Kendall $\tau$} \\
+\midrule
+Qwen3-32B & All ($n{=}1953$) & 0.168 & 7.3e-14 & 0.135 \\
+Qwen3-32B & Nonzero ($n{=}216$) & 0.272 & 5.0e-5 & 0.200 \\
+MiniLM-L6 & All ($n{=}1953$) & 0.144 & 1.7e-10 & 0.115 \\
+MiniLM-L6 & Nonzero ($n{=}216$) & 0.306 & 4.6e-6 & 0.228 \\
+\bottomrule
+\end{tabular}
+\caption{SCS vs.\ empirical confusion matrix correlation. Both embeddings significantly predict actual confusion ($p < 10^{-5}$). Qwen3 is stronger on all pairs; MiniLM is stronger among actually-confused pairs.}
+\label{tab:scs-validation}
+\end{table}
+
+Table~\ref{tab:scs-validation} shows that SCS from both embeddings significantly predicts empirical confusion.
+The correlation is moderate ($\rho{=}0.14$--$0.31$), indicating that SCS is a valid but partial proxy: confusability has dimensions beyond embedding similarity (e.g., context-dependent ambiguity, frequency-driven familiarity).
+This ``valid but partial'' status supports using SCS for correlational analysis while explaining why SCS-based decomposition (SDGD-zero) underperforms empirical-confusion-based decomposition (SDGD-cal).
+
+\subsection{DocRED Confusability Study}
+\label{sec:docred}
+
+We extend the confusability analysis to DocRED (96 document-level relation types), providing a third RE dataset for cross-task validation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{cccc}
+\toprule
+\textbf{Count} & \textbf{Accuracy} & \textbf{$n$ Batches} & \textbf{Mean BCS} \\
+\midrule
+1  & 0.875 & 96 & 0.00 \\
+4  & 0.782 & 5  & 0.61 \\
+8  & 0.768 & 5  & 0.72 \\
+16 & 0.531 & 5  & 0.79 \\
+32 & 0.515 & 5  & 0.88 \\
+64 & 0.428 & 5  & 0.94 \\
+96 & 0.392 & 5  & 0.97 \\
+\bottomrule
+\end{tabular}
+\caption{DocRED count curve: accuracy declines monotonically from 0.875 (single type) to 0.392 (all 96 types), a 48.3pp drop.}
+\label{tab:docred-count}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{cccccl}
+\toprule
+\textbf{Count} & \textbf{Low BCS} & \textbf{High BCS} & \textbf{$\Delta$(pp)} & \textbf{$\rho$} & \textbf{$p$} \\
+\midrule
+16 & 0.685 & 0.452 & $-$23.3 & $-$0.661 & $<$0.001 \\
+32 & 0.581 & 0.406 & $-$17.5 & $-$0.509 & 0.003 \\
+\bottomrule
+\end{tabular}
+\caption{DocRED BCS-controlled accuracy. At fixed count, high-BCS batches show significantly lower accuracy (slope=$-0.713$, 95\% CI [$-0.909, -0.529$]).}
+\label{tab:docred-bcs}
+\end{table}
+
+Tables~\ref{tab:docred-count} and \ref{tab:docred-bcs} show that DocRED replicates the core findings from FewRel.
+The count curve shows a 48.3pp monotonic decline (Table~\ref{tab:docred-count}).
+Controlling for count, BCS independently predicts degradation: at count=16, high-BCS batches are 23.3pp worse than low-BCS batches ($\rho{=}{-}0.661$, $p{<}0.001$; Table~\ref{tab:docred-bcs}).
+The slope CI [$-0.909, -0.529$] excludes zero, confirming an independent confusability effect.
+
+Compared to FewRel-80 (where $\Delta{=}{-}31.2$pp at count=16), DocRED shows a somewhat smaller gap (23.3pp), likely because document-level context provides additional disambiguation cues.
+The direction and significance are fully consistent, constituting the fourth dataset (third RE dataset) to validate Claim~1.
+
+\subsection{2$\times$2 Interaction Effect}
+\label{sec:interaction}
+
+We test whether count and confusability interact multiplicatively or additively using a 2$\times$2 factorial design on Few-NERD.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+ & \textbf{Low BCS} & \textbf{High BCS} & \textbf{BCS Effect} \\
+\midrule
+Low Count (6)  & 0.324 & 0.313 & $-$0.011 \\
+High Count (12) & 0.325 & 0.277 & $-$0.048 \\
+\midrule
+Count Effect & +0.001 & $-$0.036 & \\
+\bottomrule
+\end{tabular}
+\caption{2$\times$2 factorial on Few-NERD. Interaction is not significant ($z{=}{-}0.667$, $p{=}0.505$), consistent with additive (orthogonal) channels.}
+\label{tab:2x2}
+\end{table}
+
+Table~\ref{tab:2x2} shows the 2$\times$2 factorial results.
+The main effects are: count $-0.018$, BCS $-0.029$.
+The interaction term is not significant ($z{=}{-}0.667$, $p{=}0.505$), supporting the orthogonal channels hypothesis.
+If count and confusability degraded extraction through the same mechanism, we would expect a super-additive interaction; the absence of such interaction is consistent with two independent channels (count$\to$recall, confusability$\to$type confusion) whose effects combine additively.
+
+The BCS effect is numerically larger at high count ($-0.048$ vs.\ $-0.011$), consistent with a larger confusability space in bigger schemas, but the difference is not statistically significant given the count range (6 vs.\ 12).
+
+\subsection{Error Taxonomy Analysis}
+\label{sec:error-taxonomy}
+
+We classify false positive predictions by error type across BCS bins to provide mechanistic evidence for the two-channel model.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{BCS Bin} & \textbf{$n$ FP} & \textbf{IntraSub\%} & \textbf{ExtraSub\%} & \textbf{IntraSub/100g} \\
+\midrule
+0 (single type)       & 6172 & 0.0  & 90.3 & 0.0 \\
+Low (0.75--0.82)      & 2231 & 1.6  & 89.9 & 3.4 \\
+Medium (0.82--0.88)   & 3843 & 10.6 & 78.1 & 6.5 \\
+High (0.88--0.95+)    & 6188 & 49.4 & 30.8 & 12.9 \\
+\bottomrule
+\end{tabular}
+\caption{Error distribution by BCS bin on Few-NERD. IntraSub (intra-batch type substitution) rises monotonically with BCS ($\rho{=}1.0$), while hallucination remains below 3\% across all bins.}
+\label{tab:error-taxonomy}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{IntraSub vs BCS $\rho$} & \textbf{$p$} & \textbf{ExtraSub=0?} \\
+\midrule
+NER (Few-NERD)   & 1.000 & $<$0.001 & No \\
+RE (FewRel 80)   & 0.954 & $<$1e-6  & Yes \\
+\bottomrule
+\end{tabular}
+\caption{Cross-task error taxonomy comparison. IntraSub rate correlates near-perfectly with BCS on both tasks.}
+\label{tab:error-cross-task}
+\end{table}
+
+Table~\ref{tab:error-taxonomy} shows a near-perfect monotonic relationship between BCS and IntraSub errors on Few-NERD.
+At BCS=0 (single-type batches), IntraSub is 0\% by definition---there are no other types to confuse.
+As BCS increases, IntraSub rises to 49.4\% of all false positives in high-BCS batches (12.9 per 100 gold entities).
+Hallucination remains below 3\% throughout, indicating that the LLM's primary failure mode is not fabrication but misassignment among semantically similar types.
+
+Table~\ref{tab:error-cross-task} shows that this pattern replicates on FewRel 80-relation RE ($\rho{=}0.954$), where IntraSub accounts for all type confusion (ExtraSub=0 in closed-schema RE).
+The cross-task $\rho{\geq}0.95$ provides strong mechanistic evidence: confusability drives type confusion through intra-batch semantic interference, while count drives recall decline through attention dilution.
+These are orthogonal channels operating on different error modes.
+
+\subsection{Schema Decomposition: SDGD}
+\label{sec:sdgd}
+
+We evaluate whether confusability-aware schema decomposition can translate diagnostic insights into extraction improvements.
+
+\subsubsection{SDGD on Few-NERD}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{Prec.} & \textbf{Rec.} & \textbf{Cal.\ Cost} \\
+\midrule
+Single-pass          & 0.445 & 0.563 & 0.368 & --- \\
+Random batch         & 0.301 & 0.331 & 0.276 & --- \\
+SDGD-zero (emb.)    & 0.241 & 0.324 & 0.191 & 0 ex. \\
+SDGD-cal (emp.)     & 0.285 & 0.295 & 0.276 & 10 ex.$\times$66 \\
+\bottomrule
+\end{tabular}
+\caption{SDGD variants on Few-NERD. All decomposition methods underperform single-pass. SDGD-cal improves over SDGD-zero (+18\%) but remains 36\% below single-pass.}
+\label{tab:sdgd-fewnerd}
+\end{table}
+
+Table~\ref{tab:sdgd-fewnerd} presents the central negative result.
+Single-pass extraction (all 66 types in one prompt) achieves F1=0.445.
+SDGD-zero degrades to 0.241, and even SDGD-cal (with 10 calibration examples per type) only reaches 0.285---still 36\% below single-pass.
+Random batching (0.301) outperforms SDGD-zero, indicating that confusability-aware grouping's unbalanced partition exacerbates merge difficulties.
+
+The improvement from SDGD-zero to SDGD-cal (+18\%) confirms that empirical confusion is a better partition signal than SCS ($\rho{=}0.42$ between them), but the persistent gap to single-pass demonstrates that the bottleneck is merge amplification, not partition quality.
+
+\subsubsection{SDGD on MAVEN}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Rel.\ F1} & \textbf{Prec.} & \textbf{Rec.} & \textbf{Batches} \\
+\midrule
+Single-pass (168)     & 0.247 & 0.285 & 0.218 & 1 \\
+Random batch ($k{=}12$)  & 0.178 & 0.145 & 0.231 & 12 \\
+SDGD-zero             & 0.142 & 0.108 & 0.208 & 12 \\
+SDGD-cal (5-shot)     & 0.168 & 0.132 & 0.230 & 8 \\
+\bottomrule
+\end{tabular}
+\caption{SDGD on MAVEN (168 event types). The same ordering holds: single-pass $>$ random $>$ SDGD-cal $>$ SDGD-zero.}
+\label{tab:sdgd-maven}
+\end{table}
+
+Table~\ref{tab:sdgd-maven} shows that MAVEN (168 event types) replicates the Few-NERD failure pattern exactly.
+The sdgd-cal/single-pass ratio is 0.68 on MAVEN vs.\ 0.64 on Few-NERD, indicating a consistent $\sim$35\% structural decomposition cost.
+Merge amplification ratios are 2.1$\times$ on Few-NERD and 2.6$\times$ on MAVEN, confirming that the problem worsens with more types (more batches $\to$ more merge conflicts).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Dataset} & \textbf{Task} & \textbf{sdgd-cal/single} & \textbf{Merge Ampl.} \\
+\midrule
+Few-NERD & NER & 0.64 & 2.1$\times$ \\
+MAVEN    & ED  & 0.68 & 2.6$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Cross-task SDGD failure pattern. The $\sim$35\% structural cost is consistent across tasks.}
+\label{tab:sdgd-cross-task}
+\end{table}
+
+\subsection{Ablation: Random Batching vs.\ SDGD}
+\label{sec:ablation-random}
+
+To isolate confusability-aware grouping from batch count reduction, we compare SDGD-zero against random batching at matched batch counts.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{IntraBatch Conf.} & \textbf{Merge Dup.} \\
+\midrule
+Single-pass ($k{=}1$) & 0.445 & 0.049 & --- \\
+Random ($k{=}4$)      & 0.321 & 0.034 & 1.8$\times$ \\
+Random ($k{=}8$)      & 0.301 & 0.028 & 2.1$\times$ \\
+SDGD-zero ($k{=}4$)   & 0.241 & 0.018 & 2.4$\times$ \\
+SDGD-zero ($k{=}8$)   & 0.218 & 0.012 & 2.8$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Random vs.\ SDGD ablation. SDGD reduces intra-batch confusion (0.018 vs.\ 0.034 at $k{=}4$) but produces higher merge amplification, resulting in lower F1.}
+\label{tab:ablation-random}
+\end{table}
+
+Table~\ref{tab:ablation-random} reveals the precise failure mechanism of SDGD.
+SDGD-zero \emph{does} reduce intra-batch confusion rate (0.018 vs.\ 0.034 at $k{=}4$), confirming that the confusability signal is effective for partition.
+However, SDGD's confusability-aware grouping produces unbalanced partitions (a large ``easy'' batch plus several small ``hard'' batches), which makes merge more difficult and increases duplicate rates (2.4$\times$ vs.\ 1.8$\times$).
+The net effect is negative: the merge amplification cost exceeds the confusion reduction benefit.
+
+All decomposition methods underperform single-pass, confirming that the bottleneck is decompose-then-merge itself, not the quality of the partition.
+
+\subsection{Ablation: Per-Type Splitting}
+\label{sec:per-type}
+
+We evaluate per-type splitting ($k{=}66$ on Few-NERD) as the upper bound on decomposition---zero intra-batch confusability, maximum recall potential.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{Prec.} & \textbf{Rec.} & \textbf{$k$} & \textbf{BCS} & \textbf{Time(s)} \\
+\midrule
+Single-pass    & .445 & .563 & .368 & 1  & .95 & 79 \\
+SDGD-zero      & .241 & .324 & .191 & 4  & .72 & 261 \\
+Random ($k{=}8$) & .301 & .331 & .276 & 8  & .85 & 494 \\
+Per-type       & .292 & .194 & .586 & 66 & .00 & 2540 \\
+\bottomrule
+\end{tabular}
+\caption{Decomposition spectrum on Few-NERD. Per-type achieves the highest recall (+59\% vs.\ single-pass) but the lowest precision ($-$66\%), with 32$\times$ latency.}
+\label{tab:per-type}
+\end{table}
+
+Table~\ref{tab:per-type} reveals the fundamental paradox of decomposition: more thorough separation yields higher recall (0.586 vs.\ 0.368 for single-pass, +59\%) but catastrophically lower precision (0.194 vs.\ 0.563, $-$66\%).
+The harmonic mean (F1) cannot be rescued when precision collapses this severely.
+Per-type splitting achieves zero intra-batch confusability but still underperforms single-pass by 15.3pp F1, with 32$\times$ latency (66 API calls vs.\ 1).
+
+This establishes that even the most extreme decomposition cannot outperform single-pass extraction, confirming merge amplification as the fundamental limitation.
+
+\section{Discussion}
+
+\paragraph{Why Small $r$ Matters.}
+The pairwise SCS--confusion correlations ($r{=}0.11$--$0.13$) are small in absolute terms but meaningful in context.
+In noisy IE evaluation, many factors affect per-instance accuracy (context length, entity ambiguity, prompt position).
+That embedding similarity alone explains $\sim$1.5\% of variance in confusion probability, across 1,953+ type pairs and multiple tasks, indicates a reliable signal.
+The downstream effect is substantial: high-confusability batches show 23--31pp accuracy gaps and 10--28$\times$ more type confusion errors.
+
+\paragraph{Centrality Confound.}
+On MAVEN (168 event types from a semantically homogeneous domain), per-type BCS aggregation shows a \emph{positive} correlation with F1 ($\rho{=}{+}0.19$--$0.21$), opposite to the expected direction.
+This occurs because in homogeneous schemas, high mean BCS indicates central, well-represented types that LLMs extract well---conflating confusability with type centrality.
+Pairwise analysis avoids this confound entirely.
+This finding constitutes a methodological contribution: per-type confusability aggregation is unreliable on homogeneous schemas.
+
+\paragraph{Merge Amplification as Structural Challenge.}
+The consistent $\sim$35\% degradation across SDGD variants, datasets, and batch counts (Table~\ref{tab:sdgd-cross-task}) indicates that merge amplification is not a fixable engineering problem but an intrinsic cost of decompose-then-merge.
+Each batch independently produces predictions that may conflict at merge time: duplicate spans with different types, inconsistent boundaries, and confidence miscalibration across batches.
+These errors compound with more batches.
+
+The correct application of confusability information is not schema decomposition but rather: (1) post-hoc confusion-aware calibration (adjusting predictions using an empirical confusion matrix), or (2) contrastive type descriptions that help the model distinguish confusable types within a single pass.
+
+\paragraph{Multi-Model Validation.}
+LLaMA-3.3-70B replication achieves 87\% consistency with Qwen3-32B on the core findings, indicating that the confusability effect is not model-specific but reflects a general property of how LLMs process type-dense prompts.
+
+\section{Conclusion}
+
+We present a controlled empirical study demonstrating that type count and type confusability are orthogonal predictors of extraction degradation in training-free LLM IE.
+Pairwise confusability independently predicts degradation across NER, RE, and ED ($r{=}0.11$--$0.13$), with the effect amplifying 3.4$\times$ with schema complexity.
+Error taxonomy analysis reveals two distinct channels: count drives recall decline while confusability drives type confusion ($\rho{\geq}0.95$ cross-task).
+Naive confusability-aware decomposition (SDGD) fails due to merge amplification, but confusability remains valuable as a diagnostic tool for predicting where LLM extraction will fail.
+Our findings establish that future work should pursue calibration-based approaches that leverage confusability information without decomposing the extraction task.
+
+\section*{Limitations}
+
+Our study is limited to two LLMs (Qwen3-32B, LLaMA-3.3-70B) and English-language datasets.
+The confusability measures rely on embedding similarity, which we show is a valid but partial proxy ($\rho{=}0.17$--$0.31$ with empirical confusion).
+Our SDGD experiments use simple merge strategies; more sophisticated merge methods (e.g., learned mergers) may partially mitigate amplification.
+The 2$\times$2 factorial has limited power to detect interactions due to the narrow count range (6 vs.\ 12).
+
+\begin{thebibliography}{9}
+
+\bibitem{wei2023zeroshot}
+Wei, X., et al. (2023).
+Zero-Shot Information Extraction via Chatting with ChatGPT.
+\emph{arXiv preprint arXiv:2302.10205}.
+
+\bibitem{zhou2024universalner}
+Zhou, W., et al. (2024).
+UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition.
+\emph{ICLR 2024}.
+
+\bibitem{li2023gptner}
+Li, J., et al. (2023).
+GPT-NER: Named Entity Recognition via Large Language Models.
+\emph{arXiv preprint arXiv:2304.10428}.
+
+\bibitem{sainz2024gollie}
+Sainz, O., et al. (2024).
+GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction.
+\emph{ICLR 2024}.
+
+\end{thebibliography}
+
+\end{document}

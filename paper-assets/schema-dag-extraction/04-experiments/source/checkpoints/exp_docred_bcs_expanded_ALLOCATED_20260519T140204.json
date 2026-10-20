@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_docred_bcs_expanded",
+  "project": "schema-dag-extraction",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-19T11:42:10.862Z",
+    "updated_at": "2026-05-19T14:02:04.045Z",
+    "hypothesis": "Expanding DocRED BCS-controlled batches from 5 to 15 per count level will narrow the factorial interaction CI (currently [-1.6, 13.0]) sufficiently to resolve whether the BCS-count interaction is bounded or substantial in document-level RE. If the CI narrows to exclude zero, the interaction is genuine and non-additive; if it narrows to include zero tightly, the bounded-interaction claim strengthens.",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-19T12:44:23.943Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python3 /root/schema-dag-extraction/src/run_docred_bcs_expanded.py --stage all\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "607854",
+      "log_path": "~/runs/schema-dag-extraction/exp_docred_bcs_expanded.log",
+      "submitted_at": "2026-05-19T12:47:38.177Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "vLLM OOM crash after 7/40 batches. Waiting for MAVEN to finish before retry. preprocess_config.json preserved."
+  },
+  "timestamp": "2026-05-19T14:02:04.191331+00:00",
+  "trigger": "update_registry"
+}

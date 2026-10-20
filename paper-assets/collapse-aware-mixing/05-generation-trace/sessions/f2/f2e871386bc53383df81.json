@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "f2e871386bc53383df81",
+  "project": "collapse-aware-mixing",
+  "kind": "worker",
+  "title": "deploy mvp pilot v2",
+  "task_key": "worker_deploy_mvp_pilot_v2_20260512T094912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_mvp_pilot_v2_20260512T094912.log",
+    "occurrence": 1,
+    "bytes": 1856200,
+    "sha256": "faa148553b1a35614762830c0eb0b8c965332f277d292298d6b15b15d693274b"
+  },
+  "statistics": {
+    "messages": 916,
+    "user_turns": 1,
+    "tool_calls": 360,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 183,
+      "tool_call": 360,
+      "tool_result": 360,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 354,
+      "chunks": [
+        {
+          "path": "f2e871386bc53383df81-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "f2e871386bc53383df81-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2e871386bc53383df81-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 562,
+      "chunks": [
+        {
+          "path": "f2e871386bc53383df81-part-0003.json",
+          "message_count": 172
+        },
+        {
+          "path": "f2e871386bc53383df81-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2e871386bc53383df81-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f2e871386bc53383df81-part-0006.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-mvp-pilot-v2.md"
+}

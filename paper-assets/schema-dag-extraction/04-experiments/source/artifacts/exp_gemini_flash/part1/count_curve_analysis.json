@@ -1,0 +1,44 @@
+{
+  "count_1": {
+    "n_batches": 25,
+    "mean_acc": 0.8267,
+    "std_acc": 0.187,
+    "min_acc": 0.3333,
+    "max_acc": 1.0
+  },
+  "count_4": {
+    "n_batches": 25,
+    "mean_acc": 0.8725,
+    "std_acc": 0.0725,
+    "min_acc": 0.6875,
+    "max_acc": 0.9792
+  },
+  "count_8": {
+    "n_batches": 25,
+    "mean_acc": 0.8204,
+    "std_acc": 0.071,
+    "min_acc": 0.6979,
+    "max_acc": 0.9479
+  },
+  "count_16": {
+    "n_batches": 25,
+    "mean_acc": 0.7868,
+    "std_acc": 0.0493,
+    "min_acc": 0.6719,
+    "max_acc": 0.8958
+  },
+  "count_32": {
+    "n_batches": 25,
+    "mean_acc": 0.7394,
+    "std_acc": 0.039,
+    "min_acc": 0.6562,
+    "max_acc": 0.8216
+  },
+  "count_64": {
+    "n_batches": 11,
+    "mean_acc": 0.6343,
+    "std_acc": 0.0145,
+    "min_acc": 0.6016,
+    "max_acc": 0.6576
+  }
+}

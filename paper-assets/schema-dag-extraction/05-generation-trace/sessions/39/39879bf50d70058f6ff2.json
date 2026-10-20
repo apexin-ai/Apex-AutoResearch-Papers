@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_maven_confused_pairs_case_study_20260515T152151_result.json",
     "occurrence": 1,
-    "bytes": 3743,
-    "sha256": "cfdffa437efa59b8f94ab825527deaf896b84fd39ccb47cbe2a8c3ee11f4eb76"
+    "bytes": 3742,
+    "sha256": "07b28e5d8cfad619055040bde235ac3c0cb88723a2e8593eac7c738518ccfdc1"
   },
   "statistics": {
     "messages": 1,

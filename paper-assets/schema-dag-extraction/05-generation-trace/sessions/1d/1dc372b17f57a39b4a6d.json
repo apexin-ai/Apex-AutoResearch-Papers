@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_writing_sdgd_negative_20260515T180152_result.json",
     "occurrence": 1,
-    "bytes": 390,
-    "sha256": "fa7e62f437ca1e93adf3889e2e616071032d6b2b7fcf889d58c6e0fb8e3981f9"
+    "bytes": 389,
+    "sha256": "8b7b5d3166f205e470fe3f0067c83a2e36df47e9337216050d37685d4ce2f442"
   },
   "statistics": {
     "messages": 1,

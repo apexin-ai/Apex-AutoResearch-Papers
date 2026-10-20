@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_prep_anon-github-tar_20260517T013515_result.json",
     "occurrence": 1,
-    "bytes": 276,
-    "sha256": "79d32fed0140a953829adbab179c05bb3de68896a7b3cbbd0a1f9f721b7778f4"
+    "bytes": 275,
+    "sha256": "120773b8deb8f9e3654096018bec76a9814ff9ea48c00ddb92828aa86761a6b9"
   },
   "statistics": {
     "messages": 1,

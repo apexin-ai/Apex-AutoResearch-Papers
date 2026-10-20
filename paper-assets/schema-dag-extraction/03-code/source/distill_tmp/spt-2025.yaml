@@ -1,0 +1,22 @@
+paper_key: "spt-2025"
+title: "Schema as Parameterized Tools for Universal Information Extraction"
+venue: "arXiv June 2025"
+full_text_available: false
+
+research:
+  baselines: ["LoRA baselines", "current leading UIE systems"]
+  metrics: [{name: "F1", direction: "higher_better"}, {name: "schema retrieval accuracy", direction: "higher_better"}]
+  datasets: [{name: "4 IE task datasets", size: "not specified"}]
+  ablation_dimensions: ["schema retrieval vs generation vs filling", "dual-mode extraction"]
+  training_recipe: {method: "treat schemas as parameterized tools for LLM tool-calling", parameters: "significantly fewer trainable parameters than LoRA"}
+  method_family: "tool-calling-based universal IE with schema as tools"
+
+positioning:
+  core_claim: "Treating schemas as parameterized tools for LLM tool-calling unifies closed, open, and on-demand IE with robust schema retrieval and comparable extraction to LoRA using fewer parameters"
+  key_results: "Comparable F1 to LoRA baselines and leading UIE systems with significantly fewer trainable parameters"
+  limitations: ["schema retrieval quality limits extraction", "tool-calling paradigm may not suit all IE scenarios"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

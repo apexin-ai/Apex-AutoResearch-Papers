@@ -6,28 +6,6 @@
 
 ## Round 352
 
-### Tool result
-
-_source line 10254 · 2026-05-23T19:55:31.864167+00:00_
-
-{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_server-audit-cqa1_20260523T194902\", \"status\": \"done\", \"task_type\": \"ops:server-audit-cqa1\", \"project\": \"schema-dag-extraction\", \"started_at\": \"2026-05-23T19:49:02.839657+00:00\", \"ended_at\": \"2026-05-23T19:49:57.311966+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 服务器审计报告 — cqa1-38874\\n\\n### GPU\\n| 项目 | 值 |\\n|------|-----|\\n| 型号 | NVIDIA RTX PRO 6000 Blackwell Server Edition |\\n| 显存 | 97,887 MiB (~96 GB) |\\n| 当前使用 | 0 MiB / 0% 利用率 |\\n\\n### 运行进程\\n- **无 Python/vLLM/PyTorch 训练进程在跑**\\n- 后台服务：supervisord、sshd、JupyterLab、HTTP server (port 18765)\\n- 一个 tmux session `exp_unconstrained_decoding_ablation` 残留（bash idle）\\n\\n### 项目目录\\n| 项目 | 值 |\\n|------|-----|\\n| 总大小 | **1.6 GB** |\\n| artifacts/ | 67 个子目录 + 大量 JSON/PT 文件 |\\n| results/ | 评估结果、分析 JSON、可视化 PNG/PDF |\\n\\n### 重要数据文件\\n- **.pt 文件**（22 个）：embedding 矩阵、相似度矩阵（sim_matrix.pt、type_embeddings.pt、bcs_matrix 等）\\n- **.json 文件**：大量实验配置、预测结果、评估结果（predictions_exp1.json 51MB、predictions_exp2.json 31MB 等）\\n- **无 .safetensors 文件**\\n\\n### 模型缓存\\n| 路径 | 大小 |\\n|------|------|\\n| /root/autodl-tmp/ | **213 GB** |\\n| /root/autodl-tmp/.hf_cache/ | **100 GB** |\\n\\n缓存内容：\\n- `llama-3.3-70b-instruct-fp8`\\n- `qwen3-32b-fp8`\\n- `sentence-transformers/all-MiniLM-L6-v2`\\n- `DFKI-SLT/few-nerd` 数据集\\n\\n/root/autodl-tmp/models/：\\n- `llama-3.1-8b-instruct`\\n- `llama-3.1-8b-instruct-ms`\\n\\n### 磁盘使用\\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\\n|------|------|------|------|--------|\\n| / (根) | 30 GB | 22 GB | 8.8 GB | **71%** |\\n| /root/autodl-tmp (数据盘) | 250 GB | 213 GB | 38 GB | **85%** |\\n\\n### vLLM 服务\\n**未运行。** GPU 完全空闲。\"}}, \"error\": null, \"metadata\": {}}"}
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "mcp__agent-ml-research__get_worker_status",
-  "elapsed_ms": 52
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
 _source line 10255 · 2026-05-23T19:55:56.857651+00:00_
@@ -17491,6 +17469,66 @@ Because accuracy near 50\% compresses interaction effects on the linear scale,
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10684 · 2026-05-24T04:41:35.606103+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\n# The TOST sensitivity table in the paper directly shows:\n# margin=+-2pp: p=0.047 -> This is the t_upper = -1.70 analysis\n# This is the primary TOST (n=69, linear scale, 40-rel analysis)\n# t_upper = (interaction_effect - margin) / SE\n# interaction_effect = 0.47pp (from exp_fewrel_factorial_tost: interaction_effect_pp=0.47)\n# For margin=+-2pp: t_upper = (0.47 - 2) / SE\n\n# From analysis_2_regression in exp_fewrel_factorial_tost:\n# interaction_beta = 0.005 (in accuracy units, so 0.5pp)\n# tost_p = 0.003 at margin=3pp\n\n# Let me compute what SE gives t_upper=-1.70 at margin=2pp with effect=0.47pp:\n# t_upper = (0.47 - 2) / SE = -1.70\n# SE = (2 - 0.47) / 1.70 = 1.53/1.70 = 0.9 pp\n\n# And t_upper at margin=3pp: (0.47 - 3) / 0.9 = -2.81 -> p=0.003 (one-sided t-test)\n# That matches!\n\nimport scipy.stats as stats\nimport math\n\n# TOST: t_upper = (effect - margin) / SE\n# For equivalence: TOST_p = max(p_upper, p_lower)\n# Here effect = 0.47pp, margin = 2pp, SE ~ 0.9pp\neffect = 0.47\nse = (2 - effect) / 1.70  # Back-calculated\nprint(f'Estimated SE = {se:.3f} pp')\n\n# Verify at margin=3pp:\nt_upper_3 = (effect - 3) / se\nt_lower_3 = (effect + 3) / se  # assuming symmetric\nprint(f't_upper at margin=3pp: {t_upper_3:.2f}')\n\n# df for n=69 regression (5 count levels, continuous BCS, interaction): df = 69 - 4 = 65\ndf = 65\np_upper_3 = stats.t.cdf(t_upper_3, df)\nprint(f'p(t < {t_upper_3:.2f}) at df={df}: {p_upper_3:.3f}')\n\n# At margin=2pp:\nt_upper_2 = (effect - 2) / se\nprint(f't_upper at margin=2pp: {t_upper_2:.2f}')\np_upper_2 = stats.t.cdf(t_upper_2, df)\nprint(f'p(t < {t_upper_2:.2f}) at df={df}: {p_upper_2:.3f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\n# The TOST sensitivity table in the paper directly shows:\n# margin=+-2pp: p=0.047 -> This is the t_upper = -1.70 analysis\n# This is the primary TOST (n=69, linear scale, 40-rel analysis)\n# t_upper = (interaction_effect - margin) / SE\n# interaction_effect = 0.47pp (from exp_fewrel_factorial_tost: interaction_effect_pp=0.47)\n# For margin=+-2pp: t_upper = (0.47 - 2) / SE\n\n# From analysis_2_regression in exp_fewrel_factorial_tost:\n# interaction_beta = 0.005 (in accuracy units, so 0.5pp)\n# tost_p = 0.003 at margin=3pp\n\n# Let me compute what SE gives t_upper=-1.70 at margin=2pp with effect=0.47pp:\n# t_upper = (0.47 - 2) / SE = -1.70\n# SE = (2 - 0.47) / 1.70 = 1.53/1.70 = 0.9 pp\n\n# And t_upper at margin=3pp: (0.47 - 3) / 0.9 = -2.81 -> p=0.003 (one-sided t-test)\n# That matches!\n\nimport scipy.stats as stats\nimport math\n\n# TOST: t_upper = (effect - margin) / SE\n# For equivalence: TOST_p = max(p_upper, p_lower)\n# Here effect = 0.47pp, margin = 2pp, SE ~ 0.9pp\neffect = 0.47\nse = (2 - effect) / 1.70  # Back-calculated\nprint(f'Estimated SE = {se:.3f} pp')\n\n# Verify at margin=3pp:\nt_upper_3 = (effect - 3) / se\nt_lower_3 = (effect + 3) / se  # assuming symmetric\nprint(f't_upper at margin=3pp: {t_upper_3:.2f}')\n\n# df for n=69 regression (5 count levels, continuous BCS, interaction): df = 69 - 4 = 65\ndf = 65\np_upper_3 = stats.t.cdf(t_upper_3, df)\nprint(f'p(t < {t_upper_3:.2f}) at df={df}: {p_upper_3:.3f}')\n\n# At margin=2pp:\nt_upper_2 = (effect - 2) / se\nprint(f't_upper at margin=2pp: {t_upper_2:.2f}')\np_upper_2 = stats.t.cdf(t_upper_2, df)\nprint(f'p(t < {t_upper_2:.2f}) at df={df}: {p_upper_2:.3f}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 10685 · 2026-05-24T04:41:36.811059+00:00_
+
+Estimated SE = 0.900 pp
+t_upper at margin=3pp: -2.81
+p(t < -2.81) at df=65: 0.003
+t_upper at margin=2pp: -1.70
+p(t < -1.70) at df=65: 0.047
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 1204
 }
 ```
 

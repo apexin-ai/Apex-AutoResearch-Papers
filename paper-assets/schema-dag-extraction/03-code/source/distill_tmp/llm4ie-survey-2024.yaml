@@ -1,0 +1,22 @@
+paper_key: "llm4ie-survey-2024"
+title: "Large Language Models for Generative Information Extraction: A Survey"
+venue: "Frontiers of Computer Science 2024"
+full_text_available: false
+
+research:
+  baselines: ["survey paper - covers multiple methods"]
+  metrics: [{name: "various IE metrics (F1, precision, recall)", direction: "higher_better"}]
+  datasets: [{name: "survey covers multiple IE benchmarks", size: "not specified"}]
+  ablation_dimensions: ["IE subtask categorization", "LLM technique categorization"]
+  training_recipe: {method: "survey paper - no new training"}
+  method_family: "survey of LLM-based generative IE"
+
+positioning:
+  core_claim: "Comprehensive categorization of LLM-based generative IE methods across subtasks and techniques, identifying emerging trends"
+  key_results: "Systematic taxonomy of IE subtasks (NER, RE, EE) and LLM techniques (ICL, fine-tuning, code generation)"
+  limitations: ["survey scope limited to generative approaches", "fast-moving field may outdate findings"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

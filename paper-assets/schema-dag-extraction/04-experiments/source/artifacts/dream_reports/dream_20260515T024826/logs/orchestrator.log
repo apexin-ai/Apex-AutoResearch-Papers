@@ -1,0 +1,13 @@
+2026-05-15 02:48:29,617 ERROR   dream_runner  dream_runner: pipeline crashed
+Traceback (most recent call last):
+  File "/home/ubuntu/agent-ml-research/core/tools/dream_runner.py", line 61, in main
+    _run_dream_pipeline(
+    ~~~~~~~~~~~~~~~~~~~^
+        dream_input,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        operational_chat_id=operational_chat_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: _run_dream_pipeline() got an unexpected keyword argument 'operational_chat_id'

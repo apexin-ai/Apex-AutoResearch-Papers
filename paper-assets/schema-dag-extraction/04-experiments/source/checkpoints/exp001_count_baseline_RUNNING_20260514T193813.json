@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp001_count_baseline",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:13:40.180Z",
+    "updated_at": "2026-05-14T19:38:13.486Z",
+    "spec": {
+      "hypothesis": "F1 随 type count 增加而下降（复现已知现象，验证 setup 正确性）",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-TBD",
+      "design": "随机选 2/6/12/22/44/66 types，每档 5 次随机采样取平均",
+      "command": "nohup python3 run_experiment.py --mode exp1",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 37648,
+      "model_name": "Qwen3-32B (pending PID/model confirmation)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T19:38:13.495528+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp002_confusability_controlled",
+  "project": "schema-dag-extraction",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:13:42.626Z",
+    "updated_at": "2026-05-14T23:08:06.864Z",
+    "spec": {
+      "hypothesis": "固定 type count 时，高 BCS batch 的 F1 显著低于低 BCS batch（confusability 独立驱动质量下降）",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-TBD",
+      "design": "count=6,12 × low/medium/high BCS，Pearson correlation + paired t-test",
+      "pass_criteria": "Pearson |r| >= 0.3 且 high-BCS vs low-BCS p < 0.05"
+    }
+  },
+  "timestamp": "2026-05-14T23:08:06.874429+00:00",
+  "trigger": "update_registry"
+}

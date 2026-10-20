@@ -1,0 +1,14 @@
+{
+  "exp_id": "pivot_b_full_18ckpt",
+  "project": "collapse-aware-mixing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:23:19.590Z",
+    "updated_at": "2026-05-13T20:23:19.590Z"
+  },
+  "timestamp": "2026-05-13T20:23:19.610060+00:00",
+  "trigger": "update_registry"
+}

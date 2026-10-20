@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp012_8b_cleanup_and_submit_20260515T162406_result.json",
     "occurrence": 1,
-    "bytes": 769,
-    "sha256": "4267f9b497cf92958ce5ebf707f5d8a34a08ba7c741707e3a45d2a8227f2f992"
+    "bytes": 768,
+    "sha256": "db8dc71920a18dbf83fc54076acc0499d319a9675001f7ab110668822a58c19d"
   },
   "statistics": {
     "messages": 1,

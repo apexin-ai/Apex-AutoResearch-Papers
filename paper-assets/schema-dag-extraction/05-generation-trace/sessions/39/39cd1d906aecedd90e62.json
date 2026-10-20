@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp3c-pairwise-confusion_20260515T023600_result.json",
     "occurrence": 1,
-    "bytes": 2367,
-    "sha256": "f861723691c7d23cdd5572a7734b0bc5861ce3aa5b73db5cf2b57a0286f7fdd6"
+    "bytes": 2366,
+    "sha256": "b708fb88ea971266763b41ea00be2725f70f99e29c8cbbe2346e0e936227b0a2"
   },
   "statistics": {
     "messages": 1,

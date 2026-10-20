@@ -1,0 +1,157 @@
+{
+  "exp_id": "exp003a_prompt_v2_rerun",
+  "project": "schema-dag-extraction",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T02:35:23.425Z",
+    "updated_at": "2026-05-15T05:09:28.956Z",
+    "gpu": "cuda:0",
+    "account": "root",
+    "server": "cqa1-38874",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/schema-dag-extraction && python3 run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000 && python3 run_experiment.py --mode exp2 --prompt_version v2 --eval_mode text_match --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --max_samples 1000\"",
+      "finished_at": "2026-05-15T05:04:24.855Z"
+    },
+    "failure_reason": "EXIT_CODE=2 (shell misuse / syntax)",
+    "completed_at": "2026-05-15T02:44:53.625Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T02:44:54.463106+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:04:25.636142+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复"
+      }
+    },
+    "notes": "失败原因: run_experiment.py 不存在于 /root/schema-dag-extraction/（Errno 2: No such file or directory）| error_type: infrastructure | 已派 Worker 诊断服务器文件结构并修复",
+    "spec": {
+      "hypothesis": "Prompt v2 rerun - fixed script path and added --types_file",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "command": "bash -c \"... python3 src/run_experiment.py --mode exp1 --prompt_version v2 --eval_mode text_match --types_file configs/few_nerd_types.json --max_samples 1000 && ...exp2...\"",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 209542
+    },
+    "metrics": {
+      "eval_mode": "text_match",
+      "exp1_text_match": {
+        "count_1": {
+          "f1": 0.323,
+          "precision": 0.216,
+          "recall": 0.641,
+          "pred_gold_ratio": 2.97,
+          "n_batches": 64
+        },
+        "count_2": {
+          "f1": 0.273,
+          "precision": 0.18,
+          "recall": 0.56,
+          "pred_gold_ratio": 3.11,
+          "n_batches": 5
+        },
+        "count_6": {
+          "f1": 0.306,
+          "precision": 0.226,
+          "recall": 0.475,
+          "pred_gold_ratio": 2.1,
+          "n_batches": 5
+        },
+        "count_12": {
+          "f1": 0.347,
+          "precision": 0.367,
+          "recall": 0.329,
+          "pred_gold_ratio": 0.9,
+          "n_batches": 5
+        },
+        "count_22": {
+          "f1": 0.299,
+          "precision": 0.339,
+          "recall": 0.267,
+          "pred_gold_ratio": 0.79,
+          "n_batches": 5
+        },
+        "count_44": {
+          "f1": 0.445,
+          "precision": 0.506,
+          "recall": 0.396,
+          "pred_gold_ratio": 0.78,
+          "n_batches": 5
+        },
+        "count_64": {
+          "f1": 0.414,
+          "precision": 0.648,
+          "recall": 0.304,
+          "pred_gold_ratio": 0.47,
+          "n_batches": 5
+        }
+      },
+      "exp2_text_match": {
+        "count_6": {
+          "f1": 0.32,
+          "precision": 0.26,
+          "recall": 0.416,
+          "pred_gold_ratio": 1.6,
+          "n_batches": 27
+        },
+        "count_12": {
+          "f1": 0.306,
+          "precision": 0.291,
+          "recall": 0.323,
+          "pred_gold_ratio": 1.11,
+          "n_batches": 27
+        }
+      },
+      "vs_exp001_delta": {
+        "count_1": {
+          "f1_delta": "+0.139 (+76%)",
+          "precision_delta": "+0.111 (+106%)",
+          "recall_delta": "-0.079 (-11%)",
+          "overpred_fix": "6.85→2.97"
+        },
+        "count_6": {
+          "f1_delta": "+0.151 (+97%)",
+          "precision_delta": "+0.138 (+157%)",
+          "recall_delta": "-0.145 (-23%)"
+        },
+        "count_12": {
+          "f1_delta": "+0.101 (+41%)",
+          "precision_delta": "+0.207 (+129%)",
+          "recall_delta": "-0.210 (-39%)"
+        },
+        "count_44": {
+          "f1_delta": "-0.028 (-6%)",
+          "precision_delta": "+0.092 (+22%)",
+          "recall_delta": "-0.155 (-28%)"
+        },
+        "count_64": {
+          "f1_delta": "-0.049 (-11%)",
+          "precision_delta": "+0.128 (+25%)",
+          "recall_delta": "-0.114 (-27%)"
+        }
+      },
+      "key_finding": "V2 prompt dramatically reduced over-prediction (pred/gold from 6.85x to 2.97x at count_1), boosting precision and F1 at low counts (+76% F1 at count_1). But over-corrected at high counts: under-prediction (pred/gold<1) caused recall drops of 27-39%, slightly lowering F1 at count_22-64."
+    },
+    "log_path": "/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log",
+    "checkpoint_path": "N/A (inference experiment)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T05:09:28.975546+00:00",
+  "trigger": "update_registry"
+}

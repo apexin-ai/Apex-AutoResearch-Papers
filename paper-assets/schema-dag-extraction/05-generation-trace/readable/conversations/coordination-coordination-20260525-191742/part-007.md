@@ -8642,7 +8642,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = BASE_DIR / "artifacts" / "exp_gemini_flash"
 
 # TUM proxy config (OpenAI-compatible)
-DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+DEFAULT_API_KEY = "[REDACTED]"
 DEFAULT_BASE_URL = "http://47.94.22.126/v1"
 DEFAULT_MODEL = "gemini-2.5-flash"
 
@@ -21350,6 +21350,28 @@ called Edit
     "old_string": "BCS-controlled experiments use a single seed with greedy decoding; the residual SD of 0.88\\,pp (Appendix~\\ref{app:variance-decomposition}) supports robustness but precise magnitudes may vary. FP8 noise propagation (bootstrap with $\\sigma = 0.88$\\,pp per batch) widens the 70B factorial interaction CI to [0.15, 31.63]\\,pp---still excluding zero but substantially less precise ($\\sigma$ assumed uniform across BCS levels).",
     "new_string": "BCS-controlled experiments use a single seed with greedy decoding; the residual SD of 0.88\\,pp (Appendix~\\ref{app:variance-decomposition}) supports robustness but precise magnitudes may vary."
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 4629 · 2026-05-19T18:37:45.702420+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Edit",
+  "elapsed_ms": 57
 }
 ```
 

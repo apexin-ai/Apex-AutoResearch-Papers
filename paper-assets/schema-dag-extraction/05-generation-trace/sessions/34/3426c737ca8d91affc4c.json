@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_reeval-script-prep_20260515T005614_result.json",
     "occurrence": 1,
-    "bytes": 1023,
-    "sha256": "468ce8dedbd0bc318b16950439cb85ed14dc1aed213eab9f6cbf2f836cd36e1b"
+    "bytes": 1022,
+    "sha256": "84fc5fe9a7d3c600deef41ee34467f04464029fb5adfe0f6c4580466aeff97b3"
   },
   "statistics": {
     "messages": 1,

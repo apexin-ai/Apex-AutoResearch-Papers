@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_method-fix-section32_20260515T043451_result.json",
     "occurrence": 1,
-    "bytes": 408,
-    "sha256": "0a39c9211d02fb239191e6dcb6ac4dcb07222f39a7eb46a74dc031623dbface5"
+    "bytes": 407,
+    "sha256": "f2812d77a8a6a22c3272cb6414e579fadbf1b419375f897bee029ecd37154182"
   },
   "statistics": {
     "messages": 1,

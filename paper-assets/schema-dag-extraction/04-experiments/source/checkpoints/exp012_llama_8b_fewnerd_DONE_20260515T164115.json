@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp012_llama_8b_fewnerd",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:26:10.725Z",
+    "updated_at": "2026-05-15T16:41:15.276Z",
+    "spec": {
+      "hypothesis": "Multi-model validation: LLaMA-3.1-8B-Instruct (BF16) replicates confusability effect on Few-NERD — count curve + BCS-controlled, proving effect holds across model families and sizes",
+      "dataset": "Few-NERD",
+      "model": "LLaMA-3.1-8B-Instruct",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 42,
+      "plan_id": "exp-012",
+      "parent": "exp012_llama_fewnerd_r3",
+      "server": "cqa1-38874",
+      "command": "bash scripts/run_exp012_llama_8b.sh",
+      "pid": 295200,
+      "log_path": "/root/schema-dag-extraction/logs/exp012_llama_8b.log",
+      "checkpoint_path": "artifacts/exp012_llama_8b/"
+    },
+    "conclusion": "failed",
+    "notes": "Dead entry: PID 295200 was OOM-killed when exp012_llama_fewnerd_r4 (PID 294443) took cuda:0. Superseded by r4.",
+    "completed_at": "2026-05-15T16:41:15.276Z"
+  },
+  "timestamp": "2026-05-15T16:41:15.384213+00:00",
+  "trigger": "update_registry"
+}

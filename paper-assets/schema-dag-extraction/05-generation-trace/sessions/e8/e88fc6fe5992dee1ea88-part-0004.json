@@ -107,7 +107,7 @@
           "content": [
             {
               "type": "text",
-              "text": "1\t{\n2\t  \"repo_public\": \"https://github.com/anonymous-nlp-2026/schema-dag-extraction\",\n3\t  \"push_url\": \"https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\",\n4\t  \"github_user\": \"anonymous-nlp-2026\",\n5\t  \"repo_name\": \"schema-dag-extraction\"\n6\t}\n7\t"
+              "text": "1\t{\n2\t  \"repo_public\": \"https://github.com/anonymous-nlp-2026/schema-dag-extraction\",\n3\t  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\",\n4\t  \"github_user\": \"anonymous-nlp-2026\",\n5\t  \"repo_name\": \"schema-dag-extraction\"\n6\t}\n7\t"
             }
           ],
           "metadata": {
@@ -788,7 +788,7 @@
           "content": [
             {
               "type": "text",
-              "text": "origin\thttps://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\n===LOG===\n8054e66 Fix SDGD oracle value: 0.80 (batch composition) -> 0.72 (routing oracle)\naca7f96 Initial release: Schema-Induced Degradation in Training-Free LLM IE\n===STATUS===\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
+              "text": "origin\thttps://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\n===LOG===\n8054e66 Fix SDGD oracle value: 0.80 (batch composition) -> 0.72 (routing oracle)\naca7f96 Initial release: Schema-Induced Degradation in Training-Free LLM IE\n===STATUS===\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/director_fe34bb09"
             }
           ],
           "metadata": {
@@ -912,7 +912,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp && rm -rf schema-dag-update && git clone https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+              "command": "cd /tmp && rm -rf schema-dag-update && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
               "description": "Clone the anonymous repo for updating"
             }
           },
@@ -1782,7 +1782,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新（含凭证）\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了。请在本机 clone 仓库，对照论文最新版本更新后 push。\n\n你的仓库信息：\n- 仓库地址：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n- Push URL：https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n操作步骤：\n```\ngit config --global user.name \"Anonymous\"\ngit config --global user.email \"anonymous@example.com\"\ngit clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\ncd schema-dag-extraction\n# 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容\ngit add -A && git commit -m \"sync with final paper\" && git push\n```\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容 + 最新 commit hash。"
+              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新（含凭证）\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了。请在本机 clone 仓库，对照论文最新版本更新后 push。\n\n你的仓库信息：\n- 仓库地址：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n- Push URL：https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n操作步骤：\n```\ngit config --global user.name \"Anonymous\"\ngit config --global user.email \"anonymous@example.com\"\ngit clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\ncd schema-dag-extraction\n# 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容\ngit add -A && git commit -m \"sync with final paper\" && git push\n```\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容 + 最新 commit hash。"
             }
           ],
           "metadata": {
@@ -1806,7 +1806,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp && rm -rf schema-dag-update && git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+              "command": "cd /tmp && rm -rf schema-dag-update && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
               "description": "Clone repo with provided credentials"
             }
           },

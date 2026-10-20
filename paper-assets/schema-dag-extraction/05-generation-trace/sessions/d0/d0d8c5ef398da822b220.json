@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r22_cpu_analyses_20260519T181910_result.json",
     "occurrence": 1,
-    "bytes": 1072,
-    "sha256": "07a12a1544a593aaaecc3e39ce6afd5ab5775c80c1fd35666f0959eff1396f2b"
+    "bytes": 1071,
+    "sha256": "79d9ed713d3ec0caae64f0ee78c01ccf46229104f8adad9cd00af837c535c6cf"
   },
   "statistics": {
     "messages": 1,

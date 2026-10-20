@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_fewrel_domain_distribution_20260522T045738_result.json",
     "occurrence": 1,
-    "bytes": 985,
-    "sha256": "e910167774e4f5f6c723f5b3ac2b4761a53e7c03ad49ed5537c23fc7d886d9ba"
+    "bytes": 984,
+    "sha256": "e3b807f307eb9c3a539d179122975c22a5853838c8bfa50d78f06303277ed2a6"
   },
   "statistics": {
     "messages": 1,

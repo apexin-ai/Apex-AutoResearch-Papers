@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_embedding-anisotropy-lit_20260515T075641_result.json",
     "occurrence": 1,
-    "bytes": 2112,
-    "sha256": "7cdcfdc192d456fe5aaf57423faf869951aa6b8f40e15737a56c4de573e14ea8"
+    "bytes": 2111,
+    "sha256": "b56bd4f80f6880155c67ea0ac58ec0381a9c8eaaad717735bf5f1ab101755a5e"
   },
   "statistics": {
     "messages": 1,

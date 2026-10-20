@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_cleanup_awq_residual_20260515T223708_result.json",
     "occurrence": 1,
-    "bytes": 1218,
-    "sha256": "92058d4f4914a1574d3d80b1670ee11e229090655ad128bbc2cd1b7dd91253f2"
+    "bytes": 1217,
+    "sha256": "56b536390a76fadcca08681b58c5058fea1121422c921e77b1e55c91a65313ed"
   },
   "statistics": {
     "messages": 1,

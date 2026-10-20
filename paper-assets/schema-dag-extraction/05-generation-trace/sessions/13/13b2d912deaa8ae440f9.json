@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_q3_fewrel_16type_scs_analysis_20260517T145436_result.json",
     "occurrence": 1,
-    "bytes": 1241,
-    "sha256": "ff4f01d7d267b9f7d9deb7a6f0e9020037474d2432bf9aaa51dbb67e7afc94f5"
+    "bytes": 1240,
+    "sha256": "1290e0bcbe36957bb1327760155e85ad36ab9b056ad8367023e5c8c9d2d25f0a"
   },
   "statistics": {
     "messages": 1,

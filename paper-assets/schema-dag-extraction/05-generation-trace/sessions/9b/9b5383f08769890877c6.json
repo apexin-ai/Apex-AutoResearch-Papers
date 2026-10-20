@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_m1_gemini_leverage_20260522T091146.log",
     "occurrence": 1,
-    "bytes": 648790,
-    "sha256": "319686df0526c8c784da42643b5e886cb63d822b5ef4f9c9e32a8a392e538771"
+    "bytes": 648716,
+    "sha256": "73ff2509c58097ee6f5108e858f74b904349238434ad1321680bf8eac6a082de"
   },
   "statistics": {
     "messages": 289,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_schema_renaming_appendix_20260518T213448_result.json",
     "occurrence": 1,
-    "bytes": 1183,
-    "sha256": "cffefdc18467aa09ec5d3d478c5bcad7337430d9aed59858fd50a95cf6bb50bc"
+    "bytes": 1182,
+    "sha256": "70fd5c7b219e5db2ff8f5c502639d74fe32c78b04182f7bec78ce96daef8b462"
   },
   "statistics": {
     "messages": 1,

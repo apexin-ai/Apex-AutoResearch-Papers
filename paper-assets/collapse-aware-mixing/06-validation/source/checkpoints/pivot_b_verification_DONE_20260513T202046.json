@@ -1,0 +1,57 @@
+{
+  "exp_id": "pivot_b_verification",
+  "project": "collapse-aware-mixing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T18:48:31.590Z",
+    "updated_at": "2026-05-13T20:20:46.501Z",
+    "spec": {
+      "command": "analyze_ngram_leading.py + analyze_generated_eff_rank.py + compare_eff_rank_vs_ngram.py + analyze_layer_eff_rank.py (sequential)",
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "pid": "99444",
+      "log_path": "~/runs/collapse-aware-mixing/pivot_b_verification.log",
+      "submitted_at": "2026-05-13T18:48:31.571Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/output_v7/ (18 checkpoints across G0/G1/G2)",
+      "data_count": "1000 samples per checkpoint",
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/output_v7/pivot_analysis/",
+      "wall_clock_seconds": 5534.9,
+      "gpu_hours": 1.54
+    },
+    "metrics": {
+      "G0_final": {
+        "holdout_eff_rank": 111.51,
+        "generated_eff_rank": 63.89,
+        "delta": 47.62
+      },
+      "G1_final": {
+        "holdout_eff_rank": 111.39,
+        "generated_eff_rank": 3.87,
+        "delta": 107.52,
+        "generated_drop_pct": -93.9
+      },
+      "G2_final": {
+        "holdout_eff_rank": 111.86,
+        "generated_eff_rank": 1.06,
+        "delta": 110.79,
+        "generated_drop_pct": -98.3
+      },
+      "compare_verdict": "PIVOT_B_LOSES",
+      "ngram_detection": "G1 step 152, unigram_entropy -43.5%",
+      "generated_eff_rank_detection": "G1 step 999999 (final), -93.9%",
+      "note": "Generated eff_rank detects collapse (massive drop) but n-gram entropy detects earlier. Holdout eff_rank completely stable (~111.5 across all gens)."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-13T20:20:46.501Z"
+  },
+  "timestamp": "2026-05-13T20:20:46.520658+00:00",
+  "trigger": "update_registry"
+}

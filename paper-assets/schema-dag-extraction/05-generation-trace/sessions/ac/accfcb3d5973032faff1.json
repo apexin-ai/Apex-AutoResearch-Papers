@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_fewrel_contamination_check_20260516T120932_result.json",
     "occurrence": 1,
-    "bytes": 887,
-    "sha256": "b2a2c7c8fce1707211d182ae754c5fe16fd86ea29e656807d35dec8b2879c491"
+    "bytes": 886,
+    "sha256": "4fcff8b2926ff114bf515ec705c85acaf860dc455ba170a339c3285c95d69ecd"
   },
   "statistics": {
     "messages": 1,

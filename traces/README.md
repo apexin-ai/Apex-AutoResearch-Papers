@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **63 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **64 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -21,6 +21,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [causal_style_decomp_judge](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) | 69 | 221 | 211 | 5 | 73,378 | [Read](../paper-assets/causal_style_decomp_judge/05-generation-trace/readable/README.md) |
 | [cert_manip_resist_eval](../paper-assets/cert_manip_resist_eval/05-generation-trace/README.md) | 137 | 381 | 358 | 4 | 97,735 | [Read](../paper-assets/cert_manip_resist_eval/05-generation-trace/readable/README.md) |
 | [clkc_mech_interp](../paper-assets/clkc_mech_interp/05-generation-trace/README.md) | 92 | 310 | 282 | 5 | 76,491 | [Read](../paper-assets/clkc_mech_interp/05-generation-trace/readable/README.md) |
+| [collapse-aware-mixing](../paper-assets/collapse-aware-mixing/05-generation-trace/README.md) | 54 | 81 | 77 | 20 | 17,588 | [Read](../paper-assets/collapse-aware-mixing/05-generation-trace/readable/README.md) |
 | [collapse_aware_reward_rebalancing](../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/README.md) | 44 | 85 | 80 | 5 | 14,906 | [Read](../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/readable/README.md) |
 | [contrastive_entrain_calib](../paper-assets/contrastive_entrain_calib/05-generation-trace/README.md) | 250 | 663 | 634 | 26 | 119,612 | [Read](../paper-assets/contrastive_entrain_calib/05-generation-trace/readable/README.md) |
 | [contrastive_graph_jailbreak_detect](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/README.md) | 9 | 10 | 9 | 0 | 3,080 | [Read](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/readable/README.md) |
@@ -72,6 +73,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**67,852 source records · 5,365,916 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**68,084 source records · 5,383,504 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

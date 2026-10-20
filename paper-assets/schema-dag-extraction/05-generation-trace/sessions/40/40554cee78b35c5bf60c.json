@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_exp_fewshot_bcs_count16_20260523T144837_result.json",
     "occurrence": 1,
-    "bytes": 2618833,
-    "sha256": "5961994cfbf020a890667a10e6a2ea12ce8149d0cff3eae88ccb3f3bfcd172c2"
+    "bytes": 2618832,
+    "sha256": "2d442276f95032e4c773fa6e686c07297744a75b3628aa9a6c7917aee6eebf76"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "40554cee78b35c5bf60c-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2618852,
+                "serialized_sha256": "0285cdb0b4e097157fae9df3e2ee22422819ae8c47dadc5d14a7e00b2f66ffaa",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/check-exp-fewshot-bcs-count16.md"

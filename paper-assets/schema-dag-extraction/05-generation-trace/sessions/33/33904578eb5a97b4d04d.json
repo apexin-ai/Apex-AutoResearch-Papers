@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_fewrel_factorial_tost_20260516T141051_result.json",
     "occurrence": 1,
-    "bytes": 1075,
-    "sha256": "30525d2155203517fdac60e5a3a846e96ebd457363ed8ba20d276dadd415cb80"
+    "bytes": 1074,
+    "sha256": "49441ddd4faeb276ae32f9d11cacf4aa3a1838c3e0f9f0387bc53cacb4ce208b"
   },
   "statistics": {
     "messages": 1,

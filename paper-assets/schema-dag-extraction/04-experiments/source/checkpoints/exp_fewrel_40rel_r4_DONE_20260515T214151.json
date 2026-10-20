@@ -1,0 +1,103 @@
+{
+  "exp_id": "exp_fewrel_40rel_r4",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:09:45.041Z",
+    "updated_at": "2026-05-15T21:41:51.928Z",
+    "spec": {
+      "command": "bash scripts/run_fewrel_40rel_r4.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "325591",
+      "log_path": "~/runs/schema-dag-extraction/exp_fewrel_40rel_r4.log",
+      "submitted_at": "2026-05-15T21:13:50.769Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_parquet/",
+      "data_count": 960,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "wall_clock_seconds": 1681.2,
+      "gpu_hours": 0.47
+    },
+    "log_path": "~/runs/schema-dag-extraction/exp_fewrel_40rel_r4.log",
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/fewrel_40rel_r4/",
+    "metrics": {
+      "count_curve": {
+        "count_1": {
+          "mean_acc": 0.8573,
+          "std": 0.1466,
+          "n_batches": 80
+        },
+        "count_4": {
+          "mean_acc": 0.8667,
+          "std": 0.1108,
+          "n_batches": 5
+        },
+        "count_8": {
+          "mean_acc": 0.8021,
+          "std": 0.0765,
+          "n_batches": 5
+        },
+        "count_16": {
+          "mean_acc": 0.6969,
+          "std": 0.0798,
+          "n_batches": 5
+        },
+        "count_32": {
+          "mean_acc": 0.6578,
+          "std": 0.0533,
+          "n_batches": 5
+        },
+        "count_40": {
+          "mean_acc": 0.5883,
+          "std": 0.045,
+          "n_batches": 5
+        }
+      },
+      "bcs_controlled": {
+        "count_8_low_bcs": {
+          "acc": 0.8333,
+          "bcs": 0.4715
+        },
+        "count_8_high_bcs": {
+          "acc": 0.5,
+          "bcs": 0.9706
+        },
+        "count_8_delta_pp": -33.3,
+        "count_16_low_bcs": {
+          "acc": 0.8177,
+          "bcs": 0.5705
+        },
+        "count_16_high_bcs": {
+          "acc": 0.5,
+          "bcs": 0.9706
+        },
+        "count_16_delta_pp": -31.8
+      },
+      "exp2_random_validation": {
+        "count_8_random": {
+          "mean_acc": 0.8054,
+          "std": 0.0833,
+          "n_batches": 25
+        },
+        "count_16_random": {
+          "mean_acc": 0.719,
+          "std": 0.0644,
+          "n_batches": 25
+        }
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T21:41:51.928Z"
+  },
+  "timestamp": "2026-05-15T21:41:51.998616+00:00",
+  "trigger": "update_registry"
+}

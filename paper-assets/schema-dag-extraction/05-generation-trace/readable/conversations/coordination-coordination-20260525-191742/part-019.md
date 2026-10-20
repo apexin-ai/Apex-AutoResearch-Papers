@@ -8,142 +8,6 @@
 
 ### Tool result
 
-_source line 11157 · 2026-05-24T07:28:55.152217+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:10:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:676:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:2:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:3:(1)~count degradation spans NER and sentence- and document-level RE (up to $-$49\,pp); MAVEN ED shows a confounded reversal (\S\ref{sec:centrality_confound}); inter-type confusability (measured by BCS) independently predicts RE type substitution errors (VIF${}\,=\,1.18$ on FewRel), with bounded interaction on the linear scale (TOST $p=0.003$);
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:4:We evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks and four datasets: named entity recognition (NER), sentence-level relation extraction (RE), document-level RE, and event detection (ED).
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:15:[Omitted long matching line]
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:78:[Omitted long matching line]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Grep",
-  "elapsed_ms": 50
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 11158 · 2026-05-24T07:28:58.871062+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "DocRE[^D]",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-  "glob": "*.tex",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "DocRE[^D]",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-    "glob": "*.tex",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 11159 · 2026-05-24T07:28:59.827157+00:00_
-
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:114:\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. Spearman $\rho$ computed over $n=148$ batches (NER), $n=154$ (RE), and $n=110$ (DocRE). IntraSub scales monotonically with BCS across all three datasets. DocRE missed rates decrease with BCS, indicating high-confusability errors shift from omission to substitution.}
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:125:DocRE & IntraSub & --- & 4.8\% & 22.4\% & 37.0\% & 41.9\% & 0.843 & ${<}\,0.001$ \\
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:129:DocRE & Missed & --- & 28.1\% & 22.6\% & 21.6\% & 16.2\% & --- & --- \\
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Grep",
-  "elapsed_ms": 956
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
-_source line 11160 · 2026-05-24T07:29:00.180049+00:00_
-
-called Grep
-
-<details open><summary>🔧 Tool call — Grep</summary>
-
-```json
-{
-  "pattern": "pre-hoc|post-hoc|pre-training|pre-compute",
-  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-  "glob": "*.tex",
-  "output_mode": "content",
-  "-n": "True"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Grep",
-  "tool_args": {
-    "pattern": "pre-hoc|post-hoc|pre-training|pre-compute",
-    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
-    "glob": "*.tex",
-    "output_mode": "content",
-    "-n": "True"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
 _source line 11161 · 2026-05-24T07:29:00.230740+00:00_
 
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:642:FewRel combines 64 train-split and 16 val-split relation types into a single 80-type pool.  Train-origin types show numerically lower accuracy ($-8.8$\,pp, $p = 0.06$; see Limitations), raising the question of whether differential pre-training exposure confounds the BCS--accuracy relationship.  We test this by adding a per-batch \emph{train-origin ratio} (fraction of relation types drawn from the train split) as a covariate in the BCS--accuracy regression.
@@ -4653,7 +4517,7 @@ OVERALL STYLE:
 
 4. 运行 PaperBanana：
 ```bash
-GOOGLE_API_KEY="$API_KEY" ~/.local/bin/paperbanana generate \
+GOOGLE_API_KEY="[REDACTED]" ~/.local/bin/paperbanana generate \
   --input /tmp/fig_sdgd_pipeline_intent.txt \
   --caption "Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED." \
   --vlm-model gemini-2.5-pro \
@@ -5313,7 +5177,7 @@ called mcp__agent-ml-research__spawn_worker
 {
   "task_type": "figure:sdgd_pipeline_v6",
   "project": "schema-dag-extraction",
-  "task_prompt": "## 任务：用 PaperBanana 生成 fig_sdgd_pipeline v6\n\n### 目标\n用 PaperBanana 重做 SDGD pipeline 图，保持 v5 的精美风格（毛玻璃卡片、渐变阴影、图标），增加信息量。\n\n### 环境\n- PaperBanana: `~/.local/bin/paperbanana generate`\n- GOOGLE_API_KEY: `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8`\n- 参考图（风格基准）: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_v5.png`\n- 输出路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png`\n\n### 步骤\n\n**Step 1**: 先 Read 参考图 `fig_sdgd_pipeline_v5.png` 了解当前风格基准。\n\n**Step 2**: 写 intent 文件到 `/tmp/fig_sdgd_pipeline_intent.txt`，内容如下（完整复制，不要删减）：\n\n```\nSingle-panel academic figure for EMNLP 2026 paper (column width, aspect ratio ~3:1, figsize ~10x3.5 inches):\n\nPIPELINE FLOW (left to right, centered vertically):\n\nStage 1 — 'Full Schema' (leftmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: 4×4 grid of colored circles representing diverse schema types.\n  Circle colors: blue (#5B9BD5), orange (#ED7D31), green (#27AE60), red (#E74C3C).\n  Label below: 'Full Schema' bold + '(k types)' italic gray (#7F8C8D).\n\nArrow 1: Blue (#3B6CB5) arrow pointing right.\n  Label above arrow: 'Decompose' italic gray.\n  Label below arrow: '(SCS graph coloring)' small text in blue (#3B6CB5).\n  Small scissors icon (✂) near arrow.\n\nStage 2 — 'Sub-schemas' (3 stacked/fanned cards):\n  Three overlapping rounded rectangles, each with light blue fill, showing 2 colored circles per card.\n  Cards show type separation: each card has only same-color or non-confusable type dots.\n  Label below: 'sub-schemas' italic gray.\n  Label above in green (#27AE60): 'low confusability ✓' semibold.\n\nArrow 2: Blue arrow pointing right. Label: 'Route' italic gray.\n\nStage 3 — 'Route & Extract':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: magnifying glass icon (🔍).\n  Label: 'Route & Extract' bold in dark text (#2C3E50).\n  Red ✗ mark on connection from above (to Routing Failure callout).\n\nArrow 3: Blue arrow pointing right.\n\nStage 4 — 'Merge':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: merge/combine icon.\n  Label: 'Merge' bold + '(union)' italic gray below.\n  Red ✗ mark on connection from below (to Merge Amplification callout).\n\nArrow 4: Blue arrow pointing right.\n\nStage 5 — 'Predictions' (rightmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: document with checkmark icon.\n  Label: 'Predictions' bold.\n\nFAILURE CALLOUT A — 'Routing Failure' (above pipeline, positioned above Route & Extract):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Routing Failure' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'RE' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: '73.4% instances → multiple sub-schemas'\n    Line 2: 'oracle routing: 0.72  vs  single-pass: 0.50'\n    Line 3: 'none-rate per sub-schema only 20–40%'\n  Small icon: three documents pointing to one document with question mark (?).\n  Connected to Route & Extract via red dashed arrow with ✗ mark.\n\nFAILURE CALLOUT B — 'Merge Amplification' (below pipeline, positioned below Merge):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Merge Amplification' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'NER / ED' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: 'union merge ×2 false positives'\n    Line 2: 'precision: 0.56 → 0.21  |  F1: −19 pp'\n    Line 3: 'voting merge sacrifices recall'\n  Small icon: merged dots with red false-positive dots appearing.\n  Connected to Merge via red dashed arrow with ✗ mark.\n\nOVERALL STYLE:\n- Publication quality for EMNLP 2026 — elegant, premium, sophisticated\n- Subtle drop shadows (2px offset, 10% opacity) on all boxes\n- Rounded corners (8-10px) on all rectangles\n- Thin, elegant arrow heads — not bulky matplotlib defaults\n- Font: DejaVu Sans throughout, 9-10pt body, 7-8pt detail text\n- Muted, harmonious color palette matching other figures:\n  Blue #3B6CB5, Light Blue #5B9BD5, Red #C0392B, Orange #ED7D31, Green #27AE60\n  Dark text #2C3E50, Gray text #7F8C8D\n- Light gradient background (very subtle, white to light gray)\n- Generous white space between elements\n- Glass-card effect: slight translucency, layered depth\n- Icons should be clean, minimal line-art style\n- 300 DPI, white/near-white background\n- NO matplotlib default styling, NO gray background, NO tab10 colors, NO cheap look\n```\n\n**Step 3**: 运行 PaperBanana（第一轮，5 iterations）：\n```bash\nGOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5\n```\n\n注意：如果命令超时或报错，检查：\n- API key 是否正确传递\n- 网络是否通（可能需要代理）\n- 模型名是否正确（试 `gemini-2.5-pro` 或 `gemini-2.0-flash`）\n\n**Step 4**: 生成完成后，Read 输出的 PNG 做视觉检查。检查：\n- 是否有 5 个 pipeline stages（Full Schema → Sub-schemas → Route & Extract → Merge → Predictions）\n- 两个 failure callout boxes 是否完整（包含所有数据：73.4%、oracle 0.72 vs 0.50、×2 FP、precision 0.56→0.21、F1 −19pp）\n- 整体是否精美（玻璃卡片效果、渐变、图标）\n- 文字是否清晰可读\n\n**Step 5**: 如果不满意，修改 intent 文件调整问题点，重新运行。**至少做 3 轮外部迭代**。每轮记录问题和改进。\n\n**Step 6**: 满意后，用 ImageMagick 转 PDF：\n```bash\nconvert /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.pdf\n```\n\n**Step 7**: 输出最终报告，包含：\n- 每轮迭代的改进记录\n- 最终视觉质量评估\n- 输出文件路径（PNG + PDF）\n\n### 判断标准\n放在 EMNLP best paper 里不违和。所有量化数据必须清晰可读。配色与论文其他图统一。\n\n### 绝对不要\n- 不要用 matplotlib 手写\n- 不要简化 intent（所有细节都要保留）\n- 不要只跑一轮就结束（至少 3 轮迭代）",
+  "task_prompt": "## 任务：用 PaperBanana 生成 fig_sdgd_pipeline v6\n\n### 目标\n用 PaperBanana 重做 SDGD pipeline 图，保持 v5 的精美风格（毛玻璃卡片、渐变阴影、图标），增加信息量。\n\n### 环境\n- PaperBanana: `~/.local/bin/paperbanana generate`\n- GOOGLE_API_KEY: [REDACTED]\n- 参考图（风格基准）: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_v5.png`\n- 输出路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png`\n\n### 步骤\n\n**Step 1**: 先 Read 参考图 `fig_sdgd_pipeline_v5.png` 了解当前风格基准。\n\n**Step 2**: 写 intent 文件到 `/tmp/fig_sdgd_pipeline_intent.txt`，内容如下（完整复制，不要删减）：\n\n```\nSingle-panel academic figure for EMNLP 2026 paper (column width, aspect ratio ~3:1, figsize ~10x3.5 inches):\n\nPIPELINE FLOW (left to right, centered vertically):\n\nStage 1 — 'Full Schema' (leftmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: 4×4 grid of colored circles representing diverse schema types.\n  Circle colors: blue (#5B9BD5), orange (#ED7D31), green (#27AE60), red (#E74C3C).\n  Label below: 'Full Schema' bold + '(k types)' italic gray (#7F8C8D).\n\nArrow 1: Blue (#3B6CB5) arrow pointing right.\n  Label above arrow: 'Decompose' italic gray.\n  Label below arrow: '(SCS graph coloring)' small text in blue (#3B6CB5).\n  Small scissors icon (✂) near arrow.\n\nStage 2 — 'Sub-schemas' (3 stacked/fanned cards):\n  Three overlapping rounded rectangles, each with light blue fill, showing 2 colored circles per card.\n  Cards show type separation: each card has only same-color or non-confusable type dots.\n  Label below: 'sub-schemas' italic gray.\n  Label above in green (#27AE60): 'low confusability ✓' semibold.\n\nArrow 2: Blue arrow pointing right. Label: 'Route' italic gray.\n\nStage 3 — 'Route & Extract':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: magnifying glass icon (🔍).\n  Label: 'Route & Extract' bold in dark text (#2C3E50).\n  Red ✗ mark on connection from above (to Routing Failure callout).\n\nArrow 3: Blue arrow pointing right.\n\nStage 4 — 'Merge':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: merge/combine icon.\n  Label: 'Merge' bold + '(union)' italic gray below.\n  Red ✗ mark on connection from below (to Merge Amplification callout).\n\nArrow 4: Blue arrow pointing right.\n\nStage 5 — 'Predictions' (rightmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: document with checkmark icon.\n  Label: 'Predictions' bold.\n\nFAILURE CALLOUT A — 'Routing Failure' (above pipeline, positioned above Route & Extract):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Routing Failure' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'RE' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: '73.4% instances → multiple sub-schemas'\n    Line 2: 'oracle routing: 0.72  vs  single-pass: 0.50'\n    Line 3: 'none-rate per sub-schema only 20–40%'\n  Small icon: three documents pointing to one document with question mark (?).\n  Connected to Route & Extract via red dashed arrow with ✗ mark.\n\nFAILURE CALLOUT B — 'Merge Amplification' (below pipeline, positioned below Merge):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Merge Amplification' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'NER / ED' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: 'union merge ×2 false positives'\n    Line 2: 'precision: 0.56 → 0.21  |  F1: −19 pp'\n    Line 3: 'voting merge sacrifices recall'\n  Small icon: merged dots with red false-positive dots appearing.\n  Connected to Merge via red dashed arrow with ✗ mark.\n\nOVERALL STYLE:\n- Publication quality for EMNLP 2026 — elegant, premium, sophisticated\n- Subtle drop shadows (2px offset, 10% opacity) on all boxes\n- Rounded corners (8-10px) on all rectangles\n- Thin, elegant arrow heads — not bulky matplotlib defaults\n- Font: DejaVu Sans throughout, 9-10pt body, 7-8pt detail text\n- Muted, harmonious color palette matching other figures:\n  Blue #3B6CB5, Light Blue #5B9BD5, Red #C0392B, Orange #ED7D31, Green #27AE60\n  Dark text #2C3E50, Gray text #7F8C8D\n- Light gradient background (very subtle, white to light gray)\n- Generous white space between elements\n- Glass-card effect: slight translucency, layered depth\n- Icons should be clean, minimal line-art style\n- 300 DPI, white/near-white background\n- NO matplotlib default styling, NO gray background, NO tab10 colors, NO cheap look\n```\n\n**Step 3**: 运行 PaperBanana（第一轮，5 iterations）：\n```bash\nGOOGLE_API_KEY=\"[REDACTED]\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5\n```\n\n注意：如果命令超时或报错，检查：\n- API key 是否正确传递\n- 网络是否通（可能需要代理）\n- 模型名是否正确（试 `gemini-2.5-pro` 或 `gemini-2.0-flash`）\n\n**Step 4**: 生成完成后，Read 输出的 PNG 做视觉检查。检查：\n- 是否有 5 个 pipeline stages（Full Schema → Sub-schemas → Route & Extract → Merge → Predictions）\n- 两个 failure callout boxes 是否完整（包含所有数据：73.4%、oracle 0.72 vs 0.50、×2 FP、precision 0.56→0.21、F1 −19pp）\n- 整体是否精美（玻璃卡片效果、渐变、图标）\n- 文字是否清晰可读\n\n**Step 5**: 如果不满意，修改 intent 文件调整问题点，重新运行。**至少做 3 轮外部迭代**。每轮记录问题和改进。\n\n**Step 6**: 满意后，用 ImageMagick 转 PDF：\n```bash\nconvert /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.pdf\n```\n\n**Step 7**: 输出最终报告，包含：\n- 每轮迭代的改进记录\n- 最终视觉质量评估\n- 输出文件路径（PNG + PDF）\n\n### 判断标准\n放在 EMNLP best paper 里不违和。所有量化数据必须清晰可读。配色与论文其他图统一。\n\n### 绝对不要\n- 不要用 matplotlib 手写\n- 不要简化 intent（所有细节都要保留）\n- 不要只跑一轮就结束（至少 3 轮迭代）",
   "repo_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
 }
 ````
@@ -5330,7 +5194,7 @@ called mcp__agent-ml-research__spawn_worker
   "tool_args": {
     "task_type": "figure:sdgd_pipeline_v6",
     "project": "schema-dag-extraction",
-    "task_prompt": "## 任务：用 PaperBanana 生成 fig_sdgd_pipeline v6\n\n### 目标\n用 PaperBanana 重做 SDGD pipeline 图，保持 v5 的精美风格（毛玻璃卡片、渐变阴影、图标），增加信息量。\n\n### 环境\n- PaperBanana: `~/.local/bin/paperbanana generate`\n- GOOGLE_API_KEY: `tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8`\n- 参考图（风格基准）: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_v5.png`\n- 输出路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png`\n\n### 步骤\n\n**Step 1**: 先 Read 参考图 `fig_sdgd_pipeline_v5.png` 了解当前风格基准。\n\n**Step 2**: 写 intent 文件到 `/tmp/fig_sdgd_pipeline_intent.txt`，内容如下（完整复制，不要删减）：\n\n```\nSingle-panel academic figure for EMNLP 2026 paper (column width, aspect ratio ~3:1, figsize ~10x3.5 inches):\n\nPIPELINE FLOW (left to right, centered vertically):\n\nStage 1 — 'Full Schema' (leftmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: 4×4 grid of colored circles representing diverse schema types.\n  Circle colors: blue (#5B9BD5), orange (#ED7D31), green (#27AE60), red (#E74C3C).\n  Label below: 'Full Schema' bold + '(k types)' italic gray (#7F8C8D).\n\nArrow 1: Blue (#3B6CB5) arrow pointing right.\n  Label above arrow: 'Decompose' italic gray.\n  Label below arrow: '(SCS graph coloring)' small text in blue (#3B6CB5).\n  Small scissors icon (✂) near arrow.\n\nStage 2 — 'Sub-schemas' (3 stacked/fanned cards):\n  Three overlapping rounded rectangles, each with light blue fill, showing 2 colored circles per card.\n  Cards show type separation: each card has only same-color or non-confusable type dots.\n  Label below: 'sub-schemas' italic gray.\n  Label above in green (#27AE60): 'low confusability ✓' semibold.\n\nArrow 2: Blue arrow pointing right. Label: 'Route' italic gray.\n\nStage 3 — 'Route & Extract':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: magnifying glass icon (🔍).\n  Label: 'Route & Extract' bold in dark text (#2C3E50).\n  Red ✗ mark on connection from above (to Routing Failure callout).\n\nArrow 3: Blue arrow pointing right.\n\nStage 4 — 'Merge':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: merge/combine icon.\n  Label: 'Merge' bold + '(union)' italic gray below.\n  Red ✗ mark on connection from below (to Merge Amplification callout).\n\nArrow 4: Blue arrow pointing right.\n\nStage 5 — 'Predictions' (rightmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: document with checkmark icon.\n  Label: 'Predictions' bold.\n\nFAILURE CALLOUT A — 'Routing Failure' (above pipeline, positioned above Route & Extract):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Routing Failure' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'RE' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: '73.4% instances → multiple sub-schemas'\n    Line 2: 'oracle routing: 0.72  vs  single-pass: 0.50'\n    Line 3: 'none-rate per sub-schema only 20–40%'\n  Small icon: three documents pointing to one document with question mark (?).\n  Connected to Route & Extract via red dashed arrow with ✗ mark.\n\nFAILURE CALLOUT B — 'Merge Amplification' (below pipeline, positioned below Merge):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Merge Amplification' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'NER / ED' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: 'union merge ×2 false positives'\n    Line 2: 'precision: 0.56 → 0.21  |  F1: −19 pp'\n    Line 3: 'voting merge sacrifices recall'\n  Small icon: merged dots with red false-positive dots appearing.\n  Connected to Merge via red dashed arrow with ✗ mark.\n\nOVERALL STYLE:\n- Publication quality for EMNLP 2026 — elegant, premium, sophisticated\n- Subtle drop shadows (2px offset, 10% opacity) on all boxes\n- Rounded corners (8-10px) on all rectangles\n- Thin, elegant arrow heads — not bulky matplotlib defaults\n- Font: DejaVu Sans throughout, 9-10pt body, 7-8pt detail text\n- Muted, harmonious color palette matching other figures:\n  Blue #3B6CB5, Light Blue #5B9BD5, Red #C0392B, Orange #ED7D31, Green #27AE60\n  Dark text #2C3E50, Gray text #7F8C8D\n- Light gradient background (very subtle, white to light gray)\n- Generous white space between elements\n- Glass-card effect: slight translucency, layered depth\n- Icons should be clean, minimal line-art style\n- 300 DPI, white/near-white background\n- NO matplotlib default styling, NO gray background, NO tab10 colors, NO cheap look\n```\n\n**Step 3**: 运行 PaperBanana（第一轮，5 iterations）：\n```bash\nGOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5\n```\n\n注意：如果命令超时或报错，检查：\n- API key 是否正确传递\n- 网络是否通（可能需要代理）\n- 模型名是否正确（试 `gemini-2.5-pro` 或 `gemini-2.0-flash`）\n\n**Step 4**: 生成完成后，Read 输出的 PNG 做视觉检查。检查：\n- 是否有 5 个 pipeline stages（Full Schema → Sub-schemas → Route & Extract → Merge → Predictions）\n- 两个 failure callout boxes 是否完整（包含所有数据：73.4%、oracle 0.72 vs 0.50、×2 FP、precision 0.56→0.21、F1 −19pp）\n- 整体是否精美（玻璃卡片效果、渐变、图标）\n- 文字是否清晰可读\n\n**Step 5**: 如果不满意，修改 intent 文件调整问题点，重新运行。**至少做 3 轮外部迭代**。每轮记录问题和改进。\n\n**Step 6**: 满意后，用 ImageMagick 转 PDF：\n```bash\nconvert /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.pdf\n```\n\n**Step 7**: 输出最终报告，包含：\n- 每轮迭代的改进记录\n- 最终视觉质量评估\n- 输出文件路径（PNG + PDF）\n\n### 判断标准\n放在 EMNLP best paper 里不违和。所有量化数据必须清晰可读。配色与论文其他图统一。\n\n### 绝对不要\n- 不要用 matplotlib 手写\n- 不要简化 intent（所有细节都要保留）\n- 不要只跑一轮就结束（至少 3 轮迭代）",
+    "task_prompt": "## 任务：用 PaperBanana 生成 fig_sdgd_pipeline v6\n\n### 目标\n用 PaperBanana 重做 SDGD pipeline 图，保持 v5 的精美风格（毛玻璃卡片、渐变阴影、图标），增加信息量。\n\n### 环境\n- PaperBanana: `~/.local/bin/paperbanana generate`\n- GOOGLE_API_KEY: [REDACTED]\n- 参考图（风格基准）: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_v5.png`\n- 输出路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png`\n\n### 步骤\n\n**Step 1**: 先 Read 参考图 `fig_sdgd_pipeline_v5.png` 了解当前风格基准。\n\n**Step 2**: 写 intent 文件到 `/tmp/fig_sdgd_pipeline_intent.txt`，内容如下（完整复制，不要删减）：\n\n```\nSingle-panel academic figure for EMNLP 2026 paper (column width, aspect ratio ~3:1, figsize ~10x3.5 inches):\n\nPIPELINE FLOW (left to right, centered vertically):\n\nStage 1 — 'Full Schema' (leftmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: 4×4 grid of colored circles representing diverse schema types.\n  Circle colors: blue (#5B9BD5), orange (#ED7D31), green (#27AE60), red (#E74C3C).\n  Label below: 'Full Schema' bold + '(k types)' italic gray (#7F8C8D).\n\nArrow 1: Blue (#3B6CB5) arrow pointing right.\n  Label above arrow: 'Decompose' italic gray.\n  Label below arrow: '(SCS graph coloring)' small text in blue (#3B6CB5).\n  Small scissors icon (✂) near arrow.\n\nStage 2 — 'Sub-schemas' (3 stacked/fanned cards):\n  Three overlapping rounded rectangles, each with light blue fill, showing 2 colored circles per card.\n  Cards show type separation: each card has only same-color or non-confusable type dots.\n  Label below: 'sub-schemas' italic gray.\n  Label above in green (#27AE60): 'low confusability ✓' semibold.\n\nArrow 2: Blue arrow pointing right. Label: 'Route' italic gray.\n\nStage 3 — 'Route & Extract':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: magnifying glass icon (🔍).\n  Label: 'Route & Extract' bold in dark text (#2C3E50).\n  Red ✗ mark on connection from above (to Routing Failure callout).\n\nArrow 3: Blue arrow pointing right.\n\nStage 4 — 'Merge':\n  Rounded rectangle with light pink fill (#FEF5F4), red dashed border (#C0392B).\n  Inside: merge/combine icon.\n  Label: 'Merge' bold + '(union)' italic gray below.\n  Red ✗ mark on connection from below (to Merge Amplification callout).\n\nArrow 4: Blue arrow pointing right.\n\nStage 5 — 'Predictions' (rightmost):\n  Rounded rectangle with light blue fill (#E8F0FE), blue border (#3B6CB5).\n  Inside: document with checkmark icon.\n  Label: 'Predictions' bold.\n\nFAILURE CALLOUT A — 'Routing Failure' (above pipeline, positioned above Route & Extract):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Routing Failure' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'RE' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: '73.4% instances → multiple sub-schemas'\n    Line 2: 'oracle routing: 0.72  vs  single-pass: 0.50'\n    Line 3: 'none-rate per sub-schema only 20–40%'\n  Small icon: three documents pointing to one document with question mark (?).\n  Connected to Route & Extract via red dashed arrow with ✗ mark.\n\nFAILURE CALLOUT B — 'Merge Amplification' (below pipeline, positioned below Merge):\n  Rounded rectangle with very light pink fill (#FDF0EF), solid red border (#C0392B), 1.5pt width.\n  Title: 'Merge Amplification' bold in dark red (#8B1A1A), left-aligned.\n  Red badge 'NER / ED' (white text on #C0392B background, rounded corners) at top-right.\n  Three lines of detail text (7pt, dark red):\n    Line 1: 'union merge ×2 false positives'\n    Line 2: 'precision: 0.56 → 0.21  |  F1: −19 pp'\n    Line 3: 'voting merge sacrifices recall'\n  Small icon: merged dots with red false-positive dots appearing.\n  Connected to Merge via red dashed arrow with ✗ mark.\n\nOVERALL STYLE:\n- Publication quality for EMNLP 2026 — elegant, premium, sophisticated\n- Subtle drop shadows (2px offset, 10% opacity) on all boxes\n- Rounded corners (8-10px) on all rectangles\n- Thin, elegant arrow heads — not bulky matplotlib defaults\n- Font: DejaVu Sans throughout, 9-10pt body, 7-8pt detail text\n- Muted, harmonious color palette matching other figures:\n  Blue #3B6CB5, Light Blue #5B9BD5, Red #C0392B, Orange #ED7D31, Green #27AE60\n  Dark text #2C3E50, Gray text #7F8C8D\n- Light gradient background (very subtle, white to light gray)\n- Generous white space between elements\n- Glass-card effect: slight translucency, layered depth\n- Icons should be clean, minimal line-art style\n- 300 DPI, white/near-white background\n- NO matplotlib default styling, NO gray background, NO tab10 colors, NO cheap look\n```\n\n**Step 3**: 运行 PaperBanana（第一轮，5 iterations）：\n```bash\nGOOGLE_API_KEY=\"[REDACTED]\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5\n```\n\n注意：如果命令超时或报错，检查：\n- API key 是否正确传递\n- 网络是否通（可能需要代理）\n- 模型名是否正确（试 `gemini-2.5-pro` 或 `gemini-2.0-flash`）\n\n**Step 4**: 生成完成后，Read 输出的 PNG 做视觉检查。检查：\n- 是否有 5 个 pipeline stages（Full Schema → Sub-schemas → Route & Extract → Merge → Predictions）\n- 两个 failure callout boxes 是否完整（包含所有数据：73.4%、oracle 0.72 vs 0.50、×2 FP、precision 0.56→0.21、F1 −19pp）\n- 整体是否精美（玻璃卡片效果、渐变、图标）\n- 文字是否清晰可读\n\n**Step 5**: 如果不满意，修改 intent 文件调整问题点，重新运行。**至少做 3 轮外部迭代**。每轮记录问题和改进。\n\n**Step 6**: 满意后，用 ImageMagick 转 PDF：\n```bash\nconvert /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.pdf\n```\n\n**Step 7**: 输出最终报告，包含：\n- 每轮迭代的改进记录\n- 最终视觉质量评估\n- 输出文件路径（PNG + PDF）\n\n### 判断标准\n放在 EMNLP best paper 里不违和。所有量化数据必须清晰可读。配色与论文其他图统一。\n\n### 绝对不要\n- 不要用 matplotlib 手写\n- 不要简化 intent（所有细节都要保留）\n- 不要只跑一轮就结束（至少 3 轮迭代）",
     "repo_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction"
   }
 }
@@ -6076,7 +5940,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | tail -50",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | tail -50",
   "description": "Run PaperBanana generate (iteration 1)",
   "timeout": "300000"
 }
@@ -6092,7 +5956,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | tail -50",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | tail -50",
     "description": "Run PaperBanana generate (iteration 1)",
     "timeout": "300000"
   }
@@ -6270,7 +6134,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | head -50",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | head -50",
   "description": "Run PaperBanana - check initial error output",
   "timeout": "120000"
 }
@@ -6286,7 +6150,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | head -50",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1 | head -50",
     "description": "Run PaperBanana - check initial error output",
     "timeout": "120000"
   }
@@ -6528,7 +6392,7 @@ class GeminiVLM(VLMProvider):
     """
 
     def __init__(self, api_key: [REDACTED] = None, model: str = "gemini-2.0-flash"):
-        self._api_key = api_key
+        self._api_key = [REDACTED]
         self._model = model
         self._client = None
 
@@ -6964,7 +6828,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" python3 -c \"\nfrom google import genai\nclient = genai.Client(api_key='[REDACTED]')\ntry:\n    response = client.models.generate_content(model='gemini-2.5-pro', contents='Say hello')\n    print('SUCCESS:', response.text[:50])\nexcept Exception as e:\n    print('ERROR:', type(e).__name__, str(e)[:200])\n\" 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom google import genai\nclient = genai.Client(api_key='[REDACTED]')\ntry:\n    response = client.models.generate_content(model='gemini-2.5-pro', contents='Say hello')\n    print('SUCCESS:', response.text[:50])\nexcept Exception as e:\n    print('ERROR:', type(e).__name__, str(e)[:200])\n\" 2>&1",
   "description": "Test Gemini API key directly",
   "timeout": "30000"
 }
@@ -6980,7 +6844,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" python3 -c \"\nfrom google import genai\nclient = genai.Client(api_key='[REDACTED]')\ntry:\n    response = client.models.generate_content(model='gemini-2.5-pro', contents='Say hello')\n    print('SUCCESS:', response.text[:50])\nexcept Exception as e:\n    print('ERROR:', type(e).__name__, str(e)[:200])\n\" 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom google import genai\nclient = genai.Client(api_key='[REDACTED]')\ntry:\n    response = client.models.generate_content(model='gemini-2.5-pro', contents='Say hello')\n    print('SUCCESS:', response.text[:50])\nexcept Exception as e:\n    print('ERROR:', type(e).__name__, str(e)[:200])\n\" 2>&1",
     "description": "Test Gemini API key directly",
     "timeout": "30000"
   }
@@ -7217,7 +7081,7 @@ _source line 11372 · 2026-05-24T13:12:02.543504+00:00_
 [Director 指令] API key 已写入 `/tmp/.pb_google_key`。不要再走 secret 系统，直接从文件读取：
 
 ```bash
-export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key)
+export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key)
 ~/.local/bin/paperbanana generate \
   --input /tmp/fig_sdgd_pipeline_intent.txt \
   --caption "Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED." \
@@ -7311,7 +7175,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana with correct Google API key",
   "timeout": "600000"
 }
@@ -7327,7 +7191,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana with correct Google API key",
     "timeout": "600000"
   }
@@ -7679,7 +7543,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r2.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana round 2 with color corrections",
   "timeout": "600000"
 }
@@ -7695,7 +7559,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r2.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana round 2 with color corrections",
     "timeout": "600000"
   }
@@ -7890,7 +7754,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r3.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r3.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana round 3",
   "timeout": "600000"
 }
@@ -7906,7 +7770,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r3.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_pipeline_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Two structural bottlenecks: routing failure in RE and merge amplification in NER/ED.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v6_r3.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana round 3",
     "timeout": "600000"
   }
@@ -8300,8 +8164,8 @@ _source line 11404 · 2026-05-24T13:22:35.125399+00:00_
 立即派 Worker 执行以下命令：
 
 ```bash
-export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key)
-echo "Key starts with: ${GOOGLE_API_KEY:0:10}"
+export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key)
+echo "Key starts with: ${GOOGLE_API_KEY:[REDACTED]}"
 ~/.local/bin/paperbanana generate \
   --input /tmp/fig_sdgd_pipeline_intent.txt \
   --caption "Schema decomposition pipeline and failure modes" \
@@ -9835,7 +9699,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema (few dissimilar types) yields the correct relation, while a high-complexity schema (many semantically similar types) causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r1.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema (few dissimilar types) yields the correct relation, while a high-complexity schema (many semantically similar types) causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r1.png \\\n  --iterations 5 2>&1",
   "description": "Generate Problem Illustration figure (round 1)",
   "timeout": "600000"
 }
@@ -9851,7 +9715,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema (few dissimilar types) yields the correct relation, while a high-complexity schema (many semantically similar types) causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r1.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema (few dissimilar types) yields the correct relation, while a high-complexity schema (many semantically similar types) causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r1.png \\\n  --iterations 5 2>&1",
     "description": "Generate Problem Illustration figure (round 1)",
     "timeout": "600000"
   }
@@ -10104,7 +9968,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema yields the correct relation, while a high-complexity schema causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema yields the correct relation, while a high-complexity schema causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r2.png \\\n  --iterations 5 2>&1",
   "description": "Generate Problem Illustration figure (round 2, vertical)",
   "timeout": "600000"
 }
@@ -10120,7 +9984,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema yields the correct relation, while a high-complexity schema causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. Given the same input, a low-complexity schema yields the correct relation, while a high-complexity schema causes type substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r2.png \\\n  --iterations 5 2>&1",
     "description": "Generate Problem Illustration figure (round 2, vertical)",
     "timeout": "600000"
   }
@@ -10316,7 +10180,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. A low-complexity schema yields the correct relation; a high-complexity schema with confusable types causes substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r3.png \\\n  --iterations 5 2>&1 | tail -20",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. A low-complexity schema yields the correct relation; a high-complexity schema with confusable types causes substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r3.png \\\n  --iterations 5 2>&1 | tail -20",
   "description": "Generate Problem Illustration figure (round 3)",
   "timeout": "600000"
 }
@@ -10332,7 +10196,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. A low-complexity schema yields the correct relation; a high-complexity schema with confusable types causes substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r3.png \\\n  --iterations 5 2>&1 | tail -20",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_problem.txt \\\n  --caption \"Schema complexity in zero-shot relation extraction. A low-complexity schema yields the correct relation; a high-complexity schema with confusable types causes substitution.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_problem_illustration_r3.png \\\n  --iterations 5 2>&1 | tail -20",
     "description": "Generate Problem Illustration figure (round 3)",
     "timeout": "600000"
   }
@@ -10510,7 +10374,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_compact.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Graph coloring partitions the schema into low-confusability sub-schemas, but routing failure in RE and merge amplification in NER/ED prevent practical gains.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_compact_r1.png \\\n  --iterations 5 2>&1 | tail -20",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_compact.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Graph coloring partitions the schema into low-confusability sub-schemas, but routing failure in RE and merge amplification in NER/ED prevent practical gains.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_compact_r1.png \\\n  --iterations 5 2>&1 | tail -20",
   "description": "Generate SDGD compact figure (round 1)",
   "timeout": "600000"
 }
@@ -10526,7 +10390,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=$(cat /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_compact.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Graph coloring partitions the schema into low-confusability sub-schemas, but routing failure in RE and merge amplification in NER/ED prevent practical gains.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_compact_r1.png \\\n  --iterations 5 2>&1 | tail -20",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && export GOOGLE_API_KEY=[REDACTED] /tmp/.pb_google_key) && ~/.local/bin/paperbanana generate \\\n  --input /tmp/fig_sdgd_compact.txt \\\n  --caption \"Schema decomposition pipeline and failure modes. Graph coloring partitions the schema into low-confusability sub-schemas, but routing failure in RE and merge amplification in NER/ED prevent practical gains.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_compact_r1.png \\\n  --iterations 5 2>&1 | tail -20",
     "description": "Generate SDGD compact figure (round 1)",
     "timeout": "600000"
   }
@@ -11713,7 +11577,7 @@ called Bash
 
 ```json
 {
-  "command": "mkdir -p /tmp/pb_sdgd_compact_r1 && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition failure: graph-coloring partitioning creates low-confusability sub-schemas, but routing ambiguity (73% multi-match) and merge amplification (precision 0.56->0.21) negate the gains.',\n    '--output', '/tmp/pb_sdgd_compact_r1/diagram.png',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--iterations', '5']\napp()\n\" 2>&1",
+  "command": "mkdir -p /tmp/pb_sdgd_compact_r1 && GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition failure: graph-coloring partitioning creates low-confusability sub-schemas, but routing ambiguity (73% multi-match) and merge amplification (precision 0.56->0.21) negate the gains.',\n    '--output', '/tmp/pb_sdgd_compact_r1/diagram.png',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--iterations', '5']\napp()\n\" 2>&1",
   "description": "Run PaperBanana for SDGD compact figure R1",
   "timeout": "300000"
 }
@@ -11729,7 +11593,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "mkdir -p /tmp/pb_sdgd_compact_r1 && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition failure: graph-coloring partitioning creates low-confusability sub-schemas, but routing ambiguity (73% multi-match) and merge amplification (precision 0.56->0.21) negate the gains.',\n    '--output', '/tmp/pb_sdgd_compact_r1/diagram.png',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--iterations', '5']\napp()\n\" 2>&1",
+    "command": "mkdir -p /tmp/pb_sdgd_compact_r1 && GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition failure: graph-coloring partitioning creates low-confusability sub-schemas, but routing ambiguity (73% multi-match) and merge amplification (precision 0.56->0.21) negate the gains.',\n    '--output', '/tmp/pb_sdgd_compact_r1/diagram.png',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--iterations', '5']\napp()\n\" 2>&1",
     "description": "Run PaperBanana for SDGD compact figure R1",
     "timeout": "300000"
   }
@@ -11832,7 +11696,7 @@ STYLE REQUIREMENTS:
 - All text ≥ 7pt when printed at column width
 ```
 
-运行：`GOOGLE_API_KEY="$GOOGLE_API_KEY" paperbanana generate --input /tmp/fig_sdgd_compact.txt --caption "Schema decomposition pipeline and failure modes" --vlm-model gemini-2.5-pro --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_compact.png --iterations 5`
+运行：`GOOGLE_API_KEY="[REDACTED]" paperbanana generate --input /tmp/fig_sdgd_compact.txt --caption "Schema decomposition pipeline and failure modes" --vlm-model gemini-2.5-pro --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_compact.png --iterations 5`
 
 生成后转 PDF，Read PNG 检查质量，至少迭代 2 轮。完成后汇报。
 
@@ -11923,7 +11787,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
   "description": "Run PaperBanana R1 for SDGD compact figure",
   "timeout": "300000"
 }
@@ -11939,7 +11803,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
     "description": "Run PaperBanana R1 for SDGD compact figure",
     "timeout": "300000"
   }
@@ -12189,7 +12053,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v2.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v2.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
   "description": "Run PaperBanana R2 with refined intent",
   "timeout": "300000"
 }
@@ -12205,7 +12069,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v2.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v2.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
     "description": "Run PaperBanana R2 with refined intent",
     "timeout": "300000"
   }
@@ -12396,7 +12260,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v3.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r3.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v3.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r3.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
   "description": "Run PaperBanana R3 with portrait emphasis",
   "timeout": "300000"
 }
@@ -12412,7 +12276,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v3.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r3.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig_sdgd_compact_v3.txt',\n    '--caption', 'Schema decomposition pipeline and failure modes in zero-shot IE. Graph-coloring partitioning creates sub-schemas with low internal confusability, but routing failure (73% multi-match) and merge amplification (precision 0.56 to 0.21) undermine the pipeline.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig_sdgd_compact_r3.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
     "description": "Run PaperBanana R3 with portrait emphasis",
     "timeout": "300000"
   }
@@ -12913,7 +12777,7 @@ _source line 11537 · 2026-05-25T15:13:39.233707+00:00_
 
 **运行命令：**
 ```bash
-GOOGLE_API_KEY="$GOOGLE_API_KEY" paperbanana generate \
+GOOGLE_API_KEY="[REDACTED]" paperbanana generate \
   --input /tmp/fig1_problem_v2.txt \
   --caption "Schema complexity in zero-shot RE: same input under simple vs complex schemas" \
   --vlm-model gemini-2.5-pro \
@@ -13011,7 +12875,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v2.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v2.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
   "description": "Run PaperBanana R1 for Fig 1 problem illustration v2",
   "timeout": "300000"
 }
@@ -13027,7 +12891,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v2.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v2.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r1.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
     "description": "Run PaperBanana R1 for Fig 1 problem illustration v2",
     "timeout": "300000"
   }
@@ -13218,7 +13082,7 @@ called Bash
 
 ```json
 {
-  "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v3.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+  "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v3.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
   "description": "Run PaperBanana R2 for Fig 1",
   "timeout": "300000"
 }
@@ -13234,7 +13098,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v3.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
+    "command": "GOOGLE_API_KEY=\"[REDACTED]\" python3 -c \"\nfrom paperbanana.cli import app\nimport sys\nsys.argv = ['paperbanana', 'generate',\n    '--input', '/tmp/fig1_problem_v3.txt',\n    '--caption', 'Schema complexity in zero-shot RE: same input under simple vs complex schemas. Simple schema (few dissimilar types) yields correct prediction; complex schema (many semantically similar types) causes type confusion.',\n    '--vlm-model', 'gemini-2.5-pro',\n    '--output', '/tmp/fig1_problem_r2.png',\n    '--iterations', '5']\napp()\n\" 2>&1",
     "description": "Run PaperBanana R2 for Fig 1",
     "timeout": "300000"
   }

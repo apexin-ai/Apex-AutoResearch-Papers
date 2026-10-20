@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_disk-usage-audit_20260515T063235_result.json",
     "occurrence": 1,
-    "bytes": 3098,
-    "sha256": "992e3019005227f7bf688676a3df850f98fda8eebbf9e31fb7cc295792678928"
+    "bytes": 3097,
+    "sha256": "3c06f4ccaa2fa465c015526099bdd9b2b5d91b26cc4e5bb9de172a48ea28e7d4"
   },
   "statistics": {
     "messages": 1,

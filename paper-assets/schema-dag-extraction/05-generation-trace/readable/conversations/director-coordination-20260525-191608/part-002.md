@@ -16099,7 +16099,7 @@ _source line 948 · 2026-05-22T08:18:17.777692+00:00_
 总体：代码完整（42 scripts + SDGD 模块）、README 质量好、无大文件（996K 纯代码）、匿名性大部分 PASS。
 
 **🔴 问题 1（去匿名化风险）**：`src/run_fewrel_gpt4o_mini.py:42` 硬编码了 API key：
-`DEFAULT_API_KEY = "tum_XXB3sZIL..."`
+`DEFAULT_API_KEY = "[REDACTED]"`
 `tum_` 前缀可能暴露机构身份（TUM）。需替换为 `"YOUR_API_KEY_HERE"` 或纯环境变量读取。
 
 **🟡 问题 2（完整性）**：README 引用 `configs/fewnerd_type_definitions.json`，但 `configs/` 目录不存在。需补上或在 README 中说明如何生成。
@@ -16120,7 +16120,7 @@ _source line 948 · 2026-05-22T08:18:17.777692+00:00_
 Worker 发现两个问题，其中一个 **critical**：
 
 ### CRITICAL: API Key 泄露 + 去匿名化风险
-`artifacts/anonymous_github/src/run_fewrel_gpt4o_mini.py:42` 硬编码了 `DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"`。
+`artifacts/anonymous_github/src/run_fewrel_gpt4o_mini.py:42` 硬编码了 `DEFAULT_API_KEY = "[REDACTED]"`。
 
 两重风险：
 1. **去匿名化**：`tum_` 前缀可能关联 TUM（Technische Universität München），reviewer 可据此推断作者身份，违反双盲审稿
@@ -16159,7 +16159,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ```json
 {
-  "text": "**紧急修复 Anonymous GitHub 包（P0，立即执行）**\n\n两个问题都修：\n\n1. **CRITICAL: API key 泄露** — `artifacts/anonymous_github/src/run_fewrel_gpt4o_mini.py:42`，将 `DEFAULT_API_KEY = \"tum_XXB3sZIL...\"` 替换为 `os.environ.get(\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")`。同时 grep 整个 `artifacts/anonymous_github/` 确认没有其他硬编码 key 或 `tum_` 前缀。\n\n2. **configs/ 缺失** — 检查主代码仓库中 `configs/fewnerd_type_definitions.json` 是否存在。存在则复制到 `artifacts/anonymous_github/configs/`；不存在则在 README 中补充说明如何生成（指向对应的生成脚本）。\n\n修复后做一次完整 grep 扫描：`grep -rn \"tum_\\|api_key\\|API_KEY.*=.*\\\"[a-zA-Z0-9]\" artifacts/anonymous_github/` 确认无残留敏感信息。\n\nAuthor response template 继续跑，不中断。两项完成后分别汇报。",
+  "text": "**紧急修复 Anonymous GitHub 包（P0，立即执行）**\n\n两个问题都修：\n\n1. **CRITICAL: API key 泄露** — `artifacts/anonymous_github/src/run_fewrel_gpt4o_mini.py:42`，将 `DEFAULT_API_KEY = \"[REDACTED]\"` 替换为 `os.environ.get(\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")`。同时 grep 整个 `artifacts/anonymous_github/` 确认没有其他硬编码 key 或 `tum_` 前缀。\n\n2. **configs/ 缺失** — 检查主代码仓库中 `configs/fewnerd_type_definitions.json` 是否存在。存在则复制到 `artifacts/anonymous_github/configs/`；不存在则在 README 中补充说明如何生成（指向对应的生成脚本）。\n\n修复后做一次完整 grep 扫描：`grep -rn \"tum_\\|api_key\\|API_KEY.*=.*\\\"[a-zA-Z0-9]\" artifacts/anonymous_github/` 确认无残留敏感信息。\n\nAuthor response template 继续跑，不中断。两项完成后分别汇报。",
   "project": "schema-dag-extraction"
 }
 ```
@@ -16174,7 +16174,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "**紧急修复 Anonymous GitHub 包（P0，立即执行）**\n\n两个问题都修：\n\n1. **CRITICAL: API key 泄露** — `artifacts/anonymous_github/src/run_fewrel_gpt4o_mini.py:42`，将 `DEFAULT_API_KEY = \"tum_XXB3sZIL...\"` 替换为 `os.environ.get(\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")`。同时 grep 整个 `artifacts/anonymous_github/` 确认没有其他硬编码 key 或 `tum_` 前缀。\n\n2. **configs/ 缺失** — 检查主代码仓库中 `configs/fewnerd_type_definitions.json` 是否存在。存在则复制到 `artifacts/anonymous_github/configs/`；不存在则在 README 中补充说明如何生成（指向对应的生成脚本）。\n\n修复后做一次完整 grep 扫描：`grep -rn \"tum_\\|api_key\\|API_KEY.*=.*\\\"[a-zA-Z0-9]\" artifacts/anonymous_github/` 确认无残留敏感信息。\n\nAuthor response template 继续跑，不中断。两项完成后分别汇报。",
+    "text": "**紧急修复 Anonymous GitHub 包（P0，立即执行）**\n\n两个问题都修：\n\n1. **CRITICAL: API key 泄露** — `artifacts/anonymous_github/src/run_fewrel_gpt4o_mini.py:42`，将 `DEFAULT_API_KEY = \"[REDACTED]\"` 替换为 `os.environ.get(\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")`。同时 grep 整个 `artifacts/anonymous_github/` 确认没有其他硬编码 key 或 `tum_` 前缀。\n\n2. **configs/ 缺失** — 检查主代码仓库中 `configs/fewnerd_type_definitions.json` 是否存在。存在则复制到 `artifacts/anonymous_github/configs/`；不存在则在 README 中补充说明如何生成（指向对应的生成脚本）。\n\n修复后做一次完整 grep 扫描：`grep -rn \"tum_\\|api_key\\|API_KEY.*=.*\\\"[a-zA-Z0-9]\" artifacts/anonymous_github/` 确认无残留敏感信息。\n\nAuthor response template 继续跑，不中断。两项完成后分别汇报。",
     "project": "schema-dag-extraction"
   }
 }

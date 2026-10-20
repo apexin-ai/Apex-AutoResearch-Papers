@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diag_fewrel_80rel_sighup_20260515T134010_result.json",
     "occurrence": 1,
-    "bytes": 1602,
-    "sha256": "3f56339f965805962d3651f73841db09fd3c0f793d048d6c89e6e20aebccc857"
+    "bytes": 1601,
+    "sha256": "ae9f68cbd4af40143f713c47b24a782969b98976551a50249024b493e14c186f"
   },
   "statistics": {
     "messages": 1,

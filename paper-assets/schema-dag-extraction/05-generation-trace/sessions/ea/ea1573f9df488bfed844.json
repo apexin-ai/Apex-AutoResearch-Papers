@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_paired_constrained_20260519T195857_result.json",
     "occurrence": 1,
-    "bytes": 431,
-    "sha256": "3465f923806342bcc292e474c2bf157f53bf3f3fb3b72c080e34cac2a4a81359"
+    "bytes": 430,
+    "sha256": "377e36f2be91421ca906f378625f2e5385683f6f375a80836d7bfb621124c8ad"
   },
   "statistics": {
     "messages": 1,

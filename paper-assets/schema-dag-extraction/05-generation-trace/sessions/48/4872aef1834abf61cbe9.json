@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_verify_figure_and_practical_mag_20260516T035935_result.json",
     "occurrence": 1,
-    "bytes": 873,
-    "sha256": "9ea3df9c10fa7ddef41cc7160463f8cb417643db9a8975c6a9076ec5d7681fda"
+    "bytes": 872,
+    "sha256": "d6fa56ba865bb5a5659c7d973dd463fc71e4a437199beefc1f0a47718a29c796"
   },
   "statistics": {
     "messages": 1,

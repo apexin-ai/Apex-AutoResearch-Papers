@@ -1288,7 +1288,7 @@
           "content": [
             {
               "type": "text",
-              "text": "origin\thttps://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+              "text": "origin\thttps://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
             }
           ],
           "metadata": {

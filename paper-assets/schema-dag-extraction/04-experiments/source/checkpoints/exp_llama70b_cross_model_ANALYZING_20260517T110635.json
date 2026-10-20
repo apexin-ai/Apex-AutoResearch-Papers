@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_llama70b_cross_model",
+  "project": "schema-dag-extraction",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:20:05.924Z",
+    "updated_at": "2026-05-17T11:06:35.599Z",
+    "hypothesis": "LLaMA 3.1 70B-Instruct FP8 will replicate the two-dimensional degradation pattern (count-associated recall decline + confusability-associated type confusion) observed on Qwen3-32B, with BCS-accuracy correlation direction preserved despite potential magnitude differences. 70B scale should show stronger Dimension 2 signal than 8B, closing the gap with 32B.",
+    "parent": "exp_prompt_sensitivity",
+    "spec": {
+      "command": "bash scripts/run_llama70b_cross_model.sh",
+      "server": "westd-24295",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "21546",
+      "log_path": "~/runs/schema-dag-extraction/exp_llama70b_cross_model.log",
+      "submitted_at": "2026-05-17T08:25:53.099Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_80rel + fewnerd",
+      "data_count": "~5600 FewRel + ~4000 Few-NERD instances",
+      "model_name": "neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8",
+      "seed": "42",
+      "checkpoint_source": "N/A - inference only, using pretrained FP8 weights",
+      "eval_data": "FewRel 80-rel (count curves + BCS-controlled extreme batches) + Few-NERD (count curves)"
+    },
+    "metrics": {
+      "exp2_bcs_controlled": {
+        "count_16_low_bcs": 0.7083,
+        "count_16_high_bcs": 0.599,
+        "delta_pp": 10.94,
+        "ci_95": [
+          3.02,
+          20.1
+        ]
+      },
+      "exp3_fewnerd": "crashed - datasets module missing, restarting"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T11:06:35.287Z"
+    }
+  },
+  "timestamp": "2026-05-17T11:06:35.745091+00:00",
+  "trigger": "update_registry"
+}

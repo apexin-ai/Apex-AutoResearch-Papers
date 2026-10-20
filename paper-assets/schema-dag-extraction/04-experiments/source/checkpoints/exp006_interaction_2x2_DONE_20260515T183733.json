@@ -1,0 +1,81 @@
+{
+  "exp_id": "exp006_interaction_2x2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-15T17:18:49.619Z",
+    "updated_at": "2026-05-15T18:37:33.919Z",
+    "hypothesis": "Count × Confusability 交互效应：{low count, high count} × {low BCS, high BCS} 2×2 设计，测试 count 和 confusability 对 accuracy 的影响是 additive 还是 multiplicative。若 multiplicative，高 count + 高 BCS 组的 degradation 应超过两个主效应之和。",
+    "parent": "exp002_confusability_controlled",
+    "plan_id": "exp-006",
+    "server": "cqa1-38874",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:20:09.901Z",
+      "finished_at": "2026-05-15T18:33:22.708Z",
+      "training_hours": 1.22
+    },
+    "failure_reason": "Traceback → extraction/src/run_extraction.py\", line 231, in run_extraction batches_to_run.append((\"low_bcs\", strategies[\"low_bcs\"][\"types\"], strategies[\"low_bcs\"][\"bcs\"])) ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^ TypeError: list indices must be integers or slices, not str",
+    "completed_at": "2026-05-15T17:48:27.854Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T17:48:29.418279+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T18:33:24.005257+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 python scripts/run_exp006_interaction.py --max_samples 1000\"",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 40000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "log_path": "~/runs/schema-dag-extraction/exp006_interaction_2x2.log",
+      "checkpoint_source": "N/A (training-free inference)",
+      "eval_data": "Few-NERD test split, 40 batches x 1000 samples"
+    },
+    "metrics": {
+      "cell_means_f1": {
+        "low_count_low_bcs": 0.324,
+        "low_count_high_bcs": 0.313,
+        "high_count_low_bcs": 0.325,
+        "high_count_high_bcs": 0.277
+      },
+      "main_effects": {
+        "count": -0.018,
+        "bcs": -0.029
+      },
+      "interaction": {
+        "estimate": -0.036,
+        "z": -0.667,
+        "p": 0.505,
+        "bcs_effect_at_low_count": -0.011,
+        "bcs_effect_at_high_count": -0.048
+      },
+      "verdict": "交互方向符合 multiplicative 假设但统计不显著 (p=0.505)，未检测到显著交互效应"
+    },
+    "conclusion": "negative",
+    "notes": "2×2 交互效应方向符合 multiplicative 假设（高 count 时 BCS 对 F1 的负效应更大：-0.048 vs -0.011），但交互项不显著（z=-0.667, p=0.505）。主效应均为小幅负值（count: -0.018, BCS: -0.029）。40 batches × 1000 samples 的统计功效不足以检测到 ~0.036 量级的交互效应。高 count 组 F1 方差更小（std 0.059-0.070 vs 0.099-0.106），可能因为更多 type 带来的平均效应。",
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp006/",
+    "log_path": "~/runs/schema-dag-extraction/exp006_interaction_2x2.log"
+  },
+  "timestamp": "2026-05-15T18:37:33.986564+00:00",
+  "trigger": "update_registry"
+}

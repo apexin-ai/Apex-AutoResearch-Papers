@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_cleanup_exp012_label_fix_gpu_20260515T203504_result.json",
     "occurrence": 1,
-    "bytes": 224,
-    "sha256": "3889f6cd46a2e7658e569149e72a9f07f6c5a5dec3e75f7aff3856972dd4a8cc"
+    "bytes": 223,
+    "sha256": "7439ff6b9f5a1fddbc70ada6f0b4a99903dbde875535486e9e0cc16c83c35550"
   },
   "statistics": {
     "messages": 1,

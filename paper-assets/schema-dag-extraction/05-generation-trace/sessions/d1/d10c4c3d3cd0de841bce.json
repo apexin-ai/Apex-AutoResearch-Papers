@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_fig1a-3seed-upgrade_20260517T053329_result.json",
     "occurrence": 1,
-    "bytes": 1501,
-    "sha256": "bc1d61b0cff2159e3c5ea82dcd15a89914f18647a8b2b07f2e3e433a2414eb24"
+    "bytes": 1500,
+    "sha256": "487afa568c2cd7edbca19e0894c23cb77a7e84027aeb24eff56421ecd55e927d"
   },
   "statistics": {
     "messages": 1,

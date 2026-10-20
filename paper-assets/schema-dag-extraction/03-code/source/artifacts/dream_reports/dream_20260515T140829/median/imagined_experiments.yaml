@@ -1,0 +1,835 @@
+tier: median
+narrative_guidance: 'Paper pivots to analysis-only framing. Claim 3 downgrades from
+  "SDGD is effective" to "SDGD reveals merge amplification as a fundamental bottleneck
+  in decomposition-based IE." Three contributions: (1) first controlled multi-channel
+  degradation study cross-task, (2) pairwise confusability as robust signal + centrality
+  confound analysis, (3) merge amplification as previously uncharacterized failure
+  mode explaining why UniNER/LLM-PEE gains are modest. LLaMA evidence softened to
+  "consistent direction across models, strongest on primary model." EMNLP Main viable;
+  Findings likely if reviewers demand stronger multi-model or positive SDGD.
+
+  '
+imagined_experiments:
+- name: DocRED Confusability Study
+  plan_id: exp-005
+  description: Count curve + BCS correlation on DocRED (96 relation types). Scaling
+    stress test for document-level RE.
+  expected_results:
+    count_1_acc: 0.52
+    count_4_acc: 0.48
+    count_8_acc: 0.41
+    count_16_acc: 0.34
+    count_32_acc: 0.28
+    count_64_acc: 0.22
+    count_96_acc: 0.18
+    bcs_effect_count_8_delta_pp: -14.5
+    bcs_effect_count_16_delta_pp: -18.3
+    pairwise_r: 0.09
+    pairwise_p: 0.003
+    per_type_spearman_rho: -0.15
+    per_type_p: 0.11
+  result_rationale: 'DocRED is document-level RE with multi-hop reasoning, inherently
+    harder than FewRel sentence-level. Baseline accuracy lower (~52% at count_1 vs
+    FewRel''s 86%) because document-level context window is larger and entity pair
+    identification adds complexity. Count degradation steeper in absolute terms (52%→18%)
+    because 96 relation types create a denser confusability space than 16-rel FewRel,
+    and document-level prompts consume more context budget. BCS effect present (-14
+    to -18pp) but noisier than FewRel because document-level errors conflate relation
+    confusion with entity pair misidentification. Pairwise r≈0.09 is weaker than Few-NERD
+    (0.156) due to document-level noise floor — many errors stem from entity linking
+    failures rather than pure type confusion. Per-type signal directional but not
+    significant (p=0.11) because DocRED has fewer high-frequency relation types (many
+    long-tail types with <5 instances in test set).
+
+    '
+  tables:
+  - name: 'Table: DocRED Count Curve'
+    columns:
+    - count
+    - acc
+    - bcs_mean
+    - n_batches
+    rows:
+    - - 1
+      - 0.52
+      - 0.0
+      - 96
+    - - 4
+      - 0.48
+      - 0.61
+      - 5
+    - - 8
+      - 0.41
+      - 0.72
+      - 5
+    - - 16
+      - 0.34
+      - 0.81
+      - 5
+    - - 32
+      - 0.28
+      - 0.89
+      - 5
+    - - 64
+      - 0.22
+      - 0.94
+      - 5
+    - - 96
+      - 0.18
+      - 0.97
+      - 5
+  - name: 'Table: DocRED BCS-Controlled'
+    columns:
+    - count
+    - low_bcs_acc
+    - high_bcs_acc
+    - delta_pp
+    rows:
+    - - 8
+      - 0.48
+      - 0.335
+      - -14.5
+    - - 16
+      - 0.43
+      - 0.247
+      - -18.3
+  figures_description:
+  - Count curve plot showing steeper degradation than FewRel, with annotation highlighting
+    document-level complexity penalty
+  - BCS-controlled comparison bars at count=8 and count=16, with FewRel overlay for
+    cross-task comparison
+  analysis: 'DocRED replicates the confusability effect cross-task (sentence RE →
+    document RE) but with higher noise floor. BCS effect amplification from 16-rel
+    to 96-rel (est. 2.0x vs FewRel''s 3.4x) is weaker because document-level errors
+    are multi-causal. Usable as supporting evidence in Table but not a primary result.
+    The weaker pairwise signal (r=0.09) is consistent with the median tier expectation
+    that cross-task generalization holds directionally but not uniformly. Report as
+    "consistent direction, attenuated by document-level complexity" in paper.
+
+    '
+- name: Interaction Effect 2x2
+  plan_id: exp-006
+  description: '{low count, high count} × {low BCS, high BCS} factorial on Few-NERD.
+    Tests additive vs multiplicative interaction.'
+  expected_results:
+    low_count_low_bcs_f1: 0.38
+    low_count_high_bcs_f1: 0.31
+    high_count_low_bcs_f1: 0.32
+    high_count_high_bcs_f1: 0.21
+    count_main_effect_f1: -0.08
+    bcs_main_effect_f1: -0.09
+    interaction_term_f1: -0.02
+    interaction_p: 0.14
+    model: two-way ANOVA
+  result_rationale: 'In median tier, count and BCS degrade F1 through partially independent
+    channels (recall vs type confusion), so main effects are both significant. The
+    interaction term is negative (super-additive: high count + high BCS is worse than
+    sum of individual effects) but NOT significant at p<0.05 because: (a) n=27 batches
+    per cell is underpowered for detecting interaction, (b) the interaction is modest
+    (-2pp) relative to noise in batch-level metrics. This is actually fine for the
+    paper — additive model is simpler to present and the slight super-additivity is
+    mentioned as a trend. The 2x2 table still provides clean visual evidence that
+    both channels operate independently.
+
+    '
+  tables:
+  - name: 'Table: 2x2 Factorial Results (F1)'
+    columns:
+    - ''
+    - Low BCS (≤Q1)
+    - High BCS (≥Q3)
+    rows:
+    - - Low count (6)
+      - 0.38 ± 0.04
+      - 0.31 ± 0.05
+    - - High count (22)
+      - 0.32 ± 0.03
+      - 0.21 ± 0.04
+  - name: 'Table: ANOVA Summary'
+    columns:
+    - Source
+    - SS
+    - F
+    - p
+    rows:
+    - - Count
+      - 0.042
+      - 8.7
+      - 0.004
+    - - BCS
+      - 0.051
+      - 10.6
+      - 0.002
+    - - Count × BCS
+      - 0.008
+      - 1.7
+      - 0.14
+    - - Residual
+      - 0.245
+      - ''
+      - ''
+  figures_description:
+  - 'Interaction plot: two lines (low/high BCS) across count levels, near-parallel
+    with slight convergence at high count'
+  analysis: 'Additive model explains >85% of variance from count and BCS. Interaction
+    term trending but not significant — underpowered. Paper frames as: "Count and
+    confusability degrade extraction through orthogonal channels; we find no evidence
+    of significant interaction (p=0.14), consistent with an additive multi-channel
+    model." The non-significant interaction actually strengthens the multi-channel
+    narrative by supporting channel independence.
+
+    '
+- name: SDGD-zero on MAVEN
+  plan_id: exp-009
+  description: SDGD-zero on MAVEN 168 event types. Compare vs single-pass + random
+    batching.
+  expected_results:
+    single_pass_relaxed_f1: 0.245
+    single_pass_precision: 0.28
+    single_pass_recall: 0.22
+    sdgd_zero_relaxed_f1: 0.17
+    sdgd_zero_precision: 0.12
+    sdgd_zero_recall: 0.29
+    random_batch_relaxed_f1: 0.19
+    random_batch_precision: 0.14
+    random_batch_recall: 0.3
+    per_type_relaxed_f1: 0.15
+    per_type_precision: 0.09
+    per_type_recall: 0.41
+    sdgd_zero_vs_single_delta_f1: -0.075
+    n_sdgd_batches: 12
+    sdgd_time_s: 720
+    single_pass_time_s: 95
+  result_rationale: 'MAVEN replicates the exp-008 merge amplification pattern: all
+    decomposition modes F1 < single-pass. The effect is even more pronounced on MAVEN
+    because: (1) 168 types means more batches (12 vs 8), amplifying merge conflicts,
+    (2) event detection triggers are shorter spans (often single words) making merge
+    deduplication harder — same trigger word extracted as different event types across
+    batches, (3) MAVEN''s semantically homogeneous type space means SDGD-zero''s embedding-based
+    separation is less effective (types that look dissimilar in embedding space may
+    still be confused by the LLM due to context overlap). Random batching performs
+    similarly to SDGD-zero (gap narrows from Few-NERD) because in a homogeneous schema,
+    there''s no "good" partition — all batches have similar internal confusability.
+    This cross-task replication of the negative result strengthens the merge amplification
+    narrative.
+
+    '
+  tables:
+  - name: 'Table: MAVEN Decomposition Comparison (relaxed F1)'
+    columns:
+    - Method
+    - F1
+    - Precision
+    - Recall
+    - Batches
+    - Time(s)
+    rows:
+    - - Single-pass
+      - 0.245
+      - 0.28
+      - 0.22
+      - 1
+      - 95
+    - - SDGD-zero
+      - 0.17
+      - 0.12
+      - 0.29
+      - 12
+      - 720
+    - - Random-batch
+      - 0.19
+      - 0.14
+      - 0.3
+      - 12
+      - 680
+    - - Per-type
+      - 0.15
+      - 0.09
+      - 0.41
+      - 168
+      - 4200
+  figures_description:
+  - 'Bar chart: F1/Precision/Recall grouped by method, showing recall-precision tradeoff
+    pattern mirrors Few-NERD'
+  - 'Merge amplification analysis: duplicate predictions per trigger across batch
+    count'
+  analysis: 'Cross-task confirmation that merge amplification is the fundamental bottleneck,
+    not confusability-aware batching. On MAVEN, SDGD-zero even closer to random-batch
+    (Δ=0.02 vs 0.07 on Few-NERD), consistent with homogeneous schema reducing the
+    benefit of similarity-based separation. Paper uses this as evidence that merge
+    amplification is "task-general" and not an artifact of NER-specific evaluation.
+
+    '
+- name: SDGD-cal on Few-NERD
+  plan_id: exp-010
+  description: Empirical confusability from 5-10 calibration examples, no gradients.
+    Compare vs SDGD-zero.
+  expected_results:
+    sdgd_cal_f1: 0.3
+    sdgd_cal_precision: 0.24
+    sdgd_cal_recall: 0.4
+    sdgd_zero_f1: 0.2514
+    single_pass_f1: 0.4451
+    sdgd_cal_vs_zero_delta: 0.05
+    sdgd_cal_vs_single_delta: -0.145
+    calibration_cost_examples: 8
+    calibration_cost_api_calls: 8
+    empirical_vs_embedding_confusion_rank_corr: 0.38
+  result_rationale: 'Calibration improves confusability estimation (empirical confusion
+    matrix is more accurate than embedding cosine similarity — rank corr ≈0.38 vs
+    perfect). SDGD-cal creates better batch partitions than SDGD-zero: fewer high-confusion
+    pairs co-batched. This yields +5pp F1 over SDGD-zero (better precision from fewer
+    intra-batch confusions). However, SDGD-cal still loses to single-pass by 14.5pp
+    because merge amplification is independent of batch quality — it occurs at the
+    merge step regardless of how well-separated the batches are. Recall still higher
+    than single-pass (0.40 vs 0.37) confirming decomposition''s recall benefit, but
+    precision gap (0.24 vs 0.56) dominates. The calibration cost is minimal (8 API
+    calls) but the gain doesn''t overcome the fundamental merge problem. In median
+    tier, this is a marginal improvement that confirms the bottleneck diagnosis rather
+    than solving it.
+
+    '
+  tables:
+  - name: 'Table: SDGD-cal vs SDGD-zero vs Single-pass'
+    columns:
+    - Method
+    - F1
+    - P
+    - R
+    - Batches
+    - Calibration
+    rows:
+    - - Single-pass
+      - 0.445
+      - 0.563
+      - 0.368
+      - 1
+      - N/A
+    - - SDGD-zero
+      - 0.251
+      - 0.21
+      - 0.314
+      - 8
+      - None
+    - - SDGD-cal
+      - 0.3
+      - 0.24
+      - 0.4
+      - 8
+      - 8 examples
+    - - Random-batch
+      - 0.32
+      - 0.249
+      - 0.446
+      - 8
+      - N/A
+  figures_description:
+  - 'Confusion matrix heatmap: empirical vs embedding-predicted, showing calibration
+    improves type-pair confusion ranking'
+  - 'Precision-recall scatter: single-pass vs SDGD variants, showing all decompositions
+    in high-recall low-precision quadrant'
+  analysis: 'SDGD-cal demonstrates that better confusability estimation helps batch
+    composition (+5pp over SDGD-zero) but cannot overcome merge amplification. Notably,
+    random-batch still beats SDGD-cal in F1 (0.32 vs 0.30) because random batching
+    doesn''t systematically concentrate difficult types — it achieves better precision
+    through lucky mixing. This is the smoking gun for "the problem is merge, not partition."
+    Paper frames SDGD-cal as ablation evidence isolating the merge bottleneck.
+
+    '
+- name: SDGD-cal on MAVEN
+  plan_id: exp-011
+  description: Empirical confusability with calibration on 168 event types. Full comparison
+    table.
+  expected_results:
+    sdgd_cal_relaxed_f1: 0.19
+    sdgd_cal_precision: 0.14
+    sdgd_cal_recall: 0.32
+    sdgd_zero_relaxed_f1: 0.17
+    single_pass_relaxed_f1: 0.245
+    sdgd_cal_vs_zero_delta: 0.02
+    sdgd_cal_vs_single_delta: -0.055
+    calibration_cost_examples: 10
+  result_rationale: 'On MAVEN, SDGD-cal''s improvement over SDGD-zero is smaller (+2pp
+    vs +5pp on Few-NERD) because: (1) the semantically homogeneous schema means even
+    empirical calibration struggles to find clean partitions — most type pairs have
+    non-trivial confusability, (2) 168 types require 12+ batches, amplifying merge
+    issues further, (3) event trigger boundaries are inherently fuzzy, so merge deduplication
+    errors compound. The gap between SDGD-cal and single-pass (-5.5pp) is smaller
+    than Few-NERD (-14.5pp) in relative terms because MAVEN single-pass baseline is
+    already lower (0.245 vs 0.445). Pattern is consistent: calibration helps confusability
+    estimation but merge amplification remains the binding constraint.
+
+    '
+  tables:
+  - name: 'Table: MAVEN Full Comparison'
+    columns:
+    - Method
+    - Relaxed F1
+    - P
+    - R
+    - Batches
+    rows:
+    - - Single-pass
+      - 0.245
+      - 0.28
+      - 0.22
+      - 1
+    - - SDGD-zero
+      - 0.17
+      - 0.12
+      - 0.29
+      - 12
+    - - SDGD-cal
+      - 0.19
+      - 0.14
+      - 0.32
+      - 12
+    - - Random-batch
+      - 0.19
+      - 0.14
+      - 0.3
+      - 12
+    - - Per-type
+      - 0.15
+      - 0.09
+      - 0.41
+      - 168
+  figures_description:
+  - 'Cross-task merge amplification: Few-NERD vs MAVEN decomposition penalty, showing
+    consistent pattern'
+  analysis: 'MAVEN confirms merge amplification is task-general. SDGD-cal ≈ random-batch
+    on MAVEN (both 0.19), reinforcing that partition quality is secondary to merge
+    quality. Paper presents the full 2-task × 5-method table as Table 4, with merge
+    amplification as the unified explanation for all decomposition failures.
+
+    '
+- name: LLaMA Multi-Model Validation
+  plan_id: exp-012
+  description: Replicate exp-002 protocol on Few-NERD with LLaMA-3.3-70B-Instruct.
+    Addresses single-model concern.
+  expected_results:
+    pairwise_pearson_r: 0.08
+    pairwise_pearson_p: 0.0004
+    pairwise_n_pairs: 1953
+    pairwise_spearman_rho: 0.07
+    pairwise_spearman_p: 0.002
+    nonzero_spearman_rho: 0.15
+    nonzero_spearman_p: 0.012
+    per_type_spearman_rho: -0.18
+    per_type_p: 0.08
+    count_6_f1: 0.28
+    count_12_f1: 0.31
+    confusion_ratio_extreme_count_6: 4.2
+    confusion_ratio_extreme_count_12: 5.8
+    bcs_effect_count_12_delta_f1: -0.06
+    f1_vs_bcs_partial_r_count_12: 0.32
+    f1_vs_bcs_partial_p_count_12: 0.04
+  result_rationale: 'LLaMA-3.3-70B shows directionally consistent but weaker signal
+    than Qwen3-32B because: (1) LLaMA''s instruction-following for structured NER
+    output is less reliable — more format errors and missed entities reduce statistical
+    power by adding noise uncorrelated with BCS, (2) LLaMA-70B has more capacity than
+    Qwen3-32B, potentially better at distinguishing similar types (higher baseline
+    → smaller confusability effect), (3) the Qwen3 embeddings used for BCS computation
+    are naturally more predictive of Qwen3''s confusion patterns than LLaMA''s — there''s
+    an embedding-model alignment effect (documented in D010 for MiniLM vs Qwen3).
+    Pairwise r=0.08 is significant (p<0.001, n=1953) but half the Qwen3 effect (0.156).
+    Per-type analysis trends negative (ρ=-0.18) but p=0.08 misses significance — consistent
+    with median tier definition "directional but not compelling standalone." Confusion
+    ratio 4-6x is above 1 but well below Qwen3''s 10-28x, because LLaMA''s higher
+    capacity means extreme batches still partially resolve confusable types. The cross-model
+    BCS effect delta is -6pp (vs Qwen3''s implied ~-8pp at count_12), falling in the
+    defined range [-20, -5].
+
+    '
+  tables:
+  - name: 'Table: Cross-Model Pairwise Comparison'
+    columns:
+    - Metric
+    - Qwen3-32B
+    - LLaMA-3.3-70B
+    rows:
+    - - Pairwise r
+      - 0.156
+      - 0.08
+    - - Pairwise p
+      - '4.6e-12'
+      - 4e-4
+    - - Nonzero ρ
+      - 0.254
+      - 0.15
+    - - Per-type ρ
+      - -0.293
+      - -0.18
+    - - Per-type p
+      - 0.02
+      - 0.08
+    - - Confusion ratio (extreme)
+      - 10-28x
+      - 4-6x
+  - name: 'Table: LLaMA Count Curve'
+    columns:
+    - count
+    - F1
+    - Precision
+    - Recall
+    rows:
+    - - 1
+      - 0.3
+      - 0.2
+      - 0.58
+    - - 6
+      - 0.28
+      - 0.22
+      - 0.39
+    - - 12
+      - 0.31
+      - 0.3
+      - 0.32
+    - - 22
+      - 0.27
+      - 0.31
+      - 0.24
+    - - 44
+      - 0.35
+      - 0.4
+      - 0.31
+    - - 64
+      - 0.33
+      - 0.45
+      - 0.26
+  figures_description:
+  - 'Side-by-side pairwise SCS vs confusion scatter: Qwen3 (left) with clear trend,
+    LLaMA (right) with noisier but directional trend'
+  - Cross-model count curves overlaid, showing parallel degradation patterns
+  analysis: 'LLaMA replicates direction on all metrics but with roughly half the effect
+    size. Pairwise signal remains significant (p<0.001) — sufficient for "consistent
+    direction across models." Per-type p=0.08 means we cannot claim per-type significance
+    on LLaMA alone, but combined with Qwen3 the pattern is clear. Paper softens multi-model
+    claim to "consistent direction across models, strongest on primary model (Qwen3-32B)"
+    and notes embedding-model alignment as a factor. This is adequate for EMNLP Main
+    with the softened claim; a reviewer requesting LLaMA-specific embeddings for BCS
+    is addressable in rebuttal but not pre-submission given timeline.
+
+    '
+- name: 'Ablation: Random Batching'
+  plan_id: exp-013
+  description: Random batching with same k as SDGD. Isolates confusability-aware grouping
+    from batch count reduction.
+  expected_results:
+    random_k8_f1: 0.315
+    random_k8_precision: 0.245
+    random_k8_recall: 0.44
+    random_k8_std_f1: 0.025
+    sdgd_zero_k8_f1: 0.251
+    single_pass_f1: 0.445
+    random_vs_sdgd_delta: 0.064
+    random_vs_single_delta: -0.13
+    n_random_seeds: 10
+    random_seed_f1_range:
+    - 0.28
+    - 0.35
+  result_rationale: 'Random batching at k=8 outperforms SDGD-zero (+6.4pp F1), replicating
+    exp-008''s finding. This occurs because SDGD-zero''s confusability-minimizing
+    partition concentrates semantically distant types together — these types often
+    span different domains (e.g., person subtypes + location subtypes), and the model
+    performs worse when batch types are too heterogeneous (loses cross-type contextual
+    priming). Random batches accidentally achieve better balance between similarity
+    separation and contextual coherence. However, random batching still loses to single-pass
+    by 13pp because merge amplification affects all decomposition equally. The 10-seed
+    variance (σ=0.025) shows random batching is moderately stable. In median tier,
+    this ablation is the key evidence that batch composition quality is NOT the bottleneck
+    — merge strategy is.
+
+    '
+  tables:
+  - name: 'Table: Random Batching Ablation (10 seeds)'
+    columns:
+    - Seed
+    - F1
+    - P
+    - R
+    rows:
+    - - mean
+      - 0.315
+      - 0.245
+      - 0.44
+    - - std
+      - 0.025
+      - 0.02
+      - 0.03
+    - - min
+      - 0.28
+      - 0.21
+      - 0.39
+    - - max
+      - 0.35
+      - 0.28
+      - 0.49
+  - name: 'Table: Decomposition Method Ranking (Few-NERD)'
+    columns:
+    - Method
+    - F1
+    - ΔF1 vs single
+    rows:
+    - - Single-pass
+      - 0.445
+      - —
+    - - Random-batch (k=8)
+      - 0.315
+      - -0.13
+    - - Per-type (k=66)
+      - 0.292
+      - -0.153
+    - - SDGD-zero (k=8)
+      - 0.251
+      - -0.194
+  figures_description:
+  - 'Box plot: F1 distribution across 10 random seeds vs SDGD-zero point estimate'
+  - 'Merge amplification curve: duplicate prediction rate vs number of batches'
+  analysis: 'Random > SDGD-zero is paradoxical if you assume confusability-aware partition
+    should help. Paper explains: SDGD-zero optimizes for one objective (minimize intra-batch
+    confusability) but ignores another (maintain contextual coherence). The real bottleneck
+    is post-merge deduplication, which degrades proportionally to batch count regardless
+    of batch composition. This motivates framing SDGD''s failure as revealing merge
+    amplification rather than as a partition failure.
+
+    '
+- name: 'Ablation: Per-Type Splitting'
+  plan_id: exp-014
+  description: UniNER-style 1 type per batch. Upper bound on decomposition recall,
+    reveals latency-quality tradeoff.
+  expected_results:
+    per_type_f1: 0.292
+    per_type_precision: 0.194
+    per_type_recall: 0.586
+    per_type_batches: 66
+    per_type_time_s: 2532
+    per_type_recall_vs_single: 0.218
+    per_type_precision_vs_single: -0.369
+    per_type_f1_vs_single: -0.153
+    per_type_unique_preds: 8450
+    single_pass_unique_preds: 3200
+    merge_dup_rate: 0.38
+  result_rationale: 'Per-type splitting eliminates ALL type confusion (zero intra-batch
+    confusability) and maximizes recall (0.586 vs single-pass 0.368, +21.8pp). But
+    precision collapses (0.194 vs 0.563, -36.9pp) because: (1) each batch extracts
+    aggressively for its one type — without competing types, the model over-predicts,
+    (2) merging 66 batch outputs creates massive duplication — the same span extracted
+    as different types in different batches, (3) merge heuristics (longest match,
+    confidence-based) cannot reliably disambiguate since each batch''s prediction
+    is locally confident. The 38% merge duplicate rate quantifies this directly. Per-type
+    is the theoretical upper bound for recall under decomposition but the worst-case
+    for precision. The 33x latency overhead (2532s vs 77s) makes it impractical regardless.
+    This is already in exp-008 metrics; exp-014 adds systematic analysis of WHY precision
+    drops (merge duplication rate, over-prediction per batch).
+
+    '
+  tables:
+  - name: 'Table: Per-Type Detailed Breakdown'
+    columns:
+    - Metric
+    - Single-pass
+    - Per-type
+    - Delta
+    rows:
+    - - F1
+      - 0.445
+      - 0.292
+      - -0.153
+    - - Precision
+      - 0.563
+      - 0.194
+      - -0.369
+    - - Recall
+      - 0.368
+      - 0.586
+      - 0.218
+    - - Unique preds
+      - 3200
+      - 8450
+      - +164%
+    - - Merge duplicates
+      - N/A
+      - 38%
+      - ''
+    - - Time (s)
+      - 77
+      - 2532
+      - 33x
+  figures_description:
+  - 'Precision-recall frontier: single-pass, random-k, SDGD-zero, per-type — showing
+    decomposition Pareto frontier below single-pass'
+  - Merge duplicate rate vs batch count, showing approximately linear scaling
+  analysis: 'Per-type confirms the merge amplification mechanism: recall scales with
+    decomposition granularity but precision degrades faster. The Pareto frontier shows
+    no decomposition point dominates single-pass on F1. This is the strongest evidence
+    for "merge amplification as fundamental bottleneck" — even the oracle partition
+    (zero confusability) cannot beat single-pass without a better merge strategy.
+    Paper uses per-type as the upper bound in the decomposition analysis table.
+
+    '
+- name: SCS Validation
+  plan_id: exp-015
+  description: Rank correlation between embedding SCS and empirical confusion matrix.
+    Validates embedding proxy.
+  expected_results:
+    spearman_rho_qwen3: 0.35
+    spearman_p_qwen3: 0.0001
+    kendall_tau_qwen3: 0.27
+    spearman_rho_minilm: 0.28
+    spearman_p_minilm: 0.001
+    top10_overlap_qwen3: 0.5
+    top10_overlap_minilm: 0.4
+    n_pairs_with_empirical: 420
+  result_rationale: 'Embedding SCS is a moderate proxy for empirical confusion (ρ=0.35
+    for Qwen3, 0.28 for MiniLM). The correlation is significant but far from perfect
+    because: (1) embedding similarity captures semantic relatedness, not confusion
+    — "person-artist" and "person-athlete" are semantically similar but the model
+    may distinguish them well from context, (2) empirical confusion is asymmetric
+    (model confuses A→B more than B→A) while cosine similarity is symmetric, (3) empirical
+    confusion is heavily influenced by type frequency and context patterns not captured
+    by type-name embeddings. Qwen3 embeddings outperform MiniLM (ρ=0.35 vs 0.28) on
+    Few-NERD because of extraction-model alignment (consistent with D010 findings).
+    Top-10 overlap at 50% means half the most-confused empirical pairs are also highest-SCS
+    — useful but not sufficient for precision. This validates SCS as a reasonable
+    zero-shot proxy while motivating calibration-based approaches (SDGD-cal). In median
+    tier, this is adequate evidence for "embedding SCS is a useful but imperfect confusability
+    proxy."
+
+    '
+  tables:
+  - name: 'Table: SCS vs Empirical Confusion Rank Correlation'
+    columns:
+    - Embedding
+    - Spearman ρ
+    - p
+    - Kendall τ
+    - Top-10 overlap
+    rows:
+    - - Qwen3-32B
+      - 0.35
+      - 1e-4
+      - 0.27
+      - 5/10
+    - - MiniLM-L6-v2
+      - 0.28
+      - 1e-3
+      - 0.21
+      - 4/10
+  - name: 'Table: Top Confused Pairs — Empirical vs Predicted'
+    columns:
+    - Rank
+    - Empirical top pair
+    - Emp. confusion
+    - SCS rank
+    rows:
+    - - 1
+      - person-other ↔ person-politician
+      - 156
+      - 2
+    - - 2
+      - person-other ↔ person-artist
+      - 98
+      - 5
+    - - 3
+      - person-athlete ↔ person-other
+      - 87
+      - 3
+    - - 4
+      - location-GPE ↔ location-bodiesofwater
+      - 45
+      - 18
+    - - 5
+      - building-library ↔ building-other
+      - 41
+      - 7
+  figures_description:
+  - 'Scatter: embedding SCS (x) vs empirical confusion count (y), with top-10 pairs
+    labeled'
+  - 'Rank comparison heatmap: top-20 empirical vs top-20 SCS pairs, showing overlap
+    region'
+  analysis: 'ρ=0.35 validates SCS as a directionally useful proxy — significantly
+    better than random (p<0.001) but insufficient for precise partition optimization.
+    The asymmetry insight (top empirical pair person-other↔politician at SCS rank
+    2, but location-GPE↔ bodiesofwater at SCS rank 18) suggests type-name semantics
+    capture intra-domain confusion well but miss cross-domain false positives. Paper
+    presents this as motivation for calibration-based approaches and as explaining
+    why SDGD-zero underperforms SDGD-cal. Also explains the D010 embedding sensitivity
+    finding — different embeddings capture different aspects of confusability.
+
+    '
+- name: SDGD v2 on Few-NERD
+  plan_id: exp008_sdgd_v2_fewnerd
+  description: SDGD v2 with merge amplification mitigation (confidence thresholding,
+    duplicate suppression). Tests whether fixing merge recovers SDGD benefit.
+  expected_results:
+    sdgd_v2_f1: 0.42
+    sdgd_v2_precision: 0.44
+    sdgd_v2_recall: 0.4
+    sdgd_v2_vs_single_delta_f1: -0.025
+    sdgd_v2_vs_zero_delta_f1: 0.169
+    sdgd_v2_precision_drop_vs_single: -0.123
+    merge_dup_rate_v2: 0.12
+    merge_dup_rate_v1: 0.38
+    confidence_threshold: 0.7
+  result_rationale: 'SDGD v2 partially mitigates merge amplification through confidence-based
+    deduplication and span-level voting across batches. Merge duplicate rate drops
+    from 38% to 12%. Precision recovers substantially (0.44 vs SDGD-zero''s 0.21)
+    but still below single-pass (0.56) because: (1) confidence calibration is imperfect
+    — the model''s confidence doesn''t reliably distinguish correct from incorrect
+    type assignments, (2) some legitimate multi-type spans get suppressed by dedup,
+    reducing recall slightly, (3) without explicit negative examples per batch, the
+    model still over-extracts for the types it sees. Net F1 is 0.42, within -2.5pp
+    of single-pass — a massive improvement over SDGD-zero but not a clear win. In
+    median tier, this is "marginal or negative" — the delta is within noise for a
+    method that costs 5x more API calls. Paper frames as: "merge mitigation partially
+    recovers decomposition benefit but does not achieve the positive result needed
+    to claim SDGD as a practical method."
+
+    '
+  tables:
+  - name: 'Table: SDGD v2 vs All Methods'
+    columns:
+    - Method
+    - F1
+    - P
+    - R
+    - Merge dup%
+    - Time(s)
+    rows:
+    - - Single-pass
+      - 0.445
+      - 0.563
+      - 0.368
+      - N/A
+      - 77
+    - - SDGD-zero
+      - 0.251
+      - 0.21
+      - 0.314
+      - 38%
+      - 409
+    - - SDGD v2
+      - 0.42
+      - 0.44
+      - 0.4
+      - 12%
+      - 450
+    - - Random-batch
+      - 0.32
+      - 0.249
+      - 0.446
+      - 35%
+      - 476
+  figures_description:
+  - 'Before/after merge mitigation: precision-recall shift from SDGD-zero to v2, approaching
+    but not reaching single-pass'
+  - 'Merge duplicate rate: v1 vs v2 across batch counts, showing v2 mitigation effectiveness'
+  analysis: 'SDGD v2 demonstrates that merge amplification IS the bottleneck (fixing
+    it recovers most of the F1 gap) but the fix is incomplete. F1 delta of -2.5pp
+    vs single-pass means SDGD v2 is not cost-effective (5x latency for -2.5pp). Paper
+    pivots: SDGD''s primary contribution is diagnostic (merge amplification) rather
+    than practical (improved extraction). The v2 result becomes evidence for "merge
+    amplification is partially addressable but fundamentally limits naive decomposition
+    approaches." This explains why UniNER and LLM-PEE report modest, inconsistent
+    gains — they also face merge amplification but don''t characterize it.'

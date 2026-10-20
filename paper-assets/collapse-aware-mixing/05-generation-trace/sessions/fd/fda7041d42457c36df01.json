@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fda7041d42457c36df01",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "check seed0 r2 status",
+  "task_key": "worker_check_seed0_r2_status_20260514T035612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed0_r2_status_20260514T035612_result.json",
+    "occurrence": 1,
+    "bytes": 2040,
+    "sha256": "f74327f14bce0086a8545f17dda4f7ee3e0ac976c9a9d1e182240fd69b4711d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告：mvp_seed0_replication_r2\n\n### 当前状态：**运行中** — G0 generation 阶段\n\n| 阶段 | 状态 | 时间 |\n|------|------|------|\n| G0 Training | ✅ 完成 | 08:50 → 09:13 (~23 min, 305 steps) |\n| G0 Evaluation | ✅ 完成 | 09:13 → 10:49 (~1h36m, 6 checkpoints) |\n| G0 Generation | 🔄 **进行中** | 10:49 开始, 51/306 batches (17%) |\n| G1 Training | ⏳ 等待 | |\n| G1 Eval + Gen | ⏳ 等待 | |\n| G2 Training + Eval | ⏳ 等待 | |\n\n**Generation 速度**: ~80s/batch, 剩余 255 batches ≈ **5h40m**\n\n### 预估剩余时间\n\n| 阶段 | 预估 |\n|------|------|\n| G0 gen 剩余 | ~5h40m |\n| G1 (train+eval+gen) | ~8h40m |\n| G2 (train+eval) | ~2h (gen 可能跳过) |\n| **总计剩余** | **~16h** |\n\n### G0 Metrics (final_model) vs v7 参考值\n\n| 指标 | seed=0 (本次) | seed=42 (v7 参考) | 差异 |\n|------|-------------|-----------------|------|\n| **eff_rank** | **676.89** | 676.96 | -0.01% |\n| **perplexity** | **13.27** | 13.27 | 一致 |\n| **unigram_entropy** | **6.93** | 6.93 | 一致 |\n| **vocab_coverage** | **0.468** | 0.469 | -0.2% |\n| unique_tokens | 23530 | — | — |\n| bigram_entropy | 10.20 | — | — |\n| trigram_entropy | 11.42 | — | — |\n| spectral_entropy | 6.518 | — | — |\n\n### G0 训练过程中各 checkpoint 的 eff_rank 变化\n\n| checkpoint | step | tokens | eff_rank | ppl |\n|-----------|------|--------|----------|-----|\n| ckpt-76 | 76 | 5.0M | 679.68 | 13.53 |\n| ckpt-152 | 152 | 10.0M | 677.79 | 13.34 |\n| ckpt-228 | 228 | 14.9M | 677.02 | 13.28 |\n| ckpt-304 | 304 | 19.9M | 676.89 | 13.27 |\n| ckpt-305 | 305 | 20.0M | 676.89 | 13.27 |\n| final_model | 305 | 20.0M | 676.89 | 13.27 |\n\n### 初步结论\n\nG0 metrics 与 v7 (seed=42) 高度一致，复现成功。需等 G1/G2 完成后才能验证关键问题：holdout eff_rank 上升趋势和 n-gram entropy collapse 是否在不同 seed 下可复现。\n\nGPU 状态正常：RTX PRO 6000 (98GB), 40GB 已用, 50% 利用率, 48°C。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed0-r2-status-copy-2.md"
+}

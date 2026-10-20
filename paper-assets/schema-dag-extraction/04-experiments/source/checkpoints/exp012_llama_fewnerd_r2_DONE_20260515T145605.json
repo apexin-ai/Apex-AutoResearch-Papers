@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp012_llama_fewnerd_r2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:20:57.669Z",
+    "updated_at": "2026-05-15T14:56:05.074Z",
+    "spec": {
+      "command": "bash /root/schema-dag-extraction/scripts/run_exp012_llama.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "275856",
+      "log_path": "~/runs/schema-dag-extraction/exp012_llama_fewnerd_r2.log",
+      "submitted_at": "2026-05-15T14:20:57.610Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Multi-model validation: LLaMA-3.3-70B-FP8 replicates confusability effect on Few-NERD (r2: fixed VLLM_ATTENTION_BACKEND)",
+      "dataset": "Few-NERD",
+      "model": "LLaMA-3.3-70B-Instruct-FP8",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "LLaMA-3.3-70B-Instruct-FP8",
+      "seed": 42,
+      "plan_id": "exp-012",
+      "wall_clock_seconds": 2107.5,
+      "gpu_hours": 0.59
+    },
+    "conclusion": "failed",
+    "failure_reason": "flashinfer JIT fails on Blackwell SM120: nvcc 12.8 < required 12.9. VLLM_ATTENTION_BACKEND env var deprecated in vLLM 0.20.2. Need nvcc upgrade or flashinfer upgrade.",
+    "completed_at": "2026-05-15T14:56:05.075Z"
+  },
+  "timestamp": "2026-05-15T14:56:05.115522+00:00",
+  "trigger": "update_registry"
+}

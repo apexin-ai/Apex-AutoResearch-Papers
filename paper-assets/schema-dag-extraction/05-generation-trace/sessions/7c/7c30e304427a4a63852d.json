@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r1_statistical_supplements_20260521T155122_result.json",
     "occurrence": 1,
-    "bytes": 1085,
-    "sha256": "c4f26dac68acb2fa28eeb88e418a68646a229d217fbf8c049f07340b4749e89e"
+    "bytes": 1084,
+    "sha256": "8f4c432a7c3dd4ad3d9cb4cafc2aa6b227fa1909ef2250bbeb3d6da93cc27c2f"
   },
   "statistics": {
     "messages": 1,

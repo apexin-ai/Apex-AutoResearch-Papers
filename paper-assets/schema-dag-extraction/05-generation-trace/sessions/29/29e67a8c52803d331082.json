@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_run_exp_confusability_batch_inference_20260516T063940_result.json",
     "occurrence": 1,
-    "bytes": 781,
-    "sha256": "4821c6b509f9dab3dc8fcbfc03d481e7a8d06837355767ed629ca060c769fce4"
+    "bytes": 780,
+    "sha256": "a3404a1a70c1b49d037a915aed7d4d48ba5ddee5b4d8c853bb8426df49fc5e3d"
   },
   "statistics": {
     "messages": 1,

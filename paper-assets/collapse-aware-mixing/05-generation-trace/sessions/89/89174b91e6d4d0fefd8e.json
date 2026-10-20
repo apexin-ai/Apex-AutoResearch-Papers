@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "89174b91e6d4d0fefd8e",
+  "project": "collapse-aware-mixing",
+  "kind": "worker",
+  "title": "code plan a bugfix",
+  "task_key": "worker_code_plan_a_bugfix_20260514T033515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_a_bugfix_20260514T033515.log",
+    "occurrence": 1,
+    "bytes": 802013,
+    "sha256": "406b211cce6288d0c581a26549ff78b0a2ffe670fd977796c77b36cd583e9a19"
+  },
+  "statistics": {
+    "messages": 405,
+    "user_turns": 0,
+    "tool_calls": 175,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 175,
+      "tool_result": 175,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 405,
+      "chunks": [
+        {
+          "path": "89174b91e6d4d0fefd8e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "89174b91e6d4d0fefd8e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "89174b91e6d4d0fefd8e-part-0003.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-a-bugfix.md"
+}

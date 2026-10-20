@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_disk-cleanup-llama-download_20260515T063826_result.json",
     "occurrence": 1,
-    "bytes": 789,
-    "sha256": "dc8bbffdd89d06c3fbb6345eed8aebe186f44e160e365334d209854a0aabb2de"
+    "bytes": 788,
+    "sha256": "08e33dfc81c3308f4df9f5116c4d5eae58d9e8c662145db369d0bc8fa6fb8591"
   },
   "statistics": {
     "messages": 1,

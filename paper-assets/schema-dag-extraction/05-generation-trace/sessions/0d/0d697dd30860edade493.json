@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_prompt-sensitivity-exit-check_20260517T072405_result.json",
     "occurrence": 1,
-    "bytes": 1664,
-    "sha256": "25cd1c1e88b2a220a85c5497134eb3b09135ef06444cf82477dcd259762da614"
+    "bytes": 1663,
+    "sha256": "f20705494df995215073bd6b2c88b9c2237d027cd33f51c50ab616967d3f6984"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,22 @@
+paper_key: "godey-anisotropy-inherent-2024"
+title: "Anisotropy Is Inherent to Self-Attention in Transformers"
+venue: "EACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["prior explanations attributing anisotropy to cross-entropy loss on long-tailed token distributions"]
+  metrics: [{name: "cosine similarity of hidden representations", direction: "analysis"}]
+  datasets: [{name: "language models with various objectives", size: "not specified"}, {name: "Transformers trained on other modalities", size: "not specified"}]
+  ablation_dimensions: ["training objective type", "modality (NLP vs other)"]
+  training_recipe: {method: "empirical analysis, no new training"}
+  method_family: "representation analysis / Transformer theory"
+
+positioning:
+  core_claim: "Anisotropy in Transformer representations is inherent to self-attention architecture itself, not merely a consequence of cross-entropy loss on long-tailed distributions"
+  key_results: "Anisotropy observed in models with objectives that should not suffer from long-tail effects, and in non-NLP modalities"
+  limitations: ["primarily empirical analysis", "does not propose a fix"]
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

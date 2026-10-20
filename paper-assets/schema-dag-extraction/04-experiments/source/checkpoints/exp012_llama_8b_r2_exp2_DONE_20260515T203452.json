@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp012_llama_8b_r2_exp2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:54:21.278Z",
+    "updated_at": "2026-05-15T20:34:52.436Z",
+    "spec": {
+      "command": "bash scripts/run_exp012_llama8b_r2_exp2only.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "321037",
+      "log_path": "~/runs/schema-dag-extraction/exp012_llama_8b_r2_exp2.log",
+      "submitted_at": "2026-05-15T19:55:44.273Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "seed": 42,
+      "wall_clock_seconds": 2348.2,
+      "gpu_hours": 0.65
+    },
+    "hypothesis": "LLaMA-3.1-8B-Instruct exp2 重跑：BCS-controlled factorial (count=6/12, low/high BCS)，验证 confusability effect 跨模型泛化。Parent exp012_llama_8b_r2 的 exp1 count curve 已完成。",
+    "conclusion": "negative",
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp012/",
+    "notes": "Channel 2（BCS-controlled confusability effect）跨模型验证未复现。效果微弱且 random batch 有反例。exp2 数据不写入论文，可在 rebuttal 中诚实讨论。",
+    "completed_at": "2026-05-15T20:34:52.436Z"
+  },
+  "timestamp": "2026-05-15T20:34:52.531242+00:00",
+  "trigger": "update_registry"
+}

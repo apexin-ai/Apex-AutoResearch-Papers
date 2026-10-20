@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_add-limitations-tost_20260517T110732_result.json",
     "occurrence": 1,
-    "bytes": 159,
-    "sha256": "13dff224f42d29a1418978111eed3ae55bb9c27f03b6f89073e26dce95e49226"
+    "bytes": 158,
+    "sha256": "5e8e0e20d2757dc26a3ad7877c4344bc1b3935043d29103f313d637cd5a12f5a"
   },
   "statistics": {
     "messages": 1,

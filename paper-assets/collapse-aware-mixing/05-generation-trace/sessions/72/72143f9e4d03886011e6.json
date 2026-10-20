@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72143f9e4d03886011e6",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "hotfix mvp pilot v5 dtype",
+  "task_key": "worker_hotfix_mvp_pilot_v5_dtype_20260512T155020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_hotfix_mvp_pilot_v5_dtype_20260512T155020_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "682ffe1905fabc2115f20f7ec7b6f4019fb713cc6c79605a045237e10fe58846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 文件 | 修改 |\n|------|------|\n| `train.py:4` | 新增 `import torch` |\n| `train.py:85` | `torch_dtype=\"auto\"` → `torch_dtype=torch.bfloat16` |\n| `pilot_pipeline.py:58` | `torch_dtype=\"auto\"` → `torch_dtype=torch.bfloat16` |\n| `pilot_pipeline.py:196` | `torch_dtype=\"auto\"` → `torch_dtype=torch.bfloat16` |\n\n- Import 验证：`dtype fix OK` ✓\n- 训练进程：未检测到 pilot_pipeline 进程，hotfix 赶在启动前完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/hotfix-mvp-pilot-v5-dtype.md"
+}

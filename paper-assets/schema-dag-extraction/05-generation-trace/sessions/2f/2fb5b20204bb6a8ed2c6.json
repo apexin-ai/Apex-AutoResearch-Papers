@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r11-q3-tost-logit_20260517T100020_result.json",
     "occurrence": 1,
-    "bytes": 2018,
-    "sha256": "19cae8062602f93c8c876415a42a89d9eb0856beafb4087acaa7a96ece2d50f2"
+    "bytes": 2017,
+    "sha256": "7b95f95969737dbc9e1769d173af4a7f95006e3674e4f7f81a2e605cc8584c9c"
   },
   "statistics": {
     "messages": 1,

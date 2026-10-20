@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp_seed0_replication",
+  "project": "collapse-aware-mixing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:33:31.240Z",
+    "updated_at": "2026-05-14T00:37:13.735Z",
+    "hypothesis": "Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)",
+    "parent": "mvp_pilot_v7",
+    "spec": {
+      "command": "bash /root/collapse-aware-mixing/launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log",
+      "server": "cqa1-38874",
+      "data_path": "wikitext-103-raw-v1 (HuggingFace)",
+      "data_count": "60M tokens (20M/gen x 3 gens)",
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 0,
+      "hyperparams": {
+        "lr": 2e-06,
+        "warmup_ratio": 0.05,
+        "max_grad_norm": 1,
+        "batch_size": 8,
+        "grad_accum": 4,
+        "max_seq_length": 2048,
+        "torch_dtype": "bfloat16",
+        "num_generations": 3,
+        "tokens_per_generation": 20000000,
+        "checkpoint_interval_tokens": 5000000,
+        "holdout_size": 5000
+      },
+      "checkpoint_source": "EleutherAI/pythia-1b (pretrained base)",
+      "purpose": "Replicate mvp_pilot_v7 with seed=0 (v7 used seed=42) to verify holdout eff_rank rise is seed-robust"
+    }
+  },
+  "timestamp": "2026-05-14T00:37:13.786767+00:00",
+  "trigger": "update_registry"
+}

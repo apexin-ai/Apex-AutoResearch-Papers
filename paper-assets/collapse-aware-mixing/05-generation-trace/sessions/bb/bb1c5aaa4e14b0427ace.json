@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1c5aaa4e14b0427ace",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "check pivot b full status",
+  "task_key": "worker_check_pivot_b_full_status_20260513T204323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pivot_b_full_status_20260513T204323_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "718579c8ab593eaaa03bffde909f441ebfcea0cd74e9ed425cd9349a1117c72e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== PIVOT_B_FULL STATUS ===\ntmux session: (无法通过 read_only 检查，但进程存活说明 session 正常)\nPID 109597:  ✅ alive, runtime 20:10\nGPU:         PID 109608 占用 38102 MiB (~37 GB)\nProgress:    1/18 checkpoints (6%), 每 checkpoint ~16m40s, 预计总耗时 ~5h\nLog tail:    正常运行中，大量 right-padding 警告（无害），无错误\n\nDiagnosis:   任务正常运行，无需干预。预计剩余 ~4h43m 完成全部 18 个 checkpoint。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pivot-b-full-status.md"
+}

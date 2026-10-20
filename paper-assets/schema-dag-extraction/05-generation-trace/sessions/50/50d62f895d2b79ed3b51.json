@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure2-re-dual-panel_20260516T050556_result.json",
     "occurrence": 1,
-    "bytes": 557,
-    "sha256": "fa3cdbdc3876ac12f87fe3ef6a50db06b2028446e42b6202ebdb8f723ecb5af7"
+    "bytes": 556,
+    "sha256": "84ab2a6960bec4dc1abdfb28fd2a18631092daa471190018f491a97b38840a71"
   },
   "statistics": {
     "messages": 1,

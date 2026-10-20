@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_v2-narrative-rewrite_20260516T053203_result.json",
     "occurrence": 1,
-    "bytes": 1025,
-    "sha256": "983150bc9a2fac02cd2629037a7353a203dae58ca9ad739e8375c0b5f2e22c58"
+    "bytes": 1024,
+    "sha256": "b66f90f3bde60a7a56b5745385cf4b59f0c030379f702270ea5e8635af58eb27"
   },
   "statistics": {
     "messages": 1,

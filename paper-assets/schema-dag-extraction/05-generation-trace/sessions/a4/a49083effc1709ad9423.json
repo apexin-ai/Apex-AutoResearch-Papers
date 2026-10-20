@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_read_eval_metrics_20260515T134025.log",
     "occurrence": 1,
-    "bytes": 5235766,
-    "sha256": "061f7315aa37d7d006622ee2910c9237d78383ac175062a7cea37b3f7219b9eb"
+    "bytes": 5235773,
+    "sha256": "153c6ef7fdfb9dbdb8ad1173ac10f5ca586457691c9a68385ef4156ff0775e6f"
   },
   "statistics": {
     "messages": 637,

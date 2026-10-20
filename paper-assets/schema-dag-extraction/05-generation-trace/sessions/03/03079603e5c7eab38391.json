@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_fix_appendix_exp3_ner_20260517T133636_result.json",
     "occurrence": 1,
-    "bytes": 596,
-    "sha256": "f381d9af0fecb17b0212b741f3c6ca9b394985fe30a153b2cfca3088b0406714"
+    "bytes": 595,
+    "sha256": "9ee255a0bd4fcc038401cee69dd10d03bb3dfb65f2e83ad504466b2db0af56b3"
   },
   "statistics": {
     "messages": 1,

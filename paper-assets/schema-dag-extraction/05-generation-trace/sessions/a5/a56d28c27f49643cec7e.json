@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_westd-24295-env-setup-r2_20260517T073227_result.json",
     "occurrence": 1,
-    "bytes": 1823,
-    "sha256": "d65c606f483cfa1df51f4f0e86078946bc3a322345e2df6120fa55e6d43b744a"
+    "bytes": 1822,
+    "sha256": "9ecd444d64a738bd2fef49b8698ae3ceaf40daf149e263ffc9880988ce9e2ed0"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_paper-provenance-check_20260516T010247_result.json",
     "occurrence": 1,
-    "bytes": 828,
-    "sha256": "9496ad7cd64be913c7ca105e877d1a467fcf8d4da17a57b197ef8993bb99443b"
+    "bytes": 827,
+    "sha256": "71b2485cb46162aae5a88048ceb1a657be5e2f71281799d361b31215f8ab0d70"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_confusability_batch_composition",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:11.857Z",
+    "updated_at": "2026-05-16T06:22:04.086Z",
+    "hypothesis": "Confusability-aware batch composition (graph coloring on SCS matrix to separate high-SCS pairs) improves per-type accuracy and reduces substitution errors compared to random batching and single-pass full schema, providing a practical application of the confusability findings."
+  },
+  "timestamp": "2026-05-16T06:22:04.210711+00:00",
+  "trigger": "update_registry"
+}

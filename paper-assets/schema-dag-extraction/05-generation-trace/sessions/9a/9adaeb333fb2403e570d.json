@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_ner_v2_bcs_correlation_20260516T034616_result.json",
     "occurrence": 1,
-    "bytes": 1004,
-    "sha256": "d28fd91a3e7a130772f072b4be097f6d96738b3439dfdba041ead55c3cfdd49d"
+    "bytes": 1003,
+    "sha256": "aa231f96a62e890b8fbdba93d28f865b1f5a09c7b4148c514655aed1f73cb5ba"
   },
   "statistics": {
     "messages": 1,

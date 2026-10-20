@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fccacbaa568b56019748",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "verify seed0 running",
+  "task_key": "worker_verify_seed0_running_20260514T004644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_seed0_running_20260514T004644_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "9437faa9789d873861b7f47d5229c82515ccda7180fe54b8025d84b9f45a8975"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| **PID 122208** | **运行中**，已运行 ~2m50s，bash wrapper 正常 |\n| **子进程** | PID 122212 (timeout 86400) 正常运行，launch_seed0.sh 已启动 |\n| **日志** | 正在进行数据预处理——Map tokenization 进度 ~42% (752k/1.8M)，尚未开始训练 |\n| **GPU** | cuda:0 (RTX PRO 6000 Black, 96GB) 空闲，**GPU-Util 0%，无进程占用**——因为当前仍在 CPU 上做 tokenization，尚未加载模型 |\n| **旧 PID 122711** | 已死（`exit code 1`），旧 session 已清理 |\n\n一切正常。训练管线刚启动不到 3 分钟，正在 tokenize wikitext-103（~42% 完成），预计再过 2-3 分钟 tokenization 结束后会加载模型到 GPU 并开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-seed0-running.md"
+}

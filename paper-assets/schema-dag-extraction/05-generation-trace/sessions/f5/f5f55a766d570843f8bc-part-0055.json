@@ -198,7 +198,7 @@
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp/tmp.r8IBBIsRYz && git branch -m master main && git remote add origin https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push -u origin main 2>&1",
+              "command": "cd /tmp/tmp.r8IBBIsRYz && git branch -m master main && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push -u origin main 2>&1",
               "description": "Push anonymous repo to GitHub"
             }
           },
@@ -2959,7 +2959,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[Director 指令] 匿名仓库 remote 配置检查（紧急）：\n\n1. 找到之前 push 匿名代码的本地仓库目录（可能在 /tmp/anon_repo 或其他临时路径）。如果目录已被清理，需要重新 clone 或创建。\n\n2. 检查 `git remote -v`，如果是 SSH (`git@github.com:...`)，必须改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git'\n```\n\n3. 确认 remote 显示 `https://...` 后执行 `git push origin main`。\n\n4. 注意：论文刚加了 Appendix Y（Use of AI Assistants），匿名仓库的代码不需要更新这个（那是论文 PDF 的内容，不是代码）。但如果之前的 push 因为 SSH 失败了，需要用 HTTPS 重新 push。\n\n5. **token 不要提交到任何代码文件里，不要 echo 到日志。**\n\n汇报：remote 当前配置（SSH/HTTPS）、push 是否成功。"
+              "text": "[Director 指令] 匿名仓库 remote 配置检查（紧急）：\n\n1. 找到之前 push 匿名代码的本地仓库目录（可能在 /tmp/anon_repo 或其他临时路径）。如果目录已被清理，需要重新 clone 或创建。\n\n2. 检查 `git remote -v`，如果是 SSH (`git@github.com:...`)，必须改成 HTTPS+token：\n```bash\ngit remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git'\n```\n\n3. 确认 remote 显示 `https://...` 后执行 `git push origin main`。\n\n4. 注意：论文刚加了 Appendix Y（Use of AI Assistants），匿名仓库的代码不需要更新这个（那是论文 PDF 的内容，不是代码）。但如果之前的 push 因为 SSH 失败了，需要用 HTTPS 重新 push。\n\n5. **token 不要提交到任何代码文件里，不要 echo 到日志。**\n\n汇报：remote 当前配置（SSH/HTTPS）、push 是否成功。"
             }
           ],
           "metadata": {
@@ -3287,7 +3287,7 @@
             "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp/anon_repo && git remote add origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git' 2>&1 && git remote -v | sed 's/ghp_[a-zA-Z0-9]*/ghp_***REDACTED***/g'"
+              "command": "cd /tmp/anon_repo && git remote add origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git' 2>&1 && git remote -v | sed 's/ghp_[a-zA-Z0-9]*/ghp_***REDACTED***/g'"
             }
           },
           "id": "event-009888"
@@ -3300,7 +3300,7 @@
           "content": [
             {
               "type": "text",
-              "text": "origin\thttps://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
+              "text": "origin\thttps://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)\norigin\thttps://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d"
             }
           ],
           "metadata": {

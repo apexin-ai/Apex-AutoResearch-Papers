@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp012_llama_8b_r2",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T17:05:44.959Z",
+    "updated_at": "2026-05-15T18:37:40.478Z",
+    "notes": "根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。",
+    "completed_at": "2026-05-15T17:32:25.608Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "根因确认：非 host RAM OOM，是 GPU VRAM 冲突——启动时另一个 exp012 实例已占 ~88GB VRAM (7.01/94.97 GiB free)。vLLM 裸跑 LLaMA-3.1-8B 成功 (gpu_memory_utilization=0.80, 15GB VRAM + 63.5GB KV cache)。重试条件：确保 GPU 无其他 vLLM 进程，用 0.80 而非 0.90。"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T18:37:40.562049+00:00",
+  "trigger": "update_registry"
+}

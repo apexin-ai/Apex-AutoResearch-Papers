@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_gemini_count16_loo_20260519T231146_result.json",
     "occurrence": 1,
-    "bytes": 831,
-    "sha256": "2f2abb1b21e628b742d23166415dde3e34aee08782bf09e415a53d883ca1b2d0"
+    "bytes": 830,
+    "sha256": "2e73cddc62a29b63d55e1d42f66d3415609b5c66020c6e67d774d5a53a9acf9e"
   },
   "statistics": {
     "messages": 1,

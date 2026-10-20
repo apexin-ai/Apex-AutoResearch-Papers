@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d045_appendix_verbatim_fix_20260516T111554_result.json",
     "occurrence": 1,
-    "bytes": 310,
-    "sha256": "3df3ab1e6365257f55ca45f73a83aa2a390c5d7c1d4e908ad536378cf4218fa3"
+    "bytes": 309,
+    "sha256": "2f3c74eea5b76e1e42ffb79898b249123ad092ec2895f4e66db33f4a1a6943ac"
   },
   "statistics": {
     "messages": 1,

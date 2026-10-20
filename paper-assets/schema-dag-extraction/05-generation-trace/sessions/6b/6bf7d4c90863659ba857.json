@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_exp012_llama_8b_r2_exp2_20260515T200434_result.json",
     "occurrence": 1,
-    "bytes": 631,
-    "sha256": "557180533bb41f7fc69979b1a3e181ef4f96603fd482430ecc15b5c7fcf56711"
+    "bytes": 630,
+    "sha256": "b20cf1b160a371b6b06a9a3f75325027304a6b01c4dacedb4148fbe0e685d307"
   },
   "statistics": {
     "messages": 1,

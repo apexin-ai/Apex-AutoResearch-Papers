@@ -1,0 +1,2331 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{llm4ie-survey-2024}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schema complexity in zero-shot relation extraction. Given the same input, a simple schema (few dissimilar types) yields the correct relation, while a complex schema with more candidate types and a cluster of semantically similar types causes type substitution (gold \emph  {place of birth} $\to $ predicted \emph  {residence}). We decompose schema complexity into two dimensions: type count and inter-type confusability.}}{1}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:problem}{{1}{1}{Schema complexity in zero-shot relation extraction. Given the same input, a simple schema (few dissimilar types) yields the correct relation, while a complex schema with more candidate types and a cluster of semantically similar types causes type substitution (gold \emph {place of birth} $\to $ predicted \emph {residence}). We decompose schema complexity into two dimensions: type count and inter-type confusability}{figure.caption.1}{}}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\citation{uniner-2024,llm-pee-2025,parse-2025}
+\citation{fewnerd-2021}
+\citation{fewrel-2018}
+\citation{docred-2019}
+\citation{maven-2020}
+\citation{llm-pee-2025}
+\citation{instructuie-2023}
+\citation{knowcoder-2024,codeie-2023}
+\citation{gollie-2024,adelie-2024}
+\citation{slot-2025,oneke-2025}
+\citation{json-schema-bench-2025,willard2023efficient}
+\citation{xie-zeroshot-ner-2023,promptner-2023}
+\citation{uniner-2024}
+\citation{gliner-2024,gliner2-2025}
+\citation{relationprompt-2022}
+\citation{josifoski-2022-genie}
+\citation{boylan-2025-glirel,wadhwa-re-llm-2023}
+\citation{shachar-2025-ner-retriever}
+\citation{reflect-learn-2026}
+\citation{llm-pee-2025}
+\citation{iepile-2024}
+\citation{parse-2025}
+\citation{crossagentie-2025,cmas-ner-2025}
+\citation{reflect-learn-2026}
+\citation{chen-2026-multi-instance}
+\citation{golde-2025-familiarity}
+\citation{haystack-to-needle-2025,dlisc-2025,spt-2025}
+\@LN@col{1}
+\@LN{50}{1}
+\@LN{51}{1}
+\@LN{52}{1}
+\@LN{53}{1}
+\@LN{54}{1}
+\@LN{55}{1}
+\@LN{56}{1}
+\@LN{57}{1}
+\@LN{58}{1}
+\@LN{59}{1}
+\@LN{60}{1}
+\@LN{61}{1}
+\@LN{62}{1}
+\@LN{63}{1}
+\@LN{64}{1}
+\@LN{65}{1}
+\@LN{66}{1}
+\@LN{67}{1}
+\@LN{68}{1}
+\@LN{69}{1}
+\@LN{70}{1}
+\@LN{71}{1}
+\@LN{72}{1}
+\@LN{73}{1}
+\@LN{74}{1}
+\@LN{75}{1}
+\@LN{76}{1}
+\@LN{77}{1}
+\@LN{78}{1}
+\@LN{79}{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Experimental design overview on FewRel. Each point is one batch; color encodes RE accuracy (green=high, red=low). \textbf  {Dimension~1} (horizontal): accuracy declines with type count (\S  \ref {sec:count_curves}). \textbf  {Dimension~2} (vertical): within each count level, higher BCS correlates with lower accuracy (\S  \ref {sec:bcs_controlled}). BCS range narrows at high counts, limiting Dimension~2 discriminability.}}{2}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:framework}{{2}{2}{Experimental design overview on FewRel. Each point is one batch; color encodes RE accuracy (green=high, red=low). \textbf {Dimension~1} (horizontal): accuracy declines with type count (\S \ref {sec:count_curves}). \textbf {Dimension~2} (vertical): within each count level, higher BCS correlates with lower accuracy (\S \ref {sec:bcs_controlled}). BCS range narrows at high counts, limiting Dimension~2 discriminability}{figure.caption.3}{}}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training-free LLM IE.}{2}{section*.2}\protected@file@percent }
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\citation{rastogi2020towards,lee2022sgd}
+\citation{li2023evaluating}
+\citation{dubey-2018-pairwise-confusion,deng-2010-imagenet}
+\citation{collier-2021-correlated-noise,guo-2021-label-confusion}
+\citation{llm-pee-2025}
+\citation{snell2017prototypical}
+\citation{yin-2019-zero-shot-bench}
+\citation{fewnerd-2021}
+\citation{fewrel-2018}
+\citation{docred-2019}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Schema complexity in IE.}{3}{section*.4}\protected@file@percent }
+\@LN{131}{2}
+\@LN{132}{2}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@writefile{toc}{\contentsline {paragraph}{Schema complexity beyond IE.}{3}{section*.5}\protected@file@percent }
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@writefile{toc}{\contentsline {paragraph}{SCS novelty.}{3}{section*.6}\protected@file@percent }
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset statistics. BCS Range: min--max over count-curve batches. Embedding: model used for SCS/BCS; ranges are not comparable across embedding models. $^\dagger $Trigger mentions across 8{,}042 sentences.}}{3}{table.caption.7}\protected@file@percent }
+\newlabel{tab:datasets}{{1}{3}{Dataset statistics. BCS Range: min--max over count-curve batches. Embedding: model used for SCS/BCS; ranges are not comparable across embedding models. $^\dagger $Trigger mentions across 8{,}042 sentences}{table.caption.7}{}}
+\@LN{182}{2}
+\@LN{183}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\newlabel{sec:experimental_setup}{{3}{3}{Experimental Setup}{section.3}{}}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Tasks and Datasets}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:datasets}{{3.1}{3}{Tasks and Datasets}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD (NER).}{3}{section*.9}\protected@file@percent }
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@writefile{toc}{\contentsline {paragraph}{FewRel (RE).}{3}{section*.10}\protected@file@percent }
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@writefile{toc}{\contentsline {paragraph}{DocRED (Document-level RE).}{3}{section*.11}\protected@file@percent }
+\@LN{221}{2}
+\@LN{222}{2}
+\citation{maven-2020}
+\citation{qwen3-2025}
+\citation{minilm-2020,sentence-bert-2019}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces \textbf  {(a)} Count-degradation curves. Error bars: $\pm 1$ standard deviation (SD) across 3 batch-composition seeds $\times $ 25 batches. RE declines monotonically; NER shows a U-shape. Rightmost points are full-schema (negligible sampling variance). \textbf  {(b)} Illustrative BCS-controlled FewRel accuracy: each bar represents one extreme-BCS batch per condition. Slopes are consistent across pool conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps. Statistical evidence is provided by the pooled regression (\S  \ref {sec:bcs_controlled}, semipartial $R^2 = 0.273$, $n = 204$).}}{4}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:main_results}{{3}{4}{\textbf {(a)} Count-degradation curves. Error bars: $\pm 1$ standard deviation (SD) across 3 batch-composition seeds $\times $ 25 batches. RE declines monotonically; NER shows a U-shape. Rightmost points are full-schema (negligible sampling variance). \textbf {(b)} Illustrative BCS-controlled FewRel accuracy: each bar represents one extreme-BCS batch per condition. Slopes are consistent across pool conditions ($p = 0.60$); wider BCS range at 80 relations produces larger gaps. Statistical evidence is provided by the pooled regression (\S \ref {sec:bcs_controlled}, semipartial $R^2 = 0.273$, $n = 204$)}{figure.caption.8}{}}
+\@LN@col{1}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@writefile{toc}{\contentsline {paragraph}{MAVEN (ED).}{4}{section*.12}\protected@file@percent }
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN@col{2}
+\@LN{252}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Schema Confusability Score (SCS)}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:scs}{{3.2}{4}{Schema Confusability Score (SCS)}{subsection.3.2}{}}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\citation{qwen3-2025}
+\citation{vllm-2023}
+\citation{llama3-2024}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces BCS range compression on FewRel: as type count $k$ increases, achievable BCS range narrows ($\Delta {=}0.25$ at $k{=}4$ to $\Delta {<}0.01$ at $k{=}80$), limiting power to detect confusability effects without extreme-BCS construction (\S  \ref {sec:exp_design}). Each point is one of 25 random batches; boxes show IQR.}}{5}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:bcs_range}{{4}{5}{BCS range compression on FewRel: as type count $k$ increases, achievable BCS range narrows ($\Delta {=}0.25$ at $k{=}4$ to $\Delta {<}0.01$ at $k{=}80$), limiting power to detect confusability effects without extreme-BCS construction (\S \ref {sec:exp_design}). Each point is one of 25 random batches; boxes show IQR}{figure.caption.14}{}}
+\newlabel{sec:scs-validation}{{3.2}{5}{SCS as a lightweight proxy}{section*.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{SCS as a lightweight proxy.}{5}{section*.13}\protected@file@percent }
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Design}{5}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:exp_design}{{3.3}{5}{Experimental Design}{subsection.3.3}{}}
+\@LN{288}{4}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 1: Count Curves.}{5}{section*.15}\protected@file@percent }
+\@LN{289}{4}
+\@LN{290}{4}
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@writefile{toc}{\contentsline {paragraph}{Experiment 2: BCS-Controlled.}{5}{section*.16}\protected@file@percent }
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN@col{2}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Metrics}{5}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:metrics}{{3.4}{5}{Evaluation Metrics}{subsection.3.4}{}}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Model and Inference}{5}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:model}{{3.5}{5}{Model and Inference}{subsection.3.5}{}}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\citation{robinson-1950-ecological,baan-2023-ecological}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\to }t_j) + C(t_j{\to }t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \S  \ref {sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185]).}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:pairwise}{{2}{6}{Pairwise SCS--confusion correlation. Confusion rate is bidirectional $C(t_i{\to }t_j) + C(t_j{\to }t_i)$ divided by gold frequency sum; CIs are percentile bootstrap ($B{=}10{,}000$). FewRel ($r = 0.187$; \S \ref {sec:scs-validation}) excluded (per-instance RE format). Type-level cluster bootstrap CIs exclude zero (Few-NERD [0.069, 0.219]; MAVEN [0.081, 0.185])}{table.caption.17}{}}
+\@LN{359}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{6}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{6}{Results}{section.4}{}}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Count-Degradation Curves}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:count_curves}{{4.1}{6}{Count-Degradation Curves}{subsection.4.1}{}}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Pairwise Confusability and Type Confusion}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:pairwise}{{4.2}{6}{Pairwise Confusability and Type Confusion}{subsection.4.2}{}}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-model count-curve replication on FewRel RE. All three model families show monotonic accuracy decline with schema size ($\rho = -1.0$ for Qwen3-32B and Gemini Flash on counts 4--32). Gemini shows shallower decline, consistent with ceiling compression.}}{6}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:cross_model_count}{{5}{6}{Cross-model count-curve replication on FewRel RE. All three model families show monotonic accuracy decline with schema size ($\rho = -1.0$ for Qwen3-32B and Gemini Flash on counts 4--32). Gemini shows shallower decline, consistent with ceiling compression}{figure.caption.18}{}}
+\@LN{398}{5}
+\@LN{399}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}BCS-Controlled Experiments}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:bcs_controlled}{{4.3}{6}{BCS-Controlled Experiments}{subsection.4.3}{}}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\citation{lakens-2017-equivalence,schuirmann-1987-tost}
+\citation{cai-isotropy-clusters-2021}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Error taxonomy decomposition (Few-NERD NER and FewRel RE). Intra-batch substitution (IntraSub) scales monotonically with BCS across all evaluated datasets ($\rho = 0.843\text  {--}1.0$; Table~\ref {tab:error_taxonomy} includes DocRED). RE missed rates remain flat (10--16\%), but NER missed rates are substantially higher (43--65\%) and non-monotonic.}}{7}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:error_taxonomy}{{6}{7}{Error taxonomy decomposition (Few-NERD NER and FewRel RE). Intra-batch substitution (IntraSub) scales monotonically with BCS across all evaluated datasets ($\rho = 0.843\text {--}1.0$; Table~\ref {tab:error_taxonomy} includes DocRED). RE missed rates remain flat (10--16\%), but NER missed rates are substantially higher (43--65\%) and non-monotonic}{figure.caption.19}{}}
+\@LN@col{1}
+\newlabel{sec:within_pool}{{4.3}{7}{Within-pool and practical magnitude}{section*.20}{}}
+\newlabel{sec:practical_magnitude}{{4.3}{7}{Within-pool and practical magnitude}{section*.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Within-pool and practical magnitude.}{7}{section*.20}\protected@file@percent }
+\@LN{423}{6}
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN{428}{6}
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model validation.}{7}{section*.21}\protected@file@percent }
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@writefile{toc}{\contentsline {paragraph}{Prompt sensitivity.}{7}{section*.22}\protected@file@percent }
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Multi-Dimensional Degradation}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:multi_channel}{{4.4}{7}{Multi-Dimensional Degradation}{subsection.4.4}{}}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN@col{2}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Centrality as a Potential Confound on Homogeneous Schemas}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:centrality_confound}{{4.5}{7}{Centrality as a Potential Confound on Homogeneous Schemas}{subsection.4.5}{}}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\citation{baan-2023-ecological}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Schema decomposition pipeline and failure modes. Graph coloring partitions the schema into low-confusability sub-schemas, but two structural bottlenecks prevent practical gains: \textbf  {routing failure} in RE (73.4\% of instances match multiple sub-schemas) and \textbf  {merge amplification} in NER/ED (union merge increases false positives ${\sim }4\times $).}}{8}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:sdgd_pipeline}{{7}{8}{Schema decomposition pipeline and failure modes. Graph coloring partitions the schema into low-confusability sub-schemas, but two structural bottlenecks prevent practical gains: \textbf {routing failure} in RE (73.4\% of instances match multiple sub-schemas) and \textbf {merge amplification} in NER/ED (union merge increases false positives ${\sim }4\times $)}{figure.caption.23}{}}
+\@LN{483}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Schema Decomposition}{8}{section.5}\protected@file@percent }
+\newlabel{sec:sdgd}{{5}{8}{Schema Decomposition}{section.5}{}}
+\@LN{484}{7}
+\@LN{485}{7}
+\@LN{486}{7}
+\@LN{487}{7}
+\@LN{488}{7}
+\@LN{489}{7}
+\@LN{490}{7}
+\@LN{491}{7}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Routing strategy comparison on FewRel 80-relation RE with graph-coloring sub-schema decomposition. Oracle requires gold labels. All practical strategies perform below the single-pass baseline due to constrained decoding: 73.4\% of instances match multiple sub-schemas simultaneously.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:routing_strategies}{{3}{8}{Routing strategy comparison on FewRel 80-relation RE with graph-coloring sub-schema decomposition. Oracle requires gold labels. All practical strategies perform below the single-pass baseline due to constrained decoding: 73.4\% of instances match multiple sub-schemas simultaneously}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Intra-batch substitution (IntraSub) and missed rates by BCS bin. IntraSub scales monotonically with BCS across all three datasets. DocRED missed rates decrease with BCS, indicating errors shift from omission to substitution.}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:error_taxonomy}{{4}{8}{Intra-batch substitution (IntraSub) and missed rates by BCS bin. IntraSub scales monotonically with BCS across all three datasets. DocRED missed rates decrease with BCS, indicating errors shift from omission to substitution}{table.caption.25}{}}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\citation{rothman-1990}
+\bibdata{references}
+\bibcite{promptner-2023}{{1}{2023}{{Ashok and Lipton}}{{}}}
+\bibcite{boylan-2025-glirel}{{2}{2025}{{Boylan et~al.}}{{Boylan, Hokamp, and Gholipour~Ghalandari}}}
+\bibcite{cai-isotropy-clusters-2021}{{3}{2021}{{Cai et~al.}}{{Cai, Huang, Bian, and Church}}}
+\bibcite{card-2020-power}{{4}{2020}{{Card et~al.}}{{Card, Henderson, Khandelwal, Jia, Mahowald, and Jurafsky}}}
+\bibcite{chen-2026-multi-instance}{{5}{2026}{{Chen et~al.}}{{Chen, Pilehvar, and Camacho-Collados}}}
+\bibcite{relationprompt-2022}{{6}{2022}{{Chia et~al.}}{{Chia, Bing, Poria, and Si}}}
+\bibcite{collier-2021-correlated-noise}{{7}{2021}{{Collier et~al.}}{{Collier, Mustafa, Kokiopoulou, Jenatton, and Berent}}}
+\bibcite{deng-2010-imagenet}{{8}{2010}{{Deng et~al.}}{{Deng, Berg, Li, and Fei-Fei}}}
+\bibcite{fewnerd-2021}{{9}{2021}{{Ding et~al.}}{{Ding, Xu, Chen, Wang, Han, Xie, Zheng, and Liu}}}
+\bibcite{dror-2018-significance}{{10}{2018}{{Dror et~al.}}{{Dror, Baumer, Shlomov, and Reichart}}}
+\bibcite{dubey-2018-pairwise-confusion}{{11}{2018}{{Dubey et~al.}}{{Dubey, Gupta, Guo, Raskar, Farrell, and Naik}}}
+\bibcite{gemini-2025}{{12}{2025}{{Gemini Team}}{{}}}
+\bibcite{json-schema-bench-2025}{{13}{2025}{{Geng et~al.}}{{Geng, Cooper, Moskal, Jenkins, Berman, Ranchin, West, Horvitz, and Nori}}}
+\bibcite{golde-2025-familiarity}{{14}{2025}{{Golde et~al.}}{{Golde, Haller, Ploner, Barth, Jedema, and Akbik}}}
+\bibcite{llama3-2024}{{15}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten, Yang, and Fan}}}
+\@LN@col{1}
+\@LN{535}{8}
+\@LN{536}{8}
+\@LN{537}{8}
+\@LN{538}{8}
+\@LN{539}{8}
+\@LN{540}{8}
+\@LN{541}{8}
+\@LN{542}{8}
+\@LN{543}{8}
+\@LN{544}{8}
+\@LN{545}{8}
+\@LN{546}{8}
+\@LN{547}{8}
+\@LN{548}{8}
+\@LN{549}{8}
+\@LN{550}{8}
+\@LN{551}{8}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN@col{2}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\bibcite{iepile-2024}{{16}{2024}{{Gui et~al.}}{{Gui, Yuan, Ye, Zhang, Sun, Liang, and Chen}}}
+\bibcite{guo-2021-label-confusion}{{17}{2021}{{Guo et~al.}}{{Guo, Han, Han, Huang, and Lu}}}
+\bibcite{fewrel-2018}{{18}{2018}{{Han et~al.}}{{Han, Zhu, Yu, Wang, Yao, Liu, and Sun}}}
+\bibcite{josifoski-2022-genie}{{19}{2022}{{Josifoski et~al.}}{{Josifoski, De~Cao, Peyrard, Petroni, and West}}}
+\bibcite{vllm-2023}{{20}{2023}{{Kwon et~al.}}{{Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang, and Stoica}}}
+\bibcite{lakens-2017-equivalence}{{21}{2017}{{Lakens}}{{}}}
+\bibcite{lee2022sgd}{{22}{2022}{{Lee et~al.}}{{Lee, Gupta, Rastogi, Cao, Zhang, and Wu}}}
+\bibcite{li2023evaluating}{{23}{2023{a}}{{Li et~al.}}{{Li, Fang, Yang, Wang, Ye, Zhao, and Zhang}}}
+\bibcite{codeie-2023}{{24}{2023{b}}{{Li et~al.}}{{Li, Sun, Tang, Yan, Wu, Huang, and Qiu}}}
+\bibcite{knowcoder-2024}{{25}{2024}{{Li et~al.}}{{Li, Zeng, Zuo, Ren, Liu, Su, Guo, Liu, Li, Hu, Bai, Li, Liu, Yang, Jin, Guo, and Cheng}}}
+\bibcite{spt-2025}{{26}{2025}{{Liang et~al.}}{{Liang, Zhang, Wu, Tang, and Liu}}}
+\bibcite{lost-in-middle-2024}{{27}{2024}{{Liu et~al.}}{{Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, and Liang}}}
+\bibcite{llm-pee-2025}{{28}{2025}{{Liu et~al.}}{{Liu, Li, Bai, Zuo, Xu, Jin, Guo, and Cheng}}}
+\bibcite{crossagentie-2025}{{29}{2025}{{Lu et~al.}}{{Lu, Xie, Bi, Cao, and Wang}}}
+\bibcite{oneke-2025}{{30}{2025}{{Luo et~al.}}{{Luo, Ru, Liu, Yuan, Sun, Zhang, Liang, Zhang, Zhou, Wei, Zheng, Wang, and Chen}}}
+\bibcite{baan-2023-ecological}{{31}{2023}{{Orlikowski et~al.}}{{Orlikowski, R{\"o}ttger, Cimiano, and Hovy}}}
+\bibcite{adelie-2024}{{32}{2024}{{Qi et~al.}}{{Qi, Peng, Wang, Xu, Hou, and Li}}}
+\bibcite{qwen3-2025}{{33}{2025}{{Qwen Team}}{{}}}
+\bibcite{rastogi2020towards}{{34}{2020}{{Rastogi et~al.}}{{Rastogi, Zang, Sunkara, Gupta, and Khaitan}}}
+\bibcite{sentence-bert-2019}{{35}{2019}{{Reimers and Gurevych}}{{}}}
+\@LN@col{1}
+\@LN{639}{9}
+\@LN{640}{9}
+\@LN{641}{9}
+\@LN{642}{9}
+\@LN{643}{9}
+\@LN{644}{9}
+\@LN{645}{9}
+\@LN{646}{9}
+\@LN{647}{9}
+\@LN{648}{9}
+\@LN{649}{9}
+\@LN{650}{9}
+\@LN{651}{9}
+\@LN{652}{9}
+\@LN{653}{9}
+\@LN{654}{9}
+\@LN{655}{9}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN@col{2}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\bibcite{robinson-1950-ecological}{{36}{1950}{{Robinson}}{{}}}
+\bibcite{rothman-1990}{{37}{1990}{{Rothman}}{{}}}
+\bibcite{gollie-2024}{{38}{2024}{{Sainz et~al.}}{{Sainz, Garc{\'\i }a-Ferrero, Agerri, Lopez~de Lacalle, Rigau, and Agirre}}}
+\bibcite{schuirmann-1987-tost}{{39}{1987}{{Schuirmann}}{{}}}
+\bibcite{shachar-2025-ner-retriever}{{40}{2025}{{Shachar et~al.}}{{Shachar, Katz, Goldberg, and Glickman}}}
+\bibcite{slot-2025}{{41}{2025}{{Shen et~al.}}{{Shen, Wang, Mishra, Xu, Teng, and Ding}}}
+\bibcite{parse-2025}{{42}{2025}{{Shrimal et~al.}}{{Shrimal, Jain, Chowdhury, and Yenigalla}}}
+\bibcite{snell2017prototypical}{{43}{2017}{{Snell et~al.}}{{Snell, Swersky, and Zemel}}}
+\bibcite{haystack-to-needle-2025}{{44}{2025}{{Vandemoortele et~al.}}{{Vandemoortele, Steenwinckel, Ongenae, and Van~Hoecke}}}
+\bibcite{wadhwa-re-llm-2023}{{45}{2023}{{Wadhwa et~al.}}{{Wadhwa, Amir, and Wallace}}}
+\bibcite{minilm-2020}{{46}{2020{a}}{{Wang et~al.}}{{Wang, Wei, Dong, Bao, Yang, and Zhou}}}
+\bibcite{instructuie-2023}{{47}{2023}{{Wang et~al.}}{{Wang, Zhou, Zu, Xia, Chen, Zhang, Zheng, Ye, Zhang, Gui, Kang, Yang, Li, and Du}}}
+\bibcite{maven-2020}{{48}{2020{b}}{{Wang et~al.}}{{Wang, Wang, Han, Jiang, Han, Liu, Li, Li, Lin, and Zhou}}}
+\bibcite{cmas-ner-2025}{{49}{2025}{{Wang et~al.}}{{Wang, Zhao, Lyu, Chen, de~Rijke, and Ren}}}
+\bibcite{dlisc-2025}{{50}{2025}{{Wen et~al.}}{{Wen, Liang, Wu, Zhang, and Liu}}}
+\bibcite{willard2023efficient}{{51}{2023}{{Willard and Louf}}{{}}}
+\bibcite{xie-zeroshot-ner-2023}{{52}{2023}{{Xie et~al.}}{{Xie, Li, Zhang, Zhang, Liu, and Wang}}}
+\bibcite{llm4ie-survey-2024}{{53}{2024}{{Xu et~al.}}{{Xu, Chen, Peng, Zhang, Xu, Zhao, Wu, Zheng, Wang, and Chen}}}
+\bibcite{docred-2019}{{54}{2019}{{Yao et~al.}}{{Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and Sun}}}
+\bibcite{yin-2019-zero-shot-bench}{{55}{2019}{{Yin et~al.}}{{Yin, Hay, and Roth}}}
+\bibcite{gliner2-2025}{{56}{2025}{{Zaratiana et~al.}}{{Zaratiana, Pasternak, Boyd, Hurn-Maloney, and Lewis}}}
+\bibcite{gliner-2024}{{57}{2024}{{Zaratiana et~al.}}{{Zaratiana, Tomeh, Holat, and Charnois}}}
+\@LN@col{1}
+\@LN{755}{10}
+\@LN{756}{10}
+\@LN{757}{10}
+\@LN{758}{10}
+\@LN{759}{10}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN@col{2}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\bibcite{reflect-learn-2026}{{58}{2026}{{Zhao et~al.}}{{Zhao, Wang, Chen, Wang, Dai, Geng, Zhang, Li, and Huang}}}
+\bibcite{uniner-2024}{{59}{2024}{{Zhou et~al.}}{{Zhou, Zhang, Gu, Chen, and Poon}}}
+\@LN@col{1}
+\@LN{866}{11}
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Figures}{12}{appendix.A}\protected@file@percent }
+\newlabel{sec:appendix_figures}{{A}{12}{Additional Figures}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\S  \ref {sec:model}) for fair cross-model comparison; the count-curve results in \S  \ref {sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\ 0.64 at count${}\,=\,1$) due to over-prediction under v1.}}{12}{table.caption.29}\protected@file@percent }
+\newlabel{tab:cross_model}{{5}{12}{Cross-model count-curve replication on Few-NERD (text-match recall). Both models show a general declining trend in recall with schema size. Per-batch correlation $r = 0.725$. Qwen3-32B values use the v2 prompt (\S \ref {sec:model}) for fair cross-model comparison; the count-curve results in \S \ref {sec:count_curves} use the v1 prompt, yielding higher absolute recall (0.72 vs.\ 0.64 at count${}\,=\,1$) due to over-prediction under v1}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model BCS-controlled FewRel accuracy. High-BCS accuracy converges to $\approx $51\% regardless of model, while low-BCS accuracy reflects model capacity differences. The confusability gap ($\Delta $, in pp) is 77--87\% as large on Llama-3.1-8B as on Qwen3-32B.}}{12}{table.caption.30}\protected@file@percent }
+\newlabel{tab:cross_model_bcs}{{6}{12}{Cross-model BCS-controlled FewRel accuracy. High-BCS accuracy converges to $\approx $51\% regardless of model, while low-BCS accuracy reflects model capacity differences. The confusability gap ($\Delta $, in pp) is 77--87\% as large on Llama-3.1-8B as on Qwen3-32B}{table.caption.30}{}}
+\@LN{883}{11}
+\@LN{884}{11}
+\@LN{885}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {B}SDGD Full Protocol and Results}{12}{appendix.B}\protected@file@percent }
+\newlabel{sec:appendix_sdgd}{{B}{12}{SDGD Full Protocol and Results}{appendix.B}{}}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces NER batch-level BCS--F1 correlation across models. $^\dagger $Partial correlation controlling for type frequency. $^\ddagger $Llama-70B count\_12 shows $r{=}{-}0.42$ ($p{=}0.034$, uncorrected; Bonferroni $p{=}0.069$); pooled and count\_6 are null, consistent with sampling noise at $n{=}25$. The null is observed on three models; Gemini remains untested.}}{12}{table.caption.31}\protected@file@percent }
+\newlabel{tab:cross_model_ner_null}{{7}{12}{NER batch-level BCS--F1 correlation across models. $^\dagger $Partial correlation controlling for type frequency. $^\ddagger $Llama-70B count\_12 shows $r{=}{-}0.42$ ($p{=}0.034$, uncorrected; Bonferroni $p{=}0.069$); pooled and count\_6 are null, consistent with sampling noise at $n{=}25$. The null is observed on three models; Gemini remains untested}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model replication of IntraSub--BCS Spearman correlation on FewRel RE. $^\dagger $Llama-70B has only 20 batches with 17.4\% missed rate; the null is attributable to insufficient power rather than absence of the effect.}}{12}{table.caption.32}\protected@file@percent }
+\newlabel{tab:cross_model_error_taxonomy}{{8}{12}{Cross-model replication of IntraSub--BCS Spearman correlation on FewRel RE. $^\dagger $Llama-70B has only 20 batches with 17.4\% missed rate; the null is attributable to insufficient power rather than absence of the effect}{table.caption.32}{}}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\citation{card-2020-power,dror-2018-significance}
+\citation{lakens-2017-equivalence}
+\citation{lakens-2017-equivalence}
+\@LN@col{1}
+\@LN{918}{12}
+\@LN{919}{12}
+\@LN{920}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Few-NERD extraction under decomposition modes. V1 uses union merge; v2 uses confidence-gated merge with \texttt  {min\_batch\_size=8} (reducing 8$\to $4 batches for sdgd\_zero). All decomposition modes produce lower F1 than the single-pass baseline. All modes use the v1 prompt.}}{13}{table.caption.33}\protected@file@percent }
+\newlabel{tab:sdgd_results}{{9}{13}{Few-NERD extraction under decomposition modes. V1 uses union merge; v2 uses confidence-gated merge with \texttt {min\_batch\_size=8} (reducing 8$\to $4 batches for sdgd\_zero). All decomposition modes produce lower F1 than the single-pass baseline. All modes use the v1 prompt}{table.caption.33}{}}
+\@LN{921}{12}
+\@LN{922}{12}
+\@LN{923}{12}
+\@LN{924}{12}
+\@LN{925}{12}
+\@LN{926}{12}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@LN{935}{12}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Practical Routing Strategies on RE}{13}{subsection.B.1}\protected@file@percent }
+\newlabel{sec:appendix_routing}{{B.1}{13}{Practical Routing Strategies on RE}{subsection.B.1}{}}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Factorial Analysis and Separability Test}{13}{appendix.C}\protected@file@percent }
+\newlabel{sec:appendix_factorial}{{C}{13}{Factorial Analysis and Separability Test}{appendix.C}{}}
+\@LN{950}{12}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN@col{2}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@writefile{toc}{\contentsline {paragraph}{Equivalence margin justification.}{13}{section*.34}\protected@file@percent }
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\@LN{991}{12}
+\@writefile{toc}{\contentsline {paragraph}{Logit-scale sensitivity.}{13}{section*.36}\protected@file@percent }
+\@LN{992}{12}
+\@LN{993}{12}
+\@LN{994}{12}
+\@LN{995}{12}
+\@LN{996}{12}
+\@LN{997}{12}
+\@LN{998}{12}
+\@LN{999}{12}
+\@LN{1000}{12}
+\@LN{1001}{12}
+\@LN{1002}{12}
+\@LN{1003}{12}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces TOST sensitivity analysis across equivalence margins. The interaction effect (0.47\,pp, 90\% CI [$-$1.0, 2.0]\,pp) is bounded below 2\,pp at marginal significance ($p = 0.047$); the $\pm 3$\,pp choice does not drive the equivalence conclusion. At $\pm 1$\,pp, equivalence is inconclusive ($p = 0.278$), meaning interaction could reach approximately half the main effect magnitude.}}{14}{table.caption.35}\protected@file@percent }
+\newlabel{tab:tost_sensitivity}{{10}{14}{TOST sensitivity analysis across equivalence margins. The interaction effect (0.47\,pp, 90\% CI [$-$1.0, 2.0]\,pp) is bounded below 2\,pp at marginal significance ($p = 0.047$); the $\pm 3$\,pp choice does not drive the equivalence conclusion. At $\pm 1$\,pp, equivalence is inconclusive ($p = 0.278$), meaning interaction could reach approximately half the main effect magnitude}{table.caption.35}{}}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@LN{1009}{13}
+\@LN{1010}{13}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@writefile{toc}{\contentsline {paragraph}{DocRED factorial (expanded).}{14}{section*.37}\protected@file@percent }
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@writefile{toc}{\contentsline {paragraph}{Range-matched robustness check.}{14}{section*.38}\protected@file@percent }
+\@LN{1025}{13}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN@col{2}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Within-Pool CI Details}{14}{appendix.D}\protected@file@percent }
+\newlabel{sec:appendix_within_pool}{{D}{14}{Within-Pool CI Details}{appendix.D}{}}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@LN{1051}{13}
+\@LN{1052}{13}
+\@LN{1053}{13}
+\@LN{1054}{13}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\@LN{1058}{13}
+\@LN{1059}{13}
+\@LN{1060}{13}
+\@LN{1061}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Controlling for Centrality Confounds in MAVEN Per-Type Analysis}{14}{appendix.E}\protected@file@percent }
+\newlabel{sec:appendix_residualized_bcs}{{E}{14}{Controlling for Centrality Confounds in MAVEN Per-Type Analysis}{appendix.E}{}}
+\@LN{1062}{13}
+\@LN{1063}{13}
+\@LN{1064}{13}
+\@LN{1065}{13}
+\@LN{1066}{13}
+\@LN{1067}{13}
+\@LN{1068}{13}
+\@LN{1069}{13}
+\@writefile{toc}{\contentsline {paragraph}{Confound identification.}{14}{section*.39}\protected@file@percent }
+\@LN{1070}{13}
+\@LN{1071}{13}
+\@LN{1072}{13}
+\@LN{1073}{13}
+\@LN{1074}{13}
+\@LN{1075}{13}
+\@LN{1076}{13}
+\@LN{1077}{13}
+\@LN{1078}{13}
+\@LN{1079}{13}
+\@LN{1080}{13}
+\@LN{1081}{13}
+\@LN{1082}{13}
+\@LN{1083}{13}
+\@LN{1084}{13}
+\@writefile{toc}{\contentsline {paragraph}{Partial correlation results.}{14}{section*.40}\protected@file@percent }
+\@LN{1085}{13}
+\@LN{1086}{13}
+\@LN{1087}{13}
+\@LN{1088}{13}
+\@LN{1089}{13}
+\@LN@col{1}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces MAVEN per-type BCS--F1 correlation before and after controlling for centrality confounders. Raw correlations are Spearman $\rho $; partial correlations are Pearson $r$ from residualized regression. Degree centrality is computed on the SCS graph at threshold 0.7. All values from the residualized BCS analysis.}}{15}{table.caption.41}\protected@file@percent }
+\newlabel{tab:residualized_bcs}{{11}{15}{MAVEN per-type BCS--F1 correlation before and after controlling for centrality confounders. Raw correlations are Spearman $\rho $; partial correlations are Pearson $r$ from residualized regression. Degree centrality is computed on the SCS graph at threshold 0.7. All values from the residualized BCS analysis}{table.caption.41}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{15}{section*.42}\protected@file@percent }
+\@LN{1092}{14}
+\@LN{1093}{14}
+\@LN{1094}{14}
+\@LN{1095}{14}
+\@LN{1096}{14}
+\@LN{1097}{14}
+\@LN{1098}{14}
+\@LN{1099}{14}
+\@LN{1100}{14}
+\@LN{1101}{14}
+\@LN{1102}{14}
+\@LN{1103}{14}
+\@LN{1104}{14}
+\@LN{1105}{14}
+\@LN{1106}{14}
+\@LN{1107}{14}
+\@LN{1108}{14}
+\@LN{1109}{14}
+\@LN{1110}{14}
+\@LN{1111}{14}
+\@LN{1112}{14}
+\@LN{1113}{14}
+\@LN{1114}{14}
+\@LN{1115}{14}
+\@LN{1116}{14}
+\@LN{1117}{14}
+\@LN{1118}{14}
+\@LN{1119}{14}
+\@writefile{toc}{\contentsline {subsection}{\numberline {E.1}Partial Correlation: Controlling for Degree Centrality}{15}{subsection.E.1}\protected@file@percent }
+\newlabel{sec:appendix_partial_corr}{{E.1}{15}{Partial Correlation: Controlling for Degree Centrality}{subsection.E.1}{}}
+\@LN{1120}{14}
+\@LN{1121}{14}
+\@LN{1122}{14}
+\@LN{1123}{14}
+\@LN{1124}{14}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@LN{1127}{14}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces BCS--accuracy partial correlation controlling for degree centrality. FewRel shows minimal attenuation (VIF${}\,=\,1.18$, low collinearity). DocRED shows high BCS--centrality collinearity (VIF${}\,=\,50.9$, $r = 0.99$), but the partial correlation remains highly significant.}}{15}{table.caption.43}\protected@file@percent }
+\newlabel{tab:partial_corr}{{12}{15}{BCS--accuracy partial correlation controlling for degree centrality. FewRel shows minimal attenuation (VIF${}\,=\,1.18$, low collinearity). DocRED shows high BCS--centrality collinearity (VIF${}\,=\,50.9$, $r = 0.99$), but the partial correlation remains highly significant}{table.caption.43}{}}
+\@LN{1128}{14}
+\@LN{1129}{14}
+\@LN{1130}{14}
+\@LN{1131}{14}
+\@LN{1132}{14}
+\@LN{1133}{14}
+\@LN{1134}{14}
+\@LN{1135}{14}
+\@LN{1136}{14}
+\@writefile{toc}{\contentsline {paragraph}{Ridge regression under multicollinearity.}{15}{section*.44}\protected@file@percent }
+\@LN{1137}{14}
+\@LN{1138}{14}
+\@LN{1139}{14}
+\@LN{1140}{14}
+\@LN{1141}{14}
+\@LN{1142}{14}
+\@LN{1143}{14}
+\@LN{1144}{14}
+\@LN{1145}{14}
+\@LN{1146}{14}
+\@LN{1147}{14}
+\@LN{1148}{14}
+\@LN{1149}{14}
+\@LN{1150}{14}
+\@LN{1151}{14}
+\@LN{1152}{14}
+\@LN{1153}{14}
+\@LN{1154}{14}
+\@writefile{toc}{\contentsline {subsection}{\numberline {E.2}NER BCS-Null Power Analysis}{15}{subsection.E.2}\protected@file@percent }
+\newlabel{sec:appendix_ner_power}{{E.2}{15}{NER BCS-Null Power Analysis}{subsection.E.2}{}}
+\@LN{1155}{14}
+\@LN{1156}{14}
+\@LN{1157}{14}
+\@LN{1158}{14}
+\@LN{1159}{14}
+\@LN{1160}{14}
+\@LN{1161}{14}
+\@LN{1162}{14}
+\@LN{1163}{14}
+\@LN{1164}{14}
+\@LN{1165}{14}
+\@LN{1166}{14}
+\@LN@col{1}
+\@LN{1167}{15}
+\@writefile{toc}{\contentsline {subsection}{\numberline {E.3}Bootstrap CI Robustness}{16}{subsection.E.3}\protected@file@percent }
+\newlabel{sec:appendix_bootstrap_ci}{{E.3}{16}{Bootstrap CI Robustness}{subsection.E.3}{}}
+\@LN{1168}{15}
+\@LN{1169}{15}
+\@LN{1170}{15}
+\@LN{1171}{15}
+\@LN{1172}{15}
+\@LN{1173}{15}
+\@LN{1174}{15}
+\@LN{1175}{15}
+\@LN{1176}{15}
+\@LN{1177}{15}
+\@LN{1178}{15}
+\@LN{1179}{15}
+\@LN{1180}{15}
+\@LN{1181}{15}
+\@LN{1182}{15}
+\@LN{1183}{15}
+\@LN{1184}{15}
+\@LN{1185}{15}
+\@LN{1186}{15}
+\@LN{1187}{15}
+\@LN{1188}{15}
+\@LN{1189}{15}
+\@writefile{toc}{\contentsline {subsection}{\numberline {E.4}Domain Distribution in Extreme-BCS Batches}{16}{subsection.E.4}\protected@file@percent }
+\newlabel{sec:appendix_domain_distribution}{{E.4}{16}{Domain Distribution in Extreme-BCS Batches}{subsection.E.4}{}}
+\@LN{1190}{15}
+\@LN{1191}{15}
+\@LN{1192}{15}
+\@LN{1193}{15}
+\@LN{1194}{15}
+\@LN{1195}{15}
+\@LN{1196}{15}
+\@LN{1197}{15}
+\@LN{1198}{15}
+\@LN{1199}{15}
+\@LN{1200}{15}
+\@LN{1201}{15}
+\@LN{1202}{15}
+\@LN{1203}{15}
+\@LN{1204}{15}
+\@LN{1205}{15}
+\@LN{1206}{15}
+\@LN{1207}{15}
+\@LN{1208}{15}
+\@LN{1209}{15}
+\@LN{1210}{15}
+\@LN{1211}{15}
+\@LN{1212}{15}
+\@LN{1213}{15}
+\@LN{1214}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Batch composition on FewRel 80-relation RE with oracle routing. $^\dagger $Mean $\pm $ SD across 15 random seeds.}}{16}{table.caption.45}\protected@file@percent }
+\newlabel{tab:batch_composition}{{13}{16}{Batch composition on FewRel 80-relation RE with oracle routing. $^\dagger $Mean $\pm $ SD across 15 random seeds}{table.caption.45}{}}
+\@LN{1215}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Batch Composition Results}{16}{appendix.F}\protected@file@percent }
+\newlabel{sec:appendix_batch_composition}{{F}{16}{Batch Composition Results}{appendix.F}{}}
+\@LN{1216}{15}
+\@LN{1217}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Prompt Templates}{16}{appendix.G}\protected@file@percent }
+\newlabel{sec:appendix_prompts}{{G}{16}{Prompt Templates}{appendix.G}{}}
+\@LN{1218}{15}
+\@LN{1219}{15}
+\@LN{1220}{15}
+\@LN{1221}{15}
+\@LN{1222}{15}
+\@LN{1223}{15}
+\@LN{1224}{15}
+\@LN{1225}{15}
+\@LN{1226}{15}
+\@LN{1227}{15}
+\@LN{1228}{15}
+\@LN{1229}{15}
+\@LN{1230}{15}
+\@LN{1231}{15}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.1}Named Entity Recognition (Few-NERD)}{16}{subsection.G.1}\protected@file@percent }
+\@LN{1232}{15}
+\@LN{1233}{15}
+\@LN{1234}{15}
+\@LN{1235}{15}
+\@LN{1236}{15}
+\@LN{1237}{15}
+\@LN{1238}{15}
+\@LN{1239}{15}
+\@LN{1240}{15}
+\@LN{1241}{15}
+\@LN{1242}{15}
+\@LN{1243}{15}
+\@LN{1244}{15}
+\@LN{1245}{15}
+\@LN{1246}{15}
+\@LN{1247}{15}
+\@LN{1248}{15}
+\@LN{1249}{15}
+\@LN{1250}{15}
+\@LN{1251}{15}
+\@LN{1252}{15}
+\@LN{1253}{15}
+\@LN{1254}{15}
+\@LN{1255}{15}
+\@LN{1256}{15}
+\@LN{1257}{15}
+\@LN{1258}{15}
+\@LN{1259}{15}
+\citation{fewnerd-2021}
+\citation{maven-2020}
+\citation{fewrel-2018}
+\@LN@col{1}
+\@LN{1260}{16}
+\@LN{1261}{16}
+\@LN{1262}{16}
+\@LN{1263}{16}
+\@LN{1264}{16}
+\@LN{1265}{16}
+\@LN{1266}{16}
+\@LN{1267}{16}
+\@LN{1268}{16}
+\@LN{1269}{16}
+\@LN{1270}{16}
+\@LN{1271}{16}
+\@LN{1272}{16}
+\@LN{1273}{16}
+\@LN{1274}{16}
+\@LN{1275}{16}
+\@LN{1276}{16}
+\@LN{1277}{16}
+\@writefile{toc}{\contentsline {paragraph}{v1 $\to $ v2 differences (NER).}{17}{section*.48}\protected@file@percent }
+\@LN{1278}{16}
+\@LN{1279}{16}
+\@LN{1280}{16}
+\@LN{1281}{16}
+\@LN{1282}{16}
+\@LN{1283}{16}
+\@LN{1284}{16}
+\@LN{1285}{16}
+\@LN{1286}{16}
+\@LN{1287}{16}
+\@LN{1288}{16}
+\@LN{1289}{16}
+\@LN{1290}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.2}Event Detection (MAVEN)}{17}{subsection.G.2}\protected@file@percent }
+\@LN{1291}{16}
+\@LN{1292}{16}
+\@LN{1293}{16}
+\@LN{1294}{16}
+\@LN{1295}{16}
+\@LN{1296}{16}
+\@LN{1297}{16}
+\@LN{1298}{16}
+\@LN{1299}{16}
+\@LN{1300}{16}
+\@LN{1301}{16}
+\@LN{1302}{16}
+\@LN{1303}{16}
+\@LN{1304}{16}
+\@LN{1305}{16}
+\@LN{1306}{16}
+\@LN{1307}{16}
+\@LN{1308}{16}
+\@LN{1309}{16}
+\@LN{1310}{16}
+\@LN{1311}{16}
+\@LN{1312}{16}
+\@LN{1313}{16}
+\@LN{1314}{16}
+\@LN@col{2}
+\@LN{1315}{16}
+\@LN{1316}{16}
+\@LN{1317}{16}
+\@LN{1318}{16}
+\@LN{1319}{16}
+\@LN{1320}{16}
+\@LN{1321}{16}
+\@LN{1322}{16}
+\@LN{1323}{16}
+\@LN{1324}{16}
+\@LN{1325}{16}
+\@LN{1326}{16}
+\@LN{1327}{16}
+\@LN{1328}{16}
+\@LN{1329}{16}
+\@LN{1330}{16}
+\@writefile{toc}{\contentsline {paragraph}{v1 $\to $ v2 differences (ED).}{17}{section*.51}\protected@file@percent }
+\@LN{1331}{16}
+\@LN{1332}{16}
+\@LN{1333}{16}
+\@LN{1334}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.3}Relation Extraction (FewRel)}{17}{subsection.G.3}\protected@file@percent }
+\@LN{1335}{16}
+\@LN{1336}{16}
+\@LN{1337}{16}
+\@LN{1338}{16}
+\@LN{1339}{16}
+\@LN{1340}{16}
+\@LN{1341}{16}
+\@LN{1342}{16}
+\@LN{1343}{16}
+\@LN{1344}{16}
+\@LN{1345}{16}
+\@LN{1346}{16}
+\@LN{1347}{16}
+\@LN{1348}{16}
+\@LN{1349}{16}
+\@LN{1350}{16}
+\@LN{1351}{16}
+\@LN{1352}{16}
+\@LN{1353}{16}
+\@LN{1354}{16}
+\@LN{1355}{16}
+\@LN{1356}{16}
+\@LN{1357}{16}
+\@LN{1358}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.4}Type Definitions}{17}{subsection.G.4}\protected@file@percent }
+\newlabel{sec:appendix_type_defs}{{G.4}{17}{Type Definitions}{subsection.G.4}{}}
+\@LN{1359}{16}
+\@LN{1360}{16}
+\@LN{1361}{16}
+\@LN{1362}{16}
+\@LN{1363}{16}
+\@LN{1364}{16}
+\@LN{1365}{16}
+\@LN{1366}{16}
+\citation{rothman-1990}
+\@LN@col{1}
+\@LN{1367}{17}
+\@LN{1368}{17}
+\@LN{1369}{17}
+\@LN{1370}{17}
+\@LN{1371}{17}
+\@LN{1372}{17}
+\@LN{1373}{17}
+\@LN{1374}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Prompt Version Sensitivity Analysis}{18}{appendix.H}\protected@file@percent }
+\newlabel{sec:appendix_prompt_sensitivity}{{H}{18}{Prompt Version Sensitivity Analysis}{appendix.H}{}}
+\@LN{1375}{17}
+\@LN{1376}{17}
+\@LN{1377}{17}
+\@LN{1378}{17}
+\@LN{1379}{17}
+\@writefile{toc}{\contentsline {paragraph}{RE (FewRel).}{18}{section*.53}\protected@file@percent }
+\@LN{1380}{17}
+\@LN{1381}{17}
+\@LN{1382}{17}
+\@LN{1383}{17}
+\@LN{1384}{17}
+\@LN{1385}{17}
+\@LN{1386}{17}
+\@LN{1387}{17}
+\@LN{1388}{17}
+\@LN{1389}{17}
+\@LN{1390}{17}
+\@LN{1391}{17}
+\@LN{1392}{17}
+\@LN{1393}{17}
+\@LN{1394}{17}
+\@LN{1395}{17}
+\@writefile{toc}{\contentsline {paragraph}{NER (Few-NERD).}{18}{section*.54}\protected@file@percent }
+\@LN{1396}{17}
+\@LN{1397}{17}
+\@LN{1398}{17}
+\@LN{1399}{17}
+\@LN{1400}{17}
+\@LN{1401}{17}
+\@LN{1402}{17}
+\@LN{1403}{17}
+\@LN{1404}{17}
+\@LN{1405}{17}
+\@LN{1406}{17}
+\@LN{1407}{17}
+\@LN{1408}{17}
+\@LN{1409}{17}
+\@LN{1410}{17}
+\@LN{1411}{17}
+\@LN{1412}{17}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{18}{section*.55}\protected@file@percent }
+\@LN{1413}{17}
+\@LN{1414}{17}
+\@LN@col{2}
+\@LN{1415}{17}
+\@LN{1416}{17}
+\@LN{1417}{17}
+\@LN{1418}{17}
+\@LN{1419}{17}
+\@LN{1420}{17}
+\@LN{1421}{17}
+\@LN{1422}{17}
+\@LN{1423}{17}
+\@LN{1424}{17}
+\@LN{1425}{17}
+\@LN{1426}{17}
+\@LN{1427}{17}
+\@LN{1428}{17}
+\@LN{1429}{17}
+\@LN{1430}{17}
+\@writefile{toc}{\contentsline {subsection}{\numberline {H.1}Cross-Prompt-Variant BCS Correlation}{18}{subsection.H.1}\protected@file@percent }
+\newlabel{sec:appendix_prompt_variants}{{H.1}{18}{Cross-Prompt-Variant BCS Correlation}{subsection.H.1}{}}
+\@LN{1431}{17}
+\@LN{1432}{17}
+\@LN{1433}{17}
+\@LN{1434}{17}
+\@LN{1435}{17}
+\@LN{1436}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces BCS--accuracy Pearson correlation across four prompt variants. At count 32, all four variants show negative BCS--accuracy correlations ($r \leq -0.47$), with two reaching $p < 0.05$. At count 8, the narrower BCS range reduces statistical power.}}{18}{table.caption.56}\protected@file@percent }
+\newlabel{tab:prompt_variants}{{14}{18}{BCS--accuracy Pearson correlation across four prompt variants. At count 32, all four variants show negative BCS--accuracy correlations ($r \leq -0.47$), with two reaching $p < 0.05$. At count 8, the narrower BCS range reduces statistical power}{table.caption.56}{}}
+\@LN{1437}{17}
+\@LN{1438}{17}
+\@LN{1439}{17}
+\@LN{1440}{17}
+\@LN{1441}{17}
+\@LN{1442}{17}
+\@LN{1443}{17}
+\@LN{1444}{17}
+\@LN{1445}{17}
+\@LN{1446}{17}
+\@LN{1447}{17}
+\@LN{1448}{17}
+\@LN{1449}{17}
+\@LN{1450}{17}
+\@LN{1451}{17}
+\@LN@col{1}
+\@LN{1452}{18}
+\@LN{1453}{18}
+\@LN{1454}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {I}BCS Aggregation Sensitivity}{19}{appendix.I}\protected@file@percent }
+\newlabel{sec:appendix_bcs_sensitivity}{{I}{19}{BCS Aggregation Sensitivity}{appendix.I}{}}
+\@LN{1455}{18}
+\@LN{1456}{18}
+\@LN{1457}{18}
+\@LN{1458}{18}
+\@LN{1459}{18}
+\@LN{1460}{18}
+\@LN{1461}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces BCS--accuracy regression under mean vs.\ max pairwise SCS aggregation (FewRel, 16-relation batches). Permutation test for slope equivalence across pools: MEAN $p \approx 0.60$; MAX $p \approx 0.44$. The 80-pool row is identical under both definitions because these batches were collected using mean-aggregated BCS; the MAX column reflects the same data for completeness.}}{19}{table.caption.57}\protected@file@percent }
+\newlabel{tab:bcs_aggregation}{{15}{19}{BCS--accuracy regression under mean vs.\ max pairwise SCS aggregation (FewRel, 16-relation batches). Permutation test for slope equivalence across pools: MEAN $p \approx 0.60$; MAX $p \approx 0.44$. The 80-pool row is identical under both definitions because these batches were collected using mean-aggregated BCS; the MAX column reflects the same data for completeness}{table.caption.57}{}}
+\@LN{1462}{18}
+\@LN{1463}{18}
+\@LN{1464}{18}
+\@LN{1465}{18}
+\@LN{1466}{18}
+\@LN{1467}{18}
+\@LN{1468}{18}
+\@LN{1469}{18}
+\@LN{1470}{18}
+\@LN{1471}{18}
+\@LN{1472}{18}
+\@LN{1473}{18}
+\@LN{1474}{18}
+\@LN{1475}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {J}BCS-Controlled Detailed Results}{19}{appendix.J}\protected@file@percent }
+\newlabel{app:bcs-controlled-table}{{J}{19}{BCS-Controlled Detailed Results}{appendix.J}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The 80-relation extreme-batch gap reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\ref {tab:within_pool}; see \S  \ref {sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches.}}{19}{table.caption.58}\protected@file@percent }
+\newlabel{tab:bcs_controlled}{{16}{19}{BCS-controlled FewRel accuracy. Low-BCS batches contain maximally dissimilar types; high-BCS batches contain maximally similar types. The 80-relation extreme-batch gap reflects the wider BCS range; regression slopes are consistent across pools ($p = 0.60$; Table~\ref {tab:within_pool}; see \S \ref {sec:practical_magnitude} for typical-batch magnitudes). The 16-relation condition used a single extreme batch per BCS level; bootstrap CIs require multiple batches}{table.caption.58}{}}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Adjusted $R^2$ and confidence intervals.}{19}{section*.59}\protected@file@percent }
+\@LN{1476}{18}
+\@LN{1477}{18}
+\@LN{1478}{18}
+\@LN{1479}{18}
+\@LN{1480}{18}
+\@LN{1481}{18}
+\@LN{1482}{18}
+\@LN{1483}{18}
+\@LN{1484}{18}
+\@LN{1485}{18}
+\@LN{1486}{18}
+\@LN{1487}{18}
+\@LN{1488}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Format Independence: Paired Constrained vs.\ Unconstrained Comparison}{19}{appendix.K}\protected@file@percent }
+\newlabel{app:format-independence}{{K}{19}{Format Independence: Paired Constrained vs.\ Unconstrained Comparison}{appendix.K}{}}
+\@LN{1489}{18}
+\@LN{1490}{18}
+\@LN{1491}{18}
+\@LN{1492}{18}
+\@LN{1493}{18}
+\@LN{1494}{18}
+\@LN{1495}{18}
+\@LN{1496}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Paired comparison of constrained vs.\ unconstrained decoding on 25 identical FewRel batch type sets. Both formats yield virtually identical BCS--accuracy correlations (Fisher $z \approx 0$), confirming the confusability effect is not format-dependent. Mean accuracy is also unchanged ($\Delta = -0.08$\,pp), ruling out a format-driven accuracy shift.}}{19}{table.caption.60}\protected@file@percent }
+\newlabel{tab:format_independence}{{17}{19}{Paired comparison of constrained vs.\ unconstrained decoding on 25 identical FewRel batch type sets. Both formats yield virtually identical BCS--accuracy correlations (Fisher $z \approx 0$), confirming the confusability effect is not format-dependent. Mean accuracy is also unchanged ($\Delta = -0.08$\,pp), ruling out a format-driven accuracy shift}{table.caption.60}{}}
+\@LN{1497}{18}
+\@LN{1498}{18}
+\@LN{1499}{18}
+\@LN{1500}{18}
+\@LN{1501}{18}
+\@LN{1502}{18}
+\@LN{1503}{18}
+\@LN{1504}{18}
+\@LN{1505}{18}
+\@LN{1506}{18}
+\@LN{1507}{18}
+\@LN{1508}{18}
+\@writefile{toc}{\contentsline {paragraph}{Per-batch paired results.}{19}{section*.61}\protected@file@percent }
+\@LN{1509}{18}
+\@LN{1510}{18}
+\@LN{1511}{18}
+\@LN@col{1}
+\@LN{1512}{19}
+\@LN{1513}{19}
+\@LN{1514}{19}
+\@LN{1515}{19}
+\@LN{1516}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Per-batch accuracy (\%) under constrained and unconstrained decoding on 25 identical FewRel batch type sets (count 8, 96 instances each). 23/25 batches yield identical accuracy; the two exceptions differ by exactly one sample ($\Delta = -1.04$\,pp). L = low-BCS, H = high-BCS.}}{20}{table.caption.62}\protected@file@percent }
+\newlabel{tab:format_perbatch}{{18}{20}{Per-batch accuracy (\%) under constrained and unconstrained decoding on 25 identical FewRel batch type sets (count 8, 96 instances each). 23/25 batches yield identical accuracy; the two exceptions differ by exactly one sample ($\Delta = -1.04$\,pp). L = low-BCS, H = high-BCS}{table.caption.62}{}}
+\@LN{1517}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Within-Pool Analysis Methodology}{20}{appendix.L}\protected@file@percent }
+\newlabel{app:within-pool-method}{{L}{20}{Within-Pool Analysis Methodology}{appendix.L}{}}
+\@LN{1518}{19}
+\@LN{1519}{19}
+\@LN{1520}{19}
+\@LN{1521}{19}
+\@LN{1522}{19}
+\@LN{1523}{19}
+\@LN{1524}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Three-way BCS--accuracy analysis on FewRel. Slope: OLS of batch accuracy on BCS (bootstrap CIs, $B{=}10{,}000$). $\Delta $: accuracy gap between top- and bottom-quartile BCS batches. See Appendix~\ref {sec:appendix_within_pool} for CI interpretation.}}{20}{table.caption.63}\protected@file@percent }
+\newlabel{tab:within_pool}{{19}{20}{Three-way BCS--accuracy analysis on FewRel. Slope: OLS of batch accuracy on BCS (bootstrap CIs, $B{=}10{,}000$). $\Delta $: accuracy gap between top- and bottom-quartile BCS batches. See Appendix~\ref {sec:appendix_within_pool} for CI interpretation}{table.caption.63}{}}
+\@LN@col{2}
+\@LN{1525}{19}
+\@LN{1526}{19}
+\@LN{1527}{19}
+\@LN{1528}{19}
+\@LN{1529}{19}
+\@LN{1530}{19}
+\@LN{1531}{19}
+\@LN{1532}{19}
+\@LN{1533}{19}
+\@LN{1534}{19}
+\@LN{1535}{19}
+\@LN{1536}{19}
+\@LN{1537}{19}
+\@LN{1538}{19}
+\@LN{1539}{19}
+\@LN{1540}{19}
+\@LN{1541}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {M}SCS Embedding Ablation: Name-Only vs. Name+Definition}{20}{appendix.M}\protected@file@percent }
+\newlabel{app:scs-ablation}{{M}{20}{SCS Embedding Ablation: Name-Only vs. Name+Definition}{appendix.M}{}}
+\@LN{1542}{19}
+\@LN{1543}{19}
+\@LN{1544}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Pearson correlation between SCS and empirical confusion rate. ``Def'' concatenates type name with definition before embedding. All correlations significant ($p < 0.001$). The inconsistent direction of $\Delta r$ indicates that definitions provide no systematic benefit.}}{20}{table.caption.64}\protected@file@percent }
+\newlabel{tab:scs-ablation}{{20}{20}{Pearson correlation between SCS and empirical confusion rate. ``Def'' concatenates type name with definition before embedding. All correlations significant ($p < 0.001$). The inconsistent direction of $\Delta r$ indicates that definitions provide no systematic benefit}{table.caption.64}{}}
+\@LN{1545}{19}
+\@LN{1546}{19}
+\@LN{1547}{19}
+\@LN{1548}{19}
+\@LN{1549}{19}
+\@LN{1550}{19}
+\newlabel{app:scs-heldout-validation}{{M}{20}{Held-out validation}{section*.65}{}}
+\@writefile{toc}{\contentsline {paragraph}{Held-out validation.}{20}{section*.65}\protected@file@percent }
+\@LN{1551}{19}
+\@LN{1552}{19}
+\@LN{1553}{19}
+\@LN{1554}{19}
+\@LN{1555}{19}
+\@LN{1556}{19}
+\@LN{1557}{19}
+\@LN{1558}{19}
+\@LN{1559}{19}
+\@LN{1560}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Pair-to-Batch Aggregation Simulation}{20}{appendix.N}\protected@file@percent }
+\newlabel{app:aggregation-sim}{{N}{20}{Pair-to-Batch Aggregation Simulation}{appendix.N}{}}
+\@LN{1561}{19}
+\@LN{1562}{19}
+\citation{robinson-1950-ecological}
+\@LN@col{1}
+\@LN{1563}{20}
+\@LN{1564}{20}
+\@LN{1565}{20}
+\@LN{1566}{20}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{21}{section*.66}\protected@file@percent }
+\@LN{1567}{20}
+\@LN{1568}{20}
+\@LN{1569}{20}
+\@LN{1570}{20}
+\@LN{1571}{20}
+\@LN{1572}{20}
+\@LN{1573}{20}
+\@LN{1574}{20}
+\@LN{1575}{20}
+\@LN{1576}{20}
+\@LN{1577}{20}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{21}{section*.67}\protected@file@percent }
+\@LN{1578}{20}
+\@LN{1579}{20}
+\@LN{1580}{20}
+\@LN{1581}{20}
+\@LN{1582}{20}
+\@LN{1583}{20}
+\@LN{1584}{20}
+\@writefile{toc}{\contentsline {paragraph}{Unconditional baseline.}{21}{section*.68}\protected@file@percent }
+\@LN{1585}{20}
+\@LN{1586}{20}
+\@LN{1587}{20}
+\@LN{1588}{20}
+\@LN{1589}{20}
+\@LN{1590}{20}
+\@LN{1591}{20}
+\@LN{1592}{20}
+\@LN{1593}{20}
+\@LN{1594}{20}
+\@LN{1595}{20}
+\@LN{1596}{20}
+\@LN{1597}{20}
+\@LN{1598}{20}
+\@LN{1599}{20}
+\@LN{1600}{20}
+\@LN{1601}{20}
+\@LN{1602}{20}
+\@LN{1603}{20}
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity to $\rho $.}{21}{section*.69}\protected@file@percent }
+\@LN{1604}{20}
+\@LN{1605}{20}
+\@LN{1606}{20}
+\@LN{1607}{20}
+\@LN{1608}{20}
+\@LN{1609}{20}
+\@LN{1610}{20}
+\@LN{1611}{20}
+\@LN{1612}{20}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Non-independence and ecological inference.}{21}{section*.70}\protected@file@percent }
+\@LN{1613}{20}
+\@LN{1614}{20}
+\@LN{1615}{20}
+\@LN{1616}{20}
+\@LN{1617}{20}
+\@LN{1618}{20}
+\@LN{1619}{20}
+\@LN{1620}{20}
+\@LN{1621}{20}
+\@LN{1622}{20}
+\@LN{1623}{20}
+\@LN{1624}{20}
+\@LN{1625}{20}
+\@LN{1626}{20}
+\@LN{1627}{20}
+\@LN{1628}{20}
+\@LN{1629}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {O}BCS Independence from Type Composition}{21}{appendix.O}\protected@file@percent }
+\newlabel{app:bcs-composition}{{O}{21}{BCS Independence from Type Composition}{appendix.O}{}}
+\@LN{1630}{20}
+\@LN{1631}{20}
+\@LN{1632}{20}
+\@LN{1633}{20}
+\@LN{1634}{20}
+\@LN{1635}{20}
+\@LN{1636}{20}
+\@LN{1637}{20}
+\@LN{1638}{20}
+\@LN{1639}{20}
+\@LN{1640}{20}
+\@LN{1641}{20}
+\@LN{1642}{20}
+\@LN{1643}{20}
+\@LN{1644}{20}
+\@LN{1645}{20}
+\@LN{1646}{20}
+\@LN{1647}{20}
+\@LN{1648}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {P}SCS vs.\ Simple Baselines}{21}{appendix.P}\protected@file@percent }
+\newlabel{app:scs-baselines}{{P}{21}{SCS vs.\ Simple Baselines}{appendix.P}{}}
+\@LN{1649}{20}
+\@LN{1650}{20}
+\@LN{1651}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Split-Origin Covariate Analysis}{21}{appendix.Q}\protected@file@percent }
+\newlabel{app:split-origin}{{Q}{21}{Split-Origin Covariate Analysis}{appendix.Q}{}}
+\@LN{1652}{20}
+\@LN{1653}{20}
+\@LN{1654}{20}
+\@LN{1655}{20}
+\@LN{1656}{20}
+\@LN{1657}{20}
+\@LN{1658}{20}
+\@LN{1659}{20}
+\@LN{1660}{20}
+\citation{rastogi2020towards}
+\citation{li2023evaluating}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Pairwise confusion prediction: SCS vs.\ simple baselines. Spearman $\rho $ between each metric and the empirical confusion rate. SCS outperforms all baselines on FewRel; the margin is smaller on Few-NERD, where hierarchical naming conventions provide partial signal to string-based metrics. $^\dagger $42\% of pairs lack WordNet coverage.}}{22}{table.caption.71}\protected@file@percent }
+\newlabel{tab:scs_baselines}{{21}{22}{Pairwise confusion prediction: SCS vs.\ simple baselines. Spearman $\rho $ between each metric and the empirical confusion rate. SCS outperforms all baselines on FewRel; the margin is smaller on Few-NERD, where hierarchical naming conventions provide partial signal to string-based metrics. $^\dagger $42\% of pairs lack WordNet coverage}{table.caption.71}{}}
+\@writefile{toc}{\contentsline {paragraph}{Method.}{22}{section*.72}\protected@file@percent }
+\@LN{1661}{21}
+\@LN{1662}{21}
+\@LN{1663}{21}
+\@LN{1664}{21}
+\@LN{1665}{21}
+\@LN{1666}{21}
+\@LN{1667}{21}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{22}{section*.73}\protected@file@percent }
+\@LN{1668}{21}
+\@LN{1669}{21}
+\@LN{1670}{21}
+\@LN{1671}{21}
+\@LN{1672}{21}
+\@LN{1673}{21}
+\@LN{1674}{21}
+\@LN{1675}{21}
+\@LN{1676}{21}
+\@LN{1677}{21}
+\@LN{1678}{21}
+\@LN{1679}{21}
+\@LN{1680}{21}
+\@LN{1681}{21}
+\@LN{1682}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Cross-Seed Variance Decomposition}{22}{appendix.R}\protected@file@percent }
+\newlabel{app:variance-decomposition}{{R}{22}{Cross-Seed Variance Decomposition}{appendix.R}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Variance decomposition on FewRel (3 seeds $\times $ 25 batches per count level). Batch SD: root-mean intra-seed variance averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 80, only one batch composition exists, so batch variance vanishes by construction.}}{22}{table.caption.74}\protected@file@percent }
+\newlabel{tab:variance_decomposition}{{22}{22}{Variance decomposition on FewRel (3 seeds $\times $ 25 batches per count level). Batch SD: root-mean intra-seed variance averaged over seeds. Seed SD: standard deviation of per-seed means. Ratio = batch variance / seed variance. At count 80, only one batch composition exists, so batch variance vanishes by construction}{table.caption.74}{}}
+\@LN@col{2}
+\@LN{1683}{21}
+\@LN{1684}{21}
+\@LN{1685}{21}
+\@LN{1686}{21}
+\@LN{1687}{21}
+\@LN{1688}{21}
+\@LN{1689}{21}
+\@LN{1690}{21}
+\@LN{1691}{21}
+\@LN{1692}{21}
+\@LN{1693}{21}
+\@LN{1694}{21}
+\@LN{1695}{21}
+\@LN{1696}{21}
+\@LN{1697}{21}
+\@LN{1698}{21}
+\@LN{1699}{21}
+\@LN{1700}{21}
+\@LN{1701}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Cross-Domain Connections}{22}{appendix.S}\protected@file@percent }
+\newlabel{app:cross-domain}{{S}{22}{Cross-Domain Connections}{appendix.S}{}}
+\@LN{1702}{21}
+\@LN{1703}{21}
+\@LN{1704}{21}
+\@LN{1705}{21}
+\@LN{1706}{21}
+\@LN{1707}{21}
+\@LN{1708}{21}
+\@LN{1709}{21}
+\@LN{1710}{21}
+\@LN{1711}{21}
+\@LN{1712}{21}
+\@LN{1713}{21}
+\@LN{1714}{21}
+\@LN{1715}{21}
+\@LN{1716}{21}
+\@LN{1717}{21}
+\@LN{1718}{21}
+\@LN{1719}{21}
+\@LN{1720}{21}
+\@LN{1721}{21}
+\@LN{1722}{21}
+\@LN{1723}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Cross-Model Validation with Llama-3.1-70B-Instruct (FP8)}{22}{appendix.T}\protected@file@percent }
+\newlabel{sec:appendix_cross_model_70b}{{T}{22}{Cross-Model Validation with Llama-3.1-70B-Instruct (FP8)}{appendix.T}{}}
+\@LN{1724}{21}
+\@LN{1725}{21}
+\@LN{1726}{21}
+\@LN{1727}{21}
+\@LN{1728}{21}
+\@LN{1729}{21}
+\@LN{1730}{21}
+\@LN{1731}{21}
+\citation{gemini-2025}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Cross-model count curves for Llama-3.1-70B-Instruct (FP8) and Qwen3-32B. RE decline (count 8$\to $80): $-$30.7\,pp (70B) vs.\ $-$30.1\,pp (32B). NER decline (count 2$\to $22): $-$7.1\,pp (70B) vs.\ $-$23.6\,pp (32B); both models exhibit a U-shaped rebound at higher counts. 25 batches per count level, same samples and batch compositions across models (seed 42). All metrics are micro-averaged across batches.}}{23}{table.caption.75}\protected@file@percent }
+\newlabel{tab:cross_model_70b}{{23}{23}{Cross-model count curves for Llama-3.1-70B-Instruct (FP8) and Qwen3-32B. RE decline (count 8$\to $80): $-$30.7\,pp (70B) vs.\ $-$30.1\,pp (32B). NER decline (count 2$\to $22): $-$7.1\,pp (70B) vs.\ $-$23.6\,pp (32B); both models exhibit a U-shaped rebound at higher counts. 25 batches per count level, same samples and batch compositions across models (seed 42). All metrics are micro-averaged across batches}{table.caption.75}{}}
+\@LN{1732}{22}
+\@LN{1733}{22}
+\@LN{1734}{22}
+\@LN{1735}{22}
+\@LN{1736}{22}
+\@LN{1737}{22}
+\@LN{1738}{22}
+\@LN{1739}{22}
+\@LN{1740}{22}
+\@LN{1741}{22}
+\@LN{1742}{22}
+\@LN{1743}{22}
+\@LN{1744}{22}
+\@LN{1745}{22}
+\@LN{1746}{22}
+\@LN{1747}{22}
+\@LN{1748}{22}
+\@LN{1749}{22}
+\@LN{1750}{22}
+\@LN{1751}{22}
+\@LN{1752}{22}
+\@LN{1753}{22}
+\@LN{1754}{22}
+\@LN{1755}{22}
+\@LN{1756}{22}
+\@LN{1757}{22}
+\@LN{1758}{22}
+\@LN{1759}{22}
+\@LN{1760}{22}
+\@LN{1761}{22}
+\@LN{1762}{22}
+\@LN@col{2}
+\@LN{1763}{22}
+\@LN{1764}{22}
+\@LN{1765}{22}
+\@LN{1766}{22}
+\@LN{1767}{22}
+\@LN{1768}{22}
+\@LN{1769}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Cross-Model Validation with Gemini 2.5 Flash (API)}{23}{appendix.U}\protected@file@percent }
+\newlabel{sec:appendix_cross_model_gemini}{{U}{23}{Cross-Model Validation with Gemini 2.5 Flash (API)}{appendix.U}{}}
+\@LN{1770}{22}
+\@LN{1771}{22}
+\@LN{1772}{22}
+\@LN{1773}{22}
+\@LN{1774}{22}
+\@LN{1775}{22}
+\@LN{1776}{22}
+\@LN{1777}{22}
+\@LN{1778}{22}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Cross-model count curves for Gemini 2.5 Flash (API) and Qwen3-32B on FewRel RE (classification accuracy). 25 batches per count level, same samples and batch compositions (seed 42). Gemini's count-1 result is included for completeness; Qwen3 count-1 was not collected. Both models show monotonic decline from count 4 onward ($\rho = -1.0$ for both on counts 4--32). $^\dagger $Count 64: Gemini based on 11/25 batches (partial).}}{23}{table.caption.76}\protected@file@percent }
+\newlabel{tab:cross_model_gemini}{{24}{23}{Cross-model count curves for Gemini 2.5 Flash (API) and Qwen3-32B on FewRel RE (classification accuracy). 25 batches per count level, same samples and batch compositions (seed 42). Gemini's count-1 result is included for completeness; Qwen3 count-1 was not collected. Both models show monotonic decline from count 4 onward ($\rho = -1.0$ for both on counts 4--32). $^\dagger $Count 64: Gemini based on 11/25 batches (partial)}{table.caption.76}{}}
+\@LN{1779}{22}
+\@LN{1780}{22}
+\@LN{1781}{22}
+\@LN{1782}{22}
+\@LN{1783}{22}
+\@LN{1784}{22}
+\@LN{1785}{22}
+\@LN{1786}{22}
+\@LN{1787}{22}
+\@LN{1788}{22}
+\@LN{1789}{22}
+\@LN{1790}{22}
+\@LN{1791}{22}
+\@LN{1792}{22}
+\@LN{1793}{22}
+\@LN{1794}{22}
+\@writefile{toc}{\contentsline {paragraph}{Dimension~2: BCS-controlled confusability.}{23}{section*.77}\protected@file@percent }
+\@LN{1795}{22}
+\@LN{1796}{22}
+\citation{lost-in-middle-2024}
+\citation{lost-in-middle-2024}
+\@LN@col{1}
+\@LN{1797}{23}
+\@LN{1798}{23}
+\@LN{1799}{23}
+\@LN{1800}{23}
+\@LN{1801}{23}
+\@LN{1802}{23}
+\@LN{1803}{23}
+\@LN{1804}{23}
+\@LN{1805}{23}
+\@LN{1806}{23}
+\@LN{1807}{23}
+\@LN{1808}{23}
+\@LN{1809}{23}
+\@LN{1810}{23}
+\@LN{1811}{23}
+\@LN{1812}{23}
+\@LN{1813}{23}
+\@LN{1814}{23}
+\@LN{1815}{23}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Cross-model BCS-controlled FewRel RE summary. All models show significant low-vs-high BCS accuracy gaps. Gap magnitude varies with model capacity (ceiling compression), but the direction is consistent across open-weight (8B--70B) and proprietary architectures.}}{24}{table.caption.78}\protected@file@percent }
+\newlabel{tab:cross_model_bcs_summary}{{25}{24}{Cross-model BCS-controlled FewRel RE summary. All models show significant low-vs-high BCS accuracy gaps. Gap magnitude varies with model capacity (ceiling compression), but the direction is consistent across open-weight (8B--70B) and proprietary architectures}{table.caption.78}{}}
+\@LN{1816}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Few-Shot Prompting and Confusability}{24}{appendix.V}\protected@file@percent }
+\newlabel{sec:appendix_fewshot_bcs}{{V}{24}{Few-Shot Prompting and Confusability}{appendix.V}{}}
+\@LN{1817}{23}
+\@LN{1818}{23}
+\@LN{1819}{23}
+\@LN{1820}{23}
+\@LN{1821}{23}
+\@LN{1822}{23}
+\@LN{1823}{23}
+\@LN{1824}{23}
+\@LN{1825}{23}
+\@LN{1826}{23}
+\@LN{1827}{23}
+\@LN{1828}{23}
+\@LN{1829}{23}
+\@LN{1830}{23}
+\@LN{1831}{23}
+\@LN{1832}{23}
+\@LN{1833}{23}
+\@LN{1834}{23}
+\@LN{1835}{23}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces BCS gap under few-shot prompting (FewRel, count 8). Demonstrations improve absolute accuracy on low-BCS batches (+3.3--7.2\,pp over 0-shot) but provide inconsistent benefit on high-BCS batches (+5.6\,pp at 1-shot, $-$1.0\,pp at 5-shot). The confusability gap widens from +18.5\,pp (0-shot) to +22.8\,pp (5-shot). All metrics are micro-averaged across batches.}}{24}{table.caption.79}\protected@file@percent }
+\newlabel{tab:fewshot_bcs}{{26}{24}{BCS gap under few-shot prompting (FewRel, count 8). Demonstrations improve absolute accuracy on low-BCS batches (+3.3--7.2\,pp over 0-shot) but provide inconsistent benefit on high-BCS batches (+5.6\,pp at 1-shot, $-$1.0\,pp at 5-shot). The confusability gap widens from +18.5\,pp (0-shot) to +22.8\,pp (5-shot). All metrics are micro-averaged across batches}{table.caption.79}{}}
+\@LN{1836}{23}
+\@LN{1837}{23}
+\@LN{1838}{23}
+\@LN{1839}{23}
+\@LN{1840}{23}
+\@LN{1841}{23}
+\@LN{1842}{23}
+\@LN{1843}{23}
+\@LN{1844}{23}
+\@LN{1845}{23}
+\@LN{1846}{23}
+\@LN{1847}{23}
+\@LN{1848}{23}
+\@LN{1849}{23}
+\@writefile{toc}{\contentsline {paragraph}{Replication at count 16.}{24}{section*.80}\protected@file@percent }
+\@LN{1850}{23}
+\@LN{1851}{23}
+\@LN{1852}{23}
+\@LN{1853}{23}
+\@LN{1854}{23}
+\@LN{1855}{23}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces BCS gap under few-shot prompting (FewRel, count 16). The 1-shot gap (+18.4\,pp) exceeds the 0-shot gap (+15.7\,pp), replicating the widening pattern observed at count 8. The 5-shot gap (+16.7\,pp) retreats from the 1-shot peak, consistent with prompt-length ceiling effects at higher type counts.}}{24}{table.caption.81}\protected@file@percent }
+\newlabel{tab:fewshot_bcs_count16}{{27}{24}{BCS gap under few-shot prompting (FewRel, count 16). The 1-shot gap (+18.4\,pp) exceeds the 0-shot gap (+15.7\,pp), replicating the widening pattern observed at count 8. The 5-shot gap (+16.7\,pp) retreats from the 1-shot peak, consistent with prompt-length ceiling effects at higher type counts}{table.caption.81}{}}
+\@LN{1856}{23}
+\@LN{1857}{23}
+\@LN{1858}{23}
+\@LN{1859}{23}
+\@LN{1860}{23}
+\@LN{1861}{23}
+\@LN{1862}{23}
+\@LN{1863}{23}
+\@LN{1864}{23}
+\@LN@col{1}
+\@LN{1865}{24}
+\@LN{1866}{24}
+\@LN{1867}{24}
+\@LN{1868}{24}
+\@LN{1869}{24}
+\@LN{1870}{24}
+\@LN{1871}{24}
+\@LN{1872}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Qualitative Error Analysis}{25}{appendix.W}\protected@file@percent }
+\newlabel{app:error-analysis}{{W}{25}{Qualitative Error Analysis}{appendix.W}{}}
+\@LN{1873}{24}
+\@LN{1874}{24}
+\@LN{1875}{24}
+\@LN{1876}{24}
+\@LN{1877}{24}
+\@LN{1878}{24}
+\@LN{1879}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Top-10 confused relation pairs on FewRel 80-relation RE. $N$: bidirectional confusion count aggregated over 3 seeds $\times $ 25 batches. SCS: pairwise Schema Confusability Score (Qwen3 embedding cosine similarity). High-SCS pairs (e.g., \textit  {followed by}/\textit  {follows}, SCS\,=\,0.90) and family-relation pairs (\textit  {child}/\textit  {father}, \textit  {child}/\textit  {mother}) dominate. Some low-SCS pairs (\textit  {instance of}/\textit  {taxon rank}, SCS\,=\,0.53) reflect domain-specific co-occurrence rather than semantic similarity.}}{25}{table.caption.82}\protected@file@percent }
+\newlabel{tab:top10_re}{{28}{25}{Top-10 confused relation pairs on FewRel 80-relation RE. $N$: bidirectional confusion count aggregated over 3 seeds $\times $ 25 batches. SCS: pairwise Schema Confusability Score (Qwen3 embedding cosine similarity). High-SCS pairs (e.g., \textit {followed by}/\textit {follows}, SCS\,=\,0.90) and family-relation pairs (\textit {child}/\textit {father}, \textit {child}/\textit {mother}) dominate. Some low-SCS pairs (\textit {instance of}/\textit {taxon rank}, SCS\,=\,0.53) reflect domain-specific co-occurrence rather than semantic similarity}{table.caption.82}{}}
+\@LN{1880}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Schema Label Renaming Experiment}{25}{appendix.X}\protected@file@percent }
+\newlabel{app:renaming}{{X}{25}{Schema Label Renaming Experiment}{appendix.X}{}}
+\@LN{1881}{24}
+\@LN{1882}{24}
+\@LN{1883}{24}
+\@LN{1884}{24}
+\@LN{1885}{24}
+\@LN{1886}{24}
+\@LN{1887}{24}
+\@LN{1888}{24}
+\@LN{1889}{24}
+\@LN{1890}{24}
+\@LN{1891}{24}
+\@LN{1892}{24}
+\@LN{1893}{24}
+\@LN{1894}{24}
+\@LN{1895}{24}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces Top-10 confused entity type pairs on Few-NERD NER. $N$: bidirectional confusion count from 66-type full-schema extraction. SCS: pairwise Schema Confusability Score (Qwen3 embedding cosine similarity). Intra-category confusions (e.g., \textit  {person-other}/\textit  {person-politician}, SCS\,=\,0.93) and cross-category pairs sharing referent overlap (\textit  {building-other}/\textit  {location-GPE}, SCS\,=\,0.85) are most frequent. The ``other'' subtypes absorb diverse entities and confuse with more specific siblings.}}{25}{table.caption.83}\protected@file@percent }
+\newlabel{tab:top10_ner}{{29}{25}{Top-10 confused entity type pairs on Few-NERD NER. $N$: bidirectional confusion count from 66-type full-schema extraction. SCS: pairwise Schema Confusability Score (Qwen3 embedding cosine similarity). Intra-category confusions (e.g., \textit {person-other}/\textit {person-politician}, SCS\,=\,0.93) and cross-category pairs sharing referent overlap (\textit {building-other}/\textit {location-GPE}, SCS\,=\,0.85) are most frequent. The ``other'' subtypes absorb diverse entities and confuse with more specific siblings}{table.caption.83}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Illustrative confusion instances from FewRel 80-rel RE. All gold-predicted pairs have SCS\,$>$\,0.90: \textit  {participant} vs.\ \textit  {participant of} reverses directionality; \textit  {contains} vs.\ \textit  {located in} inverts containment; \textit  {part of} vs.\ \textit  {member of} conflates meronymy with membership. a.t.e.\ = admin.\ territorial entity.}}{25}{table.caption.84}\protected@file@percent }
+\newlabel{tab:error_examples}{{30}{25}{Illustrative confusion instances from FewRel 80-rel RE. All gold-predicted pairs have SCS\,$>$\,0.90: \textit {participant} vs.\ \textit {participant of} reverses directionality; \textit {contains} vs.\ \textit {located in} inverts containment; \textit {part of} vs.\ \textit {member of} conflates meronymy with membership. a.t.e.\ = admin.\ territorial entity}{table.caption.84}{}}
+\@LN{1896}{24}
+\@LN{1897}{24}
+\@LN{1898}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces Accuracy (\%) under original vs.\ renamed labels on FewRel count-8 batches. Renaming reduced embedding similarity but decreased accuracy in both groups, with a larger drop on high-BCS batches (Cohen's $d = -2.92$) than low-BCS ($d = -1.09$). Interaction: $\Delta _{\text  {high}} - \Delta _{\text  {low}} = -5.9$\,pp ($t = -7.23$, $p < 0.001$).}}{25}{table.caption.85}\protected@file@percent }
+\newlabel{tab:renaming}{{31}{25}{Accuracy (\%) under original vs.\ renamed labels on FewRel count-8 batches. Renaming reduced embedding similarity but decreased accuracy in both groups, with a larger drop on high-BCS batches (Cohen's $d = -2.92$) than low-BCS ($d = -1.09$). Interaction: $\Delta _{\text {high}} - \Delta _{\text {low}} = -5.9$\,pp ($t = -7.23$, $p < 0.001$)}{table.caption.85}{}}
+\@LN{1899}{24}
+\@LN{1900}{24}
+\@LN{1901}{24}
+\@LN{1902}{24}
+\@LN{1903}{24}
+\@LN{1904}{24}
+\@LN{1905}{24}
+\@LN@col{1}
+\@LN{1906}{25}
+\@LN{1907}{25}
+\@LN{1908}{25}
+\@LN{1909}{25}
+\@LN{1910}{25}
+\@LN{1911}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Relaxed Matching Evaluation (NER)}{26}{appendix.Y}\protected@file@percent }
+\newlabel{app:relaxed-matching}{{Y}{26}{Relaxed Matching Evaluation (NER)}{appendix.Y}{}}
+\@LN{1912}{25}
+\@LN{1913}{25}
+\@LN{1914}{25}
+\@LN{1915}{25}
+\@LN{1916}{25}
+\@LN{1917}{25}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces BCS--F1 correlation under progressively relaxed NER matching. Relaxed span credits a match if the predicted span overlaps the gold span and the type is correct; token overlap uses token-level intersection; type-ignored drops the type constraint entirely. Relaxed matching improves mean F1 by 4.2\,pp (98.4\% of batches improve), but Pearson $r$ remains near zero across all modes (bootstrap 95\% CI crosses zero in all cases). Boundary errors affect all batches uniformly and do not mask a BCS signal.}}{26}{table.caption.86}\protected@file@percent }
+\newlabel{tab:relaxed_matching}{{32}{26}{BCS--F1 correlation under progressively relaxed NER matching. Relaxed span credits a match if the predicted span overlaps the gold span and the type is correct; token overlap uses token-level intersection; type-ignored drops the type constraint entirely. Relaxed matching improves mean F1 by 4.2\,pp (98.4\% of batches improve), but Pearson $r$ remains near zero across all modes (bootstrap 95\% CI crosses zero in all cases). Boundary errors affect all batches uniformly and do not mask a BCS signal}{table.caption.86}{}}
+\@LN{1918}{25}
+\@LN{1919}{25}
+\@LN{1920}{25}
+\@LN{1921}{25}
+\@LN{1922}{25}
+\@LN{1923}{25}
+\@LN{1924}{25}
+\@LN{1925}{25}
+\@LN{1926}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Use of AI Assistance}{26}{appendix.Z}\protected@file@percent }
+\@LN{1927}{25}
+\@LN{1928}{25}
+\@LN@col{2}
+\gdef \@abspage@last{26}

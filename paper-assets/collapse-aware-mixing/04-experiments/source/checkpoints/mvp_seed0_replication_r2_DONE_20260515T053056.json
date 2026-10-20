@@ -1,0 +1,77 @@
+{
+  "exp_id": "mvp_seed0_replication_r2",
+  "project": "collapse-aware-mixing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:41:36.029Z",
+    "updated_at": "2026-05-15T05:30:56.598Z",
+    "hypothesis": "Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)",
+    "parent": "mvp_pilot_v7",
+    "spec": {
+      "command": "bash -c \"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "122208",
+      "log_path": "~/runs/collapse-aware-mixing/mvp_seed0_replication_r2.log",
+      "submitted_at": "2026-05-14T00:44:24.453Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "wikitext-103-raw-v1 (HuggingFace)",
+      "data_count": "~6340 train seqs (20M tokens) + 5000 holdout seqs",
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 0,
+      "hyperparams": {
+        "lr": 2e-06,
+        "warmup_ratio": 0.05,
+        "max_grad_norm": 1,
+        "tokens_per_generation": 20000000,
+        "num_generations": 3,
+        "batch_size": 8,
+        "grad_accum": 4,
+        "max_seq_length": 2048,
+        "torch_dtype": "bfloat16",
+        "checkpoint_interval_tokens": 5000000
+      },
+      "checkpoint_source": "EleutherAI/pythia-1b (pretrained)",
+      "eval_data": "wikitext-103-raw-v1 holdout (5000 seqs)",
+      "wall_clock_seconds": 103592.1,
+      "gpu_hours": 28.78
+    },
+    "notes": "2026-05-14 14:53 G1 完成(train+eval), G1 generate 76%. G1 metrics 完美重现 v7: eff_rank 上升 +1.32, unigram entropy 崩塌 -87%. 预计 ~6-7h 完成全部 pipeline (G2). 已运行 14h8m.",
+    "metrics": {
+      "G0_final": {
+        "eff_rank": 676.89,
+        "ppl": 13.27,
+        "unigram_entropy": 6.93,
+        "unique_tokens": 23530,
+        "vocab_coverage": 0.468,
+        "bigram_entropy": 10.2,
+        "trigram_entropy": 11.42
+      },
+      "G1_final": {
+        "eff_rank": 678.21,
+        "ppl": 13.42,
+        "unigram_entropy": 0.92,
+        "unique_tokens": 6963,
+        "vocab_coverage": 0.139,
+        "bigram_entropy": 1.15,
+        "trigram_entropy": 1.22,
+        "kl_unigram": 1.71,
+        "js_divergence": 1.02
+      },
+      "stage": "G1_generate_76pct",
+      "note": "G1 metrics confirm v7 pattern: eff_rank RISES +1.32 while generation collapses (unigram entropy -87%, vocab coverage -70%)"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T05:30:56.598Z"
+  },
+  "timestamp": "2026-05-15T05:30:56.622979+00:00",
+  "trigger": "update_registry"
+}

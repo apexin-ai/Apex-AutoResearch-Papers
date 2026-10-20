@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp008_sdgd_zero_fewnerd_r2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:47:49.988Z",
+    "updated_at": "2026-05-15T11:59:15.702Z",
+    "spec": {
+      "hypothesis": "SDGD-zero improves F1 over baselines on Few-NERD 66 types",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "4 modes: sdgd_zero (8 batches, k=1.0), single_pass, per_type, random_batch. 1000 samples. Two-stage fix (CPU decompose + GPU extract). Retry of exp008 after fork deadlock.",
+      "plan_id": "exp-008",
+      "parent": "exp008_sdgd_zero_fewnerd",
+      "command": "bash src/run_sdgd_full.sh (sdgd_zero → single_pass → random_batch → per_type)",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 254599
+    },
+    "metrics": {
+      "single_pass": {
+        "f1": 0.4451,
+        "precision": 0.5631,
+        "recall": 0.3679,
+        "batches": 1,
+        "time_s": 77.3
+      },
+      "sdgd_zero": {
+        "f1": 0.2514,
+        "precision": 0.2096,
+        "recall": 0.3141,
+        "batches": 8,
+        "time_s": 408.7
+      },
+      "random_batch": {
+        "f1": 0.3197,
+        "precision": 0.2491,
+        "recall": 0.4462,
+        "batches": 8,
+        "time_s": 476.1
+      },
+      "per_type": {
+        "f1": 0.2915,
+        "precision": 0.194,
+        "recall": 0.5856,
+        "batches": 66,
+        "time_s": 2532.2
+      },
+      "key_finding": "All decomposition modes F1 < single_pass. Decomposition boosts recall but kills precision (merge amplification). sdgd_zero worst F1, even below random_batch."
+    },
+    "conclusion": "negative",
+    "log_path": "/root/schema-dag-extraction/artifacts/exp008_run2.log",
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp008/",
+    "completed_at": "2026-05-15T11:59:15.702Z"
+  },
+  "timestamp": "2026-05-15T11:59:15.734246+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_repo_anon-repo-rebuild_20260525T084332_result.json",
     "occurrence": 1,
-    "bytes": 2410,
-    "sha256": "d52fd4e14cf20020d1d68639990de2e426739121d5a993ed253f52d5554dc590"
+    "bytes": 2409,
+    "sha256": "1bc1de4095c97396a488ea1a5069c94baa0ef0fc51e29a6df30ed354a6e52b13"
   },
   "statistics": {
     "messages": 1,

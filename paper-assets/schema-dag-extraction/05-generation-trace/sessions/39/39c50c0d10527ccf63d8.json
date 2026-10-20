@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp008-health-check_20260515T094541_result.json",
     "occurrence": 1,
-    "bytes": 1574,
-    "sha256": "c1a762fe6577790aa98fcac9f971253fdabe5cbfd03420dd40984dbeb95e2fdc"
+    "bytes": 1573,
+    "sha256": "31730040bb580e47709603b7c95d8c2b0853d61f95fc0f7fa037a82986ace37b"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_q3_val_scs_confusion_correlation_20260517T150710_result.json",
     "occurrence": 1,
-    "bytes": 962,
-    "sha256": "49708d5fec6a746a8061fd083be811e387c0e263d3657075684fa56d2a0b4da8"
+    "bytes": 961,
+    "sha256": "69787631fe3d754c0e93eae55b436421a56cb1924ca6c67c2074e5f99a929b3a"
   },
   "statistics": {
     "messages": 1,

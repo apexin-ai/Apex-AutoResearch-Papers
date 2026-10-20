@@ -1,0 +1,148 @@
+{
+  "analysis": "Q3 TOST corrected: accuracy in pp scale, subset analysis by count range",
+  "data_source": "d051_fewrel_n25 eval_results.json, seeds 42/123/456",
+  "unit_note": "Linear DV is accuracy_pp (0-100 scale). TOST margin = 3.0pp. Previous analysis used proportion [0,1] with margin 0.03 which was numerically equivalent but confusingly labeled.",
+  "correction_note": "The previous q3_tost_n525_results.json interaction=-0.094 was on proportion scale = -9.4pp. Now reported in pp directly.",
+  "subset_B_warning": "Subset B (counts 64/80) has extreme collinearity: BCS range only 0.03 wide, condition number 1.69e+16. SEs are in the millions, making regression estimates meaningless. This subset cannot support interaction analysis.",
+  "dataset_note": "Data is from 80-relation FewRel (d051). The original n=69 TOST (interaction=0.47pp) used 40-relation FewRel subset with different BCS distribution, so subset A results are not directly comparable.",
+  "subset_A_counts_4_40": {
+    "n": 375,
+    "counts": [
+      4,
+      8,
+      16,
+      32,
+      40
+    ],
+    "accuracy_pp_range": [
+      50.0,
+      100.0
+    ],
+    "accuracy_pp_median": 70.31,
+    "bcs_range": [
+      0.4137,
+      0.6757
+    ],
+    "linear": {
+      "interaction_pp": -8.1676,
+      "se_pp": 10.7555,
+      "t": -0.7594,
+      "p": 0.448102,
+      "r_squared": 0.6487,
+      "tost_margin_pp": 3.0,
+      "tost_p_upper": 0.149899,
+      "tost_p_lower": 0.684409,
+      "tost_p": 0.684409,
+      "conclusion": "inconclusive"
+    },
+    "logit": {
+      "interaction_logit": -0.056183,
+      "se": 0.868723,
+      "t": -0.0647,
+      "p": 0.948469,
+      "r_squared": 0.5364,
+      "tost_margin_logit": 0.148312,
+      "tost_p_upper": 0.407015,
+      "tost_p_lower": 0.4578,
+      "tost_p": 0.4578,
+      "conclusion": "inconclusive",
+      "back_transformed_floor_pp": -1.4042,
+      "back_transformed_median_pp": -1.186,
+      "floor_accuracy": 0.5,
+      "median_accuracy": 0.7031
+    }
+  },
+  "subset_B_counts_64_80": {
+    "n": 150,
+    "counts": [
+      64,
+      80
+    ],
+    "accuracy_pp_range": [
+      47.66,
+      59.64
+    ],
+    "accuracy_pp_median": 50.42,
+    "bcs_range": [
+      0.5413,
+      0.5714
+    ],
+    "linear": {
+      "interaction_pp": -24.338,
+      "se_pp": 377325.9905,
+      "t": -0.0001,
+      "p": 0.999949,
+      "r_squared": 0.5903,
+      "tost_margin_pp": 3.0,
+      "tost_p_upper": 0.499971,
+      "tost_p_lower": 0.500023,
+      "tost_p": 0.500023,
+      "conclusion": "inconclusive"
+    },
+    "logit": {
+      "interaction_logit": -0.842132,
+      "se": 15206.135005,
+      "t": -0.0001,
+      "p": 0.999956,
+      "r_squared": 0.5887,
+      "tost_margin_logit": 0.120213,
+      "tost_p_upper": 0.499975,
+      "tost_p_lower": 0.500019,
+      "tost_p": 0.500019,
+      "conclusion": "inconclusive",
+      "back_transformed_floor_pp": -19.4843,
+      "back_transformed_median_pp": -19.9562,
+      "floor_accuracy": 0.4766,
+      "median_accuracy": 0.5042
+    }
+  },
+  "subset_C_all_counts": {
+    "n": 525,
+    "counts": [
+      4,
+      8,
+      16,
+      32,
+      40,
+      64,
+      80
+    ],
+    "accuracy_pp_range": [
+      47.66,
+      100.0
+    ],
+    "accuracy_pp_median": 64.58,
+    "bcs_range": [
+      0.4137,
+      0.6757
+    ],
+    "linear": {
+      "interaction_pp": -9.406,
+      "se_pp": 9.0053,
+      "t": -1.0445,
+      "p": 0.296743,
+      "r_squared": 0.8092,
+      "tost_margin_pp": 3.0,
+      "tost_p_upper": 0.084455,
+      "tost_p_lower": 0.761409,
+      "tost_p": 0.761409,
+      "conclusion": "inconclusive"
+    },
+    "logit": {
+      "interaction_logit": -0.097655,
+      "se": 0.70338,
+      "t": -0.1388,
+      "p": 0.889633,
+      "r_squared": 0.6865,
+      "tost_margin_logit": 0.133915,
+      "tost_p_upper": 0.371059,
+      "tost_p_lower": 0.479453,
+      "tost_p": 0.479453,
+      "conclusion": "inconclusive",
+      "back_transformed_floor_pp": -2.4285,
+      "back_transformed_median_pp": -2.2641,
+      "floor_accuracy": 0.4766,
+      "median_accuracy": 0.6458
+    }
+  }
+}

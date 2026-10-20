@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_write_table3_integration_d036_20260516T023123_result.json",
     "occurrence": 1,
-    "bytes": 1884,
-    "sha256": "4cbe6bf19ecbac186b604bfa2a36af0a2919547153e6ed0b0066f96eeddf508e"
+    "bytes": 1883,
+    "sha256": "1ff91f916b8fed38bce07f90f2361403b13ddaccc94fe8d072781f6de0c84e46"
   },
   "statistics": {
     "messages": 1,

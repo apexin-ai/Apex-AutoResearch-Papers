@@ -1,0 +1,113 @@
+paper_key: "cmas-ner-2025"
+title: "A Cooperative Multi-Agent Framework for Zero-Shot Named Entity Recognition"
+venue: "TheWebConf 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Vanilla (straightforward prompting)"
+    - "ChatIE (two-stage QA framework)"
+    - "Decomposed-QA (label-wise decomposition)"
+    - "SALLM (syntactic augmentation)"
+    - "SILLM (self-improving framework)"
+  metrics:
+    - {name: "Micro F1-score (exact boundary + type match)", direction: "higher_better"}
+  datasets:
+    - {name: "CoNLL03", size: "general-domain, ~300 test samples"}
+    - {name: "WikiGold", size: "general-domain, 247 test samples"}
+    - {name: "WNUT-17", size: "general-domain (emerging entities), ~300 test samples"}
+    - {name: "OntoNotes", size: "general-domain, ~300 test samples"}
+    - {name: "GENIA", size: "biomedical domain, ~300 test samples"}
+    - {name: "BioNLP11", size: "biomedical domain, ~300 test samples"}
+  ablation_dimensions:
+    - "Demonstration Discriminator agent removal"
+    - "TRF Extractor agent removal (degrades to SILLM)"
+    - "External tool augmentation (dependency tree)"
+    - "LLM backbone variation (GPT-3.5 vs Llama-3-8B vs Qwen2.5-7B)"
+    - "Demonstration quantity k (2-20)"
+    - "Error type distribution analysis"
+  training_recipe:
+    optimizer: "N/A (inference-only, no training)"
+    lr: "N/A"
+    hardware: "未明确说明; 使用 OpenAI API (GPT-3.5-turbo-0125)"
+    inference_config: "temperature=0.7, self-consistency=5 samples, K=50 nearest neighbors, k=16 demonstrations, rho=3 frequency ratio"
+    embedding_model: "text-embedding-ada-002"
+    cost: "未报告 API 成本"
+  method_family: "LLM-based multi-agent cooperative system for zero-shot IE"
+
+positioning:
+  core_claim: "通过四个专业化 LLM agent 的协作分工（自标注、类型特征提取、示例判别、整体预测），将 NER 分解为实体识别和类型相关特征识别两个子任务，同时引入自反思机制过滤低质量 demonstration，显著提升 zero-shot NER 性能"
+  key_results: "6 个 benchmark 全面 SOTA: CoNLL03 76.43%, WikiGold 76.23% (+3.51%), WNUT-17 47.98% (+6.33%), GENIA 50.00% (+4.34%), BioNLP11 60.51% (+3.25%); 相比 SILLM 在 WNUT-17 上 few-shot 平均提升 19.51%; 错误总量相比 SILLM 减少 74.60%"
+  limitations:
+    - "仅支持 closed NER（预定义实体类型），未扩展到 open NER"
+    - "单轮推理，未利用多轮交互式对话来迭代精化预测"
+    - "依赖 API 调用（GPT-3.5），未报告计算成本和延迟"
+    - "测试集仅采样 300 条（非全集评估），可能引入采样偏差"
+    - "unlabeled corpus 固定为 500 条训练样本，对数据量敏感性未充分探讨"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "从 NER 的基础地位入手（服务于 QA、文档理解、信息检索等下游任务），指出全监督方法需要大量标注数据限制了真实场景落地，LLM 的 zero-shot 能力提供了解决数据稀缺问题的可能"
+  tension: "两个具体的技术局限铺垫：(1) 现有方法忽略实体周围上下文间的关联性，导致类型预测错误和实体遗漏（Figure 1a 用具体例子演示 'member' 和 'teams' 作为 Person 类型关联词被忽视）；(2) 基于浅层相似度检索的 demonstration 策略质量极差——WNUT-17 上 87.33% 检索到的 demonstration 不含目标实体类型（Figure 1b 用统计数据量化问题严重性）"
+  key_insight: "将 NER 重新定义为两个子任务（实体识别 + 类型相关特征识别），并通过多 agent 协作分工来同时解决上下文关联和 demonstration 质量两个问题；核心洞察是 type-related features（与特定实体类型强关联的上下文词汇）可以作为独立信号被提取和利用"
+  argument_chain: "NER 重要但标注昂贵 → LLM zero-shot 是方向 → 现有方法两大局限（上下文关联忽略 + demonstration 质量差）→ 提出 CMAS 四 agent 协作框架 → 子任务分解（实体识别 + TRF 提取）→ 自反思机制过滤 demonstration → 6 个 benchmark SOTA + 多维度分析验证"
+  contribution_framing: "四条贡献：(i) 首个用于 zero-shot NER 的协作多 agent 系统，(ii) 将 NER 重新定义为两个子任务，(iii) 在 demonstration discriminator 中引入自反思机制，(iv) 六个 benchmark 上的 SOTA 结果。措辞使用 'To the best of our knowledge, ours is the first study to...' 强调新颖性"
+  intro_structure: "约 6 段：P1 NER 定义与重要性 → P2 LLM 的 zero-shot 能力 → P3 Challenge 1 上下文关联问题（配 Figure 1a）→ P4 Challenge 2 demonstration 质量问题（配 Figure 1b）→ P5 提出 CMAS 方案概述 → P6 贡献列表"
+  notable_technique: "用具体的定量数据来量化问题严重性（87.33% demonstration 无效）比泛泛而谈'质量不高'有说服力得多；同时 Figure 1 同时用定性例子（1a）和定量统计（1b）双管齐下铺垫问题"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "双面板展示现有方法的两个核心问题：(a) 文本示例中红色高亮标注错误识别、蓝色高亮标注被忽略的 type-related features，展示实体遗漏和类型错误的具体案例；(b) 柱状图展示 WNUT-17 和 OntoNotes 上检索到的 demonstration 中缺少目标实体类型的比例（87.33% 和 76.94%）"
+    narrative_role: "在引言中直接可视化两个核心问题，为后续方法设计提供强动机——(a)定性展示问题，(b)定量量化问题严重性"
+    design_elements: ["双面板 (a)(b) 分工：定性+定量", "颜色编码：红色=错误/蓝色=被忽略特征", "具体文本示例+黄金标签对比", "柱状图+百分比数字标注"]
+    visual_style: "左侧文本标注示例紧凑清晰，右侧柱状图简洁直观，两个面板分别对应两个挑战形成并行结构"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot (3 subfigures)"
+      what_compared: "0/3/5/10-shot 设置下 CMAS 与 5 个 baseline 在 WikiGold/WNUT-17/GENIA 上的 F1 表现"
+      how_gain_highlighted: "CMAS 线条在所有 shot 设置和数据集上始终位于最高位置；特别突出 Vanilla 方法随 shot 增加反而性能下降的反直觉现象"
+      design_note: "三个子图并排覆盖三个数据集，每个子图内多条彩色线条，直观展示 CMAS 在不同 shot 下的稳定优势；反直觉现象（Vanilla 性能下降）增加了叙事趣味性"
+    - figure_id: "Figure 4 (Appendix)"
+      viz_type: "line_plot (2 subfigures)"
+      what_compared: "demonstration 数量 k=2-20 对 CMAS vs SILLM 在 WNUT-17/GENIA 上的影响"
+      how_gain_highlighted: "CMAS 在所有 k 值下始终优于 SILLM，平均提升 18.70% (WNUT-17) 和 10.72% (GENIA)"
+      design_note: "展示方法对超参数的鲁棒性，两个数据集分开子图避免拥挤"
+  ablation_figures:
+    - figure_id: "Figure 5 (Appendix)"
+      viz_type: "bar_chart / pie_chart (error distribution)"
+      dimensions_varied: ["error categories: OOD types, wrong types, boundary errors (contain/contained by/overlap/completely-Os), OOD mentions, omitted mentions"]
+      design_note: "可视化错误类型分布，突出 'overlap with gold' 和 'omitted mentions' 占 72.30% 的主导地位，为方法改进方向提供直观指引"
+  figure_narrative_role: "Figure 1 (problem motivation) → Figure 2 (method overview) → Figure 3 (few-shot main results) → Figure 4 (robustness analysis) → Figure 5 (error analysis) 形成 '问题→方案→验证→深入分析' 的递进叙事"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (6 methods: Vanilla, ChatIE, Decomposed-QA, SALLM, SILLM, CMAS)"
+    col_axis: "datasets (CoNLL03, WikiGold, WNUT-17, OntoNotes, GENIA, BioNLP11) × Micro F1"
+    row_organization: "flat (按方法名排列，CMAS 在最后一行)"
+    col_organization: "grouped_by_dataset (每列一个数据集)"
+    highlight_strategy: "bold_best + underline_second + asterisk_significance (p<0.05)"
+    statistical_reporting: "300 test samples × 3 random runs 取平均, 显著性检验标 *"
+    num_baselines: 5
+    design_note: "6 个数据集覆盖 general + biomedical 两个领域，表格紧凑但信息密度高；将领域特异性和通用性同时展示增强了说服力"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Demonstration Discriminator (移除)", "TRF Extractor (移除/=SILLM)", "External tool (dependency tree 增加)"]
+      variation_style: "delta_from_base (展示完整 F1 数字，通过行间对比看增减)"
+      design_note: "消融设计清晰：逐步移除组件展示各 agent 的贡献，额外加入 external tool 行展示扩展潜力"
+    - table_id: "Table 3"
+      what_varied: ["LLM backbone: GPT-3.5-turbo vs Llama-3-8B vs Qwen2.5-7B"]
+      variation_style: "full_numbers (每个 backbone × 方法 × 数据集 的完整 F1)"
+      design_note: "展示方法对不同 LLM backbone 的泛化性，CMAS 在开源模型上也保持优势"
+    - table_id: "Table 4"
+      what_varied: ["error categories across methods (ChatIE, SALLM, SILLM, CMAS)"]
+      variation_style: "full_numbers (错误计数)"
+      design_note: "细粒度错误分析表，按错误类型分行、按方法分列，CMAS 总错误 519 vs SILLM 2041 形成鲜明对比"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 5: 数据集统计信息（实体类型数、训练/测试集大小）；附录还包含四个 agent 的完整 prompt 模板、demonstration 数量敏感性分析（Figure 4）、错误类型分布可视化（Figure 5）"
+    reason: "主表聚焦方法对比和消融，数据集统计和 prompt 细节放附录避免主文超长；错误分析的详细数字放附录，主文仅报告关键百分比"

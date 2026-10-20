@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_sdgd_zero_maven_20260519T114328_result.json",
     "occurrence": 1,
-    "bytes": 1233,
-    "sha256": "04d752d77a14ab6630f5cff0846797a124d6fc860b95914df9eb6ac5c4a832e4"
+    "bytes": 1232,
+    "sha256": "5c51c4f85efaeee6d23c1213c2a93ccff905e1ec730fdb4524452ca089204535"
   },
   "statistics": {
     "messages": 1,

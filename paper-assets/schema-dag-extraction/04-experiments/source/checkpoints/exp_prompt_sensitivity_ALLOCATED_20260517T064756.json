@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_prompt_sensitivity",
+  "project": "schema-dag-extraction",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:20:00.617Z",
+    "updated_at": "2026-05-17T06:47:56.820Z",
+    "hypothesis": "BCS-driven type confusion is a schema-structural property independent of prompt wording: the BCS-accuracy correlation direction and significance persist across diverse prompt variants (V2 baseline, instruction-rewrite, chain-of-thought, minimal), confirming that confusability effects arise from schema composition rather than prompt-specific instruction framing.",
+    "parent": "exp002_confusability_controlled"
+  },
+  "timestamp": "2026-05-17T06:47:56.934311+00:00",
+  "trigger": "update_registry"
+}

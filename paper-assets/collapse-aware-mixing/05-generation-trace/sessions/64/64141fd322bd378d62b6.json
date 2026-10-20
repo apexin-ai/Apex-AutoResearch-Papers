@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64141fd322bd378d62b6",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "research literature collapse detection",
+  "task_key": "worker_research_literature_collapse_detection_20260514T091233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_collapse_detection_20260514T091233_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "a5490c5e649f83a8f16837e05783344e2b0a9ff190f1a865eb70958edffc5cd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/literature_scan_20260514.md`。\n\n核心结论：\n\n1. **Negative result（eff_rank 与 collapse 解耦）有 novelty**——无人报告过相同发现。Schaeffer 2025 的 position paper 和 Homogeneity Trap 从侧面支持 spectral metrics 可反直觉。\n\n2. **Plan A novelty 完好**——\"collapse detection + control theory + data mixing\" 三者交叉区域空白。TiKMiX、AC-ODM、DoGraph 等近期 dynamic mixing 工作全部是 domain-level / loss-driven，无人做 collapse-aware mixing。\n\n3. **时间窗口紧张**——dynamic data mixing 领域 2025H2-2026H1 论文密集，从 \"dynamic mixing\" 到 \"collapse-aware dynamic mixing\" 跨步不大。建议 3 个月内产出核心结果。\n\n4. **建议更新 literature_map.yaml**，新增 9 篇论文（详见报告第三节）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-collapse-detection.md"
+}

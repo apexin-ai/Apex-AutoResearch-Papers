@@ -7,7 +7,7 @@
     "messages": 131771,
     "user_turns": 4172,
     "tool_calls": 53631,
-    "unparsed_lines": 499,
+    "unparsed_lines": 502,
     "result": 474,
     "worker": 506,
     "conversation": 217,
@@ -13528,7 +13528,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/analysis-gemini-dim1-dim2.md",
       "path": "sessions/ea/ea7cc17d1e7b202deb87.json"
     },
@@ -16894,7 +16894,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/paper-anon-github-verify.md",
       "path": "sessions/55/5556751149f95dc405fd.json"
     },
@@ -18046,7 +18046,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/paper-fix-anon-github.md",
       "path": "sessions/7b/7bf399770b28ddd77151.json"
     },

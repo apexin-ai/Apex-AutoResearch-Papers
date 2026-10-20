@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp006_interaction_2x2",
+  "project": "schema-dag-extraction",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:18:49.619Z",
+    "updated_at": "2026-05-15T17:18:49.619Z"
+  },
+  "timestamp": "2026-05-15T17:18:49.701562+00:00",
+  "trigger": "update_registry"
+}

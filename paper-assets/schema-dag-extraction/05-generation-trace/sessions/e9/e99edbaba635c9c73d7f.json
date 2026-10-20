@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_regenerate_count_curves_and_audit_20260515T225822_result.json",
     "occurrence": 1,
-    "bytes": 1146,
-    "sha256": "3ae78170cd57b1f0ac11dc060b916bec66428217d199e479f20941746bec90c2"
+    "bytes": 1145,
+    "sha256": "c88f519fae552d07e7c14b675ce102cb6b41891696af2fcefe58898365545d47"
   },
   "statistics": {
     "messages": 1,

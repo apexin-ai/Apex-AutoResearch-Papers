@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_docred_pilot_20260516T040940_result.json",
     "occurrence": 1,
-    "bytes": 1443,
-    "sha256": "e85e2eeb3fde6e5c8ca3260c3f89e110482ab6e65c72e5535c1216f5c534177a"
+    "bytes": 1442,
+    "sha256": "391588c9b927e2572258091c72ce70ee97b2da9cdf23aa16338037aab36484d4"
   },
   "statistics": {
     "messages": 1,

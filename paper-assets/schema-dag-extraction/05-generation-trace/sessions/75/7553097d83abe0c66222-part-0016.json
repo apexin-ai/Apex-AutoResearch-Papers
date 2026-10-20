@@ -2653,7 +2653,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes: routing failure in RE (73.4% multi-match rate; oracle routing recovers to 0.72 vs single-pass 0.50) and merge amplification in NER/ED (union merge doubles false positives, F1 drops -19pp)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb.png \\\n  --iterations 5 2>&1",
+              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent.txt \\\n  --caption \"Schema decomposition pipeline and failure modes: routing failure in RE (73.4% multi-match rate; oracle routing recovers to 0.72 vs single-pass 0.50) and merge amplification in NER/ED (union merge doubles false positives, F1 drops -19pp)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb.png \\\n  --iterations 5 2>&1",
               "description": "Run PaperBanana to generate SDGD pipeline figure",
               "timeout": "300000"
             }

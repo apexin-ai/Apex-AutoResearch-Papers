@@ -1,0 +1,43 @@
+\section{Why Naive Decomposition Fails}
+\label{sec:sdgd}
+
+The multi-channel degradation model (\S\ref{sec:results}) raises an interventional question: if confusability drives type confusion, can we decompose the schema so that confusable types never co-occur in the same prompt?  We test this idea with \textbf{Schema-DAG-Guided Decomposition} (SDGD), a method that uses the pairwise SCS matrix to partition types into low-confusability batches, runs extraction independently on each batch, and merges the results.
+
+\paragraph{Decomposition protocol.}
+We compute hierarchical clustering over the SCS matrix and cut the dendrogram so that highly similar types fall into separate batches. Each batch is presented to the LLM as an independent extraction prompt; predictions are then merged via set union. We compare four modes: (i)~\textbf{single\_pass}, the undecomposed baseline; (ii)~\textbf{sdgd\_zero}, SCS-guided partitioning; (iii)~\textbf{random\_batch}, random partitioning with matched batch sizes; and (iv)~\textbf{per\_type}, the extreme case where each type is extracted in isolation, following the strategy of \citet{uniner-2024}. Figure~\ref{fig:sdgd_comparison} summarizes the results on Few-NERD.
+
+\paragraph{All decomposition modes degrade F1.}
+Table~\ref{tab:sdgd_results} reports the outcome.  Single-pass extraction achieves F1\,=\,0.445 (P\,=\,0.563, R\,=\,0.368).  SDGD obtains F1\,=\,0.251 (P\,=\,0.210, R\,=\,0.314), a 44\% relative drop.  Random batching reaches F1\,=\,0.320 (P\,=\,0.249, R\,=\,0.446), and per-type extraction yields F1\,=\,0.292 (P\,=\,0.194, R\,=\,0.586).  Every decomposition mode falls below the single-pass baseline.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Mode} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+single\_pass & 0.563 & 0.368 & 0.445 \\
+\midrule
+sdgd\_zero (v1) & 0.210 & 0.314 & 0.251 \\
+random\_batch (v1) & 0.249 & 0.446 & 0.320 \\
+per\_type & 0.194 & 0.586 & 0.292 \\
+\midrule
+sdgd\_zero (v2) & --- & --- & 0.241 \\
+random\_batch (v2) & --- & --- & 0.301 \\
+\bottomrule
+\end{tabular}
+\caption{Few-NERD extraction under decomposition modes.  V1 uses union merge; v2 uses confidence-gated merge.  All decomposition modes produce lower F1 than the single-pass baseline.  Decomposition boosts recall at the cost of devastating precision losses.}
+\label{tab:sdgd_results}
+\end{table}
+
+\paragraph{Merge amplification.}
+The pattern across modes is consistent: decomposition boosts recall (per-type recall reaches 0.586 versus single-pass 0.368) but devastates precision (0.194 versus 0.563).  The mechanism is straightforward.  When the same text is presented to the model $k$ times with different type subsets, each pass independently generates entity predictions.  Because LLM outputs are not calibrated across passes, the union merge step accumulates overlapping and contradictory predictions, inflating false positives.  Smaller batches amplify the effect: per-type extraction runs the most passes and suffers the worst precision.  This \emph{merge amplification} is a structural consequence of decompose-then-merge pipelines, independent of how the decomposition is constructed.
+
+\paragraph{Confidence-gated merge does not help.}
+A natural remedy is to resolve merge conflicts using model confidence.  Our v2 merge ranks competing predictions by the LLM's self-reported confidence and retains only the highest-scoring candidate for each span.  This intervention fails: SDGD v2 yields F1\,=\,0.241, below v1's 0.251.  Random-batch v2 similarly drops from 0.320 to 0.301.  The failure is consistent with prior findings that LLM confidence scores are poorly calibrated in generative IE settings \cite{llm-calibration-survey-2024}, rendering confidence-based filtering no better than naive union.
+
+\paragraph{Connection to prior work.}
+\citet{llm-pee-2025} independently proposed similarity-based partitioning for large-scale event extraction, using type embeddings to split schemas before extraction.  Our controlled negative result complements their work by identifying the merge step---not the partitioning quality---as the bottleneck.  SDGD's SCS-guided partitioning successfully separates confusable types (by construction), yet F1 still drops because the merge problem is orthogonal to the decomposition problem.  This suggests that merge amplification is a general limitation of decompose-then-merge approaches, not an artifact of our specific partitioning algorithm.
+
+\paragraph{Structural insight.}
+The SDGD experiments establish a negative result: confusability-aware schema decomposition, while theoretically motivated by the Channel~2 degradation mechanism, does not improve extraction under union-based merging.  The bottleneck lies entirely in the merge phase.  Future approaches must address calibration across extraction passes---for instance, through cross-batch consistency scoring or joint decoding over decomposed outputs---before decomposition strategies can translate confusability signals into extraction gains.

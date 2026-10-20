@@ -1,0 +1,22 @@
+paper_key: "dlisc-2025"
+title: "Effective and Efficient Schema-aware Information Extraction Using On-Device LLMs"
+venue: "arXiv May 2025"
+full_text_available: false
+
+research:
+  baselines: ["on-device LLM baselines without DLISC"]
+  metrics: [{name: "F1", direction: "higher_better"}, {name: "latency", direction: "lower_better"}]
+  datasets: [{name: "multiple IE datasets", size: "not specified"}]
+  ablation_dimensions: ["Identification LoRA vs Extraction LoRA", "incremental schema caching"]
+  training_recipe: {method: "Dual-LoRA with Incremental Schema Caching (DLISC)", model: "on-device LLMs"}
+  method_family: "efficient on-device schema-aware IE with LoRA"
+
+positioning:
+  core_claim: "Dual-LoRA with incremental schema caching enables effective and efficient schema-aware IE on resource-constrained devices by separating schema identification from extraction"
+  key_results: "Notable improvements in both effectiveness and efficiency on multiple IE datasets"
+  limitations: ["on-device LLMs have inherent capability limits", "schema caching adds memory overhead"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

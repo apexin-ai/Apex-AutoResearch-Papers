@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_llama70b_ner_bcs_null",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:15:57.117Z",
+    "updated_at": "2026-05-21T17:17:21.061Z",
+    "hypothesis": "NER batch-level BCS null is model-independent: LLaMA-3.1-70B will show no significant BCS-F1 correlation on Few-NERD BCS-controlled batches (count 6 and 12), consistent with Qwen3-32B (r=0.004) and LLaMA-8B (r=-0.12). The null reflects task-level error-mode structure (span-boundary errors dominate over type substitution) rather than model-specific behavior.",
+    "parent": "exp012_llama_8b_r2_exp2"
+  },
+  "timestamp": "2026-05-21T17:17:21.222293+00:00",
+  "trigger": "update_registry"
+}

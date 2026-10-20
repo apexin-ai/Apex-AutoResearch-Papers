@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_fewshot_bcs_mitigation_20260517T124103_result.json",
     "occurrence": 1,
-    "bytes": 614,
-    "sha256": "64c8e081e3aeb3acb05a9b2b779ca5c907985b366bf76e6e59e47baeea1504b2"
+    "bytes": 613,
+    "sha256": "aeb9039758dad73af6c095d80c9802bd5b32611399873c83d8425efbf8aca201"
   },
   "statistics": {
     "messages": 1,

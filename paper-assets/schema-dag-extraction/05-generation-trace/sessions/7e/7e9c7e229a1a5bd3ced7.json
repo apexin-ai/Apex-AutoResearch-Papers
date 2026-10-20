@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_exp007_missed_entity_audit_20260515T175845_result.json",
     "occurrence": 1,
-    "bytes": 2682,
-    "sha256": "01b0f5fee7a2a30f5a7459139b671b09c2ab2b29190b489dac964c07077a6bc7"
+    "bytes": 2681,
+    "sha256": "79d83f8a5d74cf633b7ac281719e3e9048890e4f580098527ea1cd01103fffc3"
   },
   "statistics": {
     "messages": 1,

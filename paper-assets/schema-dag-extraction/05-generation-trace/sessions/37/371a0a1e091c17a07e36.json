@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_d051-prep-phase-a_20260516T222613_result.json",
     "occurrence": 1,
-    "bytes": 2822,
-    "sha256": "5f1ddb8f6a67223daa7b6acf038f576a878a6a9c81ca97ceb1eb4d3baa68a847"
+    "bytes": 2821,
+    "sha256": "7e93b3f15847a185c5211b0cc6c0e99540bd45d41bf46fb13ac13fff1989b11c"
   },
   "statistics": {
     "messages": 1,

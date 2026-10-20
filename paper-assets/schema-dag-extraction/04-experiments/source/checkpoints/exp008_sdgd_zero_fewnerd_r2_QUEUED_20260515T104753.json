@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp008_sdgd_zero_fewnerd_r2",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:47:49.988Z",
+    "updated_at": "2026-05-15T10:47:53.776Z",
+    "spec": {
+      "hypothesis": "SDGD-zero (embedding-based confusability-aware schema decomposition via graph coloring) improves F1 over single-pass and random-batching baselines on Few-NERD 66 types",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "4 modes: sdgd_zero (8 batches, k=1.0), single_pass, per_type, random_batch. 1000 samples. Two-stage fix (CPU decompose + GPU extract). Retry of exp008 after fork deadlock.",
+      "plan_id": "exp-008",
+      "parent": "exp008_sdgd_zero_fewnerd"
+    }
+  },
+  "timestamp": "2026-05-15T10:47:53.806255+00:00",
+  "trigger": "update_registry"
+}

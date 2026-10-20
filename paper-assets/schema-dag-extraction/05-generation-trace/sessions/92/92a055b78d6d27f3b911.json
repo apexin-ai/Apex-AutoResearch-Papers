@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r11-q1-ner-partial-bcs_20260517T091808_result.json",
     "occurrence": 1,
-    "bytes": 1567,
-    "sha256": "ddf69519351d9f2f9836ac79cee7205a3c0f79429af2f6f70eaa093e63651ee9"
+    "bytes": 1566,
+    "sha256": "d3ff8f61dfc58122bbb5bf237b6aa851a1424544b68866d22d31f0dc58e7ef9d"
   },
   "statistics": {
     "messages": 1,

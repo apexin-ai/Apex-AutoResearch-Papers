@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_page_compression_20260516T082034_result.json",
     "occurrence": 1,
-    "bytes": 1184,
-    "sha256": "b1de06522b1eb0fef2eca15e88cde7dd88d8d504e18ab21423d4f13c5bc6234a"
+    "bytes": 1183,
+    "sha256": "e3621e673f4da9ff3882114a85c7b13e23731521e5b0d41723d2e2240d66b338"
   },
   "statistics": {
     "messages": 1,

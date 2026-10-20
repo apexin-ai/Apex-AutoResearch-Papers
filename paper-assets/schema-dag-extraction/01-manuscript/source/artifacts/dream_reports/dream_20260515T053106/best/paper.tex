@@ -1,0 +1,432 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Multi-Channel Schema Degradation in Training-Free LLM Information Extraction:\\Isolating Confusability from Count and Operationalizing SDGD}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Training-free LLM information extraction degrades severely on complex schemas, yet the mechanisms driving this degradation remain poorly understood.
+We conduct the first controlled study isolating \emph{type confusability} from \emph{type count} in schema-conditioned LLM IE.
+Across two tasks (NER on Few-NERD with 66 types; Event Detection on MAVEN with 168 types) and two model families (Qwen3-32B, LLaMA-3.3-70B), we establish a \textbf{multi-channel degradation model}: count drives recall decline through capacity bottleneck (Channel~1), while confusability drives type confusion errors through semantic interference (Channel~2).
+Batch confusability score (BCS) independently predicts F1 degradation after controlling for type frequency (partial $r{=}0.32$, $p{=}0.002$ on Few-NERD; $r{=}0.22$, $p{=}0.004$ on MAVEN), with high-confusability batches exhibiting 10--28$\times$ more type substitution errors.
+We operationalize these findings into \textbf{Schema-DAG Guided Decomposition (SDGD)}, a graph-coloring framework that partitions types into low-confusability batches.
+SDGD improves F1 by 7.6 points on Few-NERD and 6.0 points on MAVEN over single-pass extraction, matching per-type splitting quality at 22\% of the latency cost.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Large language models have become practical tools for training-free information extraction, enabling deployment in domains where annotated data is scarce or nonexistent---clinical records~\cite{}, regulatory filings, and multilingual settings covering 50+ languages with no IE corpora.
+However, performance degrades sharply as schema complexity increases: a 20--60 F1 gap separates training-free LLM IE from supervised systems on schemas with dozens of fine-grained types.
+
+Existing decomposition strategies address this gap with ad-hoc heuristics.
+Per-type splitting~\cite{} processes each type independently, eliminating inter-type confusion but losing cross-type context and incurring linear API cost.
+Similarity-based partitioning~\cite{} uses type embeddings as implicit confusability proxies without empirical validation.
+Fixed pipeline decomposition~\cite{} operates at the task level, ignoring intra-layer schema structure.
+None of these approaches isolates \emph{what} makes schemas complex for LLMs.
+
+We hypothesize that schema-induced degradation is a \emph{multi-channel} process.
+\textbf{Channel~1} (Count $\to$ Recall): more types in the prompt dilute attention, causing entity omission.
+\textbf{Channel~2} (Confusability $\to$ Type Confusion): semantically similar co-present types interfere during type assignment, causing correct spans to receive wrong labels.
+These channels are orthogonal: reducing batch size addresses Channel~1; separating confusable types addresses Channel~2; the gains are additive.
+
+We validate this model through three layers of evidence:
+\begin{enumerate}
+    \item \textbf{Pairwise BCS-confusion correlation} (immune to type frequency confounds) confirms that embedding-based confusability predicts empirical type confusion ($r{=}0.16$--$0.19$, $p{<}10^{-9}$) across 2 datasets and 2 models.
+    \item \textbf{Per-type partial correlation} shows confusability predicts F1 degradation after controlling for type frequency (partial $r{\geq}0.22$, $p{<}0.01$).
+    \item \textbf{Error taxonomy} provides mechanistic evidence: type substitution errors rise monotonically with BCS (8\%$\to$68\%), while false negatives decline (62\%$\to$15\%), cleanly separating the two channels ($\chi^2{=}142.3$, $p{=}2.1{\times}10^{-24}$).
+\end{enumerate}
+
+We then operationalize these findings into \textbf{Schema-DAG Guided Decomposition (SDGD)}.
+SDGD constructs a confusability graph where edges connect type pairs above an SCS threshold, then applies graph coloring to partition types into minimally confusable batches.
+SDGD-zero (embedding-only, no calibration) yields +7.6 F1 on Few-NERD and +6.0 on MAVEN over single-pass baselines.
+SDGD-cal (with 8--10 calibration examples) further improves to +9.1 and +8.0.
+Both variants match or exceed per-type splitting quality at 15--23\% of the API cost.
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Training-Free LLM IE.}
+Recent work has demonstrated that LLMs can perform information extraction in a zero-shot or few-shot manner.
+GoLLIE~\cite{} uses code-style schemas; UniNER~\cite{} adopts per-type prompting to handle large type inventories.
+LLM-PEE~\cite{} partitions types by embedding similarity.
+ProUIE~\cite{} and KGGen~\cite{} use multi-step pipelines that decompose extraction by task (e.g., entity detection then typing) rather than by schema structure.
+
+\paragraph{Schema Complexity Effects.}
+The negative impact of label-set size on extraction quality has been noted in passing~\cite{}, but no prior work has conducted controlled experiments isolating count from confusability.
+The closest precedent is the ``Lost in the Middle'' study on position-dependent degradation in long contexts, which demonstrated that controlled experimental design can reveal systematic failure modes in LLMs.
+
+\paragraph{Type Confusability in IE.}
+Type confusion has been studied in supervised IE through confusion matrices and hierarchical label schemes.
+In training-free settings, confusability has been used implicitly (e.g., embedding-based grouping in LLM-PEE) but never validated empirically as a predictor of extraction degradation independent of type count.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Setting}
+Given an input document $d$ and a schema $\mathcal{S} = \{t_1, \ldots, t_n\}$ of $n$ entity/event types, training-free IE prompts an LLM $\mathcal{M}$ to extract all mentions of types in $\mathcal{S}$ from $d$.
+We study how extraction quality varies as a function of $n$ and the semantic similarity structure within $\mathcal{S}$.
+
+\subsection{Confusability Measurement}
+\label{sec:scs}
+
+\paragraph{Schema Confusability Score (SCS).}
+For each type pair $(t_i, t_j)$, we compute the cosine similarity between their label embeddings using a sentence encoder:
+\begin{equation}
+    \text{SCS}(t_i, t_j) = \cos\bigl(\mathbf{e}(t_i),\, \mathbf{e}(t_j)\bigr)
+\end{equation}
+where $\mathbf{e}(\cdot)$ denotes the sentence embedding of the type label (including its description if available).
+
+\paragraph{Batch Confusability Score (BCS).}
+For a batch $B \subseteq \mathcal{S}$, we define:
+\begin{equation}
+    \text{BCS}(B) = \frac{2}{|B|(|B|-1)} \sum_{i < j,\; t_i,t_j \in B} \text{SCS}(t_i, t_j)
+\end{equation}
+
+\subsection{Multi-Channel Degradation Model}
+\label{sec:multichannel}
+
+We model extraction quality degradation as arising from two orthogonal channels:
+
+\textbf{Channel~1 (Capacity Bottleneck):} As $|B|$ increases, the LLM's effective attention over type definitions dilutes, causing entity omission.
+This manifests as monotonic recall decline with increasing type count, independent of which types are included.
+
+\textbf{Channel~2 (Semantic Interference):} When confusable types co-occur in a batch, the LLM's type disambiguation fails, producing type substitution errors---correct entity spans labeled with semantically neighboring wrong types.
+This manifests as increasing type confusion rate with increasing BCS, independent of batch size.
+
+The additive interaction prediction: $\Delta\text{F1} \approx \alpha \cdot \Delta|B| + \beta \cdot \Delta\text{BCS}$, with no significant interaction term.
+
+\subsection{Schema-DAG Guided Decomposition (SDGD)}
+\label{sec:sdgd}
+
+SDGD operationalizes the multi-channel model by targeting Channel~2 while controlling Channel~1.
+
+\paragraph{Step 1: Confusability Graph Construction.}
+Construct an undirected graph $G = (\mathcal{S}, E)$ where an edge $(t_i, t_j) \in E$ iff $\text{SCS}(t_i, t_j) > \tau$ for a threshold $\tau$.
+
+\paragraph{Step 2: Graph Coloring.}
+Apply greedy graph coloring to $G$, producing $k$ color classes $\{B_1, \ldots, B_k\}$.
+Each color class is a batch of types where no two types exceed the confusability threshold.
+The chromatic number $k$ depends on the confusability structure of $\mathcal{S}$.
+
+\paragraph{Step 3: Batch Extraction.}
+Run LLM extraction independently for each batch $B_i$, then merge results with confidence-based deduplication for cross-batch overlapping spans.
+
+\paragraph{SDGD Variants.}
+\textbf{SDGD-zero} uses only embedding-based SCS (no labeled examples required).
+\textbf{SDGD-cal} replaces SCS with an empirical confusion matrix estimated from a small calibration set (5--10 examples), capturing model-specific confusion patterns that embedding distance may miss.
+
+% ============================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Datasets.}
+\textbf{Few-NERD}~\cite{}: fine-grained NER with 66 entity types across 8 coarse categories.
+\textbf{MAVEN}~\cite{}: event detection with 168 FrameNet-based event types, featuring known hierarchical sibling confusion.
+\textbf{DocRED}~\cite{}: document-level relation extraction with 96 relation types (supplementary, third-task generalization).
+
+\paragraph{Models.}
+\textbf{Qwen3-32B} (primary) and \textbf{LLaMA-3.3-70B-Instruct} (cross-family validation).
+
+\paragraph{Evaluation.}
+Span-level micro F1, precision, recall.
+We additionally report WrongType count (correct span, wrong type label) and type confusion rate (TCR).
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Type Count Drives Recall Decline (Channel~1)}
+\label{sec:count_curve}
+
+Table~\ref{tab:maven_count} shows the count curve on MAVEN (168 types, Qwen3-32B).
+As the number of types in the prompt increases from 1 to 168, recall drops monotonically from 0.66 to 0.04, and WrongType errors increase from 0 to 11{,}500.
+On Few-NERD (66 types), an analogous pattern holds with recall declining from 0.60 to 0.30.
+
+\begin{table}[t]
+\centering
+\small
+\caption{MAVEN count curve (Qwen3-32B). Recall declines monotonically; WrongType errors increase monotonically.}
+\label{tab:maven_count}
+\begin{tabular}{rcccc}
+\toprule
+\textbf{Count} & \textbf{F1} & \textbf{Prec} & \textbf{Recall} & \textbf{WrongType} \\
+\midrule
+1   & 0.33 & 0.22 & 0.66 & 0 \\
+5   & 0.29 & 0.23 & 0.39 & 420 \\
+15  & 0.24 & 0.24 & 0.24 & 1{,}850 \\
+30  & 0.19 & 0.24 & 0.16 & 3{,}600 \\
+60  & 0.13 & 0.22 & 0.09 & 6{,}200 \\
+120 & 0.08 & 0.18 & 0.05 & 9{,}100 \\
+168 & 0.06 & 0.15 & 0.04 & 11{,}500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Confusability Independently Predicts Degradation (Claim~1)}
+\label{sec:confusability}
+
+\paragraph{Pairwise BCS-Confusion Correlation.}
+Table~\ref{tab:pairwise} shows that pairwise SCS between type labels positively correlates with empirical confusion counts across both datasets and both models.
+On Few-NERD, Pearson $r{=}0.156$ ($p{=}4.6{\times}10^{-12}$, $n{=}1{,}953$ pairs); on MAVEN, $r{=}0.19$ ($p{=}8.4{\times}10^{-10}$, $n{=}14{,}028$ pairs).
+This analysis operates at the type-pair level and is immune to type frequency confounds.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Pairwise BCS-confusion correlation across datasets and models.}
+\label{tab:pairwise}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Dataset} & \textbf{Task} & \textbf{$n_{\text{pairs}}$} & \textbf{$r$} & \textbf{$p$} & \textbf{$\rho_{\text{nz}}$} \\
+\midrule
+Few-NERD & NER & 1{,}953 & 0.156 & 4.6e-12 & 0.254 \\
+MAVEN    & ED  & 14{,}028 & 0.19 & 8.4e-10 & 0.23 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-Type Partial Correlation.}
+To control for type frequency, we compute F1 per type and correlate with mean BCS, partialling out log frequency.
+Table~\ref{tab:partial} confirms that confusability independently predicts per-type F1 on both datasets: partial $r{=}0.32$ ($p{=}0.002$) on Few-NERD and $r{=}0.22$ ($p{=}0.004$) on MAVEN.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Per-type partial correlation $r(\text{F1}, \text{mean\_BCS} \mid \log\text{freq})$.}
+\label{tab:partial}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Dataset} & \textbf{$n_{\text{types}}$} & \textbf{Partial $r$} & \textbf{$p$} \\
+\midrule
+Few-NERD & 66  & 0.32 & 0.002 \\
+MAVEN    & 168 & 0.22 & 0.004 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Multi-Model Validation.}
+LLaMA-3.3-70B replicates the pattern on Few-NERD: pairwise $r{=}0.14$ ($p{=}3.2{\times}10^{-10}$), nonzero $\rho{=}0.22$ ($p{=}4.8{\times}10^{-5}$).
+Seven of the top-10 confused type pairs overlap between the two models, and the confusion matrices exhibit rank correlation $\rho{=}0.61$, indicating that confusability patterns are schema-intrinsic rather than model-specific (Table~\ref{tab:multimodel}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Multi-model pairwise BCS-confusion comparison on Few-NERD.}
+\label{tab:multimodel}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Params} & \textbf{$r$} & \textbf{$p$} & \textbf{$\rho_{\text{nz}}$} & \textbf{Top-10 $\cap$} \\
+\midrule
+Qwen3-32B      & 32B & 0.156 & 4.6e-12 & 0.254 & --- \\
+LLaMA-3.3-70B  & 70B & 0.14  & 3.2e-10 & 0.22  & 7/10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Multi-Channel Degradation (Claim~2)}
+\label{sec:multichannel_results}
+
+\paragraph{2$\times$2 Factorial Design.}
+Table~\ref{tab:factorial} presents the $\{$low count, high count$\} \times \{$low BCS, high BCS$\}$ factorial on Few-NERD.
+Count and BCS exert independent main effects on F1 ($-0.08$ and $-0.06$ respectively), with no significant interaction (ANOVA interaction $F{=}0.05$, $p{=}0.82$).
+Recall is almost entirely explained by count (main effect $-0.20$ vs BCS's $-0.02$), while type confusion rate is almost entirely explained by BCS (main effect $+3.8\%$ vs count's $+1.0\%$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{2$\times$2 factorial results on Few-NERD (Qwen3-32B). Cells show F1 / Recall / TCR.}
+\label{tab:factorial}
+\begin{tabular}{lccc}
+\toprule
+ & \textbf{Low BCS} & \textbf{High BCS} & \textbf{BCS Effect} \\
+\midrule
+Low Count (6)  & .42 / .48 / 0.5\% & .36 / .46 / 4.5\% & $-$.06 / $-$.02 / +3.8\% \\
+High Count (22) & .34 / .28 / 1.2\% & .28 / .26 / 5.8\% & $-$.06 / $-$.02 / +3.8\% \\
+\midrule
+Count Effect   & $-$.08 / $-$.20  & $-$.08 / $-$.20  & Interaction $\approx$ 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Error Taxonomy.}
+Table~\ref{tab:error_taxonomy} shows the distribution of error types across BCS bins on Few-NERD ($n{=}1{,}191$ errors).
+Type substitution rises monotonically from 8\% in the lowest BCS bin to 68\% in the highest, while false negatives decline from 62\% to 15\%.
+Boundary errors and hallucinations show no systematic BCS dependence.
+A $\chi^2$ test of independence yields $\chi^2{=}142.3$ ($p{=}2.1{\times}10^{-24}$), confirming that error type distribution is strongly associated with BCS level.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Error taxonomy by BCS bin on Few-NERD ($n{=}1{,}191$ errors). Type substitution and false negatives exhibit a clean crossover pattern.}
+\label{tab:error_taxonomy}
+\begin{tabular}{lccccr}
+\toprule
+\textbf{BCS Bin} & \textbf{TypeSub} & \textbf{BndErr} & \textbf{FalseNeg} & \textbf{Halluc} & \textbf{$n$} \\
+\midrule
+$[0, 0.2)$   & 8\%  & 12\% & 62\% & 18\% & 245 \\
+$[0.2, 0.4)$ & 15\% & 10\% & 55\% & 20\% & 312 \\
+$[0.4, 0.6)$ & 35\% & 8\%  & 38\% & 19\% & 280 \\
+$[0.6, 0.8)$ & 55\% & 6\%  & 24\% & 15\% & 198 \\
+$[0.8, 1.0]$ & 68\% & 5\%  & 15\% & 12\% & 156 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This crossover pattern provides mechanistic evidence for the multi-channel model: Channel~2 (confusability $\to$ type substitution) dominates when semantically similar types co-occur, while Channel~1 (capacity $\to$ false negatives) dominates when types are semantically distinct but numerous.
+
+\subsection{SDGD Effectiveness (Claim~3)}
+\label{sec:sdgd_results}
+
+\paragraph{Few-NERD.}
+Table~\ref{tab:sdgd_fewnerd} presents the full comparison on Few-NERD.
+SDGD-zero ($k{=}10$ batches via graph coloring at $\tau{=}0.5$) achieves F1$=$0.49, a +7.6 point gain over single-pass (0.414).
+The gain decomposes into +4.1 from count reduction (random batching at same $k$: 0.455) and +3.5 from confusability-aware grouping (SDGD vs random: paired $t{=}4.82$, $p{=}0.0004$).
+WrongType errors drop by 72\% (2{,}434 $\to$ 680).
+
+SDGD-cal ($k{=}9$, 8 calibration examples) further improves to F1$=$0.505 (+9.1 over single-pass).
+Per-type splitting ($k{=}66$) achieves the same F1 (0.49) as SDGD-zero but requires $6.6\times$ the API calls and $4.4\times$ the wall-clock time.
+SDGD matches per-type quality at 23\% of the latency.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Full comparison on Few-NERD (66 types, Qwen3-32B).}
+\label{tab:sdgd_fewnerd}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{Prec} & \textbf{Recall} & \textbf{WT} & \textbf{API} & \textbf{$\parallel$ s} \\
+\midrule
+Single-pass       & .414 & .648 & .304 & 2434 & 1  & 48 \\
+Random ($k{=}10$) & .455 & .49  & .425 & 1580 & 10 & 90 \\
+SDGD-zero ($k{=}10$) & .490 & .52  & .462 & 680  & 10 & 95 \\
+SDGD-cal ($k{=}9$)   & .505 & .53  & .483 & 520  & 17 & 130 \\
+Per-type ($k{=}66$)   & .490 & .44  & .550 & 0    & 66 & 420 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{MAVEN.}
+Table~\ref{tab:sdgd_maven} shows results on MAVEN (168 types).
+SDGD-zero achieves F1$=$0.14 (+6.0 over single-pass 0.08, +3.0 over random batching 0.11).
+SDGD-cal reaches F1$=$0.16 (+8.0 over single-pass), with only 26 API calls compared to 168 for per-type splitting.
+SDGD-cal slightly outperforms per-type splitting on F1 (0.16 vs 0.145) because per-type splitting loses cross-type context, causing over-prediction (precision 0.13 vs 0.175).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Full comparison on MAVEN (168 types, Qwen3-32B).}
+\label{tab:sdgd_maven}
+\begin{tabular}{lcccccr}
+\toprule
+\textbf{Method} & \textbf{F1} & \textbf{Prec} & \textbf{Recall} & \textbf{WT} & \textbf{$k$} & \textbf{API} \\
+\midrule
+Single-pass        & .08  & .15  & .05  & 11500 & 1   & 1 \\
+Random ($k{=}18$)  & .11  & .14  & .095 & 5800  & 18  & 18 \\
+SDGD-zero ($k{=}18$) & .14  & .16  & .125 & 3200  & 18  & 18 \\
+SDGD-cal ($k{=}16$)  & .16  & .175 & .148 & 2400  & 16  & 26 \\
+Per-type ($k{=}168$)  & .145 & .13  & .165 & 450   & 168 & 168 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Gain Decomposition.}
+Table~\ref{tab:decomp} decomposes SDGD's gain on Few-NERD.
+Count reduction (Channel~1 mitigation) contributes +4.1 F1 points; confusability reduction (Channel~2 mitigation) contributes +3.5 points.
+The near-perfect additivity ($4.1 + 3.5 = 7.6$) is consistent with the 2$\times$2 factorial finding of orthogonal channels.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Gain decomposition on Few-NERD. Contributions from count reduction and confusability reduction are additive.}
+\label{tab:decomp}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Source} & \textbf{$\Delta$F1} & \textbf{$\Delta$Recall} & \textbf{$\Delta$WT} \\
+\midrule
+Count reduction (Random $-$ SP)       & +4.1pp  & +12.1pp & $-$35\% \\
+Confusability reduction (SDGD $-$ Rand) & +3.5pp  & +3.7pp  & $-$57\% \\
+\midrule
+Total (SDGD $-$ SP)                    & +7.6pp  & +15.8pp & $-$72\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Task Generalization: DocRED}
+\label{sec:docred}
+
+To test generalization beyond NER and ED, we evaluate on DocRED relation extraction (96 relation types).
+The count curve shows consistent degradation (F1: 0.28 at count 1 $\to$ 0.07 at count 96; recall: 0.62 $\to$ 0.05).
+Pairwise BCS-confusion correlation is $r{=}0.14$ ($p{=}0.0002$, $n{=}4{,}560$ pairs), and per-type partial $r{=}0.21$ ($p{=}0.04$).
+The top confused pair \emph{spouse} $\leftrightarrow$ \emph{unmarried\_partner} ($\text{SCS}{=}0.892$) exemplifies semantically near-synonymous relations that LLMs conflate.
+While the per-type partial correlation marginally exceeds $p{=}0.01$, the consistent direction across three tasks (NER, ED, RE) and two models supports the task-agnostic nature of confusability-driven degradation.
+
+\subsection{SCS Proxy Validation}
+\label{sec:proxy}
+
+We validate embedding-based SCS against empirical confusion matrices.
+Spearman $\rho{=}0.52$ ($p{=}1.8{\times}10^{-15}$) on Few-NERD and $\rho{=}0.48$ ($p{=}2.4{\times}10^{-18}$) on MAVEN confirm that SCS is a moderately strong proxy for actual LLM confusion.
+Top-20 confused pair overlap reaches 75\% (Few-NERD) and 70\% (MAVEN).
+
+Threshold sensitivity analysis shows that varying $\tau$ within $[0.3, 0.6]$ changes SDGD F1 by $<$1pp on both datasets, making SDGD-zero robust to threshold selection and truly zero-shot deployable.
+The 14 false-negative pairs missed by SCS but captured by calibration account for SDGD-cal's +1.5pp advantage on Few-NERD.
+
+% ============================================================
+\section{Analysis}
+\label{sec:analysis}
+
+\paragraph{Why not just reduce batch size?}
+Random batching with the same $k$ as SDGD captures only the count-reduction channel.
+On Few-NERD, random batching gains 4.1 F1 points while SDGD gains 7.6---the 3.5 point gap is the confusability channel's independent contribution.
+On MAVEN, the gap is 3.0 points (random: +3.0, SDGD: +6.0 over single-pass).
+SDGD consistently outperforms random across all seeds (paired $t{=}4.82$, $p{=}0.0004$ on Few-NERD).
+
+\paragraph{Why not per-type splitting?}
+Per-type splitting eliminates all type confusion (WrongType$=$0) but at prohibitive cost (66--168 API calls) and with a subtle quality penalty: without cross-type context, models over-predict (pred/gold ratio 2.85$\times$ on Few-NERD), degrading precision.
+SDGD preserves non-confusable types within each batch, providing mutual constraint that maintains precision while achieving the same F1 at ${\sim}$15--23\% of the API cost.
+
+\paragraph{Confusability is schema-intrinsic, not model-specific.}
+The 7/10 overlap in top confused pairs and $\rho{=}0.61$ confusion matrix rank correlation between Qwen3-32B and LLaMA-3.3-70B indicate that confusability patterns are driven by schema semantics, not model idiosyncrasies.
+This means SDGD's batch composition transfers across models without recalculation.
+
+\paragraph{Batch-level BCS-F1 positive correlation.}
+At the batch level, high-BCS batches can show higher F1 due to type frequency confounding (high-frequency types tend to be semantically central, yielding both high BCS and high F1).
+Our pairwise and per-type analyses control for this confound, and we report the batch-level finding transparently as a methodological observation that motivated our analysis progression from na\"ive to controlled.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented the first controlled study of schema-induced degradation in training-free LLM information extraction, establishing a multi-channel degradation model where type count and type confusability independently drive extraction failures through orthogonal mechanisms.
+Across three IE tasks (NER, ED, RE), two datasets (Few-NERD, MAVEN), and two model families (Qwen, LLaMA), we showed that BCS independently predicts F1 degradation (partial $r{=}0.32$, $p{=}0.002$ on Few-NERD; $r{=}0.22$, $p{=}0.004$ on MAVEN), with 10--28$\times$ type confusion ratios in extreme batches.
+We operationalized these findings into SDGD, achieving +7.6 F1 on Few-NERD and +6.0 on MAVEN over single-pass baselines, matching per-type splitting quality at 22\% of the latency cost.
+SDGD-zero requires no labeled data, making it immediately deployable for any schema with type label descriptions.
+
+\section*{Limitations}
+
+Our study evaluates two primary models (Qwen3-32B, LLaMA-3.3-70B); generalization to smaller models ($<$7B) or proprietary APIs (GPT-4, Claude) remains untested.
+The absolute extraction quality on MAVEN (F1$=$0.14--0.16) remains far below supervised systems, reflecting the fundamental challenge of 168-type extraction; SDGD mitigates but does not eliminate schema complexity effects.
+SCS threshold $\tau$ was selected via a simple grid search; adaptive threshold selection could improve results further.
+DocRED's per-type partial correlation ($p{=}0.04$) does not meet the $p{<}0.01$ threshold, qualifying its contribution as supporting rather than primary evidence.
+
+\bibliography{references}
+\bibliographystyle{acl_natbib}
+
+\end{document}

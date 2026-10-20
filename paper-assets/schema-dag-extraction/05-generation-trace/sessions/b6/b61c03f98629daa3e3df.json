@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r11-ner-bcs-contradiction_20260517T095903_result.json",
     "occurrence": 1,
-    "bytes": 3176,
-    "sha256": "740e18140b9ae86b2d2e7cb5dd4fa6e9f9c69e9c292a0b78e97334b8ffb4b84c"
+    "bytes": 3175,
+    "sha256": "c7206875275d31c49930d4b03935a85e09a4f083b0c04f154e54745dbdd7df11"
   },
   "statistics": {
     "messages": 1,

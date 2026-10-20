@@ -39,7 +39,7 @@ N_HIGH = 5
 DEFAULT_N_SAMPLES = 1000
 
 # OpenAI config
-DEFAULT_API_KEY = os.environ.get("OPENAI_API_KEY", "YOUR_API_KEY_HERE")
+DEFAULT_API_KEY = [REDACTED]"OPENAI_API_KEY", "YOUR_API_KEY_HERE")
 DEFAULT_BASE_URL = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
 DEFAULT_MODEL = "gpt-4o-mini"
 

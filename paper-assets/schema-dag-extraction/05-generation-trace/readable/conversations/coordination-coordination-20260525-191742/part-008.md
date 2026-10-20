@@ -6,28 +6,6 @@
 
 ## Round 168
 
-### Tool result
-
-_source line 4629 · 2026-05-19T18:37:45.702420+00:00_
-
-The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex has been updated successfully.
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Edit",
-  "elapsed_ms": 57
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
 _source line 4630 · 2026-05-19T18:37:51.983589+00:00_
@@ -20910,6 +20888,32 @@ called Read
     "offset": "10",
     "limit": "5"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 5285 · 2026-05-20T08:19:12.206621+00:00_
+
+10	## 3. Generalizability: "BCS only works for RE"
+11	Task asymmetry is a core finding (C2), not a limitation. RE errors concentrate in type substitution regardless of output format (paired evidence: constrained vs unconstrained yield identical BCS correlations). NER errors scatter across missed entities, boundary misalignment, and type confusion, drowning the batch-level signal. Key evidence: (a) Pairwise SCS significant in NER (r=0.112, p<0.001) — pair-level signal exists, batch-level aggregation fails; (b) IntraSub monotonically correlated with BCS in both NER and RE (ρ=1.0/0.954), but NER miss rate (43-65%) drowns batch-level signal.
+12	
+13	## 4. "61% success rate" / many failed experiments
+14	Analysis paper, not method paper — negative results are findings. SDGD failure (C3, now confirmed on both NER and ED via MAVEN experiment), few-shot widening, schema renaming ineffective — all diagnostically valuable. Registry failures include infra issues (Llama env, vLLM version) correctly tagged as engineering failures, not scientific conclusions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "elapsed_ms": 50
 }
 ```
 

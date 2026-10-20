@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_exp012_gpu_status_20260515T171029_result.json",
     "occurrence": 1,
-    "bytes": 655,
-    "sha256": "37f8f7c6053aae0b97c6df9021f66ec580eaf45aa382d5500a58edef1c47c4e1"
+    "bytes": 654,
+    "sha256": "2144cdc207196332b19541728af46f433ab799062016d354650673c04b74edd1"
   },
   "statistics": {
     "messages": 1,

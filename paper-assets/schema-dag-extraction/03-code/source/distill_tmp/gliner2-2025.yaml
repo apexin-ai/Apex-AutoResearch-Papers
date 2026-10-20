@@ -1,0 +1,94 @@
+paper_key: "gliner2-2025"
+title: "GLiNER2: An Efficient Multi-Task Information Extraction System with Schema-Driven Interface"
+venue: "EMNLP 2025 Demo"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4o"
+    - "GLiClass (knowledgator/gliclass-base-v1.0)"
+    - "DeBERTa-v3-base-zeroshot"
+    - "GLiNER-M (NER baseline)"
+  metrics:
+    - {name: "Accuracy", direction: "higher_better", task: "text classification"}
+    - {name: "F1", direction: "higher_better", task: "NER"}
+    - {name: "CPU Latency (ms)", direction: "lower_better", task: "efficiency"}
+    - {name: "Speedup", direction: "higher_better", task: "efficiency"}
+  datasets:
+    - {name: "SNIPS", size: "7 labels", task: "intent classification"}
+    - {name: "Banking77", size: "77 labels", task: "intent classification"}
+    - {name: "Amazon Intent", size: "31 labels", task: "intent classification"}
+    - {name: "SST-2", size: "2 labels", task: "sentiment"}
+    - {name: "IMDB", size: "2 labels", task: "sentiment"}
+    - {name: "AG News", size: "4 labels", task: "topic classification"}
+    - {name: "20 Newsgroups", size: "20 labels", task: "topic classification"}
+    - {name: "CrossNER", size: "5 domains (AI, Literature, Music, Politics, Science)", task: "NER"}
+  ablation_dimensions:
+    - "未做正式消融实验（Demo paper 无消融要求）"
+  training_recipe:
+    optimizer: "AdamW"
+    lr_backbone: "1e-5"
+    lr_task_layers: "2e-5"
+    weight_decay: 0.01
+    warmup_steps: 1000
+    gradient_clipping: 1.0
+    epochs: 5
+    hardware: "未明确说明（训练数据 254K 样本，模型 205M 参数）"
+    training_data_size: "254,334 examples (135,698 real-world + 118,636 synthetic)"
+    annotation_method: "GPT-4o automatic annotation"
+  method_family: "encoder-based multi-task IE with schema prompting"
+
+positioning:
+  core_claim: "将 GLiNER 从单一 NER 扩展为统一 IE 系统（NER + 分类 + 层次结构抽取），保持 205M 参数和 CPU 可部署性，通过 schema-driven interface 实现多任务单次推理"
+  key_results: "零样本文本分类平均 0.72（开源最优，超 GLiClass 0.63 和 DeBERTa 0.69）；CrossNER F1 0.590（接近 GPT-4o 的 0.599）；CPU 推理延迟 ~130ms（比 GPT-4o 快 2.62x，比 DeBERTa 快 ~50x）"
+  limitations:
+    - "层次结构抽取未做定量评估（缺乏零样本基准）"
+    - "NER 性能略低于专用模型 GLiNER-M（0.590 vs 0.615），多任务统一带来轻微性能损失"
+    - "上下文窗口仅 2048 tokens，远低于 LLM（2K-1M）"
+    - "仅评估零样本场景，缺少微调后的性能报告"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "IE 是 NLP 基础任务，但现有方案要么需要多个专用模型（碎片化），要么依赖昂贵 LLM（部署难）"
+  tension: "GLiNER 发布后催生了 GLiREL、GLiClass、GLiNER-BioMed 等一系列专用变体，每个需独立开发部署，造成生态碎片化（fragmentation）——这恰恰是 GLiNER 当初试图避免的问题"
+  key_insight: "通过扩展 entity type prompting 为通用 schema prompting，单一 encoder 架构可以用相同的 [Task Prompt] ⊕ [SEP] ⊕ [Input Text] 格式处理 NER、分类和结构抽取三类任务"
+  argument_chain: "IE 重要 → LLM 方案有部署/隐私/成本瓶颈 → GLiNER 解决了 NER 但引发生态碎片化 → GLiNER2 通过 schema-driven interface 统一多任务 → 保持 CPU 效率的同时达到竞争力性能 → 开源发布"
+  contribution_framing: "5 项贡献：统一架构、多任务组合、schema-driven 接口、保持效率、开源发布。措辞侧重'系统贡献'而非'方法创新'，符合 Demo paper 定位"
+  intro_structure: "6段：(1)IE 定义与重要性 (2)LLM 的局限（速度/成本） (3)隐私与合规问题 (4)GLiNER 基础 (5)碎片化问题 (6)GLiNER2 方案与贡献"
+  notable_technique: "用 GLiNER 自身成功带来的'碎片化'问题作为张力来源——自我批判式动机，比攻击外部竞品更有说服力。同时用隐私/GDPR/HIPAA 等合规需求强化 CPU 部署的必要性"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "代码示例展示模型加载方式（.from_pretrained()），这是 Demo paper 的典型 Figure 1——直接展示用户如何使用系统"
+    narrative_role: "建立'系统易用'的第一印象，Demo paper 不需要传统的 motivation figure"
+    design_elements: ["代码片段", "API 调用示例", "Hugging Face 集成"]
+    visual_style: "代码块格式，强调简洁的 API 设计（几行代码即可使用）"
+  result_figures:
+    - figure_id: "Figure 7"
+      viz_type: "screenshot"
+      what_compared: "Gradio demo 界面展示层次结构抽取功能"
+      how_gain_highlighted: "通过交互式 UI 直观展示系统能力，比数字更有说服力"
+      design_note: "Demo paper 的核心 figure——用截图代替抽象示意图，让 reviewer 直接'看到'系统运行效果"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1-2（NER API）→ Figure 3-4（结构抽取 API）→ Figure 5-6（分类 API）→ Figure 7（Gradio UI）→ Figure 8（多任务组合 API）：按功能模块递进展示，从简单到复杂，最后以统一组合收尾"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "datasets"
+    col_axis: "methods"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "未使用粗体/下划线（Demo paper 风格简洁）"
+    statistical_reporting: "单次运行结果，无置信区间"
+    num_baselines: 3
+    design_note: "按任务类型（Intent/Sentiment/Topic）分组排列数据集，每组内按 label 数量递增。GPT-4o 作为参照上界而非直接竞品，实际对比目标是开源方案。表格紧凑，7 个数据集覆盖 3 类分类任务"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 5（训练超参数）和 Table 6（训练数据分布）放在 Appendix B"
+    reason: "Demo paper 主体聚焦系统功能和使用方式，训练细节作为补充材料放附录，保持主文简洁"

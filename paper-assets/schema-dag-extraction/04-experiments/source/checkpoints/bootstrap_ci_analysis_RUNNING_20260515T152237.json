@@ -1,0 +1,29 @@
+{
+  "exp_id": "bootstrap_ci_analysis",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:22:26.006Z",
+    "updated_at": "2026-05-15T15:22:37.798Z",
+    "spec": {
+      "hypothesis": "All key correlations have 95% CI excluding null values, confirming robustness",
+      "dataset": "Few-NERD + MAVEN + FewRel",
+      "model": "N/A (analysis)",
+      "design": "Bootstrap 1000 resamples, 95% percentile CI for 7 metrics",
+      "data_path": "/root/schema-dag-extraction/artifacts/bootstrap_ci.json",
+      "data_count": "7 metrics",
+      "model_name": "N/A",
+      "seed": 42,
+      "command": "python3 src/bootstrap_ci.py",
+      "server": "cqa1-38874",
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/bootstrap_ci.json",
+      "log_path": "/root/schema-dag-extraction/artifacts/bootstrap_ci.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:22:37.845483+00:00",
+  "trigger": "update_registry"
+}

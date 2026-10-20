@@ -15473,7 +15473,7 @@ PDF/PNG 已重新生成。所有文字在 \columnwidth 下 100% zoom 可读。
 [飞书用户 运维(匿名仓库分发)]: 📦 **匿名仓库已建好，请将本项目代码 push 到匿名仓库（EMNLP 2026 投稿用）**
 
 **仓库地址：** https://github.com/anonymous-nlp-2026/schema-dag-extraction
-**带 token 的 push URL：** https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
+**带 token 的 push URL：** https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
 
 **任务：**
 请整理本项目的代码到一个匿名分支并 push 到上述仓库。
@@ -15632,7 +15632,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 ```json
 {
   "project": "schema-dag-extraction",
-  "text": "**匿名仓库准备（图修复完成后执行）**\n\n运维已创建匿名 GitHub 仓库，需要你把项目代码 push 上去（EMNLP 2026 投稿用）。\n\n**仓库地址**：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n**Push URL**：https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n**要求**：\n1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. **排除**：实验日志、checkpoints、wandb/、data/、.agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、token\n3. **匿名化**：\n   - 替换代码/commit/git author 中的 caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity\n   - git author: `Anonymous &lt;anonymous@example.com>`\n   - 新建仓库一次提交即可（不需要保留历史）\n4. **README** 写清楚怎么复现实验\n\n完成后汇报：repo URL、文件数、commit 数。敏感词不确定的先问我。"
+  "text": "**匿名仓库准备（图修复完成后执行）**\n\n运维已创建匿名 GitHub 仓库，需要你把项目代码 push 上去（EMNLP 2026 投稿用）。\n\n**仓库地址**：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n**Push URL**：https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n**要求**：\n1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. **排除**：实验日志、checkpoints、wandb/、data/、.agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、token\n3. **匿名化**：\n   - 替换代码/commit/git author 中的 caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity\n   - git author: `Anonymous &lt;anonymous@example.com>`\n   - 新建仓库一次提交即可（不需要保留历史）\n4. **README** 写清楚怎么复现实验\n\n完成后汇报：repo URL、文件数、commit 数。敏感词不确定的先问我。"
 }
 ```
 
@@ -15647,7 +15647,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
     "project": "schema-dag-extraction",
-    "text": "**匿名仓库准备（图修复完成后执行）**\n\n运维已创建匿名 GitHub 仓库，需要你把项目代码 push 上去（EMNLP 2026 投稿用）。\n\n**仓库地址**：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n**Push URL**：https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n**要求**：\n1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. **排除**：实验日志、checkpoints、wandb/、data/、.agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、token\n3. **匿名化**：\n   - 替换代码/commit/git author 中的 caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity\n   - git author: `Anonymous &lt;anonymous@example.com>`\n   - 新建仓库一次提交即可（不需要保留历史）\n4. **README** 写清楚怎么复现实验\n\n完成后汇报：repo URL、文件数、commit 数。敏感词不确定的先问我。"
+    "text": "**匿名仓库准备（图修复完成后执行）**\n\n运维已创建匿名 GitHub 仓库，需要你把项目代码 push 上去（EMNLP 2026 投稿用）。\n\n**仓库地址**：https://github.com/anonymous-nlp-2026/schema-dag-extraction\n**Push URL**：https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git\n\n**要求**：\n1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. **排除**：实验日志、checkpoints、wandb/、data/、.agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、token\n3. **匿名化**：\n   - 替换代码/commit/git author 中的 caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity\n   - git author: `Anonymous &lt;anonymous@example.com>`\n   - 新建仓库一次提交即可（不需要保留历史）\n4. **README** 写清楚怎么复现实验\n\n完成后汇报：repo URL、文件数、commit 数。敏感词不确定的先问我。"
   }
 }
 ```

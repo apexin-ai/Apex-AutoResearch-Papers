@@ -1,0 +1,69 @@
+{
+  "analyses": {
+    "A": {
+      "name": "A: d051 factorial (N=150)",
+      "probability_scale": {
+        "interaction_pp": -4.94,
+        "se_pp": 2.43,
+        "df": 133.1,
+        "ci_90_pp": [-8.97, -0.92]
+      },
+      "logit_scale": {
+        "interaction": -0.3424,
+        "se": 0.1614,
+        "df": 96.3,
+        "ci_90": [-0.6105, -0.0743]
+      }
+    },
+    "B": {
+      "name": "B: d051 regression (N=375)",
+      "probability_scale": {
+        "interaction_pp": -0.37,
+        "se_pp": 0.49,
+        "df": 371.0,
+        "ci_90_pp": [-1.18, 0.44]
+      },
+      "logit_scale": {
+        "interaction": 0.0124,
+        "se": 0.0840,
+        "df": 371.0,
+        "ci_90": [-0.1262, 0.1509]
+      }
+    },
+    "C": {
+      "name": "C: 40rel factorial (N=54)",
+      "probability_scale": {
+        "interaction_pp": -3.77,
+        "se_pp": 4.94,
+        "df": 39.1,
+        "ci_90_pp": [-12.08, 4.55]
+      },
+      "logit_scale": {
+        "interaction": -0.2317,
+        "se": 0.2844,
+        "df": 34.8,
+        "ci_90": [-0.7122, 0.2488]
+      }
+    }
+  },
+  "sensitivity_table": [
+    {"analysis": "A", "margin_pp": 2, "probability_scale": {"p_tost": 0.8860, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.9243, "conclusion": "Inconclusive"}},
+    {"analysis": "A", "margin_pp": 2.5, "probability_scale": {"p_tost": 0.8417, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.8978, "conclusion": "Inconclusive"}},
+    {"analysis": "A", "margin_pp": 3, "probability_scale": {"p_tost": 0.7873, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.8649, "conclusion": "Inconclusive"}},
+    {"analysis": "A", "margin_pp": 3.5, "probability_scale": {"p_tost": 0.7233, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.8254, "conclusion": "Inconclusive"}},
+    {"analysis": "A", "margin_pp": 4, "probability_scale": {"p_tost": 0.6509, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.7790, "conclusion": "Inconclusive"}},
+    {"analysis": "A", "margin_pp": 5, "probability_scale": {"p_tost": 0.4910, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.6676, "conclusion": "Inconclusive"}},
+    {"analysis": "B", "margin_pp": 2, "probability_scale": {"p_tost": 0.0005, "conclusion": "Equivalent"}, "logit_scale": {"p_tost": 0.1476, "conclusion": "Inconclusive"}},
+    {"analysis": "B", "margin_pp": 2.5, "probability_scale": {"p_tost": 0.0000, "conclusion": "Equivalent"}, "logit_scale": {"p_tost": 0.0894, "conclusion": "Inconclusive"}},
+    {"analysis": "B", "margin_pp": 3, "probability_scale": {"p_tost": 0.0000, "conclusion": "Equivalent"}, "logit_scale": {"p_tost": 0.0503, "conclusion": "Inconclusive"}},
+    {"analysis": "B", "margin_pp": 3.5, "probability_scale": {"p_tost": 0.0000, "conclusion": "Equivalent"}, "logit_scale": {"p_tost": 0.0263, "conclusion": "Equivalent"}},
+    {"analysis": "B", "margin_pp": 4, "probability_scale": {"p_tost": 0.0000, "conclusion": "Equivalent"}, "logit_scale": {"p_tost": 0.0127, "conclusion": "Equivalent"}},
+    {"analysis": "B", "margin_pp": 5, "probability_scale": {"p_tost": 0.0000, "conclusion": "Equivalent"}, "logit_scale": {"p_tost": 0.0024, "conclusion": "Equivalent"}},
+    {"analysis": "C", "margin_pp": 2, "probability_scale": {"p_tost": 0.6388, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.6668, "conclusion": "Inconclusive"}},
+    {"analysis": "C", "margin_pp": 2.5, "probability_scale": {"p_tost": 0.6005, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.6320, "conclusion": "Inconclusive"}},
+    {"analysis": "C", "margin_pp": 3, "probability_scale": {"p_tost": 0.5613, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.5960, "conclusion": "Inconclusive"}},
+    {"analysis": "C", "margin_pp": 3.5, "probability_scale": {"p_tost": 0.5214, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.5591, "conclusion": "Inconclusive"}},
+    {"analysis": "C", "margin_pp": 4, "probability_scale": {"p_tost": 0.4812, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.5217, "conclusion": "Inconclusive"}},
+    {"analysis": "C", "margin_pp": 5, "probability_scale": {"p_tost": 0.4019, "conclusion": "Inconclusive"}, "logit_scale": {"p_tost": 0.4466, "conclusion": "Inconclusive"}}
+  ]
+}

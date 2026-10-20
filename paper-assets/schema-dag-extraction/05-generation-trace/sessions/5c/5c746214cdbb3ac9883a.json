@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_schema_intervention_design_20260517T145722_result.json",
     "occurrence": 1,
-    "bytes": 4671,
-    "sha256": "e512c5f5c0fd02021e192688282bd70ca6326d036a9abf4a460040265db9e4af"
+    "bytes": 4670,
+    "sha256": "088c4e7315f8a35c4caf2c515ae2941adb2fa4382abb57ef8fb7eb57eab4e056"
   },
   "statistics": {
     "messages": 1,

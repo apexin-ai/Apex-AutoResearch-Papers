@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp012_r4_llama_switch_20260515T155808_result.json",
     "occurrence": 1,
-    "bytes": 562,
-    "sha256": "8f8cad8f23d3f80623988711d6b008c569bec01fff41fb9a6c7f47666422e7b7"
+    "bytes": 561,
+    "sha256": "256e74a9642acea767ebf58f3f2d99ab9dc1823c8f9a4711c70bd89b3b8e7a2a"
   },
   "statistics": {
     "messages": 1,

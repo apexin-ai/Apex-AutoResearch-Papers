@@ -1,0 +1,69 @@
+{
+  "exp_id": "exp_paired_constrained",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:26:17.431Z",
+    "updated_at": "2026-05-19T20:20:51.525Z",
+    "hypothesis": "Constrained decoding channels BCS-related errors into type substitutions, producing a strong BCS-accuracy correlation (ρ ≈ -0.7 to -0.9) on the same batch type sets where unconstrained decoding shows no significant correlation (ρ=-0.14). If confirmed on the same 25 batches, this establishes format dependency as a paired comparison rather than relying on cross-batch-set inference.",
+    "server": "cqa1-38874",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T19:57:32.458Z"
+    },
+    "spec": {
+      "command": "python3 artifacts/run_paired_constrained.py --stage all --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --n_samples 1000 --seed 42",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/batch_groups.json",
+      "data_count": 25,
+      "model_name": "qwen3-32b-fp8",
+      "seed": 42,
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_paired_constrained/",
+      "log_path": "/root/schema-dag-extraction/artifacts/exp_paired_constrained/"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "constrained": {
+        "pearson_r": -0.4479,
+        "pearson_p": 0.0247,
+        "spearman_rho": -0.1566,
+        "spearman_p": 0.4548,
+        "mean_acc": 0.795,
+        "low_bcs_mean_acc": 0.8093,
+        "high_bcs_mean_acc": 0.7795,
+        "delta_pp": 2.98,
+        "delta_ci_95": [
+          -4.41,
+          10.91
+        ]
+      },
+      "unconstrained": {
+        "pearson_r": -0.4393,
+        "pearson_p": 0.028,
+        "spearman_rho": -0.1442,
+        "spearman_p": 0.492,
+        "mean_acc": 0.7958
+      },
+      "paired_fisher_z": {
+        "pearson_z": -0.036,
+        "pearson_p": 0.972,
+        "spearman_z": -0.042,
+        "spearman_p": 0.966
+      },
+      "acc_improvement_pp": -0.08,
+      "n_batches": 25,
+      "n_low": 13,
+      "n_high": 12
+    },
+    "notes": "Hypothesis falsified: constrained ρ=-0.16 ≈ unconstrained ρ=-0.14 (Fisher z=-0.04, p=0.97). Format does NOT modulate BCS-accuracy correlation. Both Pearson r ≈ -0.45 (significant, outlier-driven) and Spearman ρ ≈ -0.15 (not significant) are virtually identical under both formats. Overall accuracy unchanged (79.5% vs 79.6%). Implication: BCS effect is format-independent — driven by semantic confusability, not forced-choice error channeling.",
+    "completed_at": "2026-05-19T20:20:51.525Z"
+  },
+  "timestamp": "2026-05-19T20:20:51.673300+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,22 @@
+2026-05-19 17:37:07,707 INFO __main__: Config: model=gemini-2.5-flash, base_url=http://47.94.22.126/v1, seed=42, sleep=0.15
+2026-05-19 17:37:08,934 INFO __main__: Client initialized (OpenAI-compatible, model=gemini-2.5-flash)
+2026-05-19 17:37:08,941 INFO __main__: Loaded 960 samples (80 relations)
+2026-05-19 17:37:08,942 INFO __main__: ============================================================
+2026-05-19 17:37:08,942 INFO __main__: PART 1: Count Curve (counts=[1, 4, 8, 16, 32, 64, 80], 25 batches each)
+2026-05-19 17:37:08,942 INFO __main__: ============================================================
+2026-05-19 17:37:10,303 INFO __main__: Resuming: 154 batches already completed
+2026-05-19 17:37:10,311 INFO __main__: Processing count_1: 25 batches
+2026-05-19 17:37:10,311 INFO __main__: Processing count_4: 25 batches
+2026-05-19 17:37:10,311 INFO __main__: Processing count_8: 25 batches
+2026-05-19 17:37:10,311 INFO __main__: Processing count_16: 25 batches
+2026-05-19 17:37:10,311 INFO __main__: Processing count_32: 25 batches
+2026-05-19 17:37:10,311 INFO __main__: Processing count_64: 25 batches
+2026-05-19 17:37:10,311 INFO __main__: Processing count_80: 25 batches
+2026-05-19 17:37:14,117 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:25,896 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:27,191 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:28,625 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:30,004 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:34,196 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:35,619 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-19 17:37:40,489 INFO httpx: HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"

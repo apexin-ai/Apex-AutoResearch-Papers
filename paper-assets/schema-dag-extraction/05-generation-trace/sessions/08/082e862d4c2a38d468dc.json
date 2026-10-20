@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_camera_ready_prose_20260522T063803_result.json",
     "occurrence": 1,
-    "bytes": 303,
-    "sha256": "fb9f7bc82eba4a3a1a6cd78332a2db855851f31fe45c2ff7435c21489c3cb350"
+    "bytes": 302,
+    "sha256": "e766cb94368e34693de673daa344c9a5bcc3124ea7888ff9a607fce96add0364"
   },
   "statistics": {
     "messages": 1,

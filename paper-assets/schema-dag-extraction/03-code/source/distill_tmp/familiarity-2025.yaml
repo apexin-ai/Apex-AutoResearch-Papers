@@ -1,0 +1,22 @@
+paper_key: "familiarity-2025"
+title: "Familiarity: Better Evaluation of Zero-Shot NER by Quantifying Label Shifts in Synthetic Training Data"
+venue: "NAACL 2025"
+full_text_available: false
+
+research:
+  baselines: ["existing zero-shot NER evaluation setups"]
+  metrics: [{name: "Familiarity (novel metric)", direction: "lower_better"}, {name: "F1", direction: "higher_better"}]
+  datasets: [{name: "standard NER evaluation benchmarks", size: "not specified"}]
+  ablation_dimensions: ["semantic similarity between train/eval entity types", "entity type frequency in training data"]
+  training_recipe: {method: "evaluation metric, no model training"}
+  method_family: "evaluation methodology for zero-shot NER"
+
+positioning:
+  core_claim: "Existing zero-shot NER evaluations overestimate true capabilities due to semantic overlap between synthetic training and evaluation entity types; Familiarity metric quantifies this label shift"
+  key_results: "Demonstrates that reported F1 scores for zero-shot NER are inflated due to unaccounted label shift"
+  limitations: ["metric itself needs validation across more settings"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

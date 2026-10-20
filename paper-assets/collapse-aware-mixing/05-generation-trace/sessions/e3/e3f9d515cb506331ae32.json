@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3f9d515cb506331ae32",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "check pivot b full urgent",
+  "task_key": "worker_check_pivot_b_full_urgent_20260513T233635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pivot_b_full_urgent_20260513T233635_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "a4eb9432304c075d6f6c3e5e468a212a2602ff32ca788ecf195163c7e0588824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== PIVOT_B_FULL STATUS ===\nPID 109597: DEAD（无存活进程）\nGPU: 0%, 0 MiB / 97887 MiB（空闲）\nProgress: 已完成（EXIT_CODE=0）\nLog tail: 分析了 G0/G1/G2 三代，每代 6 个 checkpoint（step 76/152/228/304/305/999999），共 18 个\nOutput: /root/autodl-tmp/output_v7/pivot_b_analysis_full/generated_vs_holdout_eff_rank.json (4.1KB, 07:12生成)\n```\n\n任务已正常结束。关键结果摘要：\n\n| Gen | 趋势 |\n|-----|------|\n| G0 | Generated eff_rank 52-61，Delta ~50-58 |\n| G1 | Generated 快速下降（76→228: 59→6），Delta 飙升至 ~105-106 |\n| G2 | Generated 全部趋近 1.0-1.1，Delta ~110，**完全坍缩** |\n\nG1→G2 发生了剧烈的 effective rank 坍缩，generated 数据的 eff_rank 从个位数进一步降到 ~1，与 holdout 的 ~111 形成巨大差距。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pivot-b-full-urgent.md"
+}

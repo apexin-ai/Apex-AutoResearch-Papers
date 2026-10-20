@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_fewrel_40rel_r3",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:57:11.672Z",
+    "updated_at": "2026-05-15T17:09:23.232Z",
+    "spec": {
+      "command": "python3 src/run_fewrel_40rel.py --stage extract --mode exp1 + exp2",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "300803",
+      "log_path": "~/runs/schema-dag-extraction/exp_fewrel_40rel_r3.log",
+      "submitted_at": "2026-05-15T16:57:11.592Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "FewRel 40-rel subset (preprocess_exp1.json)",
+      "data_count": 960,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen3-32B-FP8 at /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/",
+      "eval_data": "FewRel val set, 40-rel, 960 samples, 105 batches, count curve + BCS controlled",
+      "wall_clock_seconds": 731.6,
+      "gpu_hours": 0.2
+    },
+    "hypothesis": "FewRel 40-rel 中间点 scaling curve: 验证 count↑→accuracy↓ 在 40-rel 规模下的 degradation 幅度，补全 16-rel 到 80-rel 之间的 scaling 趋势",
+    "parent": "exp_fewrel_40rel_r2",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T17:09:23.232Z"
+  },
+  "timestamp": "2026-05-15T17:09:23.322215+00:00",
+  "trigger": "update_registry"
+}

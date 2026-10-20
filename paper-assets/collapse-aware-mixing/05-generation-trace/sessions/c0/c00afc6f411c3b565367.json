@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c00afc6f411c3b565367",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "fix mvp pilot v4 final",
+  "task_key": "worker_fix_mvp_pilot_v4_final_20260512T144919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp_pilot_v4_final_20260512T144919_result.json",
+    "occurrence": 1,
+    "bytes": 2485,
+    "sha256": "7df093ee848e890f875c897d05c1549988cefe4254da8bdc4735855f2ff8ad29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已稳定运行，3 个 step 输出确认。\n\n---\n\n**产出汇总：**\n\n**1. 修复前 tokens_per_generation grep：**\n```\npilot_pipeline.py:335: default=100_000_000\nconfig.py:18:       tokens_per_generation: int = 100_000_000\n```\n（代码默认 100M，无需改；launch 脚本显式覆盖为 90M）\n\n**2. 修复后 launch_pilot_v4.sh：**\n```bash\n#!/bin/bash\nset -euo pipefail\nsource /root/collapse-aware-mixing/env_init.sh\nbash /root/collapse-aware-mixing/preflight.sh\ncd /root/collapse-aware-mixing\npython3 pilot_pipeline.py \\\n    --output_dir /root/autodl-tmp/output \\\n    --num_generations 3 \\\n    --tokens_per_generation 90000000 \\\n    --checkpoint_interval_tokens 10000000 \\\n    --holdout_size 5000 \\\n    --no_wandb \\\n    --seed 42\n```\n\n**3. 修复后 tokens_per_generation grep：**\n```\npilot_pipeline.py:335: default=100_000_000  (代码默认)\nlaunch_pilot_v4.sh:     --tokens_per_generation 90000000  (运行时覆盖为90M)\n```\n\n**4. data_utils.py 第 78-92 行（边界保护）：**\n```python\n    num_train = config.tokens_per_generation // config.max_seq_length\n    available = len(ds) - config.holdout_size\n    if num_train > available:\n        logger.warning(\n            \"Requested %d train seqs but only %d available (dataset=%d, holdout=%d). Clamping.\",\n            num_train, available, len(ds), config.holdout_size,\n        )\n        num_train = available\n    num_holdout = min(config.holdout_size, len(ds) - num_train)\n\n    train_ids = ds.select(range(num_train))[\"input_ids\"]\n    holdout_ids = ds.select(range(num_train, num_train + num_holdout))[\"input_ids\"]\n```\n\n**5. 训练启动日志（前 30 行关键信息）：**\n```\n=== Pre-flight PASSED ===\nPILOT PIPELINE START\n  Model: EleutherAI/pythia-1b\n  Generations: 3 | Tokens/gen: 90M          ← 确认 90M\n  Checkpoint interval: 10M tokens (152 steps)\n  Device: cuda\nTrain: 43945 seqs (90.0M tokens) | Holdout: 5000 seqs  ← 确认 holdout 5000\nGENERATION 0 / 2\n=== Generation 0: training from EleutherAI/pythia-1b ===\n  Train sequences: 43945 | Max steps: 1373 | Save every 152 steps\n  0%|          | 1/1373 [00:04<1:51:39,  4.88s/it]\n  0%|          | 2/1373 [00:06<1:13:49,  3.23s/it]\n  0%|          | 3/1373 [00:09<1:01:47,  2.71s/it]   ← GPU 训练进行中\n```\n\n3 项修复已应用，训练 PID 28147 稳定运行中。预计 Generation 0 约 62 分钟完成（1373 steps × ~2.7s/step）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp-pilot-v4-final.md"
+}

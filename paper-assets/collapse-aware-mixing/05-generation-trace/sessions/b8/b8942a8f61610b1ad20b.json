@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8942a8f61610b1ad20b",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "code pi controller integration",
+  "task_key": "worker_code_pi-controller-integration_20260513T081846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pi-controller-integration_20260513T081846_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "3f76a34a62e42ba7fcf919360dd30041dd84614788e921990157585afb0e4da8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。文件已写入 `controlled_pipeline.py`。\n\n核心设计：\n- **`MixedDataset`**：每个样本独立以概率 `w` 采样真实数据、`(1-w)` 采样合成数据，`set_ratio()` 可在 segment 间动态更新\n- **手动训练循环**：每个 segment = `save_steps` 步优化，segment 结束后暂停训练，测量 spectral rank + PPL，PI controller 输出新 `w_t`\n- **Controller seeding**：训练前先测初始 rank 喂给 controller，使第一个 segment 后即产生实际控制动作\n- **G0 用 `train_generation()`（标准 HF Trainer），G1+ 用 `run_controlled_generation()`（手动循环 + PI 控制）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pi-controller-integration.md"
+}

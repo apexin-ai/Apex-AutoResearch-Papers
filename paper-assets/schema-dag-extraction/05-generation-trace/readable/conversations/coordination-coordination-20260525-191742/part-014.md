@@ -4209,7 +4209,7 @@ called Bash
 
 _source line 8777 · 2026-05-22T17:03:00.640773+00:00_
 
-42:DEFAULT_API_KEY = os.environ.get("OPENAI_API_KEY", "YOUR_API_KEY_HERE")
+42:DEFAULT_API_KEY = [REDACTED]"OPENAI_API_KEY", "YOUR_API_KEY_HERE")
 378:    parser.add_argument("--api_key", default=DEFAULT_API_KEY)
 
 <details><summary>Recorded metadata</summary>
@@ -22756,6 +22756,82 @@ called Read
     "limit": "500",
     "offset": "900"
   }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9303 · 2026-05-23T10:24:26.190343+00:00_
+
+900	  created_at: '2026-05-16T04:44:38.406364+00:00'
+901	  tags:
+902	  - bcs
+903	  - fix
+904	  - regression
+905	  - statistics
+906	- id: art_20260516_b2e2c0
+907	  name: phase2_count_curve_results
+908	  type: data
+909	  description: 'Phase 2a count curve: accuracy vs number of candidate types [1,4,8,16,32,64,96]
+910	    x5 batches. Monotonic degradation from 88% (count=1) to 38.7% (count=96).'
+911	  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/count_curve_results.json
+912	  url: null
+913	  project: schema-dag-extraction
+914	  exp_id: exp_docred_confusability
+915	  skill: ''
+916	  created_at: '2026-05-16T05:03:41.804047+00:00'
+917	  tags:
+918	  - docred
+919	  - confusability
+920	  - count-curve
+921	  - phase2
+922	- id: art_20260516_040aef
+923	  name: phase2_bcs_controlled_results
+924	  type: data
+925	  description: 'Phase 2b BCS-controlled batches: count=16 and count=32 with 25 random
+926	    + 5 low-BCS + 5 high-BCS. BCS effect: 23pp gap at count=16, 18pp at count=32.'
+927	  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/bcs_controlled_results.json
+928	  url: null
+929	  project: schema-dag-extraction
+930	  exp_id: exp_docred_confusability
+931	  skill: ''
+932	  created_at: '2026-05-16T05:03:43.611862+00:00'
+933	  tags:
+934	  - docred
+935	  - confusability
+936	  - bcs-controlled
+937	  - phase2
+938	- id: art_20260516_3b66cb
+939	  name: phase2_bootstrap_analysis
+940	  type: data
+941	  description: 'Phase 2c bootstrap CI (B=10000): OLS slope with 95% CI, Spearman correlation,
+942	    quartile gap CI. Both count=16 and count=32 show significant negative BCS-accuracy
+943	    relationship.'
+944	  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/bootstrap_analysis.json
+945	  url: null
+946	  project: schema-dag-extraction
+947	  exp_id: exp_docred_confusability
+948	  skill: ''
+949	  created_at: '2026-05-16T05:03:45.490216+00:00'
+950	  tags:
+951	  - docred
+952	  - confusability
+953	  - boot
+…[truncated 17712 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "elapsed_ms": 153
 }
 ```
 

@@ -1,0 +1,3 @@
+2026-05-15 06:10:57,297 INFO    core.tools.feishu  create_chat: name='审稿-schema-dag-extraction' → chat_id=oc_ac7ab7270b6b5caecee04f89b11aab3e
+2026-05-15 06:10:57,300 INFO    core.tools.dream  [dream] auto-created Group C for project=schema-dag-extraction: oc_ac7ab7270b6b5caecee04f89b11aab3e
+2026-05-15 06:10:57,449 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/mcp_config_dream_review_director.json

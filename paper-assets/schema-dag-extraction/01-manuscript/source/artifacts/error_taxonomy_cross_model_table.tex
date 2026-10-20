@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model error taxonomy: Spearman $\rho$ between per-batch IntraSub rate and BCS (FewRel). All models with sufficient BCS contrast show strong positive correlation.}
+\label{tab:cross_model_error_taxonomy}
+\begin{tabular}{lcccccc}
+\toprule
+Model & $N$ & BCS range & $\rho$ & $p$ & \multicolumn{2}{c}{IntraSub\%} \\
+\cmidrule(lr){6-7}
+ & & & & & Low & High \\
+\midrule
+Qwen3-32B & 154 & --- & 0.954 & <0.001 & --- & --- \\
+LLaMA-8B & 54 & [0.47, 0.97] & 0.430 & 0.001 & 16.0 & 29.0 \\
+LLaMA-70B & 20 & [0.47, 0.97] & -0.086 & 0.719 & 16.2 & 14.8 \\
+Gemini Flash & 60 & [0.36, 0.97] & 0.821 & $<$0.001 & 0.7 & 18.4 \\
+\bottomrule
+\end{tabular}
+\end{table}

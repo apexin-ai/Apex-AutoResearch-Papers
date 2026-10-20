@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fewrel-80rel-launch_20260515T125537_result.json",
     "occurrence": 1,
-    "bytes": 1042,
-    "sha256": "193d1b53f848d79e50599d8a13acfd13a002c5a03bb4441d0e1789fab445b61d"
+    "bytes": 1041,
+    "sha256": "b14c60bb0bbe1e3a6eb76f93d072666d5915f0eb00ca9413ea24af699d6530d9"
   },
   "statistics": {
     "messages": 1,

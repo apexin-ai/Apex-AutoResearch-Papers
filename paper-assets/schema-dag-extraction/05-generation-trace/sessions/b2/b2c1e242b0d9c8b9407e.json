@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_maven-preprocess_20260515T033306_result.json",
     "occurrence": 1,
-    "bytes": 486,
-    "sha256": "d3a681a8efdfa203d850e67d0bbff1239468acc7870fdb5856ce29e0a4586c5d"
+    "bytes": 485,
+    "sha256": "6ec80c00c6cf32167d3a1c5267d394eab901d65a757f61d55510ee14e86cd7ca"
   },
   "statistics": {
     "messages": 1,

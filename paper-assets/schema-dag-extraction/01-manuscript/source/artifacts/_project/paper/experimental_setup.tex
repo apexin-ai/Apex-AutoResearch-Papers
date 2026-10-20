@@ -1,0 +1,86 @@
+\section{Experimental Setup}
+\label{sec:experimental_setup}
+
+We evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks: named entity recognition (NER), relation extraction (RE), and event detection (ED).
+
+\subsection{Tasks and Datasets}
+\label{sec:datasets}
+
+\paragraph{Few-NERD (NER).}
+Few-NERD \cite{fewnerd-2021} provides 66 fine-grained entity types organized into 8 coarse categories (person, location, organization, building, art, product, event, other). The dataset spans diverse domains, making it suitable for cross-domain evaluation. We sample 1{,}000 test instances and evaluate with token-level text matching.
+
+\paragraph{FewRel (RE).}
+FewRel \cite{fewrel-2018} contains 80 relation types sourced from Wikidata. Since the validation split covers only 16 relations, we combine the training and validation splits to obtain the full 80-relation pool required for schema-scale experiments, and sample 1{,}000 balanced instances. Each instance provides a sentence with marked head and tail entities; the task is to classify the relation.
+
+\paragraph{MAVEN (ED).}
+MAVEN \cite{maven-2020} defines 168 event types derived from the FrameNet ontology, making it a same-domain schema. We use the validation set (8{,}042 sentences containing 18{,}904 event mentions) for evaluation, as test set labels are not publicly available. The task requires both trigger identification and event type classification.
+
+Table~\ref{tab:datasets} summarizes the dataset statistics, including the Schema Confusability Score (SCS) ranges defined in \S\ref{sec:scs}.
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrlll}
+\toprule
+\textbf{Dataset} & \textbf{Task} & \textbf{\# Types} & \textbf{\# Eval Units} & \textbf{Domain} & \textbf{BCS Range} & \textbf{Embedding} \\
+\midrule
+Few-NERD & NER & 66 & 1{,}000 & Cross & 0.77--0.93 & Qwen3-32B \\
+FewRel & RE & 80 & 1{,}000 & Cross & 0.42--0.97 & MiniLM \\
+MAVEN & ED & 168 & 18{,}904\rlap{$^\dagger$} & Same & 0.87--0.97 & MiniLM \\
+\bottomrule
+\end{tabular}}
+\caption{Dataset statistics. BCS Range indicates the min--max Batch Confusability Scores across count-curve batches (Experiment~1). Embedding column indicates the model used for SCS/BCS computation. $^\dagger$Trigger mentions across 8{,}042 sentences in 710 documents.}
+\label{tab:datasets}
+\end{table}
+
+\subsection{Schema Confusability Score (SCS)}
+\label{sec:scs}
+
+We introduce the Schema Confusability Score to quantify semantic overlap between types in a schema. Given a type $t$ with name string $\text{name}(t)$, an embedding function $\text{embed}(\cdot)$ maps the type name to a vector representation. The \textbf{pairwise SCS} between types $t_i$ and $t_j$ is:
+\[
+\text{SCS}(t_i, t_j) = \cos\bigl(\text{embed}(\text{name}(t_i)),\; \text{embed}(\text{name}(t_j))\bigr)
+\]
+
+For a batch of types $B = \{t_1, \ldots, t_k\}$, the \textbf{Batch Confusability Score (BCS)} aggregates all pairwise similarities:
+\[
+\text{BCS}(B) = \frac{1}{\binom{k}{2}} \sum_{i < j,\; t_i, t_j \in B} \text{SCS}(t_i, t_j)
+\]
+
+We compute SCS with two embedding models: (1)~Qwen3-32B \cite{qwen3-2025} hidden-state representations (5{,}120-d), which capture the extraction model's own type representations, and (2)~all-MiniLM-L6-v2 \cite{minilm-2019}, a 384-dimensional general-purpose sentence encoder. Both use type name strings only, without definitions or descriptions, to reflect the information available to the model at inference time.
+
+\subsection{Experimental Design}
+\label{sec:exp_design}
+
+We conduct two complementary experimental paradigms.
+
+\paragraph{Experiment 1: Count Curves.}
+We vary the number of types presented in the prompt schema to measure performance as a function of schema size. For each count level, we sample 5 random type batches and evaluate the same 1{,}000 test samples across all batches. At count${}=1$, every type is evaluated individually as a solo baseline. The count levels follow natural partition points in each schema's type hierarchy rather than uniform spacing: \{1, 2, 6, 12, 22, 44, 64\} for Few-NERD, \{1, 4, 8, 16, 32, 64, 80\} for FewRel, and \{1, 6, 12, 22, 44, 64\} for MAVEN.
+
+\paragraph{Experiment 2: BCS-Controlled.}
+We fix the type count and vary the Batch Confusability Score to isolate the effect of inter-type similarity from schema size. For each count level, we construct one low-BCS batch (types with the lowest pairwise similarities), one high-BCS batch (types with the highest pairwise similarities), and 25 random batches (27 total per count level). We run this paradigm on Few-NERD at count$\,\in\{6, 12\}$ and on FewRel at count$\,\in\{8, 16\}$, the latter evaluated on both a 16-relation pool and the full 80-relation pool. For MAVEN, we conduct analogous BCS-controlled experiments at count$\,\in\{6, 12\}$ with 27 batches per level; however, the same-domain nature of MAVEN's FrameNet-derived types introduces a centrality confound that complicates BCS interpretation. We report these results separately in \S\ref{sec:centrality_confound}.
+
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+We use task-appropriate metrics that reflect the distinct nature of each extraction problem.
+
+\paragraph{NER (Few-NERD): Text-match F1.}
+A predicted entity is a true positive if the predicted text string exactly matches (case-insensitive) a gold entity text \emph{and} the predicted type matches the gold type. This text-match evaluation operates at the entity level rather than the token level. We report Precision, Recall, and F1.
+
+\paragraph{RE (FewRel): Accuracy.}
+Each sample has exactly one ground-truth relation. A prediction is correct if the predicted relation label exactly matches the gold label. We report Accuracy.
+
+\paragraph{ED (MAVEN): Relaxed F1.}
+A predicted trigger is a true positive if (a)~any token overlap exists between the predicted trigger span and a gold trigger span, \emph{and} (b)~the predicted event type matches the gold event type. This relaxed matching is necessary because event triggers are inherently ambiguous in boundary (e.g., ``was killed'' vs.\ ``killed''). We report Relaxed F1.
+
+The choice of different metrics across tasks reflects their structural differences: NER is span-level extraction where precision--recall trade-offs are informative; RE is a classification task where accuracy directly measures correctness; ED combines trigger identification with type classification, requiring relaxed span matching to avoid penalizing legitimate boundary variation.
+
+\subsection{Model and Inference}
+\label{sec:model}
+
+\paragraph{Primary model.}
+We use Qwen3-32B-FP8 \cite{qwen3-2025}, selected for its strong instruction-following capability, native structured JSON output support, and the practical advantage that the FP8-quantized 32B model fits on a single NVIDIA RTX PRO 6000 Blackwell Server Edition (96\,GB). The model is served via vLLM (v0.20.2) \cite{vllm-2023} with \texttt{max\_model\_len=4096} and \texttt{gpu\_memory\_utilization=0.95}. We use a refined prompt template (v2) that includes explicit output format constraints and role instructions; the v1 prompt produced excessive over-prediction, while v2 doubled precision with minimal recall loss. The prompt provides a JSON-formatted schema listing all type names for the current batch; the model outputs structured JSON containing extracted entities, relations, or events. We use greedy decoding (temperature${}\,=\,0$) and a fixed random seed (42) for all batch sampling and bootstrap resampling, ensuring full reproducibility.
+
+\paragraph{Statistical estimation.}
+All key metrics are accompanied by 95\% bootstrap confidence intervals computed from 1{,}000 bootstrap resamples using the percentile method.

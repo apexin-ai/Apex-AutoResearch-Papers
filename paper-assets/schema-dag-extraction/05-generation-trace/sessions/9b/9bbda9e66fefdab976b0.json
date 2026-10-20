@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_sdgd-cal-impl_20260515T082408_result.json",
     "occurrence": 1,
-    "bytes": 1560,
-    "sha256": "f7948d05b3e1131ba7cbd6b3aa88f83849bf79755211f06ddf262aeb8e069227"
+    "bytes": 1559,
+    "sha256": "9f26efa31c391d76201cf8f83c85ca5f45c2f0e927bf260ded6ef7de6dfeccd2"
   },
   "statistics": {
     "messages": 1,

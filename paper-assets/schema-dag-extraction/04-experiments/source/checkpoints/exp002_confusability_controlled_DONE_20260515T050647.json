@@ -1,0 +1,126 @@
+{
+  "exp_id": "exp002_confusability_controlled",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:13:42.626Z",
+    "updated_at": "2026-05-15T05:06:47.486Z",
+    "spec": {
+      "hypothesis": "固定 type count 时，高 BCS batch 的 recall 显著低于低 BCS batch（confusability 独立驱动质量下降）",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches",
+      "pass_criteria": {
+        "primary": "within-count |r(recall, BCS)| >= 0.3, p < 0.05",
+        "secondary": "within-count |r(F1, BCS)|",
+        "mechanistic": "confusion_rate(high-BCS pairs) > confusion_rate(low-BCS pairs)"
+      },
+      "command": "nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 197321
+    },
+    "log_path": "/root/schema-dag-extraction/logs/exp2.log",
+    "metrics": {
+      "data_source": "exp2_reeval_results.json (text_match, CLEAN)",
+      "primary_recall_vs_bcs": {
+        "count_6": {
+          "r": 0.2754,
+          "p": 0.1644,
+          "n": 27,
+          "verdict": "FAIL"
+        },
+        "count_12": {
+          "r": 0.2219,
+          "p": 0.266,
+          "n": 27,
+          "verdict": "FAIL"
+        },
+        "partial": {
+          "r": 0.2522,
+          "p": 0.0658,
+          "n": 54,
+          "verdict": "FAIL"
+        }
+      },
+      "secondary_f1_vs_bcs": {
+        "count_6": {
+          "r": 0.1754,
+          "p": 0.3814,
+          "n": 27,
+          "verdict": "FAIL"
+        },
+        "count_12": {
+          "r": 0.5012,
+          "p": 0.0077,
+          "n": 27,
+          "verdict": "PASS"
+        },
+        "partial": {
+          "r": 0.3025,
+          "p": 0.0262,
+          "n": 54,
+          "verdict": "PASS"
+        }
+      },
+      "mechanistic_confusion_rate": {
+        "random_batches": {
+          "count_6_high": 0.0157,
+          "count_6_low": 0.0088,
+          "ratio_6": 1.7,
+          "count_12_high": 0.0304,
+          "count_12_low": 0.0131,
+          "ratio_12": 2.4
+        },
+        "extreme_batches": {
+          "count_6_high": 0.0728,
+          "count_6_low": 0.0014,
+          "ratio_6": 27.5,
+          "count_12_high": 0.048,
+          "count_12_low": 0.0061,
+          "ratio_12": 9.9
+        },
+        "verdict": "PASS"
+      },
+      "pairwise_confusion_analysis": {
+        "all": {
+          "n_pairs": 1953,
+          "pearson_r": 0.156,
+          "pearson_p": 4.6e-12,
+          "spearman_rho": 0.16,
+          "spearman_p": 1.3e-12
+        },
+        "count_6": {
+          "n_pairs": 1770,
+          "pearson_r": 0.078,
+          "pearson_p": 0.001
+        },
+        "count_12": {
+          "n_pairs": 1953,
+          "pearson_r": 0.147,
+          "pearson_p": 6.7e-11
+        },
+        "nonzero_only": {
+          "all_spearman_rho": 0.254,
+          "all_spearman_p": 1.1e-06,
+          "count_12_pearson_r": 0.212,
+          "count_12_p": 0.00034
+        },
+        "top_confused_pair": "person-other <-> person-politician (BCS=0.934, confusion=156)"
+      },
+      "overall_verdict": "PRIMARY FAIL, SECONDARY PARTIAL PASS, MECHANISTIC PASS, PAIRWISE STRONG PASS"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (inference experiment)",
+    "completed_at": "2026-05-15T05:06:47.486Z"
+  },
+  "timestamp": "2026-05-15T05:06:47.505991+00:00",
+  "trigger": "update_registry"
+}

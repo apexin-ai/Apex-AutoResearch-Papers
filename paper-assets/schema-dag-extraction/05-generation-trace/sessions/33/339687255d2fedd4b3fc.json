@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure-1a-update_20260516T222848_result.json",
     "occurrence": 1,
-    "bytes": 417,
-    "sha256": "d6177c018bf3c63e35cf05f9d5cb1ba90e2dc190fcc9915fa687bc94aa18c6fb"
+    "bytes": 416,
+    "sha256": "1f9b142f0eb626056179764de32ded7696aa4183445870224eb14938b781b10e"
   },
   "statistics": {
     "messages": 1,

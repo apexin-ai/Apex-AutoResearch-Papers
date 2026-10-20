@@ -6,82 +6,6 @@
 
 ## Round 334
 
-### Tool result
-
-_source line 9303 · 2026-05-23T10:24:26.190343+00:00_
-
-900	  created_at: '2026-05-16T04:44:38.406364+00:00'
-901	  tags:
-902	  - bcs
-903	  - fix
-904	  - regression
-905	  - statistics
-906	- id: art_20260516_b2e2c0
-907	  name: phase2_count_curve_results
-908	  type: data
-909	  description: 'Phase 2a count curve: accuracy vs number of candidate types [1,4,8,16,32,64,96]
-910	    x5 batches. Monotonic degradation from 88% (count=1) to 38.7% (count=96).'
-911	  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/count_curve_results.json
-912	  url: null
-913	  project: schema-dag-extraction
-914	  exp_id: exp_docred_confusability
-915	  skill: ''
-916	  created_at: '2026-05-16T05:03:41.804047+00:00'
-917	  tags:
-918	  - docred
-919	  - confusability
-920	  - count-curve
-921	  - phase2
-922	- id: art_20260516_040aef
-923	  name: phase2_bcs_controlled_results
-924	  type: data
-925	  description: 'Phase 2b BCS-controlled batches: count=16 and count=32 with 25 random
-926	    + 5 low-BCS + 5 high-BCS. BCS effect: 23pp gap at count=16, 18pp at count=32.'
-927	  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/bcs_controlled_results.json
-928	  url: null
-929	  project: schema-dag-extraction
-930	  exp_id: exp_docred_confusability
-931	  skill: ''
-932	  created_at: '2026-05-16T05:03:43.611862+00:00'
-933	  tags:
-934	  - docred
-935	  - confusability
-936	  - bcs-controlled
-937	  - phase2
-938	- id: art_20260516_3b66cb
-939	  name: phase2_bootstrap_analysis
-940	  type: data
-941	  description: 'Phase 2c bootstrap CI (B=10000): OLS slope with 95% CI, Spearman correlation,
-942	    quartile gap CI. Both count=16 and count=32 show significant negative BCS-accuracy
-943	    relationship.'
-944	  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/bootstrap_analysis.json
-945	  url: null
-946	  project: schema-dag-extraction
-947	  exp_id: exp_docred_confusability
-948	  skill: ''
-949	  created_at: '2026-05-16T05:03:45.490216+00:00'
-950	  tags:
-951	  - docred
-952	  - confusability
-953	  - boot
-…[truncated 17712 chars]
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Read",
-  "elapsed_ms": 153
-}
-```
-
-</details>
-
----
-
-
 ### Tool call
 
 _source line 9304 · 2026-05-23T10:24:26.191927+00:00_
@@ -13574,7 +13498,7 @@ _source line 9693 · 2026-05-23T12:50:25.748237+00:00_
 运维已创建匿名 GitHub 仓库，需要你把项目代码 push 上去（EMNLP 2026 投稿用）。
 
 **仓库地址**：https://github.com/anonymous-nlp-2026/schema-dag-extraction
-**Push URL**：https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
+**Push URL**：https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
 
 **要求**：
 1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）
@@ -14949,7 +14873,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /tmp/tmp.r8IBBIsRYz && git branch -m master main && git remote add origin https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push -u origin main 2>&1",
+  "command": "cd /tmp/tmp.r8IBBIsRYz && git branch -m master main && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push -u origin main 2>&1",
   "description": "Push anonymous repo to GitHub"
 }
 ```
@@ -14964,7 +14888,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /tmp/tmp.r8IBBIsRYz && git branch -m master main && git remote add origin https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push -u origin main 2>&1",
+    "command": "cd /tmp/tmp.r8IBBIsRYz && git branch -m master main && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push -u origin main 2>&1",
     "description": "Push anonymous repo to GitHub"
   }
 }
@@ -19642,7 +19566,7 @@ _source line 9871 · 2026-05-23T18:51:23.299683+00:00_
 
 2. 检查 `git remote -v`，如果是 SSH (`git@github.com:...`)，必须改成 HTTPS+token：
 ```bash
-git remote set-url origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git'
+git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git'
 ```
 
 3. 确认 remote 显示 `https://...` 后执行 `git push origin main`。
@@ -20236,7 +20160,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /tmp/anon_repo && git remote add origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git' 2>&1 && git remote -v | sed 's/ghp_[a-zA-Z0-9]*/ghp_***REDACTED***/g'"
+  "command": "cd /tmp/anon_repo && git remote add origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git' 2>&1 && git remote -v | sed 's/ghp_[a-zA-Z0-9]*/ghp_***REDACTED***/g'"
 }
 ```
 
@@ -20250,7 +20174,7 @@ called Bash
   "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /tmp/anon_repo && git remote add origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git' 2>&1 && git remote -v | sed 's/ghp_[a-zA-Z0-9]*/ghp_***REDACTED***/g'"
+    "command": "cd /tmp/anon_repo && git remote add origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git' 2>&1 && git remote -v | sed 's/ghp_[a-zA-Z0-9]*/ghp_***REDACTED***/g'"
   }
 }
 ```
@@ -20264,8 +20188,8 @@ called Bash
 
 _source line 9889 · 2026-05-23T18:52:08.091735+00:00_
 
-origin	https://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)
-origin	https://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
 
 <details><summary>Recorded metadata</summary>
@@ -21526,6 +21450,165 @@ called Read
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex",
     "offset": "599",
     "limit": "300"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9925 · 2026-05-23T19:17:14.302660+00:00_
+
+599	
+600	\paragraph{Sensitivity to $\rho$.}
+601	The inter-pair SCS correlation $\rho = 0.35$ is estimated from pairs sharing a common type. At $\rho = 0.20$ (halved correlation), a parallel simulation yields batch $R^2 \approx 0.22$; at $\rho = 0.50$, the correlation structure approaches the positive-definiteness boundary; $\rho = 0.35$ thus sits in a stable regime. The simulation is illustrative; the pooled semipartial $R^2 = 0.273$ (\S\ref{sec:bcs_controlled}) is the primary evidence.
+602	
+603	\paragraph{Non-independence and ecological inference.}
+604	Types within a batch share prompt context, so their extraction outcomes are not independent---a form of ecological correlation \citep{robinson-1950-ecological}. This non-independence is built into the design: BCS measures batch-level confusability precisely because co-present types interact during type resolution. The core batch-level effect (FewRel semipartial $R^2 = 0.273$, DocRED pooled $R^2 = 0.578$; \S\ref{sec:practical_magnitude}) is a direct empirical observation from regressing batch accuracy on BCS, not derived from the simulation above. The inter-pair SCS correlation $\rho = 0.35$ used in the simulation was estimated from the SCS correlation matrix independently of batch-level accuracy data.
+605	
+606	\section{BCS Independence from Type Composition}
+607	\label{app:bcs-composition}
+608	
+609	FewRel's balanced design (700 instances per type) makes type frequency invariant across batches, ruling out frequency-driven confounding. To test whether BCS captures information beyond type composition effects, we decompose the explained variance in a joint model (accuracy $\sim$ BCS $+$ mean type difficulty), where type difficulty is the per-type solo-baseline accuracy averaged across batch members. On 100 random 8-type batches from the 16-relation pool, the joint model explains $R^2 = 0.704$. Variance decomposition yields: BCS unique $R^2 = 0.259$ (36.8\% of explained variance), composition unique $R^2 = 0.298$ (42.3\%)
+…[truncated 23840 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 9926 · 2026-05-23T19:17:14.304999+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/",
+  "description": "List paper directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/",
+    "description": "List paper directory contents"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9927 · 2026-05-23T19:17:14.305975+00:00_
+
+_pdf_check
+_pdf_check10
+_pdf_check2
+_pdf_check3
+_pdf_check4
+_pdf_check5
+_pdf_check6
+_pdf_check7
+_pdf_check8
+_pdf_check9
+_pdf_images
+abstract.tex
+acl.sty
+acl_natbib.bst
+checklist.tex
+conclusion.tex
+discussion.tex
+experimental_setup.tex
+introduction.tex
+main.aux
+main.bbl
+main.blg
+main.fdb_latexmk
+main.fls
+main.log
+main.out
+main.pdf
+main.tex
+prompt_appendix.tex
+references.bib
+related_work.tex
+results.tex
+sdgd_negative.tex
+supplementary.bbl
+supplementary.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 9928 · 2026-05-23T19:17:14.306731+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex"
   }
 }
 ```

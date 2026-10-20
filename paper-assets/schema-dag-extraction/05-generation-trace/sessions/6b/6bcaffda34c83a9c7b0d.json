@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_m2_ecological_fallacy_20260522T091157_result.json",
     "occurrence": 1,
-    "bytes": 1085,
-    "sha256": "afa2ca2d18f7afbe8c4a5c2097cd2b21f9f2568993577ad76c6139792a7b27d2"
+    "bytes": 1084,
+    "sha256": "c75e2072a7c9ab538c35879603bb94880a38ea73ea1c1b48d1fcbb9c79a6fda8"
   },
   "statistics": {
     "messages": 1,

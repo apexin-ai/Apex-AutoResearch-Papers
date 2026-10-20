@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_exp012_vllm_blackwell_20260515T171340_result.json",
     "occurrence": 1,
-    "bytes": 1968,
-    "sha256": "4d8088ff38379f5ea0d871b5f78f8072705fbc9aa96b73d2e0c2d0c6b077b281"
+    "bytes": 1967,
+    "sha256": "9fa6a3ed32a336e81b276664678cbff8cee1a6e350cf0abfd6546b3590187a01"
   },
   "statistics": {
     "messages": 1,

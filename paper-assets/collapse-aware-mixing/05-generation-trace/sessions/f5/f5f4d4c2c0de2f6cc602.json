@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5f4d4c2c0de2f6cc602",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "ops fix sync rerun g2",
+  "task_key": "worker_ops_fix_sync_rerun_g2_20260513T174750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_sync_rerun_g2_20260513T174750_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "1529218ac9f36e4911b9be2528877a00a61e36c2f4423d1364300e601b3d5807"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`resume_g2_eval.py` 使用 `from metrics import compute_checkpoint_metrics`——即修复后的 metrics.py。KL 计算不会再 crash。\n\n## 总结\n\n| Step | 状态 |\n|------|------|\n| **Step 1: 文件同步** | 完成。3 个缺失文件（rerun_g2_eval.py, test_kl_divergence.py, compare_eff_rank_vs_ngram.py）已通过 ssh_execute+base64 写入。其余文件已存在。 |\n| **Step 2: 验证** | 通过。metrics.py 已有 `effective_vocab` 修复。 |\n| **Step 3: Unit test** | **3/3 全部通过**：OOV tokens (kl=7.78)、same distribution (kl≈0)、bootstrap CI。 |\n| **Step 4: v7 进程** | v7 (PID 60104) 已结束（KL crash: shapes (50277,) vs (50254,)）。 |\n| **Step 5: G2 eval rerun** | **已在运行**。另一个 worker 已提交 `resume_g2_eval.py` 作为 mvp_pilot_v8，正在评估 checkpoint 1/6（spectral-rank 79%）。使用修复后的 metrics.py，KL 不会再 crash。 |\n\n**注意事项**：\n- 有两个重复的 v8 job（mvp_pilot_v8 和 mvp_pilot_v8_r2）同时在 GPU 0 上运行，可能导致 GPU 争用和变慢\n- G2 共 6 个 checkpoints：checkpoint-76, 152, 228, 304, 305, final_model\n- G1 synth data 加载成功（10M tokens），KL divergence 将正常计算\n- 结果将写入 `/root/autodl-tmp/output_v7/G2/metrics/metrics.jsonl`\n\n无需再手动启动 rerun——等 v8 job 完成后读取结果即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-sync-rerun-g2.md"
+}

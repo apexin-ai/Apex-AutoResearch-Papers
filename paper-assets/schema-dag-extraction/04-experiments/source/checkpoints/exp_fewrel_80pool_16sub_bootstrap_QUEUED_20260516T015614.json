@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_fewrel_80pool_16sub_bootstrap",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:26:54.812Z",
+    "updated_at": "2026-05-16T01:56:14.032Z",
+    "hypothesis": "从 80-rel pool 随机采样 16 types 构造 8-type batches，100 random batches + BCS quartile bootstrap CI。消除跨 pool 混淆（MW1 审稿人），与 D033 独立 16-rel pool 和 80-rel 做三方比较。"
+  },
+  "timestamp": "2026-05-16T01:56:14.108747+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,22 @@
+paper_key: "code4uie-2024"
+title: "Retrieval-Augmented Code Generation for Universal Information Extraction"
+venue: "NeurIPS 2024 Workshop"
+full_text_available: false
+
+research:
+  baselines: ["existing UIE methods"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "9 datasets across 5 IE tasks", size: "not specified"}]
+  ablation_dimensions: ["example retrieval strategies", "code schema design"]
+  training_recipe: {method: "in-context learning with retrieval-augmented code generation"}
+  method_family: "code-generation-based universal IE"
+
+positioning:
+  core_claim: "Python class-based schema representation unifies diverse IE tasks into code generation, with retrieval-augmented examples improving extraction precision"
+  key_results: "Effective across 5 representative IE tasks on 9 datasets"
+  limitations: ["depends on LLM code generation capability", "retrieval quality affects performance"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

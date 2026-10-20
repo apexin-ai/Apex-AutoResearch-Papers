@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_run_exp017_gpt4o_mini_fewrel_20260516T064019_result.json",
     "occurrence": 1,
-    "bytes": 3041634,
-    "sha256": "fb5703b168ac1cd0c3eb0abb8cef5d29902229003b30e798c34a5ca1060be4bd"
+    "bytes": 3041633,
+    "sha256": "3a5cf9d4b730e0b793c355d8c347e2b7bd708ac8fa706c23c3ee0a8c8b3d4dc3"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "93edf7e90af77c211379-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 3041653,
+                "serialized_sha256": "a96de1429479fd0425cae27a1541fe70304c6d891546db1b191732bf114f83ea",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/run-exp017-gpt4o-mini-fewrel.md"

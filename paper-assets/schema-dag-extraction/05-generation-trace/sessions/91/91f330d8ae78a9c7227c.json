@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_c1_c2_scope_vif_20260522T095459_result.json",
     "occurrence": 1,
-    "bytes": 1474,
-    "sha256": "9a844f4484787f87242032c6ec29a44f0ee06a7887cd9115ad122bf3e739c298"
+    "bytes": 1473,
+    "sha256": "d745d00abbf49dfac8ec305efc5370b0be6072f41d383ba51c95967fb0851b66"
   },
   "statistics": {
     "messages": 1,

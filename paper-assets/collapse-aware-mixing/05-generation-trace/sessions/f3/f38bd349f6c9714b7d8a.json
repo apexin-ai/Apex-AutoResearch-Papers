@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f38bd349f6c9714b7d8a",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "research paper framing draft",
+  "task_key": "worker_research_paper-framing-draft_20260513T013250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-framing-draft_20260513T013250_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "ac90d81296188e55fcb4d774471f069c195879f08675a8984f1f28560cb55aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已完成：\n\n- **paper_framing.md** — 已通过 `save_project_file` 保存到项目文件\n- **experiment_plan.yaml** — 写入 `artifacts/experiment_plan.yaml`（不在 `save_project_file` 白名单内）\n\n要点总结：\n\n| | 内容 |\n|---|---|\n| **3 个候选标题** | 均强调 closed-loop control + spectral monitoring，避开 SIGMA 已占的 detection 定位 |\n| **3 个 Core Claims** | C1 leading indicator → C2 controller works → C3 collapse mitigation，强度逐级递增，均保守表述 |\n| **SIGMA 区分** | thermometer vs thermostat 类比，6 维度对比表 |\n| **5 个 Reviewer Concerns** | scale / controller choice / metric choice / data scale / practical applicability，均有预备回应 |\n| **8 个实验** | 覆盖全部 3 个 claim（每个至少 2 个实验），1 个 stretch goal |\n| **GPU 预算** | MVP ~2 hrs (现有设备) + 全量 ~180 H100-hrs (required) + 35 (stretch) = ~217，在 195-215 预算内 |\n| **Timeline** | Week 1 GO/NO-GO + 后分析 + 申请 H100；Week 2 全量实验 + 写作 + 提交 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-framing-draft.md"
+}

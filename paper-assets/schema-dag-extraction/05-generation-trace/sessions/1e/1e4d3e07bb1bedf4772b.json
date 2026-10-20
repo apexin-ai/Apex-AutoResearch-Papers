@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp012_exp1_count_curve_20260515T195527_result.json",
     "occurrence": 1,
-    "bytes": 861,
-    "sha256": "7fbde2ef14784292dea43562d992ef911785c7a1dab6bc5ecd88a97a4ba6d1c7"
+    "bytes": 860,
+    "sha256": "5b8d4e546a9eacc438e81d4efae449e5b5177afcb85788b75c20abf23411a148"
   },
   "statistics": {
     "messages": 1,

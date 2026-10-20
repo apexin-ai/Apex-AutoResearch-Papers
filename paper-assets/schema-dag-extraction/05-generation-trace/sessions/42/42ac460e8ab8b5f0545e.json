@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig_sdgd_comparison_20260515T164931_result.json",
     "occurrence": 1,
-    "bytes": 418,
-    "sha256": "0cfbd12b554f3b07c437454418752c2d58247a3bb77a42eec4819da3d94688ac"
+    "bytes": 417,
+    "sha256": "1a3aecca7795e7e16c45021afc45ff439621083369d07c70d01821195d3e9988"
   },
   "statistics": {
     "messages": 1,

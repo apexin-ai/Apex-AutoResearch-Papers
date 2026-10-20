@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_r11-count-level-verify_20260517T100424_result.json",
     "occurrence": 1,
-    "bytes": 2843,
-    "sha256": "30bfe6738a2146e18b6769abd7d18c0b6d3e597f3f2721869f95ab42fce209b8"
+    "bytes": 2842,
+    "sha256": "78e08920071a87bca0e46553d32178b18e1ceb0260cdddec1c3016d1f4af7a9e"
   },
   "statistics": {
     "messages": 1,

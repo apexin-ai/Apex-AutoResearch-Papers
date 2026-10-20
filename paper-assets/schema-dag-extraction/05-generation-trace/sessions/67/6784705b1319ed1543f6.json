@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_three_way_d035_20260516T021400_result.json",
     "occurrence": 1,
-    "bytes": 2298,
-    "sha256": "48c10ebf267a2248cfb054fb0bc72f9fe5c992377de252e3396b64ce80ba8e85"
+    "bytes": 2297,
+    "sha256": "772251da19ed986f66ce6b95fb54926820008164382048f5063310580061c776"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_fewrel_80pool_16sub_bootstrap",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:26:54.812Z",
+    "updated_at": "2026-05-16T02:13:10.365Z",
+    "hypothesis": "从 80-rel pool 随机采样 16 types 构造 8-type batches，100 random batches + BCS quartile bootstrap CI。消除跨 pool 混淆（MW1 审稿人），与 D033 独立 16-rel pool 和 80-rel 做三方比较。",
+    "spec": {
+      "command": "FLASHINFER_DISABLE_VERSION_CHECK=1 CUDA_HOME=/usr/local/cuda python3 src/run_fewrel_80pool_16sub_bootstrap.py --stage extract && python3 src/run_fewrel_80pool_16sub_bootstrap.py --stage analyze",
+      "server": "cqa1-38874",
+      "data_path": "artifacts/fewrel_80pool_16sub/preprocess.json",
+      "data_count": 100,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_path": "artifacts/fewrel_80pool_16sub/bootstrap_ci.json",
+      "log_path": "/tmp/exp_80pool_16sub.log"
+    },
+    "metrics": {
+      "n_batches": 100,
+      "pool_size": "80-rel pool, 16-type subsample",
+      "batch_size": 8,
+      "mean_accuracy": 0.8077,
+      "mean_bcs": 0.557,
+      "bcs_range": [
+        0.4578,
+        0.6836
+      ],
+      "quartile_delta": {
+        "Q4_minus_Q1_pp": -3.92,
+        "ci_95_lower": -7.79,
+        "ci_95_upper": 0.42,
+        "note": "CI crosses zero - not significant at 95%"
+      },
+      "pearson_r_bcs_acc": -0.221,
+      "pearson_p": 0.027,
+      "regression_slope": {
+        "slope": -0.401,
+        "ci_95_lower": -0.684,
+        "ci_95_upper": -0.062,
+        "note": "CI excludes zero - directional trend significant"
+      },
+      "key_finding": "80-pool 16-sub: BCS effect directionally consistent but weaker. Quartile Δ=-3.92pp CI crosses 0. Regression slope=-0.401 CI[-0.684,-0.062] excludes 0. Narrower BCS range (0.46-0.68 vs 0.65-0.90 in 16-rel pool) limits quartile contrast."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T02:13:10.365Z"
+  },
+  "timestamp": "2026-05-16T02:13:10.446417+00:00",
+  "trigger": "update_registry"
+}

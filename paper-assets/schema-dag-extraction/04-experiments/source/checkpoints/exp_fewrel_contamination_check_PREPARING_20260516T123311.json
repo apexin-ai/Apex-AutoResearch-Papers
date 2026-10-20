@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_fewrel_contamination_check",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:30:38.960Z",
+    "updated_at": "2026-05-16T12:33:11.057Z",
+    "conclusion": "success",
+    "metrics": {
+      "train_origin_mean_acc": 0.4831,
+      "val_origin_mean_acc": 0.5885,
+      "delta_pp": -10.55,
+      "mann_whitney_p": 0.2485,
+      "welch_t_p": 0.2168,
+      "cohens_d": -0.3602,
+      "n_train_rels": 64,
+      "n_val_rels": 16,
+      "direction": "val_higher_than_train",
+      "conclusion": "No contamination evidence. Val-origin relations have slightly higher accuracy (opposite to contamination hypothesis), difference not significant (p>0.2)."
+    }
+  },
+  "timestamp": "2026-05-16T12:33:11.149150+00:00",
+  "trigger": "update_registry"
+}

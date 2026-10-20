@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_sdgd-framework-impl_20260515T065822_result.json",
     "occurrence": 1,
-    "bytes": 720,
-    "sha256": "5a19d4a294c09ef32a4c3c2e532437a0f8d5c0c6f3cea022964a9415bc4ea62c"
+    "bytes": 719,
+    "sha256": "1ade80754a65906c39f5a46769ad9fce4228f5d2a5a35c14565649839b636920"
   },
   "statistics": {
     "messages": 1,

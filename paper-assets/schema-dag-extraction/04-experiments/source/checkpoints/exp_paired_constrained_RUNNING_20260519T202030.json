@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_paired_constrained",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:26:17.431Z",
+    "updated_at": "2026-05-19T20:20:30.452Z",
+    "hypothesis": "Constrained decoding channels BCS-related errors into type substitutions, producing a strong BCS-accuracy correlation (ρ ≈ -0.7 to -0.9) on the same batch type sets where unconstrained decoding shows no significant correlation (ρ=-0.14). If confirmed on the same 25 batches, this establishes format dependency as a paired comparison rather than relying on cross-batch-set inference.",
+    "server": "cqa1-38874",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T19:57:32.458Z"
+    },
+    "spec": {
+      "command": "python3 artifacts/run_paired_constrained.py --stage all --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/ --n_samples 1000 --seed 42",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/batch_groups.json",
+      "data_count": 25,
+      "model_name": "qwen3-32b-fp8",
+      "seed": 42,
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_paired_constrained/",
+      "log_path": "/root/schema-dag-extraction/artifacts/exp_paired_constrained/"
+    }
+  },
+  "timestamp": "2026-05-19T20:20:30.675025+00:00",
+  "trigger": "update_registry"
+}

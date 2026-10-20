@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_fewrel_16rel_bootstrap",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:01:33.940Z",
+    "updated_at": "2026-05-16T01:01:44.162Z",
+    "hypothesis": "FewRel 16-type pool, 100 random 8-type batches, bootstrap CI for BCS effect (Δ_BCS). 填 tab:bcs_controlled 16-rel 行的 CI，并与 80-rel 计算 amplification ratio 正式 CI。D033 已批准。",
+    "parent": "exp_fewrel_formal"
+  },
+  "timestamp": "2026-05-16T01:01:44.347285+00:00",
+  "trigger": "update_registry"
+}

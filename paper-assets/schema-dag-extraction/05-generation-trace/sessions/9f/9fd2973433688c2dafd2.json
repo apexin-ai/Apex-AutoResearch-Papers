@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp2-full-analysis_20260515T022540_result.json",
     "occurrence": 1,
-    "bytes": 2771,
-    "sha256": "a91a1459d992af1e4bd957374a3b5bdb3729707f5b778e651f87545376611ed1"
+    "bytes": 2770,
+    "sha256": "4f89bc1663de2976b0e69cb201ee61f981d8c07a077903282ab0a7c581be38ca"
   },
   "statistics": {
     "messages": 1,

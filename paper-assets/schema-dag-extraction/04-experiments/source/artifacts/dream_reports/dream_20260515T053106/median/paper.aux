@@ -1,0 +1,88 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{li2023evaluating,wang2023gptner}
+\citation{zhou2024universalner}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{wang2023gptner}
+\citation{zhou2024universalner}
+\citation{liu2024lost}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training-free LLM IE.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema decomposition.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt complexity and LLM performance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Schema Confusability Score (SCS)}{2}{subsection.3.2}\protected@file@percent }
+\citation{ding2021fewnerd}
+\citation{wang2020maven}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Controlled Batch Construction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}SDGD: Schema-DAG-Guided Decomposition}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:sdgd}{{3.4}{3}{SDGD: Schema-DAG-Guided Decomposition}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Claim 1: Confusability Independently Predicts Degradation}{3}{section.5}\protected@file@percent }
+\newlabel{sec:claim1}{{5}{3}{Claim 1: Confusability Independently Predicts Degradation}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Count Curve Analysis}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Count curves on MAVEN (Qwen3-32B). Recall degrades monotonically with type count; precision increases as the model shifts from over-prediction to under-prediction.}}{4}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:count_curve}{{1}{4}{Count curves on MAVEN (Qwen3-32B). Recall degrades monotonically with type count; precision increases as the model shifts from over-prediction to under-prediction}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pairwise BCS--confusion correlations. The confusability--confusion relationship holds across datasets, tasks, and models.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:pairwise}{{2}{4}{Pairwise BCS--confusion correlations. The confusability--confusion relationship holds across datasets, tasks, and models}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Pairwise BCS--Confusion Analysis}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Extreme Batch Confusion Ratio}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Validation}{4}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-type analysis.}{4}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Confusion rate ratio between extreme high-BCS and low-BCS batches on MAVEN.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:confusion_ratio}{{3}{5}{Confusion rate ratio between extreme high-BCS and low-BCS batches on MAVEN}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-model comparison of pairwise BCS--confusion analysis on Few-NERD. Direction is consistent; effect size varies.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:crossmodel}{{4}{5}{Cross-model comparison of pairwise BCS--confusion analysis on Few-NERD. Direction is consistent; effect size varies}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Methodological note on frequency confound.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Claim 2: Multi-Channel Degradation Model}{5}{section.6}\protected@file@percent }
+\newlabel{sec:claim2}{{6}{5}{Claim 2: Multi-Channel Degradation Model}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}2$\times $2 Factorial Design}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Error Taxonomy by BCS Bin}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $2\times 2$ factorial cell means (F1). Both main effects are significant; their interaction is not.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:factorial}{{5}{6}{$2\times 2$ factorial cell means (F1). Both main effects are significant; their interaction is not}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Two-way ANOVA results. Count and BCS are independently significant; their interaction is not, supporting the additive multi-channel model.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:anova}{{6}{6}{Two-way ANOVA results. Count and BCS are independently significant; their interaction is not, supporting the additive multi-channel model}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Claim 3: SDGD Effectiveness}{6}{section.7}\protected@file@percent }
+\newlabel{sec:claim3}{{7}{6}{Claim 3: SDGD Effectiveness}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}SDGD Results}{6}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scaling with Schema Complexity}{6}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Random Batching Ablation}{6}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Per-Type Splitting as Upper Bound}{6}{subsection.7.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Error distribution by BCS bin on Few-NERD. Type substitution increases monotonically with BCS ($\chi ^2$ $p=0.001$); false negatives decrease.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:error_taxonomy}{{7}{7}{Error distribution by BCS bin on Few-NERD. Type substitution increases monotonically with BCS ($\chi ^2$ $p=0.001$); false negatives decrease}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Full comparison across methods. SDGD-cal achieves 95--99\% of per-type quality at $\sim $20\% of the API cost. $p$ values are vs.\ the best method (SDGD-cal).}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:sdgd_main}{{8}{7}{Full comparison across methods. SDGD-cal achieves 95--99\% of per-type quality at $\sim $20\% of the API cost. $p$ values are vs.\ the best method (SDGD-cal)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}SDGD-cal: Calibration-Enhanced Decomposition}{7}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}SCS Validation}{7}{section.8}\protected@file@percent }
+\newlabel{sec:scs_validation}{{8}{7}{SCS Validation}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}DocRED: A Boundary Condition}{7}{section.9}\protected@file@percent }
+\newlabel{sec:docred}{{9}{7}{DocRED: A Boundary Condition}{section.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces SDGD gains scale with schema size: larger schemas benefit more from confusability-aware decomposition.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:cross_dataset_gain}{{9}{8}{SDGD gains scale with schema size: larger schemas benefit more from confusability-aware decomposition}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Random vs.\ SDGD ablation. On MAVEN, confusability-aware grouping contributes $+2.0$ F1 beyond mere batch count reduction ($p=0.018$).}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:ablation_random}{{10}{8}{Random vs.\ SDGD ablation. On MAVEN, confusability-aware grouping contributes $+2.0$ F1 beyond mere batch count reduction ($p=0.018$)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Discussion}{8}{section.10}\protected@file@percent }
+\newlabel{sec:discussion}{{10}{8}{Discussion}{section.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Effect size variation.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Additivity with marginal interaction.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Applicability scope.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{8}{section.11}\protected@file@percent }
+\newlabel{sec:conclusion}{{11}{8}{Conclusion}{section.11}{}}
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces SDGD-cal vs.\ SDGD-zero. Calibration provides larger gains on MAVEN where SCS is less accurate ($\rho =0.34$ vs.\ $0.42$ on Few-NERD).}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:sdgd_cal}{{11}{9}{SDGD-cal vs.\ SDGD-zero. Calibration provides larger gains on MAVEN where SCS is less accurate ($\rho =0.34$ vs.\ $0.42$ on Few-NERD)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces SCS validation: embedding similarity vs.\ empirical confusion. SCS is a moderate proxy ($\rho =0.38$), stronger on Few-NERD than MAVEN.}}{9}{table.caption.20}\protected@file@percent }
+\newlabel{tab:scs_valid}{{12}{9}{SCS validation: embedding similarity vs.\ empirical confusion. SCS is a moderate proxy ($\rho =0.38$), stronger on Few-NERD than MAVEN}{table.caption.20}{}}
+\gdef \@abspage@last{9}

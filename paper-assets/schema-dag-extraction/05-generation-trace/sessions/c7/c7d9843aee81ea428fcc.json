@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_alt-embeddings-bcs_20260514T194037_result.json",
     "occurrence": 1,
-    "bytes": 1762,
-    "sha256": "24a7675cffc3528a14a043338ddc1d648c9eaafb3566296f5f4f71e2571398b5"
+    "bytes": 1761,
+    "sha256": "e4c05e7174753a84582c98275e82979a28922bbca5187e6b7406f1f55022dc4b"
   },
   "statistics": {
     "messages": 1,

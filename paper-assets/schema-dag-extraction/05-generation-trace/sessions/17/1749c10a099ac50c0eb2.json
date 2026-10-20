@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diag_exp012_crash_20260515T141936_result.json",
     "occurrence": 1,
-    "bytes": 2138,
-    "sha256": "972a1ab7855ac2a16b2253ca87e1a295d867ce22173d0c819ffd6fb89f31c35a"
+    "bytes": 2137,
+    "sha256": "bbed64c12cce6d35e3650cd01eed49fd16127e1657f3a49b0ae034f04b8f5dd9"
   },
   "statistics": {
     "messages": 1,

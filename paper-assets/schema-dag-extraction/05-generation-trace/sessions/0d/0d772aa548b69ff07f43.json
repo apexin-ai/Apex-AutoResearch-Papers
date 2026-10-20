@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d044_framing_rewrite_20260516T093329_result.json",
     "occurrence": 1,
-    "bytes": 1056,
-    "sha256": "1a05a1c9670aef116f2987b093f1455306f99d8243cea5647ab8a73e149a153e"
+    "bytes": 1055,
+    "sha256": "716a1c7ea3cc10e438c616ae93cf0c71a4e94a6787dfa9c687f6d0b6e5645ce4"
   },
   "statistics": {
     "messages": 1,

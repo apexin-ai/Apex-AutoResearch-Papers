@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_compute_r5w1_split_origin_covariate_20260516T175323_result.json",
     "occurrence": 1,
-    "bytes": 726,
-    "sha256": "f0ab7c1152d26fbf616ee93113c7532a6b8d1708620eff41b48c64f37850b436"
+    "bytes": 725,
+    "sha256": "2a6c9ed34755f9a6bbf927c641418de83aec43dd66e61b884a4f3aa292cec08e"
   },
   "statistics": {
     "messages": 1,

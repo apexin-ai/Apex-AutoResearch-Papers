@@ -1,0 +1,22 @@
+paper_key: "llm-pee-2025"
+title: "Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines: ["state-of-the-art EE methods", "mainstream LLMs (zero-shot)"]
+  metrics: [{name: "event detection F1", direction: "higher_better"}, {name: "argument extraction F1", direction: "higher_better"}]
+  datasets: [{name: "EEMT (introduced)", size: "200,000+ samples, 3,465 event types, 6,297 role types"}]
+  ablation_dimensions: ["collaborative annotation (multi-LLM voting)", "type partitioning strategy", "candidate event type recall"]
+  training_recipe: {method: "LLM-based collaborative annotation + partitioning extraction (LLM-PEE)"}
+  method_family: "LLM-based event extraction with type partitioning"
+
+positioning:
+  core_claim: "Multi-LLM collaborative annotation creates the largest EE dataset (EEMT), and partitioning event types overcomes LLM context limits for massive-type extraction"
+  key_results: "+5.4 event detection, +6.1 argument extraction over SOTA; +12.9 zero-shot over mainstream LLMs"
+  limitations: ["annotation quality depends on LLM agreement", "partitioning may miss cross-partition dependencies"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

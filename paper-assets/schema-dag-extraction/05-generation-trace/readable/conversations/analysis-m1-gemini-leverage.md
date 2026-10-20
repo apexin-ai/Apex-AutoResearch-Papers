@@ -3568,7 +3568,7 @@ _source line 102 · 2026-05-22T09:21:23.822384+00:00_
 32	OUTPUT_DIR = BASE_DIR / "artifacts" / "exp_gemini_flash"
 33	
 34	# TUM proxy config (OpenAI-compatible)
-35	DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+35	DEFAULT_API_KEY = "[REDACTED]"
 36	DEFAULT_BASE_URL = "http://47.94.22.126/v1"
 37	DEFAULT_MODEL = "gemini-2.5-flash"
 38	

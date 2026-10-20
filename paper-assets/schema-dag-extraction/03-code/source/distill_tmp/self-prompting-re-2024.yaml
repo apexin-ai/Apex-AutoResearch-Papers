@@ -1,0 +1,22 @@
+paper_key: "self-prompting-re-2024"
+title: "Unleashing the Power of LLMs in Zero-shot Relation Extraction via Self-Prompting"
+venue: "EMNLP 2024 Findings"
+full_text_available: false
+
+research:
+  baselines: ["existing LLM-based zero-shot RE methods"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "RE benchmark datasets", size: "not specified"}]
+  ablation_dimensions: ["relation synonyms generation", "entity filtering", "sentence rephrasing"]
+  training_recipe: {method: "three-stage diversity prompting for synthetic RE data generation + ICL"}
+  method_family: "self-prompting / synthetic data for zero-shot RE"
+
+positioning:
+  core_claim: "A three-stage diversity approach generates high-quality synthetic RE samples from LLMs as ICL examples, outperforming existing zero-shot RE methods"
+  key_results: "Outperforms existing LLM-based zero-shot RE methods on benchmarks"
+  limitations: ["depends on LLM generation quality", "synthetic data diversity may be limited for complex relations"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

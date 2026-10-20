@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_gemini_flash_bcs_controlled",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:34:39.845Z",
+    "updated_at": "2026-05-19T22:35:27.648Z",
+    "hypothesis": "BCS-accuracy negative correlation observed on open-weight models (Qwen3-32B, LLaMA) generalizes to proprietary API models. Gemini 2.5 Flash should show significant BCS gap on extreme-BCS batches at count 8 and count 16, confirming Dimension 2 is architecture-family-independent.",
+    "parent": "exp_gemini_flash_cross_model",
+    "conclusion": "success",
+    "spec": {
+      "command": "python3 scripts/run_gemini_flash_fewrel.py --mode part2_bcs",
+      "server": "cqa1-38874 (local tmux gemini_part2)",
+      "data_path": "data/fewrel/fewrel_samples_960.json",
+      "data_count": 6720,
+      "model_name": "gemini-2.5-flash",
+      "seed": 42,
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp_gemini_flash/part2/",
+      "log_path": "/tmp/gemini_part2.log",
+      "checkpoint_source": "Gemini 2.5 Flash API (no checkpoint, inference-only)",
+      "eval_data": "FewRel 80-rel BCS-controlled extreme batches (50 count_8 + 10 count_16)"
+    },
+    "metrics": {
+      "count_8": {
+        "n_batches": 50,
+        "low_bcs_acc": 0.905,
+        "high_bcs_acc": 0.7292,
+        "gap_pp": -17.6,
+        "ci_95": [
+          15.1,
+          20.1
+        ],
+        "pearson_r": -0.887,
+        "spearman_rho": -0.743
+      },
+      "count_16": {
+        "n_batches": 10,
+        "low_bcs_acc": 0.8146,
+        "high_bcs_acc": 0.7281,
+        "gap_pp": -8.7,
+        "pearson_r": -0.804,
+        "spearman_rho": -0.401,
+        "note": "BCS=0.97 outlier inflates Pearson; limited power n=5/group"
+      }
+    },
+    "completed_at": "2026-05-19T22:35:27.648Z"
+  },
+  "timestamp": "2026-05-19T22:35:27.789752+00:00",
+  "trigger": "update_registry"
+}

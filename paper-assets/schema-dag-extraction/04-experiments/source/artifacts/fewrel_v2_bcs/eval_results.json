@@ -1,0 +1,12 @@
+{
+  "low_0": {"accuracy": 0.8333, "correct": 80, "total": 96, "bcs": 0.4715, "group": "low"},
+  "low_1": {"accuracy": 0.8125, "correct": 78, "total": 96, "bcs": 0.6465, "group": "low"},
+  "low_2": {"accuracy": 0.875, "correct": 84, "total": 96, "bcs": 0.6653, "group": "low"},
+  "low_3": {"accuracy": 0.8229, "correct": 79, "total": 96, "bcs": 0.6724, "group": "low"},
+  "low_4": {"accuracy": 0.6771, "correct": 65, "total": 96, "bcs": 0.6742, "group": "low"},
+  "high_0": {"accuracy": 0.7708, "correct": 74, "total": 96, "bcs": 0.7778, "group": "high"},
+  "high_1": {"accuracy": 0.7188, "correct": 69, "total": 96, "bcs": 0.7908, "group": "high"},
+  "high_2": {"accuracy": 0.7083, "correct": 68, "total": 96, "bcs": 0.8201, "group": "high"},
+  "high_3": {"accuracy": 0.9271, "correct": 89, "total": 96, "bcs": 0.8226, "group": "high"},
+  "high_4": {"accuracy": 0.5, "correct": 48, "total": 96, "bcs": 0.9706, "group": "high"}
+}

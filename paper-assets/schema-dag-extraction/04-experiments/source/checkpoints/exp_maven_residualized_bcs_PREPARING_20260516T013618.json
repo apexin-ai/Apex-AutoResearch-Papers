@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_maven_residualized_bcs",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:36:13.194Z",
+    "updated_at": "2026-05-16T01:36:18.410Z",
+    "hypothesis": "MAVEN per-type BCS 正相关是 centrality artifact。控制 log_freq/degree_centrality 后 BCS-F1 相关应消失。回答审稿人 Q4。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T01:36:18.546125+00:00",
+  "trigger": "update_registry"
+}

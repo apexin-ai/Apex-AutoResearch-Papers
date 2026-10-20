@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_sdgd-maven-minilm-prep_20260515T105359_result.json",
     "occurrence": 1,
-    "bytes": 1132,
-    "sha256": "620814fb199737c82439744da0e940e9b483608b6af715ede87d905880c4d180"
+    "bytes": 1131,
+    "sha256": "c0fa1f517db57d9f25769487da430e6bae9526db403447ba9dca65d5994c0d27"
   },
   "statistics": {
     "messages": 1,

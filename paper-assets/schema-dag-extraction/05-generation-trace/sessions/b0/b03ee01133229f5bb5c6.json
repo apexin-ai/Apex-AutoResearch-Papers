@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig_error_taxonomy_20260515T162946_result.json",
     "occurrence": 1,
-    "bytes": 83,
-    "sha256": "91c2dab4faf5a3ddfad75d13c04247c78f410382f321fb1e0189ae11f01b1f21"
+    "bytes": 82,
+    "sha256": "9758381e2e40438bc47d52672de9a1b0db525a2f05462379217b89f4778b8ec6"
   },
   "statistics": {
     "messages": 1,

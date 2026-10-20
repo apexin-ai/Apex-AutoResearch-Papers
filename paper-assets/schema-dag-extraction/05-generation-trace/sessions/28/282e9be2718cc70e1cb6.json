@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d045_fix_overfull_hbox_20260516T110759_result.json",
     "occurrence": 1,
-    "bytes": 623,
-    "sha256": "32fda1a3660e8bcb9ca2b45d08b74dc46cfd908f9d73e206c146c3c4e598367c"
+    "bytes": 622,
+    "sha256": "3131d72edd966906af2138707e391d1d8841e7b5d519c8bef0d49dadf5ae8b9a"
   },
   "statistics": {
     "messages": 1,

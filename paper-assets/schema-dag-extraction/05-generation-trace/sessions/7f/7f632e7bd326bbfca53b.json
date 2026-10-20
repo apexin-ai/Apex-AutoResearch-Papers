@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_kill-and-prep-fewrel_20260515T164746_result.json",
     "occurrence": 1,
-    "bytes": 1781,
-    "sha256": "32f6bf7ee8049d1a3a1f2465b95b941f9b97acaddb6a309a406e9c8ffa4c9337"
+    "bytes": 1780,
+    "sha256": "ab65f850022871384c17dec3ae52a89c342f89928e590161a95ed88732fc9d89"
   },
   "statistics": {
     "messages": 1,

@@ -7063,7 +7063,7 @@ _source line 587 · 2026-05-15T14:33:54.440Z_
 186	    repo_url: str = ""
 187	    repo_branch: str = "main"
 188	    git_deploy_key_path: str = "~/.ssh/github_deploy"
-189	    wandb_api_key: str = ""
+189	    wandb_api_key: [REDACTED] = ""
 190	    hf_token: str = ""
 191	    tags: dict[str, str] = Field(default_factory=lambda: {
 192	        "ManagedBy": "agent-ml-manager",

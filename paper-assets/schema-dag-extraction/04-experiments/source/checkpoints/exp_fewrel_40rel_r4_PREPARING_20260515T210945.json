@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_fewrel_40rel_r4",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:09:45.041Z",
+    "updated_at": "2026-05-15T21:09:45.042Z",
+    "spec": {
+      "parent": "exp_fewrel_formal_80rel",
+      "hypothesis": "FewRel 40-rel intermediate scaling point: monotonic BCS effect between 16-rel and 80-rel. Count curve [1,4,8,16,32,40] + BCS-controlled exp2.",
+      "dataset": "FewRel (40-rel subset)",
+      "model_name": "Qwen3-32B-FP8",
+      "server": "cqa1-38874",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T21:09:45.154678+00:00",
+  "trigger": "update_registry"
+}

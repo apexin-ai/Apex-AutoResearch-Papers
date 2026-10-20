@@ -1,0 +1,65 @@
+{
+  "fewnerd_qwen3": {
+    "pearson_r": 0.13769,
+    "pearson_p": 9.964857942510743e-10,
+    "spearman_rho": 0.16821,
+    "spearman_p": 7.313934204562512e-14,
+    "n_pairs": 1953,
+    "n_nonzero": 216,
+    "nonzero_pearson_r": 0.22964,
+    "nonzero_pearson_p": 0.0006715504122976469,
+    "nonzero_spearman_rho": 0.27218,
+    "nonzero_spearman_p": 5.0393271820114e-05
+  },
+  "fewnerd_minilm": {
+    "pearson_r": 0.17192,
+    "pearson_p": 2.0149511592473646e-14,
+    "spearman_rho": 0.14392,
+    "spearman_p": 1.6661200786469148e-10,
+    "n_pairs": 1953,
+    "n_nonzero": 216,
+    "nonzero_pearson_r": 0.24241,
+    "nonzero_pearson_p": 0.00032332476816243454,
+    "nonzero_spearman_rho": 0.30598,
+    "nonzero_spearman_p": 4.6240699023857665e-06
+  },
+  "fewrel_minilm": {
+    "slope": -0.48526,
+    "intercept": 1.14185,
+    "r": -0.39773,
+    "p": 0.03992448385159205,
+    "n_batches": 27,
+    "bcs_range": [0.4715, 0.9706],
+    "bcs_std": 0.0812,
+    "note": "existing MiniLM BCS from batch_config_exp2"
+  },
+  "fewrel_qwen3": {
+    "slope": -0.54156,
+    "intercept": 1.26579,
+    "r": -0.18503,
+    "p": 0.355497032161832,
+    "n_batches": 27,
+    "bcs_range": [0.8191, 0.9497],
+    "bcs_std": 0.0338,
+    "note": "cross-check with Qwen3 embeddings (dim=5120)"
+  },
+  "fewrel_count16_minilm": {
+    "slope": -0.3883,
+    "r": -0.4293,
+    "p": 0.025431,
+    "n_batches": 27,
+    "note": "count_16 batches with MiniLM BCS"
+  },
+  "fewrel_count16_qwen3": {
+    "slope": -0.7388,
+    "r": -0.1481,
+    "p": 0.46089,
+    "n_batches": 27,
+    "note": "count_16 batches with Qwen3 BCS (compressed range)"
+  },
+  "bcs_cross_embedding_corr": {
+    "pearson_r": 0.4378,
+    "pearson_p": 0.022377993351213696
+  },
+  "conclusion": "Cross-embedding robustness confirmed for Few-NERD pairwise SCS-confusion: Qwen3 Pearson r=0.138 (p<1e-9), MiniLM r=0.172 (p<1e-14) — both highly significant, direction consistent. FewRel BCS-accuracy: MiniLM r=-0.398 (p=0.040) significant; Qwen3 r=-0.185 (p=0.356) same direction but non-significant due to compressed BCS range (Qwen3 std=0.034 vs MiniLM std=0.081). Qwen3 causal-LM embeddings produce near-uniform cosine similarity for short relation labels, reducing discriminative power for BCS. MiniLM (sentence-transformer trained for semantic similarity) is the appropriate encoder for BCS computation. The underlying signal (higher SCS → more confusion) is robust — embedding choice affects only signal strength, not direction."
+}

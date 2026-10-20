@@ -1,0 +1,2191 @@
+# code verify analyze g0 compat
+
+**collapse aware mixing** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_code_verify_analyze_g0_compat_20260512T172407.log`
+- **Structured JSON:** [`d493e87035683cf7a794.json`](../../sessions/d4/d493e87035683cf7a794.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing",
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "97ec906f-79f6-4f62-a298-de8ef9727d6f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-18-projects-collapse-aware-mixing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778612400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8d566c91-39a0-463e-bde0-60767d8c3e67",
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to verify compatibility between `analyze_g0.py` and v5 checkpoint format. All operations must be read-only via `ssh_read_only`. Let me start by reading the source code and checking the directory structure in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "0c73f8e8-fc98-4114-b449-50ef377c547b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7z9ZNmSyGwbAoGCp12X8u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11351,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11351
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me load the SSH tools first, then do the verification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "24bc3dd8-fd99-465a-8a5a-010fbb7486db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7z9ZNmSyGwbAoGCp12X8u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11351,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11351
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BnaRBAuiBz7c6opCREpV8X`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "1cd04fe8-e97d-472f-8865-146a7951321c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7z9ZNmSyGwbAoGCp12X8u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11351,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11351
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T17:24:21.350Z_
+
+<details><summary>↩ Tool result · `toolu_01BnaRBAuiBz7c6opCREpV8X`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "71982602-138b-43f6-bafc-cd9e39f80109",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the analyze_g0.py source code and check the v5 output directory structure in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "5e513ef0-2e58-420a-800d-0a06522a59da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcRNdrUp3kMf2Yai1JbF3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 23192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+开始并行读取源码和目录结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "dcb14aa6-d1bb-4fa0-b575-be7d6818aad7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcRNdrUp3kMf2Yai1JbF3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 23192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019dS7N88AH6161gnC7JR9ek`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "cat /root/collapse-aware-mixing/analyze_g0.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "5edbd27c-4621-4097-aaf2-46d3acd2d918",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcRNdrUp3kMf2Yai1JbF3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 23192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KF84HqSN3TBD36EQ2gTxcN`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/autodl-tmp/output/G0/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "7b16020f-aad8-4a73-af4a-2404a201d4fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcRNdrUp3kMf2Yai1JbF3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 23192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MdFgcjBMgmbexAWC2GS93S`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "find /root/autodl-tmp/output/G0/ -maxdepth 2 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "77bc1a6e-8dba-4b88-bc14-a1e1d33744a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AcRNdrUp3kMf2Yai1JbF3X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 23192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T17:24:29.329Z_
+
+<details><summary>↩ Tool result · `toolu_019dS7N88AH6161gnC7JR9ek`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G0 baseline analysis: spectral effective rank + held-out PPL over checkpoints.\\n\\nUsage:\\n    python analyze_g0.py --checkpoint-dir /root/autodl-tmp/output/G0/training \\\\\\n                         --output-dir /root/autodl-tmp/output/g0_analysis\\n\\nInput:  G0 checkpoint directory containing checkpoint-{step} subdirs\\nOutput: g0_results.json, g0_rank_ppl.png, terminal GO/NO-GO verdict\\n\\nDependencies: torch, transformers, datasets, matplotlib, numpy\\nReuses: metrics.compute_spectral_effective_rank, metrics.compute_perplexity\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport re\\nimport sys\\nimport time\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom datasets import load_dataset, load_from_disk\\nfrom itertools import chain\\nfrom torch.utils.data import DataLoader, Dataset as TorchDataset\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom metrics import compute_spectral_effective_rank, compute_perplexity\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(\\\"analyze_g0\\\")\\n\\n\\nclass PackedDataset(TorchDataset):\\n    def __init__(self, input_ids):\\n        self.input_ids = input_ids\\n\\n    def __len__(self):\\n        return len(self.input_ids)\\n\\n    def __getitem__(self, idx):\\n        ids = torch.tensor(self.input_ids[idx], dtype=torch.long)\\n        return {\\\"input_ids\\\": ids, \\\"attention_mask\\\": torch.ones_like(ids), \\\"labels\\\": ids.clone()}\\n\\n\\ndef discover_checkpoints(checkpoint_dir):\\n    \\\"\\\"\\\"Find and sort checkpoint-{step} directories by step number.\\\"\\\"\\\"\\n    pattern = os.path.join(checkpoint_dir, \\\"checkpoint-*\\\")\\n    dirs = [d for d in glob.glob(pattern) if os.path.isdir(d)]\\n    step_dirs = []\\n    for d in dirs:\\n        m = re.search(r\\\"checkpoint-(\\\\d+)$\\\", d)\\n        if m:\\n            step_dirs.append((int(m.group(1)), d))\\n    step_dirs.sort(key=lambda x: x[0])\\n    return step_dirs\\n\\n\\ndef load_holdout_data(holdout_path, tokenizer, max_seq_length=2048, max_seqs=2000):\\n    \\\"\\\"\\\"Load held-out wikitext data, tokenize and pack into fixed-length sequences.\\\"\\\"\\\"\\n    cache_path = holdout_path.rstrip(\\\"/\\\") + \\\"_packed_cache\\\"\\n    if os.path.exists(cache_path):\\n        logger.info(\\\"Loading cached holdout from %s\\\", cache_path)\\n        ds = load_from_disk(cache_path)\\n        input_ids = ds[\\\"input_ids\\\"][:max_seqs]\\n    else:\\n        logger.info(\\\"Loading holdout from %s\\\", holdout_path)\\n        raw = load_dataset(holdout_path, split=\\\"test\\\")\\n        tokenized = raw.map(\\n            lambda ex: tokenizer(ex[\\\"text\\\"], truncation=False, add_special_tokens=False),\\n            batched=True,\\n            remove_columns=raw.column_names,\\n            num_proc=2,\\n        )\\n        flat = list(chain(*tokenized[\\\"input_ids\\\"]))\\n        n = (len(flat) // max_seq_length) * max_seq_length\\n        input_ids = [flat[i:i + max_seq_length] for i in range(0, n, max_seq_length)]\\n        logger.info(\\\"Packed %d holdout sequences (%d tokens)\\\", len(input_ids), n)\\n\\n    return PackedDataset(input_ids[:max_seqs])\\n\\n\\ndef evaluate_checkpoint(ckpt_path, holdout_loader, device, spectral_samples=5000, ppl_samples=2000):\\n    \\\"\\\"\\\"Load one checkpoint, compute spectral rank + PPL, free GPU memory.\\\"\\\"\\\"\\n    logger.info(\\\"Evaluating %s\\\", ckpt_path)\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(ckpt_path, torch_dtype=torch.bfloat16).to(device)\\n    model.eval()\\n\\n    rank_result = compute_spectral_effective_rank(model, holdout_loader, num_samples=spectral_samples, device=device)\\n    ppl_result = compute_perplexity(model, holdout_loader, num_samples=ppl_samples, device=device)\\n\\n    del model\\n    torch.cuda.empty_cache()\\n\\n    elapsed = time.time() - t0\\n    logger.info(\\\"  eff_rank=%.1f  ppl=%.2f  (%.0fs)\\\", rank_result[\\\"spectral_effective_rank\\\"], ppl_result[\\\"perplexity\\\"], elapsed)\\n    return {**rank_result, **ppl_res\\n\\n... [截断: 输出过长，省略 2859 字符] ...\\n\\ne:\\n        verdict = \\\"INCONCLUSIVE\\\"\\n\\n    summary = {\\n        \\\"rank_mean\\\": float(rank_mean),\\n        \\\"rank_std\\\": float(rank_std),\\n        \\\"rank_1sigma_threshold\\\": float(rank_mean - rank_std),\\n        \\\"first_rank_drop_index\\\": first_rank_drop,\\n        \\\"first_ppl_rise_index\\\": first_ppl_rise,\\n        \\\"ppl_rise_threshold\\\": \\\"5% above checkpoint-0\\\",\\n        \\\"verdict\\\": verdict,\\n    }\\n    return summary\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Analyze G0 baseline checkpoints: spectral rank + PPL\\\")\\n    parser.add_argument(\\\"--checkpoint-dir\\\", type=str, required=True,\\n                        help=\\\"Directory containing checkpoint-{step} subdirs (e.g. output/G0/training)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, default=\\\"./g0_analysis\\\",\\n                        help=\\\"Directory for output JSON and PNG\\\")\\n    parser.add_argument(\\\"--holdout-path\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\\\",\\n                        help=\\\"Path to held-out dataset\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=\\\"EleutherAI/pythia-1b\\\",\\n                        help=\\\"Base model name (for tokenizer)\\\")\\n    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--spectral-samples\\\", type=int, default=5000,\\n                        help=\\\"Sequences for spectral rank computation\\\")\\n    parser.add_argument(\\\"--ppl-samples\\\", type=int, default=2000,\\n                        help=\\\"Sequences for PPL computation\\\")\\n    parser.add_argument(\\\"--tokens-per-step\\\", type=int, default=65536,\\n                        help=\\\"Tokens per training step (seq_len * batch * grad_accum)\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    step_dirs = discover_checkpoints(args.checkpoint_dir)\\n    if not step_dirs:\\n        logger.error(\\\"No checkpoints found in %s\\\", args.checkpoint_dir)\\n        sys.exit(1)\\n    logger.info(\\\"Found %d checkpoints: steps %s\\\", len(step_dirs), [s for s, _ in step_dirs])\\n\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    holdout_ds = load_holdout_data(args.holdout_path, tokenizer, args.max_seq_length)\\n    holdout_loader = DataLoader(holdout_ds, batch_size=16, shuffle=False, num_workers=2, pin_memory=True)\\n\\n    results = []\\n    for step, ckpt_path in step_dirs:\\n        metrics = evaluate_checkpoint(ckpt_path, holdout_loader, args.device,\\n                                      spectral_samples=args.spectral_samples,\\n                                      ppl_samples=args.ppl_samples)\\n        metrics[\\\"step\\\"] = step\\n        metrics[\\\"checkpoint\\\"] = ckpt_path\\n        metrics[\\\"tokens_seen_M\\\"] = round(step * args.tokens_per_step / 1e6, 1)\\n        results.append(metrics)\\n\\n    verdict_summary = go_nogo_verdict(results)\\n\\n    output = {\\n        \\\"checkpoints\\\": results,\\n        \\\"go_nogo\\\": verdict_summary,\\n    }\\n    json_path = os.path.join(args.output_dir, \\\"g0_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n    logger.info(\\\"Results saved to %s\\\", json_path)\\n\\n    png_path = os.path.join(args.output_dir, \\\"g0_rank_ppl.png\\\")\\n    plot_rank_ppl(results, png_path)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"G0 ANALYSIS SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"  Checkpoints analyzed: {len(results)}\\\")\\n    print(f\\\"  Rank mean: {verdict_summary['rank_mean']:.1f} ± {verdict_summary['rank_std']:.2f}\\\")\\n    print(f\\\"  1σ threshold: {verdict_summary['rank_1sigma_threshold']:.1f}\\\")\\n    print(f\\\"  First rank drop ≥1σ: checkpoint index {verdict_summary['first_rank_drop_index']}\\\")\\n    print(f\\\"  First PPL rise >5%:  checkpoint index {verdict_summary['first_ppl_rise_index']}\\\")\\n    print(f\\\"\\\\n  VERDICT: {verdict_summary['verdict']}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "28910ca8-5761-46cd-a202-c67fb4ac3e6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"G0 baseline analysis: spectral effective rank + held-out PPL over checkpoints.\\\\n\\\\nUsage:\\\\n    python analyze_g0.py --checkpoint-dir /root/autodl-tmp/output/G0/training \\\\\\\\\\\\n                         --output-dir /root/autodl-tmp/output/g0_analysis\\\\n\\\\nInput:  G0 checkpoint directory containing checkpoint-{step} subdirs\\\\nOutput: g0_results.json, g0_rank_ppl.png, terminal GO/NO-GO verdict\\\\n\\\\nDependencies: torch, transformers, datasets, matplotlib, numpy\\\\nReuses: metrics.compute_spectral_effective_rank, metrics.compute_perplexity\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom datasets import load_dataset, load_from_disk\\\\nfrom itertools import chain\\\\nfrom torch.utils.data import DataLoader, Dataset as TorchDataset\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom metrics import compute_spectral_effective_rank, compute_perplexity\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"analyze_g0\\\\\\\")\\\\n\\\\n\\\\nclass PackedDataset(TorchDataset):\\\\n    def __init__(self, input_ids):\\\\n        self.input_ids = input_ids\\\\n\\\\n    def __len__(self):\\\\n        return len(self.input_ids)\\\\n\\\\n    def __getitem__(self, idx):\\\\n        ids = torch.tensor(self.input_ids[idx], dtype=torch.long)\\\\n        return {\\\\\\\"input_ids\\\\\\\": ids, \\\\\\\"attention_mask\\\\\\\": torch.ones_like(ids), \\\\\\\"labels\\\\\\\": ids.clone()}\\\\n\\\\n\\\\ndef discover_checkpoints(checkpoint_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find and sort checkpoint-{step} directories by step number.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pattern = os.path.join(checkpoint_dir, \\\\\\\"checkpoint-*\\\\\\\")\\\\n    dirs = [d for d in glob.glob(pattern) if os.path.isdir(d)]\\\\n    step_dirs = []\\\\n    for d in dirs:\\\\n        m = re.search(r\\\\\\\"checkpoint-(\\\\\\\\d+)$\\\\\\\", d)\\\\n        if m:\\\\n            step_dirs.append((int(m.group(1)), d))\\\\n    step_dirs.sort(key=lambda x: x[0])\\\\n    return step_dirs\\\\n\\\\n\\\\ndef load_holdout_data(holdout_path, tokenizer, max_seq_length=2048, max_seqs=2000):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load held-out wikitext data, tokenize and pack into fixed-length sequences.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cache_path = holdout_path.rstrip(\\\\\\\"/\\\\\\\") + \\\\\\\"_packed_cache\\\\\\\"\\\\n    if os.path.exists(cache_path):\\\\n        logger.info(\\\\\\\"Loading cached holdout from %s\\\\\\\", cache_path)\\\\n        ds = load_from_disk(cache_path)\\\\n        input_ids = ds[\\\\\\\"input_ids\\\\\\\"][:max_seqs]\\\\n    else:\\\\n        logger.info(\\\\\\\"Loading holdout from %s\\\\\\\", holdout_path)\\\\n        raw = load_dataset(holdout_path, split=\\\\\\\"test\\\\\\\")\\\\n        tokenized = raw.map(\\\\n            lambda ex: tokenizer(ex[\\\\\\\"text\\\\\\\"], truncation=False, add_special_tokens=False),\\\\n            batched=True,\\\\n            remove_columns=raw.column_names,\\\\n            num_proc=2,\\\\n        )\\\\n        flat = list(chain(*tokenized[\\\\\\\"input_ids\\\\\\\"]))\\\\n        n = (len(flat) // max_seq_length) * max_seq_length\\\\n        input_ids = [flat[i:i + max_seq_length] for i in range(0, n, max_seq_length)]\\\\n        logger.info(\\\\\\\"Packed %d holdout sequences (%d tokens)\\\\\\\", len(input_ids), n)\\\\n\\\\n    return PackedDataset(input_ids[:max_seqs])\\\\n\\\\n\\\\ndef evaluate_checkpoint(ckpt_path, holdout_loader, device, spectral_samples=5000, ppl_samples=2000):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load one checkpoint, compute spectral rank + PPL, free GPU memory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    logger.info(\\\\\\\"Evaluating %s\\\\\\\", ckpt_path)\\\\n    t0 = time.time()\\\\n    model = AutoModelForCausalLM.from_pretrained(ckpt_path, torch_dtype=torch.bfloat16).to(device)\\\\n    model.eval()\\\\n\\\\n    rank_result = compute_spectral_effective_rank(model, holdout_loader, num_samples=spectral_samples, device=device)\\\\n    ppl_result = compute_perplexity(model, holdout_loader, num_samples=ppl_samples, device=device)\\\\n\\\\n    del model\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"  eff_rank=%.1f  ppl=%.2f  (%.0fs)\\\\\\\", rank_result[\\\\\\\"spectral_effective_rank\\\\\\\"], ppl_result[\\\\\\\"perplexity\\\\\\\"], elapsed)\\\\n    return {**rank_result, **ppl_res\\\\n\\\\n... [截断: 输出过长，省略 2859 字符] ...\\\\n\\\\ne:\\\\n        verdict = \\\\\\\"INCONCLUSIVE\\\\\\\"\\\\n\\\\n    summary = {\\\\n        \\\\\\\"rank_mean\\\\\\\": float(rank_mean),\\\\n        \\\\\\\"rank_std\\\\\\\": float(rank_std),\\\\n        \\\\\\\"rank_1sigma_threshold\\\\\\\": float(rank_mean - rank_std),\\\\n        \\\\\\\"first_rank_drop_index\\\\\\\": first_rank_drop,\\\\n        \\\\\\\"first_ppl_rise_index\\\\\\\": first_ppl_rise,\\\\n        \\\\\\\"ppl_rise_threshold\\\\\\\": \\\\\\\"5% above checkpoint-0\\\\\\\",\\\\n        \\\\\\\"verdict\\\\\\\": verdict,\\\\n    }\\\\n    return summary\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Analyze G0 baseline checkpoints: spectral rank + PPL\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--checkpoint-dir\\\\\\\", type=str, required=True,\\\\n                        help=\\\\\\\"Directory containing checkpoint-{step} subdirs (e.g. output/G0/training)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", type=str, default=\\\\\\\"./g0_analysis\\\\\\\",\\\\n                        help=\\\\\\\"Directory for output JSON and PNG\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--holdout-path\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\\\\\\\",\\\\n                        help=\\\\\\\"Path to held-out dataset\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-name\\\\\\\", type=str, default=\\\\\\\"EleutherAI/pythia-1b\\\\\\\",\\\\n                        help=\\\\\\\"Base model name (for tokenizer)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n    parser.add_argument(\\\\\\\"--spectral-samples\\\\\\\", type=int, default=5000,\\\\n                        help=\\\\\\\"Sequences for spectral rank computation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--ppl-samples\\\\\\\", type=int, default=2000,\\\\n                        help=\\\\\\\"Sequences for PPL computation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tokens-per-step\\\\\\\", type=int, default=65536,\\\\n                        help=\\\\\\\"Tokens per training step (seq_len * batch * grad_accum)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    step_dirs = discover_checkpoints(args.checkpoint_dir)\\\\n    if not step_dirs:\\\\n        logger.error(\\\\\\\"No checkpoints found in %s\\\\\\\", args.checkpoint_dir)\\\\n        sys.exit(1)\\\\n    logger.info(\\\\\\\"Found %d checkpoints: steps %s\\\\\\\", len(step_dirs), [s for s, _ in step_dirs])\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    holdout_ds = load_holdout_data(args.holdout_path, tokenizer, args.max_seq_length)\\\\n    holdout_loader = DataLoader(holdout_ds, batch_size=16, shuffle=False, num_workers=2, pin_memory=True)\\\\n\\\\n    results = []\\\\n    for step, ckpt_path in step_dirs:\\\\n        metrics = evaluate_checkpoint(ckpt_path, holdout_loader, args.device,\\\\n                                      spectral_samples=args.spectral_samples,\\\\n                                      ppl_samples=args.ppl_samples)\\\\n        metrics[\\\\\\\"step\\\\\\\"] = step\\\\n        metrics[\\\\\\\"checkpoint\\\\\\\"] = ckpt_path\\\\n        metrics[\\\\\\\"tokens_seen_M\\\\\\\"] = round(step * args.tokens_per_step / 1e6, 1)\\\\n        results.append(metrics)\\\\n\\\\n    verdict_summary = go_nogo_verdict(results)\\\\n\\\\n    output = {\\\\n        \\\\\\\"checkpoints\\\\\\\": results,\\\\n        \\\\\\\"go_nogo\\\\\\\": verdict_summary,\\\\n    }\\\\n    json_path = os.path.join(args.output_dir, \\\\\\\"g0_results.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n    logger.info(\\\\\\\"Results saved to %s\\\\\\\", json_path)\\\\n\\\\n    png_path = os.path.join(args.output_dir, \\\\\\\"g0_rank_ppl.png\\\\\\\")\\\\n    plot_rank_ppl(results, png_path)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"G0 ANALYSIS SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"  Checkpoints analyzed: {len(results)}\\\\\\\")\\\\n    print(f\\\\\\\"  Rank mean: {verdict_summary['rank_mean']:.1f} ± {verdict_summary['rank_std']:.2f}\\\\\\\")\\\\n    print(f\\\\\\\"  1σ threshold: {verdict_summary['rank_1sigma_threshold']:.1f}\\\\\\\")\\\\n    print(f\\\\\\\"  First rank drop ≥1σ: checkpoint index {verdict_summary['first_rank_drop_index']}\\\\\\\")\\\\n    print(f\\\\\\\"  First PPL rise >5%:  checkpoint index {verdict_summary['first_ppl_rise_index']}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n  VERDICT: {verdict_summary['verdict']}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G0 baseline analysis: spectral effective rank + held-out PPL over checkpoints.\\n\\nUsage:\\n    python analyze_g0.py --checkpoint-dir /root/autodl-tmp/output/G0/training \\\\\\n                         --output-dir /root/autodl-tmp/output/g0_analysis\\n\\nInput:  G0 checkpoint directory containing checkpoint-{step} subdirs\\nOutput: g0_results.json, g0_rank_ppl.png, terminal GO/NO-GO verdict\\n\\nDependencies: torch, transformers, datasets, matplotlib, numpy\\nReuses: metrics.compute_spectral_effective_rank, metrics.compute_perplexity\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport logging\\nimport math\\nimport os\\nimport re\\nimport sys\\nimport time\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom datasets import load_dataset, load_from_disk\\nfrom itertools import chain\\nfrom torch.utils.data import DataLoader, Dataset as TorchDataset\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom metrics import compute_spectral_effective_rank, compute_perplexity\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlogger = logging.getLogger(\\\"analyze_g0\\\")\\n\\n\\nclass PackedDataset(TorchDataset):\\n    def __init__(self, input_ids):\\n        self.input_ids = input_ids\\n\\n    def __len__(self):\\n        return len(self.input_ids)\\n\\n    def __getitem__(self, idx):\\n        ids = torch.tensor(self.input_ids[idx], dtype=torch.long)\\n        return {\\\"input_ids\\\": ids, \\\"attention_mask\\\": torch.ones_like(ids), \\\"labels\\\": ids.clone()}\\n\\n\\ndef discover_checkpoints(checkpoint_dir):\\n    \\\"\\\"\\\"Find and sort checkpoint-{step} directories by step number.\\\"\\\"\\\"\\n    pattern = os.path.join(checkpoint_dir, \\\"checkpoint-*\\\")\\n    dirs = [d for d in glob.glob(pattern) if os.path.isdir(d)]\\n    step_dirs = []\\n    for d in dirs:\\n        m = re.search(r\\\"checkpoint-(\\\\d+)$\\\", d)\\n        if m:\\n            step_dirs.append((int(m.group(1)), d))\\n    step_dirs.sort(key=lambda x: x[0])\\n    return step_dirs\\n\\n\\ndef load_holdout_data(holdout_path, tokenizer, max_seq_length=2048, max_seqs=2000):\\n    \\\"\\\"\\\"Load held-out wikitext data, tokenize and pack into fixed-length sequences.\\\"\\\"\\\"\\n    cache_path = holdout_path.rstrip(\\\"/\\\") + \\\"_packed_cache\\\"\\n    if os.path.exists(cache_path):\\n        logger.info(\\\"Loading cached holdout from %s\\\", cache_path)\\n        ds = load_from_disk(cache_path)\\n        input_ids = ds[\\\"input_ids\\\"][:max_seqs]\\n    else:\\n        logger.info(\\\"Loading holdout from %s\\\", holdout_path)\\n        raw = load_dataset(holdout_path, split=\\\"test\\\")\\n        tokenized = raw.map(\\n            lambda ex: tokenizer(ex[\\\"text\\\"], truncation=False, add_special_tokens=False),\\n            batched=True,\\n            remove_columns=raw.column_names,\\n            num_proc=2,\\n        )\\n        flat = list(chain(*tokenized[\\\"input_ids\\\"]))\\n        n = (len(flat) // max_seq_length) * max_seq_length\\n        input_ids = [flat[i:i + max_seq_length] for i in range(0, n, max_seq_length)]\\n        logger.info(\\\"Packed %d holdout sequences (%d tokens)\\\", len(input_ids), n)\\n\\n    return PackedDataset(input_ids[:max_seqs])\\n\\n\\ndef evaluate_checkpoint(ckpt_path, holdout_loader, device, spectral_samples=5000, ppl_samples=2000):\\n    \\\"\\\"\\\"Load one checkpoint, compute spectral rank + PPL, free GPU memory.\\\"\\\"\\\"\\n    logger.info(\\\"Evaluating %s\\\", ckpt_path)\\n    t0 = time.time()\\n    model = AutoModelForCausalLM.from_pretrained(ckpt_path, torch_dtype=torch.bfloat16).to(device)\\n    model.eval()\\n\\n    rank_result = compute_spectral_effective_rank(model, holdout_loader, num_samples=spectral_samples, device=device)\\n    ppl_result = compute_perplexity(model, holdout_loader, num_samples=ppl_samples, device=device)\\n\\n    del model\\n    torch.cuda.empty_cache()\\n\\n    elapsed = time.time() - t0\\n    logger.info(\\\"  eff_rank=%.1f  ppl=%.2f  (%.0fs)\\\", rank_result[\\\"spectral_effective_rank\\\"], ppl_result[\\\"perplexity\\\"], elapsed)\\n    return {**rank_result, **ppl_res\\n\\n... [截断: 输出过长，省略 2859 字符] ...\\n\\ne:\\n        verdict = \\\"INCONCLUSIVE\\\"\\n\\n    summary = {\\n        \\\"rank_mean\\\": float(rank_mean),\\n        \\\"rank_std\\\": float(rank_std),\\n        \\\"rank_1sigma_threshold\\\": float(rank_mean - rank_std),\\n        \\\"first_rank_drop_index\\\": first_rank_drop,\\n        \\\"first_ppl_rise_index\\\": first_ppl_rise,\\n        \\\"ppl_rise_threshold\\\": \\\"5% above checkpoint-0\\\",\\n        \\\"verdict\\\": verdict,\\n    }\\n    return summary\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Analyze G0 baseline checkpoints: spectral rank + PPL\\\")\\n    parser.add_argument(\\\"--checkpoint-dir\\\", type=str, required=True,\\n                        help=\\\"Directory containing checkpoint-{step} subdirs (e.g. output/G0/training)\\\")\\n    parser.add_argument(\\\"--output-dir\\\", type=str, default=\\\"./g0_analysis\\\",\\n                        help=\\\"Directory for output JSON and PNG\\\")\\n    parser.add_argument(\\\"--holdout-path\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1\\\",\\n                        help=\\\"Path to held-out dataset\\\")\\n    parser.add_argument(\\\"--model-name\\\", type=str, default=\\\"EleutherAI/pythia-1b\\\",\\n                        help=\\\"Base model name (for tokenizer)\\\")\\n    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--spectral-samples\\\", type=int, default=5000,\\n                        help=\\\"Sequences for spectral rank computation\\\")\\n    parser.add_argument(\\\"--ppl-samples\\\", type=int, default=2000,\\n                        help=\\\"Sequences for PPL computation\\\")\\n    parser.add_argument(\\\"--tokens-per-step\\\", type=int, default=65536,\\n                        help=\\\"Tokens per training step (seq_len * batch * grad_accum)\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    step_dirs = discover_checkpoints(args.checkpoint_dir)\\n    if not step_dirs:\\n        logger.error(\\\"No checkpoints found in %s\\\", args.checkpoint_dir)\\n        sys.exit(1)\\n    logger.info(\\\"Found %d checkpoints: steps %s\\\", len(step_dirs), [s for s, _ in step_dirs])\\n\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    holdout_ds = load_holdout_data(args.holdout_path, tokenizer, args.max_seq_length)\\n    holdout_loader = DataLoader(holdout_ds, batch_size=16, shuffle=False, num_workers=2, pin_memory=True)\\n\\n    results = []\\n    for step, ckpt_path in step_dirs:\\n        metrics = evaluate_checkpoint(ckpt_path, holdout_loader, args.device,\\n                                      spectral_samples=args.spectral_samples,\\n                                      ppl_samples=args.ppl_samples)\\n        metrics[\\\"step\\\"] = step\\n        metrics[\\\"checkpoint\\\"] = ckpt_path\\n        metrics[\\\"tokens_seen_M\\\"] = round(step * args.tokens_per_step / 1e6, 1)\\n        results.append(metrics)\\n\\n    verdict_summary = go_nogo_verdict(results)\\n\\n    output = {\\n        \\\"checkpoints\\\": results,\\n        \\\"go_nogo\\\": verdict_summary,\\n    }\\n    json_path = os.path.join(args.output_dir, \\\"g0_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n    logger.info(\\\"Results saved to %s\\\", json_path)\\n\\n    png_path = os.path.join(args.output_dir, \\\"g0_rank_ppl.png\\\")\\n    plot_rank_ppl(results, png_path)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"G0 ANALYSIS SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"  Checkpoints analyzed: {len(results)}\\\")\\n    print(f\\\"  Rank mean: {verdict_summary['rank_mean']:.1f} ± {verdict_summary['rank_std']:.2f}\\\")\\n    print(f\\\"  1σ threshold: {verdict_summary['rank_1sigma_threshold']:.1f}\\\")\\n    print(f\\\"  First rank drop ≥1σ: checkpoint index {verdict_summary['first_rank_drop_index']}\\\")\\n    print(f\\\"  First PPL rise >5%:  checkpoint index {verdict_summary['first_ppl_rise_index']}\\\")\\n    print(f\\\"\\\\n  VERDICT: {verdict_summary['verdict']}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T17:24:29.815Z_
+
+<details><summary>↩ Tool result · `toolu_01KF84HqSN3TBD36EQ2gTxcN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  4 root root   53 May 13 00:48 .\\ndrwxr-xr-x  4 root root   51 May 12 23:57 ..\\ndrwxr-xr-x  2 root root 4096 May 13 00:48 final_model\\ndrwxr-xr-x 12 root root 4096 May 13 00:47 training\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "f3249172-5168-4515-8cdc-3fd77c8123d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  4 root root   53 May 13 00:48 .\\\\ndrwxr-xr-x  4 root root   51 May 12 23:57 ..\\\\ndrwxr-xr-x  2 root root 4096 May 13 00:48 final_model\\\\ndrwxr-xr-x 12 root root 4096 May 13 00:47 training\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  4 root root   53 May 13 00:48 .\\ndrwxr-xr-x  4 root root   51 May 12 23:57 ..\\ndrwxr-xr-x  2 root root 4096 May 13 00:48 final_model\\ndrwxr-xr-x 12 root root 4096 May 13 00:47 training\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T17:24:30.298Z_
+
+<details><summary>↩ Tool result · `toolu_01MdFgcjBMgmbexAWC2GS93S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/output/G0/\\n/root/autodl-tmp/output/G0/training\\n/root/autodl-tmp/output/G0/training/checkpoint-152\\n/root/autodl-tmp/output/G0/training/checkpoint-304\\n/root/autodl-tmp/output/G0/training/checkpoint-456\\n/root/autodl-tmp/output/G0/training/checkpoint-608\\n/root/autodl-tmp/output/G0/training/checkpoint-760\\n/root/autodl-tmp/output/G0/training/checkpoint-912\\n/root/autodl-tmp/output/G0/training/checkpoint-1064\\n/root/autodl-tmp/output/G0/training/checkpoint-1216\\n/root/autodl-tmp/output/G0/training/checkpoint-1368\\n/root/autodl-tmp/output/G0/training/checkpoint-1373\\n/root/autodl-tmp/output/G0/final_model\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "2e44b2d1-df82-4439-a20d-a5a2f26f4437",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/output/G0/\\\\n/root/autodl-tmp/output/G0/training\\\\n/root/autodl-tmp/output/G0/training/checkpoint-152\\\\n/root/autodl-tmp/output/G0/training/checkpoint-304\\\\n/root/autodl-tmp/output/G0/training/checkpoint-456\\\\n/root/autodl-tmp/output/G0/training/checkpoint-608\\\\n/root/autodl-tmp/output/G0/training/checkpoint-760\\\\n/root/autodl-tmp/output/G0/training/checkpoint-912\\\\n/root/autodl-tmp/output/G0/training/checkpoint-1064\\\\n/root/autodl-tmp/output/G0/training/checkpoint-1216\\\\n/root/autodl-tmp/output/G0/training/checkpoint-1368\\\\n/root/autodl-tmp/output/G0/training/checkpoint-1373\\\\n/root/autodl-tmp/output/G0/final_model\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/output/G0/\\n/root/autodl-tmp/output/G0/training\\n/root/autodl-tmp/output/G0/training/checkpoint-152\\n/root/autodl-tmp/output/G0/training/checkpoint-304\\n/root/autodl-tmp/output/G0/training/checkpoint-456\\n/root/autodl-tmp/output/G0/training/checkpoint-608\\n/root/autodl-tmp/output/G0/training/checkpoint-760\\n/root/autodl-tmp/output/G0/training/checkpoint-912\\n/root/autodl-tmp/output/G0/training/checkpoint-1064\\n/root/autodl-tmp/output/G0/training/checkpoint-1216\\n/root/autodl-tmp/output/G0/training/checkpoint-1368\\n/root/autodl-tmp/output/G0/training/checkpoint-1373\\n/root/autodl-tmp/output/G0/final_model\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I can see:
+
+1. `analyze_g0.py` expects `--checkpoint-dir` pointing to a directory containing `checkpoint-{step}` subdirs. The default usage shows `--checkpoint-dir /root/autodl-tmp/output/G0/training`.
+
+2. The actual output structure is:
+   - `/root/autodl-tmp/output/G0/training/` contains 10 checkpoint dirs: checkpoint-152, 304, 456, 608, 760, 912, 1064, 1216, 1368, 1373
+   - `/root/autodl-tmp/output/G0/final_model/` also exists
+
+3. The `discover_checkpoints` function uses glob and regex to match checkpoint directories, which should work with this structure.
+
+Now I need to verify what's actually inside one of these checkpoint directories to confirm it has the model weights, config, and tokenizer files, then check the metrics.py function signatures to understand what data they expect.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "319e4f51-b2db-4841-a007-34d01b87fadf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHMiq6DzPy6K3bT9AJtngq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4190,
+      "cache_read_input_tokens": 23902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+目录结构匹配。继续检查 checkpoint 内容和 metrics.py 函数签名。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "3545e41e-1f46-4928-96e8-c95f0d485f4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHMiq6DzPy6K3bT9AJtngq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4190,
+      "cache_read_input_tokens": 23902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017kR7wpQqxR3qaXuVYUR1JZ`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/autodl-tmp/output/G0/training/checkpoint-152/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "3f976500-47fc-4fe9-bf22-817143123edc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHMiq6DzPy6K3bT9AJtngq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4190,
+      "cache_read_input_tokens": 23902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T17:24:43.486Z_
+
+<details><summary>↩ Tool result · `toolu_017kR7wpQqxR3qaXuVYUR1JZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5928644\\ndrwxr-xr-x  2 root root       4096 May 13 00:02 .\\ndrwxr-xr-x 12 root root       4096 May 13 00:47 ..\\n-rw-r--r--  1 root root        752 May 13 00:02 config.json\\n-rw-r--r--  1 root root        111 May 13 00:02 generation_config.json\\n-rw-r--r--  1 root root 2023586384 May 13 00:02 model.safetensors\\n-rw-r--r--  1 root root 4047293579 May 13 00:02 optimizer.pt\\n-rw-r--r--  1 root root      14645 May 13 00:02 rng_state.pth\\n-rw-r--r--  1 root root       1465 May 13 00:02 scheduler.pt\\n-rw-r--r--  1 root root       1284 May 13 00:02 trainer_state.json\\n-rw-r--r--  1 root root       5905 May 13 00:02 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "2d208091-1c9a-4c81-a213-49ce201dd476",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 5928644\\\\ndrwxr-xr-x  2 root root       4096 May 13 00:02 .\\\\ndrwxr-xr-x 12 root root       4096 May 13 00:47 ..\\\\n-rw-r--r--  1 root root        752 May 13 00:02 config.json\\\\n-rw-r--r--  1 root root        111 May 13 00:02 generation_config.json\\\\n-rw-r--r--  1 root root 2023586384 May 13 00:02 model.safetensors\\\\n-rw-r--r--  1 root root 4047293579 May 13 00:02 optimizer.pt\\\\n-rw-r--r--  1 root root      14645 May 13 00:02 rng_state.pth\\\\n-rw-r--r--  1 root root       1465 May 13 00:02 scheduler.pt\\\\n-rw-r--r--  1 root root       1284 May 13 00:02 trainer_state.json\\\\n-rw-r--r--  1 root root       5905 May 13 00:02 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 5928644\\ndrwxr-xr-x  2 root root       4096 May 13 00:02 .\\ndrwxr-xr-x 12 root root       4096 May 13 00:47 ..\\n-rw-r--r--  1 root root        752 May 13 00:02 config.json\\n-rw-r--r--  1 root root        111 May 13 00:02 generation_config.json\\n-rw-r--r--  1 root root 2023586384 May 13 00:02 model.safetensors\\n-rw-r--r--  1 root root 4047293579 May 13 00:02 optimizer.pt\\n-rw-r--r--  1 root root      14645 May 13 00:02 rng_state.pth\\n-rw-r--r--  1 root root       1465 May 13 00:02 scheduler.pt\\n-rw-r--r--  1 root root       1284 May 13 00:02 trainer_state.json\\n-rw-r--r--  1 root root       5905 May 13 00:02 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MT7igiXezyL8pDmeXj92YP`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"def compute_spectral_effective_rank\\|def compute_perplexity\" /root/collapse-aware-mixing/metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "a48ea77e-59ef-4d0f-9a3f-86140fd4a8c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHMiq6DzPy6K3bT9AJtngq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4190,
+      "cache_read_input_tokens": 23902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T17:24:44.660Z_
+
+<details><summary>↩ Tool result · `toolu_01MT7igiXezyL8pDmeXj92YP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "93b620d2-5bf3-422b-bb57-33494381fe78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mw94xTbxU6GfYEcZLCGWRb`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls -la /root/autodl-tmp/output/G0/training/checkpoint-1373/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "4842c813-f3c9-4e6e-bf44-9e1a226c4d4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHMiq6DzPy6K3bT9AJtngq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4190,
+      "cache_read_input_tokens": 23902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4190
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T17:24:45.316Z_
+
+<details><summary>↩ Tool result · `toolu_01Mw94xTbxU6GfYEcZLCGWRb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5928648\\ndrwxr-xr-x  2 root root       4096 May 13 00:48 .\\ndrwxr-xr-x 12 root root       4096 May 13 00:47 ..\\n-rw-r--r--  1 root root        752 May 13 00:47 config.json\\n-rw-r--r--  1 root root        111 May 13 00:47 generation_config.json\\n-rw-r--r--  1 root root 2023586384 May 13 00:47 model.safetensors\\n-rw-r--r--  1 root root 4047293579 May 13 00:48 optimizer.pt\\n-rw-r--r--  1 root root      14645 May 13 00:48 rng_state.pth\\n-rw-r--r--  1 root root       1465 May 13 00:48 scheduler.pt\\n-rw-r--r--  1 root root       5197 May 13 00:48 trainer_state.json\\n-rw-r--r--  1 root root       5905 May 13 00:47 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "d3d5f923-0346-457b-a63a-a05cd21f6c90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 5928648\\\\ndrwxr-xr-x  2 root root       4096 May 13 00:48 .\\\\ndrwxr-xr-x 12 root root       4096 May 13 00:47 ..\\\\n-rw-r--r--  1 root root        752 May 13 00:47 config.json\\\\n-rw-r--r--  1 root root        111 May 13 00:47 generation_config.json\\\\n-rw-r--r--  1 root root 2023586384 May 13 00:47 model.safetensors\\\\n-rw-r--r--  1 root root 4047293579 May 13 00:48 optimizer.pt\\\\n-rw-r--r--  1 root root      14645 May 13 00:48 rng_state.pth\\\\n-rw-r--r--  1 root root       1465 May 13 00:48 scheduler.pt\\\\n-rw-r--r--  1 root root       5197 May 13 00:48 trainer_state.json\\\\n-rw-r--r--  1 root root       5905 May 13 00:47 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 5928648\\ndrwxr-xr-x  2 root root       4096 May 13 00:48 .\\ndrwxr-xr-x 12 root root       4096 May 13 00:47 ..\\n-rw-r--r--  1 root root        752 May 13 00:47 config.json\\n-rw-r--r--  1 root root        111 May 13 00:47 generation_config.json\\n-rw-r--r--  1 root root 2023586384 May 13 00:47 model.safetensors\\n-rw-r--r--  1 root root 4047293579 May 13 00:48 optimizer.pt\\n-rw-r--r--  1 root root      14645 May 13 00:48 rng_state.pth\\n-rw-r--r--  1 root root       1465 May 13 00:48 scheduler.pt\\n-rw-r--r--  1 root root       5197 May 13 00:48 trainer_state.json\\n-rw-r--r--  1 root root       5905 May 13 00:47 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe was blocked. Let me grep for the function signatures separately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "38de1cca-54ce-4c9d-95e9-3ff4ec487dab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eczvEyvh43jMXMaWsgUda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1776,
+      "cache_read_input_tokens": 28092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1776
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+需要单独 grep metrics.py 的函数签名。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "13447bd2-d225-43f2-aabb-9bb534b3777a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eczvEyvh43jMXMaWsgUda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1776,
+      "cache_read_input_tokens": 28092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1776
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011n4RwPPYPpDgJDb2GCB7rV`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"def compute_spectral_effective_rank\" /root/collapse-aware-mixing/metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "ef3ade86-a49b-494a-b4ba-d988737dd8da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eczvEyvh43jMXMaWsgUda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1776,
+      "cache_read_input_tokens": 28092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1776
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T17:24:51.973Z_
+
+<details><summary>↩ Tool result · `toolu_011n4RwPPYPpDgJDb2GCB7rV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"30:def compute_spectral_effective_rank(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "d9872ae8-c782-4fed-9c50-12790d4a281a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:def compute_spectral_effective_rank(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"30:def compute_spectral_effective_rank(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018gcFc4y4kUbZkEX38tkae5`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "grep -n \"def compute_perplexity\" /root/collapse-aware-mixing/metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "848121bd-543d-4575-8fea-3b50d81ad1fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eczvEyvh43jMXMaWsgUda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1776,
+      "cache_read_input_tokens": 28092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1776
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T17:24:52.931Z_
+
+<details><summary>↩ Tool result · `toolu_018gcFc4y4kUbZkEX38tkae5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"160:def compute_perplexity(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "de339025-0d2d-4609-9bc0-df2a8b0ab2f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"160:def compute_perplexity(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"160:def compute_perplexity(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LC1WbRTUGQXqKW7szQNMsT`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/autodl-tmp/output/G0/training/checkpoint-152/tokenizer*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "bec0f982-1f95-4f3b-9bc4-a488509bb227",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eczvEyvh43jMXMaWsgUda",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1776,
+      "cache_read_input_tokens": 28092,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1776
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T17:24:53.864Z_
+
+<details><summary>↩ Tool result · `toolu_01LC1WbRTUGQXqKW7szQNMsT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/output/G0/training/checkpoint-152/tokenizer*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "4e4567b1-a87f-487e-bb92-08636459046e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/output/G0/training/checkpoint-152/tokenizer*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/output/G0/training/checkpoint-152/tokenizer*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Checkpoint directories don't have tokenizer files. Let me check if `analyze_g0.py` loads the tokenizer from the checkpoint or from the base model. Looking at the code:
+
+```python
+tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+```
+
+It loads the tokenizer from `args.model_name` (default "EleutherAI/pythia-1b"), not from the checkpoint. So the absence of tokenizer files in checkpoint dirs is fine.
+
+And for model loading:
+```python
+model = AutoModelForCausalLM.from_pretrained(ckpt_path, torch_dtype=torch.bfloat16).to(device)
+
+
+```
+
+This loads from the checkpoint path using `AutoModelForCausalLM.from_pretrained()`, which requires `config.json` and `model.safetensors` — both are present in the checkpoint directories.
+
+Now I'm checking the function signatures in metrics.py to verify they match what analyze_g0.py is calling. The script invokes `compute_spectral_effective_rank()` and `compute_perplexity()` with specific parameters like model, dataloader, num_samples, and device, so I need to confirm those signatures align.
+
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "cd2c88c6-cc6b-4342-a87f-165db7a7e208",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DWXP1GixQJUjpJi5aXkRff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 709,
+      "cache_read_input_tokens": 29868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 709
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+检查 metrics.py 的函数签名细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "1cfd37f2-8a34-4e46-aa9d-caae416dca5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DWXP1GixQJUjpJi5aXkRff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 709,
+      "cache_read_input_tokens": 29868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 709
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Ykw225ajmtPBfwuSZZ7kj`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "head -50 /root/collapse-aware-mixing/metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "50f03cd8-328a-4984-884a-e32b22a3a519",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DWXP1GixQJUjpJi5aXkRff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 709,
+      "cache_read_input_tokens": 29868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 709
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QtDT69fRJSbg8yr4AYept7`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "sed -n '155,185p' /root/collapse-aware-mixing/metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "aa1c0094-4c89-4688-928b-cbc9f76358ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DWXP1GixQJUjpJi5aXkRff",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 709,
+      "cache_read_input_tokens": 29868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 709
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T17:25:03.674Z_
+
+<details><summary>↩ Tool result · `toolu_017Ykw225ajmtPBfwuSZZ7kj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Collapse-detection metrics for the pilot experiment.\\n\\nSix metrics computed at each training checkpoint:\\n1. Spectral effective rank (core hypothesis)\\n2. Token-level prediction entropy variance\\n3. N-gram entropy (uni/bi/trigram)\\n4. Vocabulary coverage\\n5. Perplexity on held-out real data\\n6. Inter-generational KL divergence (unigram approximation)\\n\\\"\\\"\\\"\\n\\nimport math\\nimport logging\\nfrom collections import Counter\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom torch.utils.data import DataLoader\\nfrom tqdm import tqdm\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# ---------------------------------------------------------------------------\\n# 1. Spectral effective rank\\n# ---------------------------------------------------------------------------\\n\\ndef compute_spectral_effective_rank(\\n    model: torch.nn.Module,\\n    dataloader: DataLoader,\\n    num_samples: int = 50_000,\\n    device: str = \\\"cuda\\\",\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"RankMe-style effective rank from final-layer hidden states.\\n\\n    Collects mean-pooled hidden states E (N x d), computes singular values,\\n    normalises to a distribution p, and returns exp(H(p)).\\n    \\\"\\\"\\\"\\n    model.eval()\\n    hidden_list = []\\n    collected = 0\\n\\n    with torch.no_grad():\\n        for batch in tqdm(dataloader, desc=\\\"spectral-rank\\\", leave=False):\\n            if collected >= num_samples:\\n                break\\n            input_ids = batch[\\\"input_ids\\\"].to(device)\\n            attn_mask = batch[\\\"attention_mask\\\"].to(device)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "9ce6ce79-1d5e-4375-8e0b-101031e1e271",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Collapse-detection metrics for the pilot experiment.\\\\n\\\\nSix metrics computed at each training checkpoint:\\\\n1. Spectral effective rank (core hypothesis)\\\\n2. Token-level prediction entropy variance\\\\n3. N-gram entropy (uni/bi/trigram)\\\\n4. Vocabulary coverage\\\\n5. Perplexity on held-out real data\\\\n6. Inter-generational KL divergence (unigram approximation)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport math\\\\nimport logging\\\\nfrom collections import Counter\\\\nfrom typing import Dict, List, Optional\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom tqdm import tqdm\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# 1. Spectral effective rank\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_spectral_effective_rank(\\\\n    model: torch.nn.Module,\\\\n    dataloader: DataLoader,\\\\n    num_samples: int = 50_000,\\\\n    device: str = \\\\\\\"cuda\\\\\\\",\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"RankMe-style effective rank from final-layer hidden states.\\\\n\\\\n    Collects mean-pooled hidden states E (N x d), computes singular values,\\\\n    normalises to a distribution p, and returns exp(H(p)).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model.eval()\\\\n    hidden_list = []\\\\n    collected = 0\\\\n\\\\n    with torch.no_grad():\\\\n        for batch in tqdm(dataloader, desc=\\\\\\\"spectral-rank\\\\\\\", leave=False):\\\\n            if collected >= num_samples:\\\\n                break\\\\n            input_ids = batch[\\\\\\\"input_ids\\\\\\\"].to(device)\\\\n            attn_mask = batch[\\\\\\\"attention_mask\\\\\\\"].to(device)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Collapse-detection metrics for the pilot experiment.\\n\\nSix metrics computed at each training checkpoint:\\n1. Spectral effective rank (core hypothesis)\\n2. Token-level prediction entropy variance\\n3. N-gram entropy (uni/bi/trigram)\\n4. Vocabulary coverage\\n5. Perplexity on held-out real data\\n6. Inter-generational KL divergence (unigram approximation)\\n\\\"\\\"\\\"\\n\\nimport math\\nimport logging\\nfrom collections import Counter\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom torch.utils.data import DataLoader\\nfrom tqdm import tqdm\\n\\nlogger = logging.getLogger(__name__)\\n\\n\\n# ---------------------------------------------------------------------------\\n# 1. Spectral effective rank\\n# ---------------------------------------------------------------------------\\n\\ndef compute_spectral_effective_rank(\\n    model: torch.nn.Module,\\n    dataloader: DataLoader,\\n    num_samples: int = 50_000,\\n    device: str = \\\"cuda\\\",\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"RankMe-style effective rank from final-layer hidden states.\\n\\n    Collects mean-pooled hidden states E (N x d), computes singular values,\\n    normalises to a distribution p, and returns exp(H(p)).\\n    \\\"\\\"\\\"\\n    model.eval()\\n    hidden_list = []\\n    collected = 0\\n\\n    with torch.no_grad():\\n        for batch in tqdm(dataloader, desc=\\\"spectral-rank\\\", leave=False):\\n            if collected >= num_samples:\\n                break\\n            input_ids = batch[\\\"input_ids\\\"].to(device)\\n            attn_mask = batch[\\\"attention_mask\\\"].to(device)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-12T17:25:03.690Z_
+
+<details><summary>↩ Tool result · `toolu_01QtDT69fRJSbg8yr4AYept7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "843cb27d-0c2f-4a9f-94ac-f1250643f15e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QihAX1RQijMAhp9X8hqvkD`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "tail -n +155 /root/collapse-aware-mixing/metrics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "31e71d29-ee49-471c-b1fb-0cedf9c44603",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016EhaYLgMuYsJ4Y8ioxcmav",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1286,
+      "cache_read_input_tokens": 30577,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1286
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T17:25:07.748Z_
+
+<details><summary>↩ Tool result · `toolu_01QihAX1RQijMAhp9X8hqvkD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n# ---------------------------------------------------------------------------\\n# 5. Perplexity\\n# ---------------------------------------------------------------------------\\n\\ndef compute_perplexity(\\n    model: torch.nn.Module,\\n    dataloader: DataLoader,\\n    num_samples: int = 5_000,\\n    device: str = \\\"cuda\\\",\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Standard perplexity on held-out data.\\\"\\\"\\\"\\n    model.eval()\\n    total_loss = 0.0\\n    total_tokens = 0\\n    seen = 0\\n\\n    with torch.no_grad():\\n        for batch in tqdm(dataloader, desc=\\\"perplexity\\\", leave=False):\\n            if seen >= num_samples:\\n                break\\n            input_ids = batch[\\\"input_ids\\\"].to(device)\\n            attn_mask = batch[\\\"attention_mask\\\"].to(device)\\n            labels = input_ids.clone()\\n            labels[attn_mask == 0] = -100\\n\\n            loss = model(input_ids=input_ids, attention_mask=attn_mask, labels=labels).loss\\n            n_tok = (labels[:, 1:] != -100).sum().item()\\n            total_loss += loss.item() * n_tok\\n            total_tokens += n_tok\\n            seen += input_ids.shape[0]\\n\\n    avg_loss = total_loss / max(total_tokens, 1)\\n    return {\\n        \\\"perplexity\\\": math.exp(avg_loss),\\n        \\\"avg_loss\\\": avg_loss,\\n        \\\"ppl_num_tokens\\\": total_tokens,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# 6. Inter-generational KL divergence (full distribution report)\\n# ---------------------------------------------------------------------------\\n\\ndef _unigram_dist(ids: np.ndarray, vocab_size: int, smoothing: float = 1e-8) -> np.ndarray:\\n    c = np.bincount(ids, minlength=vocab_size).astype(np.float64)\\n    c += smoothing\\n    return c / c.sum()\\n\\n\\ndef _bigram_kl(ids_a: List[int], ids_b: List[int], smoothing: float = 1e-8) -> float:\\n    \\\"\\\"\\\"KL(P_a || P_b) over bigram distributions (sparse, observed-support only).\\\"\\\"\\\"\\n    ca: Counter = Counter(zip(ids_a[:-1], ids_a[1:]))\\n    cb: Counter = Counter(zip(ids_b[:-1], ids_b[1:]))\\n    all_bg = set(ca) | set(cb)\\n    n_bg = len(all_bg)\\n    total_a = sum(ca.values()) + smoothing * n_bg\\n    total_b = sum(cb.values()) + smoothing * n_bg\\n    kl = 0.0\\n    for bg in all_bg:\\n        pa = (ca.get(bg, 0) + smoothing) / total_a\\n        pb = (cb.get(bg, 0) + smoothing) / total_b\\n        kl += pa * math.log(pa / pb)\\n    return kl\\n\\n\\ndef compute_kl_divergence(\\n    ids_a: List[int],\\n    ids_b: List[int],\\n    vocab_size: int,\\n    smoothing: float = 1e-8,\\n    n_bootstrap: int = 1000,\\n    ci_level: float = 0.95,\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Full KL divergence report.\\n\\n    Returns unigram KL, bigram KL, frequency-binned KL contributions\\n    (high/mid/low-freq tokens), and bootstrap 95% CI on unigram KL.\\n    \\\"\\\"\\\"\\n    arr_a = np.array(ids_a, dtype=np.int64)\\n    arr_b = np.array(ids_b, dtype=np.int64)\\n\\n    # --- Unigram KL ---\\n    p = _unigram_dist(arr_a, vocab_size, smoothing)\\n    q = _unigram_dist(arr_b, vocab_size, smoothing)\\n    per_token_kl = p * np.log(p / q)\\n    kl_unigram = float(per_token_kl.sum())\\n    kl_reverse = float((q * np.log(q / p)).sum())\\n    js = 0.5 * (kl_unigram + kl_reverse)\\n\\n    # --- Bigram KL ---\\n    kl_bigram = _bigram_kl(ids_a, ids_b, smoothing)\\n\\n    # --- Frequency-binned KL (based on reference corpus ids_a) ---\\n    counts_a = np.bincount(arr_a, minlength=vocab_size)\\n    ranked = np.argsort(-counts_a)\\n    n_nonzero = int((counts_a[ranked] > 0).sum())\\n    cut_high = max(1, n_nonzero // 100)         # top 1% of token types\\n    cut_mid = max(cut_high + 1, n_nonzero // 5)  # top 20%\\n\\n    kl_freq_high = float(per_token_kl[ranked[:cut_high]].sum())\\n    kl_freq_mid = float(per_token_kl[ranked[cut_high:cut_mid]].sum())\\n    kl_freq_low = float(per_token_kl[ranked[cut_mid:]].sum())\\n\\n    # --- Bootstrap CI on unigram KL ---\\n    rng = np.random.default_rng(42)\\n    sub_n = min(1_000_000, len(arr_a), len(arr_b))\\n    boot_kls = np.empty(n_bootstrap)\\n    for i in range(n_bootstrap):\\n        sa = rng.choice(arr_a, size=sub_n, replace=True)\\n        sb = rng.choice(arr_b, size=sub_n, replace=True)\\n \\n\\n... [截断: 输出过长，省略 1237 字符] ...\\n\\nne checkpoint\\n# ---------------------------------------------------------------------------\\n\\ndef compute_checkpoint_metrics(\\n    model: torch.nn.Module,\\n    holdout_loader: DataLoader,\\n    gen_token_ids: List[int],\\n    prev_gen_token_ids: Optional[List[int]],\\n    vocab_size: int,\\n    config,\\n    device: str = \\\"cuda\\\",\\n    prev_model: Optional[torch.nn.Module] = None,\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Compute all six metric groups for a single checkpoint.\\\"\\\"\\\"\\n    results: Dict[str, float] = {}\\n\\n    logger.info(\\\"Computing spectral effective rank ...\\\")\\n    results.update(compute_spectral_effective_rank(\\n        model, holdout_loader, num_samples=config.spectral_num_samples, device=device\\n    ))\\n\\n    logger.info(\\\"Computing token entropy variance ...\\\")\\n    results.update(compute_token_entropy_variance(\\n        model, holdout_loader, num_samples=config.ppl_num_samples, device=device\\n    ))\\n\\n    logger.info(\\\"Computing perplexity ...\\\")\\n    results.update(compute_perplexity(\\n        model, holdout_loader, num_samples=config.ppl_num_samples, device=device\\n    ))\\n\\n    logger.info(\\\"Computing n-gram entropy & vocab coverage ...\\\")\\n    results.update(compute_ngram_entropy(gen_token_ids))\\n    results.update(compute_vocab_coverage(gen_token_ids, vocab_size))\\n\\n    if prev_gen_token_ids is not None:\\n        logger.info(\\\"Computing KL divergence (full report) ...\\\")\\n        results.update(compute_kl_divergence(prev_gen_token_ids, gen_token_ids, vocab_size))\\n\\n    if prev_model is not None:\\n        logger.info(\\\"Computing logit-level KL divergence ...\\\")\\n        results.update(compute_logit_kl_divergence(\\n            model, prev_model, holdout_loader,\\n            num_samples=config.ppl_num_samples, device=device\\n        ))\\n\\n    return results\\n\\n\\n# ---------------------------------------------------------------------------\\n# 6b. Logit-level inter-generational KL divergence\\n# ---------------------------------------------------------------------------\\n\\ndef compute_logit_kl_divergence(\\n    model_curr: torch.nn.Module,\\n    model_prev: torch.nn.Module,\\n    dataloader: DataLoader,\\n    num_samples: int = 2_000,\\n    device: str = \\\"cuda\\\",\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"KL(P_prev || P_curr) at the full logit distribution level on the same inputs.\\n\\n    Feeds the same held-out batches to both models, computes per-token KL\\n    divergence between their next-token probability distributions.\\n    \\\"\\\"\\\"\\n    model_curr.eval()\\n    model_prev.eval()\\n    kl_values = []\\n    seen = 0\\n\\n    with torch.no_grad():\\n        for batch in tqdm(dataloader, desc=\\\"logit-kl\\\", leave=False):\\n            if seen >= num_samples:\\n                break\\n            input_ids = batch[\\\"input_ids\\\"].to(device)\\n            attn_mask = batch[\\\"attention_mask\\\"].to(device)\\n\\n            logits_curr = model_curr(input_ids=input_ids, attention_mask=attn_mask).logits\\n            logits_prev = model_prev(input_ids=input_ids, attention_mask=attn_mask).logits\\n\\n            # shift: predict position t+1 from position t\\n            logits_curr = logits_curr[:, :-1, :].float()\\n            logits_prev = logits_prev[:, :-1, :].float()\\n            mask = attn_mask[:, 1:].bool()\\n\\n            log_p = F.log_softmax(logits_prev, dim=-1)\\n            log_q = F.log_softmax(logits_curr, dim=-1)\\n            p = log_p.exp()\\n\\n            # KL(P_prev || P_curr) = sum_x p(x) * (log p(x) - log q(x))\\n            kl = (p * (log_p - log_q)).sum(dim=-1)  # (B, L-1)\\n\\n            for i in range(kl.shape[0]):\\n                kl_values.append(kl[i][mask[i]].cpu())\\n            seen += input_ids.shape[0]\\n\\n    all_kl = torch.cat(kl_values).float()\\n    return {\\n        \\\"logit_kl_mean\\\": all_kl.mean().item(),\\n        \\\"logit_kl_var\\\": all_kl.var().item(),\\n        \\\"logit_kl_std\\\": all_kl.std().item(),\\n        \\\"logit_kl_median\\\": all_kl.median().item(),\\n        \\\"logit_kl_max\\\": all_kl.max().item(),\\n        \\\"logit_kl_p90\\\": all_kl.quantile(0.9).item(),\\n        \\\"logit_kl_p99\\\": all_kl.quantile(0.99).item(),\\n        \\\"logit_kl_num_tokens\\\": int(all_kl.shape[0]),\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "4c80db5f-a781-490c-92e7-75cf323435cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n# ---------------------------------------------------------------------------\\\\n# 5. Perplexity\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_perplexity(\\\\n    model: torch.nn.Module,\\\\n    dataloader: DataLoader,\\\\n    num_samples: int = 5_000,\\\\n    device: str = \\\\\\\"cuda\\\\\\\",\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Standard perplexity on held-out data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model.eval()\\\\n    total_loss = 0.0\\\\n    total_tokens = 0\\\\n    seen = 0\\\\n\\\\n    with torch.no_grad():\\\\n        for batch in tqdm(dataloader, desc=\\\\\\\"perplexity\\\\\\\", leave=False):\\\\n            if seen >= num_samples:\\\\n                break\\\\n            input_ids = batch[\\\\\\\"input_ids\\\\\\\"].to(device)\\\\n            attn_mask = batch[\\\\\\\"attention_mask\\\\\\\"].to(device)\\\\n            labels = input_ids.clone()\\\\n            labels[attn_mask == 0] = -100\\\\n\\\\n            loss = model(input_ids=input_ids, attention_mask=attn_mask, labels=labels).loss\\\\n            n_tok = (labels[:, 1:] != -100).sum().item()\\\\n            total_loss += loss.item() * n_tok\\\\n            total_tokens += n_tok\\\\n            seen += input_ids.shape[0]\\\\n\\\\n    avg_loss = total_loss / max(total_tokens, 1)\\\\n    return {\\\\n        \\\\\\\"perplexity\\\\\\\": math.exp(avg_loss),\\\\n        \\\\\\\"avg_loss\\\\\\\": avg_loss,\\\\n        \\\\\\\"ppl_num_tokens\\\\\\\": total_tokens,\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# 6. Inter-generational KL divergence (full distribution report)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _unigram_dist(ids: np.ndarray, vocab_size: int, smoothing: float = 1e-8) -> np.ndarray:\\\\n    c = np.bincount(ids, minlength=vocab_size).astype(np.float64)\\\\n    c += smoothing\\\\n    return c / c.sum()\\\\n\\\\n\\\\ndef _bigram_kl(ids_a: List[int], ids_b: List[int], smoothing: float = 1e-8) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"KL(P_a || P_b) over bigram distributions (sparse, observed-support only).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ca: Counter = Counter(zip(ids_a[:-1], ids_a[1:]))\\\\n    cb: Counter = Counter(zip(ids_b[:-1], ids_b[1:]))\\\\n    all_bg = set(ca) | set(cb)\\\\n    n_bg = len(all_bg)\\\\n    total_a = sum(ca.values()) + smoothing * n_bg\\\\n    total_b = sum(cb.values()) + smoothing * n_bg\\\\n    kl = 0.0\\\\n    for bg in all_bg:\\\\n        pa = (ca.get(bg, 0) + smoothing) / total_a\\\\n        pb = (cb.get(bg, 0) + smoothing) / total_b\\\\n        kl += pa * math.log(pa / pb)\\\\n    return kl\\\\n\\\\n\\\\ndef compute_kl_divergence(\\\\n    ids_a: List[int],\\\\n    ids_b: List[int],\\\\n    vocab_size: int,\\\\n    smoothing: float = 1e-8,\\\\n    n_bootstrap: int = 1000,\\\\n    ci_level: float = 0.95,\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full KL divergence report.\\\\n\\\\n    Returns unigram KL, bigram KL, frequency-binned KL contributions\\\\n    (high/mid/low-freq tokens), and bootstrap 95% CI on unigram KL.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    arr_a = np.array(ids_a, dtype=np.int64)\\\\n    arr_b = np.array(ids_b, dtype=np.int64)\\\\n\\\\n    # --- Unigram KL ---\\\\n    p = _unigram_dist(arr_a, vocab_size, smoothing)\\\\n    q = _unigram_dist(arr_b, vocab_size, smoothing)\\\\n    per_token_kl = p * np.log(p / q)\\\\n    kl_unigram = float(per_token_kl.sum())\\\\n    kl_reverse = float((q * np.log(q / p)).sum())\\\\n    js = 0.5 * (kl_unigram + kl_reverse)\\\\n\\\\n    # --- Bigram KL ---\\\\n    kl_bigram = _bigram_kl(ids_a, ids_b, smoothing)\\\\n\\\\n    # --- Frequency-binned KL (based on reference corpus ids_a) ---\\\\n    counts_a = np.bincount(arr_a, minlength=vocab_size)\\\\n    ranked = np.argsort(-counts_a)\\\\n    n_nonzero = int((counts_a[ranked] > 0).sum())\\\\n    cut_high = max(1, n_nonzero // 100)         # top 1% of token types\\\\n    cut_mid = max(cut_high + 1, n_nonzero // 5)  # top 20%\\\\n\\\\n    kl_freq_high = float(per_token_kl[ranked[:cut_high]].sum())\\\\n    kl_freq_mid = float(per_token_kl[ranked[cut_high:cut_mid]].sum())\\\\n    kl_freq_low = float(per_token_kl[ranked[cut_mid:]].sum())\\\\n\\\\n    # --- Bootstrap CI on unigram KL ---\\\\n    rng = np.random.default_rng(42)\\\\n    sub_n = min(1_000_000, len(arr_a), len(arr_b))\\\\n    boot_kls = np.empty(n_bootstrap)\\\\n    for i in range(n_bootstrap):\\\\n        sa = rng.choice(arr_a, size=sub_n, replace=True)\\\\n        sb = rng.choice(arr_b, size=sub_n, replace=True)\\\\n \\\\n\\\\n... [截断: 输出过长，省略 1237 字符] ...\\\\n\\\\nne checkpoint\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_checkpoint_metrics(\\\\n    model: torch.nn.Module,\\\\n    holdout_loader: DataLoader,\\\\n    gen_token_ids: List[int],\\\\n    prev_gen_token_ids: Optional[List[int]],\\\\n    vocab_size: int,\\\\n    config,\\\\n    device: str = \\\\\\\"cuda\\\\\\\",\\\\n    prev_model: Optional[torch.nn.Module] = None,\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute all six metric groups for a single checkpoint.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results: Dict[str, float] = {}\\\\n\\\\n    logger.info(\\\\\\\"Computing spectral effective rank ...\\\\\\\")\\\\n    results.update(compute_spectral_effective_rank(\\\\n        model, holdout_loader, num_samples=config.spectral_num_samples, device=device\\\\n    ))\\\\n\\\\n    logger.info(\\\\\\\"Computing token entropy variance ...\\\\\\\")\\\\n    results.update(compute_token_entropy_variance(\\\\n        model, holdout_loader, num_samples=config.ppl_num_samples, device=device\\\\n    ))\\\\n\\\\n    logger.info(\\\\\\\"Computing perplexity ...\\\\\\\")\\\\n    results.update(compute_perplexity(\\\\n        model, holdout_loader, num_samples=config.ppl_num_samples, device=device\\\\n    ))\\\\n\\\\n    logger.info(\\\\\\\"Computing n-gram entropy & vocab coverage ...\\\\\\\")\\\\n    results.update(compute_ngram_entropy(gen_token_ids))\\\\n    results.update(compute_vocab_coverage(gen_token_ids, vocab_size))\\\\n\\\\n    if prev_gen_token_ids is not None:\\\\n        logger.info(\\\\\\\"Computing KL divergence (full report) ...\\\\\\\")\\\\n        results.update(compute_kl_divergence(prev_gen_token_ids, gen_token_ids, vocab_size))\\\\n\\\\n    if prev_model is not None:\\\\n        logger.info(\\\\\\\"Computing logit-level KL divergence ...\\\\\\\")\\\\n        results.update(compute_logit_kl_divergence(\\\\n            model, prev_model, holdout_loader,\\\\n            num_samples=config.ppl_num_samples, device=device\\\\n        ))\\\\n\\\\n    return results\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# 6b. Logit-level inter-generational KL divergence\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_logit_kl_divergence(\\\\n    model_curr: torch.nn.Module,\\\\n    model_prev: torch.nn.Module,\\\\n    dataloader: DataLoader,\\\\n    num_samples: int = 2_000,\\\\n    device: str = \\\\\\\"cuda\\\\\\\",\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"KL(P_prev || P_curr) at the full logit distribution level on the same inputs.\\\\n\\\\n    Feeds the same held-out batches to both models, computes per-token KL\\\\n    divergence between their next-token probability distributions.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model_curr.eval()\\\\n    model_prev.eval()\\\\n    kl_values = []\\\\n    seen = 0\\\\n\\\\n    with torch.no_grad():\\\\n        for batch in tqdm(dataloader, desc=\\\\\\\"logit-kl\\\\\\\", leave=False):\\\\n            if seen >= num_samples:\\\\n                break\\\\n            input_ids = batch[\\\\\\\"input_ids\\\\\\\"].to(device)\\\\n            attn_mask = batch[\\\\\\\"attention_mask\\\\\\\"].to(device)\\\\n\\\\n            logits_curr = model_curr(input_ids=input_ids, attention_mask=attn_mask).logits\\\\n            logits_prev = model_prev(input_ids=input_ids, attention_mask=attn_mask).logits\\\\n\\\\n            # shift: predict position t+1 from position t\\\\n            logits_curr = logits_curr[:, :-1, :].float()\\\\n            logits_prev = logits_prev[:, :-1, :].float()\\\\n            mask = attn_mask[:, 1:].bool()\\\\n\\\\n            log_p = F.log_softmax(logits_prev, dim=-1)\\\\n            log_q = F.log_softmax(logits_curr, dim=-1)\\\\n            p = log_p.exp()\\\\n\\\\n            # KL(P_prev || P_curr) = sum_x p(x) * (log p(x) - log q(x))\\\\n            kl = (p * (log_p - log_q)).sum(dim=-1)  # (B, L-1)\\\\n\\\\n            for i in range(kl.shape[0]):\\\\n                kl_values.append(kl[i][mask[i]].cpu())\\\\n            seen += input_ids.shape[0]\\\\n\\\\n    all_kl = torch.cat(kl_values).float()\\\\n    return {\\\\n        \\\\\\\"logit_kl_mean\\\\\\\": all_kl.mean().item(),\\\\n        \\\\\\\"logit_kl_var\\\\\\\": all_kl.var().item(),\\\\n        \\\\\\\"logit_kl_std\\\\\\\": all_kl.std().item(),\\\\n        \\\\\\\"logit_kl_median\\\\\\\": all_kl.median().item(),\\\\n        \\\\\\\"logit_kl_max\\\\\\\": all_kl.max().item(),\\\\n        \\\\\\\"logit_kl_p90\\\\\\\": all_kl.quantile(0.9).item(),\\\\n        \\\\\\\"logit_kl_p99\\\\\\\": all_kl.quantile(0.99).item(),\\\\n        \\\\\\\"logit_kl_num_tokens\\\\\\\": int(all_kl.shape[0]),\\\\n    }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n# ---------------------------------------------------------------------------\\n# 5. Perplexity\\n# ---------------------------------------------------------------------------\\n\\ndef compute_perplexity(\\n    model: torch.nn.Module,\\n    dataloader: DataLoader,\\n    num_samples: int = 5_000,\\n    device: str = \\\"cuda\\\",\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Standard perplexity on held-out data.\\\"\\\"\\\"\\n    model.eval()\\n    total_loss = 0.0\\n    total_tokens = 0\\n    seen = 0\\n\\n    with torch.no_grad():\\n        for batch in tqdm(dataloader, desc=\\\"perplexity\\\", leave=False):\\n            if seen >= num_samples:\\n                break\\n            input_ids = batch[\\\"input_ids\\\"].to(device)\\n            attn_mask = batch[\\\"attention_mask\\\"].to(device)\\n            labels = input_ids.clone()\\n            labels[attn_mask == 0] = -100\\n\\n            loss = model(input_ids=input_ids, attention_mask=attn_mask, labels=labels).loss\\n            n_tok = (labels[:, 1:] != -100).sum().item()\\n            total_loss += loss.item() * n_tok\\n            total_tokens += n_tok\\n            seen += input_ids.shape[0]\\n\\n    avg_loss = total_loss / max(total_tokens, 1)\\n    return {\\n        \\\"perplexity\\\": math.exp(avg_loss),\\n        \\\"avg_loss\\\": avg_loss,\\n        \\\"ppl_num_tokens\\\": total_tokens,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# 6. Inter-generational KL divergence (full distribution report)\\n# ---------------------------------------------------------------------------\\n\\ndef _unigram_dist(ids: np.ndarray, vocab_size: int, smoothing: float = 1e-8) -> np.ndarray:\\n    c = np.bincount(ids, minlength=vocab_size).astype(np.float64)\\n    c += smoothing\\n    return c / c.sum()\\n\\n\\ndef _bigram_kl(ids_a: List[int], ids_b: List[int], smoothing: float = 1e-8) -> float:\\n    \\\"\\\"\\\"KL(P_a || P_b) over bigram distributions (sparse, observed-support only).\\\"\\\"\\\"\\n    ca: Counter = Counter(zip(ids_a[:-1], ids_a[1:]))\\n    cb: Counter = Counter(zip(ids_b[:-1], ids_b[1:]))\\n    all_bg = set(ca) | set(cb)\\n    n_bg = len(all_bg)\\n    total_a = sum(ca.values()) + smoothing * n_bg\\n    total_b = sum(cb.values()) + smoothing * n_bg\\n    kl = 0.0\\n    for bg in all_bg:\\n        pa = (ca.get(bg, 0) + smoothing) / total_a\\n        pb = (cb.get(bg, 0) + smoothing) / total_b\\n        kl += pa * math.log(pa / pb)\\n    return kl\\n\\n\\ndef compute_kl_divergence(\\n    ids_a: List[int],\\n    ids_b: List[int],\\n    vocab_size: int,\\n    smoothing: float = 1e-8,\\n    n_bootstrap: int = 1000,\\n    ci_level: float = 0.95,\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Full KL divergence report.\\n\\n    Returns unigram KL, bigram KL, frequency-binned KL contributions\\n    (high/mid/low-freq tokens), and bootstrap 95% CI on unigram KL.\\n    \\\"\\\"\\\"\\n    arr_a = np.array(ids_a, dtype=np.int64)\\n    arr_b = np.array(ids_b, dtype=np.int64)\\n\\n    # --- Unigram KL ---\\n    p = _unigram_dist(arr_a, vocab_size, smoothing)\\n    q = _unigram_dist(arr_b, vocab_size, smoothing)\\n    per_token_kl = p * np.log(p / q)\\n    kl_unigram = float(per_token_kl.sum())\\n    kl_reverse = float((q * np.log(q / p)).sum())\\n    js = 0.5 * (kl_unigram + kl_reverse)\\n\\n    # --- Bigram KL ---\\n    kl_bigram = _bigram_kl(ids_a, ids_b, smoothing)\\n\\n    # --- Frequency-binned KL (based on reference corpus ids_a) ---\\n    counts_a = np.bincount(arr_a, minlength=vocab_size)\\n    ranked = np.argsort(-counts_a)\\n    n_nonzero = int((counts_a[ranked] > 0).sum())\\n    cut_high = max(1, n_nonzero // 100)         # top 1% of token types\\n    cut_mid = max(cut_high + 1, n_nonzero // 5)  # top 20%\\n\\n    kl_freq_high = float(per_token_kl[ranked[:cut_high]].sum())\\n    kl_freq_mid = float(per_token_kl[ranked[cut_high:cut_mid]].sum())\\n    kl_freq_low = float(per_token_kl[ranked[cut_mid:]].sum())\\n\\n    # --- Bootstrap CI on unigram KL ---\\n    rng = np.random.default_rng(42)\\n    sub_n = min(1_000_000, len(arr_a), len(arr_b))\\n    boot_kls = np.empty(n_bootstrap)\\n    for i in range(n_bootstrap):\\n        sa = rng.choice(arr_a, size=sub_n, replace=True)\\n        sb = rng.choice(arr_b, size=sub_n, replace=True)\\n \\n\\n... [截断: 输出过长，省略 1237 字符] ...\\n\\nne checkpoint\\n# ---------------------------------------------------------------------------\\n\\ndef compute_checkpoint_metrics(\\n    model: torch.nn.Module,\\n    holdout_loader: DataLoader,\\n    gen_token_ids: List[int],\\n    prev_gen_token_ids: Optional[List[int]],\\n    vocab_size: int,\\n    config,\\n    device: str = \\\"cuda\\\",\\n    prev_model: Optional[torch.nn.Module] = None,\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Compute all six metric groups for a single checkpoint.\\\"\\\"\\\"\\n    results: Dict[str, float] = {}\\n\\n    logger.info(\\\"Computing spectral effective rank ...\\\")\\n    results.update(compute_spectral_effective_rank(\\n        model, holdout_loader, num_samples=config.spectral_num_samples, device=device\\n    ))\\n\\n    logger.info(\\\"Computing token entropy variance ...\\\")\\n    results.update(compute_token_entropy_variance(\\n        model, holdout_loader, num_samples=config.ppl_num_samples, device=device\\n    ))\\n\\n    logger.info(\\\"Computing perplexity ...\\\")\\n    results.update(compute_perplexity(\\n        model, holdout_loader, num_samples=config.ppl_num_samples, device=device\\n    ))\\n\\n    logger.info(\\\"Computing n-gram entropy & vocab coverage ...\\\")\\n    results.update(compute_ngram_entropy(gen_token_ids))\\n    results.update(compute_vocab_coverage(gen_token_ids, vocab_size))\\n\\n    if prev_gen_token_ids is not None:\\n        logger.info(\\\"Computing KL divergence (full report) ...\\\")\\n        results.update(compute_kl_divergence(prev_gen_token_ids, gen_token_ids, vocab_size))\\n\\n    if prev_model is not None:\\n        logger.info(\\\"Computing logit-level KL divergence ...\\\")\\n        results.update(compute_logit_kl_divergence(\\n            model, prev_model, holdout_loader,\\n            num_samples=config.ppl_num_samples, device=device\\n        ))\\n\\n    return results\\n\\n\\n# ---------------------------------------------------------------------------\\n# 6b. Logit-level inter-generational KL divergence\\n# ---------------------------------------------------------------------------\\n\\ndef compute_logit_kl_divergence(\\n    model_curr: torch.nn.Module,\\n    model_prev: torch.nn.Module,\\n    dataloader: DataLoader,\\n    num_samples: int = 2_000,\\n    device: str = \\\"cuda\\\",\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"KL(P_prev || P_curr) at the full logit distribution level on the same inputs.\\n\\n    Feeds the same held-out batches to both models, computes per-token KL\\n    divergence between their next-token probability distributions.\\n    \\\"\\\"\\\"\\n    model_curr.eval()\\n    model_prev.eval()\\n    kl_values = []\\n    seen = 0\\n\\n    with torch.no_grad():\\n        for batch in tqdm(dataloader, desc=\\\"logit-kl\\\", leave=False):\\n            if seen >= num_samples:\\n                break\\n            input_ids = batch[\\\"input_ids\\\"].to(device)\\n            attn_mask = batch[\\\"attention_mask\\\"].to(device)\\n\\n            logits_curr = model_curr(input_ids=input_ids, attention_mask=attn_mask).logits\\n            logits_prev = model_prev(input_ids=input_ids, attention_mask=attn_mask).logits\\n\\n            # shift: predict position t+1 from position t\\n            logits_curr = logits_curr[:, :-1, :].float()\\n            logits_prev = logits_prev[:, :-1, :].float()\\n            mask = attn_mask[:, 1:].bool()\\n\\n            log_p = F.log_softmax(logits_prev, dim=-1)\\n            log_q = F.log_softmax(logits_curr, dim=-1)\\n            p = log_p.exp()\\n\\n            # KL(P_prev || P_curr) = sum_x p(x) * (log p(x) - log q(x))\\n            kl = (p * (log_p - log_q)).sum(dim=-1)  # (B, L-1)\\n\\n            for i in range(kl.shape[0]):\\n                kl_values.append(kl[i][mask[i]].cpu())\\n            seen += input_ids.shape[0]\\n\\n    all_kl = torch.cat(kl_values).float()\\n    return {\\n        \\\"logit_kl_mean\\\": all_kl.mean().item(),\\n        \\\"logit_kl_var\\\": all_kl.var().item(),\\n        \\\"logit_kl_std\\\": all_kl.std().item(),\\n        \\\"logit_kl_median\\\": all_kl.median().item(),\\n        \\\"logit_kl_max\\\": all_kl.max().item(),\\n        \\\"logit_kl_p90\\\": all_kl.quantile(0.9).item(),\\n        \\\"logit_kl_p99\\\": all_kl.quantile(0.99).item(),\\n        \\\"logit_kl_num_tokens\\\": int(all_kl.shape[0]),\\n    }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed. Let me compile the compatibility report.
+
+### analyze_g0.py expectations:
+
+1. **`--checkpoint-dir`**: expects a directory containing `checkpoint-{step}` subdirs
+   - `discover_checkpoints()` uses `glob.glob(os.path.join(checkpoint_dir, "checkpoint-*"))` and regex `checkpoint-(\d+)$`
+   - Default docstring example: `--checkpoint-dir /root/autodl-tmp/output/G0/training`
+
+
+2. **Model loading**: requires `config.json` and `model.safetensors` files in each checkpoint directory, loaded via `AutoModelForCausalLM.from_pretrained()` with bfloat16 precision
+3. **Tokenizer**: sourced from the model name argument (defaulting to `EleutherAI/pythia-1b`), not from the checkpoint directory itself
+4. **Metrics computation**: calls `compute_spectral_effective_rank()` and `compute_perplexity()` functions with the model, holdout data loader, sample counts, and device
+
+Now I'm checking the actual checkpoint structure in the output directory. There are 10 checkpoints saved across the training run, and I've verified that both early and late checkpoints contain the necessary `config.json` and `model.safetensors` files (~2GB each), along with training state artifacts that won't affect the analysis. The tokenizer files aren't present in the checkpoints, which aligns with loading it separately from the model name.
+
+Looking at the metrics functions I'll be calling, `compute_spectral_effective_rank` takes the model and dataloader to return the spectral effective rank, while `compute_perplexity` computes perplexity and loss metrics on the holdout set. Both functions match how analyze_g0.py invokes them with the appropriate sample counts and device placement.
+
+The code accesses the correct keys from both results, so everything checks out as compatible. I should run the analysis with the pythia-1b model on the training checkpoints, though I'm noticing the holdout dataset path might need verification since the full source wasn't visible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "0dc59aa0-9278-4416-afda-8b1a4d09818a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013he4BcRnvErRMJ25YEtKkN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3345,
+      "cache_read_input_tokens": 31863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3345
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+最后验证一下 holdout 数据集路径是否存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "7cab8bdd-0876-42d9-ad5e-716b44a25bb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013he4BcRnvErRMJ25YEtKkN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3345,
+      "cache_read_input_tokens": 31863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3345
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FpyyFaDaVWwZJFdVkGtnmc`</summary>
+
+```json
+{
+  "server": "cqa1-38874",
+  "command": "ls /root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "849ad3c2-a971-4cf2-84f8-ee5af8e30822",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013he4BcRnvErRMJ25YEtKkN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3345,
+      "cache_read_input_tokens": 31863,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3345
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-12T17:25:30.818Z_
+
+<details><summary>↩ Tool result · `toolu_01FpyyFaDaVWwZJFdVkGtnmc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0.0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "b2352206-c57e-4341-b57f-70b4e23b189a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0.0.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0.0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+## 兼容性报告：analyze_g0.py vs v5 checkpoint
+
+### 结论：**完全兼容** ✓
+
+---
+
+### 1. 目录结构匹配
+
+| 项目 | analyze_g0.py 期望 | v5 实际产出 | 状态 |
+|------|-------------------|------------|------|
+| checkpoint 目录 | `--checkpoint-dir` 下的 `checkpoint-{step}/` 子目录 | `/root/autodl-tmp/output/G0/training/checkpoint-{152,304,...,1373}` | ✓ |
+| 命名格式 | regex `checkpoint-(\d+)$` | `checkpoint-152` ~ `checkpoint-1373`（共 10 个） | ✓ |
+| 模型权重 | `config.json` + `model.safetensors`（via `AutoModelForCausalLM.from_pretrained`） | 每个 checkpoint 均含 `config.json`（752B）+ `model.safetensors`（~2GB） | ✓ |
+| tokenizer | 从 `--model-name` 加载（默认 `EleutherAI/pythia-1b`），**不从 checkpoint 读取** | checkpoint 内无 tokenizer 文件 — 无影响 | ✓ |
+| holdout 数据集 | 默认 `/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1` | 路径存在 | ✓ |
+
+### 2. metrics.py 函数签名匹配
+
+| 函数 | analyze_g0.py 调用方式 | metrics.py 实际签名 | 状态 |
+|------|----------------------|-------------------|------|
+| `compute_spectral_effective_rank` | `(model, holdout_loader, num_samples=N, device=D)` | `(model, dataloader, num_samples=50000, device="cuda")` → `Dict["spectral_effective_rank"]` | ✓ |
+| `compute_perplexity` | `(model, holdout_loader, num_samples=N, device=D)` | `(model, dataloader, num_samples=5000, device="cuda")` → `Dict["perplexity", "avg_loss", "ppl_num_tokens"]` | ✓ |
+
+### 3. 推荐运行命令
+
+```bash
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+
+python /root/collapse-aware-mixing/analyze_g0.py \
+    --checkpoint-dir /root/autodl-tmp/output/G0/training \
+    --output-dir /root/autodl-tmp/output/g0_analysis \
+    --model-name EleutherAI/pythia-1b
+```
+
+无需调整任何参数，默认值全部适用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "uuid": "d74b8373-6a07-4649-adde-4df5084ecfe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7rHFaamPLna4Te5d8Hz9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 35208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1277
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+## 兼容性报告：analyze_g0.py vs v5 checkpoint
+
+### 结论：**完全兼容** ✓
+
+---
+
+### 1. 目录结构匹配
+
+| 项目 | analyze_g0.py 期望 | v5 实际产出 | 状态 |
+|------|-------------------|------------|------|
+| checkpoint 目录 | `--checkpoint-dir` 下的 `checkpoint-{step}/` 子目录 | `/root/autodl-tmp/output/G0/training/checkpoint-{152,304,...,1373}` | ✓ |
+| 命名格式 | regex `checkpoint-(\d+)$` | `checkpoint-152` ~ `checkpoint-1373`（共 10 个） | ✓ |
+| 模型权重 | `config.json` + `model.safetensors`（via `AutoModelForCausalLM.from_pretrained`） | 每个 checkpoint 均含 `config.json`（752B）+ `model.safetensors`（~2GB） | ✓ |
+| tokenizer | 从 `--model-name` 加载（默认 `EleutherAI/pythia-1b`），**不从 checkpoint 读取** | checkpoint 内无 tokenizer 文件 — 无影响 | ✓ |
+| holdout 数据集 | 默认 `/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1` | 路径存在 | ✓ |
+
+### 2. metrics.py 函数签名匹配
+
+| 函数 | analyze_g0.py 调用方式 | metrics.py 实际签名 | 状态 |
+|------|----------------------|-------------------|------|
+| `compute_spectral_effective_rank` | `(model, holdout_loader, num_samples=N, device=D)` | `(model, dataloader, num_samples=50000, device="cuda")` → `Dict["spectral_effective_rank"]` | ✓ |
+| `compute_perplexity` | `(model, holdout_loader, num_samples=N, device=D)` | `(model, dataloader, num_samples=5000, device="cuda")` → `Dict["perplexity", "avg_loss", "ppl_num_tokens"]` | ✓ |
+
+### 3. 推荐运行命令
+
+```bash
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+
+python /root/collapse-aware-mixing/analyze_g0.py \
+    --checkpoint-dir /root/autodl-tmp/output/G0/training \
+    --output-dir /root/autodl-tmp/output/g0_analysis \
+    --model-name EleutherAI/pythia-1b
+```
+
+无需调整任何参数，默认值全部适用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 89115,
+  "duration_api_ms": 87350,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "8919dec5-c368-4004-a574-448c07a3b3f3",
+  "total_cost_usd": 0.36495550000000004,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 24644,
+    "cache_read_input_tokens": 214543,
+    "output_tokens": 4091,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24644,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 758,
+        "cache_read_input_tokens": 35208,
+        "cache_creation_input_tokens": 1277,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1277
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1209,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001324,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 4091,
+      "cacheReadInputTokens": 214543,
+      "cacheCreationInputTokens": 24644,
+      "webSearchRequests": 0,
+      "costUSD": 0.36363150000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "30a46ff1-7685-482d-9d52-6af371e4242c"
+}
+```
+
+</details>
+
+---

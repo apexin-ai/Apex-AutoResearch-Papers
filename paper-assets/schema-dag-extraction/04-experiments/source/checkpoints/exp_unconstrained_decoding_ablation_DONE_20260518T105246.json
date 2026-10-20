@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp_unconstrained_decoding_ablation",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:54:50.724Z",
+    "updated_at": "2026-05-18T10:52:46.803Z",
+    "hypothesis": "The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion.",
+    "parent": "exp_fewrel_formal_80rel",
+    "spec": {
+      "command": "bash -c \"cd /root/schema-dag-extraction && source /root/miniconda3/bin/activate base && python src/run_unconstrained_decoding_ablation.py\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "542072",
+      "log_path": "~/runs/schema-dag-extraction/exp_unconstrained_decoding_ablation.log",
+      "submitted_at": "2026-05-18T10:21:03.700Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1903.1,
+      "gpu_hours": 0.53
+    },
+    "conclusion": "success",
+    "metrics": {
+      "low_bcs_mean_acc": 0.8042,
+      "high_bcs_mean_acc": 0.725,
+      "delta_pp": 7.92,
+      "ci_95_lower_pp": -5.21,
+      "ci_95_upper_pp": 21.46,
+      "spearman_rho": -0.4303,
+      "spearman_pval": 0.214492,
+      "oov_rate": 0,
+      "n_bootstrap": 10000,
+      "total_samples": 960
+    },
+    "log_path": "/root/schema-dag-extraction/results/unconstrained_decoding_ablation/",
+    "checkpoint_path": "N/A (inference-only ablation)",
+    "completed_at": "2026-05-18T10:52:46.803Z"
+  },
+  "timestamp": "2026-05-18T10:52:46.974168+00:00",
+  "trigger": "update_registry"
+}

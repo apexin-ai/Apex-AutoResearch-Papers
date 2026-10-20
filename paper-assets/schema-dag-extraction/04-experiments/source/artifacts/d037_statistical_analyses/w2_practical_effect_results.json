@@ -1,0 +1,51 @@
+{
+  "n_batches": 100,
+  "bcs_distribution": {
+    "mean": 0.557,
+    "std": 0.0438,
+    "Q1": 0.5281,
+    "median": 0.5568,
+    "Q3": 0.582,
+    "IQR": 0.0539,
+    "P10": 0.5085,
+    "P90": 0.6138,
+    "min": 0.4578,
+    "max": 0.6836
+  },
+  "accuracy_distribution": {
+    "mean": 0.8077,
+    "std": 0.0797,
+    "Q1": 0.7552,
+    "median": 0.8229,
+    "Q3": 0.875,
+    "IQR_pp": 11.98
+  },
+  "regression": {
+    "slope": -0.401,
+    "slope_ci_95": [-0.684, -0.0625],
+    "r_value": -0.2206,
+    "p_value": 0.027389
+  },
+  "typical_effect_iqr": {
+    "bcs_span": 0.0539,
+    "expected_acc_gap_pp": 2.16,
+    "bootstrap_ci_pp": [0.41, 4.01],
+    "note": "Expected accuracy gap from BCS Q1 to Q3 via regression slope"
+  },
+  "typical_effect_p10_p90": {
+    "bcs_span": 0.1053,
+    "expected_acc_gap_pp": 4.22
+  },
+  "direct_quartile_comparison": {
+    "n_low_bcs": 25,
+    "n_high_bcs": 25,
+    "mean_acc_low_bcs": 0.8283,
+    "mean_acc_high_bcs": 0.7892,
+    "direct_gap_pp": 3.92
+  },
+  "extreme_batch_reference": {
+    "gap_pp": 31.2,
+    "note": "From min-BCS vs max-BCS batches in 80-rel pool (not typical)"
+  },
+  "ratio_typical_to_extreme": 0.07
+}

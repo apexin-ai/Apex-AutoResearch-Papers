@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_poll_gemini_dim2_progress_20260519T181108_result.json",
     "occurrence": 1,
-    "bytes": 795,
-    "sha256": "b51adbb81c90bce6dd62a11d29ed6b345e7946e34bb92909b53d5e07460c0ed3"
+    "bytes": 794,
+    "sha256": "a543e80aea5306d3cb9ebb06eb81597cb8ed66ec00ea5aa964d08932f52827fc"
   },
   "statistics": {
     "messages": 1,

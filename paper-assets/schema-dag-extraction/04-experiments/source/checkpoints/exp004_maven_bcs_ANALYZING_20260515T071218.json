@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp004_maven_bcs",
+  "project": "schema-dag-extraction",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:21:19.914Z",
+    "updated_at": "2026-05-15T07:12:18.388Z",
+    "spec": {
+      "hypothesis": "Type confusability (BCS) independently predicts extraction degradation in MAVEN Event Detection, replicating Few-NERD finding cross-task (NER→ED). Analysis focus: pairwise + per-type (not batch-level due to BCS compression).",
+      "dataset": "MAVEN",
+      "model": "Qwen3-32B-FP8",
+      "design": "exp1: count curve {1,6,12,24,42,84,168} x 5 random; exp2: count={12,24} x 27 batches. Qwen3 BCS matrix. 149 active types. Analysis: Layer 1 pairwise SCS-confusion + Layer 2 per-type F1 vs mean SCS + Layer 3 batch-level percentile rank BCS.",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/run_experiment.py --dataset maven --mode exp1 ... && python3 src/run_experiment.py --dataset maven --mode exp2 ...\"",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/maven_parquet/valid.parquet",
+      "data_count": 8042,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 224685
+    },
+    "notes": "MAVEN BCS study RUNNING. Reviewer 发现 Qwen3 BCS 在 MAVEN 上范围极度压缩（同域 event types，max pairwise sim ≥0.90）。分析计划调整：(1) 重点做 pairwise confusion (Layer 1) + per-type F1 vs mean SCS (Layer 2)，这两层在 BCS 压缩下仍有效; (2) batch-level 用 percentile rank BCS 替代原始值; (3) 不换 embedding 模型——Qwen3 = extraction model，方法论一致性优先; (4) BCS 压缩本身是 finding：同域 type space 下 LLM 难区分 → SDGD 价值更高。"
+  },
+  "timestamp": "2026-05-15T07:12:18.437749+00:00",
+  "trigger": "update_registry"
+}

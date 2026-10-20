@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_vllm_version_check_20260516T120937_result.json",
     "occurrence": 1,
-    "bytes": 251,
-    "sha256": "ddb48f623079a21236639a0e6f5fe4db62ba4ec315d440941eb36f7944f7ba78"
+    "bytes": 250,
+    "sha256": "044383fe298905fac207c2a3bf7b310258d357ec52262a463f19096727e195af"
   },
   "statistics": {
     "messages": 1,

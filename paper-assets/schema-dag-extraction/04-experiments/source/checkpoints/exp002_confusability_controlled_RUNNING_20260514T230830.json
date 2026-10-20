@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp002_confusability_controlled",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:13:42.626Z",
+    "updated_at": "2026-05-14T23:08:30.016Z",
+    "spec": {
+      "hypothesis": "固定 type count 时，高 BCS batch 的 F1 显著低于低 BCS batch（confusability 独立驱动质量下降）",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "count=6,12 × 25 random + 1 low-BCS + 1 high-BCS = 54 batches",
+      "pass_criteria": "Pearson |r| >= 0.3 且 high-BCS vs low-BCS p < 0.05",
+      "command": "nohup python3 run_experiment.py --mode exp2 --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 197321
+    }
+  },
+  "timestamp": "2026-05-14T23:08:30.025832+00:00",
+  "trigger": "update_registry"
+}

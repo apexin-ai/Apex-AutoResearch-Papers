@@ -1,0 +1,318 @@
+categories:
+  - name: "Model Collapse Detection"
+    papers:
+      - title: "SIGMA: Scalable Spectral Insights for LLM Model Collapse"
+        authors: "Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, Alexander Aue"
+        venue: "arXiv preprint"
+        year: 2026
+        role: direct-competitor
+        key_findings: >
+          Derives deterministic and stochastic bounds on embedding Gram matrix spectrum to track
+          representation space contraction. Stochastic formulation enables scalable estimation without
+          full eigendecomposition. Black-box friendly: monitors collapse without accessing model
+          weights or gradients. Captures transition towards degenerate states in recursive training
+          pipelines.
+        relevance: >
+          Directly occupies our "spectral detection" position — we cannot claim first to use spectral
+          analysis for collapse detection. Key limitation: SIGMA is passive monitoring only — it
+          detects and quantifies collapse but does not prescribe or automate corrective action. Our
+          novelty is closing the loop: spectral effective rank → PI controller → dynamic real/synthetic
+          mixing ratio adjustment. Framing: "from passive monitoring to active closed-loop control."
+        url: "arxiv:2601.03385"
+
+      - title: "How to Tame Your LLM: Semantic Collapse in Continuous Systems"
+        authors: "C. M. Wyss"
+        venue: "arXiv preprint"
+        year: 2025
+        role: background
+        key_findings: >
+          Models semantic collapse as a continuous dynamical systems phenomenon. Provides
+          continuous-time analysis of how LLM representations degrade under recursive self-training,
+          complementing discrete spectral approaches.
+        relevance: >
+          Complements SIGMA's discrete spectral view with a continuous dynamics perspective. Our PI
+          controller operates in a similar continuous-control paradigm, making this a conceptual bridge
+          between detection and control.
+        url: "arxiv:2512.05162"
+
+      - title: "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"
+        authors: "Lianghe Shi, Meng Wu, Huijie Zhang, Zekai Zhang, Molei Tao, Qing Qu"
+        venue: "arXiv preprint"
+        year: 2025
+        role: background
+        key_findings: >
+          Shows training data entropy decreases over iterations and correlates strongly with
+          generalizability. Proposes entropy-based data selection strategies to alleviate the
+          generalization-to-memorization transition during iterative training.
+        relevance: >
+          Supports our use of entropy-related spectral metrics (effective rank) as leading indicators
+          of collapse. Their entropy-based selection is a static, offline approach; ours is dynamic
+          via PI control — a key differentiator.
+        url: "arxiv:2509.16499"
+
+  - name: "Model Collapse Theory"
+    papers:
+      - title: "The Curse of Recursion: Training on Generated Data Makes Models Forget"
+        authors: "Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, Ross Anderson"
+        venue: "Nature (2024)"
+        year: 2024
+        role: background
+        key_findings: >
+          Demonstrates model collapse across VAEs, GMMs, and LLMs. Recursive training on generated
+          data causes irreversible defects — tails of the original content distribution disappear.
+          Establishes model collapse as a fundamental, cross-architecture phenomenon.
+        relevance: >
+          Foundational work motivating our entire project. Their finding that tail distributions vanish
+          is precisely what our spectral effective rank metric aims to detect early: rank contraction
+          reflects loss of distributional coverage before downstream metrics degrade.
+        url: "arxiv:2305.17493"
+
+      - title: "Self-Consuming Generative Models Go MAD"
+        authors: "Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk"
+        venue: "ICLR 2024"
+        year: 2024
+        role: background
+        key_findings: >
+          Introduces Model Autophagy Disorder (MAD). Analyzes three families of autophagous loops
+          differing in fresh real data availability. Shows without sufficient fresh real data per
+          generation, quality (precision) or diversity (recall) progressively decreases.
+        relevance: >
+          Directly motivates our dynamic mixing ratio approach. Their analysis of real data
+          requirements per generation aligns with our goal: determine optimal real/synthetic
+          ratios dynamically rather than using fixed proportions.
+        url: "arxiv:2307.01850"
+
+      - title: "Strong Model Collapse"
+        authors: "Elvis Dohmatob, Yunzhen Feng, et al."
+        venue: "ICLR 2025 (Spotlight)"
+        year: 2025
+        role: background
+        key_findings: >
+          Proves even the smallest fraction of synthetic data (as low as 1/1000) leads to collapse —
+          larger training sets do not help. Uses operator-valued free probability theory for
+          bias-variance decomposition with an extra collapse-inducing term. Shows larger models can
+          amplify collapse.
+        relevance: >
+          Strong theoretical justification for active control: if static mixing ratios cannot prevent
+          collapse regardless of dataset size, then closed-loop dynamic control of the mixing ratio
+          becomes necessary — exactly our approach.
+        url: "arxiv:2410.04840"
+
+      - title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+        authors: "Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, et al."
+        venue: "arXiv preprint"
+        year: 2024
+        role: background
+        key_findings: >
+          Shows data accumulation (not replacement) avoids collapse — test error under accumulation
+          has finite upper bound independent of iteration count. Verified across transformers,
+          diffusion models, and VAEs on realistic data.
+        relevance: >
+          Establishes accumulation as a static mitigation strategy. Our approach is complementary:
+          PI-controlled dynamic mixing optimizes the accumulation schedule, adjusting how much new
+          real vs. synthetic data enters the training pool at each iteration based on spectral health.
+        url: "arxiv:2404.01413"
+
+      - title: "Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse"
+        authors: "Jingwei Chen"
+        venue: "arXiv preprint"
+        year: 2025
+        role: method-component
+        key_findings: >
+          Models iterative self-training as stochastic Bregman projection in distribution space.
+          Without external coupling, finite-sample noise forces projection onto ever-shrinking
+          empirical support, causing exponential entropy decay. Introducing an Entropy Reservoir
+          (high-entropy distribution mixed into each projection) injects controllable entropy flux
+          that provably stabilises dynamics. Provides necessary and sufficient conditions for collapse
+          with closed-form rates depending on sample size and Bregman generator constants.
+        relevance: >
+          Core theoretical motivation. ERBP's "entropy reservoir" maps directly to our real-data
+          mixing component; their coupling coefficient corresponds to our PI-controlled mixing ratio.
+          We operationalize ERBP: spectral effective rank serves as practical proxy for entropy
+          monitoring, and PI control automates the coupling coefficient adjustment that ERBP leaves
+          as a manual hyperparameter.
+        url: "arxiv:2512.14879"
+
+  - name: "Synthetic Data Mixing"
+    papers:
+      - title: "Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance"
+        authors: "Jiasheng Ye, Peiju Liu, Tianxiang Sun, Jun Zhan, Yunhua Zhou, Xipeng Qiu"
+        venue: "ICLR 2025"
+        year: 2025
+        role: background
+        key_findings: >
+          Discovers quantitatively predictable "data mixing laws" — function forms relating mixture
+          proportions to model performance. Enables predicting performance of large models on unseen
+          mixtures from small-scale experiments via nested scaling laws of training steps, model sizes,
+          and mixing proportions.
+        relevance: >
+          Establishes that mixing ratios have predictable effects on performance. Our PI controller
+          leverages this regularity but replaces offline prediction with online closed-loop control,
+          adapting the mixture in real-time based on spectral collapse indicators.
+        url: "arxiv:2403.16952"
+
+      - title: "DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining"
+        authors: "Sang Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy Liang, Quoc V. Le, Tengyu Ma, Adams Wei Yu"
+        venue: "NeurIPS 2023"
+        year: 2023
+        role: background
+        key_findings: >
+          Uses 280M proxy model with Group DRO to determine domain weights for 8B model training.
+          Improves average few-shot accuracy by 6.5% over default Pile weights. Achieves baseline
+          accuracy with 2.6x fewer training steps. Dramatically reweights domains (Pile-CC: 0.112
+          to 0.606).
+        relevance: >
+          Demonstrates domain reweighting improves training efficiency but uses static offline
+          optimization via proxy model. Our approach differs fundamentally: online, continuous
+          reweighting driven by spectral collapse signals rather than proxy-model-derived static
+          weights. DoReMi also doesn't consider the synthetic/real distinction.
+        url: "arxiv:2305.10429"
+
+      - title: "Demystifying Synthetic Data in LLM Pre-training: A Systematic Study of Scaling Laws, Benefits, and Pitfalls"
+        authors: "Feiyang Kang et al."
+        venue: "EMNLP 2025"
+        year: 2025
+        role: background
+        key_findings: >
+          1000+ LLM experiments over 100k+ GPU hours. 1/3 rephrased synthetic + 2/3 natural web
+          text achieves 5-10x training speedup. Pure synthetic data is not superior to CommonCrawl.
+          Mixing any synthetic type with real data improves over synthetic alone. Optimal ratios
+          depend on data type and model size.
+        relevance: >
+          Provides empirical baselines for synthetic/real mixing ratios. Critical insight: optimal
+          ratios are not universal but context-dependent — directly motivating our adaptive,
+          signal-driven approach over fixed ratios.
+        url: "arxiv:2510.01631"
+
+      - title: "Scaling Laws of Synthetic Data for Language Models"
+        authors: "Zeyu Qin, Qingxiu Dong, Xingxing Zhang, Li Dong et al."
+        venue: "arXiv preprint"
+        year: 2025
+        role: background
+        key_findings: >
+          Introduces SynthLLM framework for scalable synthetic data generation via concept extraction
+          and recombination. First to validate that standard scaling laws hold for synthetic data.
+          Performance plateaus near 300B tokens; larger models reach optimal performance with fewer
+          tokens (8B peaks at 1T, 3B at 4T).
+        relevance: >
+          Shows synthetic data follows predictable scaling laws, supporting the feasibility of
+          control-theoretic optimization. Performance plateaus suggest control interventions should
+          adapt to diminishing returns — a natural fit for integral-term accumulation in PI control.
+        url: "arxiv:2503.19551"
+
+  - name: "Control Theory in ML"
+    papers:
+      - title: "EntroPIC: Towards Stable Long-Term Training of LLMs via Entropy Stabilization with Proportional-Integral Control"
+        authors: "Kai Yang, Xin Xu, Yangkun Chen, Weijie Liu, Jiafei Lyu, Zichuan Lin, Deheng Ye, Saiyong Yang"
+        venue: "arXiv preprint"
+        year: 2025
+        role: method-component
+        key_findings: >
+          Applies PI control to stabilize entropy during LLM RL training. Proves positive samples
+          decrease entropy while negative samples increase it. Only PI control (not P-only)
+          successfully stabilizes entropy at target value. 1.5B model achieves SOTA on pass@1 and
+          pass@N. Validated on 1M+ prompts in industrial settings.
+        relevance: >
+          Closest methodological precedent. Demonstrates PI control is effective for entropy
+          stabilization in LLM training. Our work extends this paradigm from RL entropy control
+          to data mixing ratio control, using spectral effective rank (a proxy for representational
+          entropy) as the controlled variable instead of policy entropy.
+        url: "arxiv:2511.15248"
+
+      - title: "Accelerated Optimization in Deep Learning with a Proportional-Integral-Derivative Controller (PIDAO)"
+        authors: "Song Chen, Jiaxu Liu, Pengkai Wang, Shengze Cai, Chao Xu, Jian Chu"
+        venue: "Nature Communications"
+        year: 2024
+        role: method-component
+        key_findings: >
+          Proposes PIDAO optimizer employing full PID controller for gradient-based optimization.
+          Provides theoretical convergence analysis for (non-)convex settings. Develops adaptive
+          variants (PIDAO-AdSI) inspired by RMSprop. Establishes PID control as a principled
+          framework for neural network optimization.
+        relevance: >
+          Validates PID control as a rigorous framework for ML optimization with convergence
+          guarantees. While PIDAO controls gradient updates (parameter space), our work applies
+          PI control to the data pipeline (data space) — different control surface but same
+          control-theoretic paradigm, supporting our methodological credibility.
+        url: "doi:10.1038/s41467-024-54451-3"
+
+      - title: "A PID Controller Approach for Stochastic Optimization of Deep Networks"
+        authors: "Wangpeng An, Haoqian Wang, Qingyun Sun, Jun Xu, Qionghai Dai, Lei Zhang"
+        venue: "CVPR 2018"
+        year: 2018
+        role: method-component
+        key_findings: >
+          Pioneers PID control for deep network optimization. Reveals intrinsic connections between
+          SGD-Momentum and PID controllers (momentum = integral term). Reduces overshoot and achieves
+          up to 50% training acceleration on CIFAR-10/100 and Tiny-ImageNet.
+        relevance: >
+          Foundational work establishing PID-deep learning connection. Demonstrates that control
+          theory provides both theoretical grounding and practical benefits for ML training. We
+          extend from parameter-update control to data-pipeline control.
+        url: "CVPR 2018 proceedings"
+
+  - name: "Spectral Analysis in Deep Learning"
+    papers:
+      - title: "Mind the Gap: A Spectral Analysis of Rank Collapse and Signal Propagation in Attention Layers"
+        authors: "Thiziri Nait Saada et al."
+        venue: "arXiv preprint"
+        year: 2024
+        role: method-component
+        key_findings: >
+          Identifies rank collapse in width (increasing with context length) as a previously unknown
+          challenge unique to softmax attention. Uses Random Matrix Theory to uncover spectral gap
+          between two largest singular values as the cause. Shows this exacerbates vanishing/exploding
+          gradients and rank collapse in depth. Proposes removing outlier eigenvalues as a fix.
+        relevance: >
+          Provides theoretical grounding for spectral monitoring in transformers. Their spectral gap
+          analysis complements our effective rank metric — both capture aspects of representational
+          health that can serve as control signals. Their RMT approach may inform our spectral bound
+          computation.
+        url: "arxiv:2410.07799"
+
+      - title: "Approaching Deep Learning through the Spectral Dynamics of Weights"
+        authors: "David Yunis, Kumar Kshitij Patel, Samuel Wheeler, Pedro Savarese, Gal Vardi, Karen Livescu, Michael Maire, Matthew R. Walter"
+        venue: "arXiv preprint"
+        year: 2024
+        role: method-component
+        key_findings: >
+          Studies SVD evolution of weight matrices during training at larger, practical scale. Shows
+          spectral trends (rank, energy distribution) generalize across architectures and tasks.
+          Connects effective rank windows to training phase transitions. Low-stable-rank spiked
+          covariance structure in activation matrices influences optimization.
+        relevance: >
+          Validates spectral analysis as a practical monitoring tool for large-scale training
+          dynamics. Supports our choice of spectral effective rank as a cross-architecture signal
+          that detects training regime changes — applicable as a PI controller input.
+        url: "arxiv:2408.11804"
+
+      - title: "Neural Collapse versus Low-rank Bias: Is Deep Neural Collapse Really Optimal?"
+        authors: "Peter Súkeník, Marco Mondelli, Christoph Lampert"
+        venue: "arXiv preprint"
+        year: 2024
+        role: background
+        key_findings: >
+          Examines tension between neural collapse (structured high-rank geometry) and low-rank bias
+          induced by L2 regularization. Shows deep neural collapse may be suboptimal under MSE loss
+          and extends to cross-entropy loss. Characterizes bounds on non-negligible singular values
+          at global minima as depth increases.
+        relevance: >
+          Highlights that representation rank has a nuanced relationship with model quality — higher
+          rank is not always better. Informs our PI controller design: the target effective rank
+          should be calibrated to the appropriate level for the task, not simply maximized.
+        url: "arxiv:2405.14468"
+
+      - title: "An Effective Gram Matrix Characterizes Generalization in Deep Networks"
+        authors: "Rubing Yang, Pratik Chaudhari"
+        venue: "arXiv preprint"
+        year: 2025
+        role: background
+        key_findings: >
+          Establishes formal connection between Gram matrix spectral properties and generalization.
+          Shows spectral properties of the effective Gram matrix serve as reliable predictors of
+          out-of-sample performance.
+        relevance: >
+          Directly supports our use of embedding Gram matrix spectral properties (effective rank) as
+          a meaningful signal. Provides theoretical justification that Gram matrix spectral metrics
+          correlate with generalization, not just representational diversity.
+        url: "arxiv:2504.16450"

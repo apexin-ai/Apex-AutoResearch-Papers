@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_verify_qwen3_fewrel_data_20260517T140413_result.json",
     "occurrence": 1,
-    "bytes": 2483,
-    "sha256": "ab03fb9d209df0fbdc896fe30f1ade9ffd9fe87ad113d5288fe6b79cc0a505f8"
+    "bytes": 2482,
+    "sha256": "cad33259a471a64e9fa9e14e4ff16a629efe7bbcdad14f977c92fd331684da9e"
   },
   "statistics": {
     "messages": 1,

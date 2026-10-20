@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_sdgd_routing_strategies",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:57:11.517Z",
+    "updated_at": "2026-05-17T06:15:59.873Z",
+    "hypothesis": "Max-confidence and none-aware routing strategies can recover a significant fraction of the oracle routing gain (+29.8pp over single-pass) by using LLM generation logprobs to select the most reliable sub-schema prediction, since the correct sub-schema should produce higher-confidence predictions than sub-schemas forced to classify into unrelated types.",
+    "parent": "exp_confusability_batch_composition",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T06:16:00.016859+00:00",
+  "trigger": "update_registry"
+}

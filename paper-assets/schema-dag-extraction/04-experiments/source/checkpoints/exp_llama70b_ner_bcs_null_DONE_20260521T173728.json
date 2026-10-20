@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_llama70b_ner_bcs_null",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:15:57.117Z",
+    "updated_at": "2026-05-21T17:37:28.266Z",
+    "hypothesis": "Batch-level BCS does not correlate with NER F1 for LLaMA-3.1-70B-FP8, consistent with the BCS null observed in Qwen3-32B (r=0.004) and LLaMA-8B (r=-0.12). The confusability metric is not predictive of extraction quality at the batch level.",
+    "parent": "exp012_llama_8b_r2_exp2",
+    "spec": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "model_name": "llama-3.1-70b-fp8",
+      "data_path": "artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/",
+      "data_count": 50000,
+      "seed": 42,
+      "command": "python3 scripts/analyze_llama70b_ner_bcs_null.py",
+      "checkpoint_source": "reuses d051 count curves data",
+      "eval_data": "Few-NERD test (1000 samples)",
+      "checkpoint_path": "N/A (inference only)",
+      "log_path": "cqa1-38874:/root/schema-dag-extraction/artifacts/exp_llama70b_ner_bcs_null/bcs_null_analysis.json",
+      "metrics": {
+        "count_6_r": -0.06,
+        "count_6_p": 0.76,
+        "count_12_r": -0.42,
+        "count_12_p": 0.034,
+        "pooled_r": -0.13,
+        "pooled_p": 0.36
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T17:29:06.684Z"
+  },
+  "timestamp": "2026-05-21T17:37:28.412265+00:00",
+  "trigger": "update_registry"
+}

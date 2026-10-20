@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_fewshot_bcs_status_20260517T120917_result.json",
     "occurrence": 1,
-    "bytes": 341,
-    "sha256": "0245f0eabcb652858cf8cbcf5af423725ff392d60bb5fa28c24c1fa7deda91db"
+    "bytes": 340,
+    "sha256": "c4b49fd01443d137591b6bf2b65ad376f4ecc50d9de2bc427c9f22b56b1a2c1a"
   },
   "statistics": {
     "messages": 1,

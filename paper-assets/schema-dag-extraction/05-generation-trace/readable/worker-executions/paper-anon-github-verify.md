@@ -2206,7 +2206,7 @@ _source line 40 · 2026-05-22T08:16:23.519Z_
 <details><summary>↩ Tool result · `toolu_01QfcbHYcJszfNGo6zbFQQUy`</summary>
 
 ```text
-42:DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+42:DEFAULT_API_KEY = "[REDACTED]"
 378:    parser.add_argument("--api_key", default=os.environ.get("OPENAI_API_KEY", DEFAULT_API_KEY))
 379:    parser.add_argument("--base_url", default=DEFAULT_BASE_URL)
 400:    client = OpenAI(api_key=[REDACTED], base_url=args.base_url)
@@ -2225,7 +2225,7 @@ _source line 40 · 2026-05-22T08:16:23.519Z_
   "session_id": "0440f9a9-a2d5-4298-a80b-0277ec22e8a0",
   "uuid": "177e01bc-1711-4c96-b92f-cd7a2152cb7c",
   "tool_use_result": {
-    "stdout": "42:DEFAULT_API_KEY = \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\n378:    parser.add_argument(\"--api_key\", default=os.environ.get(\"OPENAI_API_KEY\", DEFAULT_API_KEY))\n379:    parser.add_argument(\"--base_url\", default=DEFAULT_BASE_URL)\n400:    client = OpenAI(api_key=[REDACTED], base_url=args.base_url)\n401:    logger.info(\"OpenAI client: model=%s, base_url=%s\", args.model, args.base_url)",
+    "stdout": "42:DEFAULT_API_KEY = \"[REDACTED]\"\n378:    parser.add_argument(\"--api_key\", default=os.environ.get(\"OPENAI_API_KEY\", DEFAULT_API_KEY))\n379:    parser.add_argument(\"--base_url\", default=DEFAULT_BASE_URL)\n400:    client = OpenAI(api_key=[REDACTED], base_url=args.base_url)\n401:    logger.info(\"OpenAI client: model=%s, base_url=%s\", args.model, args.base_url)",
     "stderr": "",
     "interrupted": false,
     "isImage": false,
@@ -2298,7 +2298,7 @@ _source line 42 · 2026-05-22T08:16:29.088Z_
 <details><summary>↩ Tool result · `toolu_01UnfQiugGZrQzazCNPVM1Sn`</summary>
 
 ```text
-42:DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+42:DEFAULT_API_KEY = "[REDACTED]"
 43:DEFAULT_BASE_URL = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
 379:    parser.add_argument("--base_url", default=DEFAULT_BASE_URL)
 ```
@@ -2315,7 +2315,7 @@ _source line 42 · 2026-05-22T08:16:29.088Z_
   "session_id": "0440f9a9-a2d5-4298-a80b-0277ec22e8a0",
   "uuid": "6e7f63b8-f83e-472f-b0cc-5285adf93ccf",
   "tool_use_result": {
-    "stdout": "42:DEFAULT_API_KEY = \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\n43:DEFAULT_BASE_URL = os.environ.get(\"OPENAI_BASE_URL\", \"https://api.openai.com/v1\")\n379:    parser.add_argument(\"--base_url\", default=DEFAULT_BASE_URL)",
+    "stdout": "42:DEFAULT_API_KEY = \"[REDACTED]\"\n43:DEFAULT_BASE_URL = os.environ.get(\"OPENAI_BASE_URL\", \"https://api.openai.com/v1\")\n379:    parser.add_argument(\"--base_url\", default=DEFAULT_BASE_URL)",
     "stderr": "",
     "interrupted": false,
     "isImage": false,
@@ -2748,7 +2748,7 @@ _source line 52 · 2026-05-22T08:16:40.735Z_
 <details><summary>↩ Tool result · `toolu_01Y8Dw4dmGtMx1MjvR2jnFYz`</summary>
 
 ```text
-src/run_fewrel_gpt4o_mini.py:42:DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+src/run_fewrel_gpt4o_mini.py:42:DEFAULT_API_KEY = "[REDACTED]"
 data/README.md:21:- **Download:** https://github.com/thunlp/DocRED
 data/README.md:27:- **Download:** https://github.com/THU-KEG/MAVEN-dataset
 ```
@@ -2765,7 +2765,7 @@ data/README.md:27:- **Download:** https://github.com/THU-KEG/MAVEN-dataset
   "session_id": "0440f9a9-a2d5-4298-a80b-0277ec22e8a0",
   "uuid": "0a20e5ba-8af3-4c50-a137-1fe91280a2d2",
   "tool_use_result": {
-    "stdout": "src/run_fewrel_gpt4o_mini.py:42:DEFAULT_API_KEY = \"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\ndata/README.md:21:- **Download:** https://github.com/thunlp/DocRED\ndata/README.md:27:- **Download:** https://github.com/THU-KEG/MAVEN-dataset",
+    "stdout": "src/run_fewrel_gpt4o_mini.py:42:DEFAULT_API_KEY = \"[REDACTED]\"\ndata/README.md:21:- **Download:** https://github.com/thunlp/DocRED\ndata/README.md:27:- **Download:** https://github.com/THU-KEG/MAVEN-dataset",
     "stderr": "",
     "interrupted": false,
     "isImage": false,
@@ -3255,7 +3255,7 @@ _source line 63_
 | .git / .gitconfig | **PASS** | 不存在 |
 | wandb/seetacloud/autodl 路径 | **PASS** | 未发现 |
 | 绝对路径泄露 | **PASS** | 仅 `/path/to/Qwen3-32B` 占位符，无真实路径 |
-| **API Key 泄露** | **FAIL** | `src/run_fewrel_gpt4o_mini.py:42` 硬编码了 `DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"`。前缀 `tum_` 可能关联机构身份（TUM = Technische Universität München），且泄露了有效 API key |
+| **API Key 泄露** | **FAIL** | `src/run_fewrel_gpt4o_mini.py:42` 硬编码了 `DEFAULT_API_KEY = "[REDACTED]"`。前缀 `tum_` 可能关联机构身份（TUM = Technische Universität München），且泄露了有效 API key |
 | GitHub 链接 | **PASS** | `data/README.md` 中仅引用第三方数据集 GitHub 仓库（thunlp/DocRED, THU-KEG/MAVEN），非作者仓库 |
 
 ### 3. README 质量
@@ -3282,7 +3282,7 @@ _source line 63_
 ### 问题汇总（需修复）
 
 1. **`src/run_fewrel_gpt4o_mini.py:42` — API Key 泄露 + 潜在去匿名化**
-   - `DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"` 
+   - `DEFAULT_API_KEY = "[REDACTED]"` 
    - `tum_` 前缀可能暴露机构身份
    - 应替换为 `"YOUR_API_KEY_HERE"` 或改为纯环境变量读取
 
@@ -3358,7 +3358,7 @@ _source line 64_
 | .git / .gitconfig | **PASS** | 不存在 |
 | wandb/seetacloud/autodl 路径 | **PASS** | 未发现 |
 | 绝对路径泄露 | **PASS** | 仅 `/path/to/Qwen3-32B` 占位符，无真实路径 |
-| **API Key 泄露** | **FAIL** | `src/run_fewrel_gpt4o_mini.py:42` 硬编码了 `DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"`。前缀 `tum_` 可能关联机构身份（TUM = Technische Universität München），且泄露了有效 API key |
+| **API Key 泄露** | **FAIL** | `src/run_fewrel_gpt4o_mini.py:42` 硬编码了 `DEFAULT_API_KEY = "[REDACTED]"`。前缀 `tum_` 可能关联机构身份（TUM = Technische Universität München），且泄露了有效 API key |
 | GitHub 链接 | **PASS** | `data/README.md` 中仅引用第三方数据集 GitHub 仓库（thunlp/DocRED, THU-KEG/MAVEN），非作者仓库 |
 
 ### 3. README 质量
@@ -3385,7 +3385,7 @@ _source line 64_
 ### 问题汇总（需修复）
 
 1. **`src/run_fewrel_gpt4o_mini.py:42` — API Key 泄露 + 潜在去匿名化**
-   - `DEFAULT_API_KEY = "tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"` 
+   - `DEFAULT_API_KEY = "[REDACTED]"` 
    - `tum_` 前缀可能暴露机构身份
    - 应替换为 `"YOUR_API_KEY_HERE"` 或改为纯环境变量读取
 

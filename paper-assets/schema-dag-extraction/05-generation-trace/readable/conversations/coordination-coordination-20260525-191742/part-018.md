@@ -8,66 +8,6 @@
 
 ### Tool call
 
-_source line 10684 · 2026-05-24T04:41:35.606103+00:00_
-
-called Bash
-
-<details open><summary>🔧 Tool call — Bash</summary>
-
-```json
-{
-  "command": "python3 -c \"\n# The TOST sensitivity table in the paper directly shows:\n# margin=+-2pp: p=0.047 -> This is the t_upper = -1.70 analysis\n# This is the primary TOST (n=69, linear scale, 40-rel analysis)\n# t_upper = (interaction_effect - margin) / SE\n# interaction_effect = 0.47pp (from exp_fewrel_factorial_tost: interaction_effect_pp=0.47)\n# For margin=+-2pp: t_upper = (0.47 - 2) / SE\n\n# From analysis_2_regression in exp_fewrel_factorial_tost:\n# interaction_beta = 0.005 (in accuracy units, so 0.5pp)\n# tost_p = 0.003 at margin=3pp\n\n# Let me compute what SE gives t_upper=-1.70 at margin=2pp with effect=0.47pp:\n# t_upper = (0.47 - 2) / SE = -1.70\n# SE = (2 - 0.47) / 1.70 = 1.53/1.70 = 0.9 pp\n\n# And t_upper at margin=3pp: (0.47 - 3) / 0.9 = -2.81 -> p=0.003 (one-sided t-test)\n# That matches!\n\nimport scipy.stats as stats\nimport math\n\n# TOST: t_upper = (effect - margin) / SE\n# For equivalence: TOST_p = max(p_upper, p_lower)\n# Here effect = 0.47pp, margin = 2pp, SE ~ 0.9pp\neffect = 0.47\nse = (2 - effect) / 1.70  # Back-calculated\nprint(f'Estimated SE = {se:.3f} pp')\n\n# Verify at margin=3pp:\nt_upper_3 = (effect - 3) / se\nt_lower_3 = (effect + 3) / se  # assuming symmetric\nprint(f't_upper at margin=3pp: {t_upper_3:.2f}')\n\n# df for n=69 regression (5 count levels, continuous BCS, interaction): df = 69 - 4 = 65\ndf = 65\np_upper_3 = stats.t.cdf(t_upper_3, df)\nprint(f'p(t < {t_upper_3:.2f}) at df={df}: {p_upper_3:.3f}')\n\n# At margin=2pp:\nt_upper_2 = (effect - 2) / se\nprint(f't_upper at margin=2pp: {t_upper_2:.2f}')\np_upper_2 = stats.t.cdf(t_upper_2, df)\nprint(f'p(t < {t_upper_2:.2f}) at df={df}: {p_upper_2:.3f}')\n\"\n"
-}
-```
-
-</details>
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Bash",
-  "tool_args": {
-    "command": "python3 -c \"\n# The TOST sensitivity table in the paper directly shows:\n# margin=+-2pp: p=0.047 -> This is the t_upper = -1.70 analysis\n# This is the primary TOST (n=69, linear scale, 40-rel analysis)\n# t_upper = (interaction_effect - margin) / SE\n# interaction_effect = 0.47pp (from exp_fewrel_factorial_tost: interaction_effect_pp=0.47)\n# For margin=+-2pp: t_upper = (0.47 - 2) / SE\n\n# From analysis_2_regression in exp_fewrel_factorial_tost:\n# interaction_beta = 0.005 (in accuracy units, so 0.5pp)\n# tost_p = 0.003 at margin=3pp\n\n# Let me compute what SE gives t_upper=-1.70 at margin=2pp with effect=0.47pp:\n# t_upper = (0.47 - 2) / SE = -1.70\n# SE = (2 - 0.47) / 1.70 = 1.53/1.70 = 0.9 pp\n\n# And t_upper at margin=3pp: (0.47 - 3) / 0.9 = -2.81 -> p=0.003 (one-sided t-test)\n# That matches!\n\nimport scipy.stats as stats\nimport math\n\n# TOST: t_upper = (effect - margin) / SE\n# For equivalence: TOST_p = max(p_upper, p_lower)\n# Here effect = 0.47pp, margin = 2pp, SE ~ 0.9pp\neffect = 0.47\nse = (2 - effect) / 1.70  # Back-calculated\nprint(f'Estimated SE = {se:.3f} pp')\n\n# Verify at margin=3pp:\nt_upper_3 = (effect - 3) / se\nt_lower_3 = (effect + 3) / se  # assuming symmetric\nprint(f't_upper at margin=3pp: {t_upper_3:.2f}')\n\n# df for n=69 regression (5 count levels, continuous BCS, interaction): df = 69 - 4 = 65\ndf = 65\np_upper_3 = stats.t.cdf(t_upper_3, df)\nprint(f'p(t < {t_upper_3:.2f}) at df={df}: {p_upper_3:.3f}')\n\n# At margin=2pp:\nt_upper_2 = (effect - 2) / se\nprint(f't_upper at margin=2pp: {t_upper_2:.2f}')\np_upper_2 = stats.t.cdf(t_upper_2, df)\nprint(f'p(t < {t_upper_2:.2f}) at df={df}: {p_upper_2:.3f}')\n\"\n"
-  }
-}
-```
-
-</details>
-
----
-
-
-### Tool result
-
-_source line 10685 · 2026-05-24T04:41:36.811059+00:00_
-
-Estimated SE = 0.900 pp
-t_upper at margin=3pp: -2.81
-p(t < -2.81) at df=65: 0.003
-t_upper at margin=2pp: -1.70
-p(t < -1.70) at df=65: 0.047
-
-<details><summary>Recorded metadata</summary>
-
-```json
-{
-  "recorded_role": "tool_result",
-  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
-  "tool": "Bash",
-  "elapsed_ms": 1204
-}
-```
-
-</details>
-
----
-
-
-### Tool call
-
 _source line 10686 · 2026-05-24T04:41:52.595872+00:00_
 
 called Bash
@@ -13958,8 +13898,8 @@ called Bash
 
 _source line 11046 · 2026-05-24T05:42:26.289048+00:00_
 
-origin	https://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)
-origin	https://anonymous-nlp-2026:ghp_***REDACTED***@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/.claude/sessions/agent_80bfff5d
 
 <details><summary>Recorded metadata</summary>
@@ -17816,6 +17756,142 @@ called Grep
     "output_mode": "content",
     "-n": "True",
     "head_limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 11157 · 2026-05-24T07:28:55.152217+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/related_work.tex:10:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:676:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:2:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/abstract.tex:3:(1)~count degradation spans NER and sentence- and document-level RE (up to $-$49\,pp); MAVEN ED shows a confounded reversal (\S\ref{sec:centrality_confound}); inter-type confusability (measured by BCS) independently predicts RE type substitution errors (VIF${}\,=\,1.18$ on FewRel), with bounded interaction on the linear scale (TOST $p=0.003$);
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/experimental_setup.tex:4:We evaluate how prompt schema size and inter-type confusability affect zero-shot LLM extraction across three information extraction tasks and four datasets: named entity recognition (NER), sentence-level relation extraction (RE), document-level RE, and event detection (ED).
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/introduction.tex:15:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/results.tex:78:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 11158 · 2026-05-24T07:28:58.871062+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "DocRE[^D]",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "DocRE[^D]",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "glob": "*.tex",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 11159 · 2026-05-24T07:28:59.827157+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:114:\caption{Intra-batch substitution (IntraSub) and missed-entity rates by BCS bin. Spearman $\rho$ computed over $n=148$ batches (NER), $n=154$ (RE), and $n=110$ (DocRE). IntraSub scales monotonically with BCS across all three datasets. DocRE missed rates decrease with BCS, indicating high-confusability errors shift from omission to substitution.}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:125:DocRE & IntraSub & --- & 4.8\% & 22.4\% & 37.0\% & 41.9\% & 0.843 & ${<}\,0.001$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper/main.tex:129:DocRE & Missed & --- & 28.1\% & 22.6\% & 21.6\% & 16.2\% & --- & --- \\
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Grep",
+  "elapsed_ms": 956
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 11160 · 2026-05-24T07:29:00.180049+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "pre-hoc|post-hoc|pre-training|pre-compute",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_04544c3b7bc497e1d098ba47fb56a6c2",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "pre-hoc|post-hoc|pre-training|pre-compute",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/docs/paper",
+    "glob": "*.tex",
+    "output_mode": "content",
+    "-n": "True"
   }
 }
 ```

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_locate_sdgd_v2_script_20260515T134131_result.json",
     "occurrence": 1,
-    "bytes": 3492,
-    "sha256": "62b10da847303b78f5fdc32bf35b27bce3e44806330d18d2e3d150af82398807"
+    "bytes": 3491,
+    "sha256": "596675dcc5ca02b00464844a39bfe3a343e2cbc99b79d8955a9b4885addcefbe"
   },
   "statistics": {
     "messages": 1,

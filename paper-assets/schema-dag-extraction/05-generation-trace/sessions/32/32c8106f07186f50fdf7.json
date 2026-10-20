@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diag_exp012_ner_prompt_test_20260515T173001_result.json",
     "occurrence": 1,
-    "bytes": 1441,
-    "sha256": "bd11339b3fd6ab343410eac4ec91f717a9aa4a0359b2f2c0d99c27f042babc81"
+    "bytes": 1440,
+    "sha256": "75019226654bf463de536699e66fe91dfc2690696c71ecd88b28a423c71801b2"
   },
   "statistics": {
     "messages": 1,

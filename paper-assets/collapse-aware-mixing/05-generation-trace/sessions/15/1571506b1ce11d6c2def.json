@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1571506b1ce11d6c2def",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "check v7 progress 0513b",
+  "task_key": "worker_check_v7_progress_0513b_20260513T172524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_v7_progress_0513b_20260513T172524_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "f03fc2e772e541d1d985dda1257fead101a85305b27432f0f884d96fa38c1812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v7 实验进度汇总\n\n### 1. 状态：运行中 — G2 训练阶段\n\n- 进程 PID 60104 存活，已运行 **14h50m**\n- 当前：**G2 训练 249/305 steps (82%)**，loss=0.0575，lr=7.3e-7\n- 最近 checkpoint：step 228，保存于 `2026-05-14 01:25`\n- 预计剩余：~56 steps × ~2s/it ≈ **2 分钟**训练完成，之后进入 G2 eval\n- G2 metrics 尚未生成（训练未完成）\n\n### 2. G2 Metrics\n\n尚不可用，训练完成后 eval 阶段才会生成 `metrics.jsonl`。\n\n### 3. Sync 状态\n\n| 文件 | 状态 |\n|------|------|\n| `analyze_ngram_leading.py` | 存在，但 **缺少 `same_checkpoint_tie` 修复** |\n| `pilot_pipeline.py` | **缺少 `config.max_steps` 修复** |\n| `launch_baseline_w0_p0.sh` | **不存在** |\n\n**结论：服务器代码未同步最新修复。** v7 实验用的是旧代码。三个关键修改都未推送到服务器。训练本身即将完成（~2min），建议等 G2 eval 跑完拿到 metrics 后再决定是否需要基于新代码重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-v7-progress-0513b.md"
+}

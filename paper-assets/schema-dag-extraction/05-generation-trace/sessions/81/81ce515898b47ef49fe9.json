@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_gemini_flash_run_v2_20260517T162939.log",
     "occurrence": 1,
-    "bytes": 1159473,
-    "sha256": "22c4dc080a0ccda28e93e99b63c9cdce06954c3d4664774ddfffe79170605bdc"
+    "bytes": 1159040,
+    "sha256": "cef32eabfd5e662316103bd0cb027a424582a5ddbe5f5f7f17251fd16266f028"
   },
   "statistics": {
     "messages": 352,

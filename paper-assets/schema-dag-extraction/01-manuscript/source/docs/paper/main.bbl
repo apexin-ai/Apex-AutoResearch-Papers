@@ -1,0 +1,479 @@
+\begin{thebibliography}{59}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Ashok and Lipton(2023)}]{promptner-2023}
+Dhananjay Ashok and Zachary~C. Lipton. 2023.
+\newblock \href {https://arxiv.org/abs/2305.15444} {{PromptNER}: Prompting for
+  named entity recognition}.
+\newblock \emph{arXiv preprint arXiv:2305.15444}.
+
+\bibitem[{Boylan et~al.(2025)Boylan, Hokamp, and
+  Gholipour~Ghalandari}]{boylan-2025-glirel}
+Jack Boylan, Chris Hokamp, and Demian Gholipour~Ghalandari. 2025.
+\newblock \href {https://aclanthology.org/2025.naacl-long.418/} {{GLiREL} --
+  generalist model for zero-shot relation extraction}.
+\newblock In \emph{Proceedings of the 2025 Conference of the Nations of the
+  Americas Chapter of the Association for Computational Linguistics: Human
+  Language Technologies (Volume 1: Long Papers)}, pages 8230--8245,
+  Albuquerque, New Mexico. Association for Computational Linguistics.
+
+\bibitem[{Cai et~al.(2021)Cai, Huang, Bian, and
+  Church}]{cai-isotropy-clusters-2021}
+Xingyu Cai, Jiaji Huang, Yuchen Bian, and Kenneth Church. 2021.
+\newblock \href {https://openreview.net/forum?id=xYGNO86OWDH} {Isotropy in the
+  contextual embedding space: Clusters and manifolds}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Card et~al.(2020)Card, Henderson, Khandelwal, Jia, Mahowald, and
+  Jurafsky}]{card-2020-power}
+Dallas Card, Peter Henderson, Urvashi Khandelwal, Robin Jia, Kyle Mahowald, and
+  Dan Jurafsky. 2020.
+\newblock \href {https://aclanthology.org/2020.emnlp-main.745} {With little
+  power comes great responsibility}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 9263--9274. Association for
+  Computational Linguistics.
+
+\bibitem[{Chen et~al.(2026)Chen, Pilehvar, and
+  Camacho-Collados}]{chen-2026-multi-instance}
+Jingxuan Chen, Mohammad~Taher Pilehvar, and Jose Camacho-Collados. 2026.
+\newblock \href {https://arxiv.org/abs/2603.22608} {Understanding {LLM}
+  performance degradation in multi-instance processing: The roles of instance
+  count and context length}.
+\newblock \emph{arXiv preprint arXiv:2603.22608}.
+
+\bibitem[{Chia et~al.(2022)Chia, Bing, Poria, and Si}]{relationprompt-2022}
+Yew~Ken Chia, Lidong Bing, Soujanya Poria, and Luo Si. 2022.
+\newblock \href {https://aclanthology.org/2022.findings-acl.5/}
+  {{RelationPrompt}: Leveraging prompts to generate synthetic data for
+  zero-shot relation triplet extraction}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2022}, pages 45--57.
+
+\bibitem[{Collier et~al.(2021)Collier, Mustafa, Kokiopoulou, Jenatton, and
+  Berent}]{collier-2021-correlated-noise}
+Mark Collier, Basil Mustafa, Efi Kokiopoulou, Rodolphe Jenatton, and Jesse
+  Berent. 2021.
+\newblock Correlated input-dependent label noise in large-scale image
+  classification.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}, pages 1551--1560.
+
+\bibitem[{Deng et~al.(2010)Deng, Berg, Li, and Fei-Fei}]{deng-2010-imagenet}
+Jia Deng, Alexander~C. Berg, Kai Li, and Li~Fei-Fei. 2010.
+\newblock \href {https://doi.org/10.1007/978-3-642-15555-0\_6} {What does
+  classifying more than 10,000 image categories tell us?}
+\newblock In \emph{Proceedings of the 11th European Conference on Computer
+  Vision}, pages 71--84.
+
+\bibitem[{Ding et~al.(2021)Ding, Xu, Chen, Wang, Han, Xie, Zheng, and
+  Liu}]{fewnerd-2021}
+Ning Ding, Guangwei Xu, Yulin Chen, Xiaobin Wang, Xu~Han, Pengjun Xie, Haitao
+  Zheng, and Zhiyuan Liu. 2021.
+\newblock \href {https://aclanthology.org/2021.acl-long.248/} {Few-{NERD}: A
+  few-shot named entity recognition dataset}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics}, pages 3198--3213.
+
+\bibitem[{Dror et~al.(2018)Dror, Baumer, Shlomov, and
+  Reichart}]{dror-2018-significance}
+Rotem Dror, Gili Baumer, Segev Shlomov, and Roi Reichart. 2018.
+\newblock \href {https://aclanthology.org/P18-1128/} {The hitchhiker's guide to
+  testing statistical significance in natural language processing}.
+\newblock In \emph{Proceedings of the 56th Annual Meeting of the Association
+  for Computational Linguistics}, pages 1383--1392.
+
+\bibitem[{Dubey et~al.(2018)Dubey, Gupta, Guo, Raskar, Farrell, and
+  Naik}]{dubey-2018-pairwise-confusion}
+Abhimanyu Dubey, Otkrist Gupta, Pei Guo, Ramesh Raskar, Ryan Farrell, and
+  Nikhil Naik. 2018.
+\newblock Pairwise confusion for fine-grained visual classification.
+\newblock In \emph{Proceedings of the European Conference on Computer Vision
+  (ECCV)}, pages 71--88.
+
+\bibitem[{{Gemini Team}(2025)}]{gemini-2025}
+{Gemini Team}. 2025.
+\newblock \href {https://arxiv.org/abs/2507.06261} {Gemini 2.5: Pushing the
+  frontier with advanced reasoning, multimodality, long context, and next
+  generation agentic capabilities}.
+\newblock \emph{arXiv preprint arXiv:2507.06261}.
+
+\bibitem[{Geng et~al.(2025)Geng, Cooper, Moskal, Jenkins, Berman, Ranchin,
+  West, Horvitz, and Nori}]{json-schema-bench-2025}
+Saibo Geng, Hudson Cooper, Micha{\l} Moskal, Samuel Jenkins, Julian Berman,
+  Nathan Ranchin, Robert West, Eric Horvitz, and Harsha Nori. 2025.
+\newblock \href {https://arxiv.org/abs/2501.10868} {{JSONSchemaBench}: A
+  rigorous benchmark of structured outputs for language models}.
+\newblock \emph{arXiv preprint arXiv:2501.10868}.
+
+\bibitem[{Golde et~al.(2025)Golde, Haller, Ploner, Barth, Jedema, and
+  Akbik}]{golde-2025-familiarity}
+Jonas Golde, Patrick Haller, Max Ploner, Fabio Barth, Nicolaas Jedema, and Alan
+  Akbik. 2025.
+\newblock \href {https://arxiv.org/abs/2412.10121} {Familiarity: Better
+  evaluation of zero-shot named entity recognition by quantifying label shifts
+  in synthetic training data}.
+\newblock In \emph{Proceedings of the 2025 Conference of the Nations of the
+  Americas Chapter of the Association for Computational Linguistics (NAACL)},
+  pages 820--834.
+
+\bibitem[{Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian,
+  Al-Dahle, Letman, Mathur, Schelten, Yang, and Fan}]{llama3-2024}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek
+  Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang,
+  and Angela Fan. 2024.
+\newblock \href {https://arxiv.org/abs/2407.21783} {The {Llama} 3 herd of
+  models}.
+\newblock \emph{arXiv preprint arXiv:2407.21783}.
+
+\bibitem[{Gui et~al.(2024)Gui, Yuan, Ye, Zhang, Sun, Liang, and
+  Chen}]{iepile-2024}
+Honghao Gui, Lin Yuan, Hongbin Ye, Ningyu Zhang, Mengshu Sun, Lei Liang, and
+  Huajun Chen. 2024.
+\newblock \href {https://aclanthology.org/2024.acl-short.13/} {{IEPile}:
+  Unearthing large scale schema-conditioned information extraction corpus}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 2: Short Papers)}, pages 127--146.
+
+\bibitem[{Guo et~al.(2021)Guo, Han, Han, Huang, and
+  Lu}]{guo-2021-label-confusion}
+Biyang Guo, Songqiao Han, Xiao Han, Hailiang Huang, and Ting Lu. 2021.
+\newblock \href {https://doi.org/10.1609/aaai.v35i14.17529} {Label confusion
+  learning to enhance text classification models}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~35, pages 12929--12936.
+
+\bibitem[{Han et~al.(2018)Han, Zhu, Yu, Wang, Yao, Liu, and Sun}]{fewrel-2018}
+Xu~Han, Hao Zhu, Pengfei Yu, Ziyun Wang, Yuan Yao, Zhiyuan Liu, and Maosong
+  Sun. 2018.
+\newblock \href {https://aclanthology.org/D18-1514/} {{FewRel}: A large-scale
+  supervised few-shot relation classification dataset with state-of-the-art
+  evaluation}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}, pages 4803--4809.
+
+\bibitem[{Josifoski et~al.(2022)Josifoski, De~Cao, Peyrard, Petroni, and
+  West}]{josifoski-2022-genie}
+Martin Josifoski, Nicola De~Cao, Maxime Peyrard, Fabio Petroni, and Robert
+  West. 2022.
+\newblock {GenIE}: Generative information extraction.
+\newblock In \emph{Proceedings of the 2022 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies (NAACL)}, pages 4626--4643.
+
+\bibitem[{Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica}]{vllm-2023}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph~E. Gonzalez, Hao Zhang, and Ion Stoica. 2023.
+\newblock \href {https://dl.acm.org/doi/10.1145/3600006.3613165} {Efficient
+  memory management for large language model serving with {PagedAttention}}.
+\newblock In \emph{Proceedings of the 29th Symposium on Operating Systems
+  Principles}.
+
+\bibitem[{Lakens(2017)}]{lakens-2017-equivalence}
+Dani{\"e}l Lakens. 2017.
+\newblock \href {https://doi.org/10.1177/1948550617697177} {Equivalence tests:
+  A practical primer for t tests, correlations, and meta-analyses}.
+\newblock \emph{Social Psychological and Personality Science}, 8(4):355--362.
+
+\bibitem[{Lee et~al.(2022)Lee, Gupta, Rastogi, Cao, Zhang, and Wu}]{lee2022sgd}
+Harrison Lee, Raghav Gupta, Abhinav Rastogi, Yuan Cao, Bin Zhang, and Yonghui
+  Wu. 2022.
+\newblock \href {https://arxiv.org/abs/2110.06800} {{SGD-X}: A benchmark for
+  robust generalization in schema-guided dialogue systems}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~36, pages 10938--10946.
+
+\bibitem[{Li et~al.(2023{\natexlab{a}})Li, Fang, Yang, Wang, Ye, Zhao, and
+  Zhang}]{li2023evaluating}
+Bo~Li, Gexiang Fang, Yang Yang, Quansen Wang, Wei Ye, Wen Zhao, and Shikun
+  Zhang. 2023{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2304.11633} {Evaluating {ChatGPT}'s
+  information extraction capabilities: An assessment of performance,
+  explainability, calibration, and faithfulness}.
+\newblock \emph{arXiv preprint arXiv:2304.11633}.
+
+\bibitem[{Li et~al.(2023{\natexlab{b}})Li, Sun, Tang, Yan, Wu, Huang, and
+  Qiu}]{codeie-2023}
+Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and
+  Xipeng Qiu. 2023{\natexlab{b}}.
+\newblock \href {https://aclanthology.org/2023.acl-long.855/} {{CodeIE}: Large
+  code generation models are better few-shot information extractors}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics}, pages 15339--15353.
+
+\bibitem[{Li et~al.(2024)Li, Zeng, Zuo, Ren, Liu, Su, Guo, Liu, Li, Hu, Bai,
+  Li, Liu, Yang, Jin, Guo, and Cheng}]{knowcoder-2024}
+Zixuan Li, Yutao Zeng, Yuxin Zuo, Weicheng Ren, Wenxuan Liu, Miao Su, Yucan
+  Guo, Yantao Liu, Xiang Li, Zhilei Hu, Long Bai, Wei Li, Yidan Liu, Pan Yang,
+  Xiaolong Jin, Jiafeng Guo, and Xueqi Cheng. 2024.
+\newblock \href {https://arxiv.org/abs/2403.07969} {{KnowCoder}: Coding
+  structured knowledge into {LLM}s for universal information extraction}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics}, pages 8758--8779.
+
+\bibitem[{Liang et~al.(2025)Liang, Zhang, Wu, Tang, and Liu}]{spt-2025}
+Sheng Liang, Yongyue Zhang, Yaxiong Wu, Ruiming Tang, and Yong Liu. 2025.
+\newblock \href {https://arxiv.org/abs/2506.01276} {Schema as parameterized
+  tools for universal information extraction}.
+\newblock \emph{arXiv preprint arXiv:2506.01276}.
+
+\bibitem[{Liu et~al.(2024)Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, and
+  Liang}]{lost-in-middle-2024}
+Nelson~F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua,
+  Fabio Petroni, and Percy Liang. 2024.
+\newblock \href {https://doi.org/10.1162/tacl_a_00638} {Lost in the middle: How
+  language models use long contexts}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  12:157--173.
+
+\bibitem[{Liu et~al.(2025)Liu, Li, Bai, Zuo, Xu, Jin, Guo, and
+  Cheng}]{llm-pee-2025}
+Wenxuan Liu, Zixuan Li, Long Bai, Yuxin Zuo, Daozhu Xu, Xiaolong Jin, Jiafeng
+  Guo, and Xueqi Cheng. 2025.
+\newblock \href {https://aclanthology.org/2025.emnlp-main.1743/} {Towards event
+  extraction with massive types: {LLM}-based collaborative annotation and
+  partitioning extraction}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}, pages 34377--34399.
+
+\bibitem[{Lu et~al.(2025)Lu, Xie, Bi, Cao, and Wang}]{crossagentie-2025}
+Meng Lu, Yuzhang Xie, Zhenyu Bi, Shuxiang Cao, and Xuan Wang. 2025.
+\newblock \href {https://aclanthology.org/2025.findings-acl.718/}
+  {{CROSSAGENTIE}: Cross-type and cross-task multi-agent {LLM} collaboration
+  for zero-shot information extraction}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2025}, pages 13953--13977.
+
+\bibitem[{Luo et~al.(2025)Luo, Ru, Liu, Yuan, Sun, Zhang, Liang, Zhang, Zhou,
+  Wei, Zheng, Wang, and Chen}]{oneke-2025}
+Yujie Luo, Xiangyuan Ru, Kangwei Liu, Lin Yuan, Mengshu Sun, Ningyu Zhang, Lei
+  Liang, Zhiqiang Zhang, Jun Zhou, Lanning Wei, Da~Zheng, Haofen Wang, and
+  Huajun Chen. 2025.
+\newblock \href {https://doi.org/10.1145/3701716.3715189} {{OneKE}: A
+  dockerized schema-guided {LLM} agent-based knowledge extraction system}.
+\newblock In \emph{Companion Proceedings of the ACM Web Conference 2025}.
+
+\bibitem[{Orlikowski et~al.(2023)Orlikowski, R{\"o}ttger, Cimiano, and
+  Hovy}]{baan-2023-ecological}
+Matthias Orlikowski, Paul R{\"o}ttger, Philipp Cimiano, and Dirk Hovy. 2023.
+\newblock The ecological fallacy in annotation: Modeling human label variation
+  goes beyond sociodemographics.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 2: Short Papers)}, pages 1017--1029.
+
+\bibitem[{Qi et~al.(2024)Qi, Peng, Wang, Xu, Hou, and Li}]{adelie-2024}
+Yunjia Qi, Hao Peng, Xiaozhi Wang, Bin Xu, Lei Hou, and Juanzi Li. 2024.
+\newblock \href {https://aclanthology.org/2024.emnlp-main.419/} {{ADELIE}:
+  Aligning large language models on information extraction}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing}, pages 7371--7387.
+
+\bibitem[{{Qwen Team}(2025)}]{qwen3-2025}
+{Qwen Team}. 2025.
+\newblock \href {https://arxiv.org/abs/2505.09388} {Qwen3 technical report}.
+\newblock \emph{arXiv preprint arXiv:2505.09388}.
+
+\bibitem[{Rastogi et~al.(2020)Rastogi, Zang, Sunkara, Gupta, and
+  Khaitan}]{rastogi2020towards}
+Abhinav Rastogi, Xiaoxue Zang, Srinivas Sunkara, Raghav Gupta, and Pranav
+  Khaitan. 2020.
+\newblock \href {https://arxiv.org/abs/1909.05855} {Towards scalable
+  multi-domain conversational agents: The schema-guided dialogue dataset}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~34, pages 8689--8696.
+
+\bibitem[{Reimers and Gurevych(2019)}]{sentence-bert-2019}
+Nils Reimers and Iryna Gurevych. 2019.
+\newblock \href {https://aclanthology.org/D19-1410/} {Sentence-{BERT}: Sentence
+  embeddings using siamese {BERT}-networks}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing}, pages 3982--3992.
+
+\bibitem[{Robinson(1950)}]{robinson-1950-ecological}
+William~S. Robinson. 1950.
+\newblock Ecological correlations and the behavior of individuals.
+\newblock \emph{American Sociological Review}, 15(3):351--357.
+
+\bibitem[{Rothman(1990)}]{rothman-1990}
+Kenneth~J. Rothman. 1990.
+\newblock \href {https://doi.org/10.1097/00001648-199001000-00010} {No
+  adjustments are needed for multiple comparisons}.
+\newblock \emph{Epidemiology}, 1(1):43--46.
+
+\bibitem[{Sainz et~al.(2024)Sainz, Garc{\'\i}a-Ferrero, Agerri, Lopez~de
+  Lacalle, Rigau, and Agirre}]{gollie-2024}
+Oscar Sainz, Iker Garc{\'\i}a-Ferrero, Rodrigo Agerri, Oier Lopez~de Lacalle,
+  German Rigau, and Eneko Agirre. 2024.
+\newblock \href {https://arxiv.org/abs/2310.03668} {{GoLLIE}: Annotation
+  guidelines improve zero-shot information-extraction}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Schuirmann(1987)}]{schuirmann-1987-tost}
+Donald~J. Schuirmann. 1987.
+\newblock \href {https://doi.org/10.1007/BF01068419} {A comparison of the two
+  one-sided tests procedure and the power approach for assessing the
+  equivalence of average bioavailability}.
+\newblock \emph{Journal of Pharmacokinetics and Biopharmaceutics},
+  15(6):657--680.
+
+\bibitem[{Shachar et~al.(2025)Shachar, Katz, Goldberg, and
+  Glickman}]{shachar-2025-ner-retriever}
+Or~Shachar, Uri Katz, Yoav Goldberg, and Oren Glickman. 2025.
+\newblock {NER} retriever: Zero-shot named entity retrieval with type-aware
+  embeddings.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2025}, pages 11175--11186.
+
+\bibitem[{Shen et~al.(2025)Shen, Wang, Mishra, Xu, Teng, and Ding}]{slot-2025}
+Zhengyuan Shen, Darren Yow-Bang Wang, Soumya~Smruti Mishra, Zhichao Xu, Yifei
+  Teng, and Haibo Ding. 2025.
+\newblock \href {https://aclanthology.org/2025.emnlp-industry.32/} {{SLOT}:
+  Structuring the output of large language models}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing: Industry Track}, pages 472--491.
+
+\bibitem[{Shrimal et~al.(2025)Shrimal, Jain, Chowdhury, and
+  Yenigalla}]{parse-2025}
+Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, and Promod Yenigalla. 2025.
+\newblock \href {https://aclanthology.org/2025.emnlp-industry.184/} {{PARSE}:
+  {LLM} driven schema optimization for reliable entity extraction}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing: Industry Track}, pages 2749--2763.
+
+\bibitem[{Snell et~al.(2017)Snell, Swersky, and Zemel}]{snell2017prototypical}
+Jake Snell, Kevin Swersky, and Richard Zemel. 2017.
+\newblock Prototypical networks for few-shot learning.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30.
+
+\bibitem[{Vandemoortele et~al.(2025)Vandemoortele, Steenwinckel, Ongenae, and
+  Van~Hoecke}]{haystack-to-needle-2025}
+Nathan Vandemoortele, Bram Steenwinckel, Femke Ongenae, and Sofie Van~Hoecke.
+  2025.
+\newblock \href {https://arxiv.org/abs/2502.08436} {From haystack to needle:
+  Label space reduction for zero-shot classification}.
+\newblock \emph{arXiv preprint arXiv:2502.08436}.
+
+\bibitem[{Wadhwa et~al.(2023)Wadhwa, Amir, and Wallace}]{wadhwa-re-llm-2023}
+Somin Wadhwa, Silvio Amir, and Byron~C. Wallace. 2023.
+\newblock \href {https://aclanthology.org/2023.acl-long.868/} {Revisiting
+  relation extraction in the era of large language models}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics}, pages 15566--15589.
+
+\bibitem[{Wang et~al.(2020{\natexlab{a}})Wang, Wei, Dong, Bao, Yang, and
+  Zhou}]{minilm-2020}
+Wenhui Wang, Furu Wei, Li~Dong, Hangbo Bao, Nan Yang, and Ming Zhou.
+  2020{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2002.10957} {{MiniLM}: Deep
+  self-attention distillation for task-agnostic compression of pre-trained
+  transformers}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~33.
+
+\bibitem[{Wang et~al.(2023)Wang, Zhou, Zu, Xia, Chen, Zhang, Zheng, Ye, Zhang,
+  Gui, Kang, Yang, Li, and Du}]{instructuie-2023}
+Xiao Wang, Weikang Zhou, Can Zu, Han Xia, Tianze Chen, Yuansen Zhang, Rui
+  Zheng, Junjie Ye, Qi~Zhang, Tao Gui, Jihua Kang, Jingsheng Yang, Siyuan Li,
+  and Chunsai Du. 2023.
+\newblock \href {https://arxiv.org/abs/2304.08085} {{InstructUIE}: Multi-task
+  instruction tuning for unified information extraction}.
+\newblock \emph{arXiv preprint arXiv:2304.08085}.
+
+\bibitem[{Wang et~al.(2020{\natexlab{b}})Wang, Wang, Han, Jiang, Han, Liu, Li,
+  Li, Lin, and Zhou}]{maven-2020}
+Xiaozhi Wang, Ziqi Wang, Xu~Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi
+  Li, Peng Li, Yankai Lin, and Jie Zhou. 2020{\natexlab{b}}.
+\newblock \href {https://aclanthology.org/2020.emnlp-main.129/} {{MAVEN}: A
+  massive general domain event detection dataset}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing}, pages 1652--1671.
+
+\bibitem[{Wang et~al.(2025)Wang, Zhao, Lyu, Chen, de~Rijke, and
+  Ren}]{cmas-ner-2025}
+Zihan Wang, Ziqi Zhao, Yougang Lyu, Zhumin Chen, Maarten de~Rijke, and Zhaochun
+  Ren. 2025.
+\newblock \href {https://doi.org/10.1145/3696410.3714923} {A cooperative
+  multi-agent framework for zero-shot named entity recognition}.
+\newblock In \emph{Proceedings of the ACM Web Conference 2025}, pages
+  4183--4195.
+
+\bibitem[{Wen et~al.(2025)Wen, Liang, Wu, Zhang, and Liu}]{dlisc-2025}
+Zhihao Wen, Sheng Liang, Yaxiong Wu, Yongyue Zhang, and Yong Liu. 2025.
+\newblock \href {https://arxiv.org/abs/2505.14992} {Effective and efficient
+  schema-aware information extraction using on-device large language models}.
+\newblock \emph{arXiv preprint arXiv:2505.14992}.
+
+\bibitem[{Willard and Louf(2023)}]{willard2023efficient}
+Brandon~T. Willard and R{\'e}mi Louf. 2023.
+\newblock \href {https://arxiv.org/abs/2307.09702} {Efficient guided generation
+  for large language models}.
+\newblock \emph{arXiv preprint arXiv:2307.09702}.
+
+\bibitem[{Xie et~al.(2023)Xie, Li, Zhang, Zhang, Liu, and
+  Wang}]{xie-zeroshot-ner-2023}
+Tingyu Xie, Qi~Li, Jian Zhang, Yan Zhang, Zuozhu Liu, and Hongwei Wang. 2023.
+\newblock \href {https://aclanthology.org/2023.emnlp-main.493/} {Empirical
+  study of zero-shot {NER} with {ChatGPT}}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 7935--7956.
+
+\bibitem[{Xu et~al.(2024)Xu, Chen, Peng, Zhang, Xu, Zhao, Wu, Zheng, Wang, and
+  Chen}]{llm4ie-survey-2024}
+Derong Xu, Wei Chen, Wenjun Peng, Chao Zhang, Tong Xu, Xiangyu Zhao, Xian Wu,
+  Yefeng Zheng, Yang Wang, and Enhong Chen. 2024.
+\newblock \href {https://doi.org/10.1007/s11704-024-40555-y} {Large language
+  models for generative information extraction: A survey}.
+\newblock \emph{Frontiers of Computer Science}, 18(6).
+
+\bibitem[{Yao et~al.(2019)Yao, Ye, Li, Han, Lin, Liu, Liu, Huang, Zhou, and
+  Sun}]{docred-2019}
+Yuan Yao, Deming Ye, Peng Li, Xu~Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu,
+  Lixin Huang, Jie Zhou, and Maosong Sun. 2019.
+\newblock \href {https://aclanthology.org/P19-1074/} {{DocRED}: A large-scale
+  document-level relation extraction dataset}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 764--777.
+
+\bibitem[{Yin et~al.(2019)Yin, Hay, and Roth}]{yin-2019-zero-shot-bench}
+Wenpeng Yin, Jamaal Hay, and Dan Roth. 2019.
+\newblock \href {https://arxiv.org/abs/1909.00161} {Benchmarking zero-shot text
+  classification: Datasets, evaluation and entailment approach}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing}, pages 3914--3923.
+
+\bibitem[{Zaratiana et~al.(2025)Zaratiana, Pasternak, Boyd, Hurn-Maloney, and
+  Lewis}]{gliner2-2025}
+Urchade Zaratiana, Gil Pasternak, Oliver Boyd, George Hurn-Maloney, and Ash
+  Lewis. 2025.
+\newblock \href {https://aclanthology.org/2025.emnlp-demos.10/} {{GLiNER2}:
+  Schema-driven multi-task learning for structured information extraction}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing: System Demonstrations}, pages 130--140.
+
+\bibitem[{Zaratiana et~al.(2024)Zaratiana, Tomeh, Holat, and
+  Charnois}]{gliner-2024}
+Urchade Zaratiana, Nadi Tomeh, Pierre Holat, and Thierry Charnois. 2024.
+\newblock \href {https://arxiv.org/abs/2311.08526} {{GLiNER}: Generalist model
+  for named entity recognition using bidirectional transformer}.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics}, pages 5364--5376.
+
+\bibitem[{Zhao et~al.(2026)Zhao, Wang, Chen, Wang, Dai, Geng, Zhang, Li, and
+  Huang}]{reflect-learn-2026}
+Dong Zhao, Yadong Wang, Xiang Chen, Chenxi Wang, Hongliang Dai, Chuanxing Geng,
+  Shengzhong Zhang, Shao-Yuan Li, and Sheng-Jun Huang. 2026.
+\newblock \href {https://doi.org/10.1609/aaai.v40i41.40796} {Reflect then
+  learn: Active prompting for information extraction guided by introspective
+  confusion}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~40, pages 34923--34931.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Zhang, Gu, Chen, and Poon}]{uniner-2024}
+Wenxuan Zhou, Sheng Zhang, Yu~Gu, Muhao Chen, and Hoifung Poon. 2024.
+\newblock \href {https://arxiv.org/abs/2308.03279} {{UniversalNER}: Targeted
+  distillation from large language models for open named entity recognition}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\end{thebibliography}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_cross-embedding-sensitivity_20260516T050545_result.json",
     "occurrence": 1,
-    "bytes": 1104,
-    "sha256": "3877f0d2dd52272b034df36d5240f6c4fb9aedb7e8a55461cd93d185478fc4d1"
+    "bytes": 1103,
+    "sha256": "b482d6bba6e1d0eeb7fdf01e48c5a0665bb2fe0a2d6836a0603892c4b879fca6"
   },
   "statistics": {
     "messages": 1,

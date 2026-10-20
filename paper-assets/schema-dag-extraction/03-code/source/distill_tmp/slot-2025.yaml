@@ -1,0 +1,22 @@
+paper_key: "slot-2025"
+title: "SLOT: Structuring the Output of Large Language Models"
+venue: "EMNLP 2025 Industry"
+full_text_available: false
+
+research:
+  baselines: ["Claude-3.5-Sonnet", "Llama-3.2-1B (without SLOT)"]
+  metrics: [{name: "schema accuracy", direction: "higher_better"}, {name: "content similarity", direction: "higher_better"}]
+  datasets: [{name: "SLOTBench (introduced)", size: "not specified"}]
+  ablation_dimensions: ["model size (Mistral-7B vs Llama-3.2-1B)", "constrained decoding"]
+  training_recipe: {model: "Mistral-7B / Llama-3.2-1B", method: "fine-tuned lightweight post-processing layer + constrained decoding"}
+  method_family: "post-processing structured output correction"
+
+positioning:
+  core_claim: "A model-agnostic lightweight post-processing layer transforms unstructured LLM outputs into precise structured formats, achieving near-perfect schema accuracy"
+  key_results: "99.5% schema accuracy, 94.0% content similarity; +25pp and +20pp over Claude-3.5-Sonnet"
+  limitations: ["adds inference latency from post-processing", "requires fine-tuning the post-processor"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

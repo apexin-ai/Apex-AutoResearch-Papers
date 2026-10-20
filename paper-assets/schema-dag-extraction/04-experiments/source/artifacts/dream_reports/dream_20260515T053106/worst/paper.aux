@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\citation{}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-free LLM IE.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema decomposition.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confusability in classification.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Extraction protocol.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confusability Measurement}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema Confusability Score (SCS).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Empirical confusion.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Analysis Methodology}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiment 1: Count$\to $Recall Degradation}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Few-NERD}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Count curve on Few-NERD. Both models exhibit consistent recall degradation as type count increases. $\Delta $F1 = LLaMA $-$ Qwen3.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:fewnerd_count}{{1}{3}{Count curve on Few-NERD. Both models exhibit consistent recall degradation as type count increases. $\Delta $F1 = LLaMA $-$ Qwen3}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}MAVEN (168 Event Types)}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces MAVEN count curve (Qwen3-32B). Recall declines monotonically from 0.58 to 0.10. WrongType errors increase from 0 to 3100 as more types compete for assignment.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:maven_count}{{2}{4}{MAVEN count curve (Qwen3-32B). Recall declines monotonically from 0.58 to 0.10. WrongType errors increase from 0 to 3100 as more types compete for assignment}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}DocRED (96 Relation Types)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces DocRED count curve (Qwen3-32B). Floor effect at full schema (F1=6\%) limits confusability analysis.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:docred_count}{{3}{4}{DocRED count curve (Qwen3-32B). Floor effect at full schema (F1=6\%) limits confusability analysis}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Summary.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiment 2: Testing Confusability Independence}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Factorial Analysis on Few-NERD}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 2$\times $2 factorial F1 results on Few-NERD (Qwen3-32B). BCS has negligible effect ($\Delta $=0.01) compared to count ($\Delta $=0.03).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:factorial}{{4}{4}{2$\times $2 factorial F1 results on Few-NERD (Qwen3-32B). BCS has negligible effect ($\Delta $=0.01) compared to count ($\Delta $=0.03)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Two-way ANOVA. BCS main effect is not significant after controlling for count. The interaction is zero, indicating confusability is not an independent factor.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:anova}{{5}{5}{Two-way ANOVA. BCS main effect is not significant after controlling for count. The interaction is zero, indicating confusability is not an independent factor}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Within-Count BCS Correlation on MAVEN}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces MAVEN within-count BCS--F1 correlation. No evidence for confusability independence on event detection.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:maven_bcs}{{6}{5}{MAVEN within-count BCS--F1 correlation. No evidence for confusability independence on event detection}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Pairwise BCS--Confusion Analysis}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Pairwise BCS--confusion correlations. The Few-NERD/Qwen3 result ($r$=0.156) does not replicate across models or tasks. $\rho _{\text  {nz}}$: Spearman $\rho $ on nonzero confusion pairs.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:pairwise}{{7}{5}{Pairwise BCS--confusion correlations. The Few-NERD/Qwen3 result ($r$=0.156) does not replicate across models or tasks. $\rho _{\text {nz}}$: Spearman $\rho $ on nonzero confusion pairs}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiment 3: Error Taxonomy}{5}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Error taxonomy by BCS bin (Few-NERD, frequency-controlled). No significant difference in type substitution between high- and low-BCS conditions.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:errors}{{8}{6}{Error taxonomy by BCS bin (Few-NERD, frequency-controlled). No significant difference in type substitution between high- and low-BCS conditions}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Experiment 4: Validating the Confusability Proxy}{6}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces SCS vs.\ empirical confusion. Despite weak statistical significance ($p$<0.05 due to large $n$), practical predictive value is near-random (AUC=0.56).}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:scs_validation}{{9}{6}{SCS vs.\ empirical confusion. Despite weak statistical significance ($p$<0.05 due to large $n$), practical predictive value is near-random (AUC=0.56)}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Top-10 empirically confused type pairs. Only 2/10 overlap with top-10 SCS pairs. Confusion is driven by ``-other'' label ambiguity, not embedding similarity.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:mismatch}{{10}{6}{Top-10 empirically confused type pairs. Only 2/10 overlap with top-10 SCS pairs. Confusion is driven by ``-other'' label ambiguity, not embedding similarity}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Experiment 5: Schema Decomposition}{6}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Few-NERD}{6}{subsection.8.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Decomposition strategies on Few-NERD. SDGD-zero does not outperform random batching at the same $k$.}}{7}{table.11}\protected@file@percent }
+\newlabel{tab:decomp_fewnerd}{{11}{7}{Decomposition strategies on Few-NERD. SDGD-zero does not outperform random batching at the same $k$}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces SDGD-zero vs.\ 5 random batching seeds ($k$=8, Few-NERD). SDGD falls within the random variance.}}{7}{table.12}\protected@file@percent }
+\newlabel{tab:random_seeds}{{12}{7}{SDGD-zero vs.\ 5 random batching seeds ($k$=8, Few-NERD). SDGD falls within the random variance}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}MAVEN}{7}{subsection.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Decomposition strategies on MAVEN. SDGD-zero underperforms random batching ($-$0.5 F1) while SDGD-cal's marginal gain costs 15$\times $ more API calls.}}{7}{table.13}\protected@file@percent }
+\newlabel{tab:decomp_maven}{{13}{7}{Decomposition strategies on MAVEN. SDGD-zero underperforms random batching ($-$0.5 F1) while SDGD-cal's marginal gain costs 15$\times $ more API calls}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{7}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The frequency--confusability confound.}{7}{section*.10}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {paragraph}{Why embedding SCS fails as a confusability proxy.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When does the pairwise signal exist?}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications for schema decomposition.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations and future directions.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{8}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}DocRED Supplementary Results}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:docred}{{A}{9}{DocRED Supplementary Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}SDGD-cal Detailed Results}{9}{appendix.B}\protected@file@percent }
+\gdef \@abspage@last{9}

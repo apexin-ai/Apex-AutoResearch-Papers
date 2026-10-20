@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_docred_error_taxonomy_20260519T173228_result.json",
     "occurrence": 1,
-    "bytes": 1682,
-    "sha256": "64ad7cb6b413b70adb350468c5583e74506b8b27fca508e6145c9ec2e4a179ef"
+    "bytes": 1681,
+    "sha256": "0610e15d7042c1072391d71a979057f21f848b1964f5828292741d4b7b983d35"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_appendix-bcs-sensitivity_20260516T045707_result.json",
     "occurrence": 1,
-    "bytes": 320,
-    "sha256": "ecee1bf37458ac531d37134fd6151b8422f59d9c0fec7f26541472376fbcedde"
+    "bytes": 319,
+    "sha256": "adee6f676a28f4a1f02b29fb37083898907dac5f16b7e0f6b13dac902c86170c"
   },
   "statistics": {
     "messages": 1,

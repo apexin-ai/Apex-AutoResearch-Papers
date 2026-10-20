@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_prep_exp012_model_check_20260515T153754_result.json",
     "occurrence": 1,
-    "bytes": 1595,
-    "sha256": "ec7398b438327a4080832ebb5588c714afe7db82d42fe128d0ab924b842ae060"
+    "bytes": 1594,
+    "sha256": "3ea927ba9e5c6c94bdca62594e90c61931161c1898388d1ecf8e5c476fb71409"
   },
   "statistics": {
     "messages": 1,

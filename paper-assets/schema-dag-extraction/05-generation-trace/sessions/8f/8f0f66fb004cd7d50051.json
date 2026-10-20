@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fix-pass-criteria_20260514T233645_result.json",
     "occurrence": 1,
-    "bytes": 459,
-    "sha256": "0e90de24f87db0f439767370be79e61bc3a80081e83dda4cf8748f5907dfd7a8"
+    "bytes": 458,
+    "sha256": "da253c2b7477901a50dd6259bd284db835085b2b86e0923a23819765bc8f5924"
   },
   "statistics": {
     "messages": 1,

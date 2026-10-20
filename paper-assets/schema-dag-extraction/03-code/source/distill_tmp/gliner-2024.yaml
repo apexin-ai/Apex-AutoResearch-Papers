@@ -1,0 +1,115 @@
+paper_key: "gliner-2024"
+title: "GLiNER: Generalist Model for Named Entity Recognition using Bidirectional Transformer"
+venue: "NAACL 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "ChatGPT"
+    - "Vicuna-13B"
+    - "InstructUIE (FlanT5-11B)"
+    - "UniNER-7B (LLaMA-based)"
+    - "UniNER-13B (LLaMA-based)"
+    - "GoLLIE (CodeLlama-7B)"
+    - "USM"
+    - "XLM-R (supervised multilingual baseline)"
+  metrics:
+    - {name: "F1-score (exact match)", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+    - {name: "Recall", direction: "higher_better"}
+  datasets:
+    - {name: "OOD NER Benchmark (CrossNER + MIT)", size: "7 datasets: Movie, Restaurant, AI, Literature, Music, Politics, Science"}
+    - {name: "20 NER Benchmark", size: "20 datasets covering biomedical, news, tweets, WikiNeural, CoNLL03, bc5cdr, etc."}
+    - {name: "MultiCoNER", size: "11 languages"}
+    - {name: "Pile-NER (training)", size: "44,889 passages, 240k entity spans, 13k distinct entity types"}
+  ablation_dimensions:
+    - "backbone architecture (deBERTa-v3, ELECTRA, ALBERT, RoBERTa, BERT, XLNet)"
+    - "model size (Small 50M, Medium 90M, Large 0.3B)"
+    - "negative entity sampling ratio (0%, 50%, 75%)"
+    - "entity type dropping (with/without)"
+    - "Pile-NER pretraining effect (with/without, across data sizes 100-10000)"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "1e-5 (pretrained layers), 5e-5 (non-pretrained FFN layers)"
+    scheduler: "cosine decay with 10% warmup"
+    max_steps: 30000
+    dropout: 0.4
+    max_span_length: 12
+    max_entity_types_per_sentence: 25
+    hardware: "single A100 GPU, 5 hours for GLiNER-L"
+    embedding_dim: 768
+    negative_sampling: "random entities from batch, 50% ratio"
+    regularization: "entity order shuffling + random entity type dropping"
+  method_family: "span-based entity-type matching with bidirectional encoder"
+
+positioning:
+  core_claim: "将开放域NER重新建模为实体类型嵌入与文本span表示在潜空间的匹配问题，用50M-300M参数的双向Transformer实现了超越ChatGPT和7B-13B微调LLM的zero-shot NER性能"
+  key_results: "GLiNER-L (0.3B) 在OOD NER上达到60.9 F1，超越GoLLIE-7B (58.0)和UniNER-13B (55.6)；在20 NER benchmark上达到47.8 F1，超越ChatGPT (36.5)和UniNER-7B (45.7)；模型比UniNER-13B小140倍；GLiNER-L在A100上训练仅需5小时"
+  limitations:
+    - "在非正式文本(tweets)上表现不佳，落后于UniNER"
+    - "多语言版本(GLiNER-Multi 32.9)仍显著落后于ChatGPT (54.9)在多语言NER上"
+    - "监督微调场景下(82.9)仍落后于UniNER-7B (84.8) 1.9个点"
+    - "训练数据Pile-NER由ChatGPT标注，质量依赖于ChatGPT的NER能力"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "开篇从NER的普遍重要性入手，指出传统NER受限于预定义实体类型，LLM虽然能做开放域NER但代价高昂（数十亿参数、API费用、顺序生成瓶颈）"
+  tension: "现有开放域NER方案要么需要ChatGPT API（昂贵且不可控），要么需要微调7B-13B的LLM（资源密集、推理慢）——这些方案本质上都是用自回归生成范式做NER，天然存在顺序解码瓶颈和参数冗余"
+  key_insight: "在Section 2.1揭示核心洞察：NER不需要生成式范式，可以重新建模为实体类型嵌入与span表示在潜空间的匹配问题。这一重新建模使得(1)双向编码器替代自回归LLM成为可能，(2)所有span可并行评估，(3)模型规模缩小140倍"
+  argument_chain: "NER重要但传统方法受限于固定类型 → LLM能做开放域NER但太贵太慢 → 根本原因是生成式范式不适合NER → 重新建模为span-entity type匹配 → 双向编码器+并行推理 → 小模型超越大LLM"
+  contribution_framing: "贡献以隐式方式融入intro最后一段，没有显式的contribution list。通过'our proposed model'引出方法核心思想，紧跟'outperforming both ChatGPT and fine-tuned LLMs'的结果声明。贡献数量实质为3个：(1)新建模方式，(2)并行推理，(3)参数效率"
+  intro_structure: "4段：P1-NER重要性与传统方法局限；P2-LLM方案的成本与规模问题；P3-微调LLM方案(InstructUIE/GoLLIE/UniNER)的局限(自回归瓶颈/模型过大)；P4-GLiNER方案与核心结果"
+  notable_technique: "用'140倍更小'这个数字制造戏剧性对比——不说0.3B vs 13B的绝对数字，而用倍数放大效率优势的感知。同时在Table 1中巧妙标注每个模型的参数量，让读者自己做对比。"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "对比图，左侧(a)展示UniNER的多轮对话式LLM提示方式做NER，右侧(b)展示GLiNER用双向语言模型在潜空间做实体类型与span的匹配。两种范式的视觉对比"
+    narrative_role: "一图建立全文核心对比：生成式范式 vs 匹配式范式。让读者在阅读方法细节前就直觉理解两种方案的本质区别"
+    design_elements: ["左右对比布局(a/b)", "两种范式的流程可视化", "LLM对话 vs 向量匹配的直觉对比"]
+    visual_style: "双栏对比布局，左侧展示LLM的多轮对话prompt，右侧展示双向编码器的span-entity匹配架构。通过视觉复杂度的差异（左复杂/右简洁）暗示方法的优越性"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      what_compared: "不同backbone(deBERTa-v3, ELECTRA, ALBERT, RoBERTa, BERT)在OOD NER和20 NER benchmark上的zero-shot性能"
+      how_gain_highlighted: "deBERTa-v3柱子明显最高，且即使最弱的BERT也超过ChatGPT基线"
+      design_note: "用grouped bar同时展示两个benchmark的结果，便于横向比较。backbone选择的消融同时也验证了方法的通用性（不依赖特定backbone）"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "有无Pile-NER预训练在不同训练样本量(100-10000)下的监督性能差异"
+      how_gain_highlighted: "两条线的gap在小数据量时最大(5.6点)，随数据增加收敛，突出预训练在低资源场景的价值"
+      design_note: "经典的data scaling曲线，X轴用对数刻度。清晰展示预训练收益随数据量的变化趋势"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["entity type dropping (with/without)", "negative entity sampling (with/without)"]
+      design_note: "2x2组合的消融，展示entity type dropping和negative sampling的交互效果。简洁直观"
+  figure_narrative_role: "Figure 1(motivation对比) → Figure 2(方法架构) → Figure 3(训练数据构造) → Figure 4(backbone消融) → Figure 5(预训练效果) → Figure 6(训练策略消融)。从动机→方法→数据→实验的完整叙事流"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets (7 OOD NER domains) + Average"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best，同时在方法名后标注参数量（50M/90M/0.3B/7B/11B/13B）形成隐式对比"
+    statistical_reporting: "单次结果，无标准差"
+    num_baselines: 6
+    design_note: "精心选择OOD benchmark让GLiNER-L的优势最大化。在每个模型后标注参数量是关键设计——让读者在看到GLiNER-L (0.3B)超越UniNER-13B时自动注意到140倍的参数差距。Average列放最后方便快速比较"
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["negative entity sampling ratio (0%, 50%, 75%)"]
+      variation_style: "full_numbers"
+      design_note: "展示precision/recall/F1三个指标而非仅F1，帮助理解负采样比例如何影响precision-recall trade-off。0%行的高recall低precision直观说明了负采样的必要性"
+    - table_id: "Table 4"
+      what_varied: ["预训练(w/ vs w/o Pile-NER)", "对比监督微调下GLiNER vs LLM-based方法"]
+      variation_style: "full_numbers"
+      design_note: "用w/和w/o前缀简洁区分预训练与否。同时与InstructUIE和UniNER-7B比较，展示在监督场景下GLiNER仍有竞争力"
+  supplementary_tables:
+    in_appendix: false
+    content: "无附录表格"
+    reason: "论文整体紧凑(NAACL格式)，所有实验结果均在主文中呈现。20 NER benchmark的完整逐数据集结果在Table 2中直接展示"

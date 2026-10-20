@@ -1,0 +1,97 @@
+{
+  "exp_id": "exp004_maven_bcs",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:21:19.914Z",
+    "updated_at": "2026-05-15T07:34:53.465Z",
+    "spec": {
+      "hypothesis": "Type confusability (BCS) independently predicts extraction degradation in MAVEN Event Detection, replicating Few-NERD finding cross-task (NER→ED). Analysis focus: pairwise + per-type (not batch-level due to BCS compression).",
+      "dataset": "MAVEN",
+      "model": "Qwen3-32B-FP8",
+      "design": "exp1: count curve {1,6,12,24,42,84,168} x 5 random; exp2: count={12,24} x 27 batches. Qwen3 BCS matrix. 149 active types. Analysis: Layer 1 pairwise SCS-confusion + Layer 2 per-type F1 vs mean SCS + Layer 3 batch-level percentile rank BCS.",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/run_experiment.py --dataset maven --mode exp1 ... && python3 src/run_experiment.py --dataset maven --mode exp2 ...\"",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/maven_parquet/valid.parquet",
+      "data_count": 8042,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 224685
+    },
+    "notes": "MAVEN 三层分析完成。Layer 1 pairwise 不显著（BCS 压缩）。Layer 2 per-type 显著但方向相反（r=+0.189, p=0.021, 高 BCS → 高 F1）。Layer 3 batch-level 不显著（n=5 per group）。Cross-task replication 部分失败：MAVEN 的 same-domain event space 下 embedding similarity 不是 confusability 的有效 proxy，而是 type centrality/typicality 的指标。Top confused pairs 有语义直觉（Achieve↔Getting, Death↔Killing），但 SCS 与 confusion count 无统计相关。需要 Framing 调整。",
+    "conclusion": "negative",
+    "metrics": {
+      "exp1_count_curve": {
+        "count_1": {
+          "n_batches": 64,
+          "exact_f1": 0.009,
+          "relaxed_f1": 0.106,
+          "bcs": 0
+        },
+        "count_6": {
+          "n_batches": 5,
+          "exact_f1": 0.003,
+          "relaxed_f1": 0.103,
+          "bcs": 0.892
+        },
+        "count_12": {
+          "n_batches": 5,
+          "exact_f1": 0.008,
+          "relaxed_f1": 0.146,
+          "bcs": 0.921
+        },
+        "count_22": {
+          "n_batches": 5,
+          "exact_f1": 0.013,
+          "relaxed_f1": 0.185,
+          "bcs": 0.933
+        },
+        "count_44": {
+          "n_batches": 5,
+          "exact_f1": 0.018,
+          "relaxed_f1": 0.247,
+          "bcs": 0.967
+        },
+        "count_64": {
+          "n_batches": 5,
+          "exact_f1": 0.013,
+          "relaxed_f1": 0.245,
+          "bcs": 0.973
+        }
+      },
+      "exp2_bcs_controlled": {
+        "count_6_high_bcs": {
+          "exact_f1": 0.0354,
+          "relaxed_f1": 0.211,
+          "bcs": 0.9447
+        },
+        "count_6_low_bcs": {
+          "exact_f1": 0.0068,
+          "relaxed_f1": 0.089,
+          "bcs": 0.8709
+        },
+        "count_12_high_bcs": {
+          "exact_f1": 0.0151,
+          "relaxed_f1": 0.1568,
+          "bcs": 0.9447
+        },
+        "count_12_low_bcs": {
+          "exact_f1": 0.0068,
+          "relaxed_f1": 0.105,
+          "bcs": 0.9148
+        }
+      },
+      "key_finding": "MAVEN batch-level: high_bcs relaxed_F1 2.4x vs low_bcs (count_6). Direction same as Few-NERD batch-level (positive). Pairwise + per-type analysis needed to control frequency confound.",
+      "note": "exact_F1 very low (0.003-0.035), relaxed_F1 usable (0.089-0.247). Event trigger boundary matching is fuzzy. A re-run (500 samples) is still in progress in artifacts/exp004/."
+    },
+    "log_path": "/root/schema-dag-extraction/logs/exp1.log, /root/schema-dag-extraction/logs/exp2.log",
+    "checkpoint_path": "N/A (inference experiment)",
+    "completed_at": "2026-05-15T07:34:53.465Z"
+  },
+  "timestamp": "2026-05-15T07:34:53.491611+00:00",
+  "trigger": "update_registry"
+}

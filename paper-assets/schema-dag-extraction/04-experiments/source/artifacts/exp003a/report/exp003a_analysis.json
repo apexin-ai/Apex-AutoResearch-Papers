@@ -1,0 +1,36 @@
+{
+  "exp3a_success": true,
+  "note": "v2 predictions overwrote exp1/exp2 files. v1 reeval results backed up as *_v1.json in results/.",
+  "v2_vs_v1_comparison": {
+    "exp1_text_match": {
+      "count_1":  {"v1_recall": 0.720, "v2_recall": 0.580, "v1_F1": 0.184, "v2_F1": 0.292, "v1_PG": 6.85, "v2_PG": 2.97},
+      "count_2":  {"v1_recall": 0.698, "v2_recall": 0.506, "v1_F1": 0.123, "v2_F1": 0.247, "v1_PG": 10.33, "v2_PG": 3.11},
+      "count_6":  {"v1_recall": 0.620, "v2_recall": 0.427, "v1_F1": 0.155, "v2_F1": 0.275, "v1_PG": 7.02, "v2_PG": 2.10},
+      "count_12": {"v1_recall": 0.539, "v2_recall": 0.285, "v1_F1": 0.246, "v2_F1": 0.301, "v1_PG": 3.38, "v2_PG": 0.90},
+      "count_22": {"v1_recall": 0.527, "v2_recall": 0.231, "v1_F1": 0.322, "v2_F1": 0.259, "v1_PG": 2.27, "v2_PG": 0.79},
+      "count_44": {"v1_recall": 0.551, "v2_recall": 0.355, "v1_F1": 0.473, "v2_F1": 0.398, "v1_PG": 1.33, "v2_PG": 0.78},
+      "count_64": {"v1_recall": 0.418, "v2_recall": 0.268, "v1_F1": 0.463, "v2_F1": 0.365, "v1_PG": 0.80, "v2_PG": 0.47}
+    },
+    "exp2_text_match": {
+      "count_6":  {"v1_recall": 0.629, "v2_recall": 0.370, "v1_F1": 0.200, "v2_F1": 0.285, "v1_PG": 5.29, "v2_PG": 1.60},
+      "count_12": {"v1_recall": 0.525, "v2_recall": 0.287, "v1_F1": 0.230, "v2_F1": 0.272, "v1_PG": 3.57, "v2_PG": 1.11}
+    }
+  },
+  "within_count_correlation": {
+    "partial_r_F1_BCS": {"v1": 0.303, "v1_p": 0.026, "v2": 0.400, "v2_p": 0.003, "change_pct": "+32%"},
+    "partial_r_recall_BCS": {"v1": 0.252, "v1_p": 0.066, "v2": 0.277, "v2_p": 0.043, "change": "now significant"},
+    "count_12_recall_BCS": {"v1": 0.222, "v1_status": "FAIL", "v2": 0.524, "v2_status": "PASS"},
+    "count_12_F1_BCS": {"v1": 0.501, "v1_status": "PASS", "v2": 0.583, "v2_status": "PASS"},
+    "count_6_recall_BCS": {"v1": 0.275, "v1_status": "FAIL", "v2": 0.124, "v2_status": "FAIL"},
+    "count_6_F1_BCS": {"v1": 0.175, "v1_status": "FAIL", "v2": 0.301, "v2_status": "FAIL"}
+  },
+  "error_taxonomy": {
+    "v2_exp1_count_1":  {"spurious": 6198, "hallucinated": 132, "wrong_type": 0, "total_fp": 6330},
+    "v2_exp1_count_12": {"spurious": 1331, "hallucinated": 40, "wrong_type": 90, "total_fp": 1461},
+    "v2_exp1_count_44": {"spurious": 2951, "hallucinated": 101, "wrong_type": 1006, "total_fp": 4058},
+    "v2_exp1_count_64": {"spurious": 1140, "hallucinated": 67, "wrong_type": 1446, "total_fp": 2653},
+    "pattern": "Low counts: spurious dominates (98%). High counts: wrong_type rises to 55% at count_64. Supports substitution-increases-with-confusability claim."
+  },
+  "go_no_go": "GO",
+  "reason": "v2 strengthens core claim: partial r(F1,BCS|count) 0.303->0.400 (p=0.003), partial r(recall,BCS|count) now significant (p=0.043), count_12 recall-BCS flipped FAIL->PASS. Over-prediction reduced 50-70%. High-count F1 regression is prompt trade-off, not threat to BCS thesis."
+}

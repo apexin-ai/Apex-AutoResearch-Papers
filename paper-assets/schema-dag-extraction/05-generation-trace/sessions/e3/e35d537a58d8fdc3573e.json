@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_permutation_equivalence_test_20260522T015431_result.json",
     "occurrence": 1,
-    "bytes": 1292,
-    "sha256": "64a5b954bda3750e899c504b823db12159a8a49d1d481883c6444f72d265531f"
+    "bytes": 1291,
+    "sha256": "6d80db410d624aa2ed245ad1f11501ae48769ca2a4a264867a9e9a0f37a2da41"
   },
   "statistics": {
     "messages": 1,

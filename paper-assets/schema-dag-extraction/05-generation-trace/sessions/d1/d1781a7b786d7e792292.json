@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d044_fewrel_contradiction_fix_20260516T105301_result.json",
     "occurrence": 1,
-    "bytes": 679,
-    "sha256": "79d638dc1f39214467fc14def7d15da2f0024c405a6386ef99e972c3cc78dfaf"
+    "bytes": 678,
+    "sha256": "36980bc2f7e40aead566c7d9efc1b61d9879003d94e54bf0c5cacd2560dc61a7"
   },
   "statistics": {
     "messages": 1,

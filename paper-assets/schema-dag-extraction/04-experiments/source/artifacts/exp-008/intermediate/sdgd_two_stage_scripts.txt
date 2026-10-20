@@ -1,0 +1,6 @@
+Files on cqa1-38874:/root/schema-dag-extraction/src/
+- sdgd_decompose_cpu.py: CPU-only decomposition for all 4 modes (sdgd_zero, single_pass, per_type, random_batch)
+- sdgd_extract_gpu.py: GPU extraction with vLLM initialized FIRST (avoids EngineCore fork deadlock). Accepts multiple decomposition JSONs for single model load.
+- run_sdgd_full.sh: Orchestrator that runs all decompositions then one GPU session for all modes.
+
+Fix: Two-stage separation ensures vLLM EngineCore forks before torch/networkx are loaded.

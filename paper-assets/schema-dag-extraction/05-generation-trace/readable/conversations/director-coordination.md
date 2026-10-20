@@ -2763,8 +2763,8 @@ AWS 凭证已在 BE 的 ~/.agent-ml-be-backup.yaml 文件里。命令模板（�
 
 如果从远程 GPU 服务器上跑，需要先把凭证 scp 过去 + export：
 
-  export AWS_ACCESS_KEY_ID=...
-  export AWS_SECRET_ACCESS_KEY=...
+  export AWS_ACCESS_KEY_ID=[REDACTED]
+  export AWS_SECRET_ACCESS_KEY=[REDACTED]
   export AWS_DEFAULT_REGION=ap-northeast-1
 
 完成后汇报：
@@ -3938,8 +3938,8 @@ from pathlib import Path
 
 cfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))
 s3 = boto3.client('s3',
-    aws_access_key_id=cfg['aws_access_key_id'],
-    aws_secret_access_key=cfg['aws_secret_access_key'],
+    aws_access_key_id=[REDACTED]'aws_access_key_id'],
+    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],
     region_name=cfg['s3_region'])
 
 src = sys.argv[1]
@@ -4068,7 +4068,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ````json
 {
-  "text": "**[紧急] 项目数据 S3 备份 — 全程不停，一气呵成**\n\n数据审计已完成，直接执行备份。两台 GPU 服务器（cqa1-38874、westd-24295）当前不在 SSH config 中，先尝试连接，连不上就跳过，备份本地数据。\n\n## 第 1 步：收集数据到 ~/schema-dag-extraction_archive/\n\n```bash\nmkdir -p ~/schema-dag-extraction_archive/be_local\n```\n\n**本地 BE 数据**（必须包含）：\n```bash\n# 项目主目录（含 artifacts、docs、figures、scripts、registry、provenance 等）\nrsync -av --exclude='__pycache__' --exclude='*.pyc' --exclude='.venv' \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ \\\n  ~/schema-dag-extraction_archive/be_local/project/\n\n# 论文源码（确保 .git 历史保留）\n# 已包含在上面的 project/ 中\n```\n\n**尝试远程服务器**（如果 SSH 不通就跳过并记录）：\n- 先检查 cqa1-38874 和 westd-24295 是否可达\n- 如果可达，rsync `/root/schema-dag-extraction/` 下的代码、结果、脚本（排除公开数据集、公开模型、venv、pip cache、conda env）\n- 如果不可达，记录 \"服务器不可达，跳过\"\n\n## 第 2 步：打包\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd ~ && tar czf /tmp/schema-dag-extraction-final-$TS.tar.gz schema-dag-extraction_archive/\nls -lh /tmp/schema-dag-extraction-final-*.tar.gz\n```\n\n## 第 3 步：上传 S3（boto3）\n\n写这个脚本到 `/tmp/upload_to_s3.py` 并执行：\n\n```python\nimport yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=cfg['aws_access_key_id'],\n    aws_secret_access_key=cfg['aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：`python3 /tmp/upload_to_s3.py`\n\n⚠️ S3 凭证是 PUT-only，不要尝试 list/delete。upload_file 没抛异常 = 上传成功。\n⚠️ 如果 AccessDenied，检查 key 前缀必须是 `manager-backup/backends/schema-dag-extraction/project-archive/`。\n\n## 第 4 步：汇报\n\n完成后汇报：\n(a) tarball 路径 + 大小\n(b) S3 完整 URI\n(c) 上传速率\n(d) 备份内容清单（包了哪些目录、哪些服务器的数据、哪些服务器不可达跳过了）\n\n**全程不停不等，一步接一步执行。**",
+  "text": "**[紧急] 项目数据 S3 备份 — 全程不停，一气呵成**\n\n数据审计已完成，直接执行备份。两台 GPU 服务器（cqa1-38874、westd-24295）当前不在 SSH config 中，先尝试连接，连不上就跳过，备份本地数据。\n\n## 第 1 步：收集数据到 ~/schema-dag-extraction_archive/\n\n```bash\nmkdir -p ~/schema-dag-extraction_archive/be_local\n```\n\n**本地 BE 数据**（必须包含）：\n```bash\n# 项目主目录（含 artifacts、docs、figures、scripts、registry、provenance 等）\nrsync -av --exclude='__pycache__' --exclude='*.pyc' --exclude='.venv' \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ \\\n  ~/schema-dag-extraction_archive/be_local/project/\n\n# 论文源码（确保 .git 历史保留）\n# 已包含在上面的 project/ 中\n```\n\n**尝试远程服务器**（如果 SSH 不通就跳过并记录）：\n- 先检查 cqa1-38874 和 westd-24295 是否可达\n- 如果可达，rsync `/root/schema-dag-extraction/` 下的代码、结果、脚本（排除公开数据集、公开模型、venv、pip cache、conda env）\n- 如果不可达，记录 \"服务器不可达，跳过\"\n\n## 第 2 步：打包\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd ~ && tar czf /tmp/schema-dag-extraction-final-$TS.tar.gz schema-dag-extraction_archive/\nls -lh /tmp/schema-dag-extraction-final-*.tar.gz\n```\n\n## 第 3 步：上传 S3（boto3）\n\n写这个脚本到 `/tmp/upload_to_s3.py` 并执行：\n\n```python\nimport yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=[REDACTED]'aws_access_key_id'],\n    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：`python3 /tmp/upload_to_s3.py`\n\n⚠️ S3 凭证是 PUT-only，不要尝试 list/delete。upload_file 没抛异常 = 上传成功。\n⚠️ 如果 AccessDenied，检查 key 前缀必须是 `manager-backup/backends/schema-dag-extraction/project-archive/`。\n\n## 第 4 步：汇报\n\n完成后汇报：\n(a) tarball 路径 + 大小\n(b) S3 完整 URI\n(c) 上传速率\n(d) 备份内容清单（包了哪些目录、哪些服务器的数据、哪些服务器不可达跳过了）\n\n**全程不停不等，一步接一步执行。**",
   "project": "schema-dag-extraction"
 }
 ````
@@ -4083,7 +4083,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "**[紧急] 项目数据 S3 备份 — 全程不停，一气呵成**\n\n数据审计已完成，直接执行备份。两台 GPU 服务器（cqa1-38874、westd-24295）当前不在 SSH config 中，先尝试连接，连不上就跳过，备份本地数据。\n\n## 第 1 步：收集数据到 ~/schema-dag-extraction_archive/\n\n```bash\nmkdir -p ~/schema-dag-extraction_archive/be_local\n```\n\n**本地 BE 数据**（必须包含）：\n```bash\n# 项目主目录（含 artifacts、docs、figures、scripts、registry、provenance 等）\nrsync -av --exclude='__pycache__' --exclude='*.pyc' --exclude='.venv' \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ \\\n  ~/schema-dag-extraction_archive/be_local/project/\n\n# 论文源码（确保 .git 历史保留）\n# 已包含在上面的 project/ 中\n```\n\n**尝试远程服务器**（如果 SSH 不通就跳过并记录）：\n- 先检查 cqa1-38874 和 westd-24295 是否可达\n- 如果可达，rsync `/root/schema-dag-extraction/` 下的代码、结果、脚本（排除公开数据集、公开模型、venv、pip cache、conda env）\n- 如果不可达，记录 \"服务器不可达，跳过\"\n\n## 第 2 步：打包\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd ~ && tar czf /tmp/schema-dag-extraction-final-$TS.tar.gz schema-dag-extraction_archive/\nls -lh /tmp/schema-dag-extraction-final-*.tar.gz\n```\n\n## 第 3 步：上传 S3（boto3）\n\n写这个脚本到 `/tmp/upload_to_s3.py` 并执行：\n\n```python\nimport yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=cfg['aws_access_key_id'],\n    aws_secret_access_key=cfg['aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：`python3 /tmp/upload_to_s3.py`\n\n⚠️ S3 凭证是 PUT-only，不要尝试 list/delete。upload_file 没抛异常 = 上传成功。\n⚠️ 如果 AccessDenied，检查 key 前缀必须是 `manager-backup/backends/schema-dag-extraction/project-archive/`。\n\n## 第 4 步：汇报\n\n完成后汇报：\n(a) tarball 路径 + 大小\n(b) S3 完整 URI\n(c) 上传速率\n(d) 备份内容清单（包了哪些目录、哪些服务器的数据、哪些服务器不可达跳过了）\n\n**全程不停不等，一步接一步执行。**",
+    "text": "**[紧急] 项目数据 S3 备份 — 全程不停，一气呵成**\n\n数据审计已完成，直接执行备份。两台 GPU 服务器（cqa1-38874、westd-24295）当前不在 SSH config 中，先尝试连接，连不上就跳过，备份本地数据。\n\n## 第 1 步：收集数据到 ~/schema-dag-extraction_archive/\n\n```bash\nmkdir -p ~/schema-dag-extraction_archive/be_local\n```\n\n**本地 BE 数据**（必须包含）：\n```bash\n# 项目主目录（含 artifacts、docs、figures、scripts、registry、provenance 等）\nrsync -av --exclude='__pycache__' --exclude='*.pyc' --exclude='.venv' \\\n  /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/ \\\n  ~/schema-dag-extraction_archive/be_local/project/\n\n# 论文源码（确保 .git 历史保留）\n# 已包含在上面的 project/ 中\n```\n\n**尝试远程服务器**（如果 SSH 不通就跳过并记录）：\n- 先检查 cqa1-38874 和 westd-24295 是否可达\n- 如果可达，rsync `/root/schema-dag-extraction/` 下的代码、结果、脚本（排除公开数据集、公开模型、venv、pip cache、conda env）\n- 如果不可达，记录 \"服务器不可达，跳过\"\n\n## 第 2 步：打包\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd ~ && tar czf /tmp/schema-dag-extraction-final-$TS.tar.gz schema-dag-extraction_archive/\nls -lh /tmp/schema-dag-extraction-final-*.tar.gz\n```\n\n## 第 3 步：上传 S3（boto3）\n\n写这个脚本到 `/tmp/upload_to_s3.py` 并执行：\n\n```python\nimport yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=[REDACTED]'aws_access_key_id'],\n    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：`python3 /tmp/upload_to_s3.py`\n\n⚠️ S3 凭证是 PUT-only，不要尝试 list/delete。upload_file 没抛异常 = 上传成功。\n⚠️ 如果 AccessDenied，检查 key 前缀必须是 `manager-backup/backends/schema-dag-extraction/project-archive/`。\n\n## 第 4 步：汇报\n\n完成后汇报：\n(a) tarball 路径 + 大小\n(b) S3 完整 URI\n(c) 上传速率\n(d) 备份内容清单（包了哪些目录、哪些服务器的数据、哪些服务器不可达跳过了）\n\n**全程不停不等，一步接一步执行。**",
     "project": "schema-dag-extraction"
   }
 }
@@ -18066,7 +18066,7 @@ _source line 546 · 2026-05-26T12:12:51.582050+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026/schema-dag-extraction",
-3	  "push_url": "https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git",
 4	  "github_user": "anonymous-nlp-2026",
 5	  "repo_name": "schema-dag-extraction"
 6	}
@@ -19120,8 +19120,8 @@ called Bash
 
 _source line 581 · 2026-05-26T12:21:10.307045+00:00_
 
-origin	https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)
-origin	https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (fetch)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git (push)
 ===LOG===
 8054e66 Fix SDGD oracle value: 0.80 (batch composition) -> 0.72 (routing oracle)
 aca7f96 Initial release: Schema-Induced Degradation in Training-Free LLM IE
@@ -19305,7 +19305,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /tmp && rm -rf schema-dag-update && git clone https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+  "command": "cd /tmp && rm -rf schema-dag-update && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
   "description": "Clone the anonymous repo for updating"
 }
 ```
@@ -19320,7 +19320,7 @@ called Bash
   "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /tmp && rm -rf schema-dag-update && git clone https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+    "command": "cd /tmp && rm -rf schema-dag-update && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
     "description": "Clone the anonymous repo for updating"
   }
 }
@@ -20863,13 +20863,13 @@ _source line 632 · 2026-05-26T12:36:50.028539+00:00_
 
 你的仓库信息：
 - 仓库地址：https://github.com/anonymous-nlp-2026/schema-dag-extraction
-- Push URL：https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
+- Push URL：https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
 
 操作步骤：
 ```
 git config --global user.name "Anonymous"
 git config --global user.email "anonymous@example.com"
-git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
+git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git
 cd schema-dag-extraction
 # 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容
 git add -A && git commit -m "sync with final paper" && git push
@@ -20903,7 +20903,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /tmp && rm -rf schema-dag-update && git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+  "command": "cd /tmp && rm -rf schema-dag-update && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
   "description": "Clone repo with provided credentials"
 }
 ```
@@ -20918,7 +20918,7 @@ called Bash
   "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /tmp && rm -rf schema-dag-update && git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
+    "command": "cd /tmp && rm -rf schema-dag-update && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git schema-dag-update 2>&1",
     "description": "Clone repo with provided credentials"
   }
 }

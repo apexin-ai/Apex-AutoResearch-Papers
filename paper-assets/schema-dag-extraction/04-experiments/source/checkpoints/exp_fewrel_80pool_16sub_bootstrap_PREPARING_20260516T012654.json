@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_fewrel_80pool_16sub_bootstrap",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:26:54.812Z",
+    "updated_at": "2026-05-16T01:26:54.812Z"
+  },
+  "timestamp": "2026-05-16T01:26:54.930645+00:00",
+  "trigger": "update_registry"
+}

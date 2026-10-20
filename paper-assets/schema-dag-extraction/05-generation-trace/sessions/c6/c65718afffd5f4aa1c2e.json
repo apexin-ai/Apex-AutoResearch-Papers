@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diag_exp012_sigkill_20260515T171456_result.json",
     "occurrence": 1,
-    "bytes": 1609,
-    "sha256": "f85be87f5b78a0c4651e05b00725f4486ae70717216289ecc0699ab43776fa69"
+    "bytes": 1608,
+    "sha256": "d9debb080dff14a0cf6f1f7f65bb34c5a5f51caf58a0a1bc7da271fe3956917d"
   },
   "statistics": {
     "messages": 1,

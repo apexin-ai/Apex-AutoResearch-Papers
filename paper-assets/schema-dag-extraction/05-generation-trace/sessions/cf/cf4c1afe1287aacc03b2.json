@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_bootstrap_ci_discrepancy_20260516T022039_result.json",
     "occurrence": 1,
-    "bytes": 1424,
-    "sha256": "91588a7fda74e2487f3f6ef8850baaf67051af1c627d95114c956641d944aa6d"
+    "bytes": 1423,
+    "sha256": "81dbf4c2e59a0f2fb11a962b23a80c77ad7ead1cf01798fc8760c338250666a5"
   },
   "statistics": {
     "messages": 1,

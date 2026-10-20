@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48b08b3503ae947bb4fe",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "fix mvp pilot v7 kl bug",
+  "task_key": "worker_fix_mvp_pilot_v7_kl_bug_20260513T174505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp_pilot_v7_kl_bug_20260513T174505_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "7e4495c6530b119989797a04e010f7baba48ac7edb0849d3600556c6b4a0ea6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "G2 checkpoint-76 评估已开始，正在计算 spectral effective rank。pipeline 正常运行。\n\n总结：\n\n1. **Bug 根因**：`pilot_pipeline.py:50` 用 `tokenizer.vocab_size`（Pythia 返回 50254），但生成的 token ID 可超过这个值（special/padding tokens 达 50276）。`np.bincount(ids, minlength=50254)` 对不同 max token ID 的两代数据产出不同长度的分布向量。\n\n2. **修复**：在 `compute_kl_divergence` 中添加 `effective_vocab = max(arr_a.max()+1, arr_b.max()+1, vocab_size)`，替换函数内所有 `minlength=vocab_size` 为 `minlength=effective_vocab`（包括主计算和 bootstrap 循环共 5 处）。\n\n3. **恢复策略**：G2 训练已完成，写了 `resume_g2_eval.py` 只跑 G2 评估 + leading indicator ranking + MVP verdict，跳过已完成的 G0/G1。\n\n4. **实验状态**：`mvp_pilot_v8_r2` 已在 `cuda:0` 上运行，正在评估 G2 的 6 个 checkpoint。预计每个 checkpoint ~15 分钟，总计 ~1.5 小时。日志在 `/root/autodl-tmp/pilot_v8.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp-pilot-v7-kl-bug.md"
+}

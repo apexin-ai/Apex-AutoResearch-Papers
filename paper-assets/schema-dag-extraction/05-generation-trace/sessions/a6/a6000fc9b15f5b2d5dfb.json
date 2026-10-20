@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d049_batch1_framing_fix_20260516T154125_result.json",
     "occurrence": 1,
-    "bytes": 1715,
-    "sha256": "e6c9795c5cc54492e7e9ff738f189670822207b9a5bcc4be339d74058e7077f3"
+    "bytes": 1714,
+    "sha256": "503ae2f97fdd2357fcf2cc22e7c42cac5e7d9978047e189a191d7e54024c89cd"
   },
   "statistics": {
     "messages": 1,

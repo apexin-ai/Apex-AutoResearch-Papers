@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e0f014d59df5cafcaa0",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "monitor mvp pilot v4 gpu",
+  "task_key": "worker_monitor_mvp_pilot_v4_gpu_20260512T143129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_mvp_pilot_v4_gpu_20260512T143129_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "4b32747193d3d1d606dbc76951a669b6f2f90378b9131a73370acf7a7970bea9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 PID 25724 仍在运行。当前正在加载模型到 GPU（数据预处理已完成，模型加载是 CPU/IO 密集阶段，GPU 暂不占用）。\n\n## 状态汇总\n\n**GPU (NVIDIA RTX PRO 6000 Black, 96GB)**\n```\nGPU Util: 0%  |  显存: 3MiB / 97887MiB  |  无 GPU 进程\n```\n\n**训练进程**: PID 25724 存活\n```\npython3 pilot_pipeline.py --output_dir /root/autodl-tmp/output \\\n  --num_generations 3 --tokens_per_generation 100000000 \\\n  --checkpoint_interval_tokens 10000000 --no_wandb --seed 42\n```\n\n**日志时间线**:\n| 时间 | 事件 |\n|------|------|\n| 22:26:19 | PILOT PIPELINE START, Model: pythia-1b, 3 generations x 100M tokens |\n| 22:26:20 | 开始加载 wikitext-103 (离线缓存) |\n| 22:26:20 | Tokenizing (4 workers) |\n| 22:26:35 | Packing 2048-token sequences |\n| 22:30:34 | **数据缓存完成**: 57052 packed sequences → `/root/autodl-tmp/output/real_data_cache` |\n\n**当前阶段**: 数据预处理刚完成(~2分钟前)，进程存活但 GPU 空闲 → 正在 CPU 上加载 pythia-1b 模型权重到内存，即将移至 GPU 开始训练。尚未产生任何 training step 或 loss 输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-mvp-pilot-v4-gpu.md"
+}

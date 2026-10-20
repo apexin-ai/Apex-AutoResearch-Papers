@@ -1,0 +1,131 @@
+paper_key: "uniner-2024"
+title: "UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "ChatGPT (gpt-3.5-turbo-0301)"
+    - "Vicuna-7B"
+    - "Vicuna-13B"
+    - "InstructUIE-11B (Flan-T5)"
+    - "BERT-base"
+    - "LLaMA-7B"
+    - "LLaMA-13B"
+    - "Alpaca"
+  metrics:
+    - {name: "strict entity-level micro-F1", direction: "higher_better"}
+    - {name: "partial match F1 (word overlap counted as 0.5 TP)", direction: "higher_better"}
+  datasets:
+    - {name: "UniversalNER Benchmark (43 datasets, 9 domains)", size: "43 datasets total"}
+    - {name: "General domain", size: "15 datasets: ACE04, ACE05, conllpp, CrossNER (AI/Literature/Music/Politics/Science), FewNERD-coarse, FewNERD-fine, MultiNERD, OntoNotes, PolyglotNER, TASTEset, WikiANN, WikiNeural"}
+    - {name: "Biomedical", size: "8 datasets: AnatEM, BioRED, GENIA, JNLPBA, bc2gm, bc4chemd, bc5cdr, ncbi"}
+    - {name: "Clinical", size: "7 datasets: ebmnlp, i2b2-2006-deid, i2b2-2010, i2b2-2012, i2b2-2014, n2c2-2018, ShAEeCLEF"}
+    - {name: "STEM", size: "7 datasets: DEAL, FabNER, SOFC, SciERC, SciREX, SoMeSci, WLP"}
+    - {name: "Programming", size: "1 dataset: Stackoverflow-NER"}
+    - {name: "Social Media", size: "5 datasets: HarveyNER, Broad Tweet Corpus, TweetNER7, MIT-Movie, MIT-Restaurant"}
+    - {name: "Law", size: "3 datasets: E-NER, MAPA-coarse, MAPA-fine"}
+    - {name: "Finance", size: "1 dataset: FiNER-ord"}
+    - {name: "Transportation", size: "1 dataset: FindVehicle"}
+    - {name: "Pile distillation data", size: "45,889 input-output pairs, 240,725 entities, 13,020 distinct entity types"}
+  ablation_dimensions:
+    - "负采样策略 (none / uniform / frequency-based)"
+    - "指令模板格式 (single-type query vs all-in-one query)"
+    - "数据构造方式 (type-based vs definition-based)"
+    - "数据集特定模板 vs 通用模板 (dataset-specific vs original)"
+    - "训练数据组合 (distillation only / supervised only / distillation + supervised)"
+    - "模型规模 (7B vs 13B)"
+  training_recipe:
+    base_model: "LLaMA 7B / 13B (also tested LLaMA 2, no significant difference)"
+    optimizer: "following Chiang et al. 2023 (Vicuna training schedule), details not specified in paper"
+    lr: "not explicitly stated (defers to Vicuna schedule)"
+    hardware: "not explicitly stated"
+    distillation_data: "50,000 passages from Pile corpus (max 256 tokens), ChatGPT gpt-3.5-turbo-0301 with temperature 0"
+    loss: "only highlighted response portions used for loss computation"
+    negative_sampling: "frequency-based sampling proportional to entity type frequency"
+  method_family: "targeted distillation / mission-focused instruction tuning"
+
+positioning:
+  core_claim: "通用指令蒸馏(Alpaca/Vicuna)只能浅层模仿LLM，针对特定任务类(如open NER)的mission-focused instruction tuning可以让7B模型在数万种实体类型上超越ChatGPT 7-9个F1点"
+  key_results: "UniNER-7B zero-shot avg F1 41.7% vs ChatGPT 34.9% (全43数据集); out-of-domain avg F1 53.4% vs ChatGPT 47.5%; 结合监督数据后达60.0%; in-domain 84.78% vs InstructUIE-11B 81.16% vs BERT-base 80.09%; 负采样贡献 +21.9 F1"
+  limitations:
+    - "type-based模型对实体类型同义改写敏感（如place/metropolis/urban area无法互认），definition-based可解但标准benchmark性能下降11.8%"
+    - "严格F1评估可能低估zero-shot能力（边界不完全匹配被惩罚）"
+    - "训练细节未公开（defer to Vicuna schedule），可复现性受限"
+    - "仅以NER为case study，未验证targeted distillation在RE/EE等其他IE任务上的效果"
+    - "依赖ChatGPT生成蒸馏数据，数据质量受限于ChatGPT的NER能力上限"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM具有remarkable generalizability但训练和推理成本prohibitive；指令蒸馏(Alpaca/Vicuna)虽然降低了成本，但在下游任务上仍大幅落后于原始LLM——这个gap如何缩小？"
+  tension: "通用蒸馏受限于有限计算量，只能产生LLM的shallow approximation；在targeted downstream applications上表现不佳。bounded by limited compute, it is unsurprising that generic distillation can only produce a shallow approximation of the original LLM across all possible applications."
+  key_insight: "与其蒸馏LLM的全部能力，不如聚焦一个broad application class（如open IE），用mission-focused instruction tuning让小模型在该领域超越teacher。关键设计：diversity来自task labels（实体类型多样性）而非instruction多样性；frequency-based negative sampling解决open-world生成与closed-world评估的mismatch。"
+  argument_chain: "LLM强但贵 → 通用蒸馏效果差 → 提出targeted distillation聚焦application class → 以NER为case study → ChatGPT生成多样蒸馏数据 → conversation-style指令微调 + negative sampling → 构建43数据集9领域benchmark → 7B模型超越ChatGPT 7-9 F1 → 结合监督数据进一步提升 → 证明targeted distillation优于generic distillation"
+  contribution_framing: "6项贡献：(1)targeted distillation方法论 (2)ChatGPT蒸馏数据生成recipe (3)最大最多样NER benchmark (4)超越ChatGPT的小模型 (5)超越监督系统的大幅度优势 (6)开源全部recipe/数据/模型。措辞强调'remarkable accuracy''outperforming by over 30 absolute F1 points''surpassing ChatGPT by 7-9 points'。"
+  intro_structure: "约5段：P1-LLM能力与成本矛盾+蒸馏现状; P2-提出targeted distillation概念; P3-NER作为case study的动机（基础任务+LLM在少标注场景的优势）; P4-具体方法（Pile数据+ChatGPT生成+LLaMA微调）; P5-贡献列表"
+  notable_technique: "用'shallow approximation'一词精准定位通用蒸馏的缺陷，建立targeted vs generic的对比框架；选择NER作为case study时强调'one of the most fundamental tasks'赋予研究重要性；43数据集9领域的benchmark规模本身就是说服力（最大最多样）；contribution framing中同时列出方法、数据、benchmark、模型、开源，全方位覆盖。"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "数据构造的prompt模板——展示system message和用于从passage生成entity mentions及types的prompt格式"
+    narrative_role: "展示蒸馏数据生成的核心prompt设计，是方法可复现性的关键。让读者直观理解'如何用ChatGPT生成NER训练数据'"
+    design_elements: ["系统消息+用户prompt的对话格式", "输入passage的占位符", "输出格式的tuple list规范"]
+    visual_style: "文本框格式展示prompt，简洁清晰，类似代码块的排版风格"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart (grouped)"
+      what_compared: "(a) 不同zero-shot模型在9个领域上的F1对比; (b) UniNER不同变体（type/definition/supervised）的领域分布"
+      how_gain_highlighted: "通过分领域的bar对比直观展示UniNER在所有领域均超越ChatGPT和Vicuna"
+      design_note: "双子图设计：(a)聚焦外部对比，(b)聚焦内部消融；按领域分组而非按模型分组，突出跨领域的一致性优势"
+    - figure_id: "Figure 8"
+      viz_type: "bar_chart (multi-panel)"
+      what_compared: "ChatGPT vs UniNER-7B vs UniNER-7B w/ sup 在全部43个数据集上的逐一F1对比"
+      how_gain_highlighted: "全景展示——43个数据集的完整结果，用multi-panel bar chart让读者自行验证跨数据集的优势一致性"
+      design_note: "放在论文末尾/附录，作为完整性证据；信息密度极高但不影响主文叙事流"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "horizontal_bar"
+      dimensions_varied: ["dataset-specific template vs original template的F1差异"]
+      design_note: "颜色编码区分有/无label overlap的数据集（橙色/蓝色），直观展示数据集特定模板对有标签冲突数据集的更大增益；水平bar便于展示数据集名称和正负差异"
+    - figure_id: "Figure 6"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["entity type改写敏感性: UniNER-7B-type vs UniNER-7B-definition"]
+      design_note: "绿色/红色标注正确/错误预测，以对话格式展示同一实体(Los Angeles)在不同type描述(city/place/metropolis/urban area)下的识别结果，直观展示type-based模型的脆弱性和definition-based模型的鲁棒性"
+    - figure_id: "Figure 7"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["代码领域的多类型实体识别能力"]
+      design_note: "用真实Python代码片段展示模型提取library/local variable/method/class的能力，同时暴露漏检（如from_pretrained），增加可信度"
+  figure_narrative_role: "Figure 1(prompt设计) → Figure 2(指令模板) → Figure 3(数据集特定模板) → Figure 4(跨领域主结果) → Figure 5(模板消融) → Figure 6(鲁棒性case study) → Figure 7(代码领域case study) → Figure 8(全景结果)。前3图是方法展示，中间1图是核心结果，后4图是分析与补充。叙事从'怎么做'到'效果如何'到'为什么有效'到'还能做什么'。"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "datasets (20个InstructUIE数据集)"
+    col_axis: "methods (BERT-base, InstructUIE-11B, UniNER-7B)"
+    row_organization: "flat (按数据集名字母序)"
+    col_organization: "flat (3个方法并列)"
+    highlight_strategy: "bold best scores (推测，标准做法)"
+    statistical_reporting: "单次运行的F1分数，无std报告"
+    num_baselines: 2
+    design_note: "20个数据集逐一列出，信息密度高；选择InstructUIE的20个数据集子集进行公平对比（in-domain有监督setting）；UniNER-7B在84.78%均值上以3.62点优势超越11B参数量的InstructUIE，凸显参数效率"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["模型类型(Vicuna/ChatGPT/UniNER/InstructUIE)", "训练策略(zero-shot/supervised only/instruction-tuned+supervised)"]
+      variation_style: "full_numbers"
+      design_note: "out-of-domain评估表，按7个CrossNER+MIT数据集分列；关键对比：zero-shot UniNER已超ChatGPT，加监督后进一步提升。展示targeted distillation与supervised data的互补性"
+    - table_id: "Table 4"
+      what_varied: ["负采样策略 (none / uniform / frequency-based)"]
+      variation_style: "full_numbers"
+      design_note: "消融表的核心——3行清晰对比负采样策略的影响。frequency-based比none提升21.9 F1点，是方法中最关键的设计选择。按7个out-of-domain数据集+average分列"
+    - table_id: "Table 5"
+      what_varied: ["评估标准 (strict match vs partial match)"]
+      variation_style: "full_numbers"
+      design_note: "补充分析表，展示严格评估可能低估模型能力。partial match下ChatGPT从47.5→50.9，UniNER-7B从53.4→56.7，差距缩小但UniNER仍领先"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1: 实体类型频率分布示例（top 1%/1-10%/10-100%三档）展示长尾特性和领域多样性。Table 6: 全部43个数据集的详细统计（train/dev/test split、实体类型数、平均token数、平均实体数），按9个领域分组"
+    reason: "Table 1用于直观展示蒸馏数据的多样性和长尾分布，支撑'覆盖数万种实体类型'的claim。Table 6提供benchmark的完整规格，供复现使用。两表信息量大但非核心论证，适合放附录/补充"

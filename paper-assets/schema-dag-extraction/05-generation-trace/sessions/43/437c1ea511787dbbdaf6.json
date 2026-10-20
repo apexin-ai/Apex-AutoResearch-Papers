@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fewrel-formal-health-check_20260515T120947_result.json",
     "occurrence": 1,
-    "bytes": 520,
-    "sha256": "96d5e373eff778ae37a686a65c63e2b4975eb49318caff2e514993d0a41abd34"
+    "bytes": 519,
+    "sha256": "52942932b7fed5d994453adac4b94f7f912dd76143882d5a7325dd28f0f98b97"
   },
   "statistics": {
     "messages": 1,

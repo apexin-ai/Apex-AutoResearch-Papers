@@ -1,0 +1,17 @@
+#!/bin/bash
+# Pure synthetic baseline (w=0): G0 real data, G1+ pure synthetic
+# Equivalent to default pipeline behavior, explicitly tagged as baseline
+set -euo pipefail
+source /root/collapse-aware-mixing/env_init.sh
+bash /root/collapse-aware-mixing/preflight.sh
+cd /root/collapse-aware-mixing
+python3 pilot_pipeline.py \
+    --output_dir /root/autodl-tmp/output_baseline_w0 \
+    --num_generations 3 \
+    --tokens_per_generation 20000000 \
+    --checkpoint_interval_tokens 5000000 \
+    --holdout_size 5000 \
+    --learning_rate 0.000002 \
+    --fixed-ratio 0.0 \
+    --no_wandb \
+    --seed 42

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_bayesian_equivalence_bf01_20260522T015858_result.json",
     "occurrence": 1,
-    "bytes": 957,
-    "sha256": "f01af6783061880dea6829c2835a1330301e3cee82395cddb6f4e99f7853e7c5"
+    "bytes": 956,
+    "sha256": "cb08e722c0077b3f19c35b2f582607e55b97209d35b8222c818ec4cd75f855aa"
   },
   "statistics": {
     "messages": 1,

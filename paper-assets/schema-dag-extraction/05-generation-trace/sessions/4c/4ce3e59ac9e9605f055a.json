@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_scs_baseline_comparison_20260518T084456_result.json",
     "occurrence": 1,
-    "bytes": 1099,
-    "sha256": "1008acff24deadc5f7bcf2d3d4039f1612dc0c216603c44602980a9b688b2d7c"
+    "bytes": 1098,
+    "sha256": "cdb71f613faf37a1f41ea704226f81a800da7a0a289b07d88099870c65e10b66"
   },
   "statistics": {
     "messages": 1,

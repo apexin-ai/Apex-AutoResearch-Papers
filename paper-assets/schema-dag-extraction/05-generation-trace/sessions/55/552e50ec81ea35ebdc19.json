@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp1-diagnose-and-launch-exp2_20260514T230254_result.json",
     "occurrence": 1,
-    "bytes": 1691,
-    "sha256": "7e2c5e512b36c3e464bae47fb834610c3b79332acbddc5b065d9c82c4d59428b"
+    "bytes": 1690,
+    "sha256": "66b4d47006e65d1a64e97bd253478e0e426e29403a6ce8f49160a2d43b62ef48"
   },
   "statistics": {
     "messages": 1,

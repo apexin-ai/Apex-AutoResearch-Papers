@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_docred_ridge_20260522T045710_result.json",
     "occurrence": 1,
-    "bytes": 825,
-    "sha256": "4311c76d42e7a26a5545e1ecf427ffa2e6552421a9c7fb093f5cf64df4e354f5"
+    "bytes": 824,
+    "sha256": "fa678d65337596f370374808d83a4179f61260261155bcc99b5c933001557384"
   },
   "statistics": {
     "messages": 1,

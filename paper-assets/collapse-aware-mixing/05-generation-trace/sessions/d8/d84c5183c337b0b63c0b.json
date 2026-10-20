@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d84c5183c337b0b63c0b",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "ops kill dup gpu job",
+  "task_key": "worker_ops_kill_dup_gpu_job_20260513T181040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_dup_gpu_job_20260513T181040_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "1946d8b338108f21fcff6714c0b94d37a4f181207046ec66c738c7c5ded43b13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| | PID | 启动时间 | 状态 |\n|---|---|---|---|\n| **已 Kill** | 93719 | 01:51:51 | 已终止 |\n| **保留** | 93514 | 01:50:31 | 运行中 |\n\n**GPU 利用率**: 100% GPU / 41% 显存 / 32683 MiB used / 97887 MiB total — 显存占用从 ~65GB 降到 ~32GB，只剩一个进程。\n\n**当前进度**: 保留进程正在跑 `token-entropy` 指标计算，进度 44%（137/313），速度 ~1.82 it/s，预计还需约 1 分 36 秒完成此阶段。之前已完成 `spectral-rank` 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dup-gpu-job.md"
+}

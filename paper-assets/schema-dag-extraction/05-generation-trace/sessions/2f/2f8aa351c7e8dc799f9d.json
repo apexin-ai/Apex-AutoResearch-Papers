@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_fig_count_curves_final_20260515T232154_result.json",
     "occurrence": 1,
-    "bytes": 1781,
-    "sha256": "e076fc9c216f992b06b6df98258df3a95ca87060f8ca4ce27e93f71d446f111c"
+    "bytes": 1780,
+    "sha256": "c467c17d1094d5ea69f3de945b749701efc8bd12129f401539fd5fc2510d16f5"
   },
   "statistics": {
     "messages": 1,

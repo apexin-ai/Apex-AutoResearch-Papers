@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp012_llama_fewnerd_r4",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:24:15.927Z",
+    "updated_at": "2026-05-15T16:47:20.623Z",
+    "spec": {
+      "command": "bash scripts/run_exp012_llama8b.sh",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "294443",
+      "log_path": "~/runs/schema-dag-extraction/exp012_llama_fewnerd_r4.log",
+      "submitted_at": "2026-05-15T16:24:15.825Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "quantization": "none (BF16)",
+      "fix_applied": "switched from 70B FP8 to 8B BF16 to avoid FlashInfer FP8 kernel JIT failure on Blackwell SM120",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "seed": 42,
+      "hypothesis": "Multi-model validation: LLaMA-3.1-8B-Instruct (BF16) replicates confusability effect on Few-NERD",
+      "dataset": "Few-NERD",
+      "plan_id": "exp-012",
+      "checkpoint_source": "meta-llama/Llama-3.1-8B-Instruct (ModelScope download)",
+      "eval_data": "Few-NERD test.parquet 1000 samples",
+      "wall_clock_seconds": 1231.4,
+      "gpu_hours": 0.34
+    },
+    "hypothesis": "LLaMA model replicates confusability-driven type confusion pattern observed with Qwen, validating model-independence of the phenomenon",
+    "parent": "exp012_llama_fewnerd_r3",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T16:44:47.235Z",
+    "notes": "vLLM startup failed: rogue vLLM process PID 297093 占用 89.5GB 显存，exp012 PID 294443 启动时仅剩 7.01GB。artifacts/exp012/ 下有 predictions+eval 文件（可能来自 r4 早期成功的 run），需检查是否可用。"
+  },
+  "timestamp": "2026-05-15T16:47:20.697665+00:00",
+  "trigger": "update_registry"
+}

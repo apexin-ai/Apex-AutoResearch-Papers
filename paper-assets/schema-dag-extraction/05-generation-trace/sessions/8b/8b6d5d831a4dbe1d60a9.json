@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_semipartial_r2_fix_20260521T220639_result.json",
     "occurrence": 1,
-    "bytes": 1251,
-    "sha256": "04140f264b593b5d4c36b26c3b230d78e9170d942e25c5be234dc7949296ca8b"
+    "bytes": 1250,
+    "sha256": "28d2f2d580b8a8175a034ae70b8ceaaec304087ecead2c67d673bb2aa3fc4160"
   },
   "statistics": {
     "messages": 1,

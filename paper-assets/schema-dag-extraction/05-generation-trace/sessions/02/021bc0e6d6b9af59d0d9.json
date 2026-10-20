@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_bcs_scs_format_20260522T110901_result.json",
     "occurrence": 1,
-    "bytes": 603,
-    "sha256": "a65b11a98414a9698c2f95fd969ecdf17a8bb24eecaf9b9c07aa473d5cb61dff"
+    "bytes": 602,
+    "sha256": "67ed856975de060b4a9a54575204d0b55af72411ec06f497b4e3714136f2129d"
   },
   "statistics": {
     "messages": 1,

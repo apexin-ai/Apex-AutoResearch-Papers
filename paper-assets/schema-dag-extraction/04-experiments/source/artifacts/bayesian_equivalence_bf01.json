@@ -1,0 +1,42 @@
+{
+  "observed_interaction_pp": -0.48,
+  "se_interaction_pp": 4.27,
+  "t_statistic": -0.112,
+  "df": 46,
+  "n_per_cell": {
+    "8_low": 13,
+    "8_high": 12,
+    "16_low": 13,
+    "16_high": 12
+  },
+  "cell_means_pp": {
+    "8_low": 79.65,
+    "8_high": 81.42,
+    "16_low": 70.79,
+    "16_high": 73.05
+  },
+  "prior_sensitivity": {
+    "scale_1pp": {
+      "bf01": 1.19,
+      "bf10": 0.8384,
+      "interpretation": "anecdotal evidence for null"
+    },
+    "scale_2pp": {
+      "bf01": 1.4,
+      "bf10": 0.7151,
+      "interpretation": "anecdotal evidence for null"
+    },
+    "scale_3pp": {
+      "bf01": 1.62,
+      "bf10": 0.619,
+      "interpretation": "anecdotal evidence for null"
+    },
+    "scale_5pp": {
+      "bf01": 2.08,
+      "bf10": 0.4814,
+      "interpretation": "anecdotal evidence for null"
+    }
+  },
+  "primary_bf01": 1.62,
+  "primary_interpretation": "anecdotal evidence for null"
+}

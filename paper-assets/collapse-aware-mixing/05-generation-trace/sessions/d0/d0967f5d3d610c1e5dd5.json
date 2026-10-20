@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0967f5d3d610c1e5dd5",
+  "project": "collapse-aware-mixing",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4261,
+    "sha256": "4277c579afac7c707c76b94472be11859c12ed9fcf624506d7834e01e1da1d1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-13T01:29:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:0** @ **cqa1-38874**（gpu_ids 白名单仅此一张）\n- mvp_pilot_v5 运行期间 **禁止修改服务器上 metrics.py / pilot_pipeline.py**（memory.md 教训：v5 期间曾违规修改，Reviewer 已标记）\n- submit_training_job 命令必须包含完整环境 preamble：`source /etc/network_turbo; export REQUESTS_CA_BUNDLE=...; source conda.sh && conda activate base`（v1/v2/v3 连续崩溃根因）\n- tokens_per_generation v5 实际跑的是 90M（非 ROADMAP 的 100M），不影响 GO/NO-GO 但正式实验需统一\n- SIGMA (2026-01) 已占据\"谱分析检测 collapse\"，**不能 claim 首次**，framing 必须走 \"passive monitoring → active closed-loop control\"（D006）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: cqa1-38874，1× RTX PRO 6000 96GB (cuda:0)\n- **工作目录**: `/root/collapse-aware-mixing/`\n- **Python**: `/root/miniconda3/bin/python`（conda base，不是 venv）\n- **输出目录**: `/root/autodl-tmp/output/`（根分区仅 30GB，大文件必须写数据盘）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **模型**: EleutherAI/pythia-1b（HF Hub 下载，已缓存）\n- **数据**: wikitext-103-raw-v1（HF Hub，已缓存）\n- **PyTorch**: 2.10.0, transformers 4.57.6, Python 3.12, attn=sdpa（flash-attn 编译失败已回退）\n- **活跃进程**: mvp_pilot_v5, PID 32154, tmux session=mvp_pilot_v5, cron 监控中\n- **关键脚本**: `launch_pilot_v5.sh`, `pilot_pipeline.py`, `metrics.py`, `controller.py`, `analyze_g0.py`, `env_init.sh`, `preflight.sh`\n\n### 3. 📊 当前状态\n- **mvp_pilot_v5 正在运行**（pid=32154），这是第 5 次尝试 MVP pilot。v1-v3 全是基础设施问题（conda/network/zombie），v4 是 lr=1e-5 过高导致发散。v5 降至 lr=2e-6 + warmup 0.05。\n- Registry: mvp_pilot_v5 RUNNING，其余 4 个实验全部 failed/DONE。\n- Cron 已 reconcile，mvp_pilot_v5 进程存活。\n- **无等待中的 Worker 回调**。无待处理的 Director 决策。\n- DDL: EMNLP 2026 ARR **2026-05-25**，剩 **12 天**。\n\n### 4. 📋 待办（条件触发式）\n- **mvp_pilot_v5 cron 回调（训练完成）→** spawn Worker 运行 `analyze_g0.py` 分析 G0 checkpoint 谱有效秩 + PPL + KL 散度 → 与 GO/NO-GO 标准对照（谱领先 ≥1σ + KL>0.1）\n- **GO →** 写 `paper_framing.md` + `experiment_plan.yaml` → 向 Director 申请扩 GPU（全量需 8×H100, ~195-215 GPU-hours）→ 铺全量实验代码\n- **Conditional GO（谱与 PPL 同步但谱粒度更细）→** pivot 到 secondary framing \"higher-resolution indicator\" → 仍写 framing + plan 但 claim 降级\n- **NO-GO / KILL →** 产 Framing 调整提案 → 汇报 Director 决策 → 不动 paper\n- **mvp_pilot_v5 失败（再次发散/crash）→** 检查 log 诊断根因 → 如果是超参问题考虑进一步降 lr 或换 optimizer（但 DDL 压力大，第 6 次失败需认真评估是否 kill）\n- **v5 完成后 →** logit KL divergence 代码已在服务器上（v5 期间违规部署的），下一轮 run 自动生效，无需额外部署\n\n### 5. 🎯 战略上下文\n- **核心赌注**: 谱有效秩是 model collapse 的 leading indicator（比 PPL 更早检测）。如果成立 → 闭环 PI 控制器有意义；如果不成立 → 整个项目 premise 崩塌。\n- **决策链**: D001(MVP 方案) → D002(GO/NO-GO 量化标准) → D003(数据切换 wikitext-103) → D004/D005(v4 发散诊断+v5 参数修正) → D006(framing pivot: SIGMA 竞争，走 closed-loop control)\n- **最容易判断错的事**: v5 如果 GO，不要急着 claim \"leading indicator\"——必须检查谱下降是否**真的**先于 PPL 上升（时间顺序），而不仅仅是谱变化幅度更大。GO 标准是\"谱 ≥1σ 下降时 PPL 尚未上升 ≥2pts/5%\"。\n- **容易踩的坑**: (1) 提交实验前必须 `ps aux | grep python` 检查遗留进程避免 HF lock 阻塞；(2) pkill -f 在 bash -c 里会自杀，用 kill_job 代替；(3) 根分区 30GB 不要往里写大文件。\n- **12 天 DDL 压力极大**：MVP 还没过，全量实验 + 论文写作时间非常紧。v5 必须成功，否则需要 Director 决策是否 pivot 或延期。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

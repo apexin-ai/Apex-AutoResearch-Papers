@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_fewrel_16rel_100batch",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:01:40.815Z",
+    "updated_at": "2026-05-16T01:40:11.445Z",
+    "hypothesis": "D033: 16-rel pool 100 random batches (count_8) + bootstrap CI，填补 tab:bcs_controlled 16-rel 空白，为 3.4× amplification ratio 提供双端 CI 支撑。",
+    "parent": null,
+    "conclusion": "killed",
+    "notes": "Re-launched D033. 100 random count_8 batches on 16-rel pool (val split). Using MiniLM sim_matrix for BCS consistency with existing results. tmux session: fewrel_16rel_100batch",
+    "spec": {
+      "command": "python3 scripts/run_fewrel_16rel_100batch.py --stage all",
+      "server": "cqa1-38874",
+      "data_path": "data/fewrel_parquet/val.parquet",
+      "data_count": 992,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "description": "FewRel 16-rel pool, 100 random count_8 batches + bootstrap CI for BCS effect",
+      "pool_size": 16,
+      "count": 8,
+      "n_batches": 100,
+      "sim_matrix": "MiniLM (from fewrel_formal/relation_sim_matrix.pt)",
+      "tmux_session": "fewrel_16rel_100batch"
+    },
+    "completed_at": "2026-05-16T01:40:11.445Z"
+  },
+  "timestamp": "2026-05-16T01:40:11.552306+00:00",
+  "trigger": "update_registry"
+}

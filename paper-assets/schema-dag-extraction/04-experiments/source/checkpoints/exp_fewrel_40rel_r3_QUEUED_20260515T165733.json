@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_fewrel_40rel_r3",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:57:11.672Z",
+    "updated_at": "2026-05-15T16:57:33.028Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_HOME=/root/miniconda3/lib/python3.12/site-packages/nvidia/cu13 && export FLASHINFER_DISABLE_VERSION_CHECK=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/run_fewrel_40rel.py --stage extract --mode exp1 --output_dir artifacts/fewrel_40rel --preprocess_path artifacts/fewrel_40rel/preprocess_exp1.json 2>&1 | tee /tmp/fewrel_40rel_exp1.log && echo '=== exp1 DONE, starting exp2 ===' && python3 src/run_fewrel_40rel.py --stage all --mode exp2 --use_all --output_dir artifacts/fewrel_40rel 2>&1 | tee /tmp/fewrel_40rel_exp2.log && echo '=== ALL DONE ==='\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "300803",
+      "log_path": "~/runs/schema-dag-extraction/exp_fewrel_40rel_r3.log",
+      "submitted_at": "2026-05-15T16:57:11.592Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "FewRel 40-rel 中间点 scaling curve: 验证 count↑→accuracy↓ 在 40-rel 规模下的 degradation 幅度，补全 16-rel 到 80-rel 之间的 scaling 趋势",
+    "parent": "exp_fewrel_40rel_r2"
+  },
+  "timestamp": "2026-05-15T16:57:33.091780+00:00",
+  "trigger": "update_registry"
+}

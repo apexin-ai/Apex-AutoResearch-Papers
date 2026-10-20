@@ -1,0 +1,61 @@
+{
+  "shot0_count8": {
+    "n_shots": 0,
+    "count": 8,
+    "low_mean_acc": 0.6821,
+    "high_mean_acc": 0.4975,
+    "delta_pp": 18.46,
+    "ci_lower_pp": 14.25,
+    "ci_upper_pp": 22.67,
+    "n_low_batches": 25,
+    "n_high_batches": 25,
+    "low_bcs_mean": 0.3624,
+    "high_bcs_mean": 0.7982,
+    "ttest_p": 6.64e-11,
+    "cohens_d": 2.361
+  },
+  "shot1_count8": {
+    "n_shots": 1,
+    "count": 8,
+    "low_mean_acc": 0.7538,
+    "high_mean_acc": 0.5542,
+    "delta_pp": 19.96,
+    "ci_lower_pp": 16.29,
+    "ci_upper_pp": 23.54,
+    "n_low_batches": 25,
+    "n_high_batches": 25,
+    "low_bcs_mean": 0.3624,
+    "high_bcs_mean": 0.7982,
+    "ttest_p": 4.75e-14,
+    "cohens_d": 2.974
+  },
+  "shot5_count8": {
+    "n_shots": 5,
+    "count": 8,
+    "low_mean_acc": 0.7154,
+    "high_mean_acc": 0.4875,
+    "delta_pp": 22.79,
+    "ci_lower_pp": 18.87,
+    "ci_upper_pp": 26.75,
+    "n_low_batches": 25,
+    "n_high_batches": 25,
+    "low_bcs_mean": 0.3624,
+    "high_bcs_mean": 0.7982,
+    "ttest_p": 5.19e-15,
+    "cohens_d": 3.172
+  },
+  "differential_gain": {
+    "0_to_1shot": {
+      "low_gain_pp": 7.17,
+      "high_gain_pp": 5.67,
+      "differential_pp": 1.50,
+      "ttest_p": 0.250
+    },
+    "0_to_5shot": {
+      "low_gain_pp": 3.33,
+      "high_gain_pp": -1.00,
+      "differential_pp": 4.33,
+      "ttest_p": 0.014
+    }
+  }
+}

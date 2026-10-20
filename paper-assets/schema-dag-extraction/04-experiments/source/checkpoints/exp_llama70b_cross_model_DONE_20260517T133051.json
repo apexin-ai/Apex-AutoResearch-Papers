@@ -1,0 +1,109 @@
+{
+  "exp_id": "exp_llama70b_cross_model",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:20:05.924Z",
+    "updated_at": "2026-05-17T13:30:50.858Z",
+    "hypothesis": "LLaMA 3.1 70B-Instruct FP8 will replicate the two-dimensional degradation pattern (count-associated recall decline + confusability-associated type confusion) observed on Qwen3-32B, with BCS-accuracy correlation direction preserved despite potential magnitude differences. 70B scale should show stronger Dimension 2 signal than 8B, closing the gap with 32B.",
+    "parent": "exp_prompt_sensitivity",
+    "spec": {
+      "command": "bash scripts/run_llama70b_cross_model.sh",
+      "server": "westd-24295",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "21546",
+      "log_path": "~/runs/schema-dag-extraction/exp_llama70b_cross_model.log",
+      "submitted_at": "2026-05-17T08:25:53.099Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_80rel + fewnerd",
+      "data_count": "~5600 FewRel + ~4000 Few-NERD instances",
+      "model_name": "neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8",
+      "seed": "42",
+      "checkpoint_source": "N/A - inference only, using pretrained FP8 weights",
+      "eval_data": "FewRel 80-rel (count curves + BCS-controlled extreme batches) + Few-NERD (count curves)",
+      "wall_clock_seconds": 18297.8,
+      "gpu_hours": 10.17
+    },
+    "metrics": {
+      "exp1_fewrel_count_curve": {
+        "count_8_to_80_decline_pp": -30.7,
+        "vs_qwen3_decline_pp": -30.1,
+        "note": "slopes near-identical, 70B absolute ~4pp lower"
+      },
+      "exp2_bcs_controlled": {
+        "count_16_low_bcs": 0.7083,
+        "count_16_high_bcs": 0.599,
+        "delta_pp": 10.94,
+        "ci_95": [
+          3.02,
+          20.1
+        ],
+        "count_8_delta_pp": -4.2,
+        "count_8_note": "BCS range too narrow, CI crosses zero"
+      },
+      "exp3_fewnerd_complete": {
+        "metric": "type+text recall (corrected)",
+        "count_2": 0.9618,
+        "count_6": 0.9003,
+        "count_12": 0.8218,
+        "count_22": 0.6663,
+        "count_44": 0.4803,
+        "count_66": 0.3388,
+        "n_batches": 25,
+        "status": "complete",
+        "metric_fix_applied": true,
+        "text_only_vs_type_text_delta": {
+          "count_2": -0.0004,
+          "count_6": -0.0022,
+          "count_12": -0.0075,
+          "count_22": -0.0176,
+          "count_44": -0.0506,
+          "count_66": -0.0684,
+          "note": "Bug impact scales with count; Qwen3 unaffected (already type+text)"
+        },
+        "qwen3_comparison": {
+          "count_2": {
+            "qwen3": 0.97,
+            "llama70b": 0.9618
+          },
+          "count_12": {
+            "qwen3": 0.826,
+            "llama70b": 0.8218
+          },
+          "count_22": {
+            "qwen3": 0.674,
+            "llama70b": 0.6663
+          }
+        },
+        "result_path": "/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_type_text.json"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T11:06:35.287Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T11:06:38.830667+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/d051_llama-3.1-70b-fp8_fewnerd_n25_s42/summary_type_text.json",
+    "log_path": "~/runs/schema-dag-extraction/exp_llama70b_cross_model.log",
+    "conclusion": "success",
+    "notes": "⚠️ Exp 3 Few-NERD metrics INVALIDATED: used reeval_d051_type_text.py (simple set intersection) instead of reeval_text_match.py (offset correction + hallucination detection + greedy matching + type+text). Evidence: count_2 recall 70B=0.962 vs Qwen3=0.527 is protocol mismatch, not model difference. Re-evaluation with unified protocol dispatched. Exp 1 (FewRel) and Exp 2 (BCS) unaffected (accuracy-based, protocol consistent).",
+    "completed_at": "2026-05-17T13:30:50.858Z"
+  },
+  "timestamp": "2026-05-17T13:30:51.021714+00:00",
+  "trigger": "update_registry"
+}

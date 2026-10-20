@@ -1,0 +1,28 @@
+{
+  "exp_id": "fewrel_pilot",
+  "project": "schema-dag-extraction",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:41:40.033Z",
+    "updated_at": "2026-05-15T07:41:47.094Z",
+    "spec": {
+      "hypothesis": "FewRel RE pilot: BCS predicts relation classification accuracy degradation (cross-task replication NER→RE)",
+      "dataset": "FewRel",
+      "model": "Qwen3-32B-FP8",
+      "design": "15 batches: count={4,8,16} x {1 low-BCS, 1 high-BCS, 3 random}. MiniLM embeddings. 200 samples.",
+      "command": "python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/fewrel/",
+      "data_count": 374,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_path": "N/A (inference pilot)",
+      "log_path": "/root/schema-dag-extraction/artifacts/fewrel_pilot/"
+    }
+  },
+  "timestamp": "2026-05-15T07:41:47.132377+00:00",
+  "trigger": "update_registry"
+}

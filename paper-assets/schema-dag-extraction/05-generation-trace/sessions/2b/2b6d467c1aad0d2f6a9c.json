@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_exp_fewrel_formal_80rel_20260515T133657_result.json",
     "occurrence": 1,
-    "bytes": 806,
-    "sha256": "5a9e80eb50330841d0bcc5c7583d2976ddd9c805e8693da10dc7ab4dfe98c7ea"
+    "bytes": 805,
+    "sha256": "5a098c21c9c4852d2a1d057ae8a3f03433de92220c46a11642d900bdd9612acb"
   },
   "statistics": {
     "messages": 1,

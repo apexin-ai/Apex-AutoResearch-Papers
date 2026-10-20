@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d051_r8w3_llmpee_merge_20260516T205512_result.json",
     "occurrence": 1,
-    "bytes": 685,
-    "sha256": "091c8a25db6af26725a70e14af92f8f54b48d47e2d34fd8bd4de4b3c1f24be23"
+    "bytes": 684,
+    "sha256": "3a0aa2954e7eec0f1fd47ac905631eff7bac35cf9f8683fe8132cbdc88135406"
   },
   "statistics": {
     "messages": 1,

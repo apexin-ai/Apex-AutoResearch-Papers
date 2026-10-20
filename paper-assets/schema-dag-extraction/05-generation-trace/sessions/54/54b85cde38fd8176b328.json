@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_fix_bcs_scaling_all3_20260515T232401_result.json",
     "occurrence": 1,
-    "bytes": 658,
-    "sha256": "26cf84904b9c2307c0df368bb5fc2bf34545546b1bef664064cf0aa0fd760c7c"
+    "bytes": 657,
+    "sha256": "4be3abe711d11383965d91ecb945c2913d6e3def4e0330931324804c3118cad1"
   },
   "statistics": {
     "messages": 1,

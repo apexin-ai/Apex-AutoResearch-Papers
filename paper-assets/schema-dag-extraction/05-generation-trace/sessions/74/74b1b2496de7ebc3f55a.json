@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_batch_composition_20260516T045257_result.json",
     "occurrence": 1,
-    "bytes": 853,
-    "sha256": "4554ddc1100f036e264ac88103e76e700f244c862c09d185066b9b094d7fff87"
+    "bytes": 852,
+    "sha256": "4eb694a9215120bb0932df11a566a1fe625db8528966258b9062000572727e85"
   },
   "statistics": {
     "messages": 1,

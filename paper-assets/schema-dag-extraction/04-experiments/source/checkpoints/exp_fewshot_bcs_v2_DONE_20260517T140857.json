@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_fewshot_bcs_v2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:18:15.923Z",
+    "updated_at": "2026-05-17T14:08:57.387Z",
+    "hypothesis": "Few-shot demonstrations (1-shot and 5-shot) reduce the BCS-driven confusability effect (high-BCS accuracy penalty) by grounding type boundaries through explicit examples, tested on extreme-BCS batches (low ~0.36, high ~0.80) where 0-shot delta is ~25-31pp. If delta shrinks significantly under few-shot, confusability is addressable via prompting. If delta persists, confusability is a fundamental schema-structural constraint.",
+    "parent": "exp_fewrel_v2_n25",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate base && cd /root/schema-dag-extraction && python3 src/run_fewshot_bcs_v2.py --stage all --n_shots 0 1 5 --seed 42\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "480497",
+      "log_path": "~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log",
+      "submitted_at": "2026-05-17T13:39:04.351Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/exp_v2_re_n25/batch_groups.json",
+      "data_count": "50 batches (25 low-BCS ~0.36, 25 high-BCS ~0.80) x 3 shots = 450 tasks",
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_source": "Qwen3-32B-FP8 (vLLM served, no fine-tuning)",
+      "eval_data": "FewRel extreme-BCS batches from exp_fewrel_v2_n25/batch_groups.json",
+      "wall_clock_seconds": 1727.9,
+      "gpu_hours": 0.48
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T14:03:41.759Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T14:03:47.723099+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "0shot_delta_pp": 18.46,
+      "1shot_delta_pp": 19.96,
+      "5shot_delta_pp": 22.79,
+      "0shot_low_acc": 0.6821,
+      "0shot_high_acc": 0.4975,
+      "1shot_low_acc": 0.7538,
+      "1shot_high_acc": 0.5542,
+      "5shot_low_acc": 0.7154,
+      "5shot_high_acc": 0.4875,
+      "differential_0to5_pp": 4.33,
+      "differential_0to5_p": 0.014,
+      "bcs_low_mean": 0.3624,
+      "bcs_high_mean": 0.7982
+    },
+    "checkpoint_path": "/root/schema-dag-extraction/artifacts/fewshot_bcs_v2/analysis.json",
+    "log_path": "~/runs/schema-dag-extraction/exp_fewshot_bcs_v2.log",
+    "completed_at": "2026-05-17T14:07:52.204Z"
+  },
+  "timestamp": "2026-05-17T14:08:57.508062+00:00",
+  "trigger": "update_registry"
+}

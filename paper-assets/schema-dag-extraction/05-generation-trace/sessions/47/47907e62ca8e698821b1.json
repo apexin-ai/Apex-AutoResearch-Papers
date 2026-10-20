@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_d051-status-check_20260517T033813_result.json",
     "occurrence": 1,
-    "bytes": 2629,
-    "sha256": "dbf89cd9137d84656782e03ab551096b03b7f70dd5b4827205af047f6dd107ba"
+    "bytes": 2628,
+    "sha256": "4558fea32fe1e84add7a93032bb46a00b7f1d8864b3ab84396dcb9cdc68ce4d3"
   },
   "statistics": {
     "messages": 1,

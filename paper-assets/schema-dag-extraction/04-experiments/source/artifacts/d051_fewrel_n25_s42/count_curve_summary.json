@@ -1,0 +1,51 @@
+{
+  "count_16": {
+    "n_batches": 25,
+    "mean_accuracy": 0.71875,
+    "std_accuracy": 0.06294977054057553,
+    "min_accuracy": 0.609375,
+    "max_accuracy": 0.828125
+  },
+  "count_32": {
+    "n_batches": 25,
+    "mean_accuracy": 0.6517708333333333,
+    "std_accuracy": 0.04897229410878949,
+    "min_accuracy": 0.5703125,
+    "max_accuracy": 0.7447916666666666
+  },
+  "count_4": {
+    "n_batches": 25,
+    "mean_accuracy": 0.8700000000000001,
+    "std_accuracy": 0.06802777210652851,
+    "min_accuracy": 0.6875,
+    "max_accuracy": 1.0
+  },
+  "count_40": {
+    "n_batches": 25,
+    "mean_accuracy": 0.6058333333333333,
+    "std_accuracy": 0.041679164792228954,
+    "min_accuracy": 0.5166666666666667,
+    "max_accuracy": 0.6875
+  },
+  "count_64": {
+    "n_batches": 25,
+    "mean_accuracy": 0.5392708333333333,
+    "std_accuracy": 0.02621732423947527,
+    "min_accuracy": 0.4934895833333333,
+    "max_accuracy": 0.5963541666666666
+  },
+  "count_8": {
+    "n_batches": 25,
+    "mean_accuracy": 0.8049999999999998,
+    "std_accuracy": 0.08157094730628328,
+    "min_accuracy": 0.6666666666666666,
+    "max_accuracy": 0.9270833333333334
+  },
+  "count_80": {
+    "n_batches": 25,
+    "mean_accuracy": 0.5041249999999999,
+    "std_accuracy": 0.00020412414523191991,
+    "min_accuracy": 0.503125,
+    "max_accuracy": 0.5041666666666667
+  }
+}

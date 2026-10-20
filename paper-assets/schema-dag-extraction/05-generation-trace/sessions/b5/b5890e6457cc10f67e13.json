@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_arr_precheck_anon_format_20260522T072452_result.json",
     "occurrence": 1,
-    "bytes": 3133,
-    "sha256": "1a6da756e5d33c1e138be7445bdde2d7ba73721df767150cfed65a0f6582bb34"
+    "bytes": 3132,
+    "sha256": "b4ae4fb24835f6599225998add654baa9127a9fab699e1250054eaec6df17a7d"
   },
   "statistics": {
     "messages": 1,

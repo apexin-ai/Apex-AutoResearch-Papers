@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_docred_bcs_range_matched_20260519T170948_result.json",
     "occurrence": 1,
-    "bytes": 1534,
-    "sha256": "d6f9a3ddc9ca214e20cbf0c26e0f91ba31447fa9c3f3266f8b36909050168741"
+    "bytes": 1533,
+    "sha256": "af719c80f5c7660607ecd2af1c66d4614cb75d521c6ab40892f82d0eabaa19d4"
   },
   "statistics": {
     "messages": 1,

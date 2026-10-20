@@ -1,0 +1,55 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Ding et~al.(2021)Ding, Xu, Chen, Wang, Han, Xie, Zheng, and
+  Liu}]{fewnerd-2021}
+Ning Ding, Guangwei Xu, Yulin Chen, Xiaobin Wang, Xu~Han, Pengjun Xie, Haitao
+  Zheng, and Zhiyuan Liu. 2021.
+\newblock \href {https://aclanthology.org/2021.acl-long.248/} {Few-{NERD}: A
+  few-shot named entity recognition dataset}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Han et~al.(2018)Han, Zhu, Yu, Wang, Yao, Liu, and Sun}]{fewrel-2018}
+Xu~Han, Hao Zhu, Pengfei Yu, Ziyun Wang, Yuan Yao, Zhiyuan Liu, and Maosong
+  Sun. 2018.
+\newblock \href {https://aclanthology.org/D18-1514/} {{FewRel}: A large-scale
+  supervised few-shot relation classification dataset with state-of-the-art
+  evaluation}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Lakens(2017)}]{lakens-2017-equivalence}
+Dani{\"e}l Lakens. 2017.
+\newblock \href {https://doi.org/10.1177/1948550617697177} {Equivalence tests:
+  A practical primer for t tests, correlations, and meta-analyses}.
+\newblock \emph{Social Psychological and Personality Science}, 8(4):355--362.
+
+\bibitem[{Li et~al.(2023)Li, Fang, Yang, Wang, Ye, Zhao, and
+  Zhang}]{li2023evaluating}
+Bo~Li, Gexiang Fang, Yang Yang, Quansen Wang, Wei Ye, Wen Zhao, and Shikun
+  Zhang. 2023.
+\newblock \href {https://arxiv.org/abs/2304.11633} {Evaluating {ChatGPT}'s
+  information extraction capabilities: An assessment of performance,
+  explainability, calibration, and faithfulness}.
+\newblock \emph{arXiv preprint arXiv:2304.11633}.
+
+\bibitem[{Rastogi et~al.(2020)Rastogi, Zang, Sunkara, Gupta, and
+  Khaitan}]{rastogi2020towards}
+Abhinav Rastogi, Xiaoxue Zang, Srinivas Sunkara, Raghav Gupta, and Pranav
+  Khaitan. 2020.
+\newblock \href {https://arxiv.org/abs/1909.05855} {Towards scalable
+  multi-domain conversational agents: The schema-guided dialogue dataset}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~34, pages 8689--8696.
+
+\bibitem[{Wang et~al.(2020)Wang, Wang, Han, Jiang, Han, Liu, Li, Li, Lin, and
+  Zhou}]{maven-2020}
+Xiaozhi Wang, Ziqi Wang, Xu~Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi
+  Li, Peng Li, Yankai Lin, and Jie Zhou. 2020.
+\newblock \href {https://aclanthology.org/2020.emnlp-main.129/} {{MAVEN}: A
+  massive general domain event detection dataset}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\end{thebibliography}

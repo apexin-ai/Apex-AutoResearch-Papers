@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_code-preflight_20260514T173030_result.json",
     "occurrence": 1,
-    "bytes": 2787,
-    "sha256": "29ba23a4e853ff9c1b100177474ab447d42a714daa2f1569f2555faf33e2c88c"
+    "bytes": 2786,
+    "sha256": "863ce14d82e9866364699443cd34e4c8f768fbda32a6cb0a4d6fb9f51cc19a65"
   },
   "statistics": {
     "messages": 1,

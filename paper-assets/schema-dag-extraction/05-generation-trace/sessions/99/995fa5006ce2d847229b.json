@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r2_data_fix_URGENT_20260522T084608_result.json",
     "occurrence": 1,
-    "bytes": 2593,
-    "sha256": "dc50f71ed2a600444e0498634a89cfb9c7079429b5eec5271283f55c4ac7e798"
+    "bytes": 2592,
+    "sha256": "026d1e172fcf087902c3162d85d5796b534e81cf18c1f0f9988804eed36bb5e9"
   },
   "statistics": {
     "messages": 1,

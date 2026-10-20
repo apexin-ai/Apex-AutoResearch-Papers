@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_cross_model_appendix_20260517T132345_result.json",
     "occurrence": 1,
-    "bytes": 1173,
-    "sha256": "26d4a850984491b1ca7b299057624d5971291d086c99e6480b63edbbb918c11b"
+    "bytes": 1172,
+    "sha256": "0ba12d5b3027f6c608f974ccce78f68a07e99dcb73d151e39a1959e8552273ac"
   },
   "statistics": {
     "messages": 1,

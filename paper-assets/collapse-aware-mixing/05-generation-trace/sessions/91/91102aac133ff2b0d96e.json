@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91102aac133ff2b0d96e",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "code verify analyze g0 compat",
+  "task_key": "worker_code_verify_analyze_g0_compat_20260512T172407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_analyze_g0_compat_20260512T172407_result.json",
+    "occurrence": 1,
+    "bytes": 1961,
+    "sha256": "4d8aade1681d382de5e21bae91ad9a7184bc6dfdae3686ce1d1a80b6f4b3572f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 兼容性报告：analyze_g0.py vs v5 checkpoint\n\n### 结论：**完全兼容** ✓\n\n---\n\n### 1. 目录结构匹配\n\n| 项目 | analyze_g0.py 期望 | v5 实际产出 | 状态 |\n|------|-------------------|------------|------|\n| checkpoint 目录 | `--checkpoint-dir` 下的 `checkpoint-{step}/` 子目录 | `/root/autodl-tmp/output/G0/training/checkpoint-{152,304,...,1373}` | ✓ |\n| 命名格式 | regex `checkpoint-(\\d+)$` | `checkpoint-152` ~ `checkpoint-1373`（共 10 个） | ✓ |\n| 模型权重 | `config.json` + `model.safetensors`（via `AutoModelForCausalLM.from_pretrained`） | 每个 checkpoint 均含 `config.json`（752B）+ `model.safetensors`（~2GB） | ✓ |\n| tokenizer | 从 `--model-name` 加载（默认 `EleutherAI/pythia-1b`），**不从 checkpoint 读取** | checkpoint 内无 tokenizer 文件 — 无影响 | ✓ |\n| holdout 数据集 | 默认 `/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1` | 路径存在 | ✓ |\n\n### 2. metrics.py 函数签名匹配\n\n| 函数 | analyze_g0.py 调用方式 | metrics.py 实际签名 | 状态 |\n|------|----------------------|-------------------|------|\n| `compute_spectral_effective_rank` | `(model, holdout_loader, num_samples=N, device=D)` | `(model, dataloader, num_samples=50000, device=\"cuda\")` → `Dict[\"spectral_effective_rank\"]` | ✓ |\n| `compute_perplexity` | `(model, holdout_loader, num_samples=N, device=D)` | `(model, dataloader, num_samples=5000, device=\"cuda\")` → `Dict[\"perplexity\", \"avg_loss\", \"ppl_num_tokens\"]` | ✓ |\n\n### 3. 推荐运行命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\npython /root/collapse-aware-mixing/analyze_g0.py \\\n    --checkpoint-dir /root/autodl-tmp/output/G0/training \\\n    --output-dir /root/autodl-tmp/output/g0_analysis \\\n    --model-name EleutherAI/pythia-1b\n```\n\n无需调整任何参数，默认值全部适用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-analyze-g0-compat.md"
+}

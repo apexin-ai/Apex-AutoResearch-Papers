@@ -1,0 +1,14 @@
+{
+  "count_16": {
+    "high_bcs": {"mean_acc": 0.447, "std": 0.049, "mean_bcs": 0.730, "n": 5},
+    "low_bcs": {"mean_acc": 0.679, "std": 0.028, "mean_bcs": 0.384, "n": 5},
+    "random": {"mean_acc": 0.610, "std": 0.077, "mean_bcs": 0.544, "n": 25},
+    "gap_high_vs_low": 0.233
+  },
+  "count_32": {
+    "high_bcs": {"mean_acc": 0.403, "std": 0.014, "mean_bcs": 0.687, "n": 5},
+    "low_bcs": {"mean_acc": 0.578, "std": 0.018, "mean_bcs": 0.434, "n": 5},
+    "random": {"mean_acc": 0.528, "std": 0.059, "mean_bcs": 0.549, "n": 25},
+    "gap_high_vs_low": 0.176
+  }
+}

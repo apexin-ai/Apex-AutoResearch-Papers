@@ -1,0 +1,59 @@
+{
+  "exp_id": "fewrel_pilot",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:41:40.033Z",
+    "updated_at": "2026-05-15T07:42:12.237Z",
+    "spec": {
+      "hypothesis": "FewRel RE pilot: BCS predicts relation classification accuracy degradation (cross-task replication NER→RE)",
+      "dataset": "FewRel",
+      "model": "Qwen3-32B-FP8",
+      "design": "15 batches: count={4,8,16} x {1 low-BCS, 1 high-BCS, 3 random}. MiniLM embeddings. 200 samples.",
+      "command": "python3 src/run_fewrel_pilot.py --model_path /root/autodl-tmp/.hf_cache/qwen3-32b-fp8/",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/fewrel/",
+      "data_count": 374,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_path": "N/A (inference pilot)",
+      "log_path": "/root/schema-dag-extraction/artifacts/fewrel_pilot/",
+      "gpu": "cuda:0",
+      "pid": 0
+    },
+    "conclusion": "success",
+    "metrics": {
+      "embedding": "all-MiniLM-L6-v2",
+      "n_batches": 15,
+      "n_predictions": 374,
+      "count_4": {
+        "low_bcs_acc": 0.917,
+        "high_bcs_acc": 0.708,
+        "delta_pp": -20.9,
+        "low_bcs": 0.42,
+        "high_bcs": 0.97
+      },
+      "count_8": {
+        "low_bcs_acc": 1,
+        "high_bcs_acc": 0.5,
+        "delta_pp": -50,
+        "low_bcs": 0.47,
+        "high_bcs": 0.97
+      },
+      "count_16": {
+        "low_bcs_acc": 0.917,
+        "high_bcs_acc": 0.431,
+        "delta_pp": -48.6,
+        "low_bcs": 0.57,
+        "high_bcs": 0.97
+      },
+      "key_finding": "BCS-accuracy strong negative: high-BCS batches 43-71% vs low-BCS 92-100%. Effect increases with count. Cross-task (NER→RE) replication of confusability hypothesis."
+    },
+    "completed_at": "2026-05-15T07:42:12.237Z"
+  },
+  "timestamp": "2026-05-15T07:42:12.265004+00:00",
+  "trigger": "update_registry"
+}

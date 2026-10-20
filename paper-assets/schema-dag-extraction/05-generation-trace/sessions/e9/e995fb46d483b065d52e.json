@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_d051-exit-diagnosis_20260517T052923_result.json",
     "occurrence": 1,
-    "bytes": 867,
-    "sha256": "9f4a7eaf405594d7e9c6b5e30ff729435e3f89053edd5eb545e792b748c0f545"
+    "bytes": 866,
+    "sha256": "a553e8721475b315f35a5622edd63d3fc079dea6140d15082f4b06ee4ca8683f"
   },
   "statistics": {
     "messages": 1,

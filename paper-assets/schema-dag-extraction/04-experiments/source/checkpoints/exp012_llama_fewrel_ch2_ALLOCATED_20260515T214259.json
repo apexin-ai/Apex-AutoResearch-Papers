@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp012_llama_fewrel_ch2",
+  "project": "schema-dag-extraction",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:12:56.136Z",
+    "updated_at": "2026-05-15T21:42:59.318Z",
+    "spec": {
+      "parent": "exp_fewrel_formal_80rel",
+      "hypothesis": "LLaMA-3.1-8B-Instruct FewRel 80-rel Channel 2: BCS-controlled accuracy gap 跨模型验证。FewRel 优势：Qwen3 Δ=31.2pp 效应巨大，accuracy metric 无 span 噪声。即使 LLaMA 只有 10pp gap 也是跨模型证据。",
+      "dataset": "FewRel (80 relations)",
+      "model_name": "LLaMA-3.1-8B-Instruct",
+      "server": "cqa1-38874",
+      "seed": 42,
+      "queued_after": "exp_fewrel_40rel_r4"
+    },
+    "hypothesis": "LLaMA-3.1-8B-Instruct 在 FewRel 80-rel RE 任务上验证 Channel 2 (BCS-controlled confusability effect)。跨模型家族(Qwen→LLaMA) + 跨规模(32B→8B) + 跨任务(NER→RE) 三重泛化验证。exp2 design: count 8/16 × low/high BCS × 27 batches。",
+    "parent": "exp012_llama_8b_r2"
+  },
+  "timestamp": "2026-05-15T21:42:59.392017+00:00",
+  "trigger": "update_registry"
+}

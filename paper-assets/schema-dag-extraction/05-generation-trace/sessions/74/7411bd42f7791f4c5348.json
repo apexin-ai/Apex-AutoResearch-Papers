@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_debug_ner-recall-denominator_20260516T223223_result.json",
     "occurrence": 1,
-    "bytes": 2204,
-    "sha256": "4a6d10e21d8177ee5e7349fc487d143aa9ed45cf8001899b78975b1d65f341b9"
+    "bytes": 2203,
+    "sha256": "ae5de47d7b99259be85751e387090f2d5803469494b267c368073e70b3bab7c3"
   },
   "statistics": {
     "messages": 1,

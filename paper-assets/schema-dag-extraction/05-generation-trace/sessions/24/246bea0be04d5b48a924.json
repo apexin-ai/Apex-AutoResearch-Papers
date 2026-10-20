@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_maven_residualized_bcs_20260516T012720_result.json",
     "occurrence": 1,
-    "bytes": 1067,
-    "sha256": "4dd6f8eff69af29ca6d3e312f5b39197db06eb07f77c12ca949aeb55e8bd8e66"
+    "bytes": 1066,
+    "sha256": "09210bc337ffbcd0f184080231e6bc2b6825f73bac780dab8378d2dff2e8ae26"
   },
   "statistics": {
     "messages": 1,

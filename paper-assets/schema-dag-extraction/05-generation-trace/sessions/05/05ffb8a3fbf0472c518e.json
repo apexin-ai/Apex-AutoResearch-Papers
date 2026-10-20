@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_error_taxonomy_cross_model_20260522T001403_result.json",
     "occurrence": 1,
-    "bytes": 1412,
-    "sha256": "ad2b42e812e99185cab693b0dd091c00b3c015d3bc68b5a1066e6f9d3398ec64"
+    "bytes": 1411,
+    "sha256": "dcc587145eb71f8cb4d1eb5e6dbabcc46e23844b373e3586ea75fb554862485e"
   },
   "statistics": {
     "messages": 1,

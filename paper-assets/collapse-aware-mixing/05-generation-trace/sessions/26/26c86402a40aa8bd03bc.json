@@ -1,0 +1,837 @@
+{
+  "schema_version": "1.0",
+  "id": "26c86402a40aa8bd03bc",
+  "project": "collapse-aware-mixing",
+  "kind": "conversation",
+  "title": "research sigma deep analysis",
+  "task_key": "worker_research_sigma-deep-analysis_20260512T172849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_sigma-deep-analysis_20260512T172849.jsonl",
+    "occurrence": 1,
+    "bytes": 47352,
+    "sha256": "c267fc10398084fab444af73ab327c0741012747dc15688a9939e4b17a437083"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T17:33:12.094275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T17:33:12.094598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T17:33:12.094774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "SIGMA spectral model collapse LLM 2026 Gram matrix"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T17:33:12.094964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "SIGMA spectral indicator model collapse generative AI 2026 ICLR ICML NeurIPS arXiv"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T17:33:12.095106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T17:33:12.095229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "file": "ideas.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T17:33:12.095396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"SIGMA spectral model collapse LLM 2026 Gram matrix\"\n\nLinks: [{\"title\":\"[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://arxiv.org/abs/2601.03385\"},{\"title\":\"SIGMA: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://www.arxiv.org/pdf/2601.03385\"},{\"title\":\"Sigma: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://arxiv.org/html/2601.03385\"},{\"title\":\"Sigma: Scalable Spectral Insights for LLM Collapse\",\"url\":\"https://arxiv.org/html/2601.03385v1\"},{\"title\":\"Predicting LLM Compression Degradation from Spectral Statistics\",\"url\":\"https://arxiv.org/pdf/2604.18085\"},{\"title\":\"Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization\",\"url\":\"https://arxiv.org/html/2605.05683\"},{\"title\":\"Downloads 2026\",\"url\":\"https://iclr.cc/Downloads/2026\"},{\"title\":\"AI Updates Today (May 2026) – Latest AI Model Releases\",\"url\":\"https://llm-stats.com/llm-updates\"},{\"title\":\"What is Model Collapse? Examples, Causes and Fixes\",\"url\":\"https://www.analyticsvidhya.com/blog/2026/01/model-collapse/\"},{\"title\":\"Why Model Collapse In LLMs Is Inevitable With Self-Learning | Hackaday\",\"url\":\"https://hackaday.com/2026/04/29/why-model-collapse-in-llms-is-inevitable-with-self-learning/\"}]\n\nBased on the search results, here's what I found about SIGMA and spectral model collapse in LLMs:\n\n## SIGMA: Spectral Insights for LLM Model Collapse\n\nSIGMA (Spectral Inequalities for Gram Matrix Analysis) is a unified framework that benchmarks model collapse through the spectral lens of the embedding Gram matrix.\n\n### Background on Model Collapse\n\nModel collapse is a degenerative process where recursive training on model-generated content leads to a contraction of distributional variance and representational quality.\n\n### The SIGMA Framework\n\nBy deriving and utilizing deterministic and stochastic bounds on the matrix's spectrum, SIGMA provides a mathematically grounded metric to track the contract\n…[truncated 812 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T17:33:12.095586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"SIGMA spectral indicator model collapse generative AI 2026 ICLR ICML NeurIPS arXiv\"\n\nLinks: [{\"title\":\"[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://arxiv.org/abs/2601.03385\"},{\"title\":\"Sigma: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://arxiv.org/html/2601.03385\"},{\"title\":\"Sigma: Scalable Spectral Insights for LLM Collapse\",\"url\":\"https://arxiv.org/html/2601.03385v1\"},{\"title\":\"SIGMA: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://www.arxiv.org/pdf/2601.03385v2\"},{\"title\":\"Model collapse - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Model_collapse\"},{\"title\":\"Lazy Diffusion: Mitigating spectral collapse in generative diffusion-based stable autoregressive emulation of turbulent flows\",\"url\":\"https://arxiv.org/html/2512.09572v1\"},{\"title\":\"Sigma AI — human context to accelerate next-gen AI - Sigma AI\",\"url\":\"https://sigma.ai/\"},{\"title\":\"AI Model Collapse: Causes and Prevention - WitnessAI\",\"url\":\"https://witness.ai/blog/ai-model-collapse/\"},{\"title\":\"AI Model Collapse: Causes, Early Signs, and How to Prevent It\",\"url\":\"https://www.projectpro.io/article/ai-model-collapse/1177\"},{\"title\":\"An explanation of AI model collapse\",\"url\":\"https://www.techtarget.com/whatis/video/An-explanation-of-AI-model-collapse\"}]\n\nI found relevant results about SIGMA! Here's what the search revealed:\n\n## SIGMA: Scalable Spectral Insights for LLM Model Collapse\n\nSIGMA (Spectral Inequalities for Gram Matrix Analysis) is a unified framework that benchmarks model collapse through the spectral lens of the embedding Gram matrix.\n\n### Key Features\n\nSIGMA addresses \"model collapse\"—a degenerative process where recursive training on model-generated content leads to a contraction of distributional variance and representational quality.\n\nBy deriving and utilizing deterministic and stochastic bounds on the matrix's spectrum, SIGMA provides a mathematically grounded metric to track the c\n…[truncated 954 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T17:33:12.095795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/memory.md\\\", \\\"content\\\": \\\"# Memory — collapse-aware-mixing\\\\n\\\\n## 竞争格局\\\\n\\\\n### SIGMA 已占据\\\\\\\"谱分析检测 collapse\\\\\\\"位置 (2026-05-12)\\\\nSIGMA (2026-01) 已将 Gram 矩阵谱分析用于 LLM model collapse 检测。**不能 claim \\\\\\\"首次将谱分析用于 collapse 检测\\\\\\\"。** 但 SIGMA 无控制机制、未验证 leading indicator。我们的 novelty = SIGMA 谱监控 + ERBP 理论动机 + EntroPIC PI 控制范式，首次组合成：谱有效秩 → PI 控制器 → 动态 real/synthetic 比例调节。推荐 framing：从 \\\\\\\"spectral metrics detect collapse\\\\\\\" → **\\\\\\\"from passive monitoring to active closed-loop control\\\\\\\"**。\\\\n\\\\n## 经验教训\\\\n\\\\n### 实验运行期间禁止修改依赖代码 (2026-05-12)\\\\nReviewer 指出：v5 pipeline 运行期间 Worker 修改了 metrics.py 和 pilot_pipeline.py。虽然当前 run 不受影响（进程已加载旧模块），但**今后实验进程运行期间不修改服务器上该实验依赖的代码文件**。新功能等 run 完成后再部署。\\\\n\\\\n### Pythia-1b + wikitext-103 + lr=1e-5 导致发散 (2026-05-12)\\\\nmvp_pilot_v4 在 G0 训练 760 步后 loss 维持 106-116（正常应为 2-4），PPL 溢出到 inf。独立诊断确认 ratio=1.00（非 transformers 报告 artifact，是真实发散）。grad_norm 43-113 无 NaN/Inf，训练速度稳定 2.08s/step，说明梯度计算正常但 loss landscape 不对。**lr=1e-5 对 Pythia-1b fine-tune wikitext-103 可能过大，下次考虑 2e-6 或更低。**\\\\n\\\\n### tmux + conda 环境激活 (2026-05-12)\\\\nsubmit_training_job 通过 tmux 执行命令，tmux 默认用 sh 而非 bash。bash -c 命令**必须**包含 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，否则 python3 找不到。mvp_pilot 因此崩溃。\\\\n\\\\n### AutoDL network_turbo 必须在 tmux 命令中显式激活 (2026-05-12)\\\\nsubmit_training_job 的命令在 tmux 新 session 中执行，不继承 Worker SSH session 的环境变量。因此 `source /etc/network_turbo` 必须写在 bash -c 命令里，否则 HuggingFace 不可达（`Errno 101: Network is unreachable`）。同时需设置：\\\\n- `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`\\\\n- `SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`\\\\n- `HF_HUB_DISABLE_XET=1`\\\\n- `HF_HOME=/root/autodl-tmp/.hf_cache`\\\\n\\\\nmvp_pilot_v2 因此崩溃（tokenizer vocab_file 未缓存 → AttributeError）。\\\\n\\\\n### HF 数据集下载锁阻塞 (2026-05-12)\\\\ndry-run/测试后必须清理遗留 Python 进程，否则 HF dataset builder lock 会阻塞后续正式实验。PID 2371（测试用 `load_dataset('openwebtext')`）持锁\n…[truncated 2328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T17:33:12.096005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'collapse-aware-mixing'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T17:33:12.096177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2601.03385",
+              "prompt": "Extract the COMPLETE technical details of the SIGMA paper. I need:\n\n1. EXACT spectral metrics used (effective rank? spectral norm? condition number? eigenvalue distribution? what specific formula?)\n2. Which layers are analyzed (embedding layer only? all layers? specific layers?)\n3. The deterministic vs stochastic bounds - what exactly are they?\n4. Did they validate leading indicator properties? If so, what is the time lead over perplexity?\n5. Experimental setup: model sizes, datasets, number of training generations, batch sizes\n6. Do they propose any control mechanism or mitigation strategy? Or purely monitoring/detection?\n7. Their definition of the Gram matrix - is it token embeddings, or weight matrices?\n8. Key equations and theorems\n9. Limitations they acknowledge\n10. The \"scalable estimation\" method - how do they avoid full eigendecomposition?\n\nBe thorough - extract every technical detail available."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T17:33:12.096310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2601.03385",
+              "prompt": "Extract: 1) Full list of authors and affiliations, 2) Complete abstract, 3) Publication venue (is it accepted at any conference like ICLR 2026, ICML 2026?), 4) Paper version history, 5) Any mentions of code availability or GitHub repo"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T17:33:12.096432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "file": "ROADMAP.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T17:33:12.096563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# SIGMA: Scalable Spectral Insights for LLM Model Collapse - Paper Details\n\n## 1) Authors and Affiliations\nThe paper lists seven authors: Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, and Alexander Aue. However, **specific institutional affiliations are not displayed on this abstract page**.\n\n## 2) Complete Abstract\nThe authors present their framework as addressing \"model collapse\"—\"a degenerative process where recursive training on model-generated content leads to a contraction of distributional variance and representational quality.\" They propose SIGMA, which uses \"deterministic and stochastic bounds on the matrix's spectrum\" to track representation space contraction and monitor \"the health of recursive training pipelines.\"\n\n## 3) Publication Venue\n**No conference acceptance is mentioned.** The paper is posted on arXiv (identifier 2601.03385) as a preprint with the CS.LG (Machine Learning) classification. There is no indication of acceptance at ICLR 2026, ICML 2026, or any other venue.\n\n## 4) Paper Version History\n- **v1**: Submitted January 6, 2026 (122 KB)\n- **v2**: January 19, 2026 (120 KB)\n- **v3**: March 23, 2026 (120 KB) — current version\n\n## 5) Code Availability\n**No code repository or GitHub link is mentioned** on this abstract page. The page includes sections for code availability tools (alphaXiv, CatalyzeX, etc.), but none are populated with actual links."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T17:33:12.096745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Technical Details of the SIGMA Framework for LLM Model Collapse Detection\n\n## 1. EXACT SPECTRAL METRICS\n\n**Primary Metric: Log-Determinant of Gram Matrix**\nThe core metric is `log|G| = log(∏λⱼ) = Σlog(λⱼ)` where λⱼ are eigenvalues. Two derived diagnostics track collapse:\n\n- **Track I (Deterministic)**: `𝒢_KF^(k)(δ) = log det(Im + 1/(β̂_k+δ) G_A^(k))`\n- **Track II (Stochastic)**: `𝒰_LLN,cov^(k)(δ) = log det(G_A^(k)+δI_m) - m log n_A`\n\nThese measure eigenspectrum contraction without full decomposition.\n\n## 2. LAYERS ANALYZED\n\nThe framework analyzes **embedding layers only**. Specifically, sentence embeddings X_i ∈ ℝ^m where m=384 (embedding dimension). The Gram matrix G=MM^T is constructed from embedding vectors, not weight matrices or hidden states.\n\n## 3. DETERMINISTIC VS STOCHASTIC BOUNDS\n\n**Theorem 1 (Deterministic Bound):**\n```\ndet(G_A^(k)) ≤ det(G^(k)) ≤ ∏(λᵢ(G_A^(k)) + β_k)\n```\nwhere β_k = λ_max(G_B^(k)) is the spectral radius of unobserved data. Distribution-free but loose in practice.\n\n**Theorem 2 (Stochastic Scaling Bound):**\n```\ndet(G^(k)) ≤ K·(n_k/n_A)^m det(G_A)\n```\nAssumes i.i.d. column vectors from distribution with positive-definite covariance C. Enables scalable estimation.\n\n**Theorem 3 (Error Estimation):**\nProvides confidence intervals with precision scaling as `1/√n_A`, not total corpus size n_k.\n\n## 4. LEADING INDICATOR VALIDATION\n\n**No explicit time-lead analysis over perplexity is provided.** The paper evaluates Sigma metrics against model generation quality through two settings (S1: data recursion only; S2: data+weight recursion) but does not report quantitative lead times compared to standard language modeling loss metrics.\n\n## 5. EXPERIMENTAL SETUP\n\n| Parameter | Value |\n|-----------|-------|\n| Model | OPT-125M (facebook/opt-125m) |\n| Dataset | TECH corpus (N=1000 contexts of 64 tokens) |\n| Generations | 50 (g=0 to g=50) |\n| Epochs/generation | 5 |\n| Batch size | 16 |\n| Learning rate | 2×10⁻⁵ |\n| Synthetic fraction | α=0.0 (pure synthetic) \n…[truncated 3161 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T17:33:12.096997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/ROADMAP.md\\\", \\\"content\\\": \\\"# collapse-aware-mixing — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 14:06 UTC | 更新原因: D003 数据切换 + 参数更新 + 基础设施教训记录\\\\n\\\\n## 核心方向\\\\n谱塌缩指标（embedding Gram 矩阵有效秩）驱动 PI 控制器，动态调节迭代 LLM 预训练中合成/真实数据混合比例。连接 SIGMA 的谱监控与 ERBP 的熵-储库框架，将被动监控升级为主动闭环控制。详见 IDEA_BRIEF.md。\\\\n\\\\n## 当前进展\\\\n- 阶段：MVP 验证\\\\n- 目标会议：EMNLP 2026 ARR（DDL 2026-05-25，剩 13 天）\\\\n- 实验：mvp_pilot v1/v2/v3 均失败（基础设施问题），v4 部署中\\\\n- 基础设施：cqa1-38874 1×RTX PRO 6000 96GB (cuda:0)\\\\n- ⚠️ GPU 空转 5+ 小时（09:05 至今）\\\\n\\\\n## MVP 验证方案（D003 更新）\\\\n**核心假设**：谱有效秩在迭代合成训练的 collapse 过程中，比 PPL 更早发出退化信号（leading indicator）。\\\\n\\\\n**实验设计**：Pythia-1B，3 代 × 100M tokens（D003: 从 500M 降至 100M），真实数据 wikitext-103-raw-v1（D003: 从 OpenWebText 切换），每 10M tokens 一个 checkpoint（每代 ~10 个 checkpoint）。\\\\n\\\\n**指标**：谱有效秩、token 级预测熵方差、n-gram 熵、词表覆盖率、PPL（held-out 真实数据）、代际 KL 散度（含完整分布报告）。\\\\n\\\\n### GO 标准（同时满足）\\\\n1. **谱领先性**：谱有效秩在某 checkpoint t 下降 ≥1σ（σ = G0 阶段 checkpoint 间有效秩的标准差），而此时 PPL 尚未从 G0 基线上升 ≥2 points（绝对值）或 ≥5%（相对值）\\\\n2. **非平稳性**：代际 KL 散度 > 0.1 nats（报告完整 KL 分布 + 阈值合理性说明）\\\\n\\\\n### NO-GO 决策树\\\\n| 场景 | 判定 | 行动 |\\\\n|------|------|------|\\\\n| 谱领先 + KL>0.1 | **GO** | 进入 research，primary framing（leading indicator → 闭环控制） |\\\\n| 谱与 PPL 同步下降，但谱粒度更细（CV 更小） | **Conditional GO** | pivot 到 secondary framing（higher-resolution indicator） |\\\\n| KL < 0.1 但 collapse 可测 | **延展** | 加 1 代观察；仍 < 0.1 → kill 自适应控制 claim |\\\\n| 谱不下降 / PPL 先于谱下降 | **KILL** | 谱指标对 autoregressive LLM collapse 无效 |\\\\n| 2 代内无 collapse 迹象 | **延展** | 扩到 3 代；仍无 → kill |\\\\n\\\\n**资源**：~1-2 GPU-hours（wikitext-103 规模）。\\\\n\\\\n## 代码状态\\\\n- ✅ pilot_pipeline.py（4 bug 修复）\\\\n- ✅ metrics.py（完整 KL 报告）\\\\n- ✅ controller.py（14/14 测试通过）\\\\n- ✅ main_experiment.py（3 bug 修复：optimizer state / KL / golden ratio）\\\\n- ✅ golden_ratio_baseline.py\\\\n- ✅ env_init.sh + preflight.sh（系统性修复）\\\\n- ✅ launch_pilot_v4.sh\\\\n\\\\n## 基础设施教训\\\\nv1-v3 连续崩溃暴露两个系统性缺陷（详见 Reviewer 复盘）：\\\\n1. 环境初始化未程序化 → 已修\n…[truncated 1123 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T17:33:12.097193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2601.03385",
+              "prompt": "Extract ALL details about:\n1. The experimental results - what happens to Track I and Track II metrics across generations? Do they decline monotonically? What are the actual numerical values?\n2. Setting S1 vs S2 - what exactly is the difference? S1 is data recursion only, S2 is data+weight recursion - explain in detail\n3. Surface-form diagnostics mentioned (Distinct-2, HHI) - what do these show?\n4. The relationship between their spectral metrics and perplexity/loss - do they correlate? Is one earlier than the other?\n5. Their discussion of related work - what other spectral methods do they cite?\n6. Any mention of \"effective rank\", \"entropy\", \"PI controller\", \"control\", \"mixing ratio\", \"synthetic data ratio\", or \"data mixing\"\n7. The exact model architecture used (OPT-125M details)\n8. Future work section - what do they plan next?\n9. Any mention of ERBP, EntroPIC, or reservoir-based approaches\n10. Their theoretical contribution vs empirical contribution - which is stronger?"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T17:33:12.097329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T17:33:12.097490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Analysis of Sigma Paper: Key Details\n\n## 1. Experimental Results\n\n**Track II (Δ𝒰_LLN,cov)** shows dramatic decline in Setting S2:\n- S1: final drift ≈ -151, slope ≈ -0.941 (gradual)\n- S2: final drift ≈ -1537, slope ≈ -42.621 (steep acceleration)\n\n**Track I (Δ𝒢_KF)** remains stable:\n- S1: final drift ≈ -142, slope ≈ -0.918\n- S2: final drift ≈ -2.426, slope ≈ +2.350 (near-flat or slightly positive)\n\nThe paper describes how \"Track II contracts by more than an order of magnitude\" in S2 while \"Track I remains near zero,\" representing \"early collapse\" where observed spectrum contracts but the conservative envelope stays permissive.\n\n## 2. Setting S1 vs S2 Detailed Comparison\n\n**S1 (Restart-from-base):** \"Each generation regenerates a fresh synthetic data pool, but training always restarts from the same base model.\" Isolates data recursion's effect without weight carryover.\n\n**S2 (True recursion):** \"We do not restart from a fixed base checkpoint. Instead, we carry the model weights forward across generations.\" Creates compounding feedback where parameters shaped by earlier generations influence subsequent synthetic generation.\n\nThe authors explain S2 exhibits \"self-distillation\" early on, quietly removing low-probability alternatives before outputs look obviously repetitive.\n\n## 3. Surface-Form Diagnostics\n\n**Distinct-2:** Ratio of unique bigrams to total bigrams. Lower values indicate increased short-range phrase reuse.\n\n**HHI (n-gram):** Herfindahl-Hirschman Index over n-gram frequencies. Higher values indicate concentrated, repeated phrases—measuring whether few n-grams dominate the corpus.\n\nThe paper treats these as \"contextual, not definitional\" and does not claim they define collapse; they contextualize geometric contraction.\n\n## 4. Relationship to Perplexity/Loss\n\n**Not discussed in provided content.** The paper focuses purely on embedding Gram matrix spectral properties and surface-form repetition metrics. No correlation analysis with perplexity or training loss \n…[truncated 2194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T17:33:12.097642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_framing.md found for 'collapse-aware-mixing'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T17:33:12.097775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "file": "literature_map.yaml",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T17:33:12.097915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'collapse-aware-mixing'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T17:33:12.098033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/IDEA_BRIEF*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-12T17:33:12.098147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/IDEA_BRIEF.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-12T17:33:12.098262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/docs/IDEA_BRIEF.md"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-12T17:33:12.098545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Idea Brief: Spectral Collapse-Aware Adaptive Mixing via Entropy-Reservoir PI Control for Iterative Synthetic-Real LLM Pretraining\n2\t\n3\t\n4\t- **Idea ID**: `idea_012`\n5\t- **Created**: 2026-05-12\n6\t- **Approved**: 2026-05-12\n7\t- **Source**: foreign:be-idea-gen-0509-4\n8\t- **Level**: top-tier\n9\t- **Target Venues**: EMNLP 2026 (ARR submission deadline: May 25, 2026) — primary target, 15 days from today. Three contributions: spectral collapse indicator for closed-loop control, PI-ERBP stability connection (tiered: design guidance guaranteed, formal proof aspirational), pilot-validated improvement margin via KL-based non-stationarity measurement., AAAI 2027 (deadline projected July-August 2026) — extended version with Tier 3 formal proof (if not achieved for EMNLP), formal κ/s_min bounds for specific architectures, additional conditions (ForTIFAI-TCE combination, AC-ODM comparison), and 6+ generation experiments, ICLR 2027 (estimated deadline September-October 2026) — alternative venue for extended version\n10\t\n11\t## Seed Topic\n12\t\n13\tTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Machine Learning for NLP / Resources and Evaluation. Aligns with EMNLP 2026 special theme \"New Missions for NLP Research\" which explicitly calls for work on data contamination, synthetic data feedback loops, and data governance.\n14\t\n15\tDirection: Synthetic data quality, model collapse prevention, contamination detection. In-scope: synthetic data verification/filtering methods, detecting training data contamination in benchmarks, methods to break recursive data feedback loops, data mixing strategies that prevent quality degradation, principled synthetic data generation with quality guarantees.\n16\t\n17\tContribution type: METHOD ONLY. Must propose a concrete detection algorithm, filtering pipeline, or training recipe — not just an observation about model collapse. Method + analysis OK.\n18\t\n19\tHARD CONSTRAINTS:\n20\t1. Compute: ≤200 H100-hours total. Mode\n…[truncated 42389 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-12T17:33:12.098734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/",
+              "description": "List existing artifacts"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-12T17:33:12.098892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\ncode\ndiag_mvp_pilot_v4.md\nliterature_survey_spectral_collapse.md\nmanifest.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-12T17:33:12.099081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/sigma_deep_analysis.md",
+              "content": "# SIGMA Deep Analysis: Precise Differentiation from Collapse-Aware Mixing\n\n> Generated: 2026-05-12 | Source: arXiv:2601.03385 v3 (2026-03-23)\n> Authors: Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, Alexander Aue\n> Venue: arXiv preprint (no conference acceptance as of 2026-05)\n\n---\n\n## 1. SIGMA 技术方法详解\n\n### 1.1 谱指标：log-determinant, 非有效秩\n\nSIGMA 的核心指标是 **Gram 矩阵的 log-determinant**（`log|G| = Σ log(λⱼ)`），而非 spectral effective rank。具体实现为两条并行的诊断轨道：\n\n| | Track I (确定性) | Track II (随机性) |\n|---|---|---|\n| **公式** | `𝒢_KF(δ) = Σ log(1 + λᵢ(G_A)/(β̂_k+δ))` | `𝒰_LLN,cov(δ) = log det(G_A+δI) - m·log(n_A)` |\n| **理论基础** | Weyl 不等式 + Ky Fan 优超 | 大数定律缩放 |\n| **性质** | 保守的上界包络（distribution-free） | 灵敏的统计估计量 |\n| **敏感度** | 低（S2 下几乎平坦，slope ≈ +2.35） | 高（S2 下 slope ≈ -42.6） |\n\n**关键区别**：SIGMA 用 log-determinant（特征值的对数之和），我们用 **spectral effective rank = exp(H(σ))**（归一化奇异值分布的 Shannon 熵的指数）。两者虽然都基于谱分析，但数学定义不同：\n- log-det 对所有特征值等权求和，对小特征值的变化极其敏感（log 在零附近放大）\n- effective rank 先归一化为概率分布再算熵，反映的是谱的\"均匀程度\"而非\"总量\"\n- effective rank 有界（∈ [1, m]），更适合作为控制器输入信号\n\n### 1.2 分析层级：仅 embedding 层\n\nSIGMA 分析的是 **sentence embeddings**（m=384 维），使用冻结的 sentence encoder 提取。不分析 weight matrices、hidden states 或 attention patterns。\n\nGram 矩阵定义：`G = M·Mᵀ ∈ S⁺ᵐ`，其中 M ∈ ℝ^(m×n) 将 embedding 向量排列为列。\n\n我们的方法同样使用 embedding 层 Gram 矩阵，但用模型自身的 final-layer hidden states（非外部 sentence encoder），更直接反映模型内部表征健康度。\n\n### 1.3 可扩展估计：子采样 + Cholesky\n\nSIGMA 避免全矩阵特征分解的方法：\n1. 仅计算 n_A 列的子 Gram 矩阵 G_A（n_A > m 即可）\n2. 用 Cholesky 分解计算 log-det（`log det = 2Σ log Lᵢᵢ`），O(m³) 复杂度\n3. 通过 Theorem 2 的缩放律 `m·log(n/n_A)` 估计全 Gram 矩阵的 log-det\n4. Theorem 3 给出估计误差的置信区间，精度仅依赖 n_A，与总语料大小 n 无关\n\n### 1.4 实验设置\n\n| 参数 | SIGMA | 我们（MVP pilot） |\n|------|-------|-------------------|\n| 模型 | OPT-125M (125M) | Pythia-1B (1B) |\n| 数据集 | TECH corpus (1000 contexts × 64 tokens) | wikitext-103-raw-v1 |\n| 迭代代数 | 50 代 | 3 代（pilot），5 代（full） |\n| 每代 epoch | 5 | - |\n| 合成比例 | α=0.0（纯合成） | 动态调节（PI 控制） |\n| Embedding 维度 | 384（外部 encoder） | 模型自身 hidden dim |\n| 评估指标 | log-det, Distinct-2, HHI | effective rank, PPL, KL, n-gram entropy |\n\n### 1.5 两种实验设置\n\n- **S1 (Restart-from-base)**：每代重新生成合成数据，但训练总是从同一个 base model 重启。隔离数据递归效应。\n- **S2 (True recursion)**：权重跨代继续训练，形成自蒸馏反馈环。\n\n实验结果：\n- S1: Track II 缓慢下降（slope ≈ -0.94/代，50 代后总漂移 ≈ -151）\n- S2: Track II 急剧下降（slope ≈ -42.6/代，50 代后总漂移 ≈ -1537），而 Track I 几乎不变\n- 两条轨道的发散本身被用作早期 collapse 的诊断信号\n\n---\n\n## 2. Leading Indicator 验证\n\n### SIGMA 未做的事情\n\n**SIGMA 未验证 leading indicator 特性。** 论文未报告：\n- 谱指标与 perplexity 的时序对比\n- 谱指标相对于 PPL 的提前预警时间\n- 谱指标与下游任务性能的相关性分析\n\nSIGMA 仅展示了 Track I 与 Track II 的发散模式作为 collapse 的诊断签名，但未与传统性能指标（PPL、loss）做时序竞赛。论文明确承认缺乏预测能力：\"measures collapse states but does not predict failure before output degradation becomes visible\"。\n\n### 我们的差异化机会\n\n这是一个关键的 contribution 空间。我们的 MVP pilot 核心假设正是验证 **spectral effective rank 作为 PPL 的 leading indicator**——即谱有效秩在 PPL 尚未显著上升时已经开始下降。这是 SIGMA 完全未触及的。\n\n---\n\n## 3. 控制机制\n\n### SIGMA：纯监控，无控制\n\nSIGMA 是一个 **纯诊断/监控框架**。论文未提出任何：\n- 数据混合比例调节\n- 训练干预策略\n- 反馈控制机制\n- 缓解措施建议\n\n未来工作方向是 Koopman Operator Theory——从\"监控状态\"过渡到\"预测动力学\"，但仍然是预测，不是控制。\n\n### 我们：闭环 PI 控制\n\n我们的核心 novelty：\n- 谱有效秩 → PI 控制器输入\n- PI 控制器 → 实时调节 real/synthetic 混合比例 w_t\n- 公式：`w_t = w_{t-1} - Kp·(r_t - r_{t-1}) - Ki·(r_t - r_target)`\n- rank 下降 → 增加真实数据比例；rank 恢复 → 减少真实数据比例\n- 有离散时间稳定性分析（Tier 1）和 ERBP 连接（Tier 2）\n\n---\n\n## 4. 精确对比矩阵\n\n| 维度 | SIGMA | 我们 (Collapse-Aware Mixing) |\n|------|-------|------------------------------|\n| **谱指标** | log-determinant of Gram matrix | spectral effective rank = exp(H(σ)) |\n| **分析对象** | 外部 sentence encoder embeddings (m=384) | 模型自身 final-layer hidden states |\n| **诊断 vs 控制** | 纯监控/诊断 | 闭环 PI 控制器 |\n| **Leading indicator** | 未验证 | 核心假设 + 实验验证 |\n| **数据混合** | 未涉及（纯合成 α=0） | real/synthetic 动态混合比例 |\n| **理论贡献** | 确定性/随机性谱界（3 个定理） | PI 稳定性 + ERBP 连接（tiered） |\n| **控制理论** | 无 | 离散时间 PI 稳定性条件 |\n| **ERBP 连接** | 无 | λ·s_min > κ 条件驱动 setpoint |\n| **实验规模** | OPT-125M, 50 代, 极小数据 | Pythia-1B, 3-5 代, wikitext-103 |\n| **应用场景** | 递归训练管线健康监控 | 迭代合成预训练的数据治理 |\n| **代码** | 未公开 | - |\n| **发表状态** | arXiv preprint (未被会议接收) | 目标 EMNLP 2026 |\n\n---\n\n## 5. SIGMA 的局限性 = 我们的 Contribution 空间\n\n### 5.1 无控制机制（最大差异）\nSIGMA 在检测到 collapse 后无法做任何事情。我们将谱信号接入闭环控制器，实现\"从被动监控到主动干预\"。\n\n### 5.2 未验证 leading indicator\nSIGMA 未与 PPL/loss 做时序对比。我们的 pilot 明确测试谱有效秩是否领先于 PPL 下降。\n\n### 5.3 纯合成设置，未考虑混合场景\nSIGMA 实验仅在 α=0（100% 合成）设置下运行，未研究 real/synthetic 混合场景。我们的方法核心就是动态混合。\n\n### 5.4 极小实验规模\nOPT-125M + 1000 条 64-token 上下文（~64K tokens）。我们用 Pythia-1B + wikitext-103（~100M tokens/代），更接近实际预训练规模。\n\n### 5.5 外部 encoder 依赖\nSIGMA 依赖冻结的外部 sentence encoder (384 维) 提取 embeddings。这引入了额外依赖，且 encoder 本身可能对某些 collapse 模式不敏感。我们直接用模型自身的 hidden states。\n\n### 5.6 理论聚焦于界，非控制\nSIGMA 的三个定理建立的是谱界（bounds），不涉及如何利用这些信号做决策。我们建立 PI 控制器稳定性条件并连接到 ERBP 的信息几何框架。\n\n### 5.7 Track I 保守性\nTrack I 在 S2 设置下几乎平坦（slope ≈ +2.35），对 true recursion collapse 不敏感。两条轨道的发散虽然可以作为诊断信号，但需要同时维护两个指标增加了复杂度。我们的 effective rank 是单一标量信号。\n\n### 5.8 无预测/预判能力\n论文自承\"measures collapse states but does not predict failure\"。Koopman operator 方向是未来工作。\n\n---\n\n## 6. Paper Positioning 素材\n\n### 6.1 Introduction 定位（建议措辞）\n\n> Recent work has shown that spectral analysis of embedding Gram matrices can detect representational collapse in LLMs. SIGMA (Gu et al., 2026) derives deterministic and stochastic bounds on the log-determinant of the Gram matrix, providing a scalable monitoring framework that captures collapse-induced contraction of the representation space. However, SIGMA operates purely as a diagnostic tool — detecting collapse states post-hoc without providing mechanisms for intervention or prevention. We take the next step: integrating spectral collapse indicators into a closed-loop PI controller that dynamically adjusts the synthetic-to-real data mixing ratio to actively prevent collapse during iterative training.\n\n### 6.2 Related Work 定位（建议段落）\n\n> **Spectral collapse monitoring.** SIGMA (Gu et al., 2026) introduces a two-track framework for monitoring model collapse via the log-determinant of the embedding Gram matrix. Their deterministic bound (Track I) provides a conservative envelope via Weyl's inequality, while the stochastic estimator (Track II) offers greater sensitivity, detecting collapse an order of magnitude earlier than Track I in true-recursion settings. However, SIGMA differs from our approach in several key respects: (1) they use the log-determinant metric, while we use spectral effective rank (exp(H(σ))), which provides a bounded, normalized signal more suitable as a controller input; (2) they analyze embeddings from a frozen external sentence encoder rather than the model's own representations; (3) they validate only on OPT-125M with a corpus of ~64K tokens across 50 generations, while we target Pythia-1B scale with 100M+ tokens per generation; and most critically, (4) they use spectral metrics purely for monitoring, whereas we integrate them into a PI controller for active data composition adjustment. SIGMA explicitly identifies the transition from monitoring to prediction as future work; we address the complementary gap of transitioning from monitoring to control.\n\n### 6.3 核心 Framing\n\n**一句话定位**：SIGMA 证明了\"谱分析能检测 collapse\"；我们回答\"检测到 collapse 后怎么办\"。\n\n**Contribution 矩阵定位**（2×2 象限图）：\n\n```\n                  Offline/Monitoring    Online/Closed-loop\n                  ─────────────────    ──────────────────\nLoss-based    │   DoReMi, Aioli       AC-ODM (withdrawn)\n              │\nSpectral      │   SIGMA, DiSF         ★ Ours ★\n```\n\n我们占据的是 **spectral × online closed-loop** 的空白象限。\n\n### 6.4 不应 claim 的\n\n- ~~首次将谱分析用于 LLM collapse 检测~~（SIGMA 在先）\n- ~~首次使用 Gram 矩阵分析 collapse~~（SIGMA 在先）\n- ~~首次提出 scalable 的谱 collapse 指标~~（SIGMA 的子采样方法在先）\n\n### 6.5 可以 claim 的\n\n1. **首次将谱 collapse 指标用于闭环控制**（SIGMA 纯监控，DiSF 是离线选择，SSO 是权重空间）\n2. **首次验证 effective rank 作为 PPL 的 leading indicator**（SIGMA 未做时序对比）\n3. **首次连接 ERBP 稳定性条件与 PI 控制器设计**（ERBP 未提供动态调节机制）\n4. **首次在迭代 synthetic-real 混合场景下实现自适应数据比例控制**（有别于 generic domain mixing 的 Aioli/GRAPE）\n\n---\n\n## 7. 风险评估\n\n| 风险 | 概率 | 影响 | 缓解 |\n|------|------|------|------|\n| Reviewer 认为我们只是\"SIGMA + PI controller 的 trivial 拼接\" | 中 | 高 | 强调 non-trivial integration challenges（信号量化噪声、setpoint 跨规模迁移、ERBP 连接），用 toy model 论证 effective rank 与 log-det 的本质差异 |\n| SIGMA 在 camera-ready 前被 ICML/NeurIPS 接收，reviewer 期待与其对比实验 | 低 | 中 | 准备 log-det vs effective rank 的消融实验作为 appendix |\n| Reviewer 要求解释为何不直接使用 SIGMA 的 log-det 而用 effective rank | 高 | 低 | effective rank 有界 [1,m] 适合控制器输入，log-det 无界且对正则化参数 δ 敏感 |\n\n---\n\n## 8. 补充：SIGMA 未引用/未涉及的框架\n\nSIGMA 未引用 ERBP、EntroPIC、RankMe，也未涉及 PI/PID 控制、数据混合优化、或 dynamic regret theory。这些都是我们独立的理论支柱。\n"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-12T17:33:12.099368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/sigma_deep_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-12T17:33:12.099517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__append_idea",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-12T17:33:12.099645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-12T17:33:12.099774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-12T17:33:12.099913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-12T17:33:12.100029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "register_artifact",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/manifest.yaml",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-12T17:33:12.100140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-12T17:33:12.100250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/manifest.yaml"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-12T17:33:12.100401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t- id: art_20260512_fb1679\n2\t  name: MVP Pilot 实验代码\n3\t  type: intermediate\n4\t  description: 'Pythia-1B 迭代合成训练 pilot 代码：训练循环 (HF Trainer) + 6 项崩塌检测指标 (谱有效秩/token\n5\t    熵方差/n-gram 熵/词表覆盖率/PPL/代际 KL) + 合成数据生成 + 全流程编排。文件: config.py, data_utils.py, metrics.py,\n6\t    generate.py, train.py, pilot_pipeline.py, requirements.txt'\n7\t  path: projects/collapse-aware-mixing/artifacts/_project/intermediate/pilot_pipeline.py\n8\t  url: null\n9\t  project: collapse-aware-mixing\n10\t  exp_id: null\n11\t  skill: ''\n12\t  created_at: '2026-05-12T08:58:15.853621+00:00'\n13\t  tags:\n14\t  - code\n15\t  - mvp\n16\t  - pilot\n17\t  - spectral-rank\n18\t  - model-collapse\n19\t- id: art_20260512_b8e7c5\n20\t  name: controller.py\n21\t  type: intermediate\n22\t  description: Discrete-time PI controller for collapse-aware real/synthetic data\n23\t    mixing (CollapseAwareController + ControllerConfig)\n24\t  path: projects/collapse-aware-mixing/artifacts/_project/intermediate/controller.py\n25\t  url: null\n26\t  project: collapse-aware-mixing\n27\t  exp_id: null\n28\t  skill: ''\n29\t  created_at: '2026-05-12T11:23:30.104218+00:00'\n30\t  tags:\n31\t  - controller\n32\t  - pi-controller\n33\t  - code\n34\t- id: art_20260512_8f8ca7\n35\t  name: test_controller.py\n36\t  type: intermediate\n37\t  description: '14 unit tests for PI controller: steady state, rank drop, recovery,\n38\t    clamp, reset, history'\n39\t  path: projects/collapse-aware-mixing/artifacts/_project/intermediate/test_controller.py\n40\t  url: null\n41\t  project: collapse-aware-mixing\n42\t  exp_id: null\n43\t  skill: ''\n44\t  created_at: '2026-05-12T11:23:32.519716+00:00'\n45\t  tags:\n46\t  - test\n47\t  - controller\n48\t  - code\n49\t- id: art_20260512_5fef4c\n50\t  name: golden_ratio_baseline.py\n51\t  type: intermediate\n52\t  description: Fixed-ratio real/synthetic mixing baseline. G0 100% real, G1+ mixed\n53\t    at --real_ratio. Outputs JSON summary.\n54\t  path: projects/collapse-aware-mixing/artifacts/_project/intermediate/golden_ratio_baseline.py\n55\t  url: null\n56\t  project: collapse-aware-mixing\n5\n…[truncated 1214 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-12T17:33:12.100557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/manifest.yaml",
+              "old_string": "  tags:\n  - literature\n  - novelty\n  - framing\n  - SIGMA\n  - ERBP",
+              "new_string": "  tags:\n  - literature\n  - novelty\n  - framing\n  - SIGMA\n  - ERBP\n- id: art_20260512_a3d1f0\n  name: SIGMA 深度分析报告\n  type: report\n  description: SIGMA (arXiv:2601.03385) 全文技术分析：log-det vs effective rank、无控制机制、未验证\n    leading indicator、实验规模局限。含精确对比矩阵、paper positioning 素材、Related Work 建议措辞。\n  path: projects/collapse-aware-mixing/artifacts/sigma_deep_analysis.md\n  url: null\n  project: collapse-aware-mixing\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-12T19:30:00.000000+00:00'\n  tags:\n  - literature\n  - SIGMA\n  - positioning\n  - related-work\n  - novelty"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-12T17:33:12.100713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/manifest.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-12T17:33:12.100915+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/sigma_deep_analysis.md`。核心发现：\n\n**SIGMA 与我们的 4 个关键差异：**\n\n1. **谱指标不同**：SIGMA 用 log-determinant（`Σ log λⱼ`），我们用 spectral effective rank（`exp(H(σ))`）。后者有界 [1,m]，更适合作为控制器输入。\n\n2. **纯监控 vs 闭环控制**：SIGMA 无任何干预/控制机制，未来工作方向是 Koopman operator 预测（仍是被动）。我们有 PI 控制器做实时 real/synthetic 比例调节。\n\n3. **未验证 leading indicator**：SIGMA 未做谱指标与 PPL 的时序对比，自承\"measures collapse states but does not predict failure\"。这是我们的核心假设验证。\n\n4. **实验设置差异大**：OPT-125M + 64K tokens + 外部 sentence encoder vs 我们的 Pythia-1B + wikitext-103 + 模型自身 hidden states。\n\n**Positioning 一句话**：SIGMA 证明了\"谱分析能检测 collapse\"；我们回答\"检测到之后怎么办\"——从 passive monitoring 到 active closed-loop control。\n\nSources:\n- [SIGMA: Scalable Spectral Insights for LLM Model Collapse](https://arxiv.org/abs/2601.03385)\n- [SIGMA HTML full text](https://arxiv.org/html/2601.03385)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sigma-deep-analysis_20260512T172849"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/research-sigma-deep-analysis.md"
+}

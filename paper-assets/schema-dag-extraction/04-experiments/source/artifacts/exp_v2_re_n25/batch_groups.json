@@ -1,0 +1,656 @@
+{
+  "low": [
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "mountain range",
+        "original language of film or TV show",
+        "sports season of league or competition",
+        "successful candidate"
+      ],
+      "bcs": 0.3562733248940536
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "mountain range",
+        "original language of film or TV show",
+        "publisher",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3576922571020467
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "original language of film or TV show",
+        "performer",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3578861765563488
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "mountain range",
+        "original language of film or TV show",
+        "owned by",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.35802880621382166
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "mountain range",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "record label",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3584075351910932
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "located in or next to body of water",
+        "mountain range",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3584426896912711
+    },
+    {
+      "types": [
+        "composer",
+        "headquarters location",
+        "located in or next to body of water",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "sports season of league or competition",
+        "successful candidate",
+        "taxon rank"
+      ],
+      "bcs": 0.3590553951050554
+    },
+    {
+      "types": [
+        "composer",
+        "headquarters location",
+        "located in or next to body of water",
+        "original language of film or TV show",
+        "residence",
+        "sports season of league or competition",
+        "successful candidate",
+        "taxon rank"
+      ],
+      "bcs": 0.3590933025947639
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "record label",
+        "screenwriter",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.35947270105992046
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "operator",
+        "original language of film or TV show",
+        "screenwriter",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.36197701362626894
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "located on terrain feature",
+        "original language of film or TV show",
+        "sports season of league or competition",
+        "successful candidate"
+      ],
+      "bcs": 0.3627289240913732
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "operator",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.36288079246878624
+    },
+    {
+      "types": [
+        "composer",
+        "headquarters location",
+        "located in or next to body of water",
+        "operator",
+        "original language of film or TV show",
+        "residence",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3639637109424387
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "located in or next to body of water",
+        "mountain range",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "record label",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.36412222789866583
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "military rank",
+        "original language of film or TV show",
+        "sports season of league or competition",
+        "successful candidate"
+      ],
+      "bcs": 0.36440575601799147
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "located on terrain feature",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "record label",
+        "screenwriter",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.3644774838217667
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "located on terrain feature",
+        "original language of film or TV show",
+        "residence",
+        "screenwriter",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.364634247230632
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "mountain range",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "sports season of league or competition",
+        "taxon rank",
+        "voice type"
+      ],
+      "bcs": 0.3648745486778872
+    },
+    {
+      "types": [
+        "headquarters location",
+        "located in or next to body of water",
+        "operator",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "religion",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.36502485988395555
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "headquarters location",
+        "military rank",
+        "mouth of the watercourse",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.3651692883244583
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "headquarters location",
+        "located in or next to body of water",
+        "operator",
+        "original language of film or TV show",
+        "residence",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3651738863970552
+    },
+    {
+      "types": [
+        "composer",
+        "headquarters location",
+        "located in or next to body of water",
+        "military rank",
+        "original language of film or TV show",
+        "record label",
+        "residence",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.36586117478353636
+    },
+    {
+      "types": [
+        "composer",
+        "country of citizenship",
+        "located in or next to body of water",
+        "mountain range",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "residence",
+        "sports season of league or competition"
+      ],
+      "bcs": 0.36593541715826305
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "located in or next to body of water",
+        "original language of film or TV show",
+        "owned by",
+        "performer",
+        "place served by transport hub",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.3664377214653151
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "located on terrain feature",
+        "original language of film or TV show",
+        "place served by transport hub",
+        "residence",
+        "screenwriter",
+        "sports season of league or competition",
+        "taxon rank"
+      ],
+      "bcs": 0.366775135908808
+    }
+  ],
+  "high": [
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "member of",
+        "occupant",
+        "part of",
+        "sibling"
+      ],
+      "bcs": 0.7907828837633133
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "main subject",
+        "member of",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7916934660502842
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "instance of",
+        "member of",
+        "part of",
+        "participant of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7920003661087581
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "member of",
+        "occupant",
+        "operator",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7927349294934954
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "occupant",
+        "operator",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7927811379943576
+    },
+    {
+      "types": [
+        "child",
+        "follows",
+        "has part",
+        "member of",
+        "occupant",
+        "part of",
+        "said to be the same as",
+        "sibling"
+      ],
+      "bcs": 0.7932348996400833
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "part of",
+        "participant of"
+      ],
+      "bcs": 0.7934084449495588
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "member of",
+        "occupant",
+        "operator",
+        "part of"
+      ],
+      "bcs": 0.7941216251679829
+    },
+    {
+      "types": [
+        "child",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "part of",
+        "participant of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7953421814101083
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "member of",
+        "occupant",
+        "part of",
+        "participant of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7959609350987843
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "occupant",
+        "part of",
+        "participant of"
+      ],
+      "bcs": 0.796904382961137
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "instance of",
+        "member of",
+        "nominated for",
+        "occupant",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7973213217088154
+    },
+    {
+      "types": [
+        "child",
+        "follows",
+        "instance of",
+        "member of",
+        "occupant",
+        "operator",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7974310325724738
+    },
+    {
+      "types": [
+        "child",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "occupant",
+        "operator",
+        "part of"
+      ],
+      "bcs": 0.7974578227315631
+    },
+    {
+      "types": [
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "nominated for",
+        "occupant",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7988176686423165
+    },
+    {
+      "types": [
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "occupant",
+        "part of",
+        "participant of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7988613716193608
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "nominated for",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7994416249649865
+    },
+    {
+      "types": [
+        "child",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "operator",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7994794462408338
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "member of",
+        "occupant",
+        "operator",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.7999607260738101
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "member of",
+        "occupant",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.8043174999100822
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "occupant",
+        "part of"
+      ],
+      "bcs": 0.8043924527508872
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "instance of",
+        "member of",
+        "occupant",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.8044190896408898
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "operator",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.8052973066057477
+    },
+    {
+      "types": [
+        "child",
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.8077901708228248
+    },
+    {
+      "types": [
+        "followed by",
+        "follows",
+        "has part",
+        "instance of",
+        "member of",
+        "occupant",
+        "part of",
+        "said to be the same as"
+      ],
+      "bcs": 0.8109273569924491
+    }
+  ]
+}

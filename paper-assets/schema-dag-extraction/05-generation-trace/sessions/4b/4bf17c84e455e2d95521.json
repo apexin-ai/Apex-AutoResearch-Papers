@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fewrel-80rel-diagnosis_20260515T130210_result.json",
     "occurrence": 1,
-    "bytes": 853,
-    "sha256": "57b797ae08e30479ee8f185521535f8bd618bdaa31ec6ff7ee5f916da589cc69"
+    "bytes": 852,
+    "sha256": "44247cd1a2529bcb3062c68476e2711f4b0ca5fa376a76a38ea7ea603b317842"
   },
   "statistics": {
     "messages": 1,

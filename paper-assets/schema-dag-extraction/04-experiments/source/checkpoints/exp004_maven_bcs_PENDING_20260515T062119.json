@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp004_maven_bcs",
+  "project": "schema-dag-extraction",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:21:19.914Z",
+    "updated_at": "2026-05-15T06:21:19.914Z"
+  },
+  "timestamp": "2026-05-15T06:21:19.961484+00:00",
+  "trigger": "update_registry"
+}

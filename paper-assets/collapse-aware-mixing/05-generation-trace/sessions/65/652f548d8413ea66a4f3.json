@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "652f548d8413ea66a4f3",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "check pivot b and baseline dryrun",
+  "task_key": "worker_check_pivot_b_and_baseline_dryrun_20260513T201436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pivot_b_and_baseline_dryrun_20260513T201436_result.json",
+    "occurrence": 1,
+    "bytes": 1715,
+    "sha256": "121c820f28b7a138fb11102d33fba014ea7ea3677970157fcc786208cc742ae1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== PIVOT B STATUS ===\nProcess: DONE (no PID, no tmux session)\nGPU: 0% utilization, 0 MiB / 97887 MiB (idle)\nProgress: Completed all 3 generations (G0–G2)\nResults:\n  generated_vs_holdout_eff_rank:\n    G0: holdout=111.51  generated=63.89  delta=47.62\n    G1: holdout=111.39  generated=3.87   delta=107.52  (↓93.9%)\n    G2: holdout=111.86  generated=1.06   delta=110.79  (↓98.3%)\n  Verdict: PIVOT_B_LOSES — n-gram metrics (entropy, vocab coverage) detect collapse earlier than generated eff_rank\n    - n-gram detection at G1 step 152 (unigram entropy -43.5%)\n    - generated eff_rank detection at G1 step 999999 (-93.9%)\n  Holdout eff_rank stays stable across all generations (~111.5)\n  Note: pivot_b_verification.log shows a ConnectionError fetching 'wikitext' (EXIT_CODE=1), but analysis outputs were saved successfully\n\n=== BASELINE DRY-RUN ===\nScripts: 6/6 exist and executable\ncontrolled_pipeline.py: import OK, argparse OK (supports --Kp --Ki --w_init --w_min --w_max --r_target etc.)\n\nPer-script params:\n| Script                    | Kp | Ki | w_init | w_min | w_max |\n|---------------------------|----|----|--------|-------|-------|\n| launch_baseline_w0_p0.sh  | 0  | 0  | 0.0    | 0.0   | 0.0   |\n| launch_baseline_w01_p0.sh | 0  | 0  | 0.1    | 0.1   | 0.1   |\n| launch_baseline_w03_p0.sh | 0  | 0  | 0.3    | 0.3   | 0.3   |\n| launch_baseline_w05_p0.sh | 0  | 0  | 0.5    | 0.5   | 0.5   |\n| launch_baseline_w07_p0.sh | 0  | 0  | 0.7    | 0.7   | 0.7   |\n| launch_baseline_w1_p0.sh  | 0  | 0  | 1.0    | 1.0   | 1.0   |\n\nAll 6 baselines are static-weight (Kp=Ki=0, w_init=w_min=w_max), covering w ∈ {0.0, 0.1, 0.3, 0.5, 0.7, 1.0}. Ready to launch."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pivot-b-and-baseline-dryrun.md"
+}

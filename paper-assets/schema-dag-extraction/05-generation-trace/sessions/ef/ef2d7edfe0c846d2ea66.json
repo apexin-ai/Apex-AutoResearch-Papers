@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_sdgd_routing_strategies_20260517T055751_result.json",
     "occurrence": 1,
-    "bytes": 1366,
-    "sha256": "7b7c0d6b673e2002c9ca6ac1c28c0d8be299e4f6a0a75eee865f44faabb4220b"
+    "bytes": 1365,
+    "sha256": "d11a4045d4678aa9cafa6fa56790a1ea3425cdfe382647be68bccc466cba53d3"
   },
   "statistics": {
     "messages": 1,

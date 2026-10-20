@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_aggregation_monte_carlo",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:33:10.336Z",
+    "updated_at": "2026-05-16T12:33:10.336Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T12:33:10.440390+00:00",
+  "trigger": "update_registry"
+}

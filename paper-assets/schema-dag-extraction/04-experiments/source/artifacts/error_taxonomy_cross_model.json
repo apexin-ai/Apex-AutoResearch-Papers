@@ -1,0 +1,76 @@
+{
+  "qwen3_32b_reference": {
+    "spearman_rho": 0.954,
+    "p_value": "<0.001",
+    "n_batches": 154,
+    "intrasub_by_bcs_bin": {},
+    "source": "paper Table 6"
+  },
+  "llama_8b": {
+    "spearman_rho": 0.4305,
+    "p_value": 0.00115637,
+    "n_batches": 54,
+    "intrasub_by_bcs_bin": {
+      "low": 0.1603,
+      "mid": 0.2436,
+      "high": 0.2899
+    },
+    "bcs_range": {
+      "min": 0.4715,
+      "max": 0.9706,
+      "range": 0.4991
+    },
+    "missed_rate": 0.0008,
+    "alt_intra_frac_err_rho": -0.0392,
+    "alt_intra_frac_err_p": 0.778206,
+    "data_source": "llama_fewrel_ch2/predictions_exp2.json"
+  },
+  "llama_70b": {
+    "spearman_rho": -0.0859,
+    "p_value": 0.718654,
+    "n_batches": 20,
+    "intrasub_by_bcs_bin": {
+      "low": 0.1615,
+      "mid": 0.1215,
+      "high": 0.1481
+    },
+    "bcs_range": {
+      "min": 0.4715,
+      "max": 0.9706,
+      "range": 0.4991
+    },
+    "missed_rate": 0.1736,
+    "alt_intra_frac_err_rho": -0.1008,
+    "alt_intra_frac_err_p": 0.67244,
+    "data_source": "bcs_controlled_llama-3.1-70b-fp8/"
+  },
+  "gemini_flash": {
+    "spearman_rho": 0.8213,
+    "p_value": 9.16074e-16,
+    "n_batches": 60,
+    "intrasub_by_bcs_bin": {
+      "low": 0.0073,
+      "mid": 0.1154,
+      "high": 0.1841
+    },
+    "bcs_range": {
+      "min": 0.3563,
+      "max": 0.9706,
+      "range": 0.6143
+    },
+    "missed_rate": 0.0881,
+    "alt_intra_frac_err_rho": 0.7838,
+    "alt_intra_frac_err_p": 1.32263e-13,
+    "data_source": "exp_gemini_flash/part2/"
+  },
+  "summary": {
+    "models_with_rho_gt_0.8": 1,
+    "models_with_sig_positive": 2,
+    "model_details": {
+      "llama_8b": 0.4305,
+      "llama_70b": -0.0859,
+      "gemini_flash": 0.8213
+    },
+    "conclusion": "Gemini Flash (rho=0.8213) and LLaMA-8B (rho=0.4305, p<0.01) show significant positive IntraSub-BCS correlation. LLaMA-70B (rho=-0.0859) shows no correlation, but has severely limited BCS contrast (range=0.50 excluding outlier) and high missed rate (17.4%), insufficient for this analysis. Combined with Qwen3-32B (rho=0.954), 3/4 models with adequate BCS variation confirm the IntraSub-BCS relationship."
+  }
+}

@@ -1,0 +1,179 @@
+paper_key: "gollie-2024"
+title: "GoLLIE: Annotation Guidelines Improve Zero-Shot Information Extraction"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Instruct-UIE (Wang et al., 2023)"
+    - "PromptNER (Zhang et al., 2023)"
+    - "GPT-3.5-turbo (with guidelines prompting)"
+    - "GoLLIE Baseline (Code-LLaMA without guidelines)"
+    - "Task-specific SoTA models (per dataset)"
+    - "Entailment-based IE (Sainz et al., 2022)"
+  metrics:
+    - {name: "F1", direction: "higher_better"}
+  datasets:
+    - {name: "ACE05 (NER/RE/EE/EAE)", size: "News domain", split: "train+eval"}
+    - {name: "BC5CDR", size: "Biomedical", split: "train+eval"}
+    - {name: "CoNLL 2003", size: "News", split: "train+eval"}
+    - {name: "DIANN", size: "Biomedical", split: "train+eval"}
+    - {name: "NCBIDisease", size: "Biomedical", split: "train+eval"}
+    - {name: "Ontonotes 5", size: "News", split: "train+eval"}
+    - {name: "RAMS", size: "News", split: "train+eval"}
+    - {name: "TACRED (converted to SF)", size: "News", split: "train+eval"}
+    - {name: "WNUT 2017", size: "News", split: "train+eval"}
+    - {name: "BroadTwitter", size: "Twitter domain", split: "eval only"}
+    - {name: "CASIE (EE+EAE)", size: "Cybercrime domain", split: "eval only"}
+    - {name: "CrossNER (AI)", size: "AI domain", split: "eval only"}
+    - {name: "CrossNER (Literature)", size: "Literature domain", split: "eval only"}
+    - {name: "CrossNER (Music)", size: "Music domain", split: "eval only"}
+    - {name: "CrossNER (Politics)", size: "Politics domain", split: "eval only"}
+    - {name: "CrossNER (Science)", size: "Science domain", split: "eval only"}
+    - {name: "E3C", size: "Biomedical", split: "eval only"}
+    - {name: "FabNER", size: "Science domain", split: "eval only"}
+    - {name: "HarveyNER", size: "Twitter domain", split: "eval only"}
+    - {name: "MIT Movie", size: "Queries domain", split: "eval only"}
+    - {name: "MIT Restaurant", size: "Queries domain", split: "eval only"}
+    - {name: "MultiNERD", size: "Wikipedia domain", split: "eval only"}
+    - {name: "WikiEvents (NER/EE/EAE)", size: "Wikipedia domain", split: "eval only"}
+  ablation_dimensions:
+    - "Class order shuffling"
+    - "Class dropout"
+    - "Guideline paraphrasing"
+    - "Representative candidate sampling"
+    - "Class name masking"
+    - "Guidelines vs no guidelines (Baseline vs GoLLIE)"
+    - "Model scale (7B vs 13B vs 34B)"
+  training_recipe:
+    backbone: "Code-LLaMA (7B/13B/34B)"
+    method: "QLoRA fine-tuning"
+    optimizer: "not explicitly stated (implied AdamW via standard QLoRA)"
+    lr: "3e-4"
+    scheduler: "cosine"
+    epochs: 3
+    batch_size: 32
+    hardware: "2x NVIDIA A100 80GB"
+    guideline_paraphraser: "Vicuna 33B v1.3"
+    note: "QLoRA outperformed full fine-tuning on zero-shot tasks while training much faster"
+  method_family: "LLM-based zero-shot information extraction via guideline-following instruction tuning"
+
+positioning:
+  core_claim: "LLM天然无法遵循标注指南进行IE，但通过在已有IE数据上微调模型学习「遵循指南」的能力，可大幅提升zero-shot IE性能——关键不是记住具体schema，而是学会理解和执行annotation guidelines"
+  key_results: "Zero-shot平均F1: Baseline 42.3 → GoLLIE 7B 55.3 (+13.0) → GoLLIE 34B 57.2; 显著超越Instruct-UIE (prior SOTA); GPT-3.5-turbo在Music/Politics等domain仅约20 F1; MultiNERD: 55.0→76.0, Movie: 43.4→63.0; 监督设置下不降性能(平均73-75 F1)"
+  limitations:
+    - "对模糊的catch-all类别(如Miscellaneous)效果差——定义本身高度模糊，无法形成一致规则"
+    - "粗粒度与细粒度标签冲突(如Scientist vs Person)导致分类混淆"
+    - "预训练知识偏见——如Political Party被错误归类为Organization，因为训练集无该类别"
+    - "依赖人工编写的高质量annotation guidelines，当公开指南不可用时需专家手工创建"
+    - "仅在News和Biomedical domain训练，领域覆盖有限"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "IE任务依赖复杂的annotation guidelines，但LLM在IE上远落后于task-specific模型——即使是GPT-3.5在zero-shot NER上也只有约20 F1"
+  tension: "LLM在其他NLP任务上泛化能力极强，但在IE上却失败。核心矛盾：不同数据集对同一标签(如'person')有不同定义，LLM仅靠标签名推断导致大量错误。现有instruction-tuning方法(如Instruct-UIE)也没有利用annotation guidelines"
+  key_insight: "在Method section (Section 3.2 + Figure 3)揭示：将annotation guidelines编码为Python class docstrings + representative candidates作为comments，让模型学会关注定义而非依赖标签名的先验知识。关键对比是Figure 3的左右对照——无guidelines vs 有guidelines的输入表示"
+  argument_chain: "IE依赖guidelines → LLM无法自动遵循guidelines → 用Python代码格式统一表示schema+guidelines → 训练正则化防止记忆具体schema → 微调后模型学会遵循任意guidelines → zero-shot大幅超越baseline和prior SOTA → 错误分析验证guidelines质量是瓶颈而非模型能力"
+  contribution_framing: "隐式三点贡献：(1)发现LLM不能out-of-the-box遵循IE guidelines，(2)提出GoLLIE通过guidelines-following微调解决该问题，(3)全面评估+消融+错误分析验证有效性。措辞克制，不用'novel'/'first'等强claim词汇"
+  intro_structure: "4段：P1-问题陈述(IE依赖guidelines但标注昂贵) → P2-现有局限(LLM在IE上失败，因为不同数据集定义不同) → P3-解决方案(GoLLIE通过微调学习遵循guidelines) → P4-结果预览(超越SOTA，指向Figure 1)"
+  notable_technique: "用Figure 1作为teaser result直接放在intro末尾，一图胜千言——grouped bar chart同时对比GPT-3.5/SOTA/GoLLIE在7个domain上的F1，视觉冲击力强。这种'先给结果再讲方法'的叙事策略在ICLR论文中较常见"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "7个domain(Movie/Restaurant/Politics/Literature/Music/AI/Science)上的zero-shot NER F1分数grouped bar chart，对比GPT-3.5/SOTA/GoLLIE三个方法"
+    narrative_role: "放在intro末段作为核心结果预览，用视觉冲击建立论文credibility——GoLLIE的teal bar在每个domain都明显高于其他方法"
+    design_elements:
+      - "三组grouped bars对应三个方法"
+      - "每组按domain排列，7个domain并列"
+      - "数值标注在bar顶部"
+      - "GPT-3.5部分domain数据缺失(注释说明)"
+      - "颜色区分明确：浅绿(GPT-3.5)、中绿斜线(SOTA)、深teal(GoLLIE)"
+    visual_style: "简洁的grouped bar chart，白底，teal-green色系渐变，bars使用斜线纹理区分。紧凑布局，数值直接标注在bar上方。整体色调统一，学术风格明显"
+  figure2:
+    type: "method_overview"
+    description: "GoLLIE的输入输出格式示例——左侧标注说明三部分(Schema definition/Input text/Output annotations)，右侧展示完整Python代码"
+    narrative_role: "紧跟方法描述，用具体例子说明Python代码格式如何工作，使读者直观理解输入输出设计"
+    design_elements:
+      - "左侧注释箭头指向代码各部分"
+      - "代码语法高亮：绿色注释、蓝色关键词、红色字符串"
+      - "三个层次清晰标注：Schema definition / Input text / Output annotations"
+      - "展示了guidelines作为docstring和comments的具体形式"
+    visual_style: "代码截图风格，白底黑字，关键部分用颜色高亮。左侧灰色注释文字与右侧代码对齐，形成解释-示例的双栏布局"
+  figure3:
+    type: "problem_illustration"
+    description: "左右对比：(左)无guidelines信息的Event class定义 vs (右)包含guidelines的同一class定义——docstrings中有详细定义，comments中有representative candidates"
+    narrative_role: "直观展示论文核心创新——guidelines信息如何被编码进Python class，是理解baseline vs GoLLIE区别的关键图"
+    design_elements:
+      - "左右并列对比布局"
+      - "左侧代码简短(仅class名和属性)"
+      - "右侧代码丰富(docstrings + comments大幅扩展)"
+      - "视觉上右侧明显更长，暗示信息量差异"
+    visual_style: "纯代码对比，白底，无额外装饰。通过代码长度差异自然传达guidelines的信息增益"
+  figure4:
+    type: "analysis"
+    description: "Seen vs Unseen label的zero-shot F1对比，grouped bar chart，4个model variants(baseline/7B/13B/34B)，分seen和unseen两组"
+    narrative_role: "验证GoLLIE在unseen labels上的泛化能力——核心论点的直接证据"
+    design_elements:
+      - "两组(Seen/Unseen)各4个bars"
+      - "teal-green色系从浅到深表示model scale递增"
+      - "bars使用斜线纹理"
+      - "error bars显示方差"
+      - "Y轴为F1 score (0-60)"
+    visual_style: "与Figure 1同色系的grouped bar chart，teal渐变配色(浅绿→中绿→深蓝绿→深蓝)。斜线纹理填充，白底，简洁学术风格。error bars增加统计可信度"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "grouped_bar_chart"
+      what_compared: "GPT-3.5 vs SOTA vs GoLLIE在7个zero-shot NER domain上的F1"
+      how_gain_highlighted: "GoLLIE的深色bar在每个domain都最高，数值直接标注在bar顶部，视觉对比一目了然"
+      design_note: "作为teaser放在intro，先给结果再讲方法，建立reader信心。GPT-3.5数据缺失处留空而非补零，诚实处理"
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar_chart"
+      what_compared: "Seen vs Unseen labels，4个model variants的F1"
+      how_gain_highlighted: "GoLLIE在Unseen组的提升幅度比Seen组更大，视觉上差距更明显，证明泛化能力"
+      design_note: "用error bars增加统计严谨性，渐变色系编码model scale递增"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(teaser结果，建立credibility) → Figure 2(方法输入输出格式) → Figure 3(核心创新对比：无guidelines vs 有guidelines) → Figure 4(泛化能力分析：seen vs unseen) → Figure 5(未见于正文主体)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "datasets (17个zero-shot评估集)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_task_and_domain"
+    highlight_strategy: "未明确说明bold/underline策略，主要通过数值对比"
+    statistical_reporting: "单次运行F1 scores，含平均值列"
+    num_baselines: 5
+    design_note: "17个数据集横向排列，涵盖NER/EE/EAE三种任务+多个domain，全面性是卖点。用'*'标注非直接可比的结果。Average列作为最终判据"
+  supervised_table:
+    table_id: "Table 2"
+    row_axis: "methods (GoLLIE Baseline vs GoLLIE)"
+    col_axis: "12个训练数据集"
+    highlight_strategy: "展示guidelines不降低supervised性能"
+    design_note: "用supervised结果证明guidelines是'free lunch'——zero-shot提升的同时不牺牲in-domain性能"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied:
+        - "Class order shuffling"
+        - "Guideline paraphrasing"
+        - "Class name masking"
+        - "Class dropout"
+        - "Representative candidates"
+        - "All removed (= Baseline)"
+      variation_style: "delta_from_full"
+      design_note: "逐个移除组件测F1和p值，Representative candidates移除后drop最大(55.3→49.9)且p值极显著(2.2e-10)。用p值增加消融的统计可信度，不仅看数值差异"
+    - table_id: "Table 5"
+      what_varied:
+        - "Specific labels across datasets"
+        - "Baseline F1 vs GoLLIE F1 per label"
+        - "Guideline quality"
+      variation_style: "full_numbers"
+      design_note: "Per-label错误分析表，展示guidelines帮助最大和帮助最小的具体labels，配合guideline摘要文字解释成败原因。这种fine-grained分析增加论文深度"
+  supplementary_tables:
+    in_appendix: true
+    content: "附录包含完整的annotation guidelines文本、更多per-dataset详细结果、paraphrase生成的prompt模板"
+    reason: "主表展示聚合结果和核心消融，附录放完整guidelines文本和细粒度数字，保持正文简洁同时提供可复现细节"

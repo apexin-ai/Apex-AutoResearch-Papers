@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_qwen3-embedding-metadata-check_20260515T090746_result.json",
     "occurrence": 1,
-    "bytes": 3101924,
-    "sha256": "82d0081bb909bc268c7f2ff6cec2355fe16693485f5d7abfe3fd3d643de547b2"
+    "bytes": 3101923,
+    "sha256": "bf0885011ff5c2fb936f58eff29e0cde1d5ee2e3bb5987009edfcdaeb04b8c02"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "163254ec3c34f5ffadbc-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 3101943,
+                "serialized_sha256": "9ecda225b2904a010bb6ee60c9e2de67ace8ba0aa8dffee949808523a9a1c221",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/ssh-qwen3-embedding-metadata-check.md"

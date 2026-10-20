@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_paired_constrained",
+  "project": "schema-dag-extraction",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:26:17.431Z",
+    "updated_at": "2026-05-19T19:26:30.489Z",
+    "hypothesis": "Constrained decoding channels BCS-related errors into type substitutions, producing a strong BCS-accuracy correlation (ρ ≈ -0.7 to -0.9) on the same batch type sets where unconstrained decoding shows no significant correlation (ρ=-0.14). If confirmed on the same 25 batches, this establishes format dependency as a paired comparison rather than relying on cross-batch-set inference."
+  },
+  "timestamp": "2026-05-19T19:26:30.649284+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_llama-download-check_20260515T081427_result.json",
     "occurrence": 1,
-    "bytes": 847,
-    "sha256": "b92713e431fcee4b4ccca9e6e368e43e48428255dab3d3ac73b066054106942e"
+    "bytes": 846,
+    "sha256": "b9c6d8f8a1f1c861ac3103769e717abe75250c21dc1ca77d3e29826f26925f0f"
   },
   "statistics": {
     "messages": 1,

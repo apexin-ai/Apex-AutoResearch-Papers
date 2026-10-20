@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_multiseed_bcs_prep_v2_20260518T073730_result.json",
     "occurrence": 1,
-    "bytes": 924,
-    "sha256": "bcce996ad62e95f990e196625c2812820b3ece4ee9faf3a7ede2c6841c20fb29"
+    "bytes": 923,
+    "sha256": "6f07666ed51c7a125d4c6ae6bd6dd810e21f2be3cf329887a0090229b105461b"
   },
   "statistics": {
     "messages": 1,

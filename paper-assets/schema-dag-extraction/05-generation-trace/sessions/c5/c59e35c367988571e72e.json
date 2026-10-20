@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_ner-variance-decomposition_20260517T053347_result.json",
     "occurrence": 1,
-    "bytes": 504,
-    "sha256": "18fe9c237a6fee2038b8144761952e2622edabcc371361285f5c046e996439e3"
+    "bytes": 503,
+    "sha256": "c744b4a154681feb27510fc18b53283c7f2610bdeeaec0ad0e48b565b3634e8f"
   },
   "statistics": {
     "messages": 1,

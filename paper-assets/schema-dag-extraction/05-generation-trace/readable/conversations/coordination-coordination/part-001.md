@@ -26437,8 +26437,8 @@ from pathlib import Path
 
 cfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))
 s3 = boto3.client('s3',
-    aws_access_key_id=cfg['aws_access_key_id'],
-    aws_secret_access_key=cfg['aws_secret_access_key'],
+    aws_access_key_id=[REDACTED]'aws_access_key_id'],
+    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],
     region_name=cfg['s3_region'])
 
 src = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]
@@ -26799,7 +26799,7 @@ called Write
 ```json
 {
   "file_path": "/tmp/upload_to_s3.py",
-  "content": "import yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=cfg['aws_access_key_id'],\n    aws_secret_access_key=cfg['aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n"
+  "content": "import yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=[REDACTED]'aws_access_key_id'],\n    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n"
 }
 ```
 
@@ -26814,7 +26814,7 @@ called Write
   "tool": "Write",
   "tool_args": {
     "file_path": "/tmp/upload_to_s3.py",
-    "content": "import yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=cfg['aws_access_key_id'],\n    aws_secret_access_key=cfg['aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n"
+    "content": "import yaml, boto3, sys, time, glob\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=[REDACTED]'aws_access_key_id'],\n    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = glob.glob('/tmp/schema-dag-extraction-final-*.tar.gz')[0]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/schema-dag-extraction/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n"
   }
 }
 ```

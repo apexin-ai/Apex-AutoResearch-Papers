@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp012_llama_fewrel_ch2_20260515T223657_result.json",
     "occurrence": 1,
-    "bytes": 1133,
-    "sha256": "d5cde0cb355912d10eaa6798abf543a61849826998038bcd34fd976d6b7a6985"
+    "bytes": 1132,
+    "sha256": "ac37bc9c3e7507eec281bc6076597be1f0a72107e31c263fe0dba08219193ea3"
   },
   "statistics": {
     "messages": 1,

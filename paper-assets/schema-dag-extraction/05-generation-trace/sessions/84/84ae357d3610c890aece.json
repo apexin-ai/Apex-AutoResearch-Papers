@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d044_revert_fewrel_table2_20260516T105643_result.json",
     "occurrence": 1,
-    "bytes": 452,
-    "sha256": "688dbc50305c4035682ccd09ffedc4e6e400e32fdd6109ab230f4a47e720e46d"
+    "bytes": 451,
+    "sha256": "61d603ab328836359fe02c710b9145575098ae9ff8e890fce07fa175537a074b"
   },
   "statistics": {
     "messages": 1,

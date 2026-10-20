@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-reviewer-critical_20260514T163331_result.json",
     "occurrence": 1,
-    "bytes": 1983,
-    "sha256": "415a3a9b47e2ac1324f71919df20c835000f337a1f6620c477bb9870e939cd3c"
+    "bytes": 1982,
+    "sha256": "0e8db1f49d7b85df2aa781061e0721aa6784a27f08e05fb39f3f2c505b27e17a"
   },
   "statistics": {
     "messages": 1,

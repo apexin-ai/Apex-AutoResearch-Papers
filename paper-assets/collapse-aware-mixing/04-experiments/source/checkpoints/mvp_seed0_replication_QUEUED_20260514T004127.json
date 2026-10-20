@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp_seed0_replication",
+  "project": "collapse-aware-mixing",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:33:31.240Z",
+    "updated_at": "2026-05-14T00:41:27.051Z",
+    "hypothesis": "Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)",
+    "parent": "mvp_pilot_v7",
+    "spec": {
+      "command": "bash -c \"bash /root/collapse-aware-mixing/launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "120959",
+      "log_path": "~/runs/collapse-aware-mixing/mvp_seed0_replication.log",
+      "submitted_at": "2026-05-14T00:37:21.807Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T00:41:27.098815+00:00",
+  "trigger": "update_registry"
+}

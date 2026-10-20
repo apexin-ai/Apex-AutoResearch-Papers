@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9ae0bf5c1266bc923c4",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "ssh v7 status check",
+  "task_key": "worker_ssh_v7-status-check_20260513T050216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_v7-status-check_20260513T050216_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "bae446796703f900da9d34ca138d6bb09f3583bd1219ccc9995ea7c3975ae68d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 原始输出\n\n**日志 (tail -20):**\n```\ngenerate:  12%|█▏        | 36/306 [45:41<5:42:47, 76.18s/it]\n```\n（每行都带 padding_side 警告，进度条 36/306，已用时 45m41s，预估剩余 5h42m47s）\n\n**GPU:**\n```\n57 %, 28923 MiB / 97887 MiB\n```\n\n**output_v7/ 目录:**\n```\nG0/\n  ├── metrics.jsonl      (12:15 更新)\n  ├── final_model/       (10:54)\n  └── training/          (10:53)\nreal_data_cache/         (10:41)\n```\n\n## 分析\n\n1. **当前阶段：G0 synth gen（合成数据生成）**\n   - G0 训练已完成（`final_model/` 存在），G0 eval 已完成（`metrics.jsonl` 存在）\n   - 当前正在用 G0 模型做 generate，进度 36/306 batches（~12%）\n   - 尚未出现 G1 目录，说明还在为 G1 训练准备合成数据\n\n2. **剩余时间估算：**\n   - synth gen 当前速度 ~76s/batch，剩余 270 batches → **约 5 小时 43 分钟**完成 G0 synth gen\n   - 之后还需 G1 train + G1 eval + G1 synth gen + G2 train + G2 eval\n   - 假设每代 train/eval 耗时与 G0 类似（~1.5h），synth gen ~6h，**整体剩余约 20-22 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-v7-status-check.md"
+}

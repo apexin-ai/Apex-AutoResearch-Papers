@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp007-error-taxonomy_20260515T131936_result.json",
     "occurrence": 1,
-    "bytes": 1628,
-    "sha256": "449309b8d1986a85a1a37d5f37973fa1aba2cf544f239ce435a617320d90feb1"
+    "bytes": 1627,
+    "sha256": "24f14b9cd9d1da9b13e2554dd69e4bf06e8091627558d4c03dec5175126d342c"
   },
   "statistics": {
     "messages": 1,

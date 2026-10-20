@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_write_d037_setup_rw_bib_edits_20260516T034230_result.json",
     "occurrence": 1,
-    "bytes": 877,
-    "sha256": "0ae5c60b502612e6c008ed88a0596fdc7d3e5805e4bc36a03a905c5ad0ba2514"
+    "bytes": 876,
+    "sha256": "0c0426d032dd6101f3e7195fe5422760ba331c75ed4cac6733293657014d62fa"
   },
   "statistics": {
     "messages": 1,

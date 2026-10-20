@@ -159,6 +159,22 @@
       }
     },
     {
+      "project": "collapse-aware-mixing",
+      "title": "collapse aware mixing",
+      "catalog": "../paper-assets/collapse-aware-mixing/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 232,
+        "messages": 17588,
+        "user_turns": 609,
+        "tool_calls": 7019,
+        "unparsed_lines": 81,
+        "result": 77,
+        "worker": 81,
+        "conversation": 54,
+        "history": 20
+      }
+    },
+    {
       "project": "collapse_aware_reward_rebalancing",
       "title": "Does Reward Curation Kill Diversity? Systematic Evidence of Surprising Resilience in Iterative Self-Training",
       "catalog": "../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/catalog.json",
@@ -770,7 +786,7 @@
         "messages": 131771,
         "user_turns": 4172,
         "tool_calls": 53631,
-        "unparsed_lines": 499,
+        "unparsed_lines": 502,
         "result": 474,
         "worker": 506,
         "conversation": 217,

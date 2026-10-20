@@ -6181,7 +6181,7 @@ _source line 199 · 2026-05-17T08:11:32.717545+00:00_
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/resources.yaml:42:  westd-24295:
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/resources.yaml:55:    host: connect.westd.seetacloud.com
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/secrets/schema-dag-extraction/manifest.yaml:6:westd_24295_password:
-/home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/secrets/schema-dag-extraction/manifest.yaml:9:  purpose: SSH password for westd-24295 cloud GPU server (2×RTX PRO 6000 96GB)
+[REDACTED]  purpose: SSH password for westd-24295 cloud GPU server (2×RTX PRO 6000 96GB)
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/registry.yaml:22:      gpu_ids:
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/config/projects/collapse-aware-mixing.yaml:2:  gpu_ids:
 /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/decisions.yaml:792:  summary: 'D053: westd-24295 fallback deadline — 5/18 12:00 UTC 不可用则放弃 70B，Round

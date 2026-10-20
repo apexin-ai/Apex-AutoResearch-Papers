@@ -1,0 +1,124 @@
+paper_key: "zeroner-2025"
+title: "ZeroNER: Fueling Zero-Shot Named Entity Recognition via Entity Type Descriptions"
+venue: "ACL 2025 Findings"
+full_text_available: true
+
+research:
+  baselines:
+    - "SMXM (BERT-large cross-encoder, Aly et al. 2021)"
+    - "Llama-3.1-8B-Instruct"
+    - "Llama-3.2-3B-Instruct"
+    - "Phi-3.5-mini-instruct"
+    - "Granite-3.0-8B-instruct"
+    - "Mistral-7B-Instruct-v0.3"
+    - "Qwen2.5-7B-Instruct"
+    - "GLiNER-S-v1"
+    - "GLiNER-M-v1"
+    - "GLiNER-L-v1"
+    - "GLiNER-S-v2.1"
+    - "GLiNER-M-v2.1"
+    - "GLiNER-L-v2.1"
+  metrics:
+    - {name: "Macro-averaged Precision (span-level)", direction: "higher_better"}
+    - {name: "Macro-averaged Recall (span-level)", direction: "higher_better"}
+    - {name: "Macro-averaged F1 (span-level)", direction: "higher_better"}
+  datasets:
+    - {name: "OntoNotes-ZS", size: "426 test sentences, 11 entity types total, 3 test types"}
+    - {name: "MedMentions-ZS", size: "1048 test sentences, 21 entity types total, 5 test types"}
+    - {name: "LegalNER-ZS", size: "1227 test sentences, 13 entity types total, 4 test types"}
+    - {name: "ZeroNER Silver Dataset (distillation)", size: "91768 sentences, 207245 entities, 5731 entity types, from Pile Uncopyrighted"}
+  ablation_dimensions:
+    - "Self-correction filtering vs. unfiltered (Table 10)"
+    - "Type name only vs. type description for LLMs (Table 3 upper vs. lower)"
+    - "Entity type contamination analysis for GLiNER (Table 4)"
+    - "Lower-case vs. title-case entity types for GLiNER (Table 7)"
+  training_recipe:
+    optimizer: "Adam (epsilon=1e-8)"
+    lr: "2e-5 (constant, selected from {2e-5, 4e-6, 7e-6})"
+    hardware: "Nvidia A100 80GB"
+    batch_size: 8
+    epochs: 3
+    total_training_time: "~54 hours (18h per epoch)"
+    backbone: "BERT-base (110M)"
+    teacher_model: "Llama-3.1-8B-Instruct"
+    max_sequence_length: 300
+    max_description_length: 150
+    mask_probability: 0.3
+    linear_dropout: 0.5
+    max_grad_norm: 1.0
+    progressive_training: "每步随机采样20-25个实体类型"
+  method_family: "知识蒸馏 + 跨编码器(cross-encoder) + 实体类型描述驱动的零样本NER"
+
+positioning:
+  core_claim: "通过LLM蒸馏生成silver数据集+实体类型描述，使110M的BERT-base模型在hard zero-shot NER上超越所有8B以下LLM（F1提升达16%），同时推翻了现有GLiNER等方法的soft zero-shot评估协议（揭示其存在严重的实体类型泄漏）"
+  key_results: "AVG macro-F1: ZeroNER 0.39 vs 最强LLM Qwen2.5 0.35 (type desc); OntoNotes-ZS F1=0.50, MedMentions-ZS F1=0.35, LegalNER-ZS F1=0.32; 比SMXM baseline平均提升100%; 推理速度82 samples/s（OntoNotes），比GLiNER-L快4x"
+  limitations:
+    - "不支持嵌套实体（nested entities），GLiNER可以"
+    - "对描述质量敏感——低质量定义会导致性能下降，适配特定benchmark可能需要手工调优描述"
+    - "仅测试了BERT-base编码器，RoBERTa/DeBERTa/ModernBERT等更强架构可能进一步提升"
+    - "推理成本随目标类型数量和输入文本长度线性增长（cross-encoder需对每个类型描述逐一编码）"
+    - "仅支持英文，缺乏多语言实验"
+    - "描述生成的自动化程度有限，未来可探索soft prompting自动学习描述"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "以反问句开场——'What happens when a NER system encounters entities it has never seen before?'——直接点出zero-shot NER的核心挑战，引发读者共鸣"
+  tension: "三重张力铺垫：(1) LLM强大但推理成本高昂，(2) 现有zero-shot方法采用宽松定义存在类型泄漏（soft zero-shot），(3) 仅依赖实体类型名称泛化而忽略了更丰富的描述信息的价值"
+  key_insight: "实体类型的文本描述（而非仅类型名称）是zero-shot NER泛化的关键——通过LLM生成多视角描述并蒸馏到小模型的cross-encoder中，小模型可以利用描述的语义信息准确识别从未见过的实体类型。核心洞察在Method Section 3.3揭示"
+  argument_chain: "zero-shot NER实际需求 → LLM成本高+现有评估协议有泄漏问题 → 提出描述驱动框架(LLM蒸馏silver数据+多视角类型描述+BERT cross-encoder) → hard zero-shot评估协议 → 三数据集验证超越LLM和GLiNER → 描述对LLM本身也有提升"
+  contribution_framing: "4条贡献，措辞为'We release/prove/advocate/provide'，前两条聚焦方法和发现，后两条聚焦评估规范和数据资源。明确用'SOTA results over costly LLMs'强调效率-性能权衡"
+  intro_structure: "5段+贡献列表：P1-NER任务+zero-shot需求背景；P2-LLM的优势与成本限制；P3-提出ZeroNER框架（核心方法描述）；P4-实验设置和hard zero-shot评估协议；P5-4条贡献bullet points"
+  notable_technique: "开篇反问句（'What happens when...'）+对现有评估协议的批判性审视（揭露soft zero-shot的contamination问题）构建了'不仅方法更好，连评估方式都更诚实'的双重优势叙事。同时将contamination分析作为独立Section 5，而非附录，强调其重要性"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "ZeroNER框架总览图。展示从teacher LLM获取大规模高质量标注和实体类型描述，然后用student SLM在通用领域数据上微调，最终在未见实体类型上零样本评估的完整流程"
+    narrative_role: "在intro中引用(Figure 1)，作为方法的视觉锚点，让读者在深入Section 3之前就对流程有整体认知"
+    design_elements: ["teacher-student蒸馏流程", "三阶段pipeline（标注→过滤→评估）", "强调'without any type of leakage'"]
+    visual_style: "基于PDF文本推断为流程图/pipeline图，包含LLM teacher到SLM student的箭头流向，标注了general-domain data和unseen entity types"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "grouped_bar"
+      what_compared: "ZeroNER vs GLiNER-v2.1三个变体(S/M/L)在OntoNotes-ZS各实体类型上的per-type F1 score，分dev和test两行"
+      how_gain_highlighted: "通过per-type分解展示ZeroNER在context-sensitive类别(FAC, LOC, GPE, LAW, NORP)上的优势，同时诚实展示GLiNER在contaminated label(ORG)上的优势"
+      design_note: "分dev/test两行子图，每个实体类型一组bar，颜色区分四个模型。关键设计：不隐藏自己弱项（ORG），反而用此解释contamination机制"
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      what_compared: "6个LLM在OntoNotes-ZS test set上使用type name vs type description的macro-F1对比"
+      how_gain_highlighted: "paired bar chart（w/o Descriptions vs w/ Descriptions），直观展示描述对各LLM的提升幅度"
+      design_note: "支持论文的核心发现之一——描述对LLM也有益，Qwen2.5获益最大（+8%），LLaMA获益有限"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "problem_illustration"
+      dimensions_varied: ["iterative class sampling", "synthetic instance selection"]
+      design_note: "展示训练过程中的渐进式类型采样机制——每步随机选取20-25个实体类型子集，过滤不含目标类型的句子。属于方法细节的可视化解释而非传统消融图"
+  figure_narrative_role: "Figure 1(method overview) → Figure 2(dataset construction pipeline详细展开) → Figure 3(student model architecture) → Figure 4(training sampling机制) → Figure 5(per-type contamination对比) → Figure 6(description impact on LLMs)。前4图是方法展开，后2图是分析/insight"
+
+tables:
+  table_count: 13
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "datasets(OntoNotes-ZS, MedMentions-ZS, LegalNER-ZS) × metrics(R, P, F1) + AVG"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second，按类别（type name组 vs type description组）分别标注"
+    statistical_reporting: "单次运行，无mean±std"
+    num_baselines: 13
+    design_note: "表格分上下两大区域：上半部分是type name设置（LLM+GLiNER），下半部分是type description设置（LLM+SMXM+ZeroNER）。GLiNER标记星号(*)并加脚注说明其存在contamination，提醒读者不应直接公平比较。每个类别内bold best + underline second。10列结构（3 datasets × 3 metrics + 1 AVG）紧凑但信息密度高"
+  ablation_tables:
+    - table_id: "Table 10"
+      what_varied: ["self-correction filtering (filtered vs unfiltered)"]
+      variation_style: "full_numbers"
+      design_note: "仅2行对比（ZeroNER vs ZeroNER unfiltered），极简但有效。F1 across所有benchmark均提升2-3个点，AVG从0.37→0.39，验证数据清洗的价值"
+    - table_id: "Table 4"
+      what_varied: ["GLiNER训练语料与benchmark实体类型的contamination程度"]
+      variation_style: "full_numbers"
+      design_note: "独立的contamination分析表，报告overlap率和severity score。分pile-mistral-v0.1和Pile-NER-type两个语料，按benchmark × split组织。这不是传统消融，而是对竞品公平性的系统性审计"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1(silver数据集统计), Table 2(benchmark统计), Table 4(contamination), Table 5(多视角描述示例), Table 6(Pile-NER-type与多个benchmark的overlap明细), Table 7(title-case GLiNER结果), Table 8(全部超参数), Table 9(推理效率对比), Table 10(self-correction消融), Table 11-13(三个benchmark的实体类型描述全文)"
+    reason: "主文仅放核心结果Table 3和数据统计Table 1-2，contamination分析Table 4因重要性被提升到Section 5。其余超参数、效率、消融、描述文本等放附录(Appendix F-I)，保持主文简洁。描述全文(Table 11-13)作为reproducibility保障放在最后"

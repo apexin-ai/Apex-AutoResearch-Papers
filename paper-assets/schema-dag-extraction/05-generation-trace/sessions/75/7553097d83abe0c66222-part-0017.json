@@ -448,7 +448,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v2.txt \\\n  --caption \"Schema decomposition pipeline and failure modes: routing failure in RE (73.4% multi-match; oracle 0.72 vs single-pass 0.50) and merge amplification in NER/ED (precision 0.56→0.21, F1 −19pp)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v2.png \\\n  --iterations 5 2>&1",
+              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v2.txt \\\n  --caption \"Schema decomposition pipeline and failure modes: routing failure in RE (73.4% multi-match; oracle 0.72 vs single-pass 0.50) and merge amplification in NER/ED (precision 0.56→0.21, F1 −19pp)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v2.png \\\n  --iterations 5 2>&1",
               "description": "Run PaperBanana for improved SDGD pipeline v2",
               "timeout": "300000"
             }
@@ -836,7 +836,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v3.txt \\\n  --caption \"Schema decomposition pipeline and failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v3.png \\\n  --iterations 5 2>&1",
+              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v3.txt \\\n  --caption \"Schema decomposition pipeline and failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v3.png \\\n  --iterations 5 2>&1",
               "description": "Run PaperBanana SDGD v3 - conceptual, no numbers",
               "timeout": "300000"
             }
@@ -1966,7 +1966,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v4.txt \\\n  --caption \"Schema decomposition pipeline and failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v4.png \\\n  --iterations 5 2>&1",
+              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v4.txt \\\n  --caption \"Schema decomposition pipeline and failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v4.png \\\n  --iterations 5 2>&1",
               "description": "Run PaperBanana v4 - premium quality SDGD pipeline",
               "timeout": "300000"
             }
@@ -2313,7 +2313,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v5.txt \\\n  --caption \"Schema decomposition pipeline and failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v5.png \\\n  --iterations 5 2>&1",
+              "command": "export PATH=\"$HOME/.local/bin:$PATH\" && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig_sdgd_intent_v5.txt \\\n  --caption \"Schema decomposition pipeline and failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/figures/paper/fig_sdgd_pipeline_pb_v5.png \\\n  --iterations 5 2>&1",
               "description": "Run PaperBanana v5 - maximum visual richness",
               "timeout": "300000"
             }
@@ -2815,7 +2815,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v6.txt \\\n  --caption \"SDGD pipeline: full schema is decomposed into low-confusability sub-schemas, then each instance is routed to a sub-schema for extraction, and results are merged. Two failure modes emerge: routing failure (instances matching multiple sub-schemas) and merge amplification (union merge amplifies false positives).\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v6.png \\\n  --iterations 5 2>&1 | tail -30",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v6.txt \\\n  --caption \"SDGD pipeline: full schema is decomposed into low-confusability sub-schemas, then each instance is routed to a sub-schema for extraction, and results are merged. Two failure modes emerge: routing failure (instances matching multiple sub-schemas) and merge amplification (union merge amplifies false positives).\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v6.png \\\n  --iterations 5 2>&1 | tail -30",
               "description": "Run PaperBanana v6 with detailed premium intent",
               "timeout": "300000"
             }
@@ -3011,7 +3011,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v6.txt \\\n  --caption \"SDGD pipeline: full schema decomposed into low-confusability sub-schemas, routed for extraction, then merged. Two failure modes: routing failure and merge amplification.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v6.png \\\n  --iterations 5 2>&1 | tail -40",
+              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v6.txt \\\n  --caption \"SDGD pipeline: full schema decomposed into low-confusability sub-schemas, routed for extraction, then merged. Two failure modes: routing failure and merge amplification.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v6.png \\\n  --iterations 5 2>&1 | tail -40",
               "description": "Run PaperBanana v6 with PATH fix",
               "timeout": "300000"
             }
@@ -3128,7 +3128,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v7.txt \\\n  --caption \"SDGD pipeline: full schema decomposed into sub-schemas, routed for extraction, then merged into final predictions. Two failure modes: routing failure and merge amplification.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v7.png \\\n  --iterations 5 2>&1 | tail -20",
+              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v7.txt \\\n  --caption \"SDGD pipeline: full schema decomposed into sub-schemas, routed for extraction, then merged into final predictions. Two failure modes: routing failure and merge amplification.\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v7.png \\\n  --iterations 5 2>&1 | tail -20",
               "description": "Run PaperBanana v7 with strict content constraints",
               "timeout": "300000"
             }
@@ -3245,7 +3245,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v8.txt \\\n  --caption \"SDGD pipeline with two failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v8.png \\\n  --iterations 5 2>&1 | tail -15",
+              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v8.txt \\\n  --caption \"SDGD pipeline with two failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v8.png \\\n  --iterations 5 2>&1 | tail -15",
               "description": "Run PaperBanana v8",
               "timeout": "300000"
             }
@@ -3401,7 +3401,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v9.txt \\\n  --caption \"SDGD pipeline with two failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v9.png \\\n  --iterations 5 2>&1 | tail -15",
+              "command": "export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction && GOOGLE_API_KEY=\"[REDACTED]\" paperbanana generate \\\n  --input /tmp/fig4_intent_v9.txt \\\n  --caption \"SDGD pipeline with two failure modes\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_sdgd_pipeline_v9.png \\\n  --iterations 5 2>&1 | tail -15",
               "description": "Run PaperBanana v9",
               "timeout": "300000"
             }

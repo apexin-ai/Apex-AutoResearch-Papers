@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp008_sdgd_zero_fewnerd",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:42:31.259Z",
+    "updated_at": "2026-05-15T10:30:48.809Z",
+    "spec": {
+      "hypothesis": "SDGD-zero (embedding-based confusability-aware schema decomposition via graph coloring) improves F1 over single-pass and random-batching baselines on Few-NERD 66 types",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B-FP8",
+      "design": "4 modes: sdgd_zero (adaptive threshold k=1.0), single_pass (66 types at once), per_type (66 separate calls), random_batch (same k as SDGD). 1000 test samples. Prompt v2.",
+      "plan_id": "exp-008",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && python3 src/run_sdgd_experiment.py --mode sdgd_zero ... --mode single_pass ... --mode random_batch ... --mode per_type (sequential)",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 241208
+    },
+    "notes": "第一次运行 PID 241208 死锁（vLLM EngineCore fork 与 PyTorch/NetworkX 预加载冲突）。修复：拆为两阶段 — Stage 1 CPU decomposition (sdgd_decompose_cpu.py)，Stage 2 GPU extraction with vLLM-first init (sdgd_extract_gpu.py)。所有 4 modes 共享一次 vLLM 加载。重启 PID=254599，log: artifacts/exp008_run2.log。Dry-run 5 samples 验证通过，无死锁。",
+    "reproduce": {
+      "finished_at": "2026-05-15T10:30:48.670Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T10:30:48.843886+00:00",
+  "trigger": "update_registry"
+}

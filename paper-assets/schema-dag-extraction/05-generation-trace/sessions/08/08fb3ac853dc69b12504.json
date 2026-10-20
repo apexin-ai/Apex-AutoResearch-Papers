@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_fewrel_80pool_16sub_bootstrap_20260516T014220_result.json",
     "occurrence": 1,
-    "bytes": 1324,
-    "sha256": "d54e015a9123bef094f2419dfb29c564738aa5a0a94f58846746d54b3c1df793"
+    "bytes": 1323,
+    "sha256": "5cb3829e16d4a1449b6132570b73a1548cc2611d6d95e1bb3cbd366a6a6bcbaa"
   },
   "statistics": {
     "messages": 1,

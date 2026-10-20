@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_unconstrained_decoding_ablation",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:54:50.724Z",
+    "updated_at": "2026-05-18T10:36:51.920Z",
+    "hypothesis": "The BCS-accuracy correlation in RE arises from semantic confusion rather than forced-choice format artifacts. If removing the enum constraint (relaxed decoding) preserves the negative BCS-accuracy correlation direction and significance, confusability is a genuine semantic property; if the correlation disappears, the effect is specific to constrained classification where all errors are channeled into type substitution. Either outcome strengthens the paper: preservation broadens the claim, disappearance validates the error-channeling hypothesis stated in Discussion.",
+    "parent": "exp_fewrel_formal_80rel",
+    "spec": {
+      "command": "bash -c \"cd /root/schema-dag-extraction && source /root/miniconda3/bin/activate base && python src/run_unconstrained_decoding_ablation.py\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "542072",
+      "log_path": "~/runs/schema-dag-extraction/exp_unconstrained_decoding_ablation.log",
+      "submitted_at": "2026-05-18T10:21:03.700Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T10:36:52.068010+00:00",
+  "trigger": "update_registry"
+}

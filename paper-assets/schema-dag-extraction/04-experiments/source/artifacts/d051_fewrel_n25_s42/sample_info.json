@@ -1,0 +1,6 @@
+{
+  "n_samples": 960,
+  "n_per_rel": 12,
+  "n_relations": 80,
+  "seed": 42
+}

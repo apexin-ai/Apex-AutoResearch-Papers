@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp012-recover-and-restart_20260515T164517_result.json",
     "occurrence": 1,
-    "bytes": 1850,
-    "sha256": "ab8c55b78d7f07b6a860f4d579b925f73dc38457124bda428da11a80117a256e"
+    "bytes": 1849,
+    "sha256": "dbde8927c774f21cba3a7647f53360501f5766085bd6776155dd915da525cb85"
   },
   "statistics": {
     "messages": 1,

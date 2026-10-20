@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "id": "cc2c578b3e02d29eae82",
+  "project": "collapse-aware-mixing",
+  "kind": "conversation",
+  "title": "research narrative draft",
+  "task_key": "worker_research_narrative_draft_20260514T084153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_narrative_draft_20260514T084153.jsonl",
+    "occurrence": 1,
+    "bytes": 30696,
+    "sha256": "b72f7ece9fbe3a60906569a4b2e5604f8c7807bde60a20eaf020766320e32dc4"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:45:02.068127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:45:02.068499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:45:02.068694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:45:02.068938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/ROADMAP.md\\\", \\\"content\\\": \\\"# collapse-aware-mixing — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 23:49 UTC | 更新原因: D018: MVP FAIL, 三条路径全封，待用户决策\\\\n\\\\n## 核心方向\\\\nSpectral effective rank 作为 model collapse 的 leading indicator → PI 控制器动态调节 real/synthetic mixing ratio。详见 paper_framing.md。\\\\n\\\\n**❌ MVP FAIL (D018)**：三条路径全封，核心假设在 MVP 阶段未通过验证。\\\\n\\\\n## 当前进展\\\\n\\\\n**阶段**: MVP FAIL — 待决策（Q2 negative result 或 archive）\\\\n\\\\n### 三条路径总结\\\\n1. **C1 holdout eff_rank** (D014): FALSIFIED — eff_rank 在 collapse 中反向上升 +0.96%，与 collapse 完全解耦\\\\n2. **Pivot B generated eff_rank** (D018): NO ADVANTAGE — 与 n-gram entropy 同时检测(G1 step 152)，噪声高 573 倍\\\\n3. **Direction C per-layer** (D016): DEAD — 所有层变化 <1%\\\\n\\\\n### 核心发现（有价值的 negative result）\\\\n- Holdout spectral eff_rank 与 mode collapse 完全解耦：模型生成崩塌到 1 个 unique token 时，holdout eff_rank 反而上升\\\\n- Generated eff_rank 能检测 collapse 但不优于简单 n-gram entropy baseline\\\\n- 挑战了 SIGMA 等工作中\\\\\\\"谱分析可监测 collapse\\\\\\\"的隐含假设\\\\n\\\\n## 待决选项\\\\n\\\\n### Q2: Negative Result Paper\\\\n- **目标**: EMNLP 2026 Findings\\\\n- **核心贡献**: \\\\\\\"holdout spectral effective rank rises during mode collapse\\\\\\\" — 挑战谱监测假设\\\\n- **需补实验**: multi-seed (3 seeds) + multi-scale (Pythia-410M/2.8B)\\\\n- **成本**: ~3-4 天 GPU\\\\n- **风险**: Findings 接受率对 negative results 不确定\\\\n\\\\n### Archive\\\\n- 释放 GPU 给更有前景的项目\\\\n\\\\n## GPU 预算\\\\n\\\\n| 资源 | 状态 |\\\\n|------|------|\\\\n| 1× RTX PRO 6000 (cqa1-38874) | 当前空闲，无 RUNNING 实验 |\\\\n\\\\n## 近期任务\\\\n\\\\n- [x] pivot_b_full_18ckpt 完成，确认 Pivot B 失败\\\\n- [ ] 等待用户决策：Q2 或 archive\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D018 | 2026-05-13 | MVP 最终判定 FAIL：三条路径全封（C1 falsified, Pivot B no adva | pivot_b_full_18ckpt, pivot_b_verification, mvp_pilot_v7 |\\\\n| D017 | 2026-05-13 | D013 存活条件 (a)(c) 未满足；启动 Option 1 细粒度 checkpoint 验证 | pivot_b_full_18ckpt |\\\\n| D016 | 2026-05-13 | Pivot B 核心信号确认 GO；Direction C KILLED；需全 checkpoint | pivot\n…[truncated 745 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:45:02.069126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "collapse-aware-mixing",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:45:02.069514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp_seed0_replication\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:33:31.240Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:47:08.437Z\\\", \\\"hypothesis\\\": \\\"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\\\", \\\"parent\\\": \\\"mvp_pilot_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/collapse-aware-mixing/env_init.sh && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"122711\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_seed0_replication.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T00:45:25.090Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 103.3, \\\"gpu_hours\\\": 0.03}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Preflight 失败：磁盘空间不足（/root/autodl-tmp 仅剩 7GB），实验从未实际执行。Worker 误报 done。\\\", \\\"completed_at\\\": \\\"2026-05-14T00:47:08.437Z\\\"}, \\\"mvp_seed0_replication_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:41:36.029Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:45:39.035Z\\\", \\\"hypothesis\\\": \\\"Seed robustness check: 验证 holdout eff_rank 在 collapse 中上升的现象是否 seed-robust (seed=0 vs v7 的 seed=42)\\\", \\\"parent\\\": \\\"mvp_pilot_v7\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/collapse-aware-mixing && bash launch_seed0.sh 2>&1 | tee /root/autodl-tmp/pilot_seed0.log\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-38874\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"122208\\\", \\\"log_path\\\": \\\"~/runs/collapse-aware-mixing/mvp_seed0_replication_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T00:44:24.453Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 (HuggingFace)\\\", \\\"data_count\\\": \\\"~6340 train seqs (20M\n…[truncated 14428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:45:02.069693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/related_work_survey.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T08:45:02.069928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work Survey: Model Collapse Detection & Data Mixing\n2\t\n3\t> 调研日期：2026-05-14 | 调研范围：2024-2026（含少量经典工作）\n4\t\n5\t## 1. Representation Diversity 检测 Collapse\n6\t\n7\t| 论文 | 会议/年份 | 核心方法 | 与我们的关系 |\n8\t|------|-----------|----------|-------------|\n9\t| Jha & Reagen, \"Spectral Scaling Laws in Language Models\" | EMNLP 2025 | Hard Rank / Soft Rank / Spectral Utilization Index 量化 FFN 对 latent space 的利用率；发现 soft rank 随 width 呈 power law，hard rank 增长亚线性 | **最直接相关**。他们发现宽 FFN 大量 latent directions 未被利用（spectral concentration），但这衡量的是 model capacity utilization，不是 iterative collapse。我们的 negative result 进一步说明：即使 spectral metrics 能捕捉 capacity 问题，也未必能检测 generative collapse |\n10\t| \"On the Spectral Flattening of Quantized Embeddings\" | arXiv 2602.00969 (2025) | 量化引入噪声 floor → 截断 SV 谱尾 → stable rank 上升 → representational collapse | **有趣的反面发现**：他们发现 effective rank 上升反而意味着 collapse（因为丧失了语义区分能力）。这与我们观察到的 \"collapse 时 eff_rank 反升\" 现象一致，支持我们的 negative result |\n11\t| Gambetta et al., \"Learning by Surprise: Surplexity for Mitigating Model Collapse\" | arXiv 2410.12341 (2024) | 提出 surplexity（模型对数据的\"surprise\"程度）作为 collapse 指标和数据筛选标准；不需区分 human/AI 数据 | **替代 spectral metrics 的候选检测方案**。Surplexity 本质是基于 perplexity 的变体，与我们发现的 \"n-gram entropy 比 spectral eff_rank 更有效\" 一致 |\n12\t| Gambetta et al., \"Characterizing Model Collapse Using Semantic Networks and Next-Token Probability\" | arXiv 2410.12341v2 (2024) | 语义网络（图结构分析重复性/多样性）+ next-token 概率分布演化来量化 collapse | 提供了比 linguistic diversity metrics 更深入的 collapse 刻画方法，但未使用 spectral 方法 |\n13\t| Shi et al., \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\" | NeurIPS 2025 Spotlight | 识别 collapse 中 generalization→memorization 转变；合成训练数据熵值下降是关键 indicator；提出 entropy-based data selection 缓解方案 | **重要对照**。他们也发现 entropy（而非 spectral metrics）是有效的 collapse 指示器，与我们结论一致 |\n14\t| \"Preventing Dimensional Collapse in Self-Supervised Learning via Orthogonality Regularization\" | NeurIPS 2024 | eigenvalue domination → dimensional collapse；对 encoder 的 weig\n…[truncated 9160 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:45:02.070116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/plan_a_technical_design.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:45:02.070344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Plan A 技术预研：N-gram Entropy + PI Controller for Collapse-Aware Mixing\n2\t\n3\t> 日期：2026-05-14 | 状态：预研草案\n4\t\n5\t## 1. N-gram Entropy 计算模块设计\n6\t\n7\t### 1.1 计算时机\n8\t\n9\t**信号源选择：generated text（非 holdout）。**\n10\t\n11\tMVP v7 数据明确表明 holdout 上的指标（spectral eff_rank、PPL）对 collapse 不敏感——G2 模型已完全崩塌（unique_tokens=1），holdout eff_rank 反而从 676.96 升至 683.44（+0.96%），PPL 仅从 13.27 涨到 13.59（+2.4%）。而 generated text 的 n-gram entropy 在 G1 step 152 即检测到崩塌（unigram entropy -43.5%），是目前最早、最灵敏的信号。\n12\t\n13\t因此控制信号计算在每个 checkpoint boundary 的 **generated text** 上进行。流程：\n14\t\n15\t1. 训练 `save_steps` 步（当前配置 = 76 步 ≈ 5M tokens）\n16\t2. 保存 checkpoint\n17\t3. 用当前 checkpoint 模型生成 sample tokens（`metrics_gen_tokens`=500K）\n18\t4. 在 generated tokens 上计算 n-gram entropy → 作为 PI 控制器输入\n19\t5. 控制器输出新的 mixing ratio w → 更新下一个 training segment 的数据配比\n20\t\n21\t**频率：每 checkpoint 一次（每 5M tokens ≈ 76 optimizer steps）。** v7 每代有 4 个 checkpoint，collapse 在 G1 第 2 个 checkpoint（step 152）即被检测到，说明 5M token 间隔足够早。更频繁的评估（如每 2.5M tokens）会增加 overhead，性价比不高。\n22\t\n23\t### 1.2 N 的选择\n24\t\n25\tv7 数据对比：\n26\t\n27\t| 指标 | G0 | G1 (final) | G2 (final) | G0→G1 变化 | 灵敏度 |\n28\t|------|-----|-----------|-----------|-----------|--------|\n29\t| unigram_entropy | 6.93 | 0.96 | 0.00 | -86.1% | 高 |\n30\t| trigram_entropy | 11.41 | 1.28 | 0.00 | -88.8% | 高 |\n31\t| unigram_unique | 23586 | 6878 | 1 | -70.8% | 高 |\n32\t| vocab_coverage | 0.469 | 0.137 | 2e-5 | -70.8% | 高 |\n33\t\n34\t**Unigram 和 trigram entropy 灵敏度相当，** 但 unigram entropy 有以下优势：\n35\t\n36\t1. **计算成本最低：** O(N) 单次遍历，无需 n-gram 组合\n37\t2. **噪声最低：** trigram 分布更稀疏，小样本下方差更大\n38\t3. **检测时间相同：** 两者在 G1 step 152 同时检测到（因为 collapse 是全面性的——当 mode collapse 到少数 token 时，所有 n-gram 阶的 entropy 同步下降）\n39\t4. **可解释性强：** 直接反映 token 分布集中度\n40\t\n41\t**建议使用 unigram entropy 作为主控制信号。** Trigram entropy 作为辅助监控指标记录，但不输入控制器（避免多输入增加调参复杂度）。\n42\t\n43\t### 1.3 计算成本\n44\t\n45\t**Overhead 极低。** N-gram entropy 计算在 CPU 上完成，不需要 GPU：\n46\t\n47\t- 500K tokens 的 unigram entropy：单次 Counter + entropy 计算，< 0.1 秒\n48\t- 瓶颈在于 **生成 500K tokens**（需要 GPU）：以 Pythia-1B 在 RTX PRO 6000 上约 1000 tokens/sec 估\n…[truncated 13984 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:45:02.070571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/narrative_draft.md",
+              "content": "# 双路叙事框架草稿\n\n> 日期：2026-05-14 | 状态：待 seed=0 结果决定路径\n\n## 路径 A：seed=0 复现 eff_rank 反升\n\n### Core Insight（1-2 句）\n\nHoldout spectral effective rank 在 iterative model collapse 中反直觉地上升——模型生成完全坍缩到单一 token 时，权重空间的谱维度反而膨胀。这说明 spectral diversity 与 generative diversity 是根本解耦的，挑战了\"谱指标可监测 collapse\"的隐含假设。\n\n### Story Arc\n\n1. **问题**：Iterative synthetic training 导致 model collapse 已被系统验证（Shumailov et al., Nature 2024），即使极低比例的 synthetic data 也有风险（Dohmatob & Feng, ICLR 2025）。现有 adaptive data mixing 方法（DoReMi, Aioli）基于 loss 信号而非 collapse 特异性指标，无法在 collapse 早期主动干预。\n2. **假设被挑战**：Spectral effective rank 作为 representation diversity 的度量（Jha & Reagen, EMNLP 2025），被隐含假设可监测 model collapse——谱集中意味着表示退化，谱分散意味着表示健康。多项工作用 spectral metrics 分析模型质量（SIGMA, Spectral Scaling Laws），但未在 iterative collapse 场景下验证。\n3. **发现**：Pythia-1B 在 wikitext-103 上经 3 代纯 synthetic 训练后，生成 unigram entropy 从 6.93 降至 0.00（unique tokens: 23586→1），模型完全 mode-collapsed。然而 holdout spectral effective rank 从 676.96 **上升**至 683.44（+0.96%），PPL 仅从 13.27 涨至 13.59（+2.4%）。现象在 seed=42 和 seed=0 上一致复现（multi-seed robust）。\n4. **机制解释**：Mode collapse 导致权重矩阵对少数 output directions 的梯度持续放大，其他方向缺乏抑制信号而自由漂移，导致奇异值谱从\"少数主导、长尾衰减\"变为\"多方向均匀分散\"——即 spectral flattening。这与 \"On the Spectral Flattening of Quantized Embeddings\"（arXiv 2602.00969）的独立发现一致：他们观察到量化噪声使截断 SV 谱尾上抬、stable rank 上升，同样伴随 representational collapse。本质上，effective rank 测量的是权重空间的\"均匀分散程度\"，而非输出分布的\"多样性\"——两者可以也确实反向运动。\n5. **正确信号**：N-gram entropy 在 G1 第 2 个 checkpoint（step 152, 10M tokens）即检测到 collapse（unigram entropy -43.5%），远早于 PPL 的微弱反应。这与 Shi et al.（NeurIPS 2025 Spotlight）的发现一致：entropy 基指标是 collapse 最有效的检测手段。Surplexity（Gambetta et al., 2024）作为 perplexity 变体也指向同一方向。N-gram entropy 的优势在于：(a) 不需要额外模型推理，仅需 CPU 上的 O(N) 统计；(b) 信号幅度大（-43.5% vs eff_rank 的 +0.2%），信噪比高 573 倍。\n6. **干预**：PI 控制器以 unigram entropy 为反馈信号，动态调节 real/synthetic mixing ratio。当 entropy 低于 setpoint（G0 baseline × 0.9），控制器增加 real data 比例以抵抗 collapse；entropy 恢复后释放 ratio 以利用 synthetic data 的 augmentation 价值。这是首个将 collapse detection 接入闭环控制器的 data mixing 框架，填补了\"collapse-aware adaptive mixing\"的文献空白。\n\n### Core Claims\n\n- **Claim 1 (Decoupling)**：Holdout spectral effective rank 与 generative model collapse 完全解耦——在多 seed（42, 0）、单一模型规模（Pythia-1B）上，模型生成从 23K+ unique tokens 坍缩至 1 token 时，eff_rank 反而上升 +0.96%。\n  - *支撑实验*：mvp_pilot_v7（seed=42）+ mvp_seed0_replication_r2（seed=0），3 代纯 synthetic training\n  - *扩展验证*：Pythia-410M / Pythia-2.8B 跨规模复现（如资源允许）\n\n- **Claim 2 (Superior Detection)**：N-gram entropy 比 spectral effective rank 更早、更可靠地检测 iterative model collapse——在 G1 第 2 个 checkpoint（10M tokens）即检测到 collapse（-43.5%），信噪比高出 573 倍。\n  - *支撑实验*：pivot_b_verification（18 checkpoint 全对比），mvp_pilot_v7 逐 checkpoint 数据\n  - *扩展验证*：多 seed + 多规模下的 detection delay 对比\n\n- **Claim 3 (Effective Intervention)**：基于 n-gram entropy 的 PI 控制器能用更少的 real data 实现与高 real-data 固定比例相当的 collapse 抑制效果——在 5 代 iterative training 中维持 entropy ≥ 0.9×baseline 的同时，real data 用量低于 fixed w=0.7 策略。\n  - *支撑实验*：Plan A 实验矩阵 Phase 1（6 策略 × 1 seed × 5 gens）+ Phase 2（top-3 × 3 seeds × 5 gens）\n  - *前提*：需要 Plan A 实验完成并验证 PI 控制器确实优于 fixed-ratio baselines\n\n### 需要的实验支撑\n\n| Claim | 已有数据 | 待做实验 | 优先级 |\n|-------|---------|---------|--------|\n| Claim 1 | v7 (seed=42) 3 代数据 | seed=0 复现（RUNNING）；Pythia-410M/2.8B 跨规模（可选） | P0 (seed=0)，P2 (跨规模) |\n| Claim 2 | pivot_b_verification 18 ckpt 对比 | 多 seed 下检测时间对比 | P1 |\n| Claim 3 | 无（需要新实验） | Plan A 全矩阵：B0/B1-30/B1-50/B1-70/B2/PI × 5 gens × 3 seeds | P0（论文核心） |\n\n### 目标 Venue\n\n- **首选：EMNLP 2026 Main Conference**（deadline ~2026-06）\n  - 理由：(1) 结合了 negative result（Claim 1-2）和 positive contribution（Claim 3），比纯 negative result 论文更有吸引力；(2) EMNLP 对 empirical findings + practical contributions 接受度高；(3) synthetic data / model collapse 是 2025-2026 热点话题\n  - 风险：Claim 3 实验量大（~12 天 GPU），deadline 前能否完成取决于 GPU 可用性\n- **备选：NeurIPS 2026**（deadline ~2026-05 末 或 ~2026-06）\n  - 理由：更大的 venue，更适合 novel paradigm（控制论视角），但竞争更激烈\n- **保底：EMNLP 2026 Findings**\n  - 如果 Claim 3 实验结果不够强（PI 仅小幅优于 fixed-ratio），降级投 Findings\n\n### 预期审稿人质疑 & 预备回应\n\n- **Q1: 只在 Pythia-1B + wikitext-103 上验证，generalizability 如何？**\n  - 回应：(a) Spectral Flattening 论文在不同模型（量化场景）独立观察到 eff_rank 上升 = collapse，支持现象的普遍性；(b) 计划扩展 Pythia-410M/2.8B 验证 scale robustness；(c) n-gram entropy 作为 model-agnostic 统计量，不依赖特定架构。\n  - 兜底：如果只做了 1B，承认 limitation 但强调 Pythia-1B 是 collapse 研究的标准 testbed（Shumailov et al. 也用类似规模）。\n\n- **Q2: eff_rank 反升的机制解释是否有因果证据，还是 post-hoc 叙事？**\n  - 回应：(a) 提供逐 checkpoint 的 singular value 分布可视化，展示谱从\"peaked\"到\"flat\"的演化；(b) 与 Spectral Flattening 论文的理论分析交叉验证；(c) 设计对照实验：对 collapsed model 做 rank-constrained fine-tuning（限制 SV 谱不变），观察 collapse 行为是否改变——如果不变，则确认 eff_rank 与 collapse 无因果关系。\n  - 兜底：作为 empirical finding 仍有价值，因果机制可留作 future work。\n\n- **Q3: PI 控制器 vs 简单 threshold 策略（bang-bang），为什么需要 PI？**\n  - 回应：(a) 实验矩阵包含 B2（threshold/bang-bang）作为 baseline，直接对比；(b) PI 的优势在于 smooth 调节——threshold 会在边界处频繁 switching（w 在 0.3 和 0.9 之间跳动），导致训练不稳定；(c) PI 的 integral 项能自动补偿 steady-state error（threshold 无此能力）。\n  - 关键：如果实验显示 threshold 已经足够好，诚实报告——这本身也是一个有价值的发现（\"simple baselines work\"）。\n\n- **Q4: N-gram entropy 已经被其他工作（Shi et al., Gambetta et al.）使用过，novelty 在哪？**\n  - 回应：(a) 已有工作用 entropy 做 data selection/filtering（静态），我们首次将其作为 online feedback signal 驱动 mixing ratio 的闭环控制器（动态）；(b) 已有工作未系统对比 entropy vs spectral metrics 在 iterative collapse 检测中的优劣——我们提供了首个 head-to-head 对比；(c) 贡献不仅是\"用 entropy\"，而是\"用 entropy + 控制器 = collapse-aware adaptive mixing\"这一完整框架。\n\n- **Q5: 3 代是否足以声称 \"model collapse\"？真实场景下可能数十代。**\n  - 回应：(a) 3 代已足以实现完全 collapse（G2 unique_tokens=1），这与 Shumailov et al. 一致；(b) Plan A 实验扩展到 5 代以观察 PI 的长期稳定性；(c) 实际应用中关键是 early detection + intervention（在 collapse 早期干预），而非等到完全 collapse 后再修复——因此 3-5 代的观察窗口是合理的。\n\n---\n\n## 路径 B：seed=0 未复现 eff_rank 反升\n\n### Core Insight（1-2 句）\n\nHoldout spectral effective rank 在 model collapse 中的行为是 seed-dependent 的——seed=42 观察到反升，但 seed=0 未复现。这本身是一个 cautionary tale：spectral metrics 的不稳定性使其不适合作为 collapse 检测信号，同时暴露了小规模 collapse 研究中 seed sensitivity 被普遍忽视的问题。\n\n### Story Arc（两个子选项）\n\n#### B-1: Negative Result Paper\n\n1. **问题**：Spectral effective rank 被广泛用于衡量 representation diversity（Jha & Reagen, EMNLP 2025），并被隐含假设可监测 model collapse。但其在 iterative collapse 场景下的表现从未被系统评估。\n2. **测试**：在 Pythia-1B + wikitext-103 上运行 3 代纯 synthetic training，跨 2 个 seed 评估 holdout spectral effective rank 的 collapse 检测能力。\n3. **发现 1（seed=42）**：eff_rank 在 complete collapse（unique_tokens=1）时反升 +0.96%，与 collapse 解耦。\n4. **发现 2（seed=0）**：eff_rank 行为不同（[具体数据待填]），说明 eff_rank 对 collapse 的响应是 seed-sensitive 的。\n5. **结论**：无论 eff_rank 反升还是 seed-dependent，都说明它不是 reliable 的 collapse 检测信号。N-gram entropy 在两个 seed 上都一致检测到 collapse（待验证），是更 robust 的替代。\n6. **建议**：呼吁社区不要将 spectral rank metrics 作为 collapse proxy，并要求 collapse 研究报告 multi-seed 结果。\n\n**叙事弱点（与 Path A 对比）：**\n- 少了\"反直觉的一致性发现\"这一最锐利的 hook\n- 变成了\"方法不 work + 不 robust\"的双重否定，论文吸引力下降\n- Claim 3（PI 控制器）仍可保留，但与 negative result 部分的叙事联系变弱——\"我们测了 spectral metrics 不行（且结果不一致），然后改用 entropy + 控制器\"会让审稿人质疑动机的 post-hoc 性质\n\n#### B-2: Archive\n\n- **条件**：\n  1. seed=0 中 eff_rank 行为既不反升也不显著下降（即噪声中无信号），**且**\n  2. n-gram entropy 的 detection 在 seed=0 上与 seed=42 不一致（collapse 行为本身不 robust），**且**\n  3. 团队判断 GPU 资源更适合投入其他项目\n- **判断标准**：如果 collapse 行为本身在不同 seed 间差异巨大（不仅仅是 eff_rank 响应不同，而是 collapse 进程本身不同），说明实验设计有根本问题（20M tokens/gen 可能太少、Pythia-1B 不够大），此时 archive 比 patch 更高效\n- **保留物**：(a) v7 全部数据和代码归档到 repo；(b) related_work_survey.md 和 plan_a_technical_design.md 可被未来项目复用；(c) ROADMAP.md 记录完整的决策链作为经验参考\n\n### 需要的实验支撑（如果走 B-1）\n\n| 实验 | 目的 | 优先级 |\n|------|------|--------|\n| seed=0 完整数据分析 | 确认 eff_rank 行为，对比 seed=42 | P0 |\n| seed=7 第三组复现 | 将 seed-sensitivity 的论证从 N=2 提升到 N=3 | P1 |\n| Pythia-410M seed=42 复现 | 排除 \"model scale 导致\" 的 confound | P1 |\n| N-gram entropy multi-seed 一致性 | 验证 entropy 作为 robust 替代 | P0 |\n| Plan A 实验（缩减版） | PI 控制器仍可作为 positive contribution（但优先级降低） | P2 |\n\n**GPU 成本估算：** ~4-5 天（3 seeds × 3 gens + 可能的 410M 实验），显著低于 Path A 的 12 天。\n\n### 目标 Venue（如果走 B-1）\n\n- **首选：EMNLP 2026 Findings**\n  - 理由：Findings 对 negative results 更友好；较低的 novelty bar 适合 \"X doesn't work + here's why\" 类论文\n  - 风险：即使 Findings，纯 negative result 接受率也不确定\n- **备选：NeurIPS 2026 Datasets & Benchmarks Track** 或 **COLM 2026**\n  - 如果包装为 \"benchmark for collapse detection metrics\"，可投 D&B\n- **备选：Workshop paper**（如 NeurIPS Workshop on Synthetic Data, ICML FM-Wild 等）\n  - 风险最低，发表周期最快，适合\"尽快出手、释放 GPU\"的策略\n\n---\n\n## 路径选择决策树\n\n```\nseed=0 结果出来\n    │\n    ├── eff_rank 反升（与 seed=42 一致，变化方向相同）\n    │   └── 走 Path A\n    │       ├── Claim 1-2 confirmed → 立即启动 Plan A 实验\n    │       └── 目标 EMNLP 2026 Main / NeurIPS 2026\n    │\n    ├── eff_rank 下降或不变（与 seed=42 方向不同）\n    │   ├── n-gram entropy 仍一致检测 collapse\n    │   │   └── 走 Path B-1（negative result paper）\n    │   │       └── 目标 EMNLP 2026 Findings\n    │   └── n-gram entropy 也不一致\n    │       └── 走 Path B-2（archive）\n    │\n    └── collapse 本身未发生（seed=0 的模型未 collapse）\n        └── 检查实验配置是否正确\n            ├── 配置正确 → 走 Path B-2（collapse 不 robust = 实验设计有问题）\n            └── 配置错误 → 修复后重跑\n```\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T08:45:02.070891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/narrative_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:45:02.071055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "narrative_draft",
+              "type": "report",
+              "description": "双路叙事框架草稿：Path A (seed=0 复现 eff_rank 反升 → EMNLP/NeurIPS main) vs Path B (未复现 → negative result paper / archive)，含 core claims、实验矩阵映射、venue 选择、审稿人质疑预案",
+              "project": "collapse-aware-mixing",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/narrative_draft.md",
+              "tags": "['narrative', 'paper-planning', 'dual-path']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T08:45:02.071221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_45934c\\\", \\\"name\\\": \\\"narrative_draft\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"双路叙事框架草稿：Path A (seed=0 复现 eff_rank 反升 → EMNLP/NeurIPS main) vs Path B (未复现 → negative result paper / archive)，含 core claims、实验矩阵映射、venue 选择、审稿人质疑预案\\\", \\\"path\\\": \\\"projects/collapse-aware-mixing/artifacts/_project/report/narrative_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"collapse-aware-mixing\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T08:44:49.592654+00:00\\\", \\\"tags\\\": [\\\"narrative\\\", \\\"paper-planning\\\", \\\"dual-path\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/collapse-aware-mixing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:45:02.071395+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件保存在 `artifacts/narrative_draft.md`，已注册。\n\n框架核心结构：\n\n**Path A**（seed=0 复现）：三条 claims 逐层递进——(1) eff_rank 与 collapse 解耦（negative result），(2) n-gram entropy 是更优检测信号（head-to-head 对比），(3) PI 控制器实现 collapse-aware adaptive mixing（positive contribution）。叙事的锐度在于\"权重空间 spectral expansion 与输出 distributional collapse 反向运动\"这一反直觉发现，有 Spectral Flattening 论文独立支持。目标 EMNLP 2026 Main。\n\n**Path B**（未复现）：降级为 seed-sensitivity cautionary tale，叙事力度明显弱于 A。B-1 投 Findings，B-2 在 collapse 本身不 robust 时 archive。\n\n末尾附了决策树，seed=0 结果出来后可直接按分支走。5 条预期审稿人质疑都给了具体回应策略和兜底方案。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_narrative_draft_20260514T084153"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/research-narrative-draft.md"
+}

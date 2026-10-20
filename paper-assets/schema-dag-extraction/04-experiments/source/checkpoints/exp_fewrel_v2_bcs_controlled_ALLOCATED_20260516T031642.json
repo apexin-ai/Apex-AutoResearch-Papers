@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_fewrel_v2_bcs_controlled",
+  "project": "schema-dag-extraction",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:16:23.710Z",
+    "updated_at": "2026-05-16T03:16:42.287Z",
+    "hypothesis": "验证 Channel 2 (BCS→type confusion) 在 v2 prompt 下方向一致。FewRel 80-rel, count=8, low-BCS 5 batches + high-BCS 5 batches, Qwen3-32B-FP8, v2 prompt。D037 Round 2 审稿 C1b。",
+    "parent": "exp_fewrel_formal_80rel"
+  },
+  "timestamp": "2026-05-16T03:16:42.429130+00:00",
+  "trigger": "update_registry"
+}

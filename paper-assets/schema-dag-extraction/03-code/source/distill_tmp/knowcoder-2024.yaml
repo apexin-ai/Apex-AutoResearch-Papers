@@ -1,0 +1,22 @@
+paper_key: "knowcoder-2024"
+title: "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction"
+venue: "ACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["LLaMA2", "SOTA UIE baselines"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "multiple human-annotated IE datasets", size: "1.5B code pretraining examples"}, {name: "schema library", size: "30,000+ knowledge types"}]
+  ablation_dimensions: ["code pretraining vs instruction tuning", "schema understanding vs schema following"]
+  training_recipe: {model: "LLaMA2-based", method: "two-phase: code pretraining (1.5B examples) + instruction tuning", schema: "Python class representation"}
+  method_family: "code-generation-based universal IE with schema library"
+
+positioning:
+  core_claim: "Coding structured knowledge as Python classes with two-phase learning (code pretraining + instruction tuning) enables strong zero-shot and low-resource UIE"
+  key_results: "49.8% relative F1 improvement over LLaMA2 (few-shot); +12.5% zero-shot; +21.9% low-resource; +7.5% supervised"
+  limitations: ["requires massive code pretraining data", "schema library construction cost"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,107 @@
+dreams:
+  dream_20260515T024826:
+    dream_id: dream_20260515T024826
+    project: schema-dag-extraction
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: null
+    chat_id: oc_51326259fe46fbae9da26b81cf03f1f8
+    card_message_id: om_x100b6f5cd91cd4b8b256a2dca1f45cd
+    started_at: '2026-05-15T02:48:26+00:00'
+    updated_at: '2026-05-15T05:30:49+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 730346e7d98d3361d0b06348cd8c49b58ae54562279fbb78d5cf4b285ece92f2
+  dream_20260515T053106:
+    dream_id: dream_20260515T053106
+    project: schema-dag-extraction
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 529743
+    chat_id: oc_51326259fe46fbae9da26b81cf03f1f8
+    card_message_id: om_x100b6f5eb77f78acb247d8d0b5c4f2a
+    started_at: '2026-05-15T05:31:06+00:00'
+    updated_at: '2026-05-15T06:32:51+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 07225a937020d11e5347d912cee5b625cd4d0898a0896ea4f567284279e62f1b
+  dream_20260515T113743:
+    dream_id: dream_20260515T113743
+    project: schema-dag-extraction
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: SDGD-zero 失败（F1 差于 baseline），论文核心贡献是否需要从"分析+方法"转为纯"系统性分析"？当前证据：pairwise
+      confusability 跨任务成立，2×3 embedding ablation 矩阵，MAVEN centrality confound 发现。FewRel
+      formal 和 LLaMA multi-model 实验待完成。
+    what_if: []
+    pid: 575315
+    chat_id: oc_51326259fe46fbae9da26b81cf03f1f8
+    card_message_id: om_x100b6f44166f78acb3cb39283429a18
+    started_at: '2026-05-15T11:37:43+00:00'
+    updated_at: '2026-05-15T12:38:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 6054b6361525c1e3feeca8ba50c16deb9400fe04b3b11036241955cfd4b63165
+  dream_20260515T140829:
+    dream_id: dream_20260515T140829
+    project: schema-dag-extraction
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 80-rel FewRel formal results now available (Δ=-31.2pp, 3.4x scaling). SDGD-zero
+      negative (exp-008). exp-012 multi-model in progress. Evaluate whether Claim
+      3 (SDGD) should pivot to analysis-only paper or attempt SDGD v2.
+    what_if: []
+    pid: 591279
+    chat_id: oc_51326259fe46fbae9da26b81cf03f1f8
+    card_message_id: om_x100b6f46c32df0acb12778aad64eceb
+    started_at: '2026-05-15T14:08:29+00:00'
+    updated_at: '2026-05-15T14:57:22+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 5c898143d28a02f7b2aa6af62b81404844613f53e433cbec667b3598a65fe3e2
+  dream_20260516T073533:
+    dream_id: dream_20260516T073533
+    project: schema-dag-extraction
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 740263
+    chat_id: oc_51326259fe46fbae9da26b81cf03f1f8
+    card_message_id: om_x100b6fb5aa9534b8b3926a4bad69b7a
+    started_at: '2026-05-16T07:35:33+00:00'
+    updated_at: '2026-05-16T08:23:22+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: e47ba16d06e1dc80fd9e3788abe8aff883ec65dd778b1d6cbda8f9b9b7247967

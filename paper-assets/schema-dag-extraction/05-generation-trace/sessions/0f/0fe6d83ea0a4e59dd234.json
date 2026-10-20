@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_docred_factorial_tost_20260518T213650_result.json",
     "occurrence": 1,
-    "bytes": 1140,
-    "sha256": "98ea80d6e48f284f80594150bf3c6cef74ec4f3109c0e9be46e87d332ef03a4a"
+    "bytes": 1139,
+    "sha256": "48d8a91cebc9945c67aa23fe98f4c463cb61b4ee814fa1abc93cf7053e91b051"
   },
   "statistics": {
     "messages": 1,

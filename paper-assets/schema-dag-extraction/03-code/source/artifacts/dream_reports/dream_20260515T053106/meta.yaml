@@ -1,0 +1,4363 @@
+dream_id: dream_20260515T053106
+project: schema-dag-extraction
+venue: ''
+focus: ''
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 所有三条 claim 在 ≥2 数据集 + ≥2 模型上全部通过显著性门槛，SDGD 给出实质性 F1 增益，原始 framing 无需调整
+      key_assumptions:
+      - Per-type partial r(F1, mean_BCS | freq) 在 Few-NERD 上显著 (p<0.01)，消除频率混淆后 confusability
+        效应仍成立
+      - MAVEN pairwise BCS-confusion 复现 Few-NERD 方向且 p<0.001，跨任务 (NER→ED) 泛化成立
+      - 第二模型 (LLaMA-3.3-70B 或 Qwen2.5-72B) pairwise r 方向一致且 p<0.01
+      - SDGD 在 Few-NERD 和 MAVEN 上均显著优于 single-pass 和 random batching
+      - Error taxonomy 干净分离：high-BCS batch 的 type_substitution 占比 ≥60%，low-BCS batch
+        的 false_negative 占比 ≥50%
+      number_ranges:
+        per_type_partial_r_fewnerd:
+        - 0.25
+        - 0.4
+        per_type_partial_p_fewnerd:
+        - 0.0001
+        - 0.01
+        pairwise_r_maven:
+        - 0.12
+        - 0.25
+        pairwise_p_maven:
+        - 1e-10
+        - 0.001
+        pairwise_r_model2_fewnerd:
+        - 0.1
+        - 0.2
+        confusion_ratio_extreme_maven:
+        - 5.0
+        - 30.0
+        sdgd_f1_gain_fewnerd:
+        - 4.0
+        - 10.0
+        sdgd_f1_gain_maven:
+        - 3.0
+        - 8.0
+        sdgd_vs_random_delta:
+        - 2.0
+        - 6.0
+        sdgd_vs_pertype_f1_ratio:
+        - 0.95
+        - 1.02
+        sdgd_vs_pertype_latency_ratio:
+        - 0.15
+        - 0.4
+      narrative_direction: '原始 framing 完全成立：confusability 独立于 count 预测退化 (三层证据——pairwise/per-type/mechanistic
+        全部通过)，multi-channel 模型有 clean error taxonomy 支撑，SDGD 是 principled 且 effective
+        的方案。Headline: "BCS independently predicts F1 degradation (partial r≥0.25,
+        p<0.01), with 10-28x type confusion ratio; SDGD improves F1 by 4-10 points
+        over single-pass at 20-40% of per-type splitting cost." 三条 claim 各自有 ≥2 数据集
+        + ≥2 模型的证据，reviewer concern 全部有预备回应。冲 EMNLP main。
+
+        '
+    median:
+      tier: median
+      meaning: Claim 1 (confusability independence) 在 pairwise 层面稳固但 per-type 层面效应弱，Claim
+        2 部分成立，Claim 3 SDGD 有增益但仅在大 schema 上显著——需软化 claim 强度并补充分析
+      key_assumptions:
+      - Per-type partial r(F1, mean_BCS | freq) 方向正确但仅 marginal (0.05<p<0.10) 或在一个
+        count 条件下显著
+      - MAVEN pairwise 复现方向正确但效应量弱于 Few-NERD (r=0.06-0.12)
+      - 第二模型方向一致但 pairwise r 仅 marginal (p=0.01-0.05) 或 count_6 不显著
+      - SDGD 在 MAVEN (168 types) 上显著优于 single-pass，但在 Few-NERD (66 types) 上增益 marginal
+      - Error taxonomy 趋势存在但不完全干净——high-BCS batch 中 type_substitution 占比 40-55%
+      number_ranges:
+        per_type_partial_r_fewnerd:
+        - 0.12
+        - 0.25
+        per_type_partial_p_fewnerd:
+        - 0.01
+        - 0.1
+        pairwise_r_maven:
+        - 0.06
+        - 0.12
+        pairwise_p_maven:
+        - 0.001
+        - 0.05
+        pairwise_r_model2_fewnerd:
+        - 0.06
+        - 0.12
+        confusion_ratio_extreme_maven:
+        - 2.0
+        - 5.0
+        sdgd_f1_gain_fewnerd:
+        - 1.0
+        - 4.0
+        sdgd_f1_gain_maven:
+        - 2.0
+        - 5.0
+        sdgd_vs_random_delta:
+        - 0.5
+        - 2.5
+        sdgd_vs_pertype_f1_ratio:
+        - 0.88
+        - 0.95
+        sdgd_vs_pertype_latency_ratio:
+        - 0.15
+        - 0.4
+      narrative_direction: '软化 Claim 1 表述：从 "independently predicts" 改为 "contributes
+        to prediction beyond count, with strongest evidence at type-pair mechanistic
+        level"。Pairwise 分析 (p<1e-10) 仍是主证据，per-type 作为 supporting。Claim 2 保留 multi-channel
+        框架但承认两通道的交互效应 (不完全正交)。Claim 3 限定适用范围：SDGD 在 ≥100 types 的大 schema 上有实质增益，中等
+        schema (30-66 types) 上增益有限。补做 SDGD-cal (exp-010/011) 看 calibration 能否弥补 zero-shot
+        SCS 的噪声。方法学贡献 (发现频率 混淆、从 batch-level 到 pairwise 的分析演进) 作为独立 contribution 强调。仍冲
+        EMNLP main，但 Findings 是现实 fallback。
+
+        '
+    worst:
+      tier: worst
+      meaning: Per-type 频率控制后 confusability 效应消失，MAVEN 不复现，SDGD 不优于 random batching——核心假设
+        (confusability 独立可分离) 不成立，需重新 reframe
+      key_assumptions:
+      - Per-type partial r(F1, mean_BCS | freq) ≈0 或方向反转——batch-level 正相关完全由频率混淆解释
+      - MAVEN pairwise BCS-confusion 相关不显著 (p>0.05) 或效应量 r<0.05
+      - 第二模型 pairwise r 不显著或方向不一致
+      - SDGD 不显著优于 random batching (ΔF1<1.0, p>0.05)——embedding SCS 不是有效的 confusability
+        proxy
+      - Error taxonomy 中 type_substitution 在 high-BCS 和 low-BCS batch 间无显著差异
+      number_ranges:
+        per_type_partial_r_fewnerd:
+        - -0.05
+        - 0.12
+        per_type_partial_p_fewnerd:
+        - 0.1
+        - 0.8
+        pairwise_r_maven:
+        - 0.0
+        - 0.06
+        pairwise_p_maven:
+        - 0.05
+        - 0.5
+        pairwise_r_model2_fewnerd:
+        - 0.0
+        - 0.08
+        confusion_ratio_extreme_maven:
+        - 0.8
+        - 2.0
+        sdgd_f1_gain_fewnerd:
+        - -1.0
+        - 2.0
+        sdgd_f1_gain_maven:
+        - -1.0
+        - 2.0
+        sdgd_vs_random_delta:
+        - -1.0
+        - 1.0
+        sdgd_vs_pertype_f1_ratio:
+        - 0.8
+        - 0.9
+        sdgd_vs_pertype_latency_ratio:
+        - 0.15
+        - 0.4
+      narrative_direction: 核心假设 (embedding-based confusability 独立可分离) 不成立。Reframe
+        方向： 将 pairwise 分析 (Few-NERD 上 r=0.156, p=4.6e-12 仍然成立) 定位为 "confusability
+        exists but is entangled with type frequency and schema structure, not separable
+        by embedding similarity alone"。论文重心从 "confusability as independent factor
+        + SDGD solution" 转向 "empirical anatomy of schema complexity in training-free
+        LLM IE"——一篇方法学/分析论文而非方法论文。核心贡献变为： (1) 发现并量化频率-confusability 混淆这一此前被忽略的 confound；
+        (2) 证明 batch-level 分析不可靠、pairwise 分析必要的方法学教训； (3) count→recall 单调退化的干净证据；
+        (4) negative result on embedding SCS 作为 confusability proxy 的实证检验。 放弃 SDGD
+        作为 contribution，改为 discussion 中的 "limitations and future directions"。目标仍是
+        EMNLP main (empirical/analysis track)，以 "Lost in the Middle" 风格的 controlled
+        study 定位。Findings 作为 realistic fallback。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/best/paper.pdf
+  imagined_experiments:
+  - name: MAVEN Cross-Task Confusability Replication
+    plan_id: exp-004
+    description: 'MAVEN 事件检测 (168 FrameNet event types) 上的 count curve + pairwise
+      BCS-confusion 分析 + per-type partial correlation。跨任务 (NER→ED) 复现核心发现。SCS 矩阵已预计算
+      (mean=0.216, pairs_above_0.5=119)。
+
+      '
+    expected_results:
+      count_curve_count_1:
+        f1: 0.33
+        precision: 0.22
+        recall: 0.66
+        pred_gold: 3.0
+      count_curve_count_5:
+        f1: 0.29
+        precision: 0.23
+        recall: 0.39
+        pred_gold: 1.7
+      count_curve_count_15:
+        f1: 0.24
+        precision: 0.24
+        recall: 0.24
+        pred_gold: 1.0
+      count_curve_count_30:
+        f1: 0.19
+        precision: 0.24
+        recall: 0.16
+        pred_gold: 0.67
+      count_curve_count_60:
+        f1: 0.13
+        precision: 0.22
+        recall: 0.09
+        pred_gold: 0.41
+      count_curve_count_120:
+        f1: 0.08
+        precision: 0.18
+        recall: 0.05
+        pred_gold: 0.28
+      count_curve_count_168:
+        f1: 0.06
+        precision: 0.15
+        recall: 0.04
+        pred_gold: 0.27
+      recall_monotonic_decrease: 0.66 → 0.04
+      wrong_type_trend: 0 → 11500, monotonic increase
+      pairwise_pearson_r: 0.19
+      pairwise_pearson_p: 8.4e-10
+      pairwise_n_pairs: 14028
+      pairwise_spearman_rho: 0.23
+      pairwise_spearman_p: 1.6e-11
+      nonzero_spearman_rho: 0.31
+      nonzero_spearman_p: 2.8e-07
+      top_confused_pair: Conquering ↔ Attack (SCS=0.837, confusion=89)
+      per_type_partial_r: 0.22
+      per_type_partial_p: 0.004
+      per_type_n: 168
+      confusion_ratio_extreme_count_15: 15.2
+      confusion_ratio_extreme_count_30: 12.8
+      fewnerd_per_type_partial_r: 0.32
+      fewnerd_per_type_partial_p: 0.002
+      fewnerd_per_type_n: 66
+    result_rationale: 'MAVEN 的 168 种 FrameNet event types 具有已知的层级结构和 sibling confusion
+      (14.6-19.8%)，这是 confusability 效应的天然放大器。Type 空间是 Few-NERD 的 2.5 倍， 导致 count curve
+      退化更剧烈 (recall 从 0.66 跌至 0.04)。Pairwise r=0.19 高于 Few-NERD 的 0.156，因为 FrameNet
+      siblings (如 Conquering/Attack, Killing/Death) 在语义空间中高度重叠，而这些 sibling pairs 正是实际推理中
+      最常混淆的。14028 个 type pairs 提供强统计功效，p 值进入 1e-10 量级。 Per-type partial r=0.22 (p=0.004)
+      虽低于 Few-NERD 的 0.32，但仍通过 p<0.01 门槛； 这是因为 MAVEN type frequency 分布更偏斜 (长尾更明显)，控制频率后残余方差较大。
+      Confusion ratio 15.2x 表明 extreme high-BCS batches 产生的 type 混淆是 low-BCS 的 15
+      倍，与 Few-NERD 的 10-28x 同一量级。Recall 的单调下降 (0.66→0.04) 在更大 type 空间下呈现近似 log-linear
+      衰减。
+
+      '
+    tables:
+    - title: 'Table 2: MAVEN Count Curve (Qwen3-32B, V2 prompt)'
+      columns:
+      - Count
+      - F1
+      - Precision
+      - Recall
+      - Pred/Gold
+      - WrongType
+      rows:
+      - - 1
+        - 0.33
+        - 0.22
+        - 0.66
+        - 3.0
+        - 0
+      - - 5
+        - 0.29
+        - 0.23
+        - 0.39
+        - 1.7
+        - 420
+      - - 15
+        - 0.24
+        - 0.24
+        - 0.24
+        - 1.0
+        - 1850
+      - - 30
+        - 0.19
+        - 0.24
+        - 0.16
+        - 0.67
+        - 3600
+      - - 60
+        - 0.13
+        - 0.22
+        - 0.09
+        - 0.41
+        - 6200
+      - - 120
+        - 0.08
+        - 0.18
+        - 0.05
+        - 0.28
+        - 9100
+      - - 168
+        - 0.06
+        - 0.15
+        - 0.04
+        - 0.27
+        - 11500
+    - title: 'Table 3: Cross-Dataset Pairwise BCS-Confusion Correlation'
+      columns:
+      - Dataset
+      - Task
+      - n_types
+      - n_pairs
+      - Pearson r
+      - p
+      - Spearman ρ
+      - p
+      rows:
+      - - Few-NERD
+        - NER
+        - 66
+        - 1953
+        - 0.156
+        - '4.6e-12'
+        - 0.16
+        - '1.3e-12'
+      - - MAVEN
+        - ED
+        - 168
+        - 14028
+        - 0.19
+        - '8.4e-10'
+        - 0.23
+        - '1.6e-11'
+    - title: 'Table 4: Per-Type Partial Correlation r(F1, mean_BCS | log_freq)'
+      columns:
+      - Dataset
+      - n_types
+      - Partial r
+      - p
+      - Verdict
+      rows:
+      - - Few-NERD
+        - 66
+        - 0.32
+        - 0.002
+        - PASS
+      - - MAVEN
+        - 168
+        - 0.22
+        - 0.004
+        - PASS
+    figures_description:
+    - 'Fig 2a: MAVEN count curve — recall (blue), precision (orange), F1 (green) vs
+      type count [1..168]。Recall 近似 log-linear 下降，precision 先升后平，F1 低位单调递减。与 Few-NERD
+      (Fig 1a) 同框对比。'
+    - 'Fig 2b: MAVEN pairwise scatter — SCS vs confusion count (14028 points)，density
+      heatmap。High-SCS 区域集中分布高 confusion 点。标注 top-5 confused pairs。'
+    - 'Fig 3: Cross-dataset per-type partial r 条形图 — Few-NERD r=0.32 vs MAVEN r=0.22，带
+      95% CI error bar，两者均通过 p<0.01。'
+    analysis: 'MAVEN 完整复现了 Few-NERD 的三层证据结构：(1) 宏观 count curve 显示 168 types 下 recall
+      退化 至 0.04，远比 Few-NERD (0.30) 严重，验证了 type 空间规模放大 capacity bottleneck； (2) pairwise
+      BCS-confusion r=0.19 (p=8.4e-10) 方向一致且效应更强，符合 FrameNet 层级结构下 sibling types 高度语义重叠的先验预期；(3)
+      per-type partial r=0.22 (p=0.004) 控制频率后仍显著。跨任务 (NER→ED) 复现 + 跨 type 空间规模 (66→168)
+      的 consistent 方向，排除了 task-specific artifact。Few-NERD per-type reanalysis 给出 r=0.32
+      (p=0.002)， 高于 batch-level partial r=0.303 (p=0.026)，因为 per-type 分析消除了 batch
+      composition noise。两个数据集的 per-type partial r 均在 best-tier 范围内。
+
+      '
+  - name: DocRED Cross-Task Scaling Stress Test
+    plan_id: exp-005
+    description: 'DocRED 关系抽取 (96 relation types) 的 count curve + BCS correlation。
+      第三任务 (RE) 泛化验证，type 空间介于 Few-NERD 和 MAVEN 之间。
+
+      '
+    expected_results:
+      count_curve_count_1:
+        f1: 0.28
+        precision: 0.18
+        recall: 0.62
+        pred_gold: 3.4
+      count_curve_count_5:
+        f1: 0.24
+        precision: 0.19
+        recall: 0.33
+        pred_gold: 1.74
+      count_curve_count_15:
+        f1: 0.2
+        precision: 0.22
+        recall: 0.18
+        pred_gold: 0.82
+      count_curve_count_30:
+        f1: 0.15
+        precision: 0.21
+        recall: 0.12
+        pred_gold: 0.57
+      count_curve_count_60:
+        f1: 0.1
+        precision: 0.19
+        recall: 0.07
+        pred_gold: 0.37
+      count_curve_count_96:
+        f1: 0.07
+        precision: 0.16
+        recall: 0.05
+        pred_gold: 0.31
+      pairwise_pearson_r: 0.14
+      pairwise_pearson_p: 0.0002
+      pairwise_n_pairs: 4560
+      per_type_partial_r: 0.21
+      per_type_partial_p: 0.04
+      per_type_n: 96
+      confusion_ratio_extreme: 7.2
+      top_confused_pair: spouse ↔ unmarried_partner (SCS=0.892, confusion=34)
+    result_rationale: '关系类型比实体/事件类型在语义空间中更结构化 (relation types 由 arg1_type + predicate
+      + arg2_type 三元组定义)，导致整体 confusability 水平低于 NER/ED。但同义关系对 (spouse/unmarried_partner,
+      founder/creator, capital/administrative_capital) 仍然 高度混淆。Pairwise r=0.14 低于
+      MAVEN 的 0.19 但在 n=4560 下仍显著 (p=0.0002)。 Per-type partial r=0.21 (p=0.04) 略低于
+      p<0.01 严格门槛但通过 p<0.05， 作为第三任务补充证据足够。DocRED 的 document-level RE 任务本身难度更高 (需要跨句推理)，baseline
+      性能更低，但 confusability 效应方向完全一致。 Confusion ratio 7.2x 较低，反映关系类型的 confusable pair
+      密度低于 entity subtypes。
+
+      '
+    tables:
+    - title: 'Table S1 (Supplementary): DocRED Count Curve'
+      columns:
+      - Count
+      - F1
+      - Precision
+      - Recall
+      rows:
+      - - 1
+        - 0.28
+        - 0.18
+        - 0.62
+      - - 15
+        - 0.2
+        - 0.22
+        - 0.18
+      - - 30
+        - 0.15
+        - 0.21
+        - 0.12
+      - - 96
+        - 0.07
+        - 0.16
+        - 0.05
+    figures_description:
+    - 'Fig S1: 三数据集 pairwise r 对比条形图 — Few-NERD (NER, r=0.156), MAVEN (ED, r=0.19),
+      DocRED (RE, r=0.14)，均显著。配 task icons。'
+    analysis: 'DocRED 提供第三 IE 任务 (关系抽取) 的泛化证据。Confusability 效应方向一致但效应量 较小，符合关系类型语义分离度高于实体
+      subtype 的先验。Per-type p=0.04 未达 p<0.01 严格门槛，但作为 supplementary evidence 足以支撑 "task-agnostic"
+      的 claim。 三任务 (NER + ED + RE) × 两模型的一致方向构成强泛化论证。DocRED 结果放 appendix。
+
+      '
+  - name: Count × Confusability 2×2 Interaction
+    plan_id: exp-006
+    description: 'Few-NERD 上 {low count=6, high count=22} × {low BCS, high BCS} 的
+      2×2 factorial design。检验 count 和 confusability 是 additive 还是 multiplicative interaction。
+
+      '
+    expected_results:
+      f1_lowcount_lowbcs: 0.42
+      f1_lowcount_highbcs: 0.36
+      f1_highcount_lowbcs: 0.34
+      f1_highcount_highbcs: 0.28
+      count_main_effect_f1: -0.08
+      bcs_main_effect_f1: -0.06
+      interaction_f1: 0.0
+      interaction_p_f1: 0.82
+      recall_lowcount_lowbcs: 0.48
+      recall_lowcount_highbcs: 0.46
+      recall_highcount_lowbcs: 0.28
+      recall_highcount_highbcs: 0.26
+      count_main_effect_recall: -0.2
+      bcs_main_effect_recall: -0.02
+      confusion_lowcount_lowbcs: 0.005
+      confusion_lowcount_highbcs: 0.045
+      confusion_highcount_lowbcs: 0.012
+      confusion_highcount_highbcs: 0.058
+      bcs_main_effect_confusion: 0.038
+      count_main_effect_confusion: 0.01
+      anova_count_f: 18.4
+      anova_count_p: 0.0001
+      anova_bcs_f: 11.2
+      anova_bcs_p: 0.002
+      anova_interaction_f: 0.05
+      anova_interaction_p: 0.82
+    result_rationale: 'Additive 交互模式是 multi-channel 模型的直接推论：count 通过 attention dilution
+      影响 recall (Channel 1)，confusability 通过 semantic interference 影响 type assignment
+      (Channel 2)，两者在不同认知/计算路径上操作，不应产生显著交互。具体而言： (1) Recall 主要由 count 驱动 (main effect
+      -0.20)，BCS 对 recall 影响微弱 (-0.02)， 因为即使类型不混淆，高 count 仍导致 entity omission； (2)
+      Type confusion rate 主要由 BCS 驱动 (main effect +0.038)，count 的贡献较小 (+0.010)，因为即使类型数多，如果语义分离度高则不会产生
+      type substitution； (3) 交互项 F=0.05 (p=0.82) 不显著，表明两个 main effect 的影响是 strictly
+      additive ——降低 count 不会减少 confusability-driven errors，分离 confusable types 不会改善
+      capacity-driven misses。这是 SDGD 设计理念的实验基础：SDGD 专门 targeting Channel 2，与 batch
+      size reduction (Channel 1) 正交且可组合。
+
+      '
+    tables:
+    - title: 'Table 5: 2×2 Factorial Results (Few-NERD, Qwen3-32B)'
+      columns:
+      - ''
+      - Low BCS
+      - High BCS
+      - BCS Main Effect
+      rows:
+      - - Low Count (6)
+        - F1=0.42 / R=0.48 / TCR=0.5%
+        - F1=0.36 / R=0.46 / TCR=4.5%
+        - -0.06 / -0.02 / +3.8%
+      - - High Count (22)
+        - F1=0.34 / R=0.28 / TCR=1.2%
+        - F1=0.28 / R=0.26 / TCR=5.8%
+        - -0.06 / -0.02 / +3.8%
+      - - Count Main Effect
+        - -0.08 / -0.20 / +0.7%
+        - -0.08 / -0.20 / +1.3%
+        - Interaction ≈ 0
+    figures_description:
+    - 'Fig 4: 2×2 interaction plot — F1 (左) 和 type confusion rate (右) 的 interaction
+      lines。两组平行线 (无交互)，左图 count 斜率大，右图 BCS 斜率大。'
+    - 'Fig 4c: 三指标分离图 — recall 仅随 count 下降 (两条 BCS 线重合)，type confusion rate 仅随 BCS
+      上升 (两条 count 线重合)，precision 两者均影响。'
+    analysis: '2×2 结果干净地验证了 multi-channel degradation model：count 和 confusability
+      通过正交通道独立降低抽取质量，无显著交互 (p=0.82)。Recall 几乎完全由 count 解释 (main effect -0.20 vs BCS
+      的 -0.02)，type confusion 几乎完全由 BCS 解释 (main effect +0.038 vs count 的 +0.010)。这为
+      SDGD 的设计理念提供了 因果方向的实验支持：优化 batch 内 confusability 可以独立于 batch size reduction
+      改善抽取质量，两者可叠加。
+
+      '
+  - name: BCS-Binned Error Taxonomy
+    plan_id: exp-007
+    description: 'Few-NERD 上按 BCS 分 bin 的系统性 FP 分类 (type_substitution / boundary_error
+      / false_negative / hallucination)。Mechanistic evidence for multi-channel model。
+
+      '
+    expected_results:
+      bcs_bin_0_to_0.2:
+        type_substitution: 0.08
+        boundary_error: 0.12
+        false_negative: 0.62
+        hallucination: 0.18
+        n_errors: 245
+      bcs_bin_0.2_to_0.4:
+        type_substitution: 0.15
+        boundary_error: 0.1
+        false_negative: 0.55
+        hallucination: 0.2
+        n_errors: 312
+      bcs_bin_0.4_to_0.6:
+        type_substitution: 0.35
+        boundary_error: 0.08
+        false_negative: 0.38
+        hallucination: 0.19
+        n_errors: 280
+      bcs_bin_0.6_to_0.8:
+        type_substitution: 0.55
+        boundary_error: 0.06
+        false_negative: 0.24
+        hallucination: 0.15
+        n_errors: 198
+      bcs_bin_0.8_to_1.0:
+        type_substitution: 0.68
+        boundary_error: 0.05
+        false_negative: 0.15
+        hallucination: 0.12
+        n_errors: 156
+      high_bcs_type_sub_pct: 0.68
+      low_bcs_false_neg_pct: 0.62
+      type_sub_monotonic_with_bcs: true
+      false_neg_monotonic_inverse_bcs: true
+      chi_square_independence: 142.3
+      chi_square_p: 2.1e-24
+    result_rationale: '在 best tier 下，error taxonomy 干净分离是 multi-channel 模型最强的 mechanistic
+      证据。High-BCS batches (0.8-1.0) 中 type_substitution 占 68%：当 batch 内包含语义 高度相似的类型
+      (如 person-other 和 person-politician)，模型正确识别 entity span 但在 type assignment 阶段发生
+      interference，将正确 span 标注为语义邻近的错误类型。 Low-BCS batches (0-0.2) 中 false_negative
+      占 62%：当类型语义分离度高，模型不会 混淆类型，但由于 attention 需覆盖多种不同类型的 pattern，部分 entity 被完全遗漏 (capacity
+      bottleneck)。Type_substitution 从 8% 到 68% 的单调递增、false_negative 从 62% 到 15% 的单调递减，形成完美的
+      crossover pattern。Hallucination 比例 (12-20%) 与 BCS 无关，说明幻觉是模型固有特性而非 schema-driven
+      artifact。 Chi-square 独立性检验 p=2.1e-24 确认 error type 分布与 BCS bin 高度相关。
+
+      '
+    tables:
+    - title: 'Table 6: Error Taxonomy by BCS Bin (Few-NERD, n=1191 errors)'
+      columns:
+      - BCS Bin
+      - TypeSub%
+      - BoundErr%
+      - FalseNeg%
+      - Halluc%
+      - n
+      rows:
+      - - '[0, 0.2)'
+        - 8%
+        - 12%
+        - 62%
+        - 18%
+        - 245
+      - - '[0.2, 0.4)'
+        - 15%
+        - 10%
+        - 55%
+        - 20%
+        - 312
+      - - '[0.4, 0.6)'
+        - 35%
+        - 8%
+        - 38%
+        - 19%
+        - 280
+      - - '[0.6, 0.8)'
+        - 55%
+        - 6%
+        - 24%
+        - 15%
+        - 198
+      - - '[0.8, 1.0]'
+        - 68%
+        - 5%
+        - 15%
+        - 12%
+        - 156
+    figures_description:
+    - 'Fig 5: Stacked area chart — error type 比例 vs BCS bin。TypeSub (红) 从左下到右上递增，FalseNeg
+      (蓝) 从左上到右下递减，形成 X 形 crossover。Hallucination (灰) 保持水平带。'
+    - 'Fig 5b: 两个代表性 case 的 error 展示 — left: low-BCS batch 中 entity 被完全遗漏 (FN)；right:
+      high-BCS batch 中 ''John Smith'' 被标为 person-politician 而非 person-other (TypeSub)。'
+    analysis: 'Error taxonomy 提供了 multi-channel 模型的 mechanistic smoking gun。TypeSub
+      ≥60% 在 high-BCS 区间 (实际 68%) 和 FalseNeg ≥50% 在 low-BCS 区间 (实际 62%) 均满足 best-tier
+      门槛。这证明 BCS 不仅在统计上与 F1 相关，而且通过可解释的机制起作用： 语义相似类型导致 type confusion (Channel 2)，语义分离类型的
+      capacity 限制导致 entity omission (Channel 1)。Boundary error 和 hallucination 与 BCS
+      基本无关，排除了 confounding explanations。
+
+      '
+  - name: Multi-Model Validation (LLaMA-3.3-70B)
+    plan_id: exp-012
+    description: '用 LLaMA-3.3-70B-Instruct 在 Few-NERD 上复现 exp-002 protocol：count curve
+      + within-count BCS correlation + pairwise BCS-confusion。排除 single-model artifact。
+
+      '
+    expected_results:
+      count_curve_count_1:
+        f1: 0.3
+        precision: 0.2
+        recall: 0.6
+        pred_gold: 3.0
+      count_curve_count_6:
+        f1: 0.29
+        precision: 0.22
+        recall: 0.42
+        pred_gold: 1.91
+      count_curve_count_12:
+        f1: 0.32
+        precision: 0.32
+        recall: 0.32
+        pred_gold: 1.0
+      count_curve_count_22:
+        f1: 0.28
+        precision: 0.32
+        recall: 0.25
+        pred_gold: 0.78
+      count_curve_count_44:
+        f1: 0.4
+        precision: 0.46
+        recall: 0.35
+        pred_gold: 0.76
+      count_curve_count_64:
+        f1: 0.38
+        precision: 0.55
+        recall: 0.29
+        pred_gold: 0.53
+      recall_monotonic: 0.60 → 0.29
+      pairwise_pearson_r: 0.14
+      pairwise_pearson_p: 3.2e-10
+      pairwise_n_pairs: 1953
+      pairwise_spearman_rho: 0.17
+      nonzero_spearman_rho: 0.22
+      nonzero_spearman_p: 4.8e-05
+      nonzero_n: 289
+      within_count_6_f1_bcs_r: 0.2
+      within_count_6_f1_bcs_p: 0.31
+      within_count_12_f1_bcs_r: 0.44
+      within_count_12_f1_bcs_p: 0.021
+      partial_f1_bcs_r: 0.28
+      partial_f1_bcs_p: 0.04
+      top10_confused_pairs_overlap_with_qwen: 7
+      rank_correlation_confusion_matrices: 0.61
+      direction_consistent: true
+    result_rationale: 'LLaMA-3.3-70B 来自不同模型家族 (Meta vs Alibaba)，使用不同的预训练数据和架构 细节 (GQA
+      vs MHA, 不同 tokenizer)。Pairwise r=0.14 略低于 Qwen3-32B 的 0.156， 处于 best-tier [0.1,
+      0.2] 范围内。效应略低的原因：LLaMA 的 70B 参数可能提供 更强的 type disambiguation 能力，部分抵消 confusability
+      效应，但不足以消除。 p=3.2e-10 极显著，因为 n=1953 pairs 提供充足统计功效。Top-10 confused pairs 有 7
+      对与 Qwen 重合 (如 person-other↔person-politician)，说明 confusability pattern 是 schema
+      和 task 的固有属性而非 model-specific artifact。两模型的 confusion matrix rank correlation=0.61
+      表明中等到强的一致性。Count curve 形态 相似但绝对水平略低 (70B 模型用 FP8 量化可能有轻微精度损失，但趋势不受影响)。
+
+      '
+    tables:
+    - title: 'Table 7: Multi-Model Pairwise BCS-Confusion Comparison'
+      columns:
+      - Model
+      - Family
+      - Params
+      - r
+      - p
+      - ρ(nonzero)
+      - p
+      - Top-10 Overlap
+      rows:
+      - - Qwen3-32B
+        - Qwen
+        - 32B
+        - 0.156
+        - '4.6e-12'
+        - 0.254
+        - '1.1e-6'
+        - —
+      - - LLaMA-3.3-70B
+        - LLaMA
+        - 70B
+        - 0.14
+        - '3.2e-10'
+        - 0.22
+        - '4.8e-5'
+        - 7/10
+    figures_description:
+    - 'Fig 6: 双模型 confusion matrix heatmap (top-20 types)。Left: Qwen3-32B, Right:
+      LLaMA-3.3-70B。Hotspot 位置高度重合 (person subtypes, location subtypes)。'
+    - 'Fig 6b: 两模型 pairwise confusion count 的 scatter plot，r=0.61，showing agreement
+      on which pairs are most confusable。'
+    analysis: 'Multi-model validation 排除了 confusability 效应是 Qwen3-32B specific 的可能性。
+      LLaMA-3.3-70B 的 pairwise r=0.14 (p=3.2e-10) 方向一致且高度显著，效应量在 best-tier 范围内。两模型
+      confusion matrix 的 rank correlation=0.61 说明 type pair level 的混淆 pattern 在模型间
+      transferable——这意味着 embedding-based SCS 作为 confusability proxy 不仅对单个模型有效，而且具有跨模型泛化能力。
+      这也意味着 SDGD 的 batch composition 不需要针对每个模型重新计算。
+
+      '
+  - name: SDGD-zero on Few-NERD
+    plan_id: exp-008
+    description: 'Confusability-minimizing batch composition via embedding SCS + graph
+      coloring on Few-NERD (66 types)。与 single-pass full-schema baseline 对比。
+
+      '
+    expected_results:
+      scs_threshold_tau: 0.5
+      n_edges_in_graph: 142
+      chromatic_number: 10
+      avg_types_per_batch: 6.6
+      max_types_per_batch: 9
+      min_types_per_batch: 4
+      single_pass_f1: 0.414
+      single_pass_precision: 0.648
+      single_pass_recall: 0.304
+      sdgd_zero_f1: 0.49
+      sdgd_zero_precision: 0.52
+      sdgd_zero_recall: 0.462
+      f1_gain_over_single_pass: 7.6
+      recall_gain: 15.8
+      precision_delta: -12.8
+      single_pass_api_calls: 1
+      sdgd_zero_api_calls: 10
+      single_pass_wall_clock_s: 48
+      sdgd_zero_wall_clock_s: 385
+      sdgd_zero_wall_clock_parallel_s: 95
+      single_pass_wrong_type_count: 2434
+      sdgd_zero_wrong_type_count: 680
+      wrong_type_reduction_pct: 72
+      cross_batch_duplicates: 124
+      dedup_strategy: highest confidence span retained
+      dedup_impact_on_f1: 0.008
+    result_rationale: 'SDGD-zero 的 F1 增益 (+7.6 points) 来自两个叠加效果：(1) batch size 从 64
+      减至 avg 6.6 types，缓解 Channel 1 capacity bottleneck，recall 从 0.304 提升到 0.462 (+15.8pp)；(2)
+      confusability-aware grouping 确保每个 batch 内无高 SCS pair，减少 Channel 2 type confusion，WrongType
+      errors 从 2434 降至 680 (-72%)。Precision 轻微下降 (-12.8pp) 是因为小 batch 下模型倾向于 over-predict（与
+      exp-003a 中 low count 的 over-prediction pattern 一致），但 recall 的大幅提升远超 precision
+      损失。 Graph coloring 产生 k=10 batches 是因为 Few-NERD 的 66 types 中约 142 pair SCS>0.5，
+      形成中等密度的 confusability graph，chromatic number 为 10。10 个 batch 的 parallelized
+      wall-clock 约 95s (vs single-pass 48s)，开销可接受。
+
+      '
+    tables:
+    - title: 'Table 8: SDGD-zero vs Single-Pass on Few-NERD'
+      columns:
+      - Method
+      - F1
+      - Prec
+      - Recall
+      - WrongType
+      - API Calls
+      - Wall Clock (s)
+      rows:
+      - - Single-pass (66 types)
+        - 0.414
+        - 0.648
+        - 0.304
+        - 2434
+        - 1
+        - 48
+      - - SDGD-zero (k=10)
+        - 0.49
+        - 0.52
+        - 0.462
+        - 680
+        - 10
+        - 385
+      - - Δ
+        - +7.6pp
+        - -12.8pp
+        - +15.8pp
+        - -72%
+        - '+9'
+        - '+337'
+    figures_description:
+    - 'Fig 7a: SDGD batch composition 可视化 — 10 个 batch 的 type 组成 heatmap，颜色编码 SCS。每个
+      batch 内 cell 均为冷色 (低 SCS)。'
+    - 'Fig 7b: F1/Recall/Precision bar chart — single-pass vs SDGD-zero。SDGD 的 recall
+      bar 显著高于 single-pass。'
+    - 'Fig 7c: WrongType error reduction waterfall — 2434 → 680，按 batch 展示 type confusion
+      的减少。'
+    analysis: 'SDGD-zero 在 Few-NERD 上实现 +7.6 F1 点增益，核心驱动力是 recall 提升 (+15.8pp) 和 WrongType
+      reduction (-72%)。Graph coloring 产生的 k=10 batches 在 batch size 和 confusability
+      之间取得平衡——每个 batch 平均 6.6 types 足够小以避免 capacity bottleneck，且 batch 内无 SCS>0.5
+      的 confusable pair。这是第一个 principled schema decomposition 结果，直接 operationalize
+      了 Claim 1-2 的发现。
+
+      '
+  - name: SDGD-zero on MAVEN
+    plan_id: exp-009
+    description: 'SDGD-zero on MAVEN (168 event types)。Cross-task validation of SDGD
+      framework。 与 single-pass + random batching 对比。
+
+      '
+    expected_results:
+      scs_threshold_tau: 0.35
+      n_edges_in_graph: 1380
+      chromatic_number: 18
+      avg_types_per_batch: 9.3
+      max_types_per_batch: 14
+      min_types_per_batch: 5
+      single_pass_f1: 0.08
+      single_pass_recall: 0.05
+      sdgd_zero_f1: 0.14
+      sdgd_zero_precision: 0.16
+      sdgd_zero_recall: 0.125
+      f1_gain_over_single_pass: 6.0
+      random_k18_f1: 0.11
+      random_k18_recall: 0.095
+      sdgd_vs_random_delta: 3.0
+      sdgd_zero_api_calls: 18
+      sdgd_zero_wall_clock_s: 720
+      single_pass_wrong_type: 11500
+      sdgd_zero_wrong_type: 3200
+      wrong_type_reduction_pct: 72
+    result_rationale: 'MAVEN 的 168 types 和 FrameNet 层级结构使 confusability 效应更极端。 Single-pass
+      F1 仅 0.08 (recall 0.05)，因为 168 types 的 prompt 远超模型的 effective schema capacity。SDGD-zero
+      用 τ=0.35 (比 Few-NERD 的 0.5 低， 因为 MAVEN 的 SCS 分布整体偏低 mean=0.216) 构建 confusability
+      graph， graph coloring 得 k=18 batches (avg 9.3 types)。F1 提升 +6.0 points 的来源：
+      (1) batch size 从 168 降到 avg 9.3，recall 从 0.05 提升到 0.125；(2) batch 内 无 FrameNet
+      sibling pair，WrongType 从 11500 降到 3200 (-72%)。Random batching (same k=18) 只得到
+      F1=0.11 (+3pp vs single-pass)，因为随机分组仅获得 count reduction 收益但不消除 confusability
+      (random 的 batch 内仍有 ~7% 的高 SCS pairs)。SDGD vs random Δ=3.0 points 精确量化了 confusability-aware
+      grouping 在 count reduction 之上的额外贡献。
+
+      '
+    tables:
+    - title: 'Table 9: SDGD-zero vs Baselines on MAVEN (168 types)'
+      columns:
+      - Method
+      - F1
+      - Prec
+      - Recall
+      - WrongType
+      - API Calls
+      rows:
+      - - Single-pass (168)
+        - 0.08
+        - 0.15
+        - 0.05
+        - 11500
+        - 1
+      - - Random (k=18)
+        - 0.11
+        - 0.14
+        - 0.095
+        - 5800
+        - 18
+      - - SDGD-zero (k=18)
+        - 0.14
+        - 0.16
+        - 0.125
+        - 3200
+        - 18
+    figures_description:
+    - 'Fig 8: MAVEN comparison bar chart — single-pass vs random vs SDGD-zero。三组 F1/Recall/WrongType
+      bars。SDGD 在所有指标上优于 random，random 优于 single-pass。'
+    analysis: 'SDGD-zero 在 MAVEN 上的 +6.0 F1 增益 (和 vs random 的 +3.0 Δ) 证明 confusability-
+      aware decomposition 跨任务有效。MAVEN 的更大 type 空间 (168 vs 66) 使 count reduction 本身就带来显著收益
+      (random +3pp)，但 SDGD 在此基础上再加 3pp， 量化了 confusability channel 的独立贡献。
+
+      '
+  - name: SDGD-cal on Few-NERD
+    plan_id: exp-010
+    description: '用 5-10 个 calibration examples 构建 empirical confusion matrix，替代 embedding
+      SCS 进行 graph coloring。与 SDGD-zero 对比。
+
+      '
+    expected_results:
+      calibration_examples: 8
+      calibration_api_calls: 8
+      calibration_wall_clock_s: 380
+      empirical_confusion_pairs_detected: 86
+      sdgd_cal_f1: 0.505
+      sdgd_cal_precision: 0.53
+      sdgd_cal_recall: 0.483
+      sdgd_cal_k: 9
+      f1_gain_over_sdgd_zero: 1.5
+      f1_gain_over_single_pass: 9.1
+      sdgd_zero_f1: 0.49
+      sdgd_cal_vs_zero_delta: 1.5
+      scs_empirical_overlap_top50: 0.72
+    result_rationale: 'SDGD-cal 通过 8 个 calibration 样本捕获 model-specific 的 confusion
+      pattern， 而非依赖通用 embedding 距离。Empirical confusion matrix 发现了 86 个实际 confusion
+      pairs，其中 72% 也被 SCS 预测到，但有 28% 是 SCS 遗漏的 (如模型对特定 entity naming pattern 的 confusion，不完全由
+      type label embedding 距离预测)。这些 额外信息使 graph coloring 更精确，产生 k=9 batches (vs SDGD-zero
+      的 k=10)， 实际更少 batch 但 confusability 分离更彻底。F1 提升 +1.5pp over SDGD-zero， 主要来自
+      recall (+2.1pp) 和 WrongType 进一步减少。增益幅度有限 (1.5pp) 是因为 embedding SCS 已经是 decent
+      proxy (72% overlap)，calibration 只修正了 edge cases。 额外的 8 API calls 用于 calibration，total
+      overhead 可接受。
+
+      '
+    tables:
+    - title: 'Table 10: SDGD Variants Comparison (Few-NERD)'
+      columns:
+      - Method
+      - F1
+      - Prec
+      - Recall
+      - k
+      - Total API Calls
+      - Setup Cost
+      rows:
+      - - Single-pass
+        - 0.414
+        - 0.648
+        - 0.304
+        - 1
+        - 1
+        - —
+      - - SDGD-zero
+        - 0.49
+        - 0.52
+        - 0.462
+        - 10
+        - 10
+        - 0 (embedding only)
+      - - SDGD-cal
+        - 0.505
+        - 0.53
+        - 0.483
+        - 9
+        - 9+8cal=17
+        - 8 calibration runs
+    figures_description:
+    - 'Fig 9: SDGD-zero vs SDGD-cal 的 batch composition 对比 — 两组 heatmap 显示 calibration
+      如何调整 batch 分配 (标注移动的 types)。'
+    analysis: 'SDGD-cal 比 SDGD-zero 提升 1.5 F1 点，验证了 empirical confusability 优于 embedding
+      proxy。但提升幅度有限，说明 SCS embedding 已经是 reasonably good proxy， 这反过来支持了 SCS 作为 practical
+      zero-shot confusability measure 的可用性。 SDGD-cal 的 9.1pp gain over single-pass
+      接近 best-tier 上限 (10pp)。
+
+      '
+  - name: SDGD-cal on MAVEN
+    plan_id: exp-011
+    description: 'SDGD-cal on MAVEN (168 types) with calibration。Full comparison table。
+
+      '
+    expected_results:
+      calibration_examples: 10
+      calibration_api_calls: 10
+      sdgd_cal_f1: 0.16
+      sdgd_cal_precision: 0.175
+      sdgd_cal_recall: 0.148
+      sdgd_cal_k: 16
+      f1_gain_over_single_pass: 8.0
+      f1_gain_over_sdgd_zero: 2.0
+      sdgd_cal_vs_random_delta: 5.0
+      sdgd_cal_wrong_type: 2400
+    result_rationale: 'MAVEN 的 FrameNet 层级使 calibration 的价值更高：embedding SCS 对 hierarchically
+      related 但 functionally distinct 的 event types (如 Becoming_a_member vs Participation)
+      可能过估 confusability，而 calibration 发现这些 pair 实际不常混淆。反之，某些 linguistically similar
+      triggers (如 "killed" → Killing vs Death) 的 confusion 被 SCS 低估但 calibration 捕获。结果
+      SDGD-cal 比 SDGD-zero 多 2.0pp (vs Few-NERD 的 1.5pp)，因为更大 type 空间下 SCS proxy error
+      的累积效应更明显。k=16 < SDGD-zero 的 k=18，fewer batches 但 confusability 分离更优，总 API 开销更低。
+
+      '
+    tables:
+    - title: 'Table 11: Full MAVEN Comparison'
+      columns:
+      - Method
+      - F1
+      - Prec
+      - Recall
+      - WrongType
+      - k
+      - API Calls
+      rows:
+      - - Single-pass
+        - 0.08
+        - 0.15
+        - 0.05
+        - 11500
+        - 1
+        - 1
+      - - Random (k=18)
+        - 0.11
+        - 0.14
+        - 0.095
+        - 5800
+        - 18
+        - 18
+      - - SDGD-zero
+        - 0.14
+        - 0.16
+        - 0.125
+        - 3200
+        - 18
+        - 18
+      - - SDGD-cal
+        - 0.16
+        - 0.175
+        - 0.148
+        - 2400
+        - 16
+        - 16+10cal=26
+      - - Per-type
+        - 0.145
+        - 0.13
+        - 0.165
+        - 450
+        - 168
+        - 168
+    figures_description:
+    - 'Fig 10: Full comparison radar chart — 5 methods × 4 metrics (F1, Recall, 1-WrongType_rate,
+      1/API_calls)。SDGD-cal 在 quality-efficiency frontier 上 dominant。'
+    analysis: 'MAVEN full comparison 展示 SDGD-cal 在 quality-efficiency Pareto frontier
+      上的 优势：F1=0.16 略高于 per-type 的 0.145 (ratio=1.10)，API 开销仅 26 vs 168 calls。 Per-type
+      recall 更高 (0.165 vs 0.148) 但 precision 更低 (0.13 vs 0.175)，因为 per-type 的单类型 batch
+      导致严重 over-prediction (没有 cross-type context 约束)。SDGD-cal 保留了 batch 内 non-confusable
+      types 的 cross-type context， 对 precision 有正面效果。
+
+      '
+  - name: Random Batching Ablation
+    plan_id: exp-013
+    description: 'Few-NERD 上 random batching (same k=10 as SDGD)。 隔离 confusability-aware
+      grouping vs batch count reduction 的各自贡献。
+
+      '
+    expected_results:
+      random_k10_f1: 0.455
+      random_k10_precision: 0.49
+      random_k10_recall: 0.425
+      random_k10_wrong_type: 1580
+      random_k10_avg_batch_bcs: 0.42
+      sdgd_zero_avg_batch_bcs: 0.18
+      gain_from_count_reduction: 4.1
+      gain_from_confusability_reduction: 3.5
+      total_sdgd_gain: 7.6
+      additivity_ratio: 1.0
+      random_f1_std_across_5_seeds: 0.012
+      random_f1_range:
+      - 0.441
+      - 0.468
+      sdgd_consistently_better: true
+      paired_t_sdgd_vs_random: 4.82
+      paired_t_p: 0.0004
+    result_rationale: 'Random batching with k=10 将 66 types 随机分成 10 组 (avg 6.6 per
+      batch)， 获得与 SDGD 相同的 count reduction 但不优化 confusability。F1=0.455 vs single-pass
+      0.414 = +4.1pp，纯 count reduction 贡献。SDGD F1=0.490 vs random 0.455 = +3.5pp，纯
+      confusability reduction 贡献。两者近乎 additive (4.1 + 3.5 = 7.6 = total gain)，与 exp-006
+      的 2×2 additive interaction 一致。 Random 的 avg batch BCS=0.42 (未优化，随机分配时 confusable
+      pairs 仍有 ~35% 概率同批)，SDGD 的 avg batch BCS=0.18 (graph coloring 确保无 SCS>0.5 pair)。
+      WrongType: random 1580 vs SDGD 680——random 比 single-pass (2434) 减少 35% (仅因 batch
+      size 减小导致部分 confusable pairs 被分开)，SDGD 减少 72% (系统性消除)。5 random seeds 的 F1 std=0.012
+      表明 random 结果相对稳定， SDGD 在所有 seed 下 consistently better (paired t-test p=0.0004)。
+
+      '
+    tables:
+    - title: 'Table 12: Gain Decomposition (Few-NERD)'
+      columns:
+      - Source
+      - ΔF1
+      - ΔRecall
+      - ΔWrongType
+      rows:
+      - - Count reduction (random−SP)
+        - +4.1pp
+        - +12.1pp
+        - −35%
+      - - Confusability reduction (SDGD−random)
+        - +3.5pp
+        - +3.7pp
+        - −57%
+      - - Total (SDGD−SP)
+        - +7.6pp
+        - +15.8pp
+        - −72%
+    figures_description:
+    - 'Fig 11: Waterfall chart — F1 从 single-pass (0.414) 到 random (0.455) 到 SDGD
+      (0.490)，两段分别标注 count reduction 和 confusability reduction 贡献。'
+    - 'Fig 11b: 5 random seeds 的 F1 boxplot vs SDGD 的单点 (horizontal line)。SDGD consistently
+      above all random runs。'
+    analysis: 'Ablation 干净地分离了 SDGD 增益的两个来源：count reduction (+4.1pp, 54%) 和 confusability
+      reduction (+3.5pp, 46%)。两者近乎完美 additive，进一步验证了 multi-channel model。这个结果直接回应潜在
+      reviewer concern "为什么不直接 random split?"——因为 random split 丢失了 confusability channel
+      的全部贡献， 在 Few-NERD 上损失 3.5 F1 点。SDGD vs random Δ=3.5pp 在 best-tier [2, 6] 内。
+
+      '
+  - name: Per-Type Splitting Ablation
+    plan_id: exp-014
+    description: 'Per-type splitting (UniNER-style, k=66 batches, 1 type per batch)
+      on Few-NERD。 Decomposition 收益上界和 latency-quality tradeoff。
+
+      '
+    expected_results:
+      per_type_k: 66
+      per_type_f1: 0.49
+      per_type_precision: 0.44
+      per_type_recall: 0.55
+      per_type_wrong_type: 0
+      per_type_api_calls: 66
+      per_type_wall_clock_s: 1650
+      per_type_wall_clock_parallel_s: 420
+      sdgd_vs_pertype_f1_ratio: 1.0
+      sdgd_vs_pertype_latency_ratio: 0.23
+      sdgd_vs_pertype_api_ratio: 0.15
+      per_type_over_prediction_rate: 2.85
+      per_type_cross_type_false_positives: 890
+      per_type_dedup_conflicts: 312
+    result_rationale: 'Per-type splitting 完全消除 confusability (每 batch 仅 1 type，WrongType=0)，
+      是 Channel 2 的理论上界。但它有两个代价：(1) 极高 latency (66 API calls， 即使 parallelized 也需 420s
+      vs SDGD 的 95s)；(2) 失去 cross-type context—— 当模型只被告知寻找一种类型时，它倾向于 over-predict
+      (pred/gold ratio 2.85)， 将相关但不匹配的 entity 标为目标类型。这导致 precision=0.44 低于 SDGD 的
+      0.52。 F1=0.49 与 SDGD-zero 的 0.490 几乎相同 (ratio=1.00)，因为 per-type 的 recall 优势
+      (0.55 vs 0.462) 被 precision 劣势 (0.44 vs 0.52) 恰好抵消。 SDGD 实现了与 per-type 同等的 F1
+      但仅用 23% 的 wall-clock 时间和 15% 的 API calls，这是 SDGD 的核心 value proposition：通过 principled
+      batch composition 在 confusability reduction 和 cross-type context preservation
+      之间取得最优 tradeoff。
+
+      '
+    tables:
+    - title: 'Table 13: SDGD vs Per-Type Splitting (Few-NERD)'
+      columns:
+      - Method
+      - F1
+      - Prec
+      - Recall
+      - WrongType
+      - API Calls
+      - Wall Clock (s)
+      - Parallel (s)
+      rows:
+      - - Single-pass
+        - 0.414
+        - 0.648
+        - 0.304
+        - 2434
+        - 1
+        - 48
+        - 48
+      - - Random (k=10)
+        - 0.455
+        - 0.49
+        - 0.425
+        - 1580
+        - 10
+        - 350
+        - 90
+      - - SDGD-zero (k=10)
+        - 0.49
+        - 0.52
+        - 0.462
+        - 680
+        - 10
+        - 385
+        - 95
+      - - SDGD-cal (k=9)
+        - 0.505
+        - 0.53
+        - 0.483
+        - 520
+        - 17
+        - 560
+        - 130
+      - - Per-type (k=66)
+        - 0.49
+        - 0.44
+        - 0.55
+        - 0
+        - 66
+        - 1650
+        - 420
+    figures_description:
+    - 'Fig 12: Quality-Latency Pareto frontier — x-axis: parallel wall-clock (log
+      scale), y-axis: F1。Five methods 标注。SDGD-zero 和 SDGD-cal 在 frontier 上，per-type
+      在 frontier 外 (high latency, same/lower F1)。'
+    - 'Fig 12b: Precision-Recall tradeoff scatter — per-type (high recall, low precision),
+      SDGD (balanced), single-pass (high precision, low recall)。'
+    analysis: 'Per-type splitting 验证了 confusability elimination 的理论上界 (WrongType=0)，
+      但 SDGD 以 1/4 的计算开销达到同等 F1。关键 insight：per-type splitting over-corrects——消除 confusability
+      的同时也消除了 beneficial cross-type context (模型知道其他类型存在时会更 conservative/precise about
+      each type)。SDGD 保留 non-confusable types 在同一 batch 内的 mutual constraint effect，实现更好的
+      precision-recall balance。F1 ratio=1.00, latency ratio=0.23，均在 best-tier 范围内。
+
+      '
+  - name: SCS Embedding Proxy Validation
+    plan_id: exp-015
+    description: 'Embedding SCS 与 empirical confusion matrix 的 rank correlation。 验证
+      embedding proxy 的实际有效性。
+
+      '
+    expected_results:
+      fewnerd_spearman_rho: 0.52
+      fewnerd_spearman_p: 1.8e-15
+      fewnerd_kendall_tau: 0.41
+      fewnerd_kendall_p: 3.2e-12
+      fewnerd_n_pairs: 1953
+      fewnerd_top20_overlap: 0.75
+      maven_spearman_rho: 0.48
+      maven_spearman_p: 2.4e-18
+      maven_kendall_tau: 0.37
+      maven_kendall_p: 8.1e-15
+      maven_n_pairs: 14028
+      maven_top20_overlap: 0.7
+      optimal_scs_threshold_fewnerd: 0.48
+      optimal_scs_threshold_maven: 0.33
+      threshold_f1_sensitivity: ±0.1 around optimal → <1pp F1 change
+      false_negative_pairs: 14
+      false_negative_example: product-food ↔ product-drink (SCS=0.38, empirical confusion=45)
+      false_positive_pairs: 22
+      false_positive_example: event-protest ↔ event-election (SCS=0.71, empirical
+        confusion=2)
+    result_rationale: 'Embedding SCS 基于 type label 的语义 embedding 距离，与 empirical confusion
+      的 相关性取决于：(1) type confusion 是否主要由 label 语义相似性驱动 (是的，exp-002 已证明)，(2) embedding
+      空间是否准确反映 LLM 的内部 type representation (大体是， 因为都基于 transformer language model)。Spearman
+      ρ=0.52 (Few-NERD) / 0.48 (MAVEN) 表示中等到强的 rank agreement。非 perfect (ρ<1) 的原因：(a)
+      某些 confusion 由 context 和 surface form 驱动而非 label semantics (如 person-other 和
+      person-artist 的 confusion 因为实际文本中 artist 常出现在 generic person context)； (b) embedding
+      distance 是对称的但 confusion 可能不对称 (A→B confusion ≠ B→A)。 Top-20 overlap 75% 说明
+      embedding proxy 捕获了大部分 critical confusion pairs。 14 个 false negative pairs (SCS
+      低但实际常混淆) 正好是 SDGD-cal 能额外捕获的， 解释了 SDGD-cal 比 SDGD-zero 提升 1.5pp 的来源。Threshold
+      sensitivity ±0.1 导致 <1pp F1 change 说明 SDGD 对 τ 选择 robust。
+
+      '
+    tables:
+    - title: 'Table S2 (Supplementary): SCS Proxy Validation'
+      columns:
+      - Dataset
+      - Spearman ρ
+      - p
+      - Kendall τ
+      - p
+      - Top-20 Overlap
+      rows:
+      - - Few-NERD
+        - 0.52
+        - '1.8e-15'
+        - 0.41
+        - '3.2e-12'
+        - 75%
+      - - MAVEN
+        - 0.48
+        - '2.4e-18'
+        - 0.37
+        - '8.1e-15'
+        - 70%
+    - title: 'Table S3: SCS Threshold Sensitivity'
+      columns:
+      - τ
+      - SDGD k (FN)
+      - F1 (FN)
+      - SDGD k (MV)
+      - F1 (MV)
+      rows:
+      - - 0.3
+        - 14
+        - 0.484
+        - 22
+        - 0.135
+      - - 0.4
+        - 12
+        - 0.488
+        - 20
+        - 0.138
+      - - 0.5
+        - 10
+        - 0.49
+        - 18
+        - 0.14
+      - - 0.6
+        - 8
+        - 0.485
+        - 15
+        - 0.136
+      - - 0.7
+        - 6
+        - 0.47
+        - 12
+        - 0.125
+    figures_description:
+    - 'Fig S2: SCS vs empirical confusion scatter — 每个点是一个 type pair，x=SCS, y=empirical
+      confusion count。标注 false positive 和 false negative regions。'
+    - 'Fig S3: Threshold sensitivity curve — x=τ, y=F1。平坦区间 [0.3, 0.6] 表明 SDGD robust
+      to threshold choice。'
+    analysis: SCS embedding proxy 在 ρ=0.48-0.52 水平有效，对 SDGD-zero 的实际性能足够。 Threshold
+      sensitivity 分析显示 τ 在 [0.3, 0.6] 区间内 F1 变化 <1pp，使 SDGD-zero 成为 truly zero-shot
+      method (无需 calibration 即可 deploy)。 False negative analysis 为 SDGD-cal 的额外价值提供了解释：calibration
+      发现 了 14 个 SCS 遗漏的 confusion pairs，将它们分到不同 batch 后 F1 额外提升 1.5pp。
+  review_report: '---
+
+    dream_id: dream_20260515T053106
+
+    tier: best
+
+    overall_score: 4 - Weak Accept
+
+    timestamp: 2026-05-15T06:18:29.408390+00:00
+
+    ---
+
+
+    # Dream Review Report: Multi-Channel Schema Degradation in Training-Free LLM IE
+
+
+    ## Paper
+
+    "Multi-Channel Schema Degradation in Training-Free LLM Information Extraction:
+    Isolating Confusability from Count and Operationalizing SDGD"
+
+
+    ## Review Process
+
+    Full roundtable: 2 reviewers (R1: Methods+Experiments, R2: Novelty+Related Work)
+    → independent reviews → cross-sharing → convergence → synthesis.
+
+
+    ---
+
+
+    ## Consolidated Summary
+
+
+    The paper studies why training-free LLM information extraction degrades on complex
+    schemas. It proposes a multi-channel degradation model: Channel 1 (type count
+    → recall decline via capacity bottleneck) and Channel 2 (type confusability →
+    type substitution via semantic interference). Across two tasks (NER on Few-NERD/66
+    types, ED on MAVEN/168 types), two model families (Qwen3-32B, LLaMA-3.3-70B),
+    and a supplementary third task (RE on DocRED/96 types), the paper establishes
+    that these channels are orthogonal and additive (2×2 factorial interaction p=0.82).
+    BCS independently predicts F1 degradation after controlling for type frequency
+    (partial r=0.32 on Few-NERD, r=0.22 on MAVEN, both p<0.005). The paper operationalizes
+    these findings into SDGD (Schema-DAG Guided Decomposition), a graph-coloring framework
+    that partitions types into low-confusability batches, achieving +7.6 F1 on Few-NERD
+    and +6.0 on MAVEN over single-pass baselines.
+
+
+    ---
+
+
+    ## Experiment Coverage
+
+
+    All 12 planned experiments are reflected in the paper:
+
+    - exp-004 (MAVEN replication): Tables 1-3, Sections 5.1-5.2 ✓
+
+    - exp-005 (DocRED generalization): Section 5.5 ✓
+
+    - exp-006 (2×2 factorial): Table 5, Section 5.3 ✓
+
+    - exp-007 (Error taxonomy): Table 6, Section 5.3 ✓
+
+    - exp-012 (LLaMA validation): Table 4, Section 5.2 ✓
+
+    - exp-008 (SDGD-zero Few-NERD): Table 7, Section 5.4 ✓
+
+    - exp-009 (SDGD-zero MAVEN): Table 8, Section 5.4 ✓
+
+    - exp-010 (SDGD-cal Few-NERD): Table 7, Section 5.4 ✓
+
+    - exp-011 (SDGD-cal MAVEN): Table 8, Section 5.4 ✓
+
+    - exp-013 (Random batching ablation): Tables 7-9, Section 6 ✓
+
+    - exp-014 (Per-type splitting): Tables 7-8, Section 6 ✓
+
+    - exp-015 (SCS proxy validation): Section 5.6 ✓
+
+
+    Coverage is **complete**. All planned experiments appear with expected-tier numbers.
+
+
+    ---
+
+
+    ## Strengths (Consensus)
+
+
+    **S1. Well-designed controlled experiments (both reviewers).** The 2×2 factorial
+    design (Table 5) with ANOVA interaction testing is the right methodology for the
+    additivity claim. The near-zero interaction (F=0.05, p=0.82) is convincing. The
+    error taxonomy crossover (Table 6: TypeSub 8%→68%, FalseNeg 62%→15%, χ²=142.3,
+    p=2.1e-24) provides the paper''s strongest mechanistic evidence — it moves beyond
+    correlation to identify distinct error signatures for each channel. These two
+    experiments are the paper''s backbone.
+
+
+    **S2. Transparent confound handling (both reviewers).** The discovery that batch-level
+    BCS-F1 correlation is *positive* (opposite to hypothesis) due to type frequency
+    confounding, and the subsequent pivot to pairwise and per-type analyses, is commendably
+    reported. This kind of methodological honesty is rare and significantly strengthens
+    credibility. The three-layer evidence hierarchy (pairwise → per-type partial →
+    error taxonomy) is well-structured.
+
+
+    **S3. Cross-task and cross-model replication (both reviewers).** Testing on NER
+    (Few-NERD), ED (MAVEN), and RE (DocRED) across two model families demonstrates
+    the phenomenon is not task-specific or model-specific. The 7/10 overlap in top
+    confused pairs between Qwen3-32B and LLaMA-3.3-70B, with confusion matrix rank
+    correlation ρ=0.61, supports the claim that confusability is schema-intrinsic.
+
+
+    **S4. Comprehensive ablation structure (R1).** The gain decomposition (Table 9)
+    cleanly separates count-reduction (+4.1 F1) and confusability-reduction (+3.5
+    F1) contributions. The near-perfect additivity (4.1+3.5=7.6) is consistent with
+    the factorial findings. Random batching ablation is the correct control.
+
+
+    **S5. Practical zero-shot deployability (both reviewers).** SDGD-zero requires
+    no labeled data and is robust to threshold selection (τ ∈ [0.3, 0.6] yields <1pp
+    F1 variation). The cost-quality tradeoff — matching per-type splitting at ~22%
+    API cost — is practically meaningful.
+
+
+    **S6. Genuinely novel decomposition of schema complexity (R2).** The explicit
+    isolation of count from confusability as independent degradation channels with
+    distinct error signatures (omission vs. type substitution) is a real conceptual
+    contribution beyond treating schema complexity as monolithic.
+
+
+    ---
+
+
+    ## Weaknesses (Consensus + Validated Individual)
+
+
+    ### Major
+
+
+    **W1. Small pairwise effect sizes (both reviewers, HIGH PRIORITY).** Pairwise
+    r=0.156 (Few-NERD) and r=0.19 (MAVEN) explain only 2.4% and 3.6% of variance respectively.
+    The paper leans heavily on statistical significance inflated by large sample sizes
+    (n=1,953 and n=14,028 pairs). While the per-type partial correlations are stronger
+    (r=0.32, r=0.22), and the error taxonomy provides mechanistic rather than just
+    correlational evidence, the paper needs to be more forthright about the modest
+    predictive power of BCS as a standalone metric. The gap between "statistically
+    significant predictor" and "practically useful predictor" should be discussed.
+
+
+    **W2. Missing LLM-PEE head-to-head comparison (both reviewers, HIGH PRIORITY).**
+    LLM-PEE already performs embedding-similarity-based type partitioning for LLM
+    IE. The algorithmic difference between "partition by similarity" (LLM-PEE) and
+    "partition by confusability via graph coloring" (SDGD-zero) may be small in practice
+    — both produce batches of semantically dissimilar types. Without a direct comparison
+    on the same datasets, it is impossible to assess SDGD''s marginal contribution
+    over existing methods. This is the most important missing baseline.
+
+
+    **W3. Low absolute performance undermines practical impact claims (both reviewers).**
+    MAVEN F1=0.14-0.16 (even with SDGD-cal) is far below any practical utility threshold.
+    Few-NERD F1=0.49-0.51 is 30+ points below supervised baselines. The paper should
+    position itself primarily as a *diagnostic and analytical* contribution, with
+    SDGD as proof-of-concept operationalization, rather than framing SDGD as a production-ready
+    deployment tool.
+
+
+    **W4. Novelty framing slightly overstated (R2, validated).** That increasing class
+    count hurts recall and that semantically similar classes cause confusion are individually
+    well-known in classification literature. The contribution is demonstrating and
+    quantifying these in *training-free LLM IE with in-prompt schema presentation*
+    — but the "multi-channel degradation model" framing implies more theoretical novelty
+    than exists. The channels are post-hoc labels for two known failure modes, not
+    derived from a formal model of LLM computation. The paper should distinguish "first
+    controlled demonstration in this setting" from "discovery of a new phenomenon."
+
+
+    **W5. No variance reporting for SDGD results (R1, validated).** Tables 7-8 report
+    single-point F1 estimates without confidence intervals or standard deviations.
+    The random batching baseline reportedly uses 5 seeds (std=0.012), but SDGD results
+    appear to be single-run. Without variance estimates, the statistical significance
+    of SDGD-zero vs. random (+3.5pp) is unclear beyond the reported paired t-test.
+
+
+    **W6. Only 2 LLMs tested (R2, validated).** Qwen3-32B and LLaMA-3.3-70B share
+    similar architectural foundations (dense transformer). No proprietary APIs (GPT-4,
+    Claude) and no smaller models (<7B). The generalizability claim would be substantially
+    stronger with a third model from a different paradigm.
+
+
+    ### Minor
+
+
+    **W7. "DAG" misnomer (both reviewers).** The confusability graph is undirected
+    and the algorithm is graph coloring on an undirected graph. "Schema-DAG" in the
+    title is misleading. Should be corrected.
+
+
+    **W8. Broken citations (R2).** All references appear as [?]. This would be a desk-reject
+    issue at any venue. While likely a compilation artifact, it prevents verification
+    of citation completeness.
+
+
+    **W9. "First controlled study" claim needs qualification (R2).** IEPile constructs
+    hard-negative schemas during training; the Familiarity metric studies label similarity
+    effects. The claim should be narrowed to "first controlled study in training-free,
+    inference-time LLM IE."
+
+
+    **W10. SDGD-cal is arguably few-shot (R2).** Using 8-10 calibration examples moves
+    beyond "training-free." The paper should clarify the terminology.
+
+
+    **W11. Incomplete confound controls (R1).** The paper controls for type frequency
+    but not: (a) type definition/label length, (b) hierarchical depth (fine-grained
+    subtypes are both more confusable AND harder), (c) entity/event base rate. Few-NERD''s
+    taxonomy structure potentially confounds BCS with hierarchical proximity.
+
+
+    **W12. WrongType counts not normalized (R1).** Absolute WrongType counts in count
+    curves naturally increase with type count (more types = more confusion opportunities).
+    Should normalize by number of type pairs or predictions.
+
+
+    **W13. Graph coloring is algorithmically standard (both reviewers).** Greedy graph
+    coloring on a thresholded similarity graph is not a methodological contribution.
+    The contribution is the empirical finding and the principled application, which
+    should be framed accordingly.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. **LLM-PEE comparison**: Can you provide a direct head-to-head comparison between
+    SDGD-zero and LLM-PEE''s similarity-based partitioning on Few-NERD and MAVEN?
+    What is the concrete difference in partition quality?
+
+
+    2. **Sentence encoder**: What sentence encoder produces the SCS embeddings? This
+    is critical for reproducibility and for understanding the SCS proxy quality.
+
+
+    3. **Variance**: Can you report confidence intervals or standard deviations for
+    all methods in Tables 7-8 across multiple document samples or random seeds?
+
+
+    4. **Confound controls**: Have you checked whether controlling for type label
+    length or hierarchical depth (in addition to frequency) changes the per-type partial
+    correlation results?
+
+
+    5. **Merge/dedup**: How exactly does cross-batch deduplication work? What confidence
+    scores are used? Table 7 notes dedup impact is ~0.8pp — is this consistent across
+    datasets?
+
+
+    6. **Prompt format interaction**: Do findings hold across different prompt formats
+    (code-style à la GoLLIE vs. natural language)? Schema presentation format could
+    modulate both channels.
+
+
+    7. **Factorial cell sizes**: What are the sample sizes per cell in the 2×2 factorial?
+    Small cells limit ANOVA power.
+
+
+    8. **Batch-level positive correlation implications**: Does the positive batch-level
+    BCS-F1 correlation (before controlling for frequency) mean SDGD could sometimes
+    separate high-frequency, naturally co-occurring types in a way that hurts their
+    extraction?
+
+
+    ---
+
+
+    ## Reviewer Disagreements & Resolution
+
+
+    **R1 flagged "numerical inconsistencies across versions"** as the most critical
+    weakness, citing discrepancies like per-type partial r=0.15 (p=0.082) vs. r=0.32
+    (p=0.002). **Director assessment: This criticism is invalid.** The paper presents
+    a single consistent set of numbers that matches the experiment plan. R1 appears
+    to have hallucinated alternative numbers, possibly confusing the paper''s actual
+    values with hypothetical weaker results. All numbers in the paper are internally
+    consistent. This weakness is **discarded** from the final assessment.
+
+
+    **R2 claimed random batching comparison is missing.** **Director assessment: This
+    criticism is invalid.** Random batching results are clearly reported in Tables
+    7 (F1=0.455), Table 8 (F1=0.11), and Table 9 (gain decomposition). R2 missed these.
+    This weakness is **discarded**.
+
+
+    **R1 claimed BCS is defined inconsistently (max vs. mean).** **Director assessment:
+    This criticism is invalid.** The paper defines BCS as mean pairwise SCS in Eq.
+    2 and uses this consistently. This weakness is **discarded**.
+
+
+    ---
+
+
+    ## Overall Assessment
+
+
+    ### Score: 4 — Weak Accept
+
+
+    ### Justification
+
+    The paper asks an important and underexplored question — what specifically makes
+    complex schemas hard for training-free LLM IE — and provides a methodologically
+    careful answer through well-designed controlled experiments. The 2×2 factorial
+    (interaction p=0.82) and error taxonomy crossover (χ²=142.3) are the standout
+    results, providing convincing evidence for orthogonal degradation channels. The
+    three-layer evidence structure and transparent confound handling demonstrate above-average
+    scientific rigor. SDGD is a clean, practical operationalization with a compelling
+    cost-quality tradeoff.
+
+
+    However, the paper falls short of a clear accept for several reasons: (1) pairwise
+    effect sizes are small (r≈0.16, ~2.5% variance), raising questions about the practical
+    predictive power of BCS; (2) the most important competing baseline (LLM-PEE, which
+    already performs similarity-based type partitioning) is not compared; (3) absolute
+    performance on MAVEN (F1=0.14-0.16) is too low for practical deployment, making
+    the practical impact narrative weaker; (4) the novelty is more demonstrational
+    than conceptual — the individual phenomena are known, and graph coloring is standard;
+    (5) only 2 models are tested. The paper is a solid empirical contribution that
+    would benefit from the LLM-PEE comparison, more candid effect-size discussion,
+    and a framing that emphasizes the diagnostic/analytical contribution over the
+    practical tool narrative.
+
+
+    ### Recommendation
+
+    Suitable for EMNLP 2026 main with revisions addressing W1 (effect size discussion),
+    W2 (LLM-PEE comparison), and W3 (reframing practical claims). Current form is
+    borderline — closer to Findings than main conference without the LLM-PEE comparison.
+
+
+    ### Confidence: 4/5
+
+    Both reviewers are confident in their assessments of experimental methodology
+    and positioning. Main uncertainty is whether LLM-PEE comparison would change the
+    relative contribution assessment.'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/median/paper.pdf
+  imagined_experiments:
+  - name: MAVEN Confusability Study
+    plan_id: exp-004
+    description: '在 MAVEN (168 FrameNet event types) 上复现 Few-NERD 核心发现：count curve
+      + within-count BCS 相关 + pairwise BCS-confusion 分析。跨任务 (NER→ED) 验证 confusability
+      independence。
+
+      '
+    expected_results:
+      count_1_f1: 0.252
+      count_1_precision: 0.17
+      count_1_recall: 0.485
+      count_1_pred_gold_ratio: 2.85
+      count_6_f1: 0.218
+      count_6_recall: 0.29
+      count_14_f1: 0.198
+      count_14_recall: 0.202
+      count_28_f1: 0.21
+      count_28_recall: 0.182
+      count_56_f1: 0.192
+      count_56_recall: 0.146
+      count_84_f1: 0.168
+      count_84_recall: 0.115
+      count_168_f1: 0.135
+      count_168_recall: 0.082
+      pairwise_n_pairs: 14028
+      pairwise_pearson_r: 0.09
+      pairwise_pearson_p: 0.003
+      pairwise_nonzero_spearman_rho: 0.15
+      pairwise_nonzero_spearman_p: 0.025
+      pairwise_count14_r: 0.06
+      pairwise_count14_p: 0.042
+      pairwise_count28_r: 0.1
+      pairwise_count28_p: 0.009
+      batch_f1_bcs_count14_r: 0.12
+      batch_f1_bcs_count14_p: 0.42
+      batch_f1_bcs_count28_r: 0.28
+      batch_f1_bcs_count28_p: 0.14
+      batch_f1_bcs_partial_r: 0.19
+      batch_f1_bcs_partial_p: 0.24
+      confusion_ratio_extreme_count14: 3.2
+      confusion_ratio_extreme_count28: 2.8
+      confusion_ratio_random_count14: 1.5
+      confusion_ratio_random_count28: 1.9
+      per_type_partial_r: 0.14
+      per_type_partial_p: 0.11
+      wrong_type_count_1: 0
+      wrong_type_count_28: 3800
+      wrong_type_count_168: 11500
+      top_pair_1: Giving <-> Sending (BCS=0.784, confusion=89)
+      top_pair_2: Attack <-> Hostile_encounter (BCS=0.761, confusion=72)
+      top_pair_3: Statement <-> Communication (BCS=0.738, confusion=65)
+    result_rationale: 'MAVEN pairwise r=0.09 弱于 Few-NERD 的 0.156，原因：(1) 168 types
+      使 confusion 更分散， 每对 type 的 base confusion rate 更低，稀释了 SCS-confusion 相关；(2) event
+      triggers 通常是 单 token (动词/名词)，surface form 变异小于 entity mention，boundary 信号不足以区分
+      type confusion； (3) FrameNet 事件类型的细粒度语义区分 (如 Giving vs Sending) 在 embedding
+      space 中的 SCS 是不完美的 proxy——实际 confusion 受 context 影响更大。但因 n=14028 远大于 Few-NERD
+      的 1953， 即使 r=0.09 也 significant (p=0.003)。Batch-level 相关不显著 (p=0.24) 复现了 Few-NERD
+      的 frequency confound 问题——在 168 types 上此 confound 更严重因为 type frequency 分布更 skewed
+      (MAVEN 长尾分布，少数高频 event type 主导)。Confusion ratio 在 extreme batches 仅 2.8-3.2x
+      (vs Few-NERD 10-28x)，因 168 types 中极端 BCS batch 的 confusability contrast 被稀释。
+      Count curve 显示 recall 从 0.485 降至 0.082——比 Few-NERD (0.641→0.304) 更陡峭，因 168 types
+      远超模型 attention capacity。
+
+      '
+    tables:
+    - name: MAVEN Count Curve (Qwen3-32B, V2 prompt)
+      columns:
+      - count
+      - F1
+      - Precision
+      - Recall
+      - Pred/Gold
+      - WrongType_count
+      rows:
+      - - 1
+        - 0.252
+        - 0.17
+        - 0.485
+        - 2.85
+        - 0
+      - - 6
+        - 0.218
+        - 0.175
+        - 0.29
+        - 1.66
+        - 620
+      - - 14
+        - 0.198
+        - 0.195
+        - 0.202
+        - 1.04
+        - 1850
+      - - 28
+        - 0.21
+        - 0.248
+        - 0.182
+        - 0.73
+        - 3800
+      - - 56
+        - 0.192
+        - 0.28
+        - 0.146
+        - 0.52
+        - 6200
+      - - 84
+        - 0.168
+        - 0.305
+        - 0.115
+        - 0.38
+        - 8400
+      - - 168
+        - 0.135
+        - 0.34
+        - 0.082
+        - 0.24
+        - 11500
+    - name: MAVEN Pairwise BCS-Confusion Analysis
+      columns:
+      - subset
+      - n_pairs
+      - statistic
+      - value
+      - p
+      rows:
+      - - all
+        - 14028
+        - Pearson r
+        - 0.09
+        - 0.003
+      - - all
+        - 14028
+        - Spearman ρ
+        - 0.1
+        - 0.001
+      - - count_14
+        - 12880
+        - Pearson r
+        - 0.06
+        - 0.042
+      - - count_28
+        - 14028
+        - Pearson r
+        - 0.1
+        - 0.009
+      - - nonzero_only
+        - 580
+        - Spearman ρ
+        - 0.15
+        - 0.025
+    - name: MAVEN Extreme Batch Confusion Ratio
+      columns:
+      - count
+      - high_BCS_confusion_rate
+      - low_BCS_confusion_rate
+      - ratio
+      rows:
+      - - 14
+        - 0.028
+        - 0.0088
+        - 3.2
+      - - 28
+        - 0.038
+        - 0.0136
+        - 2.8
+    figures_description:
+    - 'Fig: MAVEN count curve (F1/P/R vs type count). 与 Few-NERD 并列双面板。Recall 线单调下降
+      (0.485→0.082)，precision 单调上升，F1 inverted-U (peak at count_28)。slope 比 Few-NERD
+      更陡。'
+    - 'Fig: MAVEN pairwise BCS vs confusion count scatter plot. 14028 点 (大部分集中在零附近)，nonzero
+      子集标红，回归线 slope 可见但弱。与 Few-NERD 的 scatter 并列对比。'
+    - 'Fig: MAVEN FrameNet hierarchy 子图——高混淆 sibling 对标注 (Giving/Sending, Attack/Hostile_encounter)，BCS
+      值标注在边上。'
+    analysis: 'MAVEN 跨任务复现方向正确但效应量弱化。Pairwise 分析 (r=0.09, p=0.003) 仍 significant，
+      可作为 Claim 1 的 cross-task supporting evidence，但需承认效应量从 NER 的 r=0.156 降至 ED 的
+      0.09。 Per-type partial r 不显著 (p=0.11)，与 Few-NERD 的 marginal result 一致——两个数据集都显示
+      per-type 层面证据弱于 pairwise。论文叙事应强调：pairwise 分析是免疫 frequency confound 的 mechanistic
+      证据，cross-task 复现确认了现象的 task-agnostic 本质，但效应量的差异需 transparent 报告。 MAVEN 特有的 FrameNet
+      层级结构提供了额外的 qualitative 验证——top confused pairs 全部是 同层级 sibling events，与 FrameNet
+      文献的 14.6-19.8% sibling confusion rate 吻合。 Count curve 的更陡下降 (recall 从 0.485
+      到 0.082) 为 SDGD 在大 schema 上的增益提供了动机。
+
+      '
+  - name: DocRED Confusability Study
+    plan_id: exp-005
+    description: '在 DocRED (96 relation types) 上测试 confusability independence。 Document-level
+      RE 的 scaling stress test。
+
+      '
+    expected_results:
+      count_1_f1: 0.095
+      count_1_recall: 0.21
+      count_6_f1: 0.082
+      count_12_f1: 0.075
+      count_24_f1: 0.068
+      count_48_f1: 0.058
+      count_96_f1: 0.042
+      pairwise_n_pairs: 4560
+      pairwise_pearson_r: 0.055
+      pairwise_pearson_p: 0.065
+      pairwise_nonzero_spearman_rho: 0.1
+      pairwise_nonzero_spearman_p: 0.12
+      per_type_partial_r: 0.08
+      per_type_partial_p: 0.32
+    result_rationale: 'DocRED 的 pairwise r 仅 0.055 (p=0.065，marginal)，原因：(1) document-level
+      RE 的核心难度在于 entity pair identification 和 multi-hop reasoning，这些 confound 远大于
+      type confusability 的效应； (2) relation types 的 confusability 不仅来自语义相似 (如 headquarters_location
+      vs place_of_birth)， 还来自 entity type 重叠——两者难以通过 SCS 单一维度捕获；(3) 96 types 但 document-level
+      评估的 样本量和信号都比 sentence-level NER/ED 更稀疏。训练-free LLM RE 的整体 F1 极低 (0.04-0.10)，
+      在此性能区间，噪声掩盖了 confusability 信号。此结果建议：论文报告 DocRED 作为 "scaling stress test" 但承认
+      RE 任务的额外 confound 限制了 confusability 信号的可检测性。可在 appendix 报告， 不作为主 claim 的核心证据。
+
+      '
+    tables:
+    - name: DocRED Count Curve (Qwen3-32B, V2 prompt)
+      columns:
+      - count
+      - F1
+      - Precision
+      - Recall
+      rows:
+      - - 1
+        - 0.095
+        - 0.058
+        - 0.21
+      - - 6
+        - 0.082
+        - 0.055
+        - 0.175
+      - - 12
+        - 0.075
+        - 0.062
+        - 0.095
+      - - 24
+        - 0.068
+        - 0.07
+        - 0.066
+      - - 48
+        - 0.058
+        - 0.078
+        - 0.046
+      - - 96
+        - 0.042
+        - 0.085
+        - 0.028
+    figures_description:
+    - 'Fig (appendix): DocRED count curve。F1 极低 (0.04-0.10)，recall 下降趋势可见但 noisy。标注
+      training-free RE 的固有难度。'
+    analysis: 'DocRED 结果弱于预期，建议降级为 appendix 材料。主要价值：(1) 确认 count-recall 降解在 RE 任务上也存在
+      (Channel 1 task-agnostic)；(2) 暴露了 confusability 分析在 RE 上的局限—— type confusion
+      被更大的 task-specific confound 掩盖。论文不应将 DocRED 列为 Claim 1 的 核心证据，而是作为 "boundary
+      condition" 讨论：confusability analysis 在 extraction 性能 极低 (<0.10 F1) 时信号被噪声淹没。如时间紧张
+      (P1 优先级)，可完全省略而不损害核心论点。
+
+      '
+  - name: Interaction Effect 2x2
+    plan_id: exp-006
+    description: 'Few-NERD 上 {count_6, count_22} × {low_BCS, high_BCS} 的 2×2 factorial
+      design。 检验 count 和 confusability 的交互效应——additive vs multiplicative。
+
+      '
+    expected_results:
+      count6_lowBCS_f1: 0.338
+      count6_highBCS_f1: 0.28
+      count22_lowBCS_f1: 0.318
+      count22_highBCS_f1: 0.245
+      count6_lowBCS_recall: 0.45
+      count6_highBCS_recall: 0.412
+      count22_lowBCS_recall: 0.295
+      count22_highBCS_recall: 0.248
+      count6_lowBCS_precision: 0.268
+      count6_highBCS_precision: 0.215
+      count22_lowBCS_precision: 0.352
+      count22_highBCS_precision: 0.243
+      count_main_effect_F: 8.2
+      count_main_effect_p: 0.006
+      count_main_effect_eta2: 0.12
+      bcs_main_effect_F: 5.1
+      bcs_main_effect_p: 0.028
+      bcs_main_effect_eta2: 0.08
+      interaction_F: 2.3
+      interaction_p: 0.135
+      interaction_eta2: 0.04
+      additive_prediction_HH: 0.25
+      actual_HH: 0.245
+      super_additive_residual: -0.005
+      count_effect_on_recall: -0.16
+      count_effect_on_precision: 0.052
+      bcs_effect_on_recall: -0.043
+      bcs_effect_on_precision: -0.081
+      n_per_cell: 12
+    result_rationale: 'Count 主效应显著 (F=8.2, p=0.006)：count_6 vs count_22 的 F1 差异 (~2.7
+      points) 主要由 recall 驱动 (0.431→0.272, Δ=-0.160)，确认 Channel 1 (count→recall) 机制。
+      BCS 主效应显著 (F=5.1, p=0.028)：low vs high BCS 的 F1 差异 (~6.5 points) 同时影响 recall
+      和 precision，但 precision 效应更大 (Δ=-0.081)，因为 type confusion 直接导致 precision 下降。
+      Interaction 不显著 (F=2.3, p=0.135)：additive 预测 (0.250) 与实际 (0.245) 仅差 0.5 point，
+      slight super-additivity 因统计功效不足 (n=12/cell) 未达显著。机制解释：count 和 BCS 共享 下游 working
+      memory 资源——当 count 已高时，BCS 的额外负担略微放大，但两个通道的主要机制 (attention allocation vs type
+      discrimination) 仍大致独立。此结果支持 "approximately orthogonal" 但须将 "orthogonal channels"
+      措辞软化为 "largely additive with marginal interaction"。
+
+      '
+    tables:
+    - name: 2×2 Factorial Cell Means (F1 / Recall / Precision)
+      columns:
+      - ''
+      - Low BCS
+      - High BCS
+      - BCS Effect
+      rows:
+      - - Count=6
+        - 0.338 / 0.450 / 0.268
+        - 0.280 / 0.412 / 0.215
+        - -0.058 / -0.038 / -0.053
+      - - Count=22
+        - 0.318 / 0.295 / 0.352
+        - 0.245 / 0.248 / 0.243
+        - -0.073 / -0.047 / -0.109
+      - - Count Effect
+        - -0.020 / -0.155 / +0.084
+        - -0.035 / -0.164 / +0.028
+        - ''
+    - name: Two-Way ANOVA Results
+      columns:
+      - Source
+      - F
+      - p
+      - η²
+      - Verdict
+      rows:
+      - - Count (main)
+        - 8.2
+        - 0.006
+        - 0.12
+        - Significant
+      - - BCS (main)
+        - 5.1
+        - 0.028
+        - 0.08
+        - Significant
+      - - Count × BCS
+        - 2.3
+        - 0.135
+        - 0.04
+        - Not significant
+    figures_description:
+    - 'Fig: 2×2 interaction plot。X 轴 count (6, 22)，Y 轴 F1，两条线 (low/high BCS)。近似平行但
+      high count 端 BCS gap 略大 → mild super-additivity 可视化。附 error bars (±1 SE)。'
+    - 'Fig: Recall 和 Precision 分别的 2×2 interaction plot 并列。Recall 图中 count 线间距大 (Channel
+      1 dominant)，Precision 图中 BCS 线间距大 (Channel 2 dominant)。'
+    analysis: '两个 main effects 均显著 (p<0.05)，interaction 不显著 (p=0.135) → 支持 multi-channel
+      model 的 基本 additive 假设。但 η²(interaction)=0.04 虽不显著，方向是 super-additive (实际 HH
+      比预测 差 0.5 点)，须在论文中 transparent 报告。Channel decomposition 清晰：count 主要影响 recall
+      (Δ=-0.160)，BCS 主要影响 precision (Δ=-0.081)。但 BCS 也影响 recall (Δ=-0.043)，说明 confusability
+      不仅导致 type confusion (precision hit) 还导致部分 entity 被完全遗漏 (model 在 confusable types
+      间犹豫不决时选择不输出)。这为 Claim 2 提供细化： 两通道非完全正交，confusability 有 secondary recall 效应。
+
+      '
+  - name: Error Taxonomy by BCS Bin
+    plan_id: exp-007
+    description: '系统 FP/FN 分类 (type_substitution / boundary_error / false_negative
+      / hallucination)， 按 BCS bin 分层。Claim 2 的 mechanistic evidence。
+
+      '
+    expected_results:
+      high_bcs_type_substitution_pct: 0.47
+      high_bcs_boundary_error_pct: 0.12
+      high_bcs_false_negative_pct: 0.33
+      high_bcs_hallucination_pct: 0.08
+      low_bcs_type_substitution_pct: 0.18
+      low_bcs_boundary_error_pct: 0.15
+      low_bcs_false_negative_pct: 0.55
+      low_bcs_hallucination_pct: 0.12
+      mid_bcs_type_substitution_pct: 0.3
+      mid_bcs_false_negative_pct: 0.45
+      type_sub_monotonic_increase_with_bcs: true
+      false_neg_monotonic_decrease_with_bcs: true
+      boundary_err_monotonic: false
+      hallucination_monotonic: false
+      type_sub_ratio_high_vs_low: 2.6
+      chi2_type_sub_vs_bcs_bin: 18.4
+      chi2_p: 0.001
+    result_rationale: 'High-BCS batch 中 type_substitution 占 47%：当 batch 内包含语义相近的 types
+      (如 person-athlete vs person-artist)，模型正确识别 entity span 但选错 type——这正是 confusability
+      的直接机械效应。 Low-BCS batch 中 false_negative 占 55%：当 types 不 confusable 时，主要错误模式变为
+      entity 遗漏 (模型在 prompt 中看到多个不相关 types，attention 分散导致某些 types 的 entities 被忽略)。
+      趋势不完全干净的原因：(1) boundary_error 不随 BCS 单调变化——它受 entity mention 的 surface form
+      模糊性影响 (如 "New York City" vs "New York")，与 type confusability 部分独立； (2) hallucination
+      在各 bin 间波动 (8-12%)，因为 hallucination 主要由模型的 parametric knowledge 驱动，与 batch confusability
+      无关。Chi-square 检验确认 type_substitution 比例与 BCS bin 显著 相关 (p=0.001)，但整体 error taxonomy
+      不是完美的 four-way separation。
+
+      '
+    tables:
+    - name: Error Distribution by BCS Bin
+      columns:
+      - BCS Bin
+      - type_substitution
+      - boundary_error
+      - false_negative
+      - hallucination
+      - n_errors
+      rows:
+      - - '[0, 0.3)'
+        - 18%
+        - 15%
+        - 55%
+        - 12%
+        - 820
+      - - '[0.3, 0.5)'
+        - 30%
+        - 14%
+        - 45%
+        - 11%
+        - 540
+      - - '[0.5, 0.7)'
+        - 42%
+        - 11%
+        - 38%
+        - 9%
+        - 380
+      - - '[0.7, 1.0]'
+        - 52%
+        - 13%
+        - 28%
+        - 7%
+        - 260
+    - name: Monotonicity Summary
+      columns:
+      - Error Type
+      - Trend with BCS↑
+      - Monotonic?
+      - Chi² p
+      rows:
+      - - type_substitution
+        - ↑ (18→52%)
+        - 'Yes'
+        - '0.001'
+      - - boundary_error
+        - ≈flat (11-15%)
+        - 'No'
+        - '0.62'
+      - - false_negative
+        - ↓ (55→28%)
+        - 'Yes'
+        - '0.003'
+      - - hallucination
+        - ↓ slight (12→7%)
+        - No (non-monotonic at mid)
+        - '0.18'
+    figures_description:
+    - 'Fig: Stacked bar chart，X 轴 BCS bin，Y 轴 error 比例。type_substitution (红) 随 BCS
+      增长明显，false_negative (蓝) 随 BCS 下降。boundary_error 和 hallucination 相对稳定。'
+    - 'Fig: 典型错误案例展示 (qualitative)。High-BCS batch 中 person-athlete 被标为 person-artist
+      的实例；Low-BCS batch 中 entity 完全遗漏的实例。'
+    analysis: 'Error taxonomy 提供了 multi-channel model 最直接的 mechanistic 支持：type_substitution
+      从 18% (low BCS) 上升到 52% (high BCS)，false_negative 从 55% 下降到 28%。这确认了 confusability
+      驱动 type confusion (Channel 2) 而 count/attention dilution 驱动 entity omission
+      (Channel 1)。 但趋势的不完全干净 (boundary_error 无 BCS 趋势、hallucination 非单调) 要求在论文中用 "dominant
+      error modes shift" 而非 "exclusive channels" 的措辞。Chi-square 显著 (p=0.001) 确保 type_substitution-BCS
+      关系有统计支撑。此分析与 exp-002 的 confusion ratio (10-28x) 互补——后者量化了 confusability 对混淆频率的影响，前者量化了
+      confusability 对 error 类型分布的影响。
+
+      '
+  - name: Multi-Model Validation (LLaMA-3.3-70B)
+    plan_id: exp-012
+    description: '用 LLaMA-3.3-70B-Instruct 复现 exp-002 protocol on Few-NERD。 验证 confusability
+      independence 非 model-specific artifact。
+
+      '
+    expected_results:
+      model2_full_schema_f1: 0.385
+      model2_full_schema_precision: 0.59
+      model2_full_schema_recall: 0.285
+      model2_count1_f1: 0.295
+      model2_count1_recall: 0.595
+      model2_count6_f1: 0.278
+      model2_count6_recall: 0.43
+      model2_count12_f1: 0.31
+      model2_count12_recall: 0.305
+      model2_count64_f1: 0.385
+      model2_count64_recall: 0.285
+      model2_pairwise_all_r: 0.09
+      model2_pairwise_all_p: 0.012
+      model2_pairwise_count6_r: 0.04
+      model2_pairwise_count6_p: 0.12
+      model2_pairwise_count12_r: 0.11
+      model2_pairwise_count12_p: 0.008
+      model2_pairwise_nonzero_spearman: 0.17
+      model2_pairwise_nonzero_p: 0.032
+      model2_f1_bcs_partial_r: 0.22
+      model2_f1_bcs_partial_p: 0.11
+      model2_f1_bcs_count12_r: 0.38
+      model2_f1_bcs_count12_p: 0.048
+      model2_per_type_partial_r: 0.15
+      model2_per_type_partial_p: 0.082
+      model2_confusion_ratio_extreme_count12: 7.5
+      model2_confusion_ratio_extreme_count6: 15.2
+      model2_top_pair: person-other <-> person-politician (BCS=0.934, confusion=118)
+    result_rationale: 'LLaMA-3.3-70B 的 pairwise r=0.09 弱于 Qwen3-32B 的 0.156，原因：(1)
+      不同模型家族对 type confusability 有不同的 sensitivity——LLaMA 的 instruction following 和
+      NER 能力与 Qwen 不同， 某些 confusable pairs (如 location subtypes) LLaMA 处理更好，其他 (如
+      person subtypes) 更差， 导致总体 BCS-confusion 相关被 partial cancellation 削弱；(2) LLaMA-3.3
+      在 70B scale 上的 in-context learning 能力可能使其对 type description 的 discrimination
+      更好，降低了 embedding SCS 的预测力 (模型实际 confusion pattern 与 static embedding SCS 的偏差更大)。
+      count_6 pairwise r 不显著 (p=0.12) 因为 6 types 下 confusion event 很少——每个 batch 只有
+      C(6,2)=15 个 type pair，大多数 confusion count 为 0，统计检验功效不足。count_12 仍显著 (r=0.11,
+      p=0.008)。Top confused pair 仍是 person-other ↔ person-politician (确认 confusion
+      结构 model-agnostic)。整体全 schema F1=0.385 略低于 Qwen3 的 0.414，可能因 70B < 32B (FP8
+      quantization 使 Qwen3-32B 的有效参数更多) 或 model architecture 差异。
+
+      '
+    tables:
+    - name: Cross-Model Pairwise Comparison
+      columns:
+      - Metric
+      - Qwen3-32B
+      - LLaMA-3.3-70B
+      - Direction Consistent?
+      rows:
+      - - Pairwise r (all)
+        - 0.156
+        - 0.09
+        - Yes (positive)
+      - - Pairwise p (all)
+        - '4.6e-12'
+        - 0.012
+        - Both significant
+      - - Pairwise r (count_6)
+        - 0.078
+        - 0.04
+        - Yes but LLaMA n.s.
+      - - Pairwise r (count_12)
+        - 0.147
+        - 0.11
+        - 'Yes'
+      - - Nonzero Spearman ρ
+        - 0.254
+        - 0.17
+        - 'Yes'
+      - - Confusion ratio (extreme, c12)
+        - 9.9x
+        - 7.5x
+        - 'Yes'
+      - - Top confused pair
+        - person-other↔politician
+        - person-other↔politician
+        - Same pair
+    - name: LLaMA-3.3-70B Count Curve
+      columns:
+      - count
+      - F1
+      - Precision
+      - Recall
+      rows:
+      - - 1
+        - 0.295
+        - 0.195
+        - 0.595
+      - - 6
+        - 0.278
+        - 0.208
+        - 0.43
+      - - 12
+        - 0.31
+        - 0.33
+        - 0.305
+      - - 22
+        - 0.275
+        - 0.315
+        - 0.245
+      - - 44
+        - 0.398
+        - 0.465
+        - 0.348
+      - - 64
+        - 0.385
+        - 0.59
+        - 0.285
+    figures_description:
+    - 'Fig: 双模型 pairwise BCS-confusion scatter plot 并列。Qwen3 (左) 回归线 slope 更陡 (r=0.156)，LLaMA
+      (右) slope 更平 (r=0.09) 但方向一致。'
+    - 'Fig: 双模型 count curve 叠加在同一坐标系。两条 recall 线均单调下降，LLaMA 稍低但趋势平行。'
+    analysis: 'Multi-model validation 确认 confusability-confusion 关系非 model-specific：方向一致、top
+      confused pair 相同、confusion ratio 均为正。但效应量差异 (0.156 vs 0.09) 要求论文承认 "effect size
+      varies across model families"。count_6 在 LLaMA 上不显著是功效问题 (小样本 + 弱效应)， 不影响 main
+      claim。论文应报告 cross-model comparison table，强调方向一致性而非效应量匹配。 满足 reviewer ">=2 models"
+      要求，但 reviewer 可能追问为什么效应量减半——准备好解释： 不同模型的 internal representation 与 static embedding
+      SCS 的对齐程度不同。
+
+      '
+  - name: SDGD-zero on Few-NERD
+    plan_id: exp-008
+    description: 'Confusability-minimizing batch composition via embedding SCS + graph
+      coloring on Few-NERD (66 types)。 与 single-pass full-schema baseline 对比。
+
+      '
+    expected_results:
+      scs_threshold: 0.5
+      n_edges_above_threshold: 85
+      chromatic_number: 10
+      avg_batch_size: 6.6
+      max_batch_size: 9
+      min_batch_size: 4
+      max_within_batch_scs: 0.42
+      sdgd_zero_f1: 0.437
+      sdgd_zero_precision: 0.405
+      sdgd_zero_recall: 0.474
+      single_pass_f1: 0.414
+      single_pass_precision: 0.648
+      single_pass_recall: 0.304
+      f1_gain_over_single: 2.3
+      n_merge_conflicts: 145
+      merge_conflict_resolution: confidence-based (max logprob)
+      pct_docs_with_conflicts: 0.18
+      sdgd_wrong_type_count: 1280
+      single_pass_wrong_type_count: 2050
+      wrong_type_reduction_pct: 0.375
+      api_calls_per_doc: 10
+      wall_clock_ratio_vs_single: 8.5
+    result_rationale: 'SDGD-zero 在 66-type Few-NERD 上增益有限 (+2.3 F1) 的原因：(1) 66 types
+      的 confusability 负担中等——只有 ~85 个 type pair SCS>0.5 (out of C(66,2)=2145)，graph
+      coloring 的优化空间 有限；(2) single-pass baseline 在 V2 prompt 下已达 F1=0.414，under-prediction
+      (pred/gold=0.47) 是主要瓶颈——SDGD 通过降低 batch size 提升了 recall (+0.170) 但同时降低了 precision
+      (-0.243)， 因为小 batch 促使模型 over-predict；(3) merge step 引入 ~145 个 span conflict
+      (18% docs 受影响)， confidence-based resolution 不完美——部分 conflict 解决错误抵消了 confusability
+      reduction 的收益。 Wrong type count 从 2050 降至 1280 (减少 37.5%) 是 SDGD 的直接 mechanistic
+      效果—— confusable types 被分到不同 batch 后 type confusion 减少。但 F1 gain 仅 2.3 是因为 wrong
+      type reduction 只是 overall error 的一部分——false negative 和 boundary error 未被 SDGD
+      直接解决。 结论：66 types 属于 "中等 schema"，SDGD 增益 marginal，consistent with median tier
+      定义。
+
+      '
+    tables:
+    - name: SDGD-zero vs Single-Pass on Few-NERD
+      columns:
+      - Method
+      - Batches
+      - F1
+      - Precision
+      - Recall
+      - WrongType
+      - API Calls
+      rows:
+      - - Single-pass
+        - 1
+        - 0.414
+        - 0.648
+        - 0.304
+        - 2050
+        - 1
+      - - SDGD-zero
+        - 10
+        - 0.437
+        - 0.405
+        - 0.474
+        - 1280
+        - 10
+      - - Δ
+        - ''
+        - '+2.3'
+        - '-24.3'
+        - '+17.0'
+        - -37.5%
+        - '+9'
+    - name: SDGD Batch Composition Summary
+      columns:
+      - Batch
+      - Size
+      - Max Intra-Batch SCS
+      - Example Types
+      rows:
+      - - 1
+        - 7
+        - 0.38
+        - person-athlete, event-protest, product-car, ...
+      - - 2
+        - 6
+        - 0.35
+        - location-city, art-music, organization-company, ...
+      - - 3
+        - 8
+        - 0.42
+        - person-politician, building-library, event-election, ...
+      - - '...'
+        - '...'
+        - '...'
+        - '...'
+      - - 10
+        - 5
+        - 0.28
+        - other-disease, other-currency, other-language, ...
+    figures_description:
+    - 'Fig: SDGD batch composition 可视化——confusability graph (nodes=types, edges=high
+      SCS pairs)，graph coloring 标注不同颜色。显示 person subtypes 被分到不同 batches。'
+    - 'Fig: Single-pass vs SDGD-zero bar chart (F1, P, R 三组 bars)。标注 F1 gain 和 recall
+      提升。'
+    analysis: 'Few-NERD 上 SDGD-zero 的 +2.3 F1 增益在统计上 marginal (需报 confidence interval)。
+      主要价值在于方向验证——wrong type reduction (37.5%) 确认 confusability-aware grouping 的 mechanistic
+      效果。但在 66-type schema 上，SDGD 的 practical significance 有限—— single-pass 已 decent，decomposition
+      的额外 API cost (10x) 可能不值得。 论文应将 Few-NERD 结果定位为 "proof of concept"，MAVEN 结果才是
+      "practical demonstration"。 Precision-recall tradeoff (precision 下降 24 points
+      but recall 上升 17 points) 需要在论文中 讨论：SDGD 的 batch size reduction 解决了 under-prediction
+      问题，但引入了 over-prediction。 future work 可结合 SDGD + per-type precision calibration。
+
+      '
+  - name: SDGD-zero on MAVEN
+    plan_id: exp-009
+    description: 'SDGD-zero on MAVEN (168 event types)。与 single-pass + random batching
+      对比。 Cross-task validation of SDGD framework (NER→ED)。
+
+      '
+    expected_results:
+      scs_threshold: 0.45
+      n_edges_above_threshold: 230
+      chromatic_number: 22
+      avg_batch_size: 7.6
+      max_batch_size: 11
+      min_batch_size: 5
+      max_within_batch_scs: 0.4
+      sdgd_zero_f1: 0.175
+      sdgd_zero_precision: 0.19
+      sdgd_zero_recall: 0.162
+      single_pass_f1: 0.135
+      single_pass_recall: 0.082
+      random_k22_f1: 0.155
+      random_k22_recall: 0.138
+      f1_gain_over_single: 4.0
+      f1_gain_over_random: 2.0
+      sdgd_vs_single_p: 0.002
+      sdgd_vs_random_p: 0.038
+      sdgd_wrong_type_count: 4200
+      single_pass_wrong_type_count: 11500
+      random_wrong_type_count: 6800
+      api_calls_per_doc: 22
+      wall_clock_ratio_vs_single: 18.5
+      wall_clock_ratio_vs_pertype: 0.2
+    result_rationale: 'MAVEN 上 SDGD-zero 增益更大 (+4.0 F1 over single-pass, +2.0 over
+      random) 的原因： (1) 168 types 的 single-pass baseline 极差 (F1=0.135)——模型在一个 prompt
+      中处理 168 个 event type definition 时严重过载，recall 仅 0.082；SDGD 将 batch size 降至 ~7.6
+      types， recall 从 0.082 提升至 0.162 (几乎翻倍)；(2) FrameNet 层级中 sibling types 的 BCS
+      很高 (119 pairs > 0.5)，random batching 让这些 sibling 有 ~1/22 概率共现——SDGD 将此概率降至零，
+      减少了 FrameNet-specific type confusion；(3) wrong type 从 11500 降至 4200 (63% reduction)，
+      远高于 Few-NERD 的 37.5%，说明 confusability-aware grouping 在大 schema 上价值递增。 SDGD vs
+      random delta (+2.0 F1) 隔离了 confusability-aware grouping 的 contribution—— random
+      也帮助 (by reducing count per batch) 但 SDGD 额外分离了 confusable types。 p=0.002 (vs
+      single-pass) 和 p=0.038 (vs random) 确认显著性。 此结果是论文 Claim 3 的核心证据——在 ≥100 types
+      的大 schema 上 SDGD 有 practical significance。
+
+      '
+    tables:
+    - name: SDGD-zero Comparison on MAVEN (168 types)
+      columns:
+      - Method
+      - Batches
+      - F1
+      - Precision
+      - Recall
+      - WrongType
+      - p vs SDGD
+      rows:
+      - - Single-pass
+        - 1
+        - 0.135
+        - 0.34
+        - 0.082
+        - 11500
+        - 0.002
+      - - Random (k=22)
+        - 22
+        - 0.155
+        - 0.175
+        - 0.138
+        - 6800
+        - 0.038
+      - - SDGD-zero (k=22)
+        - 22
+        - 0.175
+        - 0.19
+        - 0.162
+        - 4200
+        - —
+    - name: Cross-Task SDGD Gain Summary
+      columns:
+      - Dataset
+      - Types
+      - SDGD-zero F1
+      - Single F1
+      - Δ F1
+      - Δ WrongType%
+      rows:
+      - - Few-NERD
+        - 66
+        - 0.437
+        - 0.414
+        - '+2.3'
+        - -37.5%
+      - - MAVEN
+        - 168
+        - 0.175
+        - 0.135
+        - '+4.0'
+        - -63.5%
+    figures_description:
+    - 'Fig: SDGD method comparison bar chart on MAVEN。三组 bars (single / random / SDGD-zero)，F1
+      + WrongType count 双 Y 轴。WrongType 的下降趋势与 F1 gain 呼应。'
+    - 'Fig: SDGD gain vs schema size scatter。X 轴 n_types (66, 168)，Y 轴 Δ F1。两个点 +
+      趋势线显示 gain 随 schema size 增长。附虚线标注 Claim 3 的适用范围 (≥100 types)。'
+    analysis: 'MAVEN 结果确认 SDGD 在大 schema (168 types) 上有 substantial 增益——F1 gain +4.0
+      显著 (p=0.002)。与 Few-NERD 的 +2.3 对比形成清晰趋势：SDGD 的价值随 schema complexity (type count
+      × confusability density) 递增。Cross-task 成功 (NER → ED) 支持 SDGD 的 task-agnostic
+      性质。Random ablation (Δ=+2.0) 确认 confusability-aware grouping 的独立 贡献超越 mere batch
+      count reduction。Wrong type 63.5% 减少是 SDGD 的 headline mechanistic result。论文应将此作为
+      Claim 3 的 primary evidence，Few-NERD 作为 secondary。 局限性：absolute F1=0.175 仍很低——SDGD
+      改善了 relative performance 但 training-free ED 在 168 types 上仍远落后 supervised method。须在论文中
+      frame 为 "SDGD narrows the gap but does not close it" 并指出 remaining error 来自
+      non-confusability sources (count capacity, event trigger ambiguity)。
+
+      '
+  - name: SDGD-cal on Few-NERD
+    plan_id: exp-010
+    description: '用 5-10 calibration examples 构建 empirical confusion matrix，替换 embedding
+      SCS 做 graph coloring。对比 SDGD-zero。
+
+      '
+    expected_results:
+      n_calibration_examples: 8
+      calibration_api_calls: 528
+      empirical_confusion_pairs_discovered: 42
+      overlap_with_scs_top50: 0.62
+      sdgd_cal_f1: 0.449
+      sdgd_cal_precision: 0.415
+      sdgd_cal_recall: 0.488
+      sdgd_zero_f1: 0.437
+      f1_gain_over_zero: 1.2
+      n_batches_changed: 4
+      types_reassigned: 8
+      new_chromatic_number: 11
+      sdgd_cal_vs_zero_p: 0.15
+    result_rationale: 'SDGD-cal 比 SDGD-zero 仅 +1.2 F1 的原因：(1) 8 个 calibration example
+      对 66×66 confusion matrix 的估计很稀疏——C(66,2)=2145 个 pair 中只有 ~42 个被经验观察到 confused，其余是零，
+      matrix 极度 sparse；(2) SCS top-50 confusable pairs 中 62% 与 empirical confusion
+      重合—— embedding proxy 已捕获主要 confusion 结构，calibration 只修正了 38% 的 "surprise" pairs；
+      (3) 修正的 8 个 type 重新分配只影响了 4 个 batch，global batch structure 变化有限。 Calibration
+      的主要价值在于发现 SCS 低估的 confusable pairs (如 art-film ↔ art-broadcastprogram， SCS=0.38
+      但 empirical confusion=12) 和 SCS 高估的 pairs (如 organization-religion ↔ organization-political，SCS=0.72
+      但 confusion=0)。p=0.15 不显著——在 66-type schema 上 calibration 的增量太小。此结果建议 SDGD-cal
+      的价值在大 schema 上更大 (where SCS noise affects more pairs)。
+
+      '
+    tables:
+    - name: SDGD-cal vs SDGD-zero on Few-NERD
+      columns:
+      - Method
+      - F1
+      - P
+      - R
+      - Calibration Cost
+      rows:
+      - - SDGD-zero
+        - 0.437
+        - 0.405
+        - 0.474
+        - 0 examples
+      - - SDGD-cal
+        - 0.449
+        - 0.415
+        - 0.488
+        - 8 examples (528 API calls)
+      - - Δ
+        - '+1.2'
+        - '+1.0'
+        - '+1.4'
+        - ''
+    - name: SCS vs Empirical Confusion Discrepancies (Top 5)
+      columns:
+      - Type Pair
+      - SCS
+      - Empirical Confusion
+      - Direction
+      rows:
+      - - art-film ↔ art-broadcastprogram
+        - 0.38
+        - 12
+        - SCS underestimates
+      - - person-director ↔ person-actor
+        - 0.41
+        - 9
+        - SCS underestimates
+      - - organization-religion ↔ organization-political
+        - 0.72
+        - 0
+        - SCS overestimates
+      - - location-park ↔ location-island
+        - 0.65
+        - 1
+        - SCS overestimates
+      - - person-other ↔ person-scholar
+        - 0.88
+        - 45
+        - SCS accurate
+    figures_description:
+    - 'Fig: SCS vs empirical confusion scatter。每个点是一个 type pair，X=SCS，Y=empirical
+      confusion count。标注 SCS 高估/低估的离群点。回归线 slope 可见但 scatter 大。'
+    analysis: 'Few-NERD 上 SDGD-cal 增益不显著 (p=0.15)，但 mechanistic insight 有价值：SCS 与
+      empirical confusion 的 overlap 为 62% 意味着 embedding proxy 的 precision 约为 0.62——足以用于
+      zero-shot SDGD 但有改进空间。SCS 的主要失败模式：(1) 低估跨 subtree 的 confusion (如 art-film ↔
+      art-broadcastprogram 在 Few-NERD hierarchy 中不是 direct sibling 但实际 highly confused)；(2)
+      高估有明确区分特征的 pairs (如 religion ↔ political 虽语义相近但 entity mention 有明确 lexical 区分)。这些
+      insight 为 exp-015 (SCS validation) 提供预期框架。 对论文的贡献：SDGD-cal 作为 "how much room
+      for improvement exists over zero-shot" 的 upper bound indicator，即使在 66-type schema
+      上增量有限。
+
+      '
+  - name: SDGD-cal on MAVEN
+    plan_id: exp-011
+    description: 'SDGD-cal on MAVEN (168 event types)。Empirical calibration on 168
+      types with 5-10 examples。 Full comparison table。
+
+      '
+    expected_results:
+      n_calibration_examples: 8
+      calibration_api_calls: 1344
+      empirical_confusion_pairs_discovered: 128
+      overlap_with_scs_top100: 0.48
+      sdgd_cal_f1: 0.192
+      sdgd_cal_precision: 0.205
+      sdgd_cal_recall: 0.18
+      sdgd_zero_f1: 0.175
+      f1_gain_over_zero: 1.7
+      sdgd_cal_vs_zero_p: 0.045
+      types_reassigned: 24
+      new_chromatic_number: 24
+      sdgd_cal_wrong_type: 3500
+      sdgd_zero_wrong_type: 4200
+      wrong_type_reduction_vs_zero: 0.167
+    result_rationale: 'SDGD-cal 在 MAVEN 上增益更大 (+1.7 F1, p=0.045 marginal significant)，原因：
+      (1) 168 types 使 SCS 的累积误差更大——SCS top-100 confusable pairs 中只有 48% 与 empirical
+      confusion 重合 (vs Few-NERD 的 62%)，因为 FrameNet 事件类型的细粒度语义区分在 embedding space 中表示不够准确
+      (如 Giving vs Commerce_sell, SCS=0.35 但 empirical confusion 高)； (2) calibration
+      发现了 24 个需要重新分配的 types (vs Few-NERD 的 8)，batch 结构变化更大； (3) wrong type 进一步减少 16.7%
+      (4200→3500) 确认 calibration 修正了 SCS 的 false negatives。 Marginal significance
+      (p=0.045) 勉强过线，robustness 需额外 validation——如换 random seed 重复 calibration sampling，p
+      值可能波动到 0.05 以上。此结果支持 "calibration 对大 schema 有价值"，但收益的 cost-effectiveness (1344
+      额外 API 调用换 +1.7 F1) 需在论文中讨论。
+
+      '
+    tables:
+    - name: Full Comparison Table — MAVEN
+      columns:
+      - Method
+      - k
+      - F1
+      - P
+      - R
+      - WrongType
+      - Total API Calls
+      - p vs best
+      rows:
+      - - Single-pass
+        - 1
+        - 0.135
+        - 0.34
+        - 0.082
+        - 11500
+        - 710
+        - <0.001
+      - - Random (k=22)
+        - 22
+        - 0.155
+        - 0.175
+        - 0.138
+        - 6800
+        - 15620
+        - 0.005
+      - - SDGD-zero
+        - 22
+        - 0.175
+        - 0.19
+        - 0.162
+        - 4200
+        - 15620
+        - 0.045
+      - - SDGD-cal
+        - 24
+        - 0.192
+        - 0.205
+        - 0.18
+        - 3500
+        - 15620+1344
+        - —
+      - - Per-type
+        - 168
+        - 0.195
+        - 0.15
+        - 0.28
+        - 1800
+        - 119280
+        - 0.82
+    - name: Full Comparison Table — Few-NERD
+      columns:
+      - Method
+      - k
+      - F1
+      - P
+      - R
+      - WrongType
+      - Total API Calls
+      - p vs best
+      rows:
+      - - Single-pass
+        - 1
+        - 0.414
+        - 0.648
+        - 0.304
+        - 2050
+        - 500
+        - 0.003
+      - - Random (k=10)
+        - 10
+        - 0.423
+        - 0.395
+        - 0.455
+        - 1650
+        - 5000
+        - 0.08
+      - - SDGD-zero
+        - 10
+        - 0.437
+        - 0.405
+        - 0.474
+        - 1280
+        - 5000
+        - 0.15
+      - - SDGD-cal
+        - 11
+        - 0.449
+        - 0.415
+        - 0.488
+        - 1100
+        - 5000+528
+        - —
+      - - Per-type
+        - 66
+        - 0.47
+        - 0.385
+        - 0.602
+        - 650
+        - 33000
+        - 0.18
+    figures_description:
+    - 'Fig: Full method comparison on MAVEN (grouped bar chart)。五种方法的 F1, P, R 三组
+      bars。标注 statistical significance brackets。'
+    - 'Fig: SDGD-cal vs SDGD-zero 的 batch reassignment 可视化 (MAVEN)。Sankey diagram
+      显示 calibration 后 24 个 types 从原 batch 迁移到新 batch。标注迁移原因 (SCS underestimate/overestimate)。'
+    - 'Fig: Cost-effectiveness plot。X=total API calls，Y=F1。五种方法标点，连 Pareto frontier。SDGD-zero
+      和 SDGD-cal 在 frontier 上，per-type 不在 (cost 太高 for marginal gain)。'
+    analysis: 'MAVEN 上 SDGD-cal 是最佳方法 (F1=0.192)，但与 per-type splitting (F1=0.195)
+      几乎持平 (p=0.82 no significant difference)——这出乎意料地好，因为 SDGD-cal 只用 24 batches vs
+      per-type 的 168。Cost-effectiveness 是 SDGD 的核心卖点：相近质量，~15% latency。 Cross-dataset
+      对比揭示 SDGD 的适用范围：(1) ≥100 types: SDGD-zero already significant, SDGD-cal further
+      improves; (2) 30-66 types: gains marginal, calibration not cost-effective; (3)
+      <30 types: SDGD unnecessary (single-pass sufficient)。这为论文的 Claim 3 限定了清晰的 适用条件。Full
+      comparison table (两个 dataset × 五种方法) 是论文 Table 1 的核心。
+
+      '
+  - name: Random Batching Ablation
+    plan_id: exp-013
+    description: 'Same batch count k as SDGD, random composition。隔离 confusability-aware
+      grouping 的增量贡献。
+
+      '
+    expected_results:
+      random_k10_fewnerd_f1: 0.423
+      random_k10_fewnerd_precision: 0.395
+      random_k10_fewnerd_recall: 0.455
+      sdgd_zero_fewnerd_f1: 0.437
+      delta_fewnerd: 1.4
+      delta_fewnerd_p: 0.08
+      random_k22_maven_f1: 0.155
+      sdgd_zero_maven_f1: 0.175
+      delta_maven: 2.0
+      delta_maven_p: 0.018
+      random_mean_within_batch_bcs_fewnerd: 0.285
+      sdgd_mean_within_batch_bcs_fewnerd: 0.168
+      random_mean_within_batch_bcs_maven: 0.235
+      sdgd_mean_within_batch_bcs_maven: 0.145
+      random_f1_std_fewnerd: 0.008
+      random_f1_std_maven: 0.006
+      n_random_seeds: 5
+    result_rationale: 'Random batching vs single-pass 的增益 (Few-NERD +0.9, MAVEN +2.0)
+      来自纯粹的 batch size reduction (Channel 1 mitigation)——fewer types per batch → higher
+      recall。SDGD 的额外增益 (Few-NERD +1.4, MAVEN +2.0) 来自 confusability-aware grouping
+      (Channel 2 mitigation)—— within-batch BCS 从 random 的 0.285 降至 SDGD 的 0.168，减少了
+      type confusion。 Few-NERD 上 delta=1.4 仅 marginal significant (p=0.08) 因为 66 types
+      中 high-BCS pairs 少， random batching 已有 ~90% 概率将 confusable pairs 分开 (with 10
+      batches, co-occurrence probability = 1/10 = 10%)。MAVEN 上 delta=2.0 significant
+      (p=0.018) 因为 168 types 中 high-BCS pairs 更多 (119 pairs > 0.5)，random batching
+      只有 ~95.5% 概率分开 (with 22 batches, co-occurrence = 1/22 = 4.5%)——但 4.5% of 119
+      pairs ≈ 5.4 confusable pairs 平均 仍同 batch，SDGD 将此降至零。Random F1 的跨 seed variance
+      很小 (σ=0.006-0.008)，确认 ablation 结果 robust。
+
+      '
+    tables:
+    - name: Random vs SDGD Ablation
+      columns:
+      - Dataset
+      - Single-pass F1
+      - Random F1 (mean±σ)
+      - SDGD-zero F1
+      - Δ Random
+      - Δ SDGD-Random
+      - p (SDGD vs Rand)
+      rows:
+      - - Few-NERD (66)
+        - 0.414
+        - 0.423±0.008
+        - 0.437
+        - '+0.9'
+        - '+1.4'
+        - 0.08
+      - - MAVEN (168)
+        - 0.135
+        - 0.155±0.006
+        - 0.175
+        - '+2.0'
+        - '+2.0'
+        - 0.018
+    - name: Within-Batch BCS Analysis
+      columns:
+      - Method
+      - Mean Within-Batch BCS (Few-NERD)
+      - Mean Within-Batch BCS (MAVEN)
+      rows:
+      - - Random
+        - 0.285
+        - 0.235
+      - - SDGD-zero
+        - 0.168
+        - 0.145
+      - - Reduction
+        - -41%
+        - -38%
+    figures_description:
+    - 'Fig: Ablation bar chart。三组 bars (single / random / SDGD) on each dataset。标注
+      decomposition (random - single = Channel 1 gain) and (SDGD - random = Channel
+      2 gain)。'
+    - 'Fig: 5 random seeds 的 F1 分布 (violin plot or dot plot) vs SDGD 的单点。可视化 SDGD
+      consistently above random。'
+    analysis: 'Ablation 成功隔离了两个 contribution：batch size reduction (Channel 1) 和 confusability-aware
+      grouping (Channel 2)。在 MAVEN 上两者贡献相当 (各 +2.0 F1)；在 Few-NERD 上 Channel 1 贡献较小
+      (+0.9) 因为 66 types 的 single-pass recall (0.304) 虽不高但不 catastrophic。 SDGD vs
+      random delta 在 Few-NERD 上 marginal (p=0.08) 是可预期的——这正是 median tier 的 核心特征：SDGD
+      在中等 schema 上增益 marginal。论文应 frame 为："The confusability-aware contribution scales
+      with schema size: moderate on 66 types, significant on 168 types."
+
+      '
+  - name: Per-Type Splitting Ablation
+    plan_id: exp-014
+    description: 'Per-type splitting (1 type per batch, UniNER-style)。质量上限 + latency
+      vs quality tradeoff。
+
+      '
+    expected_results:
+      pertype_fewnerd_f1: 0.47
+      pertype_fewnerd_precision: 0.385
+      pertype_fewnerd_recall: 0.602
+      pertype_fewnerd_api_calls: 33000
+      pertype_fewnerd_wrong_type: 650
+      pertype_maven_f1: 0.195
+      pertype_maven_precision: 0.15
+      pertype_maven_recall: 0.28
+      pertype_maven_api_calls: 119280
+      pertype_maven_wrong_type: 1800
+      sdgd_vs_pertype_f1_ratio_fewnerd: 0.93
+      sdgd_vs_pertype_f1_ratio_maven: 0.897
+      sdgd_vs_pertype_latency_ratio_fewnerd: 0.18
+      sdgd_vs_pertype_latency_ratio_maven: 0.2
+      pertype_merge_conflicts_fewnerd: 850
+      pertype_pct_docs_with_conflicts_fewnerd: 0.72
+      pertype_merge_conflicts_maven: 2400
+      pertype_pct_docs_with_conflicts_maven: 0.85
+    result_rationale: 'Per-type splitting achieves highest recall (Few-NERD 0.602,
+      MAVEN 0.280) because each entity type gets the model''s full attention — no
+      competition from other types. 但 precision 较低 (Few-NERD 0.385, MAVEN 0.150) 因为
+      count_1 的 over-prediction 问题 (pred/gold ~2.85-2.97)：当只给模型一个 type 时， 它倾向于将更多
+      spans 标为该 type。Merge step 产生大量 conflict (72-85% docs 受影响)——当同一 span 被多个 single-type
+      passes 标注时，confidence-based resolution 不完美。 SDGD/per-type F1 ratio 为 0.93 (Few-NERD)
+      和 0.90 (MAVEN)：SDGD 在 ~18-20% latency 下 达到 per-type 90-93% 的 F1——这是 cost-effective
+      的 "sweet spot"。Per-type 的 wrong type 更少 (650 vs SDGD 1280 on Few-NERD) 因为 type
+      confusion 在单 type batch 中不可能发生——所有 wrong type 来自 merge conflict resolution 错误。MAVEN
+      上 per-type F1=0.195 与 SDGD-cal 的 0.192 几乎相同 (p=0.82)，但 API cost 是 7.5x (119280
+      vs 15620+1344)—— 这是 SDGD 最强的 practical argument。
+
+      '
+    tables:
+    - name: Per-Type vs SDGD Tradeoff
+      columns:
+      - ''
+      - Few-NERD (66 types)
+      - MAVEN (168 types)
+      rows:
+      - - Per-type F1
+        - 0.47
+        - 0.195
+      - - SDGD-zero F1
+        - 0.437
+        - 0.175
+      - - SDGD-cal F1
+        - 0.449
+        - 0.192
+      - - SDGD-zero/Per-type F1
+        - 93.0%
+        - 89.7%
+      - - SDGD-cal/Per-type F1
+        - 95.5%
+        - 98.5%
+      - - SDGD Latency/Per-type Latency
+        - 18%
+        - 20%
+      - - Per-type Merge Conflicts
+        - 850 (72% docs)
+        - 2400 (85% docs)
+    figures_description:
+    - 'Fig: Cost-effectiveness Pareto frontier。X=API calls (log scale)，Y=F1。标注 five
+      methods on both datasets。SDGD 在 Pareto frontier 上，per-type 在 frontier 外 (dominated
+      on MAVEN by SDGD-cal)。'
+    - 'Fig: Merge conflict analysis。Per-type 的 conflict 类型分布：correct resolution, type
+      error introduced by merge, span boundary error from merge。显示 merge 是 per-type
+      的主要 bottleneck。'
+    analysis: 'Per-type splitting 是 quality upper bound 但 cost prohibitive——在 MAVEN
+      上 119K API calls 换来的 F1 (0.195) 与 SDGD-cal 的 17K calls (0.192) 几乎相同。这个结果是论文最有力的
+      practical argument："SDGD achieves 93-99% of the decomposition upper bound at
+      18-20% of the cost." Merge conflicts 是 per-type 的 Achilles heel——72-85% docs
+      有 conflict，resolution 引入新错误。 SDGD 的 batch 设计自然减少了 conflict (fewer batches =
+      fewer merge opportunities + each batch has non-confusable types so span overlap
+      is less ambiguous)。论文应 frame per-type as "naive decomposition" 的 upper bound，SDGD
+      as "principled decomposition" 的 practical optimum。
+
+      '
+  - name: SCS Validation (Embedding vs Empirical)
+    plan_id: exp-015
+    description: 'Spearman/Kendall rank correlation between embedding-based SCS and
+      empirical confusion matrix from calibration (exp-010)。验证 embedding proxy 的实际
+      utility。
+
+      '
+    expected_results:
+      spearman_rho: 0.38
+      spearman_p: 1.0e-05
+      kendall_tau: 0.27
+      kendall_p: 3.0e-05
+      top50_pairs_precision: 0.62
+      top50_pairs_recall: 0.45
+      top100_pairs_precision: 0.48
+      top100_pairs_recall: 0.52
+      n_scs_overestimate: 35
+      n_scs_underestimate: 28
+      mean_scs_of_overestimates: 0.68
+      mean_scs_of_underestimates: 0.32
+      fewnerd_spearman: 0.42
+      maven_spearman: 0.34
+    result_rationale: 'Spearman ρ=0.38 的 moderate correlation 反映了 embedding SCS 作为
+      confusability proxy 的 固有局限：(1) SCS 基于 type name/description 的 static embedding，而实际
+      confusion 受 entity mention surface form、context distribution、model-specific
+      representation 共同影响—— static embedding 只能捕获其中的 semantic relatedness component；(2)
+      高 SCS 不必然导致 high confusion——有些语义相近的 types 有明确的 lexical/morphological cue 帮助区分
+      (如 organization-religion vs organization-political，organizations named "Church
+      of X" vs "X Party" 容易区分)；(3) 低 SCS pair 可能因 dataset-specific 原因 highly confused
+      (如 art-film ↔ art-broadcastprogram，在 Few-NERD 中 film/TV 的 entity mention 经常相同)。
+      Few-NERD ρ=0.42 高于 MAVEN ρ=0.34 因为 NER 的 entity type 更直接反映在 entity mention 的
+      surface form 中 (proper nouns 有 type signal)，而 event triggers 更 ambiguous (同一动词
+      可能是不同 event type)。Top-50 precision=0.62 意味着 SCS 推荐的 top-50 confusable pairs
+      中 62% 确实是 empirically confused——足以让 SDGD-zero outperform random，但留有 calibration
+      改进空间。
+
+      '
+    tables:
+    - name: SCS Validation Summary
+      columns:
+      - Metric
+      - Few-NERD
+      - MAVEN
+      - Overall
+      rows:
+      - - Spearman ρ
+        - 0.42
+        - 0.34
+        - 0.38
+      - - Kendall τ
+        - 0.3
+        - 0.24
+        - 0.27
+      - - Top-50 Precision
+        - 0.68
+        - 0.56
+        - 0.62
+      - - Top-50 Recall
+        - 0.5
+        - 0.4
+        - 0.45
+      - - n overestimates (SCS high, confusion low)
+        - 15
+        - 20
+        - 35
+      - - n underestimates (SCS low, confusion high)
+        - 10
+        - 18
+        - 28
+    - name: SCS Failure Mode Examples
+      columns:
+      - Type Pair
+      - SCS
+      - Empirical Confusion
+      - Failure Type
+      - Explanation
+      rows:
+      - - org-religion ↔ org-political
+        - 0.72
+        - 0
+        - Overestimate
+        - Distinctive entity lexical cues
+      - - location-park ↔ location-island
+        - 0.65
+        - 1
+        - Overestimate
+        - Rare co-occurrence in data
+      - - art-film ↔ art-broadcastprogram
+        - 0.38
+        - 12
+        - Underestimate
+        - Shared entity mentions (titles)
+      - - Giving ↔ Commerce_sell
+        - 0.35
+        - 8
+        - Underestimate
+        - Frame semantics not in embeddings
+    figures_description:
+    - 'Fig: SCS vs empirical confusion scatter (log scale Y)。每点一个 type pair。回归线 +
+      confidence band。标注 overestimate zone (top-left) 和 underestimate zone (bottom-right)。Few-NERD
+      蓝点，MAVEN 红点。'
+    - 'Fig: Precision-recall curve for SCS as confusion predictor。X=recall，Y=precision，SCS
+      threshold 从高到低扫描。标注 optimal threshold point。'
+    analysis: SCS validation 为 SDGD 框架的 theoretical grounding 提供了关键证据：ρ=0.38 说明 embedding
+      SCS 是 "useful but imperfect" proxy。这解释了 (1) 为什么 SDGD-zero 优于 random (SCS 捕获了
+      主要 confusion 结构)，(2) 为什么 SDGD-cal 优于 SDGD-zero (calibration 修正了 SCS 的 38% false
+      positive + 55% false negative)，(3) 为什么 MAVEN 上 SCS 更不准确 (ρ=0.34 vs 0.42) 导致
+      SDGD-cal 在 MAVEN 上增益更大 (+1.7 vs +1.2)。 论文应将 SCS validation 放在 method section
+      作为 SDGD 的 justification： "We validate that embedding-based SCS provides a moderate
+      but actionable signal for type confusability (ρ=0.38), sufficient for zero-shot
+      decomposition but improvable with calibration." 此结果也回应 reviewer 对 "confusability
+      measure validity" 的 concern——SCS 不完美但 empirically validated，且 imperfection 有清晰的
+      failure mode taxonomy。
+  review_report: "---\ndream_id: dream_20260515T053106\ntier: median\noverall_score:\
+    \ weak accept — EMNLP Findings recommended, not main conference in current form\n\
+    timestamp: 2026-05-15T06:23:52.638049+00:00\n---\n\n# Dream Review Report: Multi-Channel\
+    \ Schema Degradation in Training-Free LLM IE\n\n**dream_id**: 20260515T053106\
+    \  \n**Review mode**: full (2 Reviewers + Roundtable)  \n**Date**: 2026-05-15\n\
+    \n---\n\n## Paper Summary\n\nThe paper investigates why training-free LLM information\
+    \ extraction degrades on complex schemas. It proposes a two-channel degradation\
+    \ model: type count drives recall decline via attention dilution (Channel 1),\
+    \ while type confusability drives type substitution errors via disambiguation\
+    \ failure (Channel 2). Through controlled experiments on Few-NERD (66 NER types)\
+    \ and MAVEN (168 event types) with two LLM families (Qwen3-32B, LLaMA-3.3-70B),\
+    \ the paper demonstrates these channels are largely additive (interaction F=2.3,\
+    \ p=0.135). The findings are operationalized into SDGD (Schema-DAG-Guided Decomposition),\
+    \ a graph-coloring-based batch composition method that improves F1 by +2.3 on\
+    \ Few-NERD and +4.0 on MAVEN over single-pass baselines, achieving 93–99% of per-type\
+    \ splitting quality at 18–20% of the API cost.\n\n---\n\n## Reviewer R1: Methods\
+    \ and Experiments\n\n### Strengths\n\n**S1. Rigorous factorial design.** The 2×2\
+    \ factorial (count × BCS) with ANOVA is the correct methodology for the additivity\
+    \ claim. Both main effects are significant (count F=8.2, p=0.006; BCS F=5.1, p=0.028)\
+    \ while the interaction is not (F=2.3, p=0.135). The channel decomposition is\
+    \ clean: count primarily affects recall (Δ=−0.160), BCS primarily affects precision\
+    \ (Δ=−0.081).\n\n**S2. Error taxonomy provides mechanistic evidence beyond correlation.**\
+    \ The monotonic crossover — type substitution rising from 18% to 52% with BCS\
+    \ while false negatives fall from 55% to 28% (χ²=18.4, p=0.001) — moves the argument\
+    \ from correlation to identifiable error modes. This is considerably more informative\
+    \ than correlation alone.\n\n**S3. Transparent handling of frequency confound.**\
+    \ The discovery that batch-level BCS–F1 correlation is positive (opposite to hypothesis)\
+    \ and the subsequent pivot to pairwise analysis is commendably reported. This\
+    \ kind of methodological honesty strengthens credibility and constitutes an independent\
+    \ contribution.\n\n**S4. Comprehensive ablation structure.** Random batching (same\
+    \ k) is the correct control for isolating confusability-aware grouping from count\
+    \ reduction. Per-type splitting establishes the quality upper bound. The decomposition\
+    \ of SDGD gains into Channel 1 (batch reduction) and Channel 2 (confusability-aware\
+    \ grouping) components is well-designed.\n\n### Weaknesses\n\n**W1 (Major). Missing\
+    \ head-to-head with LLM-PEE.** LLM-PEE already performs embedding-similarity-based\
+    \ type partitioning for LLM IE. Without a direct comparison on the same datasets,\
+    \ it is impossible to assess SDGD's marginal contribution over existing methods.\
+    \ This is the most critical missing baseline.\n\n**W2 (Major). Small pairwise\
+    \ effect sizes with significance inflated by large n.** Pairwise r=0.156 (Few-NERD)\
+    \ and r=0.09 (MAVEN) explain only 2.4% and 0.8% of variance respectively. With\
+    \ n=1,953 and n=14,028 pairs, trivial correlations achieve extreme significance.\
+    \ The paper should report R² and discuss what explains the remaining 97%+ of confusion\
+    \ variance. The nonzero-subset correlations (ρ=0.254 Few-NERD, ρ=0.15 MAVEN) and\
+    \ per-type partial correlations are stronger but still modest.\n\n**W3 (Major).\
+    \ BCS definition inconsistency.** Equation 2 defines BCS as max pairwise SCS within\
+    \ a batch, but different analyses appear to use max vs. mean interchangeably.\
+    \ The paper should clarify which operationalization is used in each analysis.\n\
+    \n**W4 (Minor-Major). No variance reporting for SDGD results.** SDGD results appear\
+    \ to be single-run point estimates. Random baseline reports std across 5 seeds,\
+    \ but no confidence intervals for SDGD-zero or SDGD-cal. Without variance estimates,\
+    \ the practical significance of small gaps (e.g., SDGD-zero vs random +1.4 on\
+    \ Few-NERD, p=0.08) is hard to assess.\n\n**W5 (Minor). Low absolute performance\
+    \ limits practical claims.** MAVEN F1=0.135–0.192 even with SDGD-cal is far below\
+    \ practical utility. The paper should position SDGD as proof-of-concept rather\
+    \ than production-ready.\n\n**W6 (Minor). Only 2 LLMs tested.** Both Qwen3-32B\
+    \ and LLaMA-3.3-70B are dense open-weight transformers. No proprietary APIs or\
+    \ architecturally diverse models tested.\n\n**W7 (Minor). WrongType counts not\
+    \ normalized.** Absolute WrongType counts naturally increase with type count.\
+    \ Normalization by number of type pairs or predictions is needed.\n\n**W8 (Minor).\
+    \ Incomplete confound controls.** Controls for type frequency but not type label\
+    \ length, hierarchical depth, or entity base rate. BCS likely correlates with\
+    \ hierarchical proximity in Few-NERD.\n\n### Score: 4 (Weak Accept) | Confidence:\
+    \ 4/5\n\n---\n\n## Reviewer R2: Novelty and Related Work\n\n### Strengths\n\n\
+    **S1. The controlled disentanglement is a genuine contribution.** While \"more\
+    \ classes = harder\" and \"similar classes confuse each other\" are individually\
+    \ unsurprising, no prior work has rigorously factored these apart in training-free\
+    \ LLM IE with controlled experiments. The 2×2 factorial with near-zero interaction\
+    \ and the error taxonomy crossover move beyond anecdotal observation to quantified\
+    \ mechanistic evidence. This is the paper's core novelty and it is real.\n\n**S2.\
+    \ Cross-task, cross-model replication.** Demonstrating consistent confusability\
+    \ effects across NER (Few-NERD) and ED (MAVEN), and across two model families\
+    \ with the same top confused pairs, supports the claim that confusability is schema-intrinsic\
+    \ rather than model-specific. This breadth is above average for an empirical IE\
+    \ paper.\n\n**S3. Cost-quality tradeoff is practically meaningful.** SDGD-cal\
+    \ matching per-type splitting quality (0.192 vs 0.195 on MAVEN, p=0.82) at 14%\
+    \ of API cost is a concrete, deployable advantage. The threshold robustness across\
+    \ τ ∈ [0.3, 0.6] makes SDGD-zero genuinely zero-shot deployable.\n\n**S4. Well-structured\
+    \ evidence hierarchy.** The three-layer progression — pairwise correlation → per-type\
+    \ partial correlation → error taxonomy — builds from statistical association to\
+    \ mechanistic explanation, with each layer addressing confounds from the previous.\n\
+    \n### Weaknesses\n\n**W1 (Major). Missing LLM-PEE comparison.** LLM-PEE uses embedding-similarity-based\
+    \ partitioning for large-schema LLM event extraction. SDGD-zero also uses embedding\
+    \ similarity via graph coloring. Without running both on the same datasets, the\
+    \ incremental contribution of graph coloring over similarity-based recall partitioning\
+    \ is unverifiable. This is the single most damaging omission.\n\n**W2 (Major).\
+    \ Novelty framing is overstated.** The \"multi-channel degradation model\" label\
+    \ implies a formal computational model; what exists is an empirical observation\
+    \ that two known factors affect different error types. The word \"model\" should\
+    \ be \"framework\" or \"empirical account.\" The paper should clearly state it\
+    \ provides the first *controlled empirical demonstration* rather than implying\
+    \ theoretical novelty.\n\n**W3 (Major). Related work has significant gaps.** Missing\
+    \ references include:\n- **CROSSAGENTIE** (ACL 2025 Findings): Multi-agent cross-type\
+    \ debate targeting type confusion — the closest conceptual competitor for Channel\
+    \ 2 mitigation.\n- **IEPile** (ACL 2024): Hard-negative schema construction during\
+    \ training — the training-time analog of confusability-aware decomposition.\n\
+    - **GLiNER/GLiNER2**: Non-LLM competitive baselines for zero-shot NER handling\
+    \ large type inventories through parallel extraction.\n- **PARSE** (EMNLP 2025\
+    \ Industry): LLM-driven schema rewriting as alternative schema optimization.\n\
+    \nThe Related Work section (3 short paragraphs) is thin and misses the multi-agent\
+    \ and schema-optimization threads.\n\n**W4 (Major). Small effect sizes need honest\
+    \ scoping.** r=0.156 explains 2.4% of variance. The paper relies on large n for\
+    \ significance but should report R² and discuss the gap between \"statistically\
+    \ significant independent predictor\" and \"strong predictor.\" The SDGD results\
+    \ partially compensate, but the analytical claims need tighter scoping.\n\n**W5\
+    \ (Minor). SCS is simplistic.** Cosine similarity of type name embeddings ignores\
+    \ type definitions, hierarchical relationships, and contextual usage. The SCS\
+    \ validation (ρ=0.38) shows moderate proxy quality. The paper should discuss when\
+    \ SCS fails systematically and whether type descriptions should be incorporated.\n\
+    \n**W6 (Minor). \"DAG\" misnomer in title.** The confusability graph is undirected;\
+    \ graph coloring operates on undirected graphs. Nothing in the method is a DAG.\
+    \ Title should be corrected.\n\n**W7 (Minor). Broken citations.** All references\
+    \ render as [?]. At any venue this risks desk rejection and prevents verifying\
+    \ attribution accuracy.\n\n**W8 (Minor). \"First controlled study\" needs qualification.**\
+    \ Should be narrowed to \"first controlled study isolating confusability from\
+    \ count in training-free, inference-time LLM IE.\"\n\n### Score: 4 (Weak Accept)\
+    \ | Confidence: 4/5\n\n---\n\n## Roundtable Discussion\n\n### Step 2: Cross-Sharing\n\
+    \nR1's methodological concerns (BCS definition inconsistency, WrongType normalization,\
+    \ incomplete confound controls) complement R2's broader positioning critique —\
+    \ together they show the paper has both internal clarity issues and external positioning\
+    \ gaps.\n\nR2's related work gaps (CROSSAGENTIE, IEPile, GLiNER) strengthen R1's\
+    \ LLM-PEE concern: it's not one missing baseline but a pattern of incomplete positioning\
+    \ against the schema-optimization literature.\n\nBoth reviewers independently\
+    \ identified the same top strengths (factorial design, error taxonomy, transparent\
+    \ confound handling) and same top weakness (missing LLM-PEE), lending confidence\
+    \ to the assessment.\n\n### Step 3: Convergence\n\n**Full agreement on:**\n1.\
+    \ Score: 4 (Weak Accept) — both reviewers\n2. Core contribution (factorial + error\
+    \ taxonomy) is genuine and well-executed\n3. Missing LLM-PEE is the #1 weakness\n\
+    4. Small pairwise effect sizes need R² reporting and honest discussion\n5. The\
+    \ paper sits at the main conference / Findings boundary\n6. \"DAG\" in title is\
+    \ a misnomer\n7. Broken citations are a submission-quality issue\n\n**R1 uniquely\
+    \ contributed:** BCS definition inconsistency (max vs mean), variance reporting\
+    \ gap for SDGD, WrongType normalization issue, confound controls beyond frequency.\n\
+    \n**R2 uniquely contributed:** Related work gaps (4 specific missing references),\
+    \ novelty framing critique (\"model\" → \"framework\"), \"first controlled study\"\
+    \ qualification, SCS simplicity discussion.\n\n**No substantive disagreements\
+    \ required resolution.**\n\n### Step 4: Consolidated Assessment\n\n---\n\n## Final\
+    \ Consolidated Review\n\n### Overall Score: 4 (Weak Accept)\n\n### Confidence:\
+    \ 4/5\n\n### Decision Recommendation: EMNLP Findings (not main conference in current\
+    \ form)\n\n### Summary Assessment\n\nThe paper asks an important and well-scoped\
+    \ question — what makes complex schemas hard for training-free LLMs? — and answers\
+    \ it with above-average methodological rigor. The controlled 2×2 factorial design\
+    \ demonstrating additive channels, the error taxonomy showing mechanistic crossover\
+    \ between type substitution and false negatives, and the transparent handling\
+    \ of the frequency confound are genuine contributions that advance understanding\
+    \ of training-free IE. SDGD's cost-quality tradeoff (93–99% of per-type quality\
+    \ at 18–20% cost) is practically meaningful.\n\nHowever, the paper has three clusters\
+    \ of issues that prevent a main-conference recommendation:\n\n**1. Incomplete\
+    \ baselines (Critical).** The missing LLM-PEE comparison is the single most important\
+    \ gap. Both SDGD-zero and LLM-PEE use embedding similarity to partition types\
+    \ — without a head-to-head comparison, SDGD's incremental contribution over existing\
+    \ methods is unverifiable.\n\n**2. Effect size honesty (Major).** Pairwise correlations\
+    \ of r=0.09–0.156 explain <3% of confusion variance. The paper leverages large\
+    \ n for extreme p-values but should report R², discuss what explains the other\
+    \ 97%, and scope the \"independent predictor\" claim accordingly. The SDGD results\
+    \ provide practical validation, but the analytical narrative oversells the predictive\
+    \ power of SCS.\n\n**3. Positioning and presentation (Major).** The Related Work\
+    \ section is thin and misses several directly relevant works (CROSSAGENTIE, IEPile,\
+    \ GLiNER, PARSE). The \"multi-channel model\" framing overpromises theoretical\
+    \ novelty for what is an empirical framework. Broken citations ([?] throughout)\
+    \ are a submission-quality issue. \"DAG\" in the title is a misnomer.\n\n### Strengths\
+    \ (Consolidated, Ranked)\n\n1. **Rigorous factorial design with clean channel\
+    \ separation** — The 2×2 ANOVA with non-significant interaction (p=0.135) and\
+    \ clear channel decomposition (count→recall, BCS→precision) is the correct methodology\
+    \ and produces convincing evidence.\n2. **Error taxonomy provides mechanistic\
+    \ evidence** — Type substitution 18%→52% and false negative 55%→28% across BCS\
+    \ bins (χ²=18.4, p=0.001) is more informative than correlation alone.\n3. **Transparent\
+    \ frequency confound handling** — Reporting the contradictory batch-level result\
+    \ and pivoting to pairwise analysis is unusually honest scientific practice.\n\
+    4. **Cross-task, cross-model replication** — Consistent direction across NER/ED\
+    \ and Qwen/LLaMA, with identical top confused pairs, supports schema-intrinsic\
+    \ claims.\n5. **Comprehensive ablation decomposing SDGD gains** — Random batching\
+    \ control correctly isolates Channel 2 contribution. Per-type splitting establishes\
+    \ upper bound.\n6. **Cost-quality tradeoff is concrete** — SDGD-cal at 14% of\
+    \ per-type API cost with matched F1 is deployable.\n\n### Weaknesses (Consolidated,\
+    \ Ranked)\n\n1. **(Critical) Missing LLM-PEE baseline** — Cannot assess SDGD's\
+    \ incremental value over existing embedding-based partitioning.\n2. **(Major)\
+    \ Small pairwise effect sizes (r=0.09–0.156, R²<3%)** — Significance is driven\
+    \ by large n; practical predictive power of SCS is modest. Per-type partial correlations\
+    \ are marginal (p=0.065–0.11).\n3. **(Major) Related work gaps** — CROSSAGENTIE,\
+    \ IEPile, GLiNER, PARSE are all directly relevant and unmentioned.\n4. **(Major)\
+    \ Novelty framing overstated** — \"Multi-channel degradation model\" implies formal\
+    \ theory; the contribution is an empirical demonstration/framework.\n5. **(Major)\
+    \ BCS definition inconsistency** — Max (Eq. 2) vs. mean used interchangeably across\
+    \ analyses without clarification.\n6. **(Minor-Major) No variance/CI for SDGD\
+    \ results** — Single-run point estimates; key comparisons (SDGD-zero vs random\
+    \ on Few-NERD, p=0.08) are marginal.\n7. **(Minor) Low absolute F1** — MAVEN 0.135–0.192\
+    \ is far from practical utility; should frame as proof-of-concept.\n8. **(Minor)\
+    \ Broken citations** — All references render as [?]; risks desk rejection.\n9.\
+    \ **(Minor) \"DAG\" misnomer** — The confusability graph is undirected; graph\
+    \ coloring is not DAG traversal.\n10. **(Minor) SCS uses only type names** — Ignoring\
+    \ type definitions and hierarchical structure is a missed opportunity; should\
+    \ discuss.\n\n### Questions for Authors\n\n1. Can you run LLM-PEE's partitioning\
+    \ algorithm on Few-NERD and MAVEN and report F1 alongside SDGD? This is essential\
+    \ for assessing incremental contribution.\n2. What sentence encoder produces the\
+    \ SCS embeddings? This is absent and critical for reproducibility.\n3. Can you\
+    \ report R² for all pairwise correlations and discuss what other factors explain\
+    \ the remaining 97%+ of confusion variance?\n4. Is BCS defined as max or mean\
+    \ pairwise SCS? Which operationalization is used in each specific analysis?\n\
+    5. Have you tested whether incorporating type descriptions (not just names) into\
+    \ SCS improves proxy quality?\n6. How do you position against CROSSAGENTIE's reactive\
+    \ cross-type debate approach to type confusion?\n7. Have you checked whether controlling\
+    \ for hierarchical depth changes the per-type partial correlation on Few-NERD?\n\
+    \n### Experiment Coverage Assessment\n\nRelative to the full experiment plan (11\
+    \ experiments), the paper covers all planned experiments:\n- ✅ MAVEN confusability\
+    \ study (exp-004): Fully reported\n- ✅ DocRED study (exp-005): Reported as boundary\
+    \ condition (§9) — appropriate scoping\n- ✅ 2×2 interaction (exp-006): Fully reported\
+    \ with ANOVA\n- ✅ Error taxonomy (exp-007): Fully reported\n- ✅ Multi-model validation\
+    \ (exp-012): Reported in §5.4\n- ✅ SDGD-zero on Few-NERD (exp-008) and MAVEN (exp-009):\
+    \ Table 8\n- ✅ SDGD-cal on Few-NERD (exp-010) and MAVEN (exp-011): Table 11\n\
+    - ✅ Random batching ablation (exp-013): Table 10\n- ✅ Per-type splitting (exp-014):\
+    \ Table 8\n- ✅ SCS validation (exp-015): Table 12\n\nCoverage is comprehensive.\
+    \ The main gap is not in what experiments were run but in what baselines were\
+    \ compared against (LLM-PEE).\n\n### Actionable Revision Suggestions\n\n1. **Add\
+    \ LLM-PEE comparison** on at least MAVEN (where SDGD gains are largest).\n2. **Report\
+    \ R²** alongside r for all pairwise correlations; add a paragraph discussing explained\
+    \ variance.\n3. **Expand Related Work** to cover CROSSAGENTIE, IEPile, GLiNER,\
+    \ and PARSE.\n4. **Rename \"model\" → \"framework\"** throughout when referring\
+    \ to the multi-channel account.\n5. **Fix citations** — all render as [?].\n6.\
+    \ **Clarify BCS operationalization** (max vs mean) in each analysis.\n7. **Add\
+    \ confidence intervals** for SDGD results, or at minimum run 3 seeds.\n8. **Correct\
+    \ \"DAG\"** in title — consider \"Schema-Graph-Guided Decomposition.\"\n9. **Qualify\
+    \ \"first controlled study\"** to scope within training-free inference-time LLM\
+    \ IE.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/artifacts/dream_reports/dream_20260515T053106/worst/paper.pdf
+  imagined_experiments:
+  - name: MAVEN confusability study
+    plan_id: exp-004
+    description: 'Count curve + within-count BCS correlation on MAVEN Event Detection
+      (168 event types, FrameNet hierarchy)。验证 NER→ED 跨任务复现。
+
+      '
+    expected_results:
+      count_curve_recall_at_1: 0.58
+      count_curve_recall_at_6: 0.41
+      count_curve_recall_at_20: 0.3
+      count_curve_recall_at_50: 0.22
+      count_curve_recall_at_100: 0.15
+      count_curve_recall_at_168: 0.1
+      count_curve_f1_at_1: 0.28
+      count_curve_f1_at_6: 0.27
+      count_curve_f1_at_20: 0.26
+      count_curve_f1_at_50: 0.23
+      count_curve_f1_at_100: 0.18
+      count_curve_f1_at_168: 0.13
+      within_count_r_f1_bcs_count6: 0.04
+      within_count_p_f1_bcs_count6: 0.42
+      within_count_r_f1_bcs_count20: 0.08
+      within_count_p_f1_bcs_count20: 0.28
+      partial_r_f1_bcs: 0.05
+      partial_p_f1_bcs: 0.38
+      pairwise_pearson_r: 0.04
+      pairwise_pearson_p: 0.12
+      pairwise_n_pairs: 14028
+      pairwise_nonzero_spearman_rho: 0.06
+      pairwise_nonzero_spearman_p: 0.08
+      confusion_ratio_extreme_high_vs_low: 1.4
+      confusion_ratio_random_high_vs_low: 1.1
+      wrong_type_count_at_1: 0
+      wrong_type_count_at_50: 820
+      wrong_type_count_at_168: 3100
+    result_rationale: 'MAVEN 的 168 个事件类型源于 FrameNet 层级结构，存在大量「同父节点兄弟类型」 （如 Arriving/Departing,
+      Killing/Death），这些兄弟对的 embedding SCS 确实很高。 然而 MAVEN 的关键特征是类型频率分布极度不均：高频事件（如 Causation,
+      Statement） 占据大量标注，而 ~40% 的类型在验证集中仅有 <20 个 mention。在 worst 档下， pairwise BCS-confusion
+      相关不显著（r=0.04, p=0.12），原因在于： (a) MAVEN 事件触发词通常是动词，同一动词在不同上下文中映射不同事件类型， 混淆主要由上下文歧义驱动而非类型名称的
+      embedding 相似度； (b) 低频类型的 confusion 计数极度稀疏（大量 0），pearson r 受 zero-inflation 压制；
+      (c) FrameNet 兄弟类型虽然 SCS 高，但它们的实际混淆更多由 frame element overlap 和 trigger polysemy
+      决定，embedding similarity 无法捕捉这些语用层面的混淆源。 Count curve 仍然展示 recall 单调下降（0.58→0.10），验证
+      count channel， 但 confusability channel 在 MAVEN 上未能独立分离。 Confusion ratio 在极端
+      batch 间仅 1.4x（对比 Few-NERD 的 27.5x）， 说明高 BCS batch 和低 BCS batch 在 MAVEN 上的 type
+      substitution 率差异不显著。
+
+      '
+    tables:
+    - name: 'Table: MAVEN Count Curve (Qwen3-32B, text_match)'
+      content: '| Count |  P     |  R     |  F1    | pred/gold | WrongType |
+
+        |------:|-------:|-------:|-------:|----------:|----------:|
+
+        |     1 | 0.170  | 0.580  | 0.280  |   3.41    |      0    |
+
+        |     6 | 0.195  | 0.410  | 0.270  |   2.10    |    310    |
+
+        |    20 | 0.225  | 0.300  | 0.260  |   1.33    |    640    |
+
+        |    50 | 0.240  | 0.220  | 0.230  |   0.92    |    820    |
+
+        |   100 | 0.215  | 0.150  | 0.180  |   0.70    |   1950    |
+
+        |   168 | 0.185  | 0.100  | 0.130  |   0.54    |   3100    |
+
+        '
+    - name: 'Table: MAVEN Within-Count BCS-F1 Correlation'
+      content: '| Count | r(F1,BCS) |   p    |  n  | Verdict |
+
+        |------:|----------:|-------:|----:|---------|
+
+        |     6 |    0.04   | 0.420  |  25 |  FAIL   |
+
+        |    20 |    0.08   | 0.280  |  25 |  FAIL   |
+
+        | partial|   0.05   | 0.380  |  50 |  FAIL   |
+
+        '
+    - name: 'Table: MAVEN Pairwise BCS-Confusion'
+      content: '| Subset       | n_pairs | Pearson r |    p    | Verdict |
+
+        |--------------|--------:|----------:|--------:|---------|
+
+        | All          |  14028  |   0.040   |  0.120  |  FAIL   |
+
+        | Nonzero-only |    385  |   0.060   |  0.080  |  FAIL   |
+
+        '
+    figures_description:
+    - 'Fig: MAVEN recall curve — 168 types, 单调下降 0.58→0.10，斜率比 Few-NERD 更陡（类型空间 2.5x
+      更大）'
+    - 'Fig: MAVEN pairwise BCS vs confusion scatter — 大量零值聚集在 x 轴，高 BCS 区域无明显上升趋势，r=0.04
+      不显著'
+    - 'Fig: MAVEN confusion ratio bar chart — extreme batch high/low ratio 仅 1.4x，与
+      Few-NERD 27.5x 形成鲜明对比'
+    analysis: 'MAVEN 未能复现 Few-NERD 上的 pairwise BCS-confusion 相关（r=0.04 vs 0.156）。
+      Count channel 依然稳健（recall 单调下降），但 confusability channel 在跨任务验证中失败。 这表明 embedding
+      SCS 作为 confusability proxy 具有任务特异性： 对 NER 的名词性类型标签有效，对 ED 的动词性/事件性标签失效。 MAVEN
+      事件类型的混淆更多由 trigger polysemy 和 frame overlap 驱动， 这些因素无法被静态 embedding 相似度捕捉。 此结果直接支持
+      worst-tier 叙事：confusability 存在但与频率和 schema 结构纠缠， 不可通过 embedding similarity alone
+      分离。
+
+      '
+  - name: DocRED confusability study
+    plan_id: exp-005
+    description: 'Count curve + BCS correlation on DocRED (96 relation types)。 Scaling
+      stress test，关系抽取任务验证。
+
+      '
+    expected_results:
+      count_curve_recall_at_1: 0.32
+      count_curve_recall_at_10: 0.18
+      count_curve_recall_at_30: 0.11
+      count_curve_recall_at_96: 0.05
+      count_curve_f1_at_1: 0.22
+      count_curve_f1_at_96: 0.06
+      pairwise_pearson_r: 0.02
+      pairwise_pearson_p: 0.35
+      partial_r_f1_bcs: -0.03
+      partial_p_f1_bcs: 0.62
+      confusion_ratio_extreme: 1.1
+    result_rationale: 'DocRED 关系抽取整体难度远高于 NER/ED（需要跨句推理，training-free 基线极低）。 96 个关系类型中大量为低频长尾（~30%
+      类型在验证集中 <5 个 instance）。 Embedding SCS 对关系类型更不适用：关系类型名称（如 "country of citizenship"
+      vs "country of origin"）在 embedding 空间确实相似，但实际混淆更多由 entity pair 的语义角色和文档级推理路径决定。Training-free
+      LLM 在 DocRED 上 recall 本身就极低（full schema ~5%），confusability 效应被 floor effect
+      淹没。 Pairwise 相关不显著（r=0.02），partial r 甚至为负（-0.03）， 完全无法支持 confusability independence
+      假设。
+
+      '
+    tables:
+    - name: 'Table: DocRED Count Curve (Qwen3-32B)'
+      content: '| Count |  P     |  R     |  F1    |
+
+        |------:|-------:|-------:|-------:|
+
+        |     1 | 0.150  | 0.320  | 0.220  |
+
+        |    10 | 0.165  | 0.180  | 0.170  |
+
+        |    30 | 0.130  | 0.110  | 0.120  |
+
+        |    96 | 0.085  | 0.050  | 0.060  |
+
+        '
+    figures_description:
+    - 'Fig: DocRED recall curve — 极低 baseline，count=96 时 recall 仅 5%，floor effect
+      明显'
+    analysis: 'DocRED 在 worst 档下进一步确认 embedding SCS 不是通用的 confusability proxy。 关系抽取任务的
+      floor effect（full schema F1=6%）使得 confusability 分析 缺乏统计功率。此实验降级为 appendix 补充材料。
+
+      '
+  - name: Interaction effect 2×2
+    plan_id: exp-006
+    description: '{low count, high count} × {low BCS, high BCS} on Few-NERD。 测试 count
+      和 confusability 的 additive vs multiplicative 交互。
+
+      '
+    expected_results:
+      cell_low_count_low_bcs_f1: 0.34
+      cell_low_count_high_bcs_f1: 0.33
+      cell_high_count_low_bcs_f1: 0.31
+      cell_high_count_high_bcs_f1: 0.3
+      main_effect_count_f1_delta: -0.03
+      main_effect_count_p: 0.04
+      main_effect_bcs_f1_delta: -0.01
+      main_effect_bcs_p: 0.42
+      interaction_f1_delta: 0.0
+      interaction_p: 0.88
+      eta_squared_count: 0.08
+      eta_squared_bcs: 0.01
+      eta_squared_interaction: 0.001
+    result_rationale: '在 worst 档下，Per-type 频率控制后 BCS 主效应消失。2×2 ANOVA 显示： count 主效应显著但效应量小（η²=0.08,
+      p=0.04），BCS 主效应不显著 （η²=0.01, p=0.42），交互效应不显著（η²≈0, p=0.88）。 这意味着 low BCS 和 high
+      BCS batch 在相同 count 条件下 F1 差异仅 ~1 点， 远低于 exp-002 中未控制频率时观察到的差异。count 仍然是主要驱动因素，
+      但 confusability 在控制频率后不提供独立解释力。交互项为零说明 两个因素既非 additive 也非 multiplicative——BCS
+      根本不是独立因素。 这直接支持 "confusability entangled with frequency" 的 worst-tier 叙事。
+
+      '
+    tables:
+    - name: 'Table: 2×2 Factorial Results (Few-NERD, Qwen3-32B)'
+      content: '|            | Low BCS  | High BCS | Δ(BCS) |
+
+        |------------|----------|----------|--------|
+
+        | Low Count  |  0.340   |  0.330   | -0.010 |
+
+        | High Count |  0.310   |  0.300   | -0.010 |
+
+        | Δ(Count)   | -0.030   | -0.030   |  0.000 |
+
+        '
+    - name: 'Table: Two-Way ANOVA Summary'
+      content: '| Source      |   SS   |  df |   F    |   p    |  η²   |
+
+        |-------------|-------:|----:|-------:|-------:|------:|
+
+        | Count       | 0.0180 |   1 |  4.25  | 0.040  | 0.080 |
+
+        | BCS         | 0.0022 |   1 |  0.52  | 0.420  | 0.010 |
+
+        | Count×BCS   | 0.0002 |   1 |  0.05  | 0.880  | 0.001 |
+
+        | Residual    | 0.2100 |  96 |        |        |       |
+
+        '
+    figures_description:
+    - 'Fig: 2×2 interaction plot — 两条线近乎平行且 BCS 方向上几乎无差异，无交互效应'
+    analysis: 'BCS 主效应在控制 type frequency 后消失（p=0.42），交互效应为零。 Count 是唯一显著预测因子。这与 exp-002
+      中 batch-level 正相关的发现一致—— batch-level BCS 效应完全由 type frequency confound 解释。 Pairwise
+      分析中的 r=0.156 可能反映的是类型间的共现模式 而非独立的 confusability 效应。
+
+      '
+  - name: Error taxonomy
+    plan_id: exp-007
+    description: '系统化 FP 分类 (type_substitution / boundary_error / false_negative /
+      hallucination) across BCS bins。Mechanistic evidence for multi-channel model。
+
+      '
+    expected_results:
+      high_bcs_type_substitution_pct: 0.18
+      high_bcs_boundary_error_pct: 0.22
+      high_bcs_false_negative_pct: 0.45
+      high_bcs_hallucination_pct: 0.15
+      low_bcs_type_substitution_pct: 0.15
+      low_bcs_boundary_error_pct: 0.2
+      low_bcs_false_negative_pct: 0.48
+      low_bcs_hallucination_pct: 0.17
+      type_sub_high_vs_low_ratio: 1.2
+      type_sub_chi2_p: 0.18
+      boundary_error_ratio: 1.1
+      fn_ratio: 0.94
+    result_rationale: '在 worst 档下，type_substitution 在 high-BCS 和 low-BCS batch 间无显著差异
+      （比率仅 1.2x, p=0.18）。这是因为一旦控制 type frequency，高 BCS batch 中 额外的 type substitution
+      消失了。exp-002 中观察到的 confusion ratio（27.5x 在 extreme batches）主要来自 frequency 效应：高频类型既有更高的
+      BCS（因为 它们在 Few-NERD 中本身就是 fine-grained 同层级类型），也有更多绝对混淆计数。 当按 per-type frequency
+      标准化后，high-BCS 和 low-BCS 的错误分布几乎相同。 所有 BCS bin 中最主导的错误类型都是 false_negative（~45-48%），
+      这进一步支持 count channel（recall decline）是主要退化机制， 而非 confusability channel（type confusion）。Hallucination
+      比例在两组间 也无差异（15% vs 17%），说明 LLM 的类型替换是随机的而非 confusability-driven。
+
+      '
+    tables:
+    - name: 'Table: Error Taxonomy by BCS Bin (Few-NERD, frequency-controlled)'
+      content: '| Error Type         | High BCS | Low BCS | Ratio | χ² p  |
+
+        |--------------------|----------|---------|-------|-------|
+
+        | Type Substitution  |  18.0%   |  15.0%  |  1.20 | 0.180 |
+
+        | Boundary Error     |  22.0%   |  20.0%  |  1.10 | 0.350 |
+
+        | False Negative     |  45.0%   |  48.0%  |  0.94 | 0.410 |
+
+        | Hallucination      |  15.0%   |  17.0%  |  0.88 | 0.520 |
+
+        '
+    figures_description:
+    - 'Fig: Stacked bar chart — error composition by BCS quintile，各 bin 间 type_substitution
+      占比几乎平坦（15-18%），无显著上升趋势'
+    - 'Fig: Type substitution rate vs BCS bin scatter — 无明显趋势线，回归斜率不显著'
+    analysis: 'Error taxonomy 未能提供 multi-channel 模型的 mechanistic 证据。 Type substitution
+      在 BCS bins 间无显著差异表明：控制频率后， embedding similarity 不预测类型替换错误。False negative 在所有
+      bin 中 稳定主导（~45-48%），支持 count→recall 单调退化作为主要退化机制。 这是 worst-tier 的关键 negative
+      result：multi-channel 模型中的 Channel 2 (confusability→type confusion) 在频率控制后不可独立验证。
+
+      '
+  - name: Multi-model validation
+    plan_id: exp-012
+    description: '用第二个模型（LLaMA-3.3-70B-Instruct）复现 exp-002 协议。 验证 single-model 结果的
+      generalizability。
+
+      '
+    expected_results:
+      llama_count_1_f1: 0.29
+      llama_count_6_f1: 0.28
+      llama_count_12_f1: 0.31
+      llama_count_44_f1: 0.4
+      llama_count_64_f1: 0.37
+      llama_count_1_recall: 0.6
+      llama_count_64_recall: 0.28
+      llama_partial_r_f1_bcs: 0.06
+      llama_partial_p_f1_bcs: 0.33
+      llama_pairwise_r: 0.05
+      llama_pairwise_p: 0.08
+      llama_pairwise_n_pairs: 1953
+      llama_nonzero_spearman_rho: 0.07
+      llama_nonzero_spearman_p: 0.12
+      llama_confusion_ratio_extreme: 1.6
+      llama_confusion_ratio_random: 1.2
+    result_rationale: 'LLaMA-3.3-70B 在 Few-NERD 上的 pairwise BCS-confusion 相关不显著 （r=0.05,
+      p=0.08）或方向不一致。Worst 档的核心预测是： Qwen3-32B 上观察到的 r=0.156 是模型特异性的而非普遍现象。 原因：(a) 不同模型的
+      type embedding 空间不同，Qwen3 的 confusion 模式 可能恰好与 all-MiniLM-L6-v2 的 SCS 对齐，而 LLaMA
+      的不对齐； (b) LLaMA-3.3 作为不同架构和训练数据的模型，其类型混淆模式 可能更多由其预训练数据中的 entity type 共现频率决定，
+      而非类型名称的 surface-level embedding similarity； (c) LLaMA 的 instruction following
+      能力不同于 Qwen， 可能在 type disambiguation 上有不同的 failure mode（如更多 boundary error 而非
+      type substitution）。Count curve 仍展示 recall 单调下降（0.60→0.28）， confirming count
+      channel 跨模型稳健。
+
+      '
+    tables:
+    - name: 'Table: Multi-Model Count Curve Comparison'
+      content: '| Count | Qwen3-32B F1 | LLaMA-3.3-70B F1 | ΔF1   |
+
+        |------:|-------------:|------------------:|------:|
+
+        |     1 |    0.323     |      0.290        | -0.033|
+
+        |     6 |    0.306     |      0.280        | -0.026|
+
+        |    12 |    0.347     |      0.310        | -0.037|
+
+        |    44 |    0.445     |      0.400        | -0.045|
+
+        |    64 |    0.414     |      0.370        | -0.044|
+
+        '
+    - name: 'Table: Multi-Model Pairwise BCS-Confusion'
+      content: '| Model         | n_pairs | Pearson r |    p    | ρ (nonzero) | p
+        (nonzero) |
+
+        |---------------|--------:|----------:|--------:|------------:|------------:|
+
+        | Qwen3-32B     |   1953  |   0.156   | 4.6e-12 |    0.254    |   1.1e-6    |
+
+        | LLaMA-3.3-70B |   1953  |   0.050   |  0.080  |    0.070    |   0.120     |
+
+        '
+    figures_description:
+    - 'Fig: 双模型 recall curve overlay — 两者均单调下降，LLaMA 整体低 ~3-5 点但趋势一致'
+    - 'Fig: 双模型 pairwise scatter — Qwen 有弱上升趋势，LLaMA 近乎平坦'
+    analysis: '第二模型未能复现 pairwise BCS-confusion 相关。Qwen3-32B 上的 r=0.156 可能是模型特异性的：该模型的
+      confusion 模式恰好与 embedding SCS 弱对齐， 但这不是 LLM 的普遍特性。Count channel 跨模型稳健复现。 此结果使得
+      Claim 1 的 "replicated on >=2 models" 条件不满足。
+
+      '
+  - name: SDGD-zero on Few-NERD
+    plan_id: exp-008
+    description: 'Embedding SCS + graph coloring 实现 confusability-minimizing batch
+      composition。 与 single-pass full-schema baseline 对比。
+
+      '
+    expected_results:
+      sdgd_zero_f1: 0.43
+      sdgd_zero_precision: 0.48
+      sdgd_zero_recall: 0.39
+      sdgd_zero_n_batches: 8
+      single_pass_f1: 0.414
+      single_pass_precision: 0.648
+      single_pass_recall: 0.304
+      sdgd_vs_single_pass_delta_f1: 1.6
+      sdgd_vs_single_pass_p: 0.12
+      sdgd_api_calls: 8
+      single_pass_api_calls: 1
+      sdgd_latency_seconds: 48
+      single_pass_latency_seconds: 7
+      sdgd_latency_ratio: 6.86
+    result_rationale: 'SDGD-zero 对比 single-pass 有微弱 F1 提升（+1.6 点），但未达显著性（p=0.12）。
+      提升主要来自 batch size reduction 效应（8 个 batch 平均每个 ~8 types）， 而非 confusability-aware
+      grouping。F1 增益可分解为： (a) recall 提升（0.304→0.39）来自更小的 batch size 减轻 count 压力， (b)
+      precision 下降（0.648→0.48）来自 multi-batch aggregation 引入的 跨 batch 重复预测和合并冲突。净效果微弱且
+      variance 大。 关键问题是 SDGD-zero 的增益与 random batching（exp-013）无显著差异， 说明 confusability-aware
+      grouping 本身不提供额外价值—— 任何 batch size reduction 都能获得类似增益。 Latency 增加 ~7x（48s vs
+      7s for 8 API calls），cost-benefit 不佳。
+
+      '
+    tables:
+    - name: 'Table: SDGD-zero vs Single-Pass (Few-NERD)'
+      content: '| Method       |  P     |  R     |  F1    | #Calls | Latency(s) |
+
+        |--------------|-------:|-------:|-------:|-------:|-----------:|
+
+        | Single-Pass  | 0.648  | 0.304  | 0.414  |      1 |        7   |
+
+        | SDGD-zero    | 0.480  | 0.390  | 0.430  |      8 |       48   |
+
+        | Δ            | -0.168 | +0.086 | +0.016 |    +7  |      +41   |
+
+        '
+    figures_description:
+    - 'Fig: F1 bar chart — SDGD-zero vs single-pass，差异不显著（error bar 重叠）'
+    analysis: 'SDGD-zero 的微弱增益（+1.6 F1）不显著，且主要来自 batch size reduction 而非 confusability-aware
+      grouping。需要 exp-013（random batching ablation） 来确认这一判断。
+
+      '
+  - name: SDGD-zero on MAVEN
+    plan_id: exp-009
+    description: 'SDGD-zero on 168 event types。 与 single-pass + random batching 对比。Cross-task
+      validation。
+
+      '
+    expected_results:
+      sdgd_zero_f1: 0.15
+      single_pass_f1: 0.13
+      sdgd_vs_single_pass_delta: 2.0
+      random_batching_f1: 0.155
+      sdgd_vs_random_delta: -0.5
+      sdgd_n_batches: 12
+      random_n_batches: 12
+      sdgd_latency_seconds: 85
+      single_pass_latency_seconds: 10
+    result_rationale: 'MAVEN 上 SDGD-zero 对比 single-pass 增益 +2.0 F1 点（0.13→0.15）， 看似有提升，但对比
+      random batching（同样 12 batches）甚至略低（-0.5 点）。 这彻底证明增益来自 batch count reduction
+      而非 confusability-aware grouping。 Random batching 在 MAVEN 上略优于 SDGD-zero 的原因可能是：
+      SDGD 的 graph coloring 将相似类型分开，但这导致每个 batch 内类型语义跨度大， LLM 更难维持一致的抽取策略（如一个 batch
+      同时包含 Conflict 事件和 Life 事件）， 反而略增加了混淆。这个 ironic 的结果表明 embedding SCS 不是有效的 confusability
+      proxy——它分离的「相似」类型实际上不是 LLM 的混淆源。
+
+      '
+    tables:
+    - name: 'Table: SDGD-zero vs Baselines (MAVEN)'
+      content: '| Method          |  F1    | #Calls | Latency(s) | ΔF1 vs single |
+
+        |-----------------|-------:|-------:|-----------:|---------------:|
+
+        | Single-Pass     | 0.130  |      1 |        10  |          —     |
+
+        | Random-k12      | 0.155  |     12 |        80  |      +2.5      |
+
+        | SDGD-zero-k12   | 0.150  |     12 |        85  |      +2.0      |
+
+        '
+    figures_description:
+    - 'Fig: MAVEN three-way comparison — SDGD-zero 与 random batching error bar 完全重叠'
+    analysis: 'MAVEN 上 SDGD-zero 不优于 random batching（甚至略低 0.5 点）， 直接否定 embedding SCS
+      作为 confusability proxy 的跨任务有效性。
+
+      '
+  - name: SDGD-cal on Few-NERD
+    plan_id: exp-010
+    description: '用 5-10 个 calibration examples 计算 empirical confusability（无梯度）， 构建
+      SDGD-cal。与 SDGD-zero 对比。
+
+      '
+    expected_results:
+      sdgd_cal_f1: 0.44
+      sdgd_zero_f1: 0.43
+      sdgd_cal_vs_zero_delta: 1.0
+      sdgd_cal_vs_zero_p: 0.28
+      sdgd_cal_n_batches: 8
+      calibration_cost_api_calls: 66
+      total_api_calls: 74
+      sdgd_cal_latency_seconds: 420
+    result_rationale: 'SDGD-cal 使用 empirical confusion matrix 替代 embedding SCS 构建
+      confusability graph， 理论上应更准确。但在 worst 档下，calibration 仅 5-10 examples， empirical
+      confusion matrix 极度稀疏：66 types × 5 examples = 330 predictions， 大多数 type pair
+      的经验混淆计数为 0，无法可靠估计 pairwise confusability。 结果 SDGD-cal 仅比 SDGD-zero 高 1.0 F1
+      点（不显著, p=0.28）， 但 calibration 额外消耗 66 次 API call（每个 type 一次），总 latency 420s（7
+      分钟）， cost-benefit 极差。这是因为少量 calibration data 下 empirical 和 embedding 两种 proxy
+      都不可靠，所获信息增量接近零。
+
+      '
+    tables:
+    - name: 'Table: SDGD-cal vs SDGD-zero (Few-NERD)'
+      content: '| Method     |  F1    | Calibration Calls | Extraction Calls | Total
+        | Latency(s) |
+
+        |------------|-------:|------------------:|-----------------:|------:|-----------:|
+
+        | SDGD-zero  | 0.430  |                 0 |                8 |     8 |        48  |
+
+        | SDGD-cal   | 0.440  |                66 |                8 |    74 |       420  |
+
+        | Δ          | +0.010 |               +66 |                0 |   +66 |      +372  |
+
+        '
+    figures_description:
+    - 'Fig: SDGD-cal vs SDGD-zero — 差异不显著，但 latency 增加 ~9x'
+    analysis: 'Empirical calibration 未能提供有意义的增益。少量 calibration data 下 confusion matrix
+      稀疏度过高，无法克服 embedding proxy 的局限性。 SDGD-cal 作为 contribution 不可行。
+
+      '
+  - name: SDGD-cal on MAVEN
+    plan_id: exp-011
+    description: 'SDGD-cal on 168 event types。Full comparison table。
+
+      '
+    expected_results:
+      sdgd_cal_f1: 0.16
+      sdgd_zero_f1: 0.15
+      random_batching_f1: 0.155
+      per_type_f1: 0.18
+      sdgd_cal_vs_random_delta: 0.5
+      sdgd_cal_vs_per_type_f1_ratio: 0.89
+      sdgd_cal_latency_seconds: 1250
+      per_type_latency_seconds: 1680
+      sdgd_cal_vs_per_type_latency_ratio: 0.26
+      calibration_cost_api_calls: 168
+    result_rationale: '168 个事件类型的 calibration 需要 168 次额外 API call， empirical confusion
+      matrix 更加稀疏（168×167 = 28056 pairs，5 examples 每 type 几乎不可能覆盖）。SDGD-cal 仅比 SDGD-zero
+      高 1 F1 点（0.15→0.16）， 比 random batching 高 0.5 点（不显著）。Per-type splitting 仍是上限（0.18），
+      SDGD-cal 达到其 89%（符合 worst 档预测的 0.8-0.9 ratio）。 但 per-type 的 latency（1680s）远高于
+      SDGD-cal（1250s）， latency ratio 0.26 在 worst 档范围内。核心问题不变： SDGD-cal 的增益来自 batch
+      size reduction，不来自 confusability-aware grouping。
+
+      '
+    tables:
+    - name: 'Table: Full Comparison (MAVEN)'
+      content: '| Method          |  F1    | #Calls | Latency(s) | ΔF1 vs single |
+
+        |-----------------|-------:|-------:|-----------:|---------------:|
+
+        | Single-Pass     | 0.130  |      1 |        10  |          —     |
+
+        | Random-k12      | 0.155  |     12 |        80  |      +2.5      |
+
+        | SDGD-zero-k12   | 0.150  |     12 |        85  |      +2.0      |
+
+        | SDGD-cal-k12    | 0.160  |    180 |      1250  |      +3.0      |
+
+        | Per-Type (k168) | 0.180  |    168 |      1680  |      +5.0      |
+
+        '
+    figures_description:
+    - 'Fig: Full comparison grouped bar chart (MAVEN) — per-type 最高但 latency 最大，SDGD
+      variants 与 random 无显著差异'
+    analysis: 'MAVEN full comparison 确认 SDGD 框架在 worst 档下无实质贡献。 Per-type splitting
+      仍是质量上限，SDGD 变体与 random batching 无显著差异。
+
+      '
+  - name: 'Ablation: random batching'
+    plan_id: exp-013
+    description: 'Same batch count k as SDGD, random composition。 隔离 confusability-aware
+      grouping vs batch count reduction。
+
+      '
+    expected_results:
+      random_k8_f1_fewnerd: 0.435
+      sdgd_zero_k8_f1_fewnerd: 0.43
+      sdgd_vs_random_delta_fewnerd: -0.5
+      sdgd_vs_random_p: 0.72
+      random_k8_f1_std: 0.015
+      random_5_seeds_f1_range:
+      - 0.42
+      - 0.45
+      random_k8_recall: 0.395
+      random_k8_precision: 0.485
+    result_rationale: '这是 worst 档的决定性实验。Random batching（同 k=8）的 F1 为 0.435， 甚至略高于
+      SDGD-zero（0.430），差异 -0.5 点完全不显著（p=0.72）。 5 个 random seed 的 F1 range [0.42, 0.45]
+      完全包含 SDGD-zero 的 0.430。 这直接证明：SDGD 的全部增益来自 batch size reduction（从 64 types single-pass
+      到 ~8 types/batch），confusability-aware grouping 提供零额外价值。 Embedding SCS 不是有效的
+      confusability proxy：基于它的 graph coloring 分离出的类型组合与随机组合在 F1 上无差异。 这是对 Claim 3
+      (SDGD Effectiveness) 的直接否定。
+
+      '
+    tables:
+    - name: 'Table: SDGD vs Random Batching (Few-NERD, k=8)'
+      content: '| Method       |  F1    |  F1 std |  R     |  P     | Δ vs SDGD |   p   |
+
+        |--------------|-------:|--------:|-------:|-------:|----------:|------:|
+
+        | SDGD-zero    | 0.430  |    —    | 0.390  | 0.480  |     —     |   —   |
+
+        | Random (s1)  | 0.420  |    —    | 0.380  | 0.470  |  -1.0     |       |
+
+        | Random (s2)  | 0.445  |    —    | 0.405  | 0.495  |  +1.5     |       |
+
+        | Random (s3)  | 0.430  |    —    | 0.390  | 0.480  |   0.0     |       |
+
+        | Random (s4)  | 0.450  |    —    | 0.410  | 0.500  |  +2.0     |       |
+
+        | Random (s5)  | 0.435  |    —    | 0.395  | 0.485  |  +0.5     |       |
+
+        | Random (avg) | 0.436  |  0.011 | 0.396  | 0.486  |  +0.6     | 0.72  |
+
+        '
+    figures_description:
+    - 'Fig: Box plot — 5-seed random batching 分布完全覆盖 SDGD-zero point estimate'
+    analysis: '决定性 negative result：SDGD-zero 不优于 random batching。 Embedding SCS 不是有效的
+      confusability proxy。 论文中 SDGD 从 contribution 降级为 discussion/future work。
+
+      '
+  - name: 'Ablation: per-type splitting'
+    plan_id: exp-014
+    description: 'Per-type splitting (UniNER-style, 1 type per batch)。 Upper bound
+      on decomposition benefit。
+
+      '
+    expected_results:
+      per_type_f1_fewnerd: 0.5
+      per_type_precision: 0.42
+      per_type_recall: 0.62
+      per_type_n_calls: 64
+      per_type_latency_seconds: 385
+      sdgd_zero_f1: 0.43
+      single_pass_f1: 0.414
+      sdgd_vs_pertype_f1_ratio: 0.86
+      sdgd_vs_pertype_latency_ratio: 0.125
+    result_rationale: 'Per-type splitting 消除了 batch 内所有类型间交互（count=1, BCS=0）， 是 decomposition
+      的理论上限。F1=0.50 比 single-pass（0.414）高 ~9 points， 比 SDGD-zero（0.43）高 ~7 points。SDGD-zero
+      仅达到 per-type 的 86% （在 worst 档的 0.8-0.9 range 内）。 Per-type 的增益主要来自 recall 大幅提升（0.304→0.62），
+      因为每个 batch 只有 1 个 type，模型不需要在多个类型间分配注意力。 但 precision 下降（0.648→0.42），因为 per-type
+      提示下模型倾向于 over-extract（只被告知一个类型时，模型会将更多 span 标注为该类型）。 Latency 385s（64 次 API call），是
+      SDGD-zero 的 8x（48s）。 SDGD-zero 的 latency ratio 0.125 在 worst 档范围下限。 结论：per-type
+      splitting 虽然质量最高，但 SDGD 并非 "match per-type at lower cost" 的有效中间方案——它只是 random
+      batching 的等价物。
+
+      '
+    tables:
+    - name: 'Table: Decomposition Strategy Comparison (Few-NERD)'
+      content: '| Method       |  P     |  R     |  F1    | #Calls | Latency(s) |
+        F1/PerType |
+
+        |--------------|-------:|-------:|-------:|-------:|-----------:|-----------:|
+
+        | Single-Pass  | 0.648  | 0.304  | 0.414  |      1 |          7 |    0.83    |
+
+        | Random-k8    | 0.486  | 0.396  | 0.436  |      8 |         48 |    0.87    |
+
+        | SDGD-zero-k8 | 0.480  | 0.390  | 0.430  |      8 |         48 |    0.86    |
+
+        | Per-Type     | 0.420  | 0.620  | 0.500  |     64 |        385 |    1.00    |
+
+        '
+    figures_description:
+    - 'Fig: Pareto frontier — latency vs F1，per-type 在右上角，SDGD 和 random 在中间重叠，single-pass
+      在左下'
+    analysis: 'Per-type splitting 作为上限证明 batch decomposition 有价值， 但 SDGD 的 confusability-aware
+      grouping 不提供超越 random 的增益。 论文可以报告 per-type 作为 practical baseline， 并讨论 "intelligent
+      decomposition" 为何难以超越简单方案。
+
+      '
+  - name: SCS validation
+    plan_id: exp-015
+    description: 'Embedding SCS vs empirical confusion matrix 的 rank correlation。
+      验证 embedding proxy 的实际有效性。
+
+      '
+    expected_results:
+      spearman_rho_scs_vs_empirical: 0.12
+      spearman_p: 0.03
+      kendall_tau: 0.09
+      kendall_p: 0.04
+      top_10_empirical_pairs_in_top_10_scs: 2
+      top_10_overlap_pct: 0.2
+      scs_auc_for_confusion_binary: 0.56
+    result_rationale: 'Embedding SCS 与 empirical confusion 的 rank correlation 很弱（ρ=0.12），
+      虽然由于 n=1953 pairs 而 p<0.05（统计显著），但实际效应量极小。 Top-10 overlap 仅 20%（10 个最高经验混淆 pair
+      中仅 2 个也在最高 SCS pair 中）， 说明 embedding similarity 无法预测真实的混淆热点。 AUC=0.56（仅略高于 random
+      0.50），进一步证明 SCS 作为 binary confusion classifier 几乎无用。原因：(a) embedding similarity
+      捕捉的是语义接近性， 但 LLM 的 type confusion 更多由 schema 中的 type definition overlap、 training
+      data 中的 type co-occurrence 和 prompt format 驱动； (b) 高 SCS pair 中很多是语义相关但 LLM
+      不混淆的 （如 "building-library" 和 "building-hotel" SCS 高但 LLM 不混淆）； (c) 低 SCS pair
+      中有些 LLM 频繁混淆 （如 "person-other" 和 "organization-other" SCS 较低但因 "other" 标签 歧义导致大量混淆）。这是
+      worst 档的关键 negative result， 直接否定 embedding SCS 作为 practical confusability proxy
+      的可行性。
+
+      '
+    tables:
+    - name: 'Table: SCS vs Empirical Confusion Correlation'
+      content: '| Metric               | Value  |   p    |
+
+        |----------------------|-------:|-------:|
+
+        | Spearman ρ           |  0.12  | 0.030  |
+
+        | Kendall τ            |  0.09  | 0.040  |
+
+        | Top-10 overlap       |  2/10  |   —    |
+
+        | AUC (binary)         |  0.56  |   —    |
+
+        '
+    - name: 'Table: Top-10 Empirical vs SCS Mismatch'
+      content: '| Rank | Top Empirical Pair                          | In Top-10 SCS?
+        |
+
+        |-----:|---------------------------------------------|----------------|
+
+        |    1 | person-other ↔ person-politician            |      Yes       |
+
+        |    2 | person-other ↔ organization-other           |       No       |
+
+        |    3 | location-GPE ↔ location-bodiesofwater       |       No       |
+
+        |    4 | person-scholar ↔ person-artist              |      Yes       |
+
+        |    5 | building-library ↔ building-other           |       No       |
+
+        |    6 | event-sportsevent ↔ event-other             |       No       |
+
+        |    7 | organization-company ↔ organization-other   |       No       |
+
+        |    8 | person-athlete ↔ person-other               |       No       |
+
+        |    9 | location-GPE ↔ location-other               |       No       |
+
+        |   10 | product-car ↔ product-other                 |       No       |
+
+        '
+    figures_description:
+    - 'Fig: SCS vs empirical confusion scatter — 大量离散点，ρ=0.12 的回归线几乎平坦'
+    - 'Fig: ROC curve — AUC=0.56，几乎贴合对角线'
+    analysis: SCS 作为 confusability proxy 在实证检验中几乎失效（AUC=0.56 ≈ random）。 Top confused
+      pairs 多涉及 "-other" 标签歧义，这是 schema design issue 而非 embedding similarity 能捕捉的。此
+      negative result 成为论文的 核心方法学贡献之一：证明 embedding similarity ≠ LLM confusability。
+  review_report: '---
+
+    dream_id: dream_20260515T053106
+
+    tier: worst
+
+    overall_score: 3/6 Borderline Reject — Findings with revisions
+
+    timestamp: 2026-05-15T06:32:35.443496+00:00
+
+    ---
+
+
+    # Dream Review Report: Anatomy of Schema Complexity in Training-Free LLM IE
+
+
+    **Paper**: "Anatomy of Schema Complexity in Training-Free LLM Information Extraction:
+    A Controlled Study of Type Count, Confusability, and Their Entanglement"
+
+
+    **Review mode**: Full (2 Reviewers + Roundtable)
+
+    **Target venue standard**: Top ML venue (acceptance ~25%), 6-point scale
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    R1 (Methods & Experiments) scored **4/6**; R2 (Novelty & Related Work) scored
+    **3/6**. After cross-sharing, R1 maintained 4/6 while R2 maintained 3/6. The reviewers
+    converged on several key issues but diverged on severity. The consolidated score
+    is **3/6 (Borderline Reject)**, with a recommendation for **EMNLP Findings** as
+    a realistic outcome.
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper conducts a controlled empirical study isolating type count from type
+    confusability as degradation drivers in training-free LLM IE, across 3 tasks (Few-NERD/66
+    types, MAVEN/168 types, DocRED/96 types) and 2 models (Qwen3-32B, LLaMA-3.3-70B).
+    The core finding is negative: embedding-based confusability (SCS via all-MiniLM-L6-v2)
+    does not independently predict extraction degradation once type frequency is controlled.
+    Four findings are claimed: (1) count→recall monotonic degradation, (2) SCS fails
+    as independent predictor (partial r=0.05, p=0.38 on MAVEN; BCS main effect p=0.42
+    in factorial on Few-NERD), (3) pairwise BCS-confusion on Qwen3 (r=0.156) doesn''t
+    replicate on LLaMA (r=0.05, p=0.08), (4) SDGD provides no gain over random batching
+    (ΔF1=−0.5, p=0.72).
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    The paper covers all 12 planned experiments from the experiment design:
+
+
+    | Experiment | Covered | Location |
+
+    |---|---|---|
+
+    | exp-004: MAVEN confusability | ✓ | Tables 2, 6, 7 |
+
+    | exp-005: DocRED confusability | ✓ | Table 3, Appendix A |
+
+    | exp-006: 2×2 factorial interaction | ✓ | Tables 4, 5 |
+
+    | exp-007: Error taxonomy | ✓ | Table 8 |
+
+    | exp-008: SDGD-zero Few-NERD | ✓ | Tables 11, 12 |
+
+    | exp-009: SDGD-zero MAVEN | ✓ | Table 13 |
+
+    | exp-010: SDGD-cal Few-NERD | ✓ | Table 11, Appendix B |
+
+    | exp-011: SDGD-cal MAVEN | ✓ | Table 13 |
+
+    | exp-012: Multi-model validation | ✓ | Tables 1, 7 |
+
+    | exp-013: Random batching ablation | ✓ | Table 12 |
+
+    | exp-014: Per-type splitting | ✓ | Table 11 |
+
+    | exp-015: SCS validation | ✓ | Tables 9, 10 |
+
+
+    Coverage is complete. All planned experiments appear in the paper.
+
+
+    ---
+
+
+    ## Consolidated Strengths
+
+
+    **S1. The frequency–confusability confound is a genuine methodological contribution.**
+    (Both reviewers agree.) The discovery that batch-level BCS-F1 correlations are
+    confounded by type frequency — high-frequency types tend to be fine-grained subtypes
+    with both high SCS and high F1 — is valuable. Any future confusability study in
+    IE must account for this. This finding has lasting methodological value beyond
+    this paper.
+
+
+    **S2. Count→recall degradation is cleanly and robustly demonstrated.** (Both reviewers
+    agree.) Monotonic recall decline across 3 tasks, 2 models, and multiple count
+    levels (0.58→0.10 on MAVEN, 0.60→0.28 on Few-NERD) is the paper''s most solid
+    finding. The consistency is convincing.
+
+
+    **S3. Honest negative-result framing.** (R2, acknowledged by R1.) Rather than
+    inflating weak signals into overclaimed contributions, the paper directly confronts
+    the failure of its initial hypothesis. This intellectual honesty is rare and valuable.
+
+
+    **S4. Sound experimental design in conception.** (Both reviewers agree.) The three-pronged
+    methodology — count curves, 2×2 factorial, pairwise analysis — is the correct
+    framework for disentangling count from confusability. The pairwise analysis is
+    appropriately identified as immune to the frequency confound that plagues batch-level
+    analysis.
+
+
+    **S5. SCS proxy validation is informative.** (Both reviewers agree.) AUC=0.56
+    (near random) for predicting empirical confusion, with only 2/10 top-pair overlap,
+    provides a clear, quantified indictment of embedding-based confusability proxies.
+    The analysis of *why* SCS fails (e.g., "-other" label ambiguity driving real confusion)
+    is actionable.
+
+
+    **S6. Random batching ablation is the right control.** (Both reviewers agree.)
+    Comparing SDGD to random batching at the same k isolates confusability-aware grouping
+    from batch-size reduction. SDGD falling within the variance of 5 random seeds
+    (Table 12) is clean evidence.
+
+
+    ---
+
+
+    ## Consolidated Weaknesses
+
+
+    ### Major
+
+
+    **W1. The negative result on confusability is partially self-inflicted by a weak,
+    unvalidated proxy.** (R2 primary, R1 concurs.) The paper uses all-MiniLM-L6-v2
+    embeddings of type *names only* as its confusability proxy. When this proxy fails
+    (AUC=0.56), the paper concludes confusability does not independently predict degradation.
+    But this conflates "our specific operationalization of confusability fails" with
+    "confusability is not a real phenomenon." The paper''s own Qwen3 pairwise result
+    (r=0.156, p=4.6e-12) is strong evidence that confusability IS a factor — just
+    one poorly captured by static name embeddings. No alternative proxy was tested
+    (e.g., type definition embeddings, LLM-internal representations, hierarchical
+    distance). The paper''s central negative claim overgeneralizes from a single weak
+    proxy to a claim about the phenomenon itself. This is the paper''s most fundamental
+    limitation.
+
+
+    **W2. The SDGD null result follows tautologically from the weak proxy.** (R2 primary,
+    R1 partially agrees.) If SCS is near-random as a confusability proxy (AUC=0.56),
+    then graph coloring on an uninformative similarity graph will naturally produce
+    partitions no better than random. The SDGD-vs-random comparison tests whether
+    SCS contains usable signal for partitioning, not whether confusability-aware decomposition
+    is inherently useless. An oracle SDGD ablation (using the empirical confusion
+    matrix for partitioning) is critically missing. Without it, the paper cannot distinguish
+    "confusability-aware decomposition is useless" from "our confusability proxy is
+    useless for decomposition."
+
+
+    **W3. The non-replication claim on LLaMA is statistically underspecified.** (R2
+    primary, R1 partially agrees.) Qwen3 r=0.156 (p=4.6e-12) vs LLaMA r=0.05 (p=0.08).
+    The paper treats p=0.08 as "failure to replicate" but does not report a Fisher''s
+    z-test to formally compare the two correlations. Are r=0.156 and r=0.05 significantly
+    different from each other? Without this test, the "model-specificity" claim is
+    not properly supported. Additionally, differences in model architecture, scale
+    (32B vs 70B), and potentially quantization are uncontrolled confounds.
+
+
+    **W4. Related work is critically thin (~1/3 page).** (Both reviewers agree.) For
+    a paper whose core contribution is methodological and analytical, the literature
+    coverage is inadequate. Missing important references: embedding-based type partitioning
+    methods (LLM-PEE deserves detailed comparison, not just a mention), code-style
+    schema approaches (GoLLIE), non-LLM competitive baselines (GLiNER), multi-agent
+    approaches to type confusion (CrossAgentIE), hard-negative schema construction
+    (IEPile), and description-driven zero-shot NER systems. The paper critiques prior
+    work''s unvalidated assumptions but does not sufficiently engage with that prior
+    work.
+
+
+    **W5. All citations are broken.** (R2, confirmed by both.) Every reference renders
+    as [?]. This makes it impossible to verify claims about prior work, check attribution,
+    or assess fair positioning. At any venue, this risks desk rejection and signals
+    an unfinished manuscript.
+
+
+    **W6. No variance or confidence intervals for key SDGD comparisons.** (R1 primary,
+    R2 agrees.) Tables 11 and 13 report single-point F1 for SDGD-zero and SDGD-cal
+    without standard deviations or bootstrap CIs. Random batching uses 5 seeds (std=0.011),
+    but SDGD variants appear to be single runs. Statistical significance claims for
+    SDGD comparisons require proper uncertainty quantification.
+
+
+    ### Moderate
+
+
+    **W7. Small effect sizes not adequately contextualized.** (Both reviewers agree.)
+    The pairwise r=0.156 on Few-NERD/Qwen3 explains only 2.4% of variance. The paper
+    relies on p-values inflated by large sample sizes (n=1,953 pairs) without discussing
+    R², practical predictive power, or the gap between statistical and practical significance.
+    The paper should explicitly state what fraction of confusion variance BCS explains
+    vs. other factors.
+
+
+    **W8. Only 2 models tested for generality claims.** (Both reviewers agree.) Two
+    open-weight dense transformers is the minimum for cross-model validation. No proprietary
+    APIs (GPT-4, Claude), no MoE architectures, no smaller models. The "model-specificity"
+    claim rests on a single non-replication, which is anecdotal rather than systematic
+    evidence.
+
+
+    **W9. DocRED is severely underpowered (F1=6% at full schema).** (Both reviewers
+    agree.) Floor effect eliminates statistical power for confusability analysis.
+    The paper acknowledges this but still counts it as a "third task" for cross-task
+    validation, inflating apparent breadth. Pairwise r=0.02 (p=0.35) and partial r=−0.03
+    (p=0.62) are uninformative given the floor.
+
+
+    **W10. Multiple hypothesis testing without correction.** (R1 primary.) The paper
+    reports ~20+ p-values across datasets, models, analysis granularities, and BCS
+    bins without Bonferroni or FDR correction. While the primary pairwise test (p=4.6e-12)
+    survives any correction, weaker results (e.g., MAVEN count main effect p=0.04)
+    may not.
+
+
+    **W11. Error taxonomy lacks statistical power analysis.** (Both reviewers agree.)
+    Table 8 shows type substitution 18% vs 15% (ratio 1.2x, p=0.18) — no significant
+    difference. But the paper does not report per-bin sample sizes or statistical
+    power. The non-significance may reflect insufficient power rather than absence
+    of effect.
+
+
+    **W12. Text-match evaluation and factorial design details underspecified.** (R1
+    primary.) The evaluation protocol (exact match? normalized? case-sensitive?) is
+    not detailed. The 2×2 factorial does not report cell sizes, document counts, or
+    how low/high cutoffs were determined.
+
+
+    ### Minor
+
+
+    **W13. Sentence embedding model not specified in paper text.** Critical for reproducibility
+    — all-MiniLM-L6-v2 appears only in the methodology setup, not prominently specified.
+
+
+    **W14. Prompt format sensitivity untested.** All experiments use a single prompt
+    format. Schema presentation format could modulate both degradation channels.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. Have you tested alternative confusability proxies — e.g., type *definition*
+    embeddings (not just names), the extraction LLM''s own hidden-state similarities,
+    or hierarchical schema distance? If SCS improves with a better proxy, does confusability
+    become independently predictive?
+
+
+    2. Can you run SDGD with an oracle confusability matrix (derived from empirical
+    confusion data)? If oracle-SDGD outperforms random batching, the negative result
+    is about proxy quality, not about confusability-aware decomposition per se.
+
+
+    3. What is the result of a Fisher''s z-test comparing Qwen3''s r=0.156 with LLaMA''s
+    r=0.05? Are these correlations statistically distinguishable?
+
+
+    4. What are the per-cell sample sizes in the 2×2 factorial (Table 4) and per-bin
+    sample sizes in the error taxonomy (Table 8)?
+
+
+    5. Why was no head-to-head comparison with LLM-PEE conducted? LLM-PEE performs
+    embedding-similarity-based type partitioning — the most directly comparable existing
+    method.
+
+
+    6. The pairwise r=0.156 on Qwen3 is highly significant (p=4.6e-12). Rather than
+    dismissing this as "model-specific," shouldn''t this signal be investigated further?
+    What drives it — is it the "-other" types, the fine-grained person/location subtypes,
+    or something else?
+
+
+    7. Have you tested whether incorporating type definitions (not just names) into
+    SCS changes proxy quality? The "-other" label ambiguity problem seems directly
+    addressable this way.
+
+
+    ---
+
+
+    ## Reviewer Scores and Convergence
+
+
+    | | R1 (Methods) | R2 (Novelty) | After Cross-Sharing |
+
+    |---|---|---|---|
+
+    | Initial Score | 4/6 | 3/6 | — |
+
+    | Updated Score | 4/6 | 3/6 | — |
+
+    | Confidence | 4/5 | 4/5 | — |
+
+
+    **Areas of full convergence:**
+
+    - Frequency-confusability confound is a real contribution
+
+    - Count→recall is robust and well-demonstrated
+
+    - Related work is too thin
+
+    - Only 2 models is a limitation
+
+    - DocRED inflates breadth
+
+    - Missing variance estimates for SDGD results
+
+    - Broken citations are a serious issue
+
+
+    **Areas of divergence:**
+
+    - R1 views the factorial design and experimental framework as strong enough to
+    justify 4/6; R2 argues the negative claims are overclaimed relative to the evidence
+    (single weak proxy, single non-replication) and the framing conflates proxy failure
+    with phenomenon non-existence
+
+    - R1 considers SDGD-vs-random a meaningful test; R2 considers it tautological
+    given the near-random proxy
+
+    - R1 weighs methodological rigor more heavily; R2 weighs novelty and impact more
+    heavily
+
+
+    ---
+
+
+    ## Meta-Review and Consolidated Assessment
+
+
+    ### Overall Score: 3/6 (Borderline Reject)
+
+
+    ### Recommendation: Reject for main conference; suitable for **Findings** with
+    revisions
+
+
+    ### Justification
+
+
+    The paper addresses a valid and practically important question: what drives schema-complexity
+    degradation in training-free LLM IE? The experimental design (factorial, pairwise,
+    count curves) is well-conceived, and the frequency-confusability confound discovery
+    is a genuine methodological contribution with lasting value.
+
+
+    However, the paper''s central negative claim — that confusability does not independently
+    predict degradation — is **overclaimed relative to the evidence**. The claim is
+    grounded in a single weak proxy (all-MiniLM-L6-v2 name embeddings, AUC=0.56),
+    and the paper''s own data contains a significant positive signal (Qwen3 pairwise
+    r=0.156, p<1e-11) that contradicts the headline framing. The SDGD null result
+    follows naturally from the near-random proxy and does not establish that confusability-aware
+    decomposition is inherently useless. The non-replication on LLaMA lacks formal
+    statistical comparison. Only 2 models and a severely underpowered third dataset
+    (DocRED) limit generality.
+
+
+    The paper would be substantially strengthened by: (1) testing at least one alternative
+    confusability proxy, (2) running an oracle SDGD ablation, (3) formally testing
+    the cross-model correlation difference, (4) expanding related work, and (5) fixing
+    all broken citations.
+
+
+    As a Findings paper, the count→recall characterization, frequency-confusability
+    confound identification, and the methodological prescription (pairwise > batch-level)
+    would provide adequate contribution. The negative result on SCS should be scoped
+    precisely as "all-MiniLM-L6-v2 name embeddings are a poor confusability proxy"
+    rather than "confusability is not a real factor."
+
+
+    ### Actionable Revision Priorities
+
+
+    1. **(Critical)** Fix all broken citations
+
+    2. **(Critical)** Test ≥1 alternative confusability proxy; scope negative claims
+    accordingly
+
+    3. **(High)** Add oracle SDGD ablation with empirical confusion matrix
+
+    4. **(High)** Expand related work to ≥1 page; include LLM-PEE, GoLLIE, GLiNER,
+    CrossAgentIE
+
+    5. **(High)** Add Fisher''s z-test for cross-model correlation comparison
+
+    6. **(Medium)** Add bootstrap CIs for all decomposition method comparisons
+
+    7. **(Medium)** Report R², cell sizes, and power analyses throughout
+
+    8. **(Medium)** Add ≥1 additional model (proprietary API or smaller open model)
+
+    9. **(Low)** Specify sentence encoder, evaluation details, factorial cutoff methodology'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-15T06:32:50+00:00'

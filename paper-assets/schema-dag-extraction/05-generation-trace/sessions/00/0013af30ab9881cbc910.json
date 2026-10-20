@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_exp_fewrel_formal_80rel_gpu_20260515T130529_result.json",
     "occurrence": 1,
-    "bytes": 584,
-    "sha256": "64ccd8059416734c04de0d21b567d4922f07680dab9f0720351e7b6ab3d3a618"
+    "bytes": 583,
+    "sha256": "225285e5110d2f10bdd00fc286fe9cb56dd603cc05c3c52f03f1f16feafd20ff"
   },
   "statistics": {
     "messages": 1,

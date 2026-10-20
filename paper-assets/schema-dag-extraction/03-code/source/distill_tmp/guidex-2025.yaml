@@ -1,0 +1,22 @@
+paper_key: "guidex-2025"
+title: "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction"
+venue: "ACL 2025 Findings"
+full_text_available: false
+
+research:
+  baselines: ["prior zero-shot NER methods (without human-labeled data)", "prior methods combined with human-labeled data"]
+  metrics: [{name: "F1", direction: "higher_better"}]
+  datasets: [{name: "7 zero-shot NER benchmarks", size: "not specified"}]
+  ablation_dimensions: ["domain-specific schema design", "guideline inference", "synthetic data generation"]
+  training_recipe: {model: "Llama 3.1", method: "fine-tuning on GUIDEX-generated synthetic data"}
+  method_family: "guided synthetic data generation for zero-shot IE"
+
+positioning:
+  core_claim: "Automatically defining domain-specific schemas, inferring guidelines, and generating synthetic labeled data enables SOTA zero-shot NER without human annotation"
+  key_results: "Up to +7 F1 over prior methods without human data; +2 F1 when combined with human data across 7 benchmarks"
+  limitations: ["depends on LLM quality for schema/guideline generation", "evaluated primarily on NER"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

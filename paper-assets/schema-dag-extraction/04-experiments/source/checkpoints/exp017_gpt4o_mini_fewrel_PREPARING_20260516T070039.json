@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp017_gpt4o_mini_fewrel",
+  "project": "schema-dag-extraction",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:57:08.424Z",
+    "updated_at": "2026-05-16T07:00:39.657Z",
+    "spec": {
+      "command": "python3 src/run_fewrel_gpt4o_mini.py --mode all",
+      "server": "cqa1-38874",
+      "model_name": "gpt-4o-mini",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_parquet/val.parquet",
+      "seed": 42,
+      "description": "GPT-4o-mini FewRel 80-rel count curve + BCS-controlled, 3rd model family validation. BLOCKED: TUM proxy service not deployed."
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T07:00:39.796585+00:00",
+  "trigger": "update_registry"
+}

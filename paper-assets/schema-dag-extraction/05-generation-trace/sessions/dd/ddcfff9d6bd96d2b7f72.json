@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_exp_docred_bcs_expanded_20260519T124512_result.json",
     "occurrence": 1,
-    "bytes": 1257,
-    "sha256": "f3a72d0e8dfaffdc5501b1dec9a82d09ddee3f11f5e82e998465099bce817b9e"
+    "bytes": 1256,
+    "sha256": "09f200518f8150784d556b0fe355d517f50e0fc7103840a0a0fecd7e5840efc8"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_chat-template-fix_20260515T165850_result.json",
     "occurrence": 1,
-    "bytes": 991,
-    "sha256": "af39d786fe9a6550ef3100486fe76a361915dc80d05abe84e839941930112eab"
+    "bytes": 990,
+    "sha256": "33fb74d6b66e51eed30c90c4eea3fede397b64ca700871da85eab700198da6f8"
   },
   "statistics": {
     "messages": 1,

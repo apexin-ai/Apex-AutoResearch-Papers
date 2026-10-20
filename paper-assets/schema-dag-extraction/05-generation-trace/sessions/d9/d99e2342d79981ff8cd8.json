@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_m4_contamination_20260522T091212_result.json",
     "occurrence": 1,
-    "bytes": 805,
-    "sha256": "884ed252d1b6055fbd23878fb223a0ca846919aa9622f86855563de62d62e6bd"
+    "bytes": 804,
+    "sha256": "68655f092a2d3a38cbe4032613d2565f02ef8cded51795a645107243aa84aa54"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,76 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training-free IE.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema complexity effects.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema decomposition.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Multi-Channel Degradation Model}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Schema Confusability Score (SCS)}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:scs_method}{{3.2}{2}{Schema Confusability Score (SCS)}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Error Taxonomy}{2}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:taxonomy_method}{{3.3}{2}{Error Taxonomy}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Schema-DAG Guided Decomposition (SDGD)}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:sdgd_method}{{3.4}{3}{Schema-DAG Guided Decomposition (SDGD)}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}DocRED Confusability Study}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:docred}{{4.1}{3}{DocRED Confusability Study}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DocRED count curve. Accuracy degrades from 0.82 (single type) to 0.31 (full schema), but count and BCS are confounded at the batch level.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:docred_count}{{1}{3}{DocRED count curve. Accuracy degrades from 0.82 (single type) to 0.31 (full schema), but count and BCS are confounded at the batch level}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces BCS-controlled comparison at count=16 on DocRED. Effect direction is consistent ($\Delta $=$-$8.3pp) but CI crosses zero [$-$16.1, +0.5]pp due to $n$=5.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:docred_bcs}{{2}{3}{BCS-controlled comparison at count=16 on DocRED. Effect direction is consistent ($\Delta $=$-$8.3pp) but CI crosses zero [$-$16.1, +0.5]pp due to $n$=5}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Interaction Effect (2$\times $2 Design)}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:interaction}{{4.2}{3}{Interaction Effect (2$\times $2 Design)}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 2$\times $2 cell means (F1) on Few-NERD. Main effects: count $-$1.8pp, BCS $-$2.9pp. Interaction: $z$=$-$0.67, $p$=0.50.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:interaction}{{3}{4}{2$\times $2 cell means (F1) on Few-NERD. Main effects: count $-$1.8pp, BCS $-$2.9pp. Interaction: $z$=$-$0.67, $p$=0.50}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Error Taxonomy (BCS-Binned)}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:taxonomy}{{4.3}{4}{Error Taxonomy (BCS-Binned)}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Error distribution by BCS bin on Few-NERD. IntraSub (type confusion) rises monotonically from 0\% to 49.4\% as batch confusability increases.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:error_taxonomy}{{4}{4}{Error distribution by BCS bin on Few-NERD. IntraSub (type confusion) rises monotonically from 0\% to 49.4\% as batch confusability increases}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-task IntraSub--BCS correlation. Perfect or near-perfect monotonic relationship on both tasks.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:cross_task_intrasub}{{5}{4}{Cross-task IntraSub--BCS correlation. Perfect or near-perfect monotonic relationship on both tasks}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}SCS Validation: Embedding vs.\ Empirical Confusion}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:scs}{{4.4}{4}{SCS Validation: Embedding vs.\ Empirical Confusion}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces SCS$\rightarrow $Empirical confusion validation on Few-NERD. Correlations are significant but explain only 2.8--9.4\% of confusion variance.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:scs_validation}{{6}{5}{SCS$\rightarrow $Empirical confusion validation on Few-NERD. Correlations are significant but explain only 2.8--9.4\% of confusion variance}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}SDGD-zero on MAVEN}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:sdgd}{{4.5}{5}{SDGD-zero on MAVEN}{subsection.4.5}{}}
+\newlabel{sec:sdgd_maven}{{4.5}{5}{SDGD-zero on MAVEN}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces SDGD-zero vs.\ baselines on MAVEN (relaxed F1). All decomposition methods underperform single-pass extraction. Merge amplification factor: 3.2$\times $.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:sdgd_maven}{{7}{5}{SDGD-zero vs.\ baselines on MAVEN (relaxed F1). All decomposition methods underperform single-pass extraction. Merge amplification factor: 3.2$\times $}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}SDGD-cal on Few-NERD}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:sdgd_cal_fewnerd}{{4.6}{5}{SDGD-cal on Few-NERD}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces SDGD-cal vs.\ baselines on Few-NERD. Calibration provides marginal improvement over SDGD-zero (+2.7pp) but remains far below single-pass ($-$17.7pp).}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:sdgd_cal_fewnerd}{{8}{5}{SDGD-cal vs.\ baselines on Few-NERD. Calibration provides marginal improvement over SDGD-zero (+2.7pp) but remains far below single-pass ($-$17.7pp)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}SDGD-cal on MAVEN}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:sdgd_cal_maven}{{4.7}{5}{SDGD-cal on MAVEN}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Calibration confusion matrix properties. With 10 samples over 66 types, 94\% of type pairs have no observed confusion and fall back to SCS estimates.}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:cal_matrix}{{9}{6}{Calibration confusion matrix properties. With 10 samples over 66 types, 94\% of type pairs have no observed confusion and fall back to SCS estimates}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Full method comparison on MAVEN. Calibration provides negligible improvement (+0.9pp over SDGD-zero) at 2.2$\times $ latency cost. Single-pass dominates.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:sdgd_cal_maven}{{10}{6}{Full method comparison on MAVEN. Calibration provides negligible improvement (+0.9pp over SDGD-zero) at 2.2$\times $ latency cost. Single-pass dominates}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Ablation: Random Batching}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:random_ablation}{{4.8}{6}{Ablation: Random Batching}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Random vs.\ SDGD ablation on Few-NERD. Random batching outperforms SDGD at matched batch count ($p$=0.03). Note the batch size variance ($\sigma _b$): SDGD produces highly unbalanced batches.}}{6}{table.11}\protected@file@percent }
+\newlabel{tab:random_ablation}{{11}{6}{Random vs.\ SDGD ablation on Few-NERD. Random batching outperforms SDGD at matched batch count ($p$=0.03). Note the batch size variance ($\sigma _b$): SDGD produces highly unbalanced batches}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Ablation: Per-type Splitting}{6}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:pertype}{{4.9}{6}{Ablation: Per-type Splitting}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Full decomposition spectrum on Few-NERD. Single-pass Pareto-dominates all decomposition methods. Per-type achieves highest recall (0.586) but lowest precision (0.194), with 34\% merge conflict rate.}}{7}{table.12}\protected@file@percent }
+\newlabel{tab:decomposition_spectrum}{{12}{7}{Full decomposition spectrum on Few-NERD. Single-pass Pareto-dominates all decomposition methods. Per-type achieves highest recall (0.586) but lowest precision (0.194), with 34\% merge conflict rate}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Schema Decomposition Fails}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Merge amplification.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Batch size imbalance.}{7}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage loss.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Confusability Signal: Real but Not Actionable}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Schema Design Guidelines}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:guidelines}{{5.3}{7}{Schema Design Guidelines}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model scope.}{8}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED inconclusive.}{8}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interaction power.}{8}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Merge strategy.}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\gdef \@abspage@last{8}

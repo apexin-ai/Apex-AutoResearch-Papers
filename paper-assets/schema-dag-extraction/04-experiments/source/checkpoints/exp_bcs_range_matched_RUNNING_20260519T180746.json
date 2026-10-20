@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_bcs_range_matched",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:07:32.278Z",
+    "updated_at": "2026-05-19T18:07:46.789Z",
+    "hypothesis": "DocRED's apparent sub-additive interaction (-9.4pp) is an artifact of BCS range restriction between count levels (spread 0.377 vs 0.263), not a genuine count-modulated confusability effect. Restricting to overlapping BCS ranges should eliminate the interaction.",
+    "spec": {
+      "command": "python3 analysis/bcs_range_matched_analysis.py",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded/",
+      "data_count": 110,
+      "model_name": "Qwen3-32B (reanalysis of existing predictions)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-19T18:07:46.946772+00:00",
+  "trigger": "update_registry"
+}

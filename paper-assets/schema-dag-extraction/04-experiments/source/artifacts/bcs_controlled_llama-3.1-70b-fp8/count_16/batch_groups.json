@@ -1,0 +1,226 @@
+{
+  "low": [
+    {
+      "types": [
+        "position held",
+        "record label",
+        "taxon rank",
+        "location of formation",
+        "voice type",
+        "mountain range",
+        "original language of film or TV show",
+        "father",
+        "manufacturer",
+        "located on terrain feature",
+        "instrument",
+        "place served by transport hub",
+        "instance of",
+        "licensed to broadcast to",
+        "performer",
+        "country of origin"
+      ],
+      "bcs": 0.5035830865303675,
+      "source": "random_3"
+    },
+    {
+      "types": [
+        "applies to jurisdiction",
+        "place served by transport hub",
+        "record label",
+        "sibling",
+        "country",
+        "headquarters location",
+        "platform",
+        "follows",
+        "residence",
+        "participant",
+        "military branch",
+        "original language of film or TV show",
+        "movement",
+        "mother",
+        "work location",
+        "successful candidate"
+      ],
+      "bcs": 0.5185772769153119,
+      "source": "random_16"
+    },
+    {
+      "types": [
+        "notable work",
+        "work location",
+        "headquarters location",
+        "military rank",
+        "head of government",
+        "original language of film or TV show",
+        "movement",
+        "operator",
+        "competition class",
+        "language of work or name",
+        "successful candidate",
+        "followed by",
+        "member of political party",
+        "after a work by",
+        "composer",
+        "spouse"
+      ],
+      "bcs": 0.5259694665670395,
+      "source": "random_20"
+    },
+    {
+      "types": [
+        "country of citizenship",
+        "successful candidate",
+        "mountain range",
+        "residence",
+        "has part",
+        "religion",
+        "instance of",
+        "position held",
+        "located in or next to body of water",
+        "league",
+        "movement",
+        "sport",
+        "father",
+        "characters",
+        "performer",
+        "record label"
+      ],
+      "bcs": 0.5291572391986847,
+      "source": "random_12"
+    },
+    {
+      "types": [
+        "architect",
+        "original language of film or TV show",
+        "participant of",
+        "military branch",
+        "composer",
+        "movement",
+        "work location",
+        "sports season of league or competition",
+        "head of government",
+        "follows",
+        "residence",
+        "member of political party",
+        "main subject",
+        "genre",
+        "platform",
+        "sibling"
+      ],
+      "bcs": 0.5295675434172153,
+      "source": "random_17"
+    }
+  ],
+  "high": [
+    {
+      "types": [
+        "distributor",
+        "subsidiary",
+        "instrument",
+        "occupation",
+        "father",
+        "successful candidate",
+        "work location",
+        "has part",
+        "tributary",
+        "director",
+        "child",
+        "voice type",
+        "developer",
+        "record label",
+        "operator",
+        "located in or next to body of water"
+      ],
+      "bcs": 0.5814110373457273,
+      "source": "random_8"
+    },
+    {
+      "types": [
+        "instance of",
+        "child",
+        "operating system",
+        "architect",
+        "country of citizenship",
+        "sport",
+        "mouth of the watercourse",
+        "location of formation",
+        "mother",
+        "field of work",
+        "league",
+        "characters",
+        "notable work",
+        "contains administrative territorial entity",
+        "participating team",
+        "occupation"
+      ],
+      "bcs": 0.5839011271794637,
+      "source": "random_22"
+    },
+    {
+      "types": [
+        "movement",
+        "country",
+        "father",
+        "followed by",
+        "instrument",
+        "taxon rank",
+        "occupant",
+        "original network",
+        "developer",
+        "position played on team",
+        "follows",
+        "successful candidate",
+        "language of work or name",
+        "characters",
+        "competition class",
+        "tributary"
+      ],
+      "bcs": 0.5890040385226408,
+      "source": "random_6"
+    },
+    {
+      "types": [
+        "occupant",
+        "crosses",
+        "child",
+        "religion",
+        "has part",
+        "licensed to broadcast to",
+        "director",
+        "original network",
+        "record label",
+        "head of government",
+        "follows",
+        "owned by",
+        "member of",
+        "contains administrative territorial entity",
+        "operator",
+        "main subject"
+      ],
+      "bcs": 0.6159019137422244,
+      "source": "random_19"
+    },
+    {
+      "types": [
+        "participant",
+        "participant of",
+        "part of",
+        "member of",
+        "follows",
+        "followed by",
+        "has part",
+        "instance of",
+        "said to be the same as",
+        "occupant",
+        "operator",
+        "child",
+        "mother",
+        "father",
+        "sibling",
+        "main subject"
+      ],
+      "bcs": 0.9705880880355835,
+      "source": "greedy_high"
+    }
+  ]
+}

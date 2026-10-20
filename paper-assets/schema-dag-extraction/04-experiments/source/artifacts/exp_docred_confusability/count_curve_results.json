@@ -1,0 +1,9 @@
+{
+  "curve_count_1": {"mean_acc": 0.88, "std_acc": 0.24, "mean_bcs": 0.0, "n_batches": 5},
+  "curve_count_4": {"mean_acc": 0.77, "std_acc": 0.147, "mean_bcs": 0.548, "n_batches": 5},
+  "curve_count_8": {"mean_acc": 0.774, "std_acc": 0.054, "mean_bcs": 0.532, "n_batches": 5},
+  "curve_count_16": {"mean_acc": 0.524, "std_acc": 0.091, "mean_bcs": 0.564, "n_batches": 5},
+  "curve_count_32": {"mean_acc": 0.521, "std_acc": 0.049, "mean_bcs": 0.553, "n_batches": 5},
+  "curve_count_64": {"mean_acc": 0.424, "std_acc": 0.020, "mean_bcs": 0.548, "n_batches": 5},
+  "curve_count_96": {"mean_acc": 0.387, "std_acc": 0.0, "mean_bcs": 0.550, "n_batches": 5}
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fix-nameerror_20260514T234103_result.json",
     "occurrence": 1,
-    "bytes": 232,
-    "sha256": "671e208fb43f89cf8391987d5775365678f2415c3a56eb721588be612e1bfbab"
+    "bytes": 231,
+    "sha256": "a17f729c9da2a9322d2f60e23530794bfbf9369bdc2cd9f3c9721dd58e3a2a34"
   },
   "statistics": {
     "messages": 1,

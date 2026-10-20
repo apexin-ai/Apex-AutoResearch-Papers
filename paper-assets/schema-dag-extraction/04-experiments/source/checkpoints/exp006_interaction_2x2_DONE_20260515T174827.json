@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp006_interaction_2x2",
+  "project": "schema-dag-extraction",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:18:49.619Z",
+    "updated_at": "2026-05-15T17:48:27.854Z",
+    "hypothesis": "Count × Confusability 交互效应：{low count, high count} × {low BCS, high BCS} 2×2 设计，测试 count 和 confusability 对 accuracy 的影响是 additive 还是 multiplicative。若 multiplicative，高 count + 高 BCS 组的 degradation 应超过两个主效应之和。",
+    "parent": "exp002_confusability_controlled",
+    "plan_id": "exp-006",
+    "server": "cqa1-38874",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-38874",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T17:20:09.901Z",
+      "finished_at": "2026-05-15T17:48:26.350Z",
+      "training_hours": 0.47
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema-dag-extraction && FLASHINFER_DISABLE_VERSION_CHECK=1 python scripts/run_exp006_interaction.py --max_samples 1000\"",
+      "server": "cqa1-38874",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "312067",
+      "log_path": "~/runs/schema-dag-extraction/exp006_interaction_2x2.log",
+      "submitted_at": "2026-05-15T17:45:41.907Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/schema-dag-extraction/data/parquet/test.parquet",
+      "data_count": 40000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "checkpoint_source": "N/A (training-free inference)",
+      "eval_data": "Few-NERD test split, 40 batches x 1000 samples",
+      "wall_clock_seconds": 165.9,
+      "gpu_hours": 0.05
+    },
+    "failure_reason": "Traceback → extraction/src/run_extraction.py\", line 231, in run_extraction batches_to_run.append((\"low_bcs\", strategies[\"low_bcs\"][\"types\"], strategies[\"low_bcs\"][\"bcs\"])) ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^ TypeError: list indices must be integers or slices, not str",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T17:48:27.854Z"
+  },
+  "timestamp": "2026-05-15T17:48:27.973162+00:00",
+  "trigger": "update_registry"
+}

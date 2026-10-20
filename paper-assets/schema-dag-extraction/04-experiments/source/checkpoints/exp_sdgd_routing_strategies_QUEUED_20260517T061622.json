@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_sdgd_routing_strategies",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:57:11.517Z",
+    "updated_at": "2026-05-17T06:16:22.436Z",
+    "hypothesis": "Max-confidence and none-aware routing strategies can recover a significant fraction of the oracle routing gain (+29.8pp over single-pass) by using LLM generation logprobs to select the most reliable sub-schema prediction, since the correct sub-schema should produce higher-confidence predictions than sub-schemas forced to classify into unrelated types.",
+    "parent": "exp_confusability_batch_composition",
+    "conclusion": "negative",
+    "metrics": {
+      "strategies": {
+        "single_pass": {
+          "accuracy": 0.504
+        },
+        "random_routing": {
+          "accuracy": 0.147
+        },
+        "max_conf_all": {
+          "accuracy": 0.277
+        },
+        "max_conf_positive": {
+          "accuracy": 0.365
+        },
+        "none_aware": {
+          "accuracy": 0.365
+        },
+        "margin_positive": {
+          "accuracy": 0.359
+        },
+        "oracle": {
+          "accuracy": 0.724
+        }
+      },
+      "none_detection": {
+        "multi_positive_rate": 0.734,
+        "exclusive_positive_rate": 0.07,
+        "exclusive_positive_precision": 0.42,
+        "none_rate_per_group": "20-40%"
+      },
+      "key_finding": "All practical routing strategies perform worse than single-pass. Structured decoding forces confident predictions even for wrong sub-schemas, making confidence-based and none-aware routing ineffective. Oracle gain (+22pp) is not recoverable via post-hoc routing."
+    },
+    "checkpoint_path": "/root/schema-dag-extraction/results/sdgd_routing_results.json",
+    "log_path": "/root/schema-dag-extraction/results/sdgd_routing_results.json"
+  },
+  "timestamp": "2026-05-17T06:16:22.542612+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp_llama70b_cross_model_exp3_20260517T110806_result.json",
     "occurrence": 1,
-    "bytes": 1202,
-    "sha256": "ffb182630397f806adbcf7b9397892da37bbd22affc4d7ced1d2ef0b0dcc42ef"
+    "bytes": 1201,
+    "sha256": "e1fe894d037ea2561af463a014f38e09c255ba208763dc039f3345cb19731ba2"
   },
   "statistics": {
     "messages": 1,

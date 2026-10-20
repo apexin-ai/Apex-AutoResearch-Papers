@@ -1,0 +1,22 @@
+paper_key: "lost-in-middle-2024"
+title: "Lost in the Middle: How Language Models Use Long Contexts"
+venue: "TACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["various long-context language models"]
+  metrics: [{name: "task accuracy by position", direction: "higher_better"}]
+  datasets: [{name: "multi-document QA", size: "not specified"}, {name: "key-value retrieval", size: "not specified"}]
+  ablation_dimensions: ["position of relevant information", "context length", "model type"]
+  training_recipe: {method: "evaluation study, no training"}
+  method_family: "long-context analysis / positional bias study"
+
+positioning:
+  core_claim: "Language models exhibit a U-shaped performance curve where information in the middle of long contexts is significantly harder to access than information at the beginning or end"
+  key_results: "Performance degrades significantly when relevant info is in the middle, even for explicitly long-context models"
+  limitations: ["limited to two tasks", "findings may not generalize to all downstream tasks"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

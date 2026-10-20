@@ -1,0 +1,53 @@
+{
+  "method": "Ridge regression (analytic from correlation matrix, GCV λ selection)",
+  "data_source": "exp_docred_bcs_expanded: 110 DocRED batches (96-type pool, count_16+32)",
+  "n_batches": 110,
+  "correlation_matrix": {
+    "r_BCS_accuracy": -0.7602,
+    "r_centrality_accuracy": -0.7344,
+    "r_BCS_centrality": 0.9901,
+    "VIF": 50.8
+  },
+  "gcv_selected_alpha": 0.001231,
+  "r2_ridge": 0.5944,
+  "standardized_coefficients": {
+    "bcs_coefficient": -1.5342,
+    "centrality_coefficient": 0.7837
+  },
+  "ols_standardized_coefficients": {
+    "bcs_coefficient": -1.6785,
+    "centrality_coefficient": 0.9275,
+    "r2": 0.5949
+  },
+  "ridge_path_at_selected_lambdas": {
+    "0.01": {
+      "bcs_coefficient": -1.0219,
+      "centrality_coefficient": 0.2746
+    },
+    "0.1": {
+      "bcs_coefficient": -0.4749,
+      "centrality_coefficient": -0.2402
+    },
+    "1.0": {
+      "bcs_coefficient": -0.2627,
+      "centrality_coefficient": -0.2372
+    },
+    "10.0": {
+      "bcs_coefficient": -0.0636,
+      "centrality_coefficient": -0.061
+    },
+    "100.0": {
+      "bcs_coefficient": -0.0075,
+      "centrality_coefficient": -0.0072
+    }
+  },
+  "sign_robustness": {
+    "bcs_negative_for_all_lambda": true,
+    "bcs_coef_range": [
+      -1.6655,
+      -0.0001
+    ],
+    "analytic_proof": "β_BCS = [(1+λ)·r_{BCS,y} − r_{BCS,cent}·r_{cent,y}] / [(1+λ)² − r²_{BCS,cent}]. Numerator = −(1+λ)·0.7602 + 0.7271 = −0.0331 − λ·0.7602, monotonically decreasing in λ and negative at λ=0. Denominator > 0. Hence β_BCS < 0 for all λ ≥ 0."
+  },
+  "note": "Analytic ridge from the 3-variable correlation matrix is equivalent to RidgeCV on standardized data for any given λ. GCV replaces k-fold CV. The extreme VIF (50.9) confirms high multicollinearity; ridge stabilizes the coefficients. The BCS coefficient is provably negative for all λ ≥ 0."
+}

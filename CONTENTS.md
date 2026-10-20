@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **38 projects with manuscript PDFs** and **25 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **38 projects with manuscript PDFs** and **26 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -38,7 +38,7 @@ This catalogue covers **38 projects with manuscript PDFs** and **25 additional p
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recovery_aware_struct_prune](paper-assets/recovery_aware_struct_prune/README.md) | [PDF](paper-assets/recovery_aware_struct_prune/01-manuscript/paper.pdf) | 757 | 2,746 | 3,747 | 248,503 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 395 | 1,066 | 1,779 | 166,550 |
-| [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
+| [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 378 | 676 | 1,242 | 131,771 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
@@ -49,6 +49,7 @@ This catalogue covers **38 projects with manuscript PDFs** and **25 additional p
 | [be-idea-gen-0515-3](paper-assets/be-idea-gen-0515-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0519-3](paper-assets/be-idea-gen-0519-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0519-4](paper-assets/be-idea-gen-0519-4/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [collapse-aware-mixing](paper-assets/collapse-aware-mixing/README.md) | No PDF in snapshot | 84 | 58 | 232 | 17,588 |
 | [contrastive_graph_jailbreak_detect](paper-assets/contrastive_graph_jailbreak_detect/README.md) | No PDF in snapshot | 28 | 15 | 28 | 3,080 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |

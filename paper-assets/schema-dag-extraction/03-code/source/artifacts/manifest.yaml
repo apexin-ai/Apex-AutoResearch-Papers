@@ -1,0 +1,1779 @@
+- id: art_20260514_fcb08e
+  name: bcs_comparison
+  type: data
+  description: Qwen3 vs E5 embedding BCS 分布对比（pairwise + per-type），用于论文 ablation
+  path: projects/schema-dag-extraction/artifacts/_project/data/bcs_comparison.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:48:40.980262+00:00'
+  tags:
+  - bcs
+  - embedding
+  - ablation
+  - e5
+  - qwen3
+- id: art_20260515_156d89
+  name: SDGD Framework Design Doc
+  type: report
+  description: SDGD 框架算法设计文档：算法流程(伪代码)、模块结构(similarity/graph/decompose/merge/evaluate)、关键设计决策(SDGD-zero
+    vs cal, threshold策略, graph coloring, merge策略)、与现有代码接口对接方案
+  path: projects/schema-dag-extraction/artifacts/_project/report/sdgd_design_doc.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:04:20.215799+00:00'
+  tags:
+  - sdgd
+  - design
+  - algorithm
+  - framework
+- id: art_20260515_08dc50
+  name: ACE05 Data Prep Report
+  type: report
+  description: ACE05 数据集调研报告：7 entity types + 18 relation subtypes 完整列表、数据格式、下载渠道、许可证、与
+    Few-NERD 对比、预处理方案、BCS embedding 计算方案
+  path: projects/schema-dag-extraction/artifacts/exp-004/report/ace05_data_prep_report.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T03:05:09.979953+00:00'
+  tags:
+  - ace05
+  - dataset
+  - data-prep
+  - exp-004
+  - BCS
+- id: art_20260515_ca73dc
+  name: ace05_entity_types.json
+  type: data
+  description: ACE05 7 entity types with descriptions, same format as few_nerd_types.json
+  path: projects/schema-dag-extraction/artifacts/exp-004/data/ace05_entity_types.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T03:10:37.413138+00:00'
+  tags:
+  - ace05
+  - config
+  - entity-types
+- id: art_20260515_aad54d
+  name: ace05_relation_types.json
+  type: data
+  description: ACE05 18 relation subtypes with descriptions, for RE confusability
+    study
+  path: projects/schema-dag-extraction/artifacts/exp-004/data/ace05_relation_types.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T03:10:39.318812+00:00'
+  tags:
+  - ace05
+  - config
+  - relation-types
+- id: art_20260515_6df9f3
+  name: preprocess_ace05.py
+  type: intermediate
+  description: 'ACE05 preprocessor: DyGIE++/PURE JSON → parquet (NER+RE modes), ready
+    for data arrival'
+  path: projects/schema-dag-extraction/artifacts/exp-004/intermediate/preprocess_ace05.py
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T03:10:42.113653+00:00'
+  tags:
+  - ace05
+  - preprocessing
+  - script
+- id: art_20260515_0ee8b6
+  name: compute_type_embeddings.py
+  type: intermediate
+  description: 'Generic type embedding script: JSON type list → mean-pooled causal
+    LM embeddings .pt, works for Few-NERD and ACE05'
+  path: projects/schema-dag-extraction/artifacts/exp-004/intermediate/compute_type_embeddings.py
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T03:10:44.582418+00:00'
+  tags:
+  - embeddings
+  - type-embeddings
+  - script
+- id: art_20260515_3424dc
+  name: MAVEN Dataset Research Report
+  type: report
+  description: MAVEN 数据集调研报告：168 event types，hierarchical schema，与 Few-NERD/ACE05
+    对比，BCS/SDGD 适用性分析，实施方案
+  path: projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:14:14.032551+00:00'
+  tags:
+  - maven
+  - dataset
+  - event-detection
+  - confusability
+  - survey
+- id: art_20260515_ab0dc4
+  name: CrossAgentIE 深度分析
+  type: report
+  description: CrossAgentIE (ACL 2025 Findings) 与 SDGD 的区分分析：方法对比、novelty 风险评估、Related
+    Work 段落草稿
+  path: projects/schema-dag-extraction/artifacts/_project/report/crossagentie_analysis.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:14:55.423630+00:00'
+  tags:
+  - literature-review
+  - related-work
+  - novelty-analysis
+  - crossagentie
+- id: art_20260515_d9b24e
+  name: MAVEN Dataset Research Report
+  type: report
+  description: MAVEN event detection dataset (168 types, EMNLP 2020) 调研报告：数据集概况、获取方式、层级结构、与
+    Few-NERD 对比、BCS/SDGD 适用性分析、实施方案
+  path: projects/schema-dag-extraction/artifacts/_project/report/maven_dataset_report_d9b24e.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:18:26.296886+00:00'
+  tags:
+  - maven
+  - dataset
+  - event-detection
+  - survey
+- id: art_20260515_a11d8b
+  name: multi_model_candidates
+  type: report
+  description: exp-012 多模型验证候选模型调研：VRAM 需求、vLLM 兼容性、guided decoding 支持评估，推荐 LLaMA-3.3-70B-FP8
+    + Phi-4
+  path: projects/schema-dag-extraction/artifacts/exp-012/report/multi_model_candidates.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-012
+  skill: ''
+  created_at: '2026-05-15T03:20:54.116901+00:00'
+  tags:
+  - multi-model
+  - exp-012
+  - candidate-survey
+- id: art_20260515_6ac60f
+  name: maven_event_types
+  type: data
+  description: 168 MAVEN event types with descriptions, format matches few_nerd_types.json
+  path: projects/schema-dag-extraction/artifacts/_project/data/maven_event_types.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:28:29.593092+00:00'
+  tags:
+  - maven
+  - event-types
+  - config
+- id: art_20260515_bdc43a
+  name: preprocess_maven
+  type: data
+  description: MAVEN JSONL to parquet converter, outputs text + entities[{text, type}]
+    per document
+  path: projects/schema-dag-extraction/artifacts/_project/data/preprocess_maven.py
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:28:32.024446+00:00'
+  tags:
+  - maven
+  - preprocessing
+  - script
+- id: art_20260515_0d842f
+  name: download_maven
+  type: data
+  description: Shell script to download MAVEN dataset from Google Drive with verification
+  path: projects/schema-dag-extraction/artifacts/_project/data/download_maven.sh
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:28:33.414497+00:00'
+  tags:
+  - maven
+  - download
+  - script
+- id: art_20260515_bf91f7
+  name: Method Section Framework
+  type: paper
+  description: 'Paper Section 3 (Method) draft: Problem Formulation, Controlled Experiment
+    Design, SDGD Framework with LaTeX pseudocode, SDGD-zero vs SDGD-cal variants,
+    adaptive threshold strategy'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/method_framework.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:56:04.372109+00:00'
+  tags:
+  - paper
+  - method
+  - EMNLP2026
+- id: art_20260515_4f948b
+  name: Related Work Draft
+  type: paper
+  description: 'Paper Section 2 (Related Work) draft: Schema Decomposition for IE,
+    Confusability-Aware NLP, LLM-Based IE — covers 25 papers across 3 dimensions'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/related_work_draft.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:56:06.727328+00:00'
+  tags:
+  - paper
+  - related-work
+  - EMNLP2026
+- id: art_20260515_b7191f
+  name: MAVEN Dataset Description
+  type: paper
+  description: 'MAVEN dataset description paragraph (~150 words) for Experimental
+    Setup section: 168 event types, 4480 docs, sibling confusion evidence, cross-task
+    validation rationale'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/maven_description.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:56:09.350124+00:00'
+  tags:
+  - paper
+  - dataset
+  - MAVEN
+  - EMNLP2026
+- id: art_20260515_67daba
+  name: third_task_type_eval
+  type: report
+  description: 评估是否需要第三个 IE 任务类型 (RE) 强化 task-agnostic claim，含数据集对比和推荐
+  path: projects/schema-dag-extraction/artifacts/_project/report/third_task_type_eval.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:14:56.753787+00:00'
+  tags:
+  - evaluation
+  - RE
+  - task-agnostic
+  - FewRel
+  - dataset
+- id: art_20260515_799e91
+  name: exp003a_v2_analysis_report
+  type: report
+  description: 'exp003a completion analysis: v1 vs v2 prompt comparison, BCS correlation
+    improvement, GO decision'
+  path: projects/schema-dag-extraction/artifacts/exp003a/report/exp003a_analysis.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp003a
+  skill: ''
+  created_at: '2026-05-15T05:16:29.507772+00:00'
+  tags:
+  - exp003a
+  - v2
+  - analysis
+  - go-decision
+- id: art_20260515_26a3c0
+  name: MAVEN SCS Matrix
+  type: data
+  description: '168x168 SCS matrix for MAVEN event types (all-MiniLM-L6-v2). Server
+    path: /root/schema-dag-extraction/data/maven_scs_matrix.json + maven_sim_matrix.pt'
+  path: projects/schema-dag-extraction/artifacts/exp-004/data/maven_scs_artifacts.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T05:20:03.328038+00:00'
+  tags:
+  - scs
+  - maven
+  - event-detection
+  - confusability
+- id: art_20260515_9be29c
+  name: MAVEN vs Few-NERD SCS Comparison Report
+  type: report
+  description: Cross-task SCS distribution comparison between MAVEN (ED, 168 types)
+    and Few-NERD (NER, 66 types) using same embedding model
+  path: projects/schema-dag-extraction/artifacts/exp-004/report/exp004_maven_scs_report.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-15T05:20:30.428146+00:00'
+  tags:
+  - report
+  - maven
+  - scs
+  - cross-task
+- id: art_20260515_6618de
+  name: per_type_bcs_f1_scatter
+  type: chart
+  description: Scatter plot of per-type BCS vs F1 (63 types, freq>=5). Spearman ρ=-0.293,
+    p=0.02. D008 evidence Layer 2.
+  path: projects/schema-dag-extraction/artifacts/exp002_confusability_controlled/chart/per_type_bcs_f1_scatter_info.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp002_confusability_controlled
+  skill: ''
+  created_at: '2026-05-15T05:58:05.198408+00:00'
+  tags:
+  - D008
+  - per-type
+  - BCS
+  - evidence
+- id: art_20260515_516833
+  name: exp004_maven_bcs_run
+  type: intermediate
+  description: 'exp-004 MAVEN BCS Study: exp1 (count curve) + exp2 (BCS controlled)
+    on MAVEN event detection with Qwen3-32B-FP8, v2 prompt, text_match eval. Count
+    levels: exp1=[1,6,12,24,42,84,149], exp2=[12,24]. 500 samples. tmux=exp004_maven_bcs,
+    PID=224685.'
+  path: projects/schema-dag-extraction/artifacts/exp004_maven_bcs/intermediate/exp004_maven_bcs_run.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp004_maven_bcs
+  skill: ''
+  created_at: '2026-05-15T06:05:43.237169+00:00'
+  tags:
+  - maven
+  - bcs
+  - qwen3-32b
+  - event-detection
+- id: art_20260515_59f9e8
+  name: exp008_run_script
+  type: intermediate
+  description: 'Shell script for exp-008: runs 4 SDGD modes (sdgd_zero, single_pass,
+    random_batch, per_type) on Few-NERD 1000 samples with Qwen3-32B-FP8'
+  path: projects/schema-dag-extraction/artifacts/exp008_sdgd_zero_fewnerd/intermediate/run_exp008.sh
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp008_sdgd_zero_fewnerd
+  skill: ''
+  created_at: '2026-05-15T07:45:47.080404+00:00'
+  tags:
+  - exp008
+  - sdgd
+  - fewnerd
+- id: art_20260515_95bd8e
+  name: sdgd_two_stage_scripts
+  type: intermediate
+  description: 'SDGD two-stage scripts fixing vLLM fork deadlock: sdgd_decompose_cpu.py
+    (Stage 1 CPU), sdgd_extract_gpu.py (Stage 2 GPU, vLLM-first), run_sdgd_full.sh
+    (orchestrator). Located at /root/schema-dag-extraction/src/ on cqa1-38874.'
+  path: projects/schema-dag-extraction/artifacts/exp-008/intermediate/sdgd_two_stage_scripts.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp-008
+  skill: ''
+  created_at: '2026-05-15T10:18:34.319307+00:00'
+  tags:
+  - sdgd
+  - fork-deadlock-fix
+  - exp-008
+- id: art_20260515_060890
+  name: maven_minilm_sim_matrix
+  type: data
+  description: MAVEN 168×168 MiniLM cosine similarity matrix for SDGD-zero decomposition
+    (mean=0.2161, std=0.1030)
+  path: projects/schema-dag-extraction/artifacts/_project/data/maven_minilm_sim_matrix_meta.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:11:51.836073+00:00'
+  tags:
+  - maven
+  - minilm
+  - similarity
+  - sdgd
+- id: art_20260515_ee0b09
+  name: references_survey
+  type: report
+  description: 'Literature survey: 14 required + 7 additional papers (21 total) with
+    full citations, arXiv IDs, key contributions, and relation to our work. For Dream
+    review related work expansion.'
+  path: projects/schema-dag-extraction/artifacts/_project/report/references_survey.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:09:06.060517+00:00'
+  tags:
+  - literature
+  - related-work
+  - dream-review
+- id: art_20260515_128296
+  name: fig_count_curves
+  type: chart
+  description: 'Count-degradation curves (3 subplots): Few-NERD Recall, FewRel Accuracy,
+    MAVEN Relaxed F1 vs schema size. For paper Section 4.1.'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_count_curves.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:11:15.308187+00:00'
+  tags:
+  - paper
+  - section4.1
+  - count_curve
+  - fig_count_curves
+- id: art_20260515_73bdd4
+  name: fig_count_curves
+  type: chart
+  description: 'Multi-task count-degradation curves: (a) Few-NERD recall 0.72→0.42,
+    (b) FewRel accuracy 0.86→0.50, (c) MAVEN relaxed F1 non-monotonic. Data: exp001_count_baseline,
+    exp_fewrel_formal_80rel, exp004_maven_bcs.'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_count_curves_73bdd4.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T16:29:12.267090+00:00'
+  tags:
+  - paper
+  - Section 4.1
+  - line_plot
+- id: art_20260515_3b3fdb
+  name: fig_error_taxonomy
+  type: chart
+  description: Error type distribution across BCS bins for Few-NERD (NER) and FewRel
+    (RE). Stacked bar chart showing IntraSub errors monotonically increase with BCS
+    (ρ=1.0 for NER, ρ=0.954 for RE). For Section 4.4 Multi-Channel Degradation.
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_error_taxonomy.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:31:06.552679+00:00'
+  tags:
+  - paper
+  - section4.4
+  - error-taxonomy
+  - BCS
+  - exp007
+  - exp016
+- id: art_20260515_a69abd
+  name: fig_bcs_scaling
+  type: chart
+  description: 'BCS effect scaling figure: grouped bar chart showing confusability
+    effect amplification from 16-rel (Δ=−9.1pp) to 80-rel (Δ=−31.2pp), 3.4× amplification.
+    For paper Section 4.3.'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_bcs_scaling.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:33:29.038098+00:00'
+  tags:
+  - paper
+  - bcs
+  - scaling
+  - section4.3
+- id: art_20260515_33b6fc
+  name: fig_sdgd_comparison
+  type: chart
+  description: SDGD vs baselines grouped bar chart showing F1/Precision/Recall tradeoff
+    for decomposition strategies (exp008_sdgd_zero_fewnerd_r2). Single Pass achieves
+    best F1; decomposition improves recall but severely hurts precision.
+  path: projects/schema-dag-extraction/artifacts/exp008_sdgd_zero_fewnerd_r2/chart/fig_sdgd_comparison.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp008_sdgd_zero_fewnerd_r2
+  skill: ''
+  created_at: '2026-05-15T16:50:29.096467+00:00'
+  tags:
+  - paper
+  - section5
+  - sdgd
+  - negative-result
+- id: art_20260515_9eec44
+  name: experimental_setup_tex
+  type: paper
+  description: '§3 Experimental Setup LaTeX draft (~850 words). Covers: §3.1 Tasks/Datasets
+    (Few-NERD/FewRel/MAVEN), §3.2 SCS/BCS formal definitions with dual embeddings,
+    §3.3 Exp1 count curve + Exp2 BCS-controlled design, §3.4 Metrics (NER F1, RE accuracy,
+    ED relaxed F1 with formal definition, bootstrap CI), §3.5 Model/Inference (Qwen3-32B-FP8
+    via vLLM).'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/experimental_setup.tex
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:52:46.110263+00:00'
+  tags:
+  - paper
+  - section3
+  - experimental_setup
+  - latex
+- id: art_20260515_9affb8
+  name: dataset_stats_table
+  type: paper
+  description: 'Dataset statistics table (Table 1) for §3.1. Three datasets: Few-NERD
+    (NER, 66 types, 1000 samples, cross-domain), FewRel (RE, 80 types, 1000 samples,
+    cross-domain), MAVEN (ED, 168 types, 18904 mentions, same-domain).'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/dataset_stats.tex
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:52:49.148687+00:00'
+  tags:
+  - paper
+  - table
+  - datasets
+  - latex
+- id: art_20260515_5a7ca0
+  name: exp012_llama8b_r2_dryrun
+  type: data
+  description: 'Dry-run验证: LLaMA-3.1-8B-Instruct chat template fix. text_match_F1
+    0.16-0.27, gen_tokens mean=9.7'
+  path: null
+  url: ssh://cqa1-38874/root/schema-dag-extraction/artifacts/exp012_dryrun/
+  project: schema-dag-extraction
+  exp_id: exp012_llama_8b_r2
+  skill: ''
+  created_at: '2026-05-15T17:28:27.278972+00:00'
+  tags: []
+- id: art_20260515_b16537
+  name: exp006_interaction_2x2_script
+  type: intermediate
+  description: 'Exp-006 script: 2×2 factorial (count × BCS) interaction experiment
+    on Few-NERD with Qwen3-32B-FP8. Tests whether count and confusability effects
+    are additive or multiplicative. Located at /root/schema-dag-extraction/scripts/run_exp006_interaction.py
+    on cqa1-38874.'
+  path: projects/schema-dag-extraction/artifacts/exp006_interaction_2x2/intermediate/exp006_script_info.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp006_interaction_2x2
+  skill: ''
+  created_at: '2026-05-15T17:37:19.802489+00:00'
+  tags:
+  - exp006
+  - factorial
+  - interaction
+  - fewnerd
+  - qwen3-32b
+- id: art_20260515_65501a
+  name: results-section-v1
+  type: paper
+  description: '§4 Results section for EMNLP 2026 paper. Five subsections: count-degradation
+    curves, pairwise confusability, BCS-controlled experiments, multi-channel degradation,
+    centrality confound. ~1500 words.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/results.tex
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:53:11.704142+00:00'
+  tags:
+  - paper
+  - results
+  - latex
+- id: art_20260515_4f7caf
+  name: sdgd_negative_section
+  type: paper
+  description: §5 Why Naive Decomposition Fails — SDGD negative result section (~500
+    words), covers merge amplification mechanism and confidence-gated merge failure
+  path: projects/schema-dag-extraction/artifacts/_project/paper/sdgd_negative.tex
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:03:23.766208+00:00'
+  tags:
+  - paper
+  - section5
+  - sdgd
+  - negative-result
+- id: art_20260515_bca5a1
+  name: experimental_setup_tex
+  type: paper
+  description: Experimental Setup section (§3) for EMNLP 2026 paper — Tasks/Datasets,
+    SCS/BCS definitions, experimental design, evaluation metrics, model/inference
+    details. All numbers verified against registry.
+  path: projects/schema-dag-extraction/artifacts/_project/paper/experimental_setup.tex
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:50:38.000328+00:00'
+  tags:
+  - paper
+  - experimental_setup
+  - emnlp2026
+- id: art_20260515_b96ef5
+  name: exp012_exp1_analysis_summary
+  type: report
+  description: LLaMA-3.1-8B vs Qwen3-8B exp1 count curve comparison — recall decline,
+    cross-model correlation, exact F1 diagnosis
+  path: projects/schema-dag-extraction/artifacts/exp012_llama_8b_r2/report/exp1_analysis_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp012_llama_8b_r2
+  skill: ''
+  created_at: '2026-05-15T20:00:05.173957+00:00'
+  tags:
+  - exp1
+  - count-curve
+  - cross-model
+  - llama
+  - qwen3
+- id: art_20260515_cdef73
+  name: exp012_llama_fewrel_ch2_analysis
+  type: report
+  description: LLaMA-3.1-8B FewRel 80-rel Channel 2 BCS effect analysis — cross-model
+    validation of confusability effect
+  path: projects/schema-dag-extraction/artifacts/exp012_llama_fewrel_ch2/report/analysis_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp012_llama_fewrel_ch2
+  skill: ''
+  created_at: '2026-05-15T22:40:29.619487+00:00'
+  tags:
+  - channel2
+  - bcs
+  - llama
+  - fewrel
+  - cross-model
+- id: art_20260515_805710
+  name: fig_bcs_scaling_all3_fixed
+  type: chart
+  description: 'BCS scaling figure (final): 3 fixes applied — shortened model names
+    (Qwen3-32B, LLaMA-3.1-8B), 40-rel hollow markers + dashed lines + hatched bars
+    for visual distinction, removed green saturation zone shading. Data: Qwen3 16-rel
+    Δ=9.1pp, 40-rel Δ=33.3pp, 80-rel Δ=31.2pp; LLaMA 80-rel Δ=27.1pp.'
+  path: null
+  url: ssh://cqa1-38874/root/schema-dag-extraction/artifacts/fig_bcs_scaling.pdf
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:28:39.272348+00:00'
+  tags:
+  - bcs_scaling
+  - figure
+  - paper
+  - cross-model
+  - fewrel
+- id: art_20260516_ccbd50
+  name: report_provenance_check
+  type: report
+  description: Pre-submission provenance completeness + paper consistency check report
+    for ARR May 25
+  path: projects/schema-dag-extraction/artifacts/_project/report/report_provenance_check.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:07:39.963657+00:00'
+  tags:
+  - provenance
+  - paper-check
+  - pre-submission
+- id: art_20260516_4a92d0
+  name: MAVEN Residualized BCS Analysis
+  type: report
+  description: Per-type BCS centrality confound analysis on MAVEN. Positive BCS-F1
+    correlation fully explained by centrality for both embeddings (MiniLM via frequency
+    r=0.201, Qwen3 via degree centrality r=0.854). After control, both become n.s.
+    Includes appendix text draft.
+  path: projects/schema-dag-extraction/artifacts/exp004/report/analysis_report.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp004
+  skill: ''
+  created_at: '2026-05-16T01:35:43.830526+00:00'
+  tags:
+  - maven
+  - bcs
+  - centrality
+  - residualized
+  - reviewer-response
+- id: art_20260516_795424
+  name: three_way_comparison
+  type: data
+  description: 'Three-way BCS-accuracy comparison: 16-rel independent vs 80-pool-16sub
+    vs 80-rel full pool. Slopes, quartile deltas, permutation tests.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/three_way_comparison_pointer.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:18:40.011793+00:00'
+  tags:
+  - D033
+  - D034
+  - three-way
+  - BCS
+  - comparison
+- id: art_20260516_773ae0
+  name: d035_extreme_batch
+  type: data
+  description: 'D035 extreme-batch Δ: bottom/top 5 of 100 batches for 16-rel (-11.65pp)
+    and 80pool-16sub (-9.79pp), vs 80-rel reference (-31.25pp).'
+  path: projects/schema-dag-extraction/artifacts/_project/data/d035_extreme_batch_pointer.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:18:41.812369+00:00'
+  tags:
+  - D035
+  - extreme-batch
+  - BCS
+  - Table3
+- id: art_20260516_a8dc3c
+  name: three_way_comparison_results
+  type: data
+  description: 三方比较(16-rel / 80-pool-16sub / full 80-rel) slopes + extreme batch Δ
+    with CI. Table 3 数据。
+  path: projects/schema-dag-extraction/artifacts/exp_fewrel_80pool_16sub_bootstrap/data/three_way_comparison_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_fewrel_80pool_16sub_bootstrap
+  skill: ''
+  created_at: '2026-05-16T02:19:27.676323+00:00'
+  tags:
+  - d033
+  - d035
+  - d036
+  - table3
+- id: art_20260516_74ef3a
+  name: D037 W3 cluster bootstrap
+  type: data
+  description: 'Type-level cluster bootstrap CI: Few-NERD [0.057,0.190], MAVEN [0.070,0.139],
+    both significant'
+  path: projects/schema-dag-extraction/artifacts/_project/data/w3_cluster_bootstrap_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:34:40.281714+00:00'
+  tags:
+  - d037
+  - round2
+  - W3
+- id: art_20260516_97c5a2
+  name: D037 W4 count recall CI
+  type: data
+  description: Count=22 vs 44 recall CI overlap, permutation p=0.31, non-monotonicity
+    within sampling variability
+  path: projects/schema-dag-extraction/artifacts/_project/data/w4_count_recall_ci_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:34:42.780377+00:00'
+  tags:
+  - d037
+  - round2
+  - W4
+- id: art_20260516_6035ec
+  name: D037 W2 practical effect
+  type: data
+  description: 'Typical BCS range practical gap: 2.2pp [0.4,4.0], ~7% of extreme 31.2pp'
+  path: projects/schema-dag-extraction/artifacts/_project/data/w2_practical_effect_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:34:45.101441+00:00'
+  tags:
+  - d037
+  - round2
+  - W2
+- id: art_20260516_0e4a08
+  name: Round 2 Statistical Analyses (W2+W3+W4)
+  type: data
+  description: Cluster bootstrap CIs for pairwise SCS-confusion (W3), count=22/44
+    recall CI overlap (W4), realistic BCS practical effect (W2). JSON with numerical
+    results and recommended narratives.
+  path: projects/schema-dag-extraction/artifacts/_project/data/round2_statistical_analyses_pointer.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:37:50.897991+00:00'
+  tags:
+  - round2
+  - rebuttal
+  - statistics
+  - bootstrap
+- id: art_20260516_4a9a5c
+  name: fewrel_v2_bcs_eval_results
+  type: data
+  description: 'Per-batch accuracy results for FewRel v2 BCS-controlled experiment
+    (C1b): 5 low-BCS + 5 high-BCS batches, count=8, Qwen3-32B-FP8, v2 RE prompt'
+  path: projects/schema-dag-extraction/artifacts/exp_fewrel_v2_bcs_controlled/data/eval_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_fewrel_v2_bcs_controlled
+  skill: ''
+  created_at: '2026-05-16T03:41:02.403470+00:00'
+  tags:
+  - fewrel
+  - bcs
+  - v2-prompt
+  - channel2
+  - C1b
+- id: art_20260516_7b594a
+  name: fewrel_v2_bcs_bootstrap_ci
+  type: data
+  description: 'Bootstrap CI for delta(low-high BCS) accuracy: +7.92pp [-5.21, +21.46]pp,
+    10K resamples. Channel 2 direction confirmed but CI includes 0.'
+  path: projects/schema-dag-extraction/artifacts/exp_fewrel_v2_bcs_controlled/data/bootstrap_ci.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_fewrel_v2_bcs_controlled
+  skill: ''
+  created_at: '2026-05-16T03:41:04.362268+00:00'
+  tags:
+  - fewrel
+  - bcs
+  - bootstrap
+  - v2-prompt
+  - channel2
+  - C1b
+- id: art_20260516_907e7e
+  name: DocRED SCS Matrix (96 relations)
+  type: data
+  description: Pairwise cosine similarity matrix for 96 DocRED relation types computed
+    with all-MiniLM-L6-v2. Shape [96,96], BCS range [0.58, 0.99]. Stored at /root/schema-dag-extraction/artifacts/exp_docred_confusability/scs_matrix.npy
+    on cqa1-38874.
+  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/scs_matrix_info.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_docred_confusability
+  skill: ''
+  created_at: '2026-05-16T04:27:02.717997+00:00'
+  tags:
+  - docred
+  - scs
+  - embedding
+- id: art_20260516_e22ee0
+  name: DocRED Confusability Pilot Results
+  type: data
+  description: 'Pilot results for DocRED confusability study. Count curve: count_4=75.0%,
+    count_16=56.7%, count_64=42.6% mean accuracy. Confirms count-accuracy relationship
+    on document-level RE with 96 relation types.'
+  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/pilot_results.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_docred_confusability
+  skill: ''
+  created_at: '2026-05-16T04:27:41.711330+00:00'
+  tags:
+  - docred
+  - pilot
+  - confusability
+  - count-curve
+- id: art_20260516_6b6e26
+  name: BCS MAX→MEAN fix results
+  type: data
+  description: BCS definition unified from MAX to MEAN pairwise SCS. Contains before/after
+    comparison, regression analysis (3 groups), permutation tests, quartile analysis.
+  path: projects/schema-dag-extraction/artifacts/_project/data/bcs_fix_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:44:38.406364+00:00'
+  tags:
+  - bcs
+  - fix
+  - regression
+  - statistics
+- id: art_20260516_b2e2c0
+  name: phase2_count_curve_results
+  type: data
+  description: 'Phase 2a count curve: accuracy vs number of candidate types [1,4,8,16,32,64,96]
+    x5 batches. Monotonic degradation from 88% (count=1) to 38.7% (count=96).'
+  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/count_curve_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_docred_confusability
+  skill: ''
+  created_at: '2026-05-16T05:03:41.804047+00:00'
+  tags:
+  - docred
+  - confusability
+  - count-curve
+  - phase2
+- id: art_20260516_040aef
+  name: phase2_bcs_controlled_results
+  type: data
+  description: 'Phase 2b BCS-controlled batches: count=16 and count=32 with 25 random
+    + 5 low-BCS + 5 high-BCS. BCS effect: 23pp gap at count=16, 18pp at count=32.'
+  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/bcs_controlled_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_docred_confusability
+  skill: ''
+  created_at: '2026-05-16T05:03:43.611862+00:00'
+  tags:
+  - docred
+  - confusability
+  - bcs-controlled
+  - phase2
+- id: art_20260516_3b66cb
+  name: phase2_bootstrap_analysis
+  type: data
+  description: 'Phase 2c bootstrap CI (B=10000): OLS slope with 95% CI, Spearman correlation,
+    quartile gap CI. Both count=16 and count=32 show significant negative BCS-accuracy
+    relationship.'
+  path: projects/schema-dag-extraction/artifacts/exp_docred_confusability/data/bootstrap_analysis.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_docred_confusability
+  skill: ''
+  created_at: '2026-05-16T05:03:45.490216+00:00'
+  tags:
+  - docred
+  - confusability
+  - bootstrap
+  - phase2
+- id: art_20260516_9dfc57
+  name: cross_embedding_sensitivity
+  type: data
+  description: 'W5 cross-embedding sensitivity analysis: Few-NERD Pearson/Spearman
+    for Qwen3 vs MiniLM, FewRel BCS-accuracy regression with both embeddings. Confirms
+    signal robustness for Few-NERD; FewRel Qwen3 BCS has compressed range limiting
+    statistical power.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:10:55.068523+00:00'
+  tags:
+  - cross-embedding
+  - sensitivity
+  - W5
+  - SCS
+  - BCS
+  - robustness
+- id: art_20260516_e6a1eb
+  name: exp_v2_re_n25_results
+  type: data
+  description: 'FewRel v2 RE extreme-batch experiment n=25: Delta=+25.54pp, 95% CI
+    [+22.42, +28.62], p=0.0000, Pearson r=-0.919. BCS effect CONFIRMED under v2 prompt
+    with high statistical power.'
+  path: projects/schema-dag-extraction/artifacts/exp_v2_re_n25/data/results_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_v2_re_n25
+  skill: ''
+  created_at: '2026-05-16T05:28:59.265382+00:00'
+  tags:
+  - fewrel
+  - v2-prompt
+  - bcs
+  - extreme-batch
+  - n25
+  - re
+- id: art_20260516_4aabf7
+  name: SCS Name+Definition Ablation
+  type: data
+  description: 'SCS name-only vs name+definition ablation for W-C1 reviewer response.
+    Few-NERD: name r=0.172 vs def r=0.149 (delta=-0.023). MAVEN: name r=0.129 vs def
+    r=0.164 (delta=+0.035). FewRel: name r=0.178 vs def r=0.193 (delta=+0.015). All
+    significant. No systematic benefit from definitions.'
+  path: null
+  url: file:///root/schema-dag-extraction/artifacts/scs_name_def_ablation/results.json
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:02:43.601626+00:00'
+  tags:
+  - ablation
+  - scs
+  - reviewer-response
+  - W-C1
+- id: art_20260516_5ccf22
+  name: aggregation_simulation_results
+  type: data
+  description: Monte Carlo simulation showing pair-level R²≈0.074 amplifies to batch-level
+    R²≈0.22 via averaging correlated pairs (EF=3.35). Confirms aggregation mechanism
+    for Reviewer Q2/MW2.
+  path: projects/schema-dag-extraction/artifacts/_project/data/aggregation_simulation_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:09:24.454709+00:00'
+  tags:
+  - simulation
+  - reviewer-response
+  - aggregation
+  - R2-amplification
+- id: art_20260516_f03b24
+  name: fewrel_contamination_check
+  type: data
+  description: 'FewRel train/val split contamination analysis: compares per-type accuracy
+    between 64 train-origin and 16 val-origin relations in the 80-rel experiment.
+    Mann-Whitney p=0.2485, no significant contamination. For Reviewer W-W5 Q3.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/results_f03b24.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:12:01.870372+00:00'
+  tags:
+  - contamination
+  - reviewer-response
+  - fewrel
+  - statistical-test
+- id: art_20260516_944001
+  name: FewRel Train/Val Split Contamination Check
+  type: data
+  description: 'Statistical test for data contamination: compares accuracy of train-origin
+    (64) vs val-origin (16) relation types across 19 experiments. Result: NO contamination
+    — val-origin types have HIGHER accuracy (opposite to contamination), Mann-Whitney
+    p=0.061, Cohen''s d=-0.54.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/results_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:32:09.053495+00:00'
+  tags:
+  - contamination
+  - fewrel
+  - reviewer-response
+  - statistical-test
+- id: art_20260516_d18838
+  name: fewrel_factorial_tost
+  type: data
+  description: 2x2 Factorial ANOVA + TOST analysis proving count and BCS channels
+    are empirically separable. Regression TOST p=0.003 confirms interaction within
+    ±3pp. All three analyses show no significant interaction.
+  path: projects/schema-dag-extraction/artifacts/_project/data/results_d18838.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T14:22:03.963148+00:00'
+  tags:
+  - statistics
+  - factorial-anova
+  - tost
+  - separability
+  - fewrel
+- id: art_20260516_b63ba1
+  name: D051 Batch 2 experiment
+  type: intermediate
+  description: 'Running: 25-batch count curves (NER+RE) + 3-seed variance. Scripts
+    at /root/schema-dag-extraction/scripts/run_d051_count_curves_25.py and run_d051_batch2.sh.
+    Output: artifacts/d051_{dataset}_n25_s{seed}/'
+  path: projects/schema-dag-extraction/artifacts/d051_batch2/intermediate/d051_batch2_status.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: d051_batch2
+  skill: ''
+  created_at: '2026-05-16T19:05:55.786699+00:00'
+  tags:
+  - R6-W3
+  - R8-W2
+  - count-curve
+  - 3-seed
+  - running
+- id: art_20260517_903c40
+  name: SDGD Routing Strategies Results
+  type: data
+  description: 'FewRel 80-rel routing experiment: all practical routing strategies
+    perform WORSE than single-pass. Oracle=72.4%, single_pass=50.4%, best practical
+    (none_aware)=36.5%. None-detection rate too low for reliable routing.'
+  path: projects/schema-dag-extraction/artifacts/sdgd_routing/data/sdgd_routing_pointer.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: sdgd_routing
+  skill: ''
+  created_at: '2026-05-17T06:15:03.767527+00:00'
+  tags:
+  - routing
+  - fewrel
+  - sdgd
+  - negative-result
+- id: art_20260517_e82799
+  name: exp_llama70b_cross_model_analysis
+  type: report
+  description: 'LLaMA 3.1 70B cross-model validation analysis: Exp 1-3 results vs
+    Qwen3-32B baseline. Dim1 replicated (-30.7pp vs -30.1pp), Dim2 significant at
+    count_16. Exp 3 partial (3/6 counts done).'
+  path: projects/schema-dag-extraction/artifacts/exp_llama70b_cross_model/report/exp_llama70b_cross_model_analysis.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_llama70b_cross_model
+  skill: ''
+  created_at: '2026-05-17T11:21:32.974126+00:00'
+  tags:
+  - cross-model
+  - llama-70b
+  - analysis
+  - partial
+- id: art_20260517_484480
+  name: exp_fewshot_bcs_v2 analysis report
+  type: report
+  description: 'Statistical analysis of few-shot BCS mitigation experiment: negative
+    result, BCS delta persists/widens under 1-shot and 5-shot conditions'
+  path: projects/schema-dag-extraction/artifacts/exp_fewshot_bcs_v2/report/analysis_report.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_fewshot_bcs_v2
+  skill: ''
+  created_at: '2026-05-17T14:07:55.801584+00:00'
+  tags:
+  - bcs
+  - few-shot
+  - negative-result
+  - confusability
+- id: art_20260517_5a03b5
+  name: Schema Intervention Experiment v2 - Final Results
+  type: data
+  description: 'Phase 3 formal BCS-controlled experiment results with corrected RENAME_MAP
+    (nationality, land of origin). Key finding: significant interaction (p<0.001)
+    ��� renaming hurts high-BCS batches 3x more (-8.83%) than low-BCS (-2.96%). Rename
+    count correlates with damage (r=-0.625). 50 batches, Qwen3-32B-FP8.'
+  path: projects/schema-dag-extraction/artifacts/exp_schema_intervention/data/analysis.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_schema_intervention
+  skill: ''
+  created_at: '2026-05-17T16:13:10.295090+00:00'
+  tags:
+  - intervention
+  - causal
+  - BCS
+  - renaming
+  - qwen3-32b
+- id: art_20260517_40dbc2
+  name: Schema Intervention - Solo Sanity Check (Phase 2)
+  type: data
+  description: 'Solo accuracy sanity check for 12 renamed types. 11/12 passed (Δ >=
+    -5pp threshold). Only failure: mother → maternal parent (Δ=-8.3%). Key passes:
+    nationality (0%), land of origin (0%), comes after (+8.3%).'
+  path: projects/schema-dag-extraction/artifacts/exp_schema_intervention/data/solo_sanity_check.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_schema_intervention
+  skill: ''
+  created_at: '2026-05-17T16:23:33.931184+00:00'
+  tags:
+  - intervention
+  - sanity-check
+  - solo-accuracy
+- id: art_20260518_a6acd7
+  name: fig_count_curves_v2
+  type: chart
+  description: 'Figure 1a: Count-degradation curves (NER+RE), single-panel, Okabe-Ito,
+    hollow markers for full-schema, error bars ±1SD, chance reference line. Data:
+    d051 FewRel + Few-NERD §4.1.'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_count_curves_a6acd7.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T08:09:20.369245+00:00'
+  tags:
+  - paper
+  - figure1a
+  - count_curves
+  - L1-optimized
+- id: art_20260518_482351
+  name: fig_bcs_scaling_v2
+  type: chart
+  description: 'Figure 1b: BCS-controlled FewRel accuracy, compact grouped bar (3.3x2.5"),
+    Low/High BCS per pool condition, hatched 80-pool subset, Δ annotations. Data:
+    extreme-batch count_8.'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_bcs_scaling_482351.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T08:09:23.805957+00:00'
+  tags:
+  - paper
+  - figure1b
+  - bcs_scaling
+  - L1-optimized
+- id: art_20260518_d056dd
+  name: fig_error_taxonomy_v2
+  type: chart
+  description: 'Figure 2: Error taxonomy, dual-panel line plots replacing stacked
+    bars, IntraSub+ExtraSub/Missed+Other/Correct, fill_between for IntraSub growth,
+    insight annotations. Data: Few-NERD NER + FewRel RE error decomposition.'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_error_taxonomy_d056dd.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T08:09:26.663666+00:00'
+  tags:
+  - paper
+  - figure2
+  - error_taxonomy
+  - L1-optimized
+- id: art_20260518_ce5faf
+  name: scs_baseline_comparison
+  type: data
+  description: SCS vs simple baseline metrics (Levenshtein, WordNet WuP, same-parent)
+    pairwise confusion prediction comparison on FewRel and Few-NERD. SCS is strongest
+    predictor on both datasets.
+  path: projects/schema-dag-extraction/artifacts/_project/data/results_ce5faf.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T09:02:07.514262+00:00'
+  tags:
+  - rebuttal
+  - scs
+  - baseline-comparison
+- id: art_20260518_a227bb
+  name: unconstrained_decoding_ablation_n25_results
+  type: data
+  description: 'Unconstrained decoding ablation n=25: delta=+2.80pp, rho=-0.1442,
+    p=0.49, CI=[-4.53, +10.56]. Remote: cqa1:/root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/results.json'
+  path: projects/schema-dag-extraction/artifacts/exp_unconstrained_decoding_ablation/data/results_summary.txt
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_unconstrained_decoding_ablation
+  skill: ''
+  created_at: '2026-05-18T14:21:09.440471+00:00'
+  tags:
+  - ablation
+  - unconstrained-decoding
+  - n25
+  - bcs
+- id: art_20260519_551a7f
+  name: rebuttal_response_template
+  type: paper
+  description: ARR rebuttal response letter template based on 8 anticipated reviewer
+    concerns, structured per ACL/EMNLP best practices
+  path: projects/schema-dag-extraction/artifacts/_project/paper/rebuttal_response_template.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T01:13:21.817397+00:00'
+  tags:
+  - rebuttal
+  - arr
+  - emnlp2026
+- id: art_20260519_49cc01
+  name: Paired Constrained Decoding Results (n=25)
+  type: data
+  description: Paired constrained decoding experiment on the same 25 batch type sets
+    as unconstrained ablation. Constrained Pearson r(BCS, acc) = -0.4479 (p=0.025),
+    nearly identical to unconstrained r=-0.4393. Mean accuracy unchanged (79.5% vs
+    79.6%). Extreme batch high_11 (BCS=0.97) drops to 49% accuracy.
+  path: projects/schema-dag-extraction/artifacts/exp_paired_constrained/data/summary.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_paired_constrained
+  skill: ''
+  created_at: '2026-05-19T20:10:25.052407+00:00'
+  tags:
+  - bcs
+  - constrained-decoding
+  - paired-comparison
+  - fewrel
+  - n25
+- id: art_20260520_54c66f
+  name: w4_relaxed_matching_results
+  type: data
+  description: 'NER relaxed matching reanalysis: boundary error conflation hypothesis
+    falsified. Relaxed matching improves F1 +4.2pp but BCS correlation unchanged (r=0.014→0.003).
+    N=450 batches, 3 seeds, 6 count levels.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/w4_relaxed_matching_results.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:59:52.782784+00:00'
+  tags:
+  - w4
+  - ner
+  - relaxed-matching
+  - task-asymmetry
+  - negative
+- id: art_20260521_ce72aa
+  name: rebuttal_response_template_v21
+  type: report
+  description: Structured rebuttal response template (v21) — 13 talking points upgraded
+    with specific table/figure/appendix citations, core replies, and supplementary
+    data. TP7 (separability) and TP13 (no solution) marked high-risk with expanded
+    evidence.
+  path: projects/schema-dag-extraction/artifacts/_project/report/rebuttal_response_template.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T00:34:06.304355+00:00'
+  tags:
+  - rebuttal
+  - paper
+  - arr-2026
+- id: art_20260521_5a1e63
+  name: paper-final-draft-20260521
+  type: paper
+  description: 'EMNLP 2026 ARR submission final draft - all reviewer corrections applied
+    (W1: 49.5→50.4%, W2: 18-25→22-58%, M1: grammar fix). 0 errors, 0 undefined refs.
+    Body ≤ 8 pages verified.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/main.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:51:39.693142+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - final-draft
+  - submission
+- id: art_20260521_715ed3
+  name: paper-final-draft-I1I2I3-20260521
+  type: paper
+  description: 'EMNLP 2026 ARR final draft after I1/I2/I3 info-level fixes: "virtually
+    identical", Gemini architecture family clarification, "five prompt designs". 0
+    errors, body ≤ 8 pages.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/main_715ed3.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:25:05.412371+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - final-draft
+  - submission
+- id: art_20260521_daad2b
+  name: arr-submission-metadata
+  type: report
+  description: 'ARR May 2026 submission metadata template: title, abstract, keywords,
+    checklist status, supplementary material assessment, pre-submission checks.'
+  path: projects/schema-dag-extraction/artifacts/_project/report/arr_submission_metadata.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:47:36.494231+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - arr
+  - metadata
+- id: art_20260521_9c5ea2
+  name: TOST Margin Sensitivity Analysis
+  type: data
+  description: 'TOST equivalence test sensitivity analysis across margins (±2-5pp)
+    for FewRel count×BCS interaction. Three analyses: d051 factorial (N=150), d051
+    regression (N=375), 40rel factorial (N=54). Regression shows equivalence at ±2pp
+    (prob) and ±3.5pp (logit); factorials are underpowered.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/tost_margin_sensitivity.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:53:14.756143+00:00'
+  tags:
+  - tost
+  - sensitivity
+  - fewrel
+  - bcs
+  - equivalence
+- id: art_20260521_f7e886
+  name: R1 Statistical Supplements (JSON)
+  type: data
+  description: 'Three statistical analyses for R1 reviewer response: N3.2 partial
+    correlation, W2 MDE, W3 NER null power'
+  path: projects/schema-dag-extraction/artifacts/_project/data/r1_statistical_supplements.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:03:05.372264+00:00'
+  tags:
+  - rebuttal
+  - statistics
+  - R1
+- id: art_20260521_124bbf
+  name: R1 Statistical Supplements (Markdown)
+  type: report
+  description: 'Readable summary of three R1 statistical analyses: partial correlation,
+    MDE, NER power analysis'
+  path: projects/schema-dag-extraction/artifacts/_project/report/r1_statistical_supplements.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:03:06.805297+00:00'
+  tags:
+  - rebuttal
+  - statistics
+  - R1
+- id: art_20260521_33d9cb
+  name: paper-r1-revision-20260521
+  type: paper
+  description: 'EMNLP 2026 ARR draft after R1 comprehensive revision: N1 TOST anchor
+    rewrite + logit expansion + n=375 data, N2 cross-model NER null, N3 partial correlation
+    + VIF caveats, W1-W5, Minor fixes. 28 pages, body ≤ 8.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/main_33d9cb.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:32:24.906134+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - r1-revision
+- id: art_20260521_62ea55
+  name: paper-v27-conclusion-fixed-20260521
+  type: paper
+  description: 'v27: Conclusion pulled back to page 8 by merging into Practical implications
+    paragraph and compressing Embedding similarity paragraph. 0 errors, body ≤ 8 pages
+    confirmed via pdf_to_images.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/main_62ea55.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:38:12.690029+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - page-fix
+- id: art_20260521_e49b2c
+  name: paper-v28-writing-boost-20260521
+  type: paper
+  description: 'v28: Discussion rewritten for scoring impact - added aggregation amplification
+    (17× R² boost), NER-RE task asymmetry analysis, expanded practical implications
+    (pre-hoc BCS diagnostic, 22-58% explained variance, routing-aware decomposition
+    path). Body ≤ 8 pages confirmed.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/main_e49b2c.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:16:09.327147+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - writing-boost
+- id: art_20260521_07c0e7
+  name: LLaMA-70B NER BCS-null analysis
+  type: data
+  description: Per-batch BCS-F1 correlation analysis for LLaMA-3.1-70B-FP8 on Few-NERD
+    NER (count_6 n=25, count_12 n=25). Pooled r=-0.13, p=0.36 — BCS null supported
+    across three models.
+  path: projects/schema-dag-extraction/artifacts/exp_llama70b_ner_bcs_null/data/bcs_null_analysis.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: exp_llama70b_ner_bcs_null
+  skill: ''
+  created_at: '2026-05-21T17:29:34.990490+00:00'
+  tags:
+  - ner
+  - bcs-null
+  - llama-70b
+  - cross-model
+- id: art_20260521_7470c4
+  name: paper_v30_llama70b_ner_null
+  type: paper
+  description: 'v30: integrated LLaMA-70B NER BCS-null results (r=-0.13, p=0.36) —
+    updated table, abstract, intro, results, discussion, limitations from "two models"
+    to "three models". Page 8 fit verified.'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/paper_v30_llama70b_ner_null.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:42:47.562057+00:00'
+  tags:
+  - paper
+  - v30
+  - llama70b
+  - ner-null
+- id: art_20260521_4a7273
+  name: paper_v31_director_wording
+  type: paper
+  description: 'v31: Director 精确措辞版本。tab:cross_model_ner_null 加 dagger 注（count_12
+    r=-0.42 Bonferroni p=0.069），abstract 加 (8B--70B)，discussion "three models (8B--70B)"，limitations
+    改为 "could differ for proprietary models"。正文 ≤ 8 页验证通过。'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/paper_v31_director_wording.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:46:00.814111+00:00'
+  tags:
+  - paper
+  - v31
+  - llama70b
+  - director-wording
+- id: art_20260521_6f964b
+  name: paper_v32_r23_fixes
+  type: paper
+  description: 'v32: Round 23 审稿修复 — 16 条 fix (W1-W16)。Checklist 删除回收 2 页，Logit TOST
+    提升到正文，DocRED VIF 弱化，NER null 双层解释，cross-model scope，SCS novelty positioning，TOST
+    margin 概念化，ecological correlation，Gemini leverage，DocRED CIs，bootstrap non-independence，dataset
+    independence caveat，single seed SD。正文 ≤ 8 页验证通过。26 总页。'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/paper_v32_r23_fixes.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T18:36:31.003423+00:00'
+  tags:
+  - paper
+  - v32
+  - r23-fixes
+  - final
+- id: art_20260522_784829
+  name: fewrel_domain_classification
+  type: data
+  description: FewRel 80 relation types classified into 6 semantic domains (geography,
+    creative_work, person, organization, event_temporal, science_taxonomy)
+  path: projects/schema-dag-extraction/artifacts/_project/data/fewrel_domain_classification.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:00:37.740278+00:00'
+  tags:
+  - fewrel
+  - domain
+  - W6
+  - appendix
+- id: art_20260522_7347b5
+  name: fewrel_domain_distribution
+  type: data
+  description: 'W6 domain distribution analysis of extreme-BCS batches: chi-squared
+    test, entropy, LaTeX appendix paragraph. Domain differs significantly but is a
+    mediator not confound.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/fewrel_domain_distribution.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:00:40.390540+00:00'
+  tags:
+  - fewrel
+  - bcs
+  - domain
+  - W6
+  - appendix
+  - chi-squared
+- id: art_20260522_27e63e
+  name: DocRED Ridge Regression Results
+  type: data
+  description: Ridge regression on 110 DocRED batches confirming negative BCS coefficient
+    direction (analytic from correlation matrix, GCV λ=0.001, β_BCS=-1.53, R²=0.594)
+  path: projects/schema-dag-extraction/artifacts/_project/data/docred_ridge_regression.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:05:09.276360+00:00'
+  tags:
+  - ridge-regression
+  - docred
+  - W2-supplement
+  - BCS-directionality
+- id: art_20260522_5f6170
+  name: DocRED Ridge Appendix LaTeX
+  type: paper
+  description: 'LaTeX paragraph for Appendix E.1: ridge regression confirming BCS
+    negative directionality under multicollinearity'
+  path: projects/schema-dag-extraction/artifacts/_project/paper/docred_ridge_appendix.tex
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:05:10.781310+00:00'
+  tags:
+  - latex
+  - appendix
+  - ridge-regression
+  - docred
+- id: art_20260522_32b636
+  name: split_sample_bootstrap
+  type: data
+  description: 'W7 bootstrap CI robustness analysis: cluster-robust SE and cluster
+    bootstrap on FewRel 164-batch BCS regression (R²=0.268). Tests whether shared
+    text instances across batches make standard CIs anti-conservative. Result: ROBUST
+    — SE inflation 0.96x–0.97x, CI width change -6% to +6%, slope significant (p<10⁻¹¹)
+    under all cluster specifications.'
+  path: projects/schema-dag-extraction/artifacts/_project/data/split_sample_bootstrap.json
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T05:11:55.142817+00:00'
+  tags:
+  - W7
+  - bootstrap
+  - robustness
+  - CI
+  - cluster-robust
+  - instance-sharing
+  - BCS-regression
+- id: art_20260522_3d29b2
+  name: arr_checklist_final
+  type: report
+  description: 'ARR submission pre-check: supplementary material inventory + full
+    responsible NLP checklist with per-item answers and action items'
+  path: projects/schema-dag-extraction/artifacts/_project/report/arr_checklist_final.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:27:53.463930+00:00'
+  tags:
+  - arr
+  - checklist
+  - submission
+  - emnlp2026
+- id: art_20260522_0bde7c
+  name: author_response_template
+  type: report
+  description: 'Pre-written rebuttal template covering 5 anticipated attack surfaces:
+    BCS scope, DocRED VIF, TOST logit-scale, NER null, first-controlled-study claim'
+  path: projects/schema-dag-extraction/artifacts/_project/report/author_response_template.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:18:50.198264+00:00'
+  tags:
+  - rebuttal
+  - ARR-May-2026
+  - author-response
+- id: art_20260522_f8890a
+  name: analysis_c3_extreme_batch_n
+  type: report
+  description: 'C3 investigation: extreme BCS batch sample size analysis. Confirms
+    Figure 1b uses N=1 per group (single greedy batch), CIs are instance-level bootstrap.
+    Assesses severity, lists available multi-batch evidence, and provides improvement
+    recommendations.'
+  path: projects/schema-dag-extraction/artifacts/_project/report/analysis_c3_extreme_batch_n.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:38:19.117362+00:00'
+  tags:
+  - c3
+  - bcs
+  - statistical-power
+  - figure-1b
+  - critical-review
+- id: art_20260522_e92b5c
+  name: analysis_m4_contamination
+  type: report
+  description: 'M4 FewRel data contamination / memorization detection analysis. Conclusion:
+    LOW risk. Per-type accuracy variance (std=0.147), cross-model replication (4 models),
+    cross-dataset replication (DocRED, Few-NERD), and causal error taxonomy all argue
+    against memorization artifact.'
+  path: projects/schema-dag-extraction/artifacts/_project/report/analysis_m4_contamination.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T09:16:53.264055+00:00'
+  tags:
+  - contamination
+  - fewrel
+  - memorization
+  - m4
+  - robustness
+- id: art_20260522_8c649a
+  name: analysis_m2_ecological_fallacy
+  type: report
+  description: 'M2 ecological fallacy analysis: ICC decomposition, type-level vs batch-level
+    BCS effects, structural argument that BCS is a contextual (Level-2) variable with
+    zero within-batch variance, making ecological fallacy structurally inapplicable'
+  path: projects/schema-dag-extraction/artifacts/_project/report/analysis_m2_ecological_fallacy.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T09:21:11.477360+00:00'
+  tags:
+  - statistical-robustness
+  - ecological-fallacy
+  - ICC
+  - BCS
+  - M2
+- id: art_20260522_d3537b
+  name: M1 Gemini Leverage Sensitivity Analysis
+  type: report
+  description: Cook's Distance analysis of Gemini 2.5 Flash BCS-controlled experiment.
+    count_8 (n=50) robust (r strengthens -0.887→-0.913 after trimming). count_16 (n=10)
+    fragile (r drops -0.804→-0.417, single-point driven by high_4 BCS=0.97). Cross-model
+    claim supported.
+  path: projects/schema-dag-extraction/artifacts/_project/report/analysis_m1_gemini_leverage.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T09:21:15.989627+00:00'
+  tags:
+  - gemini
+  - leverage
+  - cook-distance
+  - sensitivity
+  - cross-model
+  - rebuttal
+- id: art_20260523_1e7887
+  name: submission_audit_20260523
+  type: report
+  description: 提交前全量数据正确性与可追溯性审计报告 — 28/30数字通过，2处NER截断问题，4个代码包缺失脚本
+  path: projects/schema-dag-extraction/artifacts/_project/report/submission_audit_20260523.md
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:30:23.012220+00:00'
+  tags:
+  - audit
+  - submission
+  - provenance
+- id: art_20260523_801531
+  name: fig_sdgd_pipeline
+  type: chart
+  description: 'Figure B: SDGD Pipeline Failure Diagram — decompose→route→merge 流程图，标注
+    Routing Failure 和 Merge Amplification 两种失败模式'
+  path: projects/schema-dag-extraction/artifacts/_project/chart/fig_sdgd_pipeline.pdf
+  url: null
+  project: schema-dag-extraction
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:31:57.109239+00:00'
+  tags:
+  - paper
+  - figure
+  - pipeline
+  - sdgd

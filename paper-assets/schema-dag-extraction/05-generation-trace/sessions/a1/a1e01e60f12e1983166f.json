@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_maven-dataset-study_20260515T030839_result.json",
     "occurrence": 1,
-    "bytes": 2116566,
-    "sha256": "2e81648872c1c4e0b96363f5bf50dd6b82c6318ae7b51afd5b509b51b4dc7976"
+    "bytes": 2116565,
+    "sha256": "60503ddf4a89839631e0fef5cbf9101a7ba437584fc9b18b6cb86e86017bb715"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "a1e01e60f12e1983166f-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2116585,
+                "serialized_sha256": "25efa857b409c1a8d1fbb9f1bdabbfb21f0459cb209b7940aac525c044978120",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/research-maven-dataset-study.md"

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cleanup_and_submit_maven_20260519T124804_result.json",
     "occurrence": 1,
-    "bytes": 532,
-    "sha256": "d809323d68bd326fe16688c18ae3ac7100e08b5f74e3497a3df25d2672ba677d"
+    "bytes": 531,
+    "sha256": "600defa110caf02addc5113f9224c91b72128816b235fe2567e06f044a8b4b0c"
   },
   "statistics": {
     "messages": 1,

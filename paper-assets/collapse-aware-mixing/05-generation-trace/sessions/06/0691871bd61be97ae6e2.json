@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0691871bd61be97ae6e2",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "check seed0 r2 progress loop5",
+  "task_key": "worker_check_seed0_r2_progress_loop5_20260514T090830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed0_r2_progress_loop5_20260514T090830_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "a28ca54b663a230835c4e9a27db0ed68b2adf97f33e5972c49e1962c153b5dc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "G0 目录已有 `final_model`、`training`、`metrics.jsonl`，说明 G0 train 和 eval 已完成。当前正在进行的 generate 是 G0 generation（为 G1 准备合成数据）。\n\n## 实验进度报告\n\n| 项目 | 状态 |\n|------|------|\n| **当前阶段** | **G0 generation** (为 G1 生成合成训练数据) |\n| **进度** | **288/306 batches (94%)** |\n| **速度** | ~79s/batch |\n| **剩余** | 18 batches × 79s ≈ **24 分钟** |\n| **已运行** | 6h19m (generation 部分)，总进程 8h24m |\n| **输出目录** | 31GB (`/root/autodl-tmp/output_seed0/`) |\n| **磁盘** | 134G/250G used (54%)，剩余 117G，充足 |\n\nG0 的 train 和 eval 已完成。G0 generation 即将结束，之后进入 G1 train → G1 generation → G1 eval → G2 全流程。整体 pipeline 约完成 **~20%**（9 个子阶段中的第 2 个接近完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed0-r2-progress-loop5.md"
+}

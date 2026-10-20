@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_westd-install-tmux_20260517T082134_result.json",
     "occurrence": 1,
-    "bytes": 58,
-    "sha256": "c485b8b84aef3c97d2a12ff6eb5a7ed24ced7fba7d2154a9ac5d6094f9282f2e"
+    "bytes": 57,
+    "sha256": "85ccf2dad85697e24c0d5b60f55d9edfe555a9527e1e058967dece115faa7a90"
   },
   "statistics": {
     "messages": 1,

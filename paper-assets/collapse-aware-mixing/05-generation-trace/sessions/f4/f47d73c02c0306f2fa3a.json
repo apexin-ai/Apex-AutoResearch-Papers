@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f47d73c02c0306f2fa3a",
+  "project": "collapse-aware-mixing",
+  "kind": "result",
+  "title": "diagnose mvp pilot v4",
+  "task_key": "worker_diagnose_mvp_pilot_v4_20260512T152407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_pilot_v4_20260512T152407_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "992aec9f9b95cc3cfe9e852cd0b9bfdfe95c294c954fd38127222fd8d56114d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/diag_mvp_pilot_v4.md`。\n\n**结论**：训练代码没有问题。tmux 服务端进程被外部杀死（大概率 AutoDL 平台调度），SIGHUP 传递给训练进程导致终止。训练在 G0 step 775/1373（56%）中断，最近的 checkpoint-760 可用。\n\n**下一步**：从 checkpoint-760 恢复训练，用 `nohup ... & disown` 替代 tmux 启动，避免再被 SIGHUP 杀死。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-pilot-v4.md"
+}

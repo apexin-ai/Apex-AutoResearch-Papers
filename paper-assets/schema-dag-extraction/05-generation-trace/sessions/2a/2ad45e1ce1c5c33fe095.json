@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_vllm-log-analysis_20260515T164947_result.json",
     "occurrence": 1,
-    "bytes": 3260,
-    "sha256": "0a9cbd7ff5bbb48df4c2237792bc3b3eb319a98735d136a950fdc71f15f880b1"
+    "bytes": 3259,
+    "sha256": "8046ecf2ec98e6283b0eca250bae80b92c3dd8c75a33e72bf3e6c59b42e2dcae"
   },
   "statistics": {
     "messages": 1,

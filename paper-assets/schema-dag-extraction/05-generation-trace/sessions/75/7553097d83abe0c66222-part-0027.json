@@ -1021,7 +1021,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[飞书用户 用户]: 🔑 补发：你的匿名仓库 GitHub 凭证\n\n之前发的仓库自检任务里，有 Director 反映找不到密钥。这条消息给所有项目同步一份准确的凭证。\n\n⚠️ 如果你已经拿到了有效密钥，并且仓库已经整理好、推送过了 —— 请直接忽略这条消息。\n\n---\n\n你这个项目的匿名仓库归属：\n\n  Repo URL:        https://github.com/anonymous-nlp-2026/schema-dag-extraction\n  归属 GitHub Org: anonymous-nlp-2026\n  账号用户名:      caoxiaoyu002\n  注册邮箱:        elias001.yong@outlook.com\n  Personal Access Token (PAT):\n\n  [REDACTED_GITHUB_TOKEN]\n\n---\n\n如何使用：\n\n1. 配置 git remote（如果还没配）：\n   git remote set-url origin https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/PROJECT_NAME.git\n\n   或在 push 时手动用：\n   git push https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/PROJECT_NAME.git main\n\n2. 验证密钥可用：\n   git ls-remote https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/PROJECT_NAME.git\n   能看到 ref 列表说明 OK。\n\n3. 完成后按之前的自检消息执行：\n   - 检查仓库匿名性（commit author / README / 注释 没暴露身份）\n   - 清理 .DS_Store / __pycache__ / .env / wandb/ 等垃圾\n   - README 写清楚怎么 reproduce\n   - force-push 整理后的版本\n\n---\n\n⚠️ 安全提醒：\n\n- PAT 是高敏感凭证，等同于密码。不要把它 commit 进任何代码、不要贴到公开渠道、不要写进 README。\n- 配置 remote URL 时如果不想让 PAT 出现在 git config 里，用 GitHub CLI 的 credential helper，或者每次 push 都手动指定。\n- 这两个账号目前只用于 EMNLP 2026 投稿匿名化，submission 结束后会 revoke。\n\n---\n\n完成后请汇报：\n\n(a) 密钥是否能正常 push？\n(b) 仓库重新整理推送完成时间戳？\n(c) 论文里链接位置已按之前规范调整？\n\n再次强调：如果你之前已经拿到密钥并完成所有自检 —— 忽略本条消息即可。"
+              "text": "[飞书用户 用户]: 🔑 补发：你的匿名仓库 GitHub 凭证\n\n之前发的仓库自检任务里，有 Director 反映找不到密钥。这条消息给所有项目同步一份准确的凭证。\n\n⚠️ 如果你已经拿到了有效密钥，并且仓库已经整理好、推送过了 —— 请直接忽略这条消息。\n\n---\n\n你这个项目的匿名仓库归属：\n\n  Repo URL:        https://github.com/anonymous-nlp-2026/schema-dag-extraction\n  归属 GitHub Org: anonymous-nlp-2026\n  账号用户名:      caoxiaoyu002\n  注册邮箱:        elias001.yong@outlook.com\n  Personal Access Token (PAT):\n\n  [REDACTED_GITHUB_TOKEN]\n\n---\n\n如何使用：\n\n1. 配置 git remote（如果还没配）：\n   git remote set-url origin https://[REDACTED]@github.com/anonymous-nlp-2026/PROJECT_NAME.git\n\n   或在 push 时手动用：\n   git push https://[REDACTED]@github.com/anonymous-nlp-2026/PROJECT_NAME.git main\n\n2. 验证密钥可用：\n   git ls-remote https://[REDACTED]@github.com/anonymous-nlp-2026/PROJECT_NAME.git\n   能看到 ref 列表说明 OK。\n\n3. 完成后按之前的自检消息执行：\n   - 检查仓库匿名性（commit author / README / 注释 没暴露身份）\n   - 清理 .DS_Store / __pycache__ / .env / wandb/ 等垃圾\n   - README 写清楚怎么 reproduce\n   - force-push 整理后的版本\n\n---\n\n⚠️ 安全提醒：\n\n- PAT 是高敏感凭证，等同于密码。不要把它 commit 进任何代码、不要贴到公开渠道、不要写进 README。\n- 配置 remote URL 时如果不想让 PAT 出现在 git config 里，用 GitHub CLI 的 credential helper，或者每次 push 都手动指定。\n- 这两个账号目前只用于 EMNLP 2026 投稿匿名化，submission 结束后会 revoke。\n\n---\n\n完成后请汇报：\n\n(a) 密钥是否能正常 push？\n(b) 仓库重新整理推送完成时间戳？\n(c) 论文里链接位置已按之前规范调整？\n\n再次强调：如果你之前已经拿到密钥并完成所有自检 —— 忽略本条消息即可。"
             }
           ],
           "metadata": {
@@ -1281,7 +1281,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp/anon-repo-prep && git remote set-url origin https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push --force origin main 2>&1",
+              "command": "cd /tmp/anon-repo-prep && git remote set-url origin https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git && git push --force origin main 2>&1",
               "description": "Push to anonymous GitHub repo"
             }
           },
@@ -1398,7 +1398,7 @@
             "session": "feishu:group:oc_51326259fe46fbae9da26b81cf03f1f8:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "git ls-remote https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/schema-dag-extraction.git 2>&1",
+              "command": "git ls-remote https://[REDACTED]@github.com/anonymous-nlp-2026/schema-dag-extraction.git 2>&1",
               "description": "Verify remote repo refs"
             }
           },

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_exp008-sdgd-launch_20260515T074315_result.json",
     "occurrence": 1,
-    "bytes": 592,
-    "sha256": "7ab8333339ce0876a72294e6154e4c06d575cb94d4df9c3ab5b5881cf419c8c4"
+    "bytes": 591,
+    "sha256": "a9f27aa56825fdedb4cb95a0043200afd9733d90d4a11a241d48da3fbbd42e33"
   },
   "statistics": {
     "messages": 1,

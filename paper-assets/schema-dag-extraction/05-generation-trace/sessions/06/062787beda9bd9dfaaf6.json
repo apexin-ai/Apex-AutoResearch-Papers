@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_tost_margin_anchoring_20260522T095444_result.json",
     "occurrence": 1,
-    "bytes": 936,
-    "sha256": "5ce5f765f9768e135f0cdc68582187d765968d60478fd4d2adf4000e337eb63d"
+    "bytes": 935,
+    "sha256": "4da14017afaa60c93abcda3fb1502897b72c6682033092fb1bfccbaaa653452d"
   },
   "statistics": {
     "messages": 1,

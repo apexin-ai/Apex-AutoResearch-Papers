@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_metric-consistency-check_20260517T112414_result.json",
     "occurrence": 1,
-    "bytes": 836,
-    "sha256": "521a2549ea551ce294b0748a7b7520c5874e5c25a9777ed64b87e28b393ccca0"
+    "bytes": 835,
+    "sha256": "c328b59cf4c6ee3e1cfc0d5096331be475af8adeada5d0a295f8500a3b000842"
   },
   "statistics": {
     "messages": 1,

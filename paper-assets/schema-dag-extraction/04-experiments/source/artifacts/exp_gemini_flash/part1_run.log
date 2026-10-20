@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py", line 507, in <module>
+    main()
+    ~~~~^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_18/projects/schema-dag-extraction/scripts/run_gemini_flash_fewrel.py", line 475, in main
+    logging.FileHandler(Path(args.output_dir) / "run.log", mode="a"),
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/logging/__init__.py", line 1219, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ~~~~~~~~~~^^
+  File "/usr/lib/python3.14/logging/__init__.py", line 1248, in _open
+    return open_func(self.baseFilename, self.mode,
+                     encoding=self.encoding, errors=self.errors)
+PermissionError: [Errno 13] Permission denied: '/root/schema-dag-extraction/artifacts/exp_gemini_flash/run.log'

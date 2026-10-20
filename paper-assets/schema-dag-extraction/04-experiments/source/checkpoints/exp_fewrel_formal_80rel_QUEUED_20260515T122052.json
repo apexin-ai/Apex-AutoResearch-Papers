@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_fewrel_formal_80rel",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:20:52.356Z",
+    "updated_at": "2026-05-15T12:20:52.356Z",
+    "spec": {
+      "hypothesis": "FewRel 80-relation full confusability study: count curve [1,4,8,16,32,64,80] + BCS-controlled with sufficient variance for correlation analysis",
+      "dataset": "FewRel (train+val 80 relations, --use_all)",
+      "model": "Qwen3-32B-FP8",
+      "design": "exp1: count curve 7 levels with 80 relations. exp2: BCS-controlled 25+ batches per count. Two-stage. MiniLM embeddings for BCS.",
+      "command": "python3 src/run_fewrel_formal.py --stage all --mode exp1 --output_dir artifacts/fewrel_formal_full --use_all && python3 src/run_fewrel_formal.py --stage all --mode exp2 --output_dir artifacts/fewrel_formal_full --use_all",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/data/fewrel_parquet/",
+      "data_count": 1000,
+      "model_name": "Qwen3-32B-FP8",
+      "seed": 42,
+      "parent": "exp_fewrel_formal"
+    }
+  },
+  "timestamp": "2026-05-15T12:20:52.391378+00:00",
+  "trigger": "update_registry"
+}

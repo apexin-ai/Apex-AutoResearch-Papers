@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_fewshot_bcs_count16",
+  "project": "schema-dag-extraction",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:05:04.727Z",
+    "updated_at": "2026-05-23T14:12:31.402Z",
+    "hypothesis": "Few-shot demonstrations (1-shot, 5-shot) do not close the BCS-driven accuracy gap at count=16, replicating the count=8 finding that few-shot widens rather than narrows the gap between low-BCS and high-BCS batches.",
+    "parent": "exp_fewshot_bcs_v2"
+  },
+  "timestamp": "2026-05-23T14:12:31.578604+00:00",
+  "trigger": "update_registry"
+}

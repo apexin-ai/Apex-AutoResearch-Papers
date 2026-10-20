@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure2-re-panels_20260516T050522_result.json",
     "occurrence": 1,
-    "bytes": 411,
-    "sha256": "6e3a1dff92d8fefd3f26f1fcb8636df9c14ec880773e6e6095b7727904b05c3a"
+    "bytes": 410,
+    "sha256": "0b8e39ef58da90cb8cec73ec68b289862fcd06bff211887d054a0ccf93b9c5de"
   },
   "statistics": {
     "messages": 1,

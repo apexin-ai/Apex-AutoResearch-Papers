@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_compute_mw2_unconditional_monte_carlo_20260516T173235_result.json",
     "occurrence": 1,
-    "bytes": 948,
-    "sha256": "3e17edb6fa8741d26921b02018094a9cd205fab0dd86b848d599a20ccc901253"
+    "bytes": 947,
+    "sha256": "3804d5f8e37d0987eaba18df2cedc3b6d962f4403c837252e65a7e23fdf1c06d"
   },
   "statistics": {
     "messages": 1,

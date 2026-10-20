@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_c3_evidence_hierarchy_20260522T085201_result.json",
     "occurrence": 1,
-    "bytes": 1323,
-    "sha256": "3ed223b355095c1159fbee88820b574676ba57d5de8256227caac562b74c1d85"
+    "bytes": 1322,
+    "sha256": "d81af123c02aef9fb59b1922807ea303651d5f2c4fbee4b49ddc2988bba4dde6"
   },
   "statistics": {
     "messages": 1,

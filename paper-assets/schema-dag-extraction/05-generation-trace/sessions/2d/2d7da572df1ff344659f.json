@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_c3_extreme_batch_n_20260522T082600_result.json",
     "occurrence": 1,
-    "bytes": 1236,
-    "sha256": "6eb75f6b5cdcc62880fc17ba69ef1d5b9492edf147ae6f6fc97914510c1b0f13"
+    "bytes": 1235,
+    "sha256": "acb9cdd08024353e164aa6d62a101864afe5378f0fc3405b2b3dd3ed275e9961"
   },
   "statistics": {
     "messages": 1,

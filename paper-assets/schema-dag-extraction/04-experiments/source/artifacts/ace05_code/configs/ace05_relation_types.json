@@ -1,0 +1,20 @@
+{
+  "ART:User-Owner-Inventor-Manufacturer": "An agent (Person, Organization, or GPE) that uses, owns, invents, or manufactures an artifact (Facility, Vehicle, or Weapon).",
+  "GEN-AFF:Citizen-Resident-Religion-Ethnicity": "A Person entity is a citizen of, resides in, or has a religious or ethnic affiliation with a GPE, Location, or Organization.",
+  "GEN-AFF:Org-Location": "An Organization is located in, based in, or operates from a GPE or Location.",
+  "ORG-AFF:Employment": "A Person is employed by an Organization, GPE, or other employer in a professional capacity.",
+  "ORG-AFF:Founder": "A Person or Organization that founded or established another Organization.",
+  "ORG-AFF:Membership": "A Person or Organization is a member of an Organization (not employment — e.g., political party membership, club membership).",
+  "ORG-AFF:Ownership": "A Person owns an Organization, either wholly or partially.",
+  "ORG-AFF:Sports-Affiliation": "A Person is affiliated with a sports Organization as a player, coach, or manager.",
+  "ORG-AFF:Student-Alum": "A Person is a student or alumnus/alumna of an educational Organization.",
+  "ORG-AFF:Investor-Shareholder": "A Person, Organization, or GPE holds an investment or shares in an Organization.",
+  "PART-WHOLE:Artifact": "An artifact (Facility, Vehicle, or Weapon) is a component or part of another artifact.",
+  "PART-WHOLE:Geographical": "A GPE, Location, or Facility is geographically contained within another GPE or Location.",
+  "PART-WHOLE:Subsidiary": "An Organization is a subsidiary, branch, or sub-unit of another Organization.",
+  "PER-SOC:Business": "Two Person entities have a professional or business relationship (e.g., business partners, co-workers outside of formal employment).",
+  "PER-SOC:Family": "Two Person entities have a familial relationship (e.g., parent-child, siblings, spouse).",
+  "PER-SOC:Lasting-Personal": "Two Person entities have a lasting personal relationship that is not familial or professional (e.g., friends, long-term associates).",
+  "PHYS:Located": "A Person, Organization, or artifact entity is physically located at a specific Facility, Location, or GPE.",
+  "PHYS:Near": "A Person, Organization, or artifact entity is physically near (but not at) a Facility, Location, or GPE."
+}

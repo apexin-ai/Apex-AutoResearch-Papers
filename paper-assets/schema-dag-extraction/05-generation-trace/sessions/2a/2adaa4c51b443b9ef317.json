@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d047_round3_global_cleanup_20260516T131134_result.json",
     "occurrence": 1,
-    "bytes": 1574,
-    "sha256": "b74471a326df8ad37a05c80b851fc48da1b9b9c169e9dfe19985e49a9bac1d07"
+    "bytes": 1573,
+    "sha256": "ad55cefd0e4b4e5ffb41c65b83c35199d29ad3195c5f445b126213eb311aefff"
   },
   "statistics": {
     "messages": 1,

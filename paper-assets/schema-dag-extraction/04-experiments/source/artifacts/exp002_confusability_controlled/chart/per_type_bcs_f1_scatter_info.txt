@@ -1,0 +1,1 @@
+Remote path: cqa1-38874:/root/schema-dag-extraction/results/per_type_bcs_f1_scatter.png\nData: cqa1-38874:/root/schema-dag-extraction/results/per_type_analysis.json

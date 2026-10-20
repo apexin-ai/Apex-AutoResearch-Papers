@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0ef444e8abafc4d239e",
+  "project": "collapse-aware-mixing",
+  "kind": "history",
+  "title": "agent / loop_4_1778750003.md",
+  "task_key": "loop_4_1778750003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778750003.md",
+    "occurrence": 1,
+    "bytes": 4185,
+    "sha256": "87a585931c9e51de33d844ad14d252d7b9ce158db58344d9a9b91d5636d40644"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-14T09:04:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `cuda:0`（cqa1-38874），绝对不能用其他 GPU 编号\n- seed0 r2 实验正在跑 `pilot_pipeline.py`，**不要修改** pilot_pipeline.py / launch_seed0.sh / metrics.py 的已有函数签名\n- paper_framing.md 已标记 SUPERSEDED，**不要基于它做任何论文工作**——当前 framing 参考是 artifacts/narrative_draft.md\n- 之前发生过重复 Worker 提交导致两个进程抢同一 GPU 的事故（PID 122208 vs 122711 vs 123063），spawn worker 时确保旧 Worker 不会再提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-38874，工作目录 `/root/collapse-aware-mixing`\n- Python：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 镜像：aml-train（不用 venv，用 conda base）\n- 数据盘：`/root/autodl-tmp/`（250GB，当前约 117GB 空闲）\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- v7 输出：`/root/autodl-tmp/output_v7/`（中间 checkpoints 已清理，只剩 final_model）\n- seed0 输出：`/root/autodl-tmp/output_seed0/`（~31GB，进行中）\n- 活跃进程：mvp_seed0_replication_r2，PID 122563（tmux session=mvp_seed0_replication_r2），cuda:0\n- Cron：有自动监控 seed0 r2 的 cron\n\n### 3. 📊 当前状态\n**刚完成**：Plan A 代码预实现（controller.py 重写 + controlled_pipeline.py 改造 + run_plan_a.sh）+ bugfix（seed 设置 + DataLoader 可复现性）+ 集成测试 PASSED + 4 项 narrative_draft.md 修正 + paper_framing.md 标记 superseded + registry 清理（v8/v8_r2/v3/v2 标记 killed）\n\n**Registry**：\n- `mvp_seed0_replication_r2` — RUNNING，seed=0 复现实验，G0 generation 阶段（~44%），预计还需 ~10-14h\n- 其他全部 DONE（6 done + 4 killed）\n\n**等待中**：\n- seed0 r2 cron 完成回调 → 分析结果决定路径\n- narrative_draft Worker 可能还有回调（worker_research_narrative_draft_20260514T084153）\n- Director 等用户决策（Q2 negative result paper vs archive）\n\n### 4. 📋 待办\n- **seed0 r2 cron 回调（实验完成）** → spawn worker 提取 G0/G1/G2 全部 metrics → 对比 v7：重点看 holdout eff_rank 是否仍上升 + n-gram entropy 下降幅度 → update_registry(metrics+conclusion) → 按 on-experiment-done skill 分叉（success/negative/failed）→ 汇报 Director\n- **eff_rank 仍上升（Path A confirmed）** → 汇报 Director 建议启动 Plan A 实验 → 代码已就绪（controlled_pipeline.py + run_plan_a.sh），等 Director 批准后 submit_training_job 即可\n- **eff_rank 未复现（Path B）** → 按 narrative_draft.md Path B 流程：如果 n-gram entropy 一致→B-1 negative result paper；不一致→B-2 archive → 汇报 Director\n- **narrative_draft Worker 回调** → 检查产出，如与已有 artifacts/narrative_draft.md 重复则忽略（文件已存在且已修正）\n\n### 5. 🎯 战略上下文\n- **核心发现**：v7 (seed=42) 证明 holdout spectral eff_rank 与 model collapse 完全解耦——模型生成崩塌到 1 个 unique token，eff_rank 反而上升 +0.96%。三条路径全封（D014/D016/D018）\n- **决策链**：D014 falsified C1 → D012 pivot B/C → D016 killed C → D018 pivot B no advantage → MVP FAIL → 等用户决策\n- **文献支撑**：Spectral Flattening 论文独立发现 eff_rank 上升=collapse，支持我们的 negative result。所有现有 adaptive mixing（DoReMi/Aioli/RegMix）都基于 loss 信号，无人用 collapse detection 信号驱动 mixing ratio——这是 Plan A 的 novelty 空间\n- **Plan A 代码已就绪**：controller.py（位置式 PI + anti-windup）+ controlled_pipeline.py（5 种模式）+ run_plan_a.sh，集成测试已通过。预计实验周期 ~12 天（1× RTX PRO 6000），可选 vLLM 加速到 ~5 天\n- **易错点**：(1) narrative_draft.md 中 Claim 3（PI 控制器）是 SPECULATIVE，零实验支撑，不要当作已验证结论；(2) \"573× 噪声比\"已被 Reviewer 否决（量纲不同），改用检测延迟对比；(3) paper_framing.md 严重过时已标 SUPERSEDED，不要引用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778750003.md"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_docred_error_taxonomy",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:07:34.457Z",
+    "updated_at": "2026-05-19T18:07:47.770Z",
+    "hypothesis": "IntraSub error rate scales monotonically with BCS on DocRED document-level RE, replicating the FewRel (ρ=0.954) and Few-NERD (ρ=1.0) pattern and extending Claim 2 to three-dataset validation.",
+    "spec": {
+      "command": "python3 analysis/docred_error_taxonomy.py",
+      "server": "cqa1-38874",
+      "data_path": "/root/schema-dag-extraction/artifacts/exp_docred_bcs_expanded/",
+      "data_count": 110,
+      "model_name": "Qwen3-32B (reanalysis of existing predictions)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-19T18:07:47.906340+00:00",
+  "trigger": "update_registry"
+}

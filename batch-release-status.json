@@ -963,6 +963,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
+    },
+    "schema-dag-extraction/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 287403765,
+        "etag": "\"10e2c23579593180548da6d28c7872ba-35\"",
+        "modified": "2026-05-31T17:33:42+00:00"
+      },
+      "archive_sha256": "bb19a28e6f8501fcbe2320aeef4aa932ec06eccfcf2917ebeef449b2ad144799",
+      "projects": [
+        "schema-dag-extraction",
+        "collapse-aware-mixing"
+      ],
+      "counts": [
+        {
+          "project": "schema-dag-extraction",
+          "title": "How Does Schema Complexity Predict Performance in Training-Free LLM Information Extraction?",
+          "paper_pdf": "paper.pdf",
+          "code_count": 378,
+          "data_count": 676,
+          "trace_count": 1242
+        },
+        {
+          "project": "collapse-aware-mixing",
+          "title": "collapse aware mixing",
+          "paper_pdf": null,
+          "code_count": 84,
+          "data_count": 58,
+          "trace_count": 232
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
     }
   }
 }

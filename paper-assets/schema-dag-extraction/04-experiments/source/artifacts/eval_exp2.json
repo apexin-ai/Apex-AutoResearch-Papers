@@ -1,0 +1,4538 @@
+{
+  "count_8_low_bcs": {
+    "accuracy": 0.8229166666666666,
+    "correct": 79,
+    "total": 96,
+    "bcs": 0.47147512435913086,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "headquarters location",
+      "original language of film or TV show",
+      "successful candidate",
+      "sports season of league or competition",
+      "country of citizenship",
+      "located in or next to body of water",
+      "licensed to broadcast to",
+      "mountain range"
+    ],
+    "per_type_accuracy": {
+      "country of citizenship": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      }
+    }
+  },
+  "count_8_high_bcs": {
+    "accuracy": 0.5104166666666666,
+    "correct": 49,
+    "total": 96,
+    "bcs": 0.9705880880355835,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "participant",
+      "participant of",
+      "part of",
+      "member of",
+      "follows",
+      "followed by",
+      "has part",
+      "instance of"
+    ],
+    "per_type_accuracy": {
+      "followed by": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "part of": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_0": {
+    "accuracy": 0.8958333333333334,
+    "correct": 86,
+    "total": 96,
+    "bcs": 0.6652612686157227,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "publisher",
+      "location of formation",
+      "notable work",
+      "located in the administrative territorial entity",
+      "platform",
+      "mountain range",
+      "country of citizenship",
+      "screenwriter"
+    ],
+    "per_type_accuracy": {
+      "country of citizenship": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "located in the administrative territorial entity": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_1": {
+    "accuracy": 0.8645833333333334,
+    "correct": 83,
+    "total": 96,
+    "bcs": 0.7423046827316284,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "military rank",
+      "league",
+      "sports season of league or competition",
+      "country of citizenship",
+      "follows",
+      "movement",
+      "crosses",
+      "successful candidate"
+    ],
+    "per_type_accuracy": {
+      "country of citizenship": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_2": {
+    "accuracy": 0.6770833333333334,
+    "correct": 65,
+    "total": 96,
+    "bcs": 0.7091653347015381,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "military rank",
+      "league",
+      "heritage designation",
+      "contains administrative territorial entity",
+      "mountain range",
+      "part of",
+      "country of origin",
+      "tributary"
+    ],
+    "per_type_accuracy": {
+      "contains administrative territorial entity": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "part of": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "tributary": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_3": {
+    "accuracy": 0.75,
+    "correct": 72,
+    "total": 96,
+    "bcs": 0.7238919734954834,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "voice type",
+      "mountain range",
+      "participant",
+      "after a work by",
+      "licensed to broadcast to",
+      "mouth of the watercourse",
+      "location of formation",
+      "work location"
+    ],
+    "per_type_accuracy": {
+      "after a work by": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mouth of the watercourse": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_4": {
+    "accuracy": 0.7916666666666666,
+    "correct": 76,
+    "total": 96,
+    "bcs": 0.7468862533569336,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "developer",
+      "instance of",
+      "participant of",
+      "location of formation",
+      "successful candidate",
+      "performer",
+      "father",
+      "tributary"
+    ],
+    "per_type_accuracy": {
+      "developer": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "performer": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "tributary": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_5": {
+    "accuracy": 0.8333333333333334,
+    "correct": 80,
+    "total": 96,
+    "bcs": 0.6464519500732422,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "work location",
+      "instrument",
+      "screenwriter",
+      "successful candidate",
+      "distributor",
+      "original network",
+      "taxon rank",
+      "sibling"
+    ],
+    "per_type_accuracy": {
+      "distributor": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "original network": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "taxon rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_6": {
+    "accuracy": 0.6770833333333334,
+    "correct": 65,
+    "total": 96,
+    "bcs": 0.7094486355781555,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "publisher",
+      "part of",
+      "residence",
+      "screenwriter",
+      "father",
+      "work location",
+      "subsidiary",
+      "voice type"
+    ],
+    "per_type_accuracy": {
+      "father": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "part of": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_7": {
+    "accuracy": 0.6979166666666666,
+    "correct": 67,
+    "total": 96,
+    "bcs": 0.8200748562812805,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "member of political party",
+      "country of origin",
+      "occupant",
+      "residence",
+      "follows",
+      "after a work by",
+      "nominated for",
+      "applies to jurisdiction"
+    ],
+    "per_type_accuracy": {
+      "after a work by": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "applies to jurisdiction": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "nominated for": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_8": {
+    "accuracy": 0.90625,
+    "correct": 87,
+    "total": 96,
+    "bcs": 0.7122566103935242,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "taxon rank",
+      "original network",
+      "platform",
+      "screenwriter",
+      "league",
+      "genre",
+      "subsidiary",
+      "crosses"
+    ],
+    "per_type_accuracy": {
+      "crosses": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "original network": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "taxon rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_9": {
+    "accuracy": 0.7083333333333334,
+    "correct": 68,
+    "total": 96,
+    "bcs": 0.7908356785774231,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "field of work",
+      "located on terrain feature",
+      "occupation",
+      "located in the administrative territorial entity",
+      "mouth of the watercourse",
+      "child",
+      "residence",
+      "composer"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "field of work": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "located in the administrative territorial entity": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "mouth of the watercourse": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_10": {
+    "accuracy": 0.6666666666666666,
+    "correct": 64,
+    "total": 96,
+    "bcs": 0.6741521954536438,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "country of citizenship",
+      "located in or next to body of water",
+      "location",
+      "said to be the same as",
+      "owned by",
+      "place served by transport hub",
+      "subsidiary",
+      "taxon rank"
+    ],
+    "per_type_accuracy": {
+      "country of citizenship": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "location": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "taxon rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_11": {
+    "accuracy": 0.75,
+    "correct": 72,
+    "total": 96,
+    "bcs": 0.6916008591651917,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "operator",
+      "platform",
+      "country of origin",
+      "original language of film or TV show",
+      "distributor",
+      "notable work",
+      "composer",
+      "architect"
+    ],
+    "per_type_accuracy": {
+      "architect": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_12": {
+    "accuracy": 0.9375,
+    "correct": 90,
+    "total": 96,
+    "bcs": 0.8226474523544312,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "contains administrative territorial entity",
+      "participant of",
+      "spouse",
+      "applies to jurisdiction",
+      "military branch",
+      "military rank",
+      "movement",
+      "sibling"
+    ],
+    "per_type_accuracy": {
+      "applies to jurisdiction": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "spouse": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_13": {
+    "accuracy": 0.8645833333333334,
+    "correct": 83,
+    "total": 96,
+    "bcs": 0.6921325922012329,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "residence",
+      "publisher",
+      "country of origin",
+      "member of political party",
+      "genre",
+      "participant",
+      "instance of",
+      "director"
+    ],
+    "per_type_accuracy": {
+      "country of origin": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_14": {
+    "accuracy": 0.90625,
+    "correct": 87,
+    "total": 96,
+    "bcs": 0.7118586301803589,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "country of origin",
+      "applies to jurisdiction",
+      "genre",
+      "father",
+      "composer",
+      "followed by",
+      "characters",
+      "military branch"
+    ],
+    "per_type_accuracy": {
+      "applies to jurisdiction": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "characters": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_15": {
+    "accuracy": 0.90625,
+    "correct": 87,
+    "total": 96,
+    "bcs": 0.691864013671875,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "nominated for",
+      "architect",
+      "head of government",
+      "record label",
+      "composer",
+      "located in or next to body of water",
+      "military branch",
+      "characters"
+    ],
+    "per_type_accuracy": {
+      "architect": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "characters": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "nominated for": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_16": {
+    "accuracy": 0.8645833333333334,
+    "correct": 83,
+    "total": 96,
+    "bcs": 0.7423046827316284,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "follows",
+      "publisher",
+      "original language of film or TV show",
+      "participant",
+      "movement",
+      "sibling",
+      "work location",
+      "league"
+    ],
+    "per_type_accuracy": {
+      "follows": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_17": {
+    "accuracy": 0.8125,
+    "correct": 78,
+    "total": 96,
+    "bcs": 0.6788426637649536,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "characters",
+      "residence",
+      "voice type",
+      "manufacturer",
+      "mountain range",
+      "occupation",
+      "mother",
+      "competition class"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "competition class": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_18": {
+    "accuracy": 0.8541666666666666,
+    "correct": 82,
+    "total": 96,
+    "bcs": 0.7091586589813232,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "followed by",
+      "screenwriter",
+      "position held",
+      "manufacturer",
+      "father",
+      "director",
+      "military rank",
+      "occupation"
+    ],
+    "per_type_accuracy": {
+      "director": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "position held": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_19": {
+    "accuracy": 0.71875,
+    "correct": 69,
+    "total": 96,
+    "bcs": 0.6783125996589661,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "located on terrain feature",
+      "religion",
+      "sibling",
+      "distributor",
+      "crosses",
+      "sports season of league or competition",
+      "contains administrative territorial entity",
+      "characters"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_20": {
+    "accuracy": 0.6666666666666666,
+    "correct": 64,
+    "total": 96,
+    "bcs": 0.7348428964614868,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "developer",
+      "member of political party",
+      "position played on team",
+      "place served by transport hub",
+      "located on terrain feature",
+      "member of",
+      "located in the administrative territorial entity",
+      "location"
+    ],
+    "per_type_accuracy": {
+      "developer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "located in the administrative territorial entity": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 12
+      },
+      "location": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_21": {
+    "accuracy": 0.8229166666666666,
+    "correct": 79,
+    "total": 96,
+    "bcs": 0.7676975131034851,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "league",
+      "subsidiary",
+      "instance of",
+      "located in the administrative territorial entity",
+      "member of political party",
+      "tributary",
+      "composer",
+      "sports season of league or competition"
+    ],
+    "per_type_accuracy": {
+      "composer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "located in the administrative territorial entity": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "tributary": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_22": {
+    "accuracy": 0.8645833333333334,
+    "correct": 83,
+    "total": 96,
+    "bcs": 0.6868898272514343,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "publisher",
+      "headquarters location",
+      "located in or next to body of water",
+      "director",
+      "main subject",
+      "occupation",
+      "after a work by",
+      "manufacturer"
+    ],
+    "per_type_accuracy": {
+      "after a work by": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_23": {
+    "accuracy": 0.84375,
+    "correct": 81,
+    "total": 96,
+    "bcs": 0.6724083423614502,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "sports season of league or competition",
+      "crosses",
+      "genre",
+      "participant",
+      "licensed to broadcast to",
+      "position played on team",
+      "operator",
+      "sibling"
+    ],
+    "per_type_accuracy": {
+      "crosses": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      }
+    }
+  },
+  "count_8_random_24": {
+    "accuracy": 0.78125,
+    "correct": 75,
+    "total": 96,
+    "bcs": 0.7778328061103821,
+    "count_key": "count_8",
+    "num_types": 8,
+    "batch_types": [
+      "composer",
+      "said to be the same as",
+      "military branch",
+      "publisher",
+      "distributor",
+      "genre",
+      "has part",
+      "mountain range"
+    ],
+    "per_type_accuracy": {
+      "composer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      }
+    }
+  },
+  "count_16_low_bcs": {
+    "accuracy": 0.828125,
+    "correct": 159,
+    "total": 192,
+    "bcs": 0.5704576969146729,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "headquarters location",
+      "original language of film or TV show",
+      "successful candidate",
+      "sports season of league or competition",
+      "country of citizenship",
+      "located in or next to body of water",
+      "licensed to broadcast to",
+      "mountain range",
+      "record label",
+      "religion",
+      "military rank",
+      "manufacturer",
+      "crosses",
+      "heritage designation",
+      "language of work or name",
+      "composer"
+    ],
+    "per_type_accuracy": {
+      "composer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country of citizenship": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "language of work or name": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      }
+    }
+  },
+  "count_16_high_bcs": {
+    "accuracy": 0.515625,
+    "correct": 99,
+    "total": 192,
+    "bcs": 0.9705880880355835,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "participant",
+      "participant of",
+      "part of",
+      "member of",
+      "follows",
+      "followed by",
+      "has part",
+      "instance of",
+      "said to be the same as",
+      "occupant",
+      "operator",
+      "child",
+      "mother",
+      "father",
+      "sibling",
+      "main subject"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "part of": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_0": {
+    "accuracy": 0.7916666666666666,
+    "correct": 152,
+    "total": 192,
+    "bcs": 0.8146615028381348,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "successful candidate",
+      "instance of",
+      "instrument",
+      "winner",
+      "competition class",
+      "heritage designation",
+      "participating team",
+      "original language of film or TV show",
+      "nominated for",
+      "manufacturer",
+      "location",
+      "subsidiary",
+      "owned by",
+      "sport",
+      "developer",
+      "applies to jurisdiction"
+    ],
+    "per_type_accuracy": {
+      "applies to jurisdiction": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "competition class": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "developer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "location": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "nominated for": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "winner": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_1": {
+    "accuracy": 0.78125,
+    "correct": 150,
+    "total": 192,
+    "bcs": 0.8370872139930725,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "position played on team",
+      "language of work or name",
+      "platform",
+      "country",
+      "participating team",
+      "sport",
+      "occupation",
+      "occupant",
+      "constellation",
+      "crosses",
+      "field of work",
+      "member of political party",
+      "child",
+      "headquarters location",
+      "member of",
+      "military branch"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "constellation": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "field of work": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "language of work or name": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_2": {
+    "accuracy": 0.609375,
+    "correct": 117,
+    "total": 192,
+    "bcs": 0.7535355687141418,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "head of government",
+      "winner",
+      "voice type",
+      "located in the administrative territorial entity",
+      "country",
+      "genre",
+      "instance of",
+      "participating team",
+      "father",
+      "sports season of league or competition",
+      "sport",
+      "licensed to broadcast to",
+      "characters",
+      "location",
+      "located on terrain feature",
+      "crosses"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "country": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "located in the administrative territorial entity": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "location": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "winner": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_3": {
+    "accuracy": 0.6458333333333334,
+    "correct": 124,
+    "total": 192,
+    "bcs": 0.7130398750305176,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "position held",
+      "record label",
+      "taxon rank",
+      "location of formation",
+      "voice type",
+      "mountain range",
+      "original language of film or TV show",
+      "father",
+      "manufacturer",
+      "located on terrain feature",
+      "instrument",
+      "place served by transport hub",
+      "instance of",
+      "licensed to broadcast to",
+      "performer",
+      "country of origin"
+    ],
+    "per_type_accuracy": {
+      "country of origin": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "performer": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "position held": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "taxon rank": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_4": {
+    "accuracy": 0.65625,
+    "correct": 126,
+    "total": 192,
+    "bcs": 0.8564784526824951,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "head of government",
+      "country of origin",
+      "publisher",
+      "member of political party",
+      "mother",
+      "participating team",
+      "position played on team",
+      "located on terrain feature",
+      "subsidiary",
+      "father",
+      "contains administrative territorial entity",
+      "sport",
+      "competition class",
+      "residence",
+      "licensed to broadcast to",
+      "child"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "competition class": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_5": {
+    "accuracy": 0.8385416666666666,
+    "correct": 161,
+    "total": 192,
+    "bcs": 0.7871875762939453,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "manufacturer",
+      "constellation",
+      "child",
+      "instrument",
+      "subsidiary",
+      "contains administrative territorial entity",
+      "distributor",
+      "composer",
+      "position played on team",
+      "winner",
+      "main subject",
+      "sports season of league or competition",
+      "mountain range",
+      "military rank",
+      "religion",
+      "sport"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "constellation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "manufacturer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "winner": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_6": {
+    "accuracy": 0.796875,
+    "correct": 153,
+    "total": 192,
+    "bcs": 0.8968737721443176,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "movement",
+      "country",
+      "father",
+      "followed by",
+      "instrument",
+      "taxon rank",
+      "occupant",
+      "original network",
+      "developer",
+      "position played on team",
+      "follows",
+      "successful candidate",
+      "language of work or name",
+      "characters",
+      "competition class",
+      "tributary"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "competition class": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "country": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "developer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "language of work or name": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "original network": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "taxon rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "tributary": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_7": {
+    "accuracy": 0.59375,
+    "correct": 114,
+    "total": 192,
+    "bcs": 0.8024017810821533,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "subsidiary",
+      "constellation",
+      "notable work",
+      "owned by",
+      "occupant",
+      "publisher",
+      "country of origin",
+      "voice type",
+      "composer",
+      "said to be the same as",
+      "operator",
+      "original language of film or TV show",
+      "performer",
+      "tributary",
+      "country of citizenship",
+      "mouth of the watercourse"
+    ],
+    "per_type_accuracy": {
+      "composer": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "constellation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "country of citizenship": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "mouth of the watercourse": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "performer": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "publisher": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "tributary": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_8": {
+    "accuracy": 0.6354166666666666,
+    "correct": 122,
+    "total": 192,
+    "bcs": 0.8361343145370483,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "distributor",
+      "subsidiary",
+      "instrument",
+      "occupation",
+      "father",
+      "successful candidate",
+      "work location",
+      "has part",
+      "tributary",
+      "director",
+      "child",
+      "voice type",
+      "developer",
+      "record label",
+      "operator",
+      "located in or next to body of water"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "developer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "tributary": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_9": {
+    "accuracy": 0.6458333333333334,
+    "correct": 124,
+    "total": 192,
+    "bcs": 0.9001670479774475,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "military branch",
+      "sports season of league or competition",
+      "place served by transport hub",
+      "constellation",
+      "operating system",
+      "sport",
+      "composer",
+      "genre",
+      "member of",
+      "director",
+      "screenwriter",
+      "work location",
+      "distributor",
+      "part of",
+      "characters",
+      "participant of"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "constellation": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "operating system": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "part of": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_10": {
+    "accuracy": 0.765625,
+    "correct": 147,
+    "total": 192,
+    "bcs": 0.7676975131034851,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "work location",
+      "competition class",
+      "successful candidate",
+      "instance of",
+      "position played on team",
+      "location of formation",
+      "developer",
+      "notable work",
+      "spouse",
+      "father",
+      "located in the administrative territorial entity",
+      "subsidiary",
+      "distributor",
+      "sport",
+      "mountain range",
+      "original network"
+    ],
+    "per_type_accuracy": {
+      "competition class": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "developer": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "located in the administrative territorial entity": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "original network": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "spouse": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_11": {
+    "accuracy": 0.7708333333333334,
+    "correct": 148,
+    "total": 192,
+    "bcs": 0.8919832706451416,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "part of",
+      "mother",
+      "follows",
+      "instrument",
+      "participant of",
+      "military branch",
+      "sports season of league or competition",
+      "location",
+      "notable work",
+      "country of origin",
+      "original language of film or TV show",
+      "military rank",
+      "after a work by",
+      "voice type",
+      "nominated for",
+      "genre"
+    ],
+    "per_type_accuracy": {
+      "after a work by": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "instrument": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "location": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "nominated for": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "part of": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_12": {
+    "accuracy": 0.7395833333333334,
+    "correct": 142,
+    "total": 192,
+    "bcs": 0.7501540184020996,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "country of citizenship",
+      "successful candidate",
+      "mountain range",
+      "residence",
+      "has part",
+      "religion",
+      "instance of",
+      "position held",
+      "located in or next to body of water",
+      "league",
+      "movement",
+      "sport",
+      "father",
+      "characters",
+      "performer",
+      "record label"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "country of citizenship": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "performer": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "position held": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_13": {
+    "accuracy": 0.7135416666666666,
+    "correct": 137,
+    "total": 192,
+    "bcs": 0.8968737721443176,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "platform",
+      "screenwriter",
+      "follows",
+      "participating team",
+      "has part",
+      "characters",
+      "headquarters location",
+      "followed by",
+      "mother",
+      "contains administrative territorial entity",
+      "spouse",
+      "instance of",
+      "place served by transport hub",
+      "mouth of the watercourse",
+      "original network",
+      "said to be the same as"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "mouth of the watercourse": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "original network": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "spouse": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_14": {
+    "accuracy": 0.734375,
+    "correct": 141,
+    "total": 192,
+    "bcs": 0.7256805896759033,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "operator",
+      "owned by",
+      "director",
+      "main subject",
+      "applies to jurisdiction",
+      "religion",
+      "developer",
+      "mountain range",
+      "crosses",
+      "country of citizenship",
+      "position played on team",
+      "location of formation",
+      "movement",
+      "located in or next to body of water",
+      "operating system",
+      "has part"
+    ],
+    "per_type_accuracy": {
+      "applies to jurisdiction": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country of citizenship": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "developer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "located in or next to body of water": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mountain range": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "operating system": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_15": {
+    "accuracy": 0.7083333333333334,
+    "correct": 136,
+    "total": 192,
+    "bcs": 0.7774745225906372,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "member of",
+      "residence",
+      "head of government",
+      "participating team",
+      "occupant",
+      "performer",
+      "licensed to broadcast to",
+      "followed by",
+      "heritage designation",
+      "language of work or name",
+      "successful candidate",
+      "record label",
+      "country of origin",
+      "platform",
+      "location of formation",
+      "league"
+    ],
+    "per_type_accuracy": {
+      "country of origin": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "language of work or name": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "performer": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_16": {
+    "accuracy": 0.765625,
+    "correct": 147,
+    "total": 192,
+    "bcs": 0.7575422525405884,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "applies to jurisdiction",
+      "place served by transport hub",
+      "record label",
+      "sibling",
+      "country",
+      "headquarters location",
+      "platform",
+      "follows",
+      "residence",
+      "participant",
+      "military branch",
+      "original language of film or TV show",
+      "movement",
+      "mother",
+      "work location",
+      "successful candidate"
+    ],
+    "per_type_accuracy": {
+      "applies to jurisdiction": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "country": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_17": {
+    "accuracy": 0.7395833333333334,
+    "correct": 142,
+    "total": 192,
+    "bcs": 0.7561590075492859,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "architect",
+      "original language of film or TV show",
+      "participant of",
+      "military branch",
+      "composer",
+      "movement",
+      "work location",
+      "sports season of league or competition",
+      "head of government",
+      "follows",
+      "residence",
+      "member of political party",
+      "main subject",
+      "genre",
+      "platform",
+      "sibling"
+    ],
+    "per_type_accuracy": {
+      "architect": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "genre": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "military branch": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "residence": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "sibling": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_18": {
+    "accuracy": 0.6614583333333334,
+    "correct": 127,
+    "total": 192,
+    "bcs": 0.7833198308944702,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "notable work",
+      "place served by transport hub",
+      "league",
+      "located on terrain feature",
+      "heritage designation",
+      "competition class",
+      "followed by",
+      "operating system",
+      "after a work by",
+      "platform",
+      "participant of",
+      "owned by",
+      "mother",
+      "headquarters location",
+      "occupant",
+      "director"
+    ],
+    "per_type_accuracy": {
+      "after a work by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "competition class": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "operating system": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_19": {
+    "accuracy": 0.6927083333333334,
+    "correct": 133,
+    "total": 192,
+    "bcs": 0.8467146158218384,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "occupant",
+      "crosses",
+      "child",
+      "religion",
+      "has part",
+      "licensed to broadcast to",
+      "director",
+      "original network",
+      "record label",
+      "head of government",
+      "follows",
+      "owned by",
+      "member of",
+      "contains administrative territorial entity",
+      "operator",
+      "main subject"
+    ],
+    "per_type_accuracy": {
+      "child": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "crosses": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "follows": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "has part": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "member of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "occupant": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "original network": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.4166666666666667,
+        "correct": 5,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_20": {
+    "accuracy": 0.7552083333333334,
+    "correct": 145,
+    "total": 192,
+    "bcs": 0.7774245738983154,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "notable work",
+      "work location",
+      "headquarters location",
+      "military rank",
+      "head of government",
+      "original language of film or TV show",
+      "movement",
+      "operator",
+      "competition class",
+      "language of work or name",
+      "successful candidate",
+      "followed by",
+      "member of political party",
+      "after a work by",
+      "composer",
+      "spouse"
+    ],
+    "per_type_accuracy": {
+      "after a work by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "competition class": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "followed by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "head of government": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "headquarters location": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "language of work or name": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "military rank": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "operator": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "original language of film or TV show": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "spouse": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "successful candidate": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "work location": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_21": {
+    "accuracy": 0.7447916666666666,
+    "correct": 143,
+    "total": 192,
+    "bcs": 0.7456645965576172,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "winner",
+      "platform",
+      "composer",
+      "heritage designation",
+      "characters",
+      "record label",
+      "constellation",
+      "participating team",
+      "licensed to broadcast to",
+      "said to be the same as",
+      "place served by transport hub",
+      "subsidiary",
+      "participant of",
+      "screenwriter",
+      "movement",
+      "distributor"
+    ],
+    "per_type_accuracy": {
+      "characters": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "composer": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "constellation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "licensed to broadcast to": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "movement": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "platform": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "record label": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "screenwriter": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "winner": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_22": {
+    "accuracy": 0.671875,
+    "correct": 129,
+    "total": 192,
+    "bcs": 0.8405265808105469,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "instance of",
+      "child",
+      "operating system",
+      "architect",
+      "country of citizenship",
+      "sport",
+      "mouth of the watercourse",
+      "location of formation",
+      "mother",
+      "field of work",
+      "league",
+      "characters",
+      "notable work",
+      "contains administrative territorial entity",
+      "participating team",
+      "occupation"
+    ],
+    "per_type_accuracy": {
+      "architect": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "characters": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "child": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "contains administrative territorial entity": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country of citizenship": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "field of work": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "instance of": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "location of formation": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "mouth of the watercourse": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "notable work": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "operating system": {
+        "accuracy": 0.25,
+        "correct": 3,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "sport": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_23": {
+    "accuracy": 0.796875,
+    "correct": 153,
+    "total": 192,
+    "bcs": 0.7151634097099304,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "language of work or name",
+      "said to be the same as",
+      "country of origin",
+      "located on terrain feature",
+      "heritage designation",
+      "member of political party",
+      "composer",
+      "developer",
+      "religion",
+      "subsidiary",
+      "voice type",
+      "main subject",
+      "distributor",
+      "director",
+      "operating system",
+      "league"
+    ],
+    "per_type_accuracy": {
+      "composer": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "country of origin": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "developer": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "director": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "distributor": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      },
+      "heritage designation": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "language of work or name": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "league": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "located on terrain feature": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "main subject": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "operating system": {
+        "accuracy": 0.16666666666666666,
+        "correct": 2,
+        "total": 12
+      },
+      "religion": {
+        "accuracy": 0.3333333333333333,
+        "correct": 4,
+        "total": 12
+      },
+      "said to be the same as": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "subsidiary": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "voice type": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      }
+    }
+  },
+  "count_16_random_24": {
+    "accuracy": 0.6666666666666666,
+    "correct": 128,
+    "total": 192,
+    "bcs": 0.9705880880355835,
+    "count_key": "count_16",
+    "num_types": 16,
+    "batch_types": [
+      "nominated for",
+      "participant",
+      "location",
+      "participant of",
+      "crosses",
+      "mother",
+      "position held",
+      "participating team",
+      "occupation",
+      "owned by",
+      "place served by transport hub",
+      "member of political party",
+      "father",
+      "spouse",
+      "position played on team",
+      "sports season of league or competition"
+    ],
+    "per_type_accuracy": {
+      "crosses": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "father": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "location": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "member of political party": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "mother": {
+        "accuracy": 0.6666666666666666,
+        "correct": 8,
+        "total": 12
+      },
+      "nominated for": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "occupation": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "owned by": {
+        "accuracy": 0.5,
+        "correct": 6,
+        "total": 12
+      },
+      "participant": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "participant of": {
+        "accuracy": 0.9166666666666666,
+        "correct": 11,
+        "total": 12
+      },
+      "participating team": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 12
+      },
+      "place served by transport hub": {
+        "accuracy": 0.08333333333333333,
+        "correct": 1,
+        "total": 12
+      },
+      "position held": {
+        "accuracy": 0.8333333333333334,
+        "correct": 10,
+        "total": 12
+      },
+      "position played on team": {
+        "accuracy": 1.0,
+        "correct": 12,
+        "total": 12
+      },
+      "sports season of league or competition": {
+        "accuracy": 0.75,
+        "correct": 9,
+        "total": 12
+      },
+      "spouse": {
+        "accuracy": 0.5833333333333334,
+        "correct": 7,
+        "total": 12
+      }
+    }
+  }
+}

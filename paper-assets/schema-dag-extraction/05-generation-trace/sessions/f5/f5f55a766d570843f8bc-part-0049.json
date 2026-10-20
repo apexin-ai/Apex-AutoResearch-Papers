@@ -2675,7 +2675,7 @@
           "content": [
             {
               "type": "text",
-              "text": "42:DEFAULT_API_KEY = os.environ.get(\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")\n378:    parser.add_argument(\"--api_key\", default=DEFAULT_API_KEY)"
+              "text": "42:DEFAULT_API_KEY = [REDACTED]\"OPENAI_API_KEY\", \"YOUR_API_KEY_HERE\")\n378:    parser.add_argument(\"--api_key\", default=DEFAULT_API_KEY)"
             }
           ],
           "metadata": {

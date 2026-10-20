@@ -1,0 +1,146 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{universal_ner_2024}
+\citation{gollie_2024}
+\citation{llmpee_2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{universal_ner_2024,gollie_2024,llmpee_2024}
+\citation{universal_ner_2024}
+\citation{llmpee_2024}
+\citation{few_nerd_2021,maven_2020}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Training-free LLM IE.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema decomposition.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Schema complexity analysis.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{2}{Experimental Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Tasks and Datasets}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Models}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Confusability Measures}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Finding 1: Pairwise Confusability Predicts Type Confusion}{3}{section.4}\protected@file@percent }
+\newlabel{sec:finding1}{{4}{3}{Finding 1: Pairwise Confusability Predicts Type Confusion}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Few-NERD: Qwen3 Embeddings}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:fewnerd_pairwise}{{4.1}{3}{Few-NERD: Qwen3 Embeddings}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}MAVEN: Embedding-Dependent Signal}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:maven_pairwise}{{4.2}{3}{MAVEN: Embedding-Dependent Signal}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-model comparison on Few-NERD. Confusability effects are substantially weaker for LLaMA-3.3-70B across all metrics.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:crossmodel}{{1}{4}{Cross-model comparison on Few-NERD. Confusability effects are substantially weaker for LLaMA-3.3-70B across all metrics}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LLaMA-3.3-70B detailed statistics on Few-NERD. No analysis reaches significance.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:llama_detail}{{2}{4}{LLaMA-3.3-70B detailed statistics on Few-NERD. No analysis reaches significance}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Model Validation: LLaMA-3.3-70B}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.3}{4}{Cross-Model Validation: LLaMA-3.3-70B}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Embedding Proxy Validation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:scs_validation}{{4.4}{4}{Embedding Proxy Validation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Summary: Pairwise Signal Matrix}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Finding 2: Count and Confusability Degrade Through Distinguishable Channels}{4}{section.5}\protected@file@percent }
+\newlabel{sec:finding2}{{5}{4}{Finding 2: Count and Confusability Degrade Through Distinguishable Channels}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Count Curves Across Tasks}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:count_curves}{{5.1}{4}{Count Curves Across Tasks}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Correlation between embedding SCS and empirical confusion rates. Both embeddings show weak predictive power.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:scs_validation}{{3}{5}{Correlation between embedding SCS and empirical confusion rates. Both embeddings show weak predictive power}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SCS proxy error analysis: false positive/negative rates for confusion prediction.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:scs_errors}{{4}{5}{SCS proxy error analysis: false positive/negative rates for confusion prediction}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD.}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MAVEN.}{5}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED.}{5}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Within-Count BCS--F\textsubscript  {1}{} Correlation}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:within_count}{{5.2}{5}{Within-Count BCS--\fone {} Correlation}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{MAVEN.}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DocRED.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}2$\times $2 Factorial Design: Count $\times $ Confusability Interaction}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:factorial}{{5.3}{5}{2$\times $2 Factorial Design: Count $\times $ Confusability Interaction}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pairwise SCS--confusion signal across tasks, models, and embeddings. Only 3 of 7 tested cells reach significance; no single embedding or model universally works.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:pairwise_matrix}{{5}{6}{Pairwise SCS--confusion signal across tasks, models, and embeddings. Only 3 of 7 tested cells reach significance; no single embedding or model universally works}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces MAVEN count curve (500 samples, relaxed matching). Performance \emph  {increases} with type count---opposite of Few-NERD.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:maven_count}{{6}{6}{MAVEN count curve (500 samples, relaxed matching). Performance \emph {increases} with type count---opposite of Few-NERD}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Error Taxonomy: Mechanistic Evidence for Distinct Channels}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:error_taxonomy}{{5.4}{6}{Error Taxonomy: Mechanistic Evidence for Distinct Channels}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Type substitution by confusability.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Missed entities by count.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Boundary errors and hallucination.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Finding 3: Per-Type Aggregation Introduces Centrality Confound}{6}{section.6}\protected@file@percent }
+\newlabel{sec:finding3}{{6}{6}{Finding 3: Per-Type Aggregation Introduces Centrality Confound}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}MAVEN: Positive Per-Type Correlation}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces DocRED count curve (document-level RE). Performance is near-flat---schema complexity effects are dominated by cross-sentence reasoning demands.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:docred_count}{{7}{7}{DocRED count curve (document-level RE). Performance is near-flat---schema complexity effects are dominated by cross-sentence reasoning demands}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces MAVEN within-count BCS--F\textsubscript  {1}{} correlation. No significant relationship detected at any count level.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:maven_within_count}{{8}{7}{MAVEN within-count BCS--\fone {} correlation. No significant relationship detected at any count level}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}DocRED: Null Result as Boundary Condition}{7}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Finding 4: Confusability-Minimizing Decomposition Fails}{7}{section.7}\protected@file@percent }
+\newlabel{sec:finding4}{{7}{7}{Finding 4: Confusability-Minimizing Decomposition Fails}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Overview of Methods}{7}{subsection.7.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces $2{\times }2$ cell means (F\textsubscript  {1}{}, text match) on Few-NERD. Both factors show directional effects, but the interaction is not significant.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:factorial_means}{{9}{8}{$2{\times }2$ cell means (\fone {}, text match) on Few-NERD. Both factors show directional effects, but the interaction is not significant}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Two-way ANOVA results. Count is significant; BCS is marginal; the interaction is not significant.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:anova}{{10}{8}{Two-way ANOVA results. Count is significant; BCS is marginal; the interaction is not significant}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Results}{8}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SDGD vs.\ random is not significant.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-type splitting is worst.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Root cause.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:discussion}{{8}{8}{Discussion}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Schema complexity is multi-dimensional but context-dependent.}{8}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Overall error distribution. Spurious extraction dominates; type substitution (the channel most related to confusability) accounts for only 18\%.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:error_dist}{{11}{9}{Overall error distribution. Spurious extraction dominates; type substitution (the channel most related to confusability) accounts for only 18\%}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Type substitution rate by BCS condition. The extreme ratio (4.8$\times $) substantially exceeds the random ratio (1.5$\times $).}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:type_sub_bcs}{{12}{9}{Type substitution rate by BCS condition. The extreme ratio (4.8$\times $) substantially exceeds the random ratio (1.5$\times $)}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Confusability effects are real but not universal.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-type aggregation is unreliable.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decomposition harms LLM IE.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for future work.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Missed entity rate by count. Monotonically increasing, independent of BCS.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:miss_count}{{13}{10}{Missed entity rate by count. Monotonically increasing, independent of BCS}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces MAVEN pairwise and per-type confusability analysis. Per-type correlations are positive (confounded); pairwise MiniLM is significant.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:maven_pertype}{{14}{10}{MAVEN pairwise and per-type confusability analysis. Per-type correlations are positive (confounded); pairwise MiniLM is significant}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{10}{section.9}\protected@file@percent }
+\newlabel{sec:conclusion}{{9}{10}{Conclusion}{section.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}SDGD Decomposition: Detailed Results}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:sdgd}{{A}{10}{SDGD Decomposition: Detailed Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}SDGD-zero on Few-NERD}{10}{subsection.A.1}\protected@file@percent }
+\newlabel{app:sdgd_zero_fewnerd}{{A.1}{10}{SDGD-zero on Few-NERD}{subsection.A.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}SDGD-zero on MAVEN}{10}{subsection.A.2}\protected@file@percent }
+\newlabel{app:sdgd_zero_maven}{{A.2}{10}{SDGD-zero on MAVEN}{subsection.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}SDGD-cal on Few-NERD}{10}{subsection.A.3}\protected@file@percent }
+\newlabel{app:sdgd_cal_fewnerd}{{A.3}{10}{SDGD-cal on Few-NERD}{subsection.A.3}{}}
+\bibstyle{plainnat}
+\bibcite{universal_ner_2024}{{1}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces DocRED pairwise confusability analysis. No significant signal detected with either embedding.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:docred_pairwise}{{15}{11}{DocRED pairwise confusability analysis. No significant signal detected with either embedding}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Full method comparison. All decomposition methods are inferior to single-pass. Ordering: single-pass $>$ SDGD-cal $\gtrsim $ random $\gtrsim $ SDGD-zero $>$ per-type. Methods are sorted by Few-NERD F\textsubscript  {1}{}.}}{11}{table.16}\protected@file@percent }
+\newlabel{tab:sdgd_main}{{16}{11}{Full method comparison. All decomposition methods are inferior to single-pass. Ordering: single-pass $>$ SDGD-cal $\gtrsim $ random $\gtrsim $ SDGD-zero $>$ per-type. Methods are sorted by Few-NERD \fone {}}{table.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}SDGD-cal on MAVEN}{11}{subsection.A.4}\protected@file@percent }
+\newlabel{app:sdgd_cal_maven}{{A.4}{11}{SDGD-cal on MAVEN}{subsection.A.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Random Batching Ablation}{11}{subsection.A.5}\protected@file@percent }
+\newlabel{app:random}{{A.5}{11}{Random Batching Ablation}{subsection.A.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Per-Type Splitting Ablation}{11}{subsection.A.6}\protected@file@percent }
+\newlabel{app:pertype}{{A.6}{11}{Per-Type Splitting Ablation}{subsection.A.6}{}}
+\bibcite{gollie_2024}{{2}{}{{}}{{}}}
+\bibcite{llmpee_2024}{{3}{}{{}}{{}}}
+\bibcite{few_nerd_2021}{{4}{}{{}}{{}}}
+\bibcite{maven_2020}{{5}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces SDGD-zero vs.\ single-pass on Few-NERD (66 types).}}{12}{table.17}\protected@file@percent }
+\newlabel{tab:sdgd_zero_fewnerd}{{17}{12}{SDGD-zero vs.\ single-pass on Few-NERD (66 types)}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces SDGD-zero per-batch breakdown (top 4 batches, Few-NERD).}}{12}{table.18}\protected@file@percent }
+\newlabel{tab:sdgd_zero_perbatch}{{18}{12}{SDGD-zero per-batch breakdown (top 4 batches, Few-NERD)}{table.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces SDGD-zero vs.\ single-pass on MAVEN (168 types, relaxed matching).}}{13}{table.19}\protected@file@percent }
+\newlabel{tab:sdgd_zero_maven}{{19}{13}{SDGD-zero vs.\ single-pass on MAVEN (168 types, relaxed matching)}{table.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces SDGD-cal vs.\ baselines on Few-NERD.}}{13}{table.20}\protected@file@percent }
+\newlabel{tab:sdgd_cal_fewnerd}{{20}{13}{SDGD-cal vs.\ baselines on Few-NERD}{table.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Full comparison on MAVEN (168 types, relaxed matching).}}{13}{table.21}\protected@file@percent }
+\newlabel{tab:sdgd_cal_maven}{{21}{13}{Full comparison on MAVEN (168 types, relaxed matching)}{table.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Random vs.\ SDGD-zero on Few-NERD ($k{=}8$, 10 random seeds).}}{13}{table.22}\protected@file@percent }
+\newlabel{tab:random_fewnerd}{{22}{13}{Random vs.\ SDGD-zero on Few-NERD ($k{=}8$, 10 random seeds)}{table.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Random vs.\ SDGD-zero on MAVEN.}}{13}{table.23}\protected@file@percent }
+\newlabel{tab:random_maven}{{23}{13}{Random vs.\ SDGD-zero on MAVEN}{table.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Per-type splitting vs.\ all methods on Few-NERD.}}{13}{table.24}\protected@file@percent }
+\newlabel{tab:pertype_fewnerd}{{24}{13}{Per-type splitting vs.\ all methods on Few-NERD}{table.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Per-type splitting vs.\ all methods on MAVEN (relaxed matching).}}{13}{table.25}\protected@file@percent }
+\newlabel{tab:pertype_maven}{{25}{13}{Per-type splitting vs.\ all methods on MAVEN (relaxed matching)}{table.25}{}}
+\gdef \@abspage@last{13}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_appendix_maven_residualized_20260516T020105_result.json",
     "occurrence": 1,
-    "bytes": 846,
-    "sha256": "5f2be2a117ebdb7f661675bf724df8cd45f08f9bcf48d09846aba9f1f23b6f81"
+    "bytes": 845,
+    "sha256": "9b2947e76b06717a0200d8421da3a69c0a053727517adaa49bc26547a02eca4a"
   },
   "statistics": {
     "messages": 1,

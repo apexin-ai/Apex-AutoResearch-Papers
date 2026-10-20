@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_scs_name_def_ablation_20260516T114937_result.json",
     "occurrence": 1,
-    "bytes": 1285,
-    "sha256": "40ed7acac82432859a9f360011479b257e60576cf2a88cdf6b1fea95cdbd7932"
+    "bytes": 1284,
+    "sha256": "0cf1c45a1288c386e521f6cabc357a9ab44d6e72daf2ecf216f247f37f2ec10d"
   },
   "statistics": {
     "messages": 1,
